@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Conalytic Website
+
+Official website for [Conalytic](https://conalytic.com) — AI-powered conversational analytics platform.
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org) (App Router, RSC) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| CMS | [Storyblok](https://storyblok.com) |
+| Deployment | [Vercel](https://vercel.com) |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install --legacy-peer-deps
+
+# Copy env vars
+cp .env.local.example .env.local
+# Fill in your Storyblok tokens
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Route | Description |
+|---|---|
+| `/` | Home |
+| `/features` | Platform features |
+| `/products/conversational-analytics` | Conversational Analytics product |
+| `/products/report-builder` | Report Builder product |
+| `/products/applicant-tracking-system` | ATS product |
+| `/about-us` | About Conalytic |
+| `/contact` | Contact us |
+| `/integrations` | Integrations listing |
+| `/blogs` | Blog listing |
+| `/blogs/[slug]` | Individual blog posts |
+| `/careers` | Open positions |
+| `/privacy` | Privacy Policy |
+| `/terms` | Terms of Service |
+| `/cookies` | Cookies Policy |
+| `/brand` | Brand assets & guidelines |
 
-## Learn More
+## Development Docs
 
-To learn more about Next.js, take a look at the following resources:
+See [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) for full documentation including:
+- Architecture decisions
+- Storyblok CMS setup guide
+- Component library reference
+- SEO strategy
+- Deployment guide
+- Content editing workflow
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+STORYBLOK_API_TOKEN=           # Public delivery token
+STORYBLOK_PREVIEW_TOKEN=       # Preview token (for draft content)
+NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN=
+NEXT_PUBLIC_STORYBLOK_SPACE_ID=
+NEXT_PUBLIC_SITE_URL=
+```
 
-## Deploy on Vercel
+## Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The site auto-deploys to Vercel on every push to `main`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Live URL:** https://conalytic-website.vercel.app
+
+---
+
+© 2025 Conalytic. All rights reserved.
