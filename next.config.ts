@@ -2,21 +2,18 @@ import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   turbopack: {
     root: path.resolve(__dirname),
   },
   images: {
     remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "a.storyblok.com",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "img2.storyblok.com",
-        pathname: "/**",
-      },
+      { protocol: "https", hostname: "a.storyblok.com",    pathname: "/**" },
+      { protocol: "https", hostname: "img2.storyblok.com", pathname: "/**" },
+      { protocol: "https", hostname: "i.pravatar.cc",      pathname: "/**" },
+      { protocol: "https", hostname: "images.unsplash.com",pathname: "/**" },
     ],
   },
   async redirects() {

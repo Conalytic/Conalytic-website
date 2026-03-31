@@ -39,3 +39,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# cursor / editor internals
+.cursor/
+
+# local dev artefacts (symlinks & binaries created by npm)
+conalytic@*
+next
+
+# design assets (not needed at runtime)
+Conalytic\ Assets/
+samples/
+
+# python cache
+__pycache__/
+*.pyc

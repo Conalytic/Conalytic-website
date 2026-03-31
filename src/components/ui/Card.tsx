@@ -11,9 +11,8 @@ export function Card({ children, className, hover = false }: CardProps) {
     <div
       className={cn(
         "rounded-2xl p-6",
-        "bg-white/[0.03] border border-white/[0.07]",
-        "backdrop-blur-sm",
-        hover && "transition-all duration-300 hover:bg-white/[0.06] hover:border-[#6B5FF8]/30 hover:-translate-y-1",
+        "glass-card",
+        hover && "transition-all duration-300 hover:border-brand-500/30 hover:-translate-y-1",
         className
       )}
     >
@@ -35,7 +34,7 @@ export function StatCard({ value, label, suffix }: StatCardProps) {
         {value}
         {suffix && <span className="text-2xl">{suffix}</span>}
       </div>
-      <div className="text-white/50 text-sm">{label}</div>
+      <div className="text-navy-900/50 dark:text-white/50 text-sm">{label}</div>
     </div>
   );
 }

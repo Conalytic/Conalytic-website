@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -12,6 +13,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://conalytic.com"),
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   title: {
     default: "Conalytic – AI-Powered Conversational Analytics Platform",
     template: "%s | Conalytic",
@@ -75,11 +80,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-[#0A0F1E] text-white antialiased">
-        <Navbar />
-        <main className="flex-1 pt-[88px]">{children}</main>
-        <Footer />
+    <html lang="en" className={`${inter.variable} h-full`} suppressHydrationWarning>
+      <body className="min-h-full flex flex-col antialiased transition-colors duration-300" suppressHydrationWarning>
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
