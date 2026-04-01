@@ -180,27 +180,27 @@ export function HowItWorks() {
         <div className="w-full max-w-5xl mx-auto px-4 py-8">
 
           {/* Section header */}
-          <div className="text-center mb-10">
+          <div className="text-center mb-6 sm:mb-10">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-3">
               How it works
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
               From question to insight in seconds
             </h2>
-            <p className="mt-3 text-gray-500 dark:text-white/50 max-w-md mx-auto text-sm leading-relaxed">
+            <p className="mt-2 sm:mt-3 text-gray-500 dark:text-white/65 max-w-md mx-auto text-sm leading-relaxed px-2">
               No SQL. No dashboards. No data team required. Just ask — and get an answer your whole team can act on.
             </p>
           </div>
 
           {/* Steps + Panel */}
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center">
 
             {/* Steps list */}
             <div className="flex flex-col gap-1">
               {STEPS.map((step, i) => (
                 <div
                   key={i}
-                  className={`flex items-start gap-4 p-4 rounded-2xl transition-all duration-500 ${
+                  className={`flex items-start gap-4 px-4 py-3 sm:p-4 rounded-2xl transition-all duration-500 ${
                     active === i
                       ? "bg-brand-50 dark:bg-brand-500/10 border border-brand-100 dark:border-brand-500/20"
                       : "border border-transparent opacity-40"
@@ -217,8 +217,8 @@ export function HowItWorks() {
                     }`}>
                       {step.title}
                     </p>
-                    <div className={`overflow-hidden transition-all duration-500 ${active === i ? "max-h-20 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="text-sm text-gray-500 dark:text-white/50 leading-relaxed">{step.desc}</p>
+                    <div className={`overflow-hidden transition-all duration-500 ${active === i ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}>
+                      <p className="text-sm text-gray-500 dark:text-white/65 leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 </div>
@@ -233,8 +233,8 @@ export function HowItWorks() {
               </p>
             </div>
 
-            {/* Synced panel */}
-            <div>
+            {/* Synced panel — hidden on mobile to prevent overflow */}
+            <div className="hidden lg:block">
               <div className="bg-white dark:bg-[#16161D] rounded-2xl border border-gray-100 dark:border-white/[0.07] shadow-lg shadow-black/5 dark:shadow-black/40 overflow-hidden">
                 {/* Window chrome */}
                   <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">

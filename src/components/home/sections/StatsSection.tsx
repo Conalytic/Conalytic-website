@@ -34,7 +34,7 @@ function StatItem({ end, suffix, label, decimal, active }: {
       <p className="text-5xl sm:text-6xl font-black tabular-nums text-gray-900 dark:text-white mb-2">
         {display}{suffix}
       </p>
-      <p className="text-sm text-gray-500 dark:text-white/45 max-w-[120px] leading-snug">{label}</p>
+      <p className="text-sm text-gray-500 dark:text-white/62 max-w-[120px] leading-snug">{label}</p>
     </div>
   );
 }

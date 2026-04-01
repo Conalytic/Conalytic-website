@@ -48,17 +48,37 @@
    DARK theme
 ══════════════════════════════════════════════════════ */
 .dark {
-  --bg:            #0C0C12;
-  --bg-elevated:   #121219;
-  --surface:       rgba(255, 255, 255, 0.05);
+  --bg:            #08080E;
+  --bg-elevated:   #0F0F18;
+  --surface:       rgba(255, 255, 255, 0.055);
   --surface-hover: rgba(255, 255, 255, 0.09);
-  --border:        rgba(255, 255, 255, 0.07);
-  --border-subtle: rgba(255, 255, 255, 0.04);
-  --fg:            #EDEEF6;
-  --fg-muted:      rgba(237, 238, 246, 0.58);
-  --fg-faint:      rgba(237, 238, 246, 0.28);
-  --shadow:        0 4px 32px rgba(0, 0, 0, 0.55);
+  --border:        rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.045);
+  --fg:            #E8EAF6;
+  --fg-muted:      rgba(232, 234, 246, 0.72);
+  --fg-faint:      rgba(232, 234, 246, 0.45);
+  --shadow:        0 4px 32px rgba(0, 0, 0, 0.6);
 }
+
+/* ── Dark mode: single unified fixed canvas ──────────────────────────────────
+   Everything lives here — image + scrim in one declaration.
+   Positioning at "center 32%" keeps the teal → magenta → blue zone centred
+   in the viewport, pushing the orange blobs above/below the visible area.
+─────────────────────────────────────────────────────────────────────────── */
+.dark body {
+  background-color: #08080E;
+  background-image:
+    /* readability scrim — one layer, no per-section repetition */
+    linear-gradient(rgba(8, 8, 14, 0.52), rgba(8, 8, 14, 0.52)),
+    url('/dark-bg.png');
+  background-attachment: fixed, fixed;
+  background-size: auto, cover;
+  background-position: center, center 32%;
+  background-repeat: no-repeat, no-repeat;
+}
+
+/* Transparent wrappers so the single body canvas shows through everywhere */
+.dark main { background: transparent; }
 
 /* ── Base ─────────────────────────────────────────── */
 * { box-sizing: border-box; }
@@ -94,6 +114,20 @@ body {
   box-shadow: 0 0 40px rgba(107, 95, 248, 0.35);
 }
 
+/* ── Hub diagram CSS vars ──────────────────────────── */
+:root {
+  --hub-tile:        #FFFFFF;
+  --hub-tile-stroke: #E5E7EB;
+  --hub-bg:          #F4F5FA;
+  --hub-center:      #FFFFFF;
+}
+.dark {
+  --hub-tile:        #1A1A24;
+  --hub-tile-stroke: rgba(255,255,255,0.09);
+  --hub-bg:          #13131A;
+  --hub-center:      #1E1E2C;
+}
+
 /* ── Glass card ────────────────────────────────────── */
 .glass-card {
   background: var(--surface);
@@ -118,11 +152,8 @@ body {
 }
 
 .dark .hero-gradient {
-  background:
-    radial-gradient(ellipse 55% 65% at -8%  100%, rgba(107, 95, 248, 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 50% 55% at 108%   0%, rgba(139, 92, 246, 0.13) 0%, transparent 55%),
-    radial-gradient(ellipse 70% 35% at  50%  50%, rgba( 99,102, 241, 0.05) 0%, transparent 65%),
-    var(--bg);
+  /* transparent — lets the fixed body background image show through */
+  background: transparent;
 }
 
 /* ── Grid overlay ──────────────────────────────────── */
@@ -131,6 +162,27 @@ body {
     linear-gradient(var(--border) 1px, transparent 1px),
     linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+/* ── Dark sections: fully transparent — body canvas shows through everywhere ── */
+.dark section {
+  background: transparent !important;
+}
+
+/* Accent glow blobs — kept for opt-in use on specific elements */
+.dark-glow-left::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 60% at -10% 50%, rgba(107,95,248,0.06) 0%, transparent 65%);
+}
+.dark-glow-right::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 50% 60% at 110% 50%, rgba(107,95,248,0.06) 0%, transparent 65%);
 }
 
 /* ══════════════════════════════════════════════════════

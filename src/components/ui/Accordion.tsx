@@ -61,7 +61,7 @@ export function Accordion({ items, className }: AccordionProps) {
                 isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
               )}
             >
-              <p className="px-6 pb-5 text-sm leading-relaxed text-navy-900/60 dark:text-white/60">
+              <p className="px-6 pb-5 text-sm leading-relaxed text-navy-900/60 dark:text-white/72">
                 {item.answer}
               </p>
             </div>

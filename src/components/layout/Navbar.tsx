@@ -126,7 +126,7 @@ export function Navbar() {
                               {child.name}
                             </span>
                             {child.description && (
-                              <span className="text-gray-400 dark:text-white/40 text-xs">{child.description}</span>
+                              <span className="text-gray-400 dark:text-white/58 text-xs">{child.description}</span>
                             )}
                           </Link>
                         ))}

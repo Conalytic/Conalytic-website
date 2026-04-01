@@ -149,9 +149,9 @@ function QADemoCard() {
             </div>
           </div>
 
-          {/* Key finding */}
-          <div className={`flex items-start gap-3 bg-brand-50 dark:bg-brand-600/10 border border-brand-100 dark:border-brand-500/20 rounded-xl px-4 py-3 transition-all duration-500 ${showInsight ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
-            <span className="text-brand-600 dark:text-brand-300 font-bold text-xs shrink-0 mt-0.5 whitespace-nowrap">↑ Key finding</span>
+          {/* Key finding — label centered on top, text below */}
+          <div className={`bg-brand-50 dark:bg-brand-600/10 border border-brand-100 dark:border-brand-500/20 rounded-xl px-4 py-3 text-center transition-all duration-500 ${showInsight ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"}`}>
+            <p className="text-brand-600 dark:text-brand-300 font-bold text-xs mb-1.5">↑ Key finding</p>
             <p className="text-[12px] text-gray-600 dark:text-white/60 leading-relaxed">
               Enterprise segment grew 154% over 6 months, now representing 63% of total revenue. SMB revenue flat — consider upsell campaign targeting accounts &gt;$5k MRR.
             </p>
@@ -376,7 +376,7 @@ function HeroSection() {
 
         {/* Subtext */}
         <motion.p initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.2, ease:EASE }}
-          className="text-lg text-gray-500 dark:text-white/55 max-w-xl mx-auto mb-10 leading-relaxed"
+          className="text-lg text-gray-500 dark:text-white/70 max-w-xl mx-auto mb-10 leading-relaxed"
         >
           Ask questions in plain English and get instant insights from GA4, Google Ads, Meta and Search Console — no SQL required.
         </motion.p>
@@ -386,10 +386,10 @@ function HeroSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
         >
           <a href="https://app.conalytic.com" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-gray-900 dark:bg-white dark:text-gray-900 shadow-xl hover:bg-gray-800 dark:hover:bg-gray-100 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 dark:bg-brand-600 shadow-xl shadow-brand-600/25 hover:bg-brand-700 dark:hover:bg-brand-700 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
           >Get started</a>
           <a href="https://app.conalytic.com/demo" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white border-2 border-gray-300 dark:border-white/25 hover:border-gray-400 dark:hover:border-white/40 bg-white/60 dark:bg-transparent hover:bg-white dark:hover:bg-white/5 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+            className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 hover:border-brand-400 dark:hover:border-brand-400/50 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
           >Book a demo</a>
         </motion.div>
 
@@ -479,7 +479,7 @@ function ServicesSection() {
               </svg>
             </div>
             <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Ask in Plain English</h3>
-            <p className="relative z-10 text-sm text-gray-500 dark:text-white/50 mb-5 leading-relaxed">Discover insights through natural conversations — no SQL or analysts required.</p>
+            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">Discover insights through natural conversations — no SQL or analysts required.</p>
 
             {/* Mini chat mockup */}
             <div className="relative z-10 mt-auto bg-white dark:bg-[#1C1C24] rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.07)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/[0.07]">
@@ -522,7 +522,7 @@ function ServicesSection() {
               </svg>
             </div>
             <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Automated Reporting</h3>
-            <p className="relative z-10 text-sm text-gray-500 dark:text-white/50 mb-5 leading-relaxed">Branded, client-ready reports generated and delivered on your schedule automatically.</p>
+            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">Branded, client-ready reports generated and delivered on your schedule automatically.</p>
 
             {/* Mini report card */}
             <div className="relative z-10 mt-auto bg-white dark:bg-[#1C1C24] rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.07)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/[0.07]">
@@ -570,7 +570,7 @@ function ServicesSection() {
                 100%
               </p>
               <p className="text-sm font-bold text-gray-800 dark:text-white mb-1">Reliability</p>
-              <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">Enterprise-grade uptime for all analytics pipelines.</p>
+              <p className="text-xs text-gray-400 dark:text-white/60 leading-relaxed">Enterprise-grade uptime for all analytics pipelines.</p>
             </div>
 
             {/* Mini uptime bars */}
@@ -603,7 +603,7 @@ function ServicesSection() {
                 10K+
               </p>
               <p className="text-sm font-bold text-gray-800 dark:text-white mb-1">Queries daily</p>
-              <p className="text-xs text-gray-400 dark:text-white/40 leading-relaxed">Real-time answers across 500+ connected teams.</p>
+              <p className="text-xs text-gray-400 dark:text-white/60 leading-relaxed">Real-time answers across 500+ connected teams.</p>
             </div>
 
             {/* Mini sparkline */}
@@ -681,7 +681,7 @@ function CapabilitiesSection() {
             Supercharge Your Analytics<br/>
             <span className="font-black">Team&apos;s Capabilities.</span>
           </h2>
-          <p className="text-gray-500 dark:text-white/50 mb-8 leading-relaxed">
+          <p className="text-gray-500 dark:text-white/65 mb-8 leading-relaxed">
             Empower your team with the tools and insights needed to drive smarter decisions and improve marketing performance.
           </p>
           <div className="space-y-6">
@@ -693,7 +693,7 @@ function CapabilitiesSection() {
                 <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-600/20 flex items-center justify-center text-xl shrink-0">{f.icon}</div>
                 <div>
                   <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{f.title}</p>
-                  <p className="text-sm text-gray-500 dark:text-white/45 leading-relaxed">{f.desc}</p>
+                  <p className="text-sm text-gray-500 dark:text-white/65 leading-relaxed">{f.desc}</p>
                 </div>
               </div>
             ))}
@@ -749,155 +749,193 @@ function CapabilitiesSection() {
    5. INTEGRATIONS HUB  — grid-intersection style
 ══════════════════════════════════════════════════════ */
 
-/* Hub-and-spoke integrations */
+/* Hub-and-spoke integrations — all SVG coordinates in a 460×280 viewBox */
+const HUB_VW = 460, HUB_VH = 280;
+const HUB_CX = 230, HUB_CY = 140; // center of hub
+
 const HUB_INTEGRATIONS = [
   {
-    id:"ga4", name:"Google Analytics 4", desc:"Website traffic, user behavior, and conversion data",
-    connected:true, meta:"32 accounts · 97 properties",
-    logo: siUrl("googleanalytics","E37400"), bg:"#FFF8F0", iconBg:"#FF9800",
-    cx:100, cy:60,
+    id:"ga4",  name:"Google Analytics 4",       desc:"Website traffic, user behavior, and conversion data",
+    connected:true,  logo: siUrl("googleanalytics","E37400"),   nx: 72, ny: 68,
   },
   {
-    id:"gsc", name:"Google Search Console", desc:"Search performance, keywords, and indexing data",
-    connected:true, meta:"42 sites",
-    logo: siUrl("googlesearchconsole","458CF5"), bg:"#EEF4FF", iconBg:"#4285F4",
-    cx:100, cy:240,
+    id:"gsc",  name:"Google Search Console",    desc:"Search performance, keywords, and indexing data",
+    connected:true,  logo: siUrl("googlesearchconsole","458CF5"), nx: 72, ny: 212,
   },
   {
-    id:"gads", name:"Google Ads", desc:"Ad campaigns, spend, conversions, and ROI",
-    connected:true, meta:"18 accounts",
-    logo: siUrl("googleads","4285F4"), bg:"#EEF4FF", iconBg:"#4285F4",
-    cx:460, cy:60,
+    id:"gads", name:"Google Ads",               desc:"Ad campaigns, spend, conversions, and ROI",
+    connected:true,  logo: siUrl("googleads","4285F4"),          nx: 388, ny: 68,
   },
   {
-    id:"meta", name:"Meta Ads", desc:"Facebook & Instagram ad performance",
-    connected:false, meta:null,
-    logo: siUrl("meta","0866FF"), bg:"#EEF6FF", iconBg:"#0866FF",
-    cx:460, cy:150,
+    id:"meta", name:"Meta Ads",                 desc:"Facebook & Instagram ad performance",
+    connected:false, logo: siUrl("meta","0866FF"),               nx: 388, ny: 140,
   },
   {
-    id:"li", name:"LinkedIn Ads", desc:"LinkedIn campaign analytics and engagement",
-    connected:false, meta:null,
-    logo: siUrl("linkedin","0A66C2"), bg:"#E8F0FE", iconBg:"#0A66C2",
-    cx:460, cy:240,
+    id:"li",   name:"LinkedIn Ads",             desc:"LinkedIn campaign analytics and engagement",
+    connected:false, logo: siUrl("linkedin","0077B5"),           nx: 388, ny: 212,
   },
 ];
-// center node
-const HUB_CX = 280, HUB_CY = 150;
 
 function IntegrationsHub() {
+  /* Tile size */
+  const T = 54, R = 14, LOGO = 26;
+
   return (
     <section className="py-24 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto">
 
         {/* Heading */}
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
+        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             Seamless integration with<br/>
             <span className="font-black">your marketing stack</span>
           </h2>
-          <p className="text-gray-500 dark:text-white/50 text-sm">Connect all your data sources — no engineering required.</p>
+          <p className="text-gray-500 dark:text-white/65 text-sm">
+            Connect all your data sources — no engineering required.
+          </p>
         </motion.div>
 
-        {/* Hub diagram + integration list side-by-side */}
         <div className="flex flex-col lg:flex-row items-center gap-12">
 
-          {/* ── Hub diagram ── */}
+          {/* ── Pure-SVG hub diagram — zero HTML/SVG hybrid ── */}
           <motion.div
             initial={{ opacity:0, scale:0.92 }} whileInView={{ opacity:1, scale:1 }}
             viewport={{ once:true }} transition={{ duration:0.8, ease:EASE }}
-            className="w-full lg:w-[560px] shrink-0"
+            className="w-full lg:w-[500px] shrink-0"
           >
-            <div className="relative rounded-3xl border border-gray-200 dark:border-white/[0.07] overflow-hidden"
-              style={{ background:"#f5f6fa", height:300 }}
+            {/*
+              The SVG IS the diagram. viewBox sets the coordinate space.
+              All positions (lines, tiles, logos, dots) live in the same
+              SVG coordinate system — perfect alignment guaranteed.
+            */}
+            <svg
+              viewBox={`0 0 ${HUB_VW} ${HUB_VH}`}
+              className="w-full h-auto rounded-3xl border border-gray-200 dark:border-white/[0.07] overflow-visible"
+              style={{ display:"block" }}
             >
-              {/* Dark bg */}
-              <div className="absolute inset-0 hidden dark:block rounded-3xl" style={{ background:"#13131A" }}/>
+              {/* ── Background ── */}
+              <rect
+                x="0" y="0" width={HUB_VW} height={HUB_VH} rx="24"
+                style={{ fill:"var(--hub-bg)" }}
+              />
 
-              {/* Subtle dot grid */}
-              <div className="absolute inset-0 pointer-events-none opacity-50"
-                style={{ backgroundImage:"radial-gradient(circle,rgba(0,0,0,0.12) 1px,transparent 1px)", backgroundSize:"28px 28px" }}/>
-              <div className="absolute inset-0 hidden dark:block pointer-events-none opacity-30"
-                style={{ backgroundImage:"radial-gradient(circle,rgba(255,255,255,0.15) 1px,transparent 1px)", backgroundSize:"28px 28px" }}/>
+              {/* Dot grid pattern */}
+              <defs>
+                <pattern id="dots" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r="1" fill="rgba(0,0,0,0.07)"/>
+                </pattern>
+                <pattern id="dotsDark" x="0" y="0" width="26" height="26" patternUnits="userSpaceOnUse">
+                  <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.10)"/>
+                </pattern>
+                <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stopColor="#6B5FF8" stopOpacity="0.12"/>
+                  <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0"/>
+                </radialGradient>
+                <linearGradient id="lgLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0.08"/>
+                </linearGradient>
+                <linearGradient id="lgRight" x1="100%" y1="0%" x2="0%" y2="0%">
+                  <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0.08"/>
+                </linearGradient>
+                <filter id="tileShadow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="rgba(0,0,0,0.10)"/>
+                </filter>
+                <filter id="hubGlow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="rgba(107,95,248,0.35)"/>
+                </filter>
+              </defs>
 
-              {/* SVG layer — lines */}
-              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 560 300" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.5"/>
-                    <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0.08"/>
-                  </linearGradient>
-                  <linearGradient id="lineGradR" x1="1" y1="0" x2="0" y2="0">
-                    <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.5"/>
-                    <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0.08"/>
-                  </linearGradient>
-                </defs>
-                {HUB_INTEGRATIONS.map((item) => {
-                  const isRight = item.cx > HUB_CX;
-                  // Gradient strokes don't work with strokeDasharray in browsers.
-                  // Use gradient only for solid connected lines; plain color for dashed.
-                  return (
-                    <line key={item.id}
-                      x1={item.cx} y1={item.cy} x2={HUB_CX} y2={HUB_CY}
-                      stroke={item.connected ? (isRight ? "url(#lineGradR)" : "url(#lineGrad)") : "rgba(107,95,248,0.25)"}
-                      strokeWidth={item.connected ? "1.5" : "1.2"}
-                      strokeDasharray={item.connected ? undefined : "6 5"}
-                    />
-                  );
-                })}
+              {/* Dot overlay */}
+              <rect x="0" y="0" width={HUB_VW} height={HUB_VH} rx="24" fill="url(#dots)" opacity="0.8"/>
 
-                {/* Travelling dot — only on connected lines */}
-                {HUB_INTEGRATIONS.filter(i => i.connected).map((item, idx) => (
-                  <circle key={item.id} r="3" fill="#6B5FF8">
-                    <animateMotion
-                      dur={`${2.2 + idx * 0.5}s`}
-                      repeatCount="indefinite"
-                      path={`M ${item.cx} ${item.cy} L ${HUB_CX} ${HUB_CY}`}
-                    />
-                  </circle>
-                ))}
-              </svg>
+              {/* Center ambient glow */}
+              <ellipse cx={HUB_CX} cy={HUB_CY} rx="110" ry="90" fill="url(#centerGlow)"/>
 
-              {/* Center Conalytic node */}
-              <div className="absolute" style={{ left:HUB_CX, top:HUB_CY, transform:"translate(-50%,-50%)" }}>
-                <motion.div animate={{ scale:[1,1.06,1] }} transition={{ duration:3.5, repeat:Infinity, ease:"easeInOut" }}>
-                  <div className="w-[64px] h-[64px] bg-white dark:bg-navy-800 rounded-2xl shadow-xl shadow-black/15 flex items-center justify-center border border-gray-100 dark:border-white/15">
-                    <Image src="/logo-icon.png" alt="Conalytic" width={36} height={36}/>
-                  </div>
-                </motion.div>
-              </div>
+              {/* ── Lines ── */}
+              {HUB_INTEGRATIONS.map((item) => {
+                const isRight = item.nx > HUB_CX;
+                return (
+                  <line key={`line-${item.id}`}
+                    x1={item.nx} y1={item.ny}
+                    x2={HUB_CX}  y2={HUB_CY}
+                    stroke={item.connected
+                      ? (isRight ? "url(#lgRight)" : "url(#lgLeft)")
+                      : "rgba(107,95,248,0.20)"}
+                    strokeWidth={item.connected ? "1.5" : "1.2"}
+                    strokeDasharray={item.connected ? undefined : "5 4"}
+                  />
+                );
+              })}
 
-              {/* Integration nodes */}
-              {HUB_INTEGRATIONS.map((item, i) => (
-                <motion.div key={item.id}
-                  className="absolute group"
-                  style={{ left:item.cx, top:item.cy, transform:"translate(-50%,-50%)" }}
-                  initial={{ opacity:0, scale:0.5 }}
-                  whileInView={{ opacity:1, scale:1 }}
-                  viewport={{ once:true }}
-                  transition={{ duration:0.4, delay:0.1 + i*0.1, ease:EASE }}
-                >
-                  <motion.div
-                    animate={{ y:[0,-4,0] }}
-                    transition={{ duration:3 + i*0.6, repeat:Infinity, ease:"easeInOut", delay:i*0.4 }}
-                  >
-                    {/* Logo tile */}
-                    <div className="relative w-[52px] h-[52px] rounded-2xl flex items-center justify-center shadow-md shadow-black/10 border border-white/80 bg-white">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={item.logo} alt={item.name} width={26} height={26} loading="lazy"/>
-                      {/* status dot */}
-                      <span className={`absolute -bottom-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${item.connected ? "bg-emerald-500" : "bg-gray-300"}`}/>
-                    </div>
-                    {/* Hover tooltip */}
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 bg-gray-900/90 text-white text-[9px] font-medium px-2 py-1 rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-50">
-                      {item.name}
-                    </div>
-                  </motion.div>
-                </motion.div>
+              {/* ── Travelling dots (connected lines only) ── */}
+              {HUB_INTEGRATIONS.filter(n => n.connected).map((item, idx) => (
+                <circle key={`dot-${item.id}`} r="3.5" fill="#6B5FF8" opacity="0.9">
+                  <animateMotion
+                    dur={`${1.9 + idx * 0.4}s`}
+                    repeatCount="indefinite"
+                    path={`M ${item.nx} ${item.ny} L ${HUB_CX} ${HUB_CY}`}
+                  />
+                </circle>
               ))}
-            </div>
+
+              {/* ── Pulse rings on center ── */}
+              <circle cx={HUB_CX} cy={HUB_CY} r="35" fill="none" stroke="#6B5FF8" strokeWidth="1">
+                <animate attributeName="r"       values="32;52;32"    dur="2.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.35;0;0.35" dur="2.8s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx={HUB_CX} cy={HUB_CY} r="52" fill="none" stroke="#6B5FF8" strokeWidth="0.6">
+                <animate attributeName="r"       values="48;68;48"    dur="2.8s" begin="0.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.18;0;0.18" dur="2.8s" begin="0.8s" repeatCount="indefinite"/>
+              </circle>
+
+              {/* ── Integration nodes ── */}
+              {HUB_INTEGRATIONS.map((item) => (
+                <g key={`node-${item.id}`}>
+                  {/* Tile */}
+                  <rect
+                    x={item.nx - T/2} y={item.ny - T/2}
+                    width={T} height={T} rx={R}
+                    style={{ fill:"var(--hub-tile)", stroke:"var(--hub-tile-stroke)" }}
+                    strokeWidth="1"
+                    filter="url(#tileShadow)"
+                  />
+                  {/* Logo */}
+                  <image
+                    href={item.logo}
+                    x={item.nx - LOGO/2} y={item.ny - LOGO/2}
+                    width={LOGO} height={LOGO}
+                    preserveAspectRatio="xMidYMid meet"
+                  />
+                  {/* Status dot */}
+                  <circle
+                    cx={item.nx + T/2 - 7} cy={item.ny + T/2 - 7}
+                    r={5.5}
+                    fill={item.connected ? "#10B981" : "#9CA3AF"}
+                    stroke="var(--hub-tile)" strokeWidth="2"
+                  />
+                </g>
+              ))}
+
+              {/* ── Center Conalytic hub node ── */}
+              <rect
+                x={HUB_CX - 34} y={HUB_CY - 34}
+                width={68} height={68} rx={18}
+                style={{ fill:"var(--hub-center)", stroke:"var(--hub-tile-stroke)" }}
+                strokeWidth="1.5"
+                filter="url(#hubGlow)"
+              />
+              <image
+                href="/logo-icon.png"
+                x={HUB_CX - 20} y={HUB_CY - 20}
+                width={40} height={40}
+                preserveAspectRatio="xMidYMid meet"
+              />
+            </svg>
           </motion.div>
 
           {/* ── Integration list ── */}
@@ -906,28 +944,35 @@ function IntegrationsHub() {
               <motion.div key={item.id}
                 initial={{ opacity:0, x:20 }} whileInView={{ opacity:1, x:0 }}
                 viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.08, ease:EASE }}
-                className={`flex items-start gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-default group hover:shadow-sm dark:border-white/[0.07] dark:hover:border-white/[0.12] ${item.connected ? "dark:bg-[#16161D]" : "dark:bg-[#131318]"}`}
-                style={{ background: item.connected ? "rgba(255,255,255,0.9)" : "rgba(249,250,251,0.9)", borderColor: item.connected ? "rgba(229,231,235,1)" : "rgba(229,231,235,0.6)" }}
+                className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-default group hover:shadow-sm dark:hover:border-white/[0.12] ${
+                  item.connected
+                    ? "bg-white dark:bg-[#16161D] border-gray-100 dark:border-white/[0.07]"
+                    : "bg-gray-50/80 dark:bg-[#131318] border-gray-100/70 dark:border-white/[0.05]"
+                }`}
               >
                 {/* Icon */}
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white shadow-sm border border-gray-100">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white dark:bg-[#1E1E28] shadow-sm border border-gray-100 dark:border-white/[0.07]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.logo} alt={item.name} width={22} height={22}/>
+                  <img src={item.logo} alt="" width={22} height={22}
+                    onError={(e)=>{ (e.target as HTMLImageElement).style.display="none"; }}/>
                 </div>
 
                 {/* Text */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-0.5">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white">{item.name}</p>
-                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${item.connected ? "bg-emerald-50 text-emerald-600 border border-emerald-100" : "bg-gray-100 text-gray-400 border border-gray-200"}`}>
+                    <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
+                      item.connected
+                        ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20"
+                        : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/8"
+                    }`}>
                       {item.connected ? "Connected" : "Not connected"}
                     </span>
                   </div>
-                  <p className="text-xs text-gray-400 dark:text-white/40 truncate">{item.desc}</p>
+                  <p className="text-xs text-gray-400 dark:text-white/60 truncate">{item.desc}</p>
                 </div>
 
-                {/* Arrow on hover */}
-                <svg className="w-4 h-4 text-gray-300 group-hover:text-brand-400 transition-colors shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 text-gray-300 dark:text-white/20 group-hover:text-brand-400 transition-colors shrink-0" fill="none" viewBox="0 0 24 24">
                   <path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </motion.div>
@@ -938,7 +983,9 @@ function IntegrationsHub() {
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 font-semibold transition-colors mt-1"
               >
                 View all integrations
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </Link>
             </motion.div>
           </div>
@@ -974,7 +1021,7 @@ function TestimonialsSection() {
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             What our customers say<br/><span className="font-black">about us</span>
           </h2>
-          <p className="text-gray-500 dark:text-white/50 max-w-md mx-auto text-sm">
+          <p className="text-gray-500 dark:text-white/65 max-w-md mx-auto text-sm">
             Improve marketing performance with AI-powered insights, helping teams make smarter decisions faster.
           </p>
         </motion.div>
@@ -1000,7 +1047,7 @@ function TestimonialsSection() {
                 </div>
                 <div className="text-center">
                   <p className="text-sm font-bold text-gray-900 dark:text-white">{t.name}</p>
-                  <p className="text-xs text-gray-400 dark:text-white/40 mt-0.5">{t.title}</p>
+                  <p className="text-xs text-gray-400 dark:text-white/58 mt-0.5">{t.title}</p>
                 </div>
                 {/* Stars */}
                 <div className="flex gap-0.5">
@@ -1018,7 +1065,7 @@ function TestimonialsSection() {
                 <svg className="w-8 h-8 text-brand-200 dark:text-brand-800 mb-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                 </svg>
-                <p className="text-gray-700 dark:text-white/80 text-base sm:text-lg leading-relaxed flex-1">
+                <p className="text-gray-700 dark:text-white/88 text-base sm:text-lg leading-relaxed flex-1">
                   {t.quote}
                 </p>
                 {/* Dots */}
@@ -1060,14 +1107,14 @@ function FAQSection() {
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }} className="text-center mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">Frequently asked questions</h2>
-          <p className="text-gray-500 dark:text-white/50">Everything you need to know about Conalytic.</p>
+          <p className="text-gray-500 dark:text-white/65">Everything you need to know about Conalytic.</p>
         </motion.div>
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, delay:0.15, ease:EASE }}>
           <Accordion items={FAQS}/>
         </motion.div>
-        <p className="text-center text-gray-400 dark:text-white/40 text-sm mt-8">
+        <p className="text-center text-gray-400 dark:text-white/58 text-sm mt-8">
           Still have questions?{" "}
-          <Link href="/contact" className="text-brand-600 dark:text-brand-300 hover:underline font-semibold">Talk to our team</Link>
+          <Link href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline font-semibold">Talk to our team</Link>
         </p>
       </div>
     </section>
