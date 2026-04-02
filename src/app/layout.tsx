@@ -4,6 +4,8 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { StoryblokProvider } from "@/components/storyblok/StoryblokProvider";
+import { getSiteConfigStory, parseFooterConfig, parseNavbarConfig } from "@/lib/storyblok";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -74,18 +76,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteConfigStory = await getSiteConfigStory();
+  const siteConfig = (siteConfigStory?.content || {}) as Record<string, unknown>;
+  const useStoryblokLayout = siteConfig.use_storyblok_layout === true;
+  const navbarConfig = useStoryblokLayout ? parseNavbarConfig(siteConfig) : null;
+  const footerConfig = useStoryblokLayout ? parseFooterConfig(siteConfig) : null;
+
   return (
     <html lang="en" className={`${inter.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col antialiased transition-colors duration-300" suppressHydrationWarning>
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <StoryblokProvider>
+            <Navbar config={navbarConfig} />
+            <main className="flex-1">{children}</main>
+            <Footer config={footerConfig} />
+          </StoryblokProvider>
         </ThemeProvider>
       </body>
     </html>

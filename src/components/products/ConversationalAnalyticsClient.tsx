@@ -334,7 +334,31 @@ function AnalyticsVisual() {
 /* ══════════════════════════════════════════════════════
    PAGE CLIENT
 ══════════════════════════════════════════════════════ */
-export function ConversationalAnalyticsClient() {
+export interface ConversationalAnalyticsContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroSecondarySubtitle?: string;
+  coreCapabilitiesTitle?: string;
+  coreCapabilitiesSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function ConversationalAnalyticsClient({ content }: { content?: ConversationalAnalyticsContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "AI-Powered Analytics";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Conversational Analytics &";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Marketing Intelligence Platform";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "Transform how your team analyzes marketing data with AI-powered conversations. Conalytic lets you ask questions in plain English and get instant insights from GA4, Google Ads, Meta, and Search Console.";
+  const heroSecondarySubtitle =
+    content?.heroSecondarySubtitle ??
+    "This isn't just a static dashboard — it's your intelligent analytics partner that turns complex data queries into simple conversations, helping you make data-driven decisions faster than ever before.";
+  const coreCapabilitiesSubtitle = content?.coreCapabilitiesSubtitle ?? "Core Capabilities";
+  const coreCapabilitiesTitle = content?.coreCapabilitiesTitle ?? "Everything you need to understand your marketing data";
+
   return (
     <>
       {/* ── 1. HERO ──────────────────────────────────── */}
@@ -350,7 +374,7 @@ export function ConversationalAnalyticsClient() {
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"/>
-            AI-Powered Analytics
+            {heroBadge}
           </motion.div>
 
           <motion.h1
@@ -358,8 +382,7 @@ export function ConversationalAnalyticsClient() {
             transition={{ duration:0.75, delay:0.1, ease:EASE }}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight"
           >
-            Conversational Analytics &{" "}
-            <span style={GRAD}>Marketing Intelligence Platform</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
 
           <motion.p
@@ -367,9 +390,7 @@ export function ConversationalAnalyticsClient() {
             transition={{ duration:0.75, delay:0.2, ease:EASE }}
             className="text-lg text-gray-500 dark:text-white/70 mb-4 max-w-3xl mx-auto leading-relaxed"
           >
-            Transform how your team analyzes marketing data with AI-powered conversations. Conalytic
-            lets you ask questions in plain English and get instant insights from GA4, Google Ads,
-            Meta, and Search Console.
+            {heroSubtitle}
           </motion.p>
 
           <motion.p
@@ -377,9 +398,7 @@ export function ConversationalAnalyticsClient() {
             transition={{ duration:0.75, delay:0.25, ease:EASE }}
             className="text-gray-400 dark:text-white/55 text-base mb-10 max-w-2xl mx-auto leading-relaxed"
           >
-            This isn&apos;t just a static dashboard — it&apos;s your intelligent analytics partner
-            that turns complex data queries into simple conversations, helping you make data-driven
-            decisions faster than ever before.
+            {heroSecondarySubtitle}
           </motion.p>
 
           <motion.div
@@ -411,10 +430,10 @@ export function ConversationalAnalyticsClient() {
             className="text-center mb-12"
           >
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
-              Core Capabilities
+              {coreCapabilitiesSubtitle}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-              Everything you need to understand<br className="hidden sm:block"/> your marketing data
+              {coreCapabilitiesTitle}
             </h2>
           </motion.div>
 
@@ -679,7 +698,10 @@ export function ConversationalAnalyticsClient() {
         </div>
       </section>
 
-      <CTA/>
+      <CTA
+        title={content?.ctaTitle}
+        subtitle={content?.ctaSubtitle}
+      />
     </>
   );
 }

@@ -72,7 +72,16 @@ const PLANS = [
   },
 ];
 
-export function Pricing() {
+export interface PricingContent {
+  eyebrow?: string;
+  title?: string;
+  monthlyLabel?: string;
+  annualLabel?: string;
+  saveLabel?: string;
+  footerNote?: string;
+}
+
+export function Pricing({ content }: { content?: PricingContent }) {
   const [annual, setAnnual] = useState(false);
 
   return (
@@ -86,16 +95,16 @@ export function Pricing() {
           className="text-center mb-12"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
-            Pricing
+            {content?.eyebrow || "Pricing"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-            Simple, transparent pricing
+            {content?.title || "Simple, transparent pricing"}
           </h2>
 
           {/* Toggle — only visible for non-enterprise plans */}
           <div className="inline-flex items-center gap-3 bg-gray-50 dark:bg-[#18181F] border border-gray-100 dark:border-white/[0.07] rounded-full px-5 py-2.5">
             <span className={`text-sm font-medium transition-colors ${!annual ? "text-gray-900 dark:text-white" : "text-gray-400 dark:text-white/35"}`}>
-              Monthly
+              {content?.monthlyLabel || "Monthly"}
             </span>
             <button
               onClick={() => setAnnual(a => !a)}
@@ -109,9 +118,9 @@ export function Pricing() {
               />
             </button>
             <span className={`text-sm font-medium transition-colors ${annual ? "text-gray-900 dark:text-white" : "text-gray-400 dark:text-white/35"}`}>
-              Annual
+              {content?.annualLabel || "Annual"}
               <span className="ml-1.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-100 dark:border-emerald-500/20">
-                Save 20%
+                {content?.saveLabel || "Save 20%"}
               </span>
             </span>
           </div>
@@ -215,7 +224,7 @@ export function Pricing() {
 
         {/* Footer note */}
         <p className="text-center text-sm text-gray-400 dark:text-white/50 mt-8">
-          All plans include a 14-day free trial · No credit card required
+          {content?.footerNote || "All plans include a 14-day free trial · No credit card required"}
         </p>
       </div>
     </section>

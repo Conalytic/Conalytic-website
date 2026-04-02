@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CmsPage } from "@/components/storyblok/CmsPage";
+import { getPageMetadata } from "@/lib/storyblok-page";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Cookies Policy – Conalytic",
   description:
     "Conalytic uses cookies and similar technologies to enhance your experience and analyze how our services are used. Learn how we use cookies and how to manage your preferences.",
@@ -36,7 +38,7 @@ const whyList = [
   "Deliver targeted content and advertisements relevant to your interests.",
 ];
 
-export default function CookiesPage() {
+function CookiesFallback() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -146,4 +148,12 @@ export default function CookiesPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/cookies", fallbackMetadata);
+}
+
+export default async function CookiesPage() {
+  return <CmsPage slug="/cookies" fallback={<CookiesFallback />} />;
 }

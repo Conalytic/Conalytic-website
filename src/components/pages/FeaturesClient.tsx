@@ -410,7 +410,29 @@ const deepDives = [
   { badge:"Report Builder",       badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",             title:"Build Reports That Wow Clients",          desc:"Create stunning, branded reports with AI insights embedded directly into every page — no more manual commentary needed.",                  bullets:["Drag-and-drop report builder with custom branding options","AI automatically generates insights and recommendations for each section","Schedule weekly, monthly, or quarterly reports for automatic delivery"],cta:{label:"Try It Free Today",href:"https://app.conalytic.com/signup"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
 ];
 
-export function FeaturesClient() {
+export interface FeaturesContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroPrimaryCtaLabel?: string;
+  includedTitle?: string;
+  includedSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function FeaturesClient({ content }: { content?: FeaturesContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Platform Features";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Features That Make Analytics";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Fun, Easy & Productive!";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "From connecting data to real-time conversations and report building, Conalytic has everything your team needs to thrive.";
+  const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "Try It Free Today";
+  const includedTitle = content?.includedTitle ?? "One platform, every capability you need";
+  const includedSubtitle = content?.includedSubtitle ?? "Everything included";
+
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
@@ -420,21 +442,20 @@ export function FeaturesClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <Sparkles className="w-3 h-3"/> Platform Features
+            <Sparkles className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Features That Make Analytics{" "}
-            <span style={GRAD}>Fun, Easy &amp; Productive!</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
-            From connecting data to real-time conversations and report building, Conalytic has everything your team needs to thrive.
+            {heroSubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
             <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              Try It Free Today <ArrowRight className="w-4 h-4"/>
+              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
             </a>
           </motion.div>
         </div>
@@ -444,8 +465,8 @@ export function FeaturesClient() {
       <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Everything included</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">One platform, every capability you need</h2>
+            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{includedSubtitle}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {BENTO_CARDS.map(card=>(
@@ -508,7 +529,10 @@ export function FeaturesClient() {
         </section>
       ))}
 
-      <CTA/>
+      <CTA
+        title={content?.ctaTitle}
+        subtitle={content?.ctaSubtitle}
+      />
     </>
   );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CmsPage } from "@/components/storyblok/CmsPage";
+import { getPageMetadata } from "@/lib/storyblok-page";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Terms of Service – Conalytic",
   description:
     "By accessing or using Conalytic services, you agree to these terms. Please read them carefully to understand your rights and obligations.",
@@ -16,7 +18,7 @@ const sections = [
   { id:"contact",         title:"Contact Us",             content:"If you have any questions or concerns about these Terms of Service, please reach out to us at:", hasContact:true },
 ];
 
-export default function TermsPage() {
+function TermsFallback() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,4 +75,12 @@ export default function TermsPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/terms", fallbackMetadata);
+}
+
+export default async function TermsPage() {
+  return <CmsPage slug="/terms" fallback={<TermsFallback />} />;
 }

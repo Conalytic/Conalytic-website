@@ -36,7 +36,21 @@ const GRADIENTS = [
   "from-violet-500/20 to-purple-500/10",
 ];
 
-export function BlogsClient() {
+export interface BlogsContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+}
+
+export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Blog";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Insights & Tips to";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Supercharge Your Analytics";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "Explore the latest trends in marketing analytics, productivity hacks, and updates from Conalytic.";
+
   const featured = blogPosts.find(p=>p.featured)!;
   const rest      = blogPosts.filter(p=>!p.featured);
 
@@ -49,16 +63,15 @@ export function BlogsClient() {
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <BookOpen className="w-3 h-3"/> Blog
+            <BookOpen className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Insights &amp; Tips to{" "}
-            <span style={GRAD}>Supercharge Your Analytics</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Explore the latest trends in marketing analytics, productivity hacks, and updates from Conalytic.
+            {heroSubtitle}
           </motion.p>
         </div>
       </section>
@@ -67,7 +80,7 @@ export function BlogsClient() {
         <div className="max-w-5xl mx-auto">
           {/* Featured post */}
           <motion.div initial={{opacity:0,y:28}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="mb-10">
-            <Link href={`/blogs/${featured.slug}`}
+            <Link href={`/${featured.slug}`}
               className="group block rounded-2xl overflow-hidden bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/40 hover:border-brand-300 dark:hover:border-brand-500/40 transition-all duration-300">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 {/* Thumbnail */}
@@ -100,7 +113,7 @@ export function BlogsClient() {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {rest.map((post,i)=>(
               <motion.div key={post.slug} variants={fadeUp}>
-                <Link href={`/blogs/${post.slug}`}
+                <Link href={`/${post.slug}`}
                   className="group flex flex-col h-full rounded-2xl overflow-hidden bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:border-brand-300 dark:hover:border-brand-500/40 hover:-translate-y-0.5 transition-all duration-300">
                   {/* Thumbnail */}
                   <div className={`aspect-[16/9] bg-gradient-to-br ${GRADIENTS[(i+1)%GRADIENTS.length]} flex items-center justify-center`}>

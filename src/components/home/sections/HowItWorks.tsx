@@ -143,7 +143,13 @@ function Panel3() {
 
 const PANELS = [<Panel0 key={0} />, <Panel1 key={1} />, <Panel2 key={2} />, <Panel3 key={3} />];
 
-export function HowItWorks() {
+export interface HowItWorksContent {
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+export function HowItWorks({ content }: { content?: HowItWorksContent }) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -182,13 +188,13 @@ export function HowItWorks() {
           {/* Section header */}
           <div className="text-center mb-6 sm:mb-10">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-3">
-              How it works
+              {content?.eyebrow || "How it works"}
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
-              From question to insight in seconds
+              {content?.title || "From question to insight in seconds"}
             </h2>
             <p className="mt-2 sm:mt-3 text-gray-500 dark:text-white/65 max-w-md mx-auto text-sm leading-relaxed px-2">
-              No SQL. No dashboards. No data team required. Just ask — and get an answer your whole team can act on.
+              {content?.subtitle || "No SQL. No dashboards. No data team required. Just ask — and get an answer your whole team can act on."}
             </p>
           </div>
 

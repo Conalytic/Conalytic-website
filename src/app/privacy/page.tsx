@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CmsPage } from "@/components/storyblok/CmsPage";
+import { getPageMetadata } from "@/lib/storyblok-page";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Privacy Policy – Conalytic",
   description:
     "At Conalytic, we value your privacy and are committed to protecting your personal information. Read our Privacy Policy to understand how we collect, use, and protect your data.",
@@ -16,7 +18,7 @@ const sections = [
   { id:"contact",                title:"6. Contact Us",                 content:"If you have any questions or concerns about this Privacy Policy or how your information is handled, please reach out to us at:", hasContact:true },
 ];
 
-export default function PrivacyPage() {
+function PrivacyFallback() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,4 +78,12 @@ export default function PrivacyPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/privacy", fallbackMetadata);
+}
+
+export default async function PrivacyPage() {
+  return <CmsPage slug="/privacy" fallback={<PrivacyFallback />} />;
 }

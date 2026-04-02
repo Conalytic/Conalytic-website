@@ -225,7 +225,33 @@ const pipeline = [
   { step:"06", label:"Onboard",   description:"Seamless transition from hire to team member",     color:"from-cyan-600 to-emerald-600" },
 ];
 
-export function ATSClient() {
+export interface ATSContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroPrimaryCtaLabel?: string;
+  heroSecondaryCtaLabel?: string;
+  featuresTitle?: string;
+  featuresSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function ATSClient({ content }: { content?: ATSContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Coming Soon";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Applicant Tracking System for";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Modern Teams";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "Streamline your entire recruitment process with AI-powered tools that help you source, screen, and hire the best talent faster. Built natively inside Conalytic so your hiring data lives alongside your marketing intelligence.";
+  const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "Get Early Access";
+  const heroSecondaryCtaLabel = content?.heroSecondaryCtaLabel ?? "Book a Demo";
+  const featuresTitle = content?.featuresTitle ?? "Everything You Need to Hire Smarter";
+  const featuresSubtitle =
+    content?.featuresSubtitle ??
+    "From first application to signed offer, Conalytic ATS handles every step of your recruitment workflow.";
+
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -236,25 +262,24 @@ export function ATSClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/25 mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"/> Coming Soon
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Applicant Tracking System for{" "}
-            <span style={GRAD}>Modern Teams</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-lg text-gray-500 dark:text-white/70 mb-6 max-w-3xl mx-auto leading-relaxed">
-            Streamline your entire recruitment process with AI-powered tools that help you source, screen, and hire the best talent faster. Built natively inside Conalytic so your hiring data lives alongside your marketing intelligence.
+            {heroSubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              Get Early Access <ArrowRight className="w-4 h-4"/>
+              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
             </a>
             <a href="https://app.conalytic.com/demo" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              Book a Demo
+              {heroSecondaryCtaLabel}
             </a>
           </motion.div>
         </div>
@@ -265,8 +290,8 @@ export function ATSClient() {
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">ATS Capabilities</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Everything You Need to Hire Smarter</h2>
-            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto">From first application to signed offer, Conalytic ATS handles every step of your recruitment workflow.</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{featuresTitle}</h2>
+            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto">{featuresSubtitle}</p>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(f=>(
@@ -339,8 +364,8 @@ export function ATSClient() {
       </section>
 
       <CTA
-        title="Be First to Access Conalytic ATS"
-        subtitle="Join the waitlist and get early access when we launch"
+        title={content?.ctaTitle ?? "Be First to Access Conalytic ATS"}
+        subtitle={content?.ctaSubtitle ?? "Join the waitlist and get early access when we launch"}
         primaryCta={{label:"Get Early Access", href:"/contact"}}
         secondaryCta={{label:"Learn More", href:"/features"}}
       />

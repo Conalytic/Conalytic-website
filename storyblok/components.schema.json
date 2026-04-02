@@ -1,0 +1,1420 @@
+{
+  "components": [
+    {
+      "name": "page",
+      "display_name": "Page (Generic Builder)",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": true
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 5,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "conversational_analytics_page",
+      "display_name": "Conversational Analytics Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "conversational_analytics_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "conversational_analytics_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "conversational_analytics_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "conversational_analytics_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "conversational_analytics_hero_secondary_subtitle": {
+          "type": "textarea",
+          "pos": 9
+        },
+        "conversational_analytics_core_capabilities_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "conversational_analytics_core_capabilities_subtitle": {
+          "type": "text",
+          "pos": 11
+        },
+        "conversational_analytics_cta_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "conversational_analytics_cta_subtitle": {
+          "type": "textarea",
+          "pos": 13
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 14,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "report_builder_page",
+      "display_name": "Report Builder Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "report_builder_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "report_builder_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "report_builder_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "report_builder_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "report_builder_hero_secondary_subtitle": {
+          "type": "textarea",
+          "pos": 9
+        },
+        "report_builder_core_features_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "report_builder_core_features_subtitle": {
+          "type": "text",
+          "pos": 11
+        },
+        "report_builder_value_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "report_builder_value_subtitle": {
+          "type": "textarea",
+          "pos": 13
+        },
+        "report_builder_cta_title": {
+          "type": "text",
+          "pos": 14
+        },
+        "report_builder_cta_subtitle": {
+          "type": "textarea",
+          "pos": 15
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 16,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "ats_page",
+      "display_name": "ATS Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "ats_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "ats_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "ats_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "ats_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "ats_hero_primary_cta_label": {
+          "type": "text",
+          "pos": 9
+        },
+        "ats_hero_secondary_cta_label": {
+          "type": "text",
+          "pos": 10
+        },
+        "ats_features_title": {
+          "type": "text",
+          "pos": 11
+        },
+        "ats_features_subtitle": {
+          "type": "textarea",
+          "pos": 12
+        },
+        "ats_cta_title": {
+          "type": "text",
+          "pos": 13
+        },
+        "ats_cta_subtitle": {
+          "type": "textarea",
+          "pos": 14
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 15,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "blogs_page",
+      "display_name": "Blogs Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "blogs_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "blogs_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "blogs_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "blogs_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 9,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "integrations_page",
+      "display_name": "Integrations Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "integrations_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "integrations_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "integrations_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "integrations_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "integrations_cta_title": {
+          "type": "text",
+          "pos": 9
+        },
+        "integrations_cta_subtitle": {
+          "type": "textarea",
+          "pos": 10
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 11,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "careers_page",
+      "display_name": "Careers Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "careers_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "careers_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "careers_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "careers_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "careers_hero_button_label": {
+          "type": "text",
+          "pos": 9
+        },
+        "careers_life_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "careers_life_subtitle": {
+          "type": "textarea",
+          "pos": 11
+        },
+        "careers_open_positions_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "careers_open_positions_subtitle": {
+          "type": "text",
+          "pos": 13
+        },
+        "careers_cta_title": {
+          "type": "text",
+          "pos": 14
+        },
+        "careers_cta_subtitle": {
+          "type": "textarea",
+          "pos": 15
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 16,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "contact_page",
+      "display_name": "Contact Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "contact_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "contact_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "contact_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "contact_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "contact_form_title": {
+          "type": "text",
+          "pos": 9
+        },
+        "contact_cta_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "contact_cta_subtitle": {
+          "type": "textarea",
+          "pos": 11
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 12,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "features_page",
+      "display_name": "Features Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "features_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "features_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "features_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "features_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "features_hero_primary_cta_label": {
+          "type": "text",
+          "pos": 9
+        },
+        "features_included_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "features_included_subtitle": {
+          "type": "text",
+          "pos": 11
+        },
+        "features_cta_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "features_cta_subtitle": {
+          "type": "textarea",
+          "pos": 13
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 14,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "about_page",
+      "display_name": "About Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "about_hero_badge": {
+          "type": "text",
+          "pos": 5
+        },
+        "about_hero_title_line_1": {
+          "type": "text",
+          "pos": 6
+        },
+        "about_hero_title_line_2": {
+          "type": "text",
+          "pos": 7
+        },
+        "about_hero_subtitle": {
+          "type": "textarea",
+          "pos": 8
+        },
+        "about_story_badge": {
+          "type": "text",
+          "pos": 9
+        },
+        "about_story_title": {
+          "type": "text",
+          "pos": 10
+        },
+        "about_team_badge": {
+          "type": "text",
+          "pos": 11
+        },
+        "about_team_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "about_team_subtitle": {
+          "type": "textarea",
+          "pos": 13
+        },
+        "about_cta_title": {
+          "type": "text",
+          "pos": 14
+        },
+        "about_cta_subtitle": {
+          "type": "textarea",
+          "pos": 15
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 16,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "home_page",
+      "display_name": "Home Page",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 2
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "use_storyblok_page": {
+          "type": "boolean",
+          "pos": 4,
+          "default_value": false
+        },
+        "home_hero_title_line_1": {
+          "type": "text",
+          "pos": 5
+        },
+        "home_hero_title_line_2": {
+          "type": "text",
+          "pos": 6
+        },
+        "home_hero_subtitle": {
+          "type": "textarea",
+          "pos": 7
+        },
+        "home_hero_primary_cta_label": {
+          "type": "text",
+          "pos": 8
+        },
+        "home_hero_primary_cta_href": {
+          "type": "text",
+          "pos": 9
+        },
+        "home_hero_secondary_cta_label": {
+          "type": "text",
+          "pos": 10
+        },
+        "home_hero_secondary_cta_href": {
+          "type": "text",
+          "pos": 11
+        },
+        "home_trusted_by_title": {
+          "type": "text",
+          "pos": 12
+        },
+        "home_services_title_line_1": {
+          "type": "text",
+          "pos": 13
+        },
+        "home_services_title_line_2": {
+          "type": "text",
+          "pos": 14
+        },
+        "home_transformation_eyebrow": {
+          "type": "text",
+          "pos": 15
+        },
+        "home_transformation_title_line_1": {
+          "type": "text",
+          "pos": 16
+        },
+        "home_transformation_title_line_2": {
+          "type": "text",
+          "pos": 17
+        },
+        "home_how_it_works_eyebrow": {
+          "type": "text",
+          "pos": 18
+        },
+        "home_how_it_works_title": {
+          "type": "text",
+          "pos": 19
+        },
+        "home_how_it_works_subtitle": {
+          "type": "textarea",
+          "pos": 20
+        },
+        "home_integrations_title_line_1": {
+          "type": "text",
+          "pos": 21
+        },
+        "home_integrations_title_line_2": {
+          "type": "text",
+          "pos": 22
+        },
+        "home_integrations_subtitle": {
+          "type": "text",
+          "pos": 23
+        },
+        "home_integrations_cta_label": {
+          "type": "text",
+          "pos": 24
+        },
+        "home_testimonials_title_line_1": {
+          "type": "text",
+          "pos": 25
+        },
+        "home_testimonials_title_line_2": {
+          "type": "text",
+          "pos": 26
+        },
+        "home_testimonials_subtitle": {
+          "type": "textarea",
+          "pos": 27
+        },
+        "home_testimonials_json": {
+          "type": "textarea",
+          "pos": 28
+        },
+        "home_pricing_eyebrow": {
+          "type": "text",
+          "pos": 29
+        },
+        "home_pricing_title": {
+          "type": "text",
+          "pos": 30
+        },
+        "home_pricing_monthly_label": {
+          "type": "text",
+          "pos": 31
+        },
+        "home_pricing_annual_label": {
+          "type": "text",
+          "pos": 32
+        },
+        "home_pricing_save_label": {
+          "type": "text",
+          "pos": 33
+        },
+        "home_pricing_footer_note": {
+          "type": "text",
+          "pos": 34
+        },
+        "home_faq_title": {
+          "type": "text",
+          "pos": 35
+        },
+        "home_faq_subtitle": {
+          "type": "text",
+          "pos": 36
+        },
+        "home_faq_items_json": {
+          "type": "textarea",
+          "pos": 37
+        },
+        "home_faq_contact_prefix": {
+          "type": "text",
+          "pos": 38
+        },
+        "home_faq_contact_label": {
+          "type": "text",
+          "pos": 39
+        },
+        "home_cta_title": {
+          "type": "text",
+          "pos": 40
+        },
+        "home_cta_subtitle": {
+          "type": "textarea",
+          "pos": 41
+        },
+        "home_cta_primary_label": {
+          "type": "text",
+          "pos": 42
+        },
+        "home_cta_primary_href": {
+          "type": "text",
+          "pos": 43
+        },
+        "home_cta_secondary_label": {
+          "type": "text",
+          "pos": 44
+        },
+        "home_cta_secondary_href": {
+          "type": "text",
+          "pos": 45
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 46,
+          "restrict_components": true,
+          "component_whitelist": [
+            "section",
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "section",
+      "display_name": "Section",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "anchor_id": {
+          "type": "text",
+          "pos": 0
+        },
+        "padding": {
+          "type": "option",
+          "pos": 1,
+          "default_value": "md",
+          "options": [
+            {
+              "name": "None",
+              "value": "none"
+            },
+            {
+              "name": "Small",
+              "value": "sm"
+            },
+            {
+              "name": "Medium",
+              "value": "md"
+            },
+            {
+              "name": "Large",
+              "value": "lg"
+            }
+          ]
+        },
+        "background": {
+          "type": "option",
+          "pos": 2,
+          "default_value": "default",
+          "options": [
+            {
+              "name": "Default",
+              "value": "default"
+            },
+            {
+              "name": "Muted",
+              "value": "muted"
+            },
+            {
+              "name": "Dark",
+              "value": "dark"
+            },
+            {
+              "name": "Gradient",
+              "value": "gradient"
+            }
+          ]
+        },
+        "width": {
+          "type": "option",
+          "pos": 3,
+          "default_value": "default",
+          "options": [
+            {
+              "name": "Narrow",
+              "value": "narrow"
+            },
+            {
+              "name": "Default",
+              "value": "default"
+            },
+            {
+              "name": "Wide",
+              "value": "wide"
+            },
+            {
+              "name": "Full",
+              "value": "full"
+            }
+          ]
+        },
+        "body": {
+          "type": "bloks",
+          "pos": 4,
+          "restrict_components": true,
+          "component_whitelist": [
+            "hero",
+            "rich_text",
+            "cards_grid",
+            "stats",
+            "cta"
+          ]
+        }
+      }
+    },
+    {
+      "name": "hero",
+      "display_name": "Hero",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "kicker": {
+          "type": "text",
+          "pos": 0
+        },
+        "title": {
+          "type": "text",
+          "pos": 1,
+          "required": true
+        },
+        "subtitle": {
+          "type": "textarea",
+          "pos": 2
+        },
+        "primary_cta_label": {
+          "type": "text",
+          "pos": 3
+        },
+        "primary_cta_link": {
+          "type": "multilink",
+          "pos": 4
+        },
+        "secondary_cta_label": {
+          "type": "text",
+          "pos": 5
+        },
+        "secondary_cta_link": {
+          "type": "multilink",
+          "pos": 6
+        },
+        "align": {
+          "type": "option",
+          "pos": 7,
+          "default_value": "center",
+          "options": [
+            {
+              "name": "Center",
+              "value": "center"
+            },
+            {
+              "name": "Left",
+              "value": "left"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "rich_text",
+      "display_name": "Rich Text",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "rich_text": {
+          "type": "richtext",
+          "pos": 0,
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "cards_grid",
+      "display_name": "Cards Grid",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "subtitle": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "columns": {
+          "type": "option",
+          "pos": 2,
+          "default_value": "3",
+          "options": [
+            {
+              "name": "2 Columns",
+              "value": "2"
+            },
+            {
+              "name": "3 Columns",
+              "value": "3"
+            },
+            {
+              "name": "4 Columns",
+              "value": "4"
+            }
+          ]
+        },
+        "items": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_components": true,
+          "component_whitelist": [
+            "card_item"
+          ]
+        }
+      }
+    },
+    {
+      "name": "card_item",
+      "display_name": "Card Item",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "description": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "cta_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "cta_link": {
+          "type": "multilink",
+          "pos": 3
+        }
+      }
+    },
+    {
+      "name": "stats",
+      "display_name": "Stats",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "items": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": [
+            "stat_item"
+          ]
+        }
+      }
+    },
+    {
+      "name": "stat_item",
+      "display_name": "Stat Item",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "value": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "label": {
+          "type": "text",
+          "pos": 1
+        }
+      }
+    },
+    {
+      "name": "cta",
+      "display_name": "CTA",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0
+        },
+        "subtitle": {
+          "type": "textarea",
+          "pos": 1
+        },
+        "primary_cta_label": {
+          "type": "text",
+          "pos": 2
+        },
+        "primary_cta_link": {
+          "type": "multilink",
+          "pos": 3
+        },
+        "secondary_cta_label": {
+          "type": "text",
+          "pos": 4
+        },
+        "secondary_cta_link": {
+          "type": "multilink",
+          "pos": 5
+        }
+      }
+    },
+    {
+      "name": "blog_post",
+      "display_name": "Blog Post",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "category": {
+          "type": "text",
+          "pos": 1
+        },
+        "read_time": {
+          "type": "text",
+          "pos": 2
+        },
+        "excerpt": {
+          "type": "textarea",
+          "pos": 3
+        },
+        "cover_image": {
+          "type": "asset",
+          "pos": 4
+        },
+        "body_rich_text": {
+          "type": "richtext",
+          "pos": 5,
+          "required": true
+        },
+        "seo_title": {
+          "type": "text",
+          "pos": 6
+        },
+        "seo_description": {
+          "type": "textarea",
+          "pos": 7
+        }
+      }
+    },
+    {
+      "name": "site_config",
+      "display_name": "Site Config",
+      "is_root": true,
+      "is_nestable": false,
+      "schema": {
+        "use_storyblok_layout": {
+          "type": "boolean",
+          "pos": 0,
+          "default_value": false
+        },
+        "navbar_links": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": [
+            "nav_link"
+          ]
+        },
+        "navbar_login_label": {
+          "type": "text",
+          "pos": 2,
+          "default_value": "Login"
+        },
+        "navbar_login_link": {
+          "type": "multilink",
+          "pos": 3
+        },
+        "navbar_primary_cta_label": {
+          "type": "text",
+          "pos": 4,
+          "default_value": "Book A Demo"
+        },
+        "navbar_primary_cta_link": {
+          "type": "multilink",
+          "pos": 5
+        },
+        "footer_email": {
+          "type": "text",
+          "pos": 6,
+          "default_value": "info@conalytic.com"
+        },
+        "footer_columns": {
+          "type": "bloks",
+          "pos": 7,
+          "restrict_components": true,
+          "component_whitelist": [
+            "footer_column"
+          ]
+        },
+        "footer_social_links": {
+          "type": "bloks",
+          "pos": 8,
+          "restrict_components": true,
+          "component_whitelist": [
+            "social_link"
+          ]
+        },
+        "footer_legal_links": {
+          "type": "bloks",
+          "pos": 9,
+          "restrict_components": true,
+          "component_whitelist": [
+            "nav_link"
+          ]
+        },
+        "footer_copyright": {
+          "type": "text",
+          "pos": 10,
+          "default_value": "© 2025 Conalytic. All rights reserved."
+        }
+      }
+    },
+    {
+      "name": "nav_link",
+      "display_name": "Nav Link",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "label": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 1
+        },
+        "description": {
+          "type": "text",
+          "pos": 2
+        },
+        "children": {
+          "type": "bloks",
+          "pos": 3,
+          "restrict_components": true,
+          "component_whitelist": [
+            "nav_link"
+          ]
+        }
+      }
+    },
+    {
+      "name": "footer_column",
+      "display_name": "Footer Column",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "title": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "links": {
+          "type": "bloks",
+          "pos": 1,
+          "restrict_components": true,
+          "component_whitelist": [
+            "nav_link"
+          ]
+        }
+      }
+    },
+    {
+      "name": "social_link",
+      "display_name": "Social Link",
+      "is_root": false,
+      "is_nestable": true,
+      "schema": {
+        "label": {
+          "type": "text",
+          "pos": 0,
+          "required": true
+        },
+        "link": {
+          "type": "multilink",
+          "pos": 1,
+          "required": true
+        }
+      }
+    }
+  ]
+}

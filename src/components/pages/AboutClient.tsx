@@ -29,6 +29,20 @@ const teamMembers = [
   { name:"Marcus Williams",role:"Head of Product",   initials:"MW", grad:"from-blue-600 to-cyan-600"     },
 ];
 
+export interface AboutContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  storyBadge?: string;
+  storyTitle?: string;
+  teamBadge?: string;
+  teamTitle?: string;
+  teamSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
 function CountUp({ end, suffix, isFloat }: { end: number; suffix: string; isFloat: boolean }) {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -52,7 +66,21 @@ function CountUp({ end, suffix, isFloat }: { end: number; suffix: string; isFloa
   return <span ref={ref}>{isFloat ? (value % 1 === 0 ? value + ".0" : value) : value.toLocaleString()}{suffix}</span>;
 }
 
-export function AboutClient() {
+export function AboutClient({ content }: { content?: AboutContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Our Story";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Reimagining How";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Analytics Work Together";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "At Conalytic, we're passionate about building tools that empower teams to analyze, create, and succeed—together.";
+  const storyBadge = content?.storyBadge ?? "How It All Started";
+  const storyTitle = content?.storyTitle ?? "Built by marketers, for marketers";
+  const teamBadge = content?.teamBadge ?? "The Team";
+  const teamTitle = content?.teamTitle ?? "Meet the People Behind Conalytic";
+  const teamSubtitle =
+    content?.teamSubtitle ??
+    "Passionate builders on a mission to democratize marketing intelligence for every team on the planet.";
+
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -62,16 +90,15 @@ export function AboutClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <Globe className="w-3 h-3"/> Our Story
+            <Globe className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Reimagining How{" "}
-            <span style={GRAD}>Analytics Work Together</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
-            At Conalytic, we&apos;re passionate about building tools that empower teams to analyze, create, and succeed—together.
+            {heroSubtitle}
           </motion.p>
         </div>
       </section>
@@ -102,8 +129,8 @@ export function AboutClient() {
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">How It All Started</span>
-              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">Built by marketers, for marketers</h2>
+              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{storyBadge}</span>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">{storyTitle}</h2>
               <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4">
                 Conalytic was founded with a simple idea: analytics should feel effortless. Frustrated with clunky tools that slowed down collaboration, our founders set out to create a solution that prioritizes simplicity, innovation, and inclusivity.
               </p>
@@ -148,9 +175,9 @@ export function AboutClient() {
       <section className="relative py-24 px-4 overflow-hidden bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">The Team</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Meet the People Behind Conalytic</h2>
-            <p className="text-gray-500 dark:text-white/65 max-w-xl mx-auto">Passionate builders on a mission to democratize marketing intelligence for every team on the planet.</p>
+            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">{teamBadge}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{teamTitle}</h2>
+            <p className="text-gray-500 dark:text-white/65 max-w-xl mx-auto">{teamSubtitle}</p>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {teamMembers.map(m=>(
@@ -166,7 +193,10 @@ export function AboutClient() {
         </div>
       </section>
 
-      <CTA/>
+      <CTA
+        title={content?.ctaTitle}
+        subtitle={content?.ctaSubtitle}
+      />
     </>
   );
 }

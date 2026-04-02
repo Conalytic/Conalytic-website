@@ -6,10 +6,10 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { Accordion } from "@/components/ui/Accordion";
 import { CTA } from "@/components/sections/CTA";
-import { Transformation } from "@/components/home/sections/Transformation";
-import { HowItWorks } from "@/components/home/sections/HowItWorks";
+import { Transformation, type TransformationContent } from "@/components/home/sections/Transformation";
+import { HowItWorks, type HowItWorksContent } from "@/components/home/sections/HowItWorks";
 import { StatsSection } from "@/components/home/sections/StatsSection";
-import { Pricing } from "@/components/home/sections/Pricing";
+import { Pricing, type PricingContent } from "@/components/home/sections/Pricing";
 
 /* ─── constants ─────────────────────────────────────── */
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -19,6 +19,44 @@ const siUrl = (slug: string, hex: string) =>
   `https://cdn.simpleicons.org/${slug}/${hex}`;
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+
+type FAQItem = { question: string; answer: string };
+type TestimonialItem = { quote: string; name: string; title: string; photo: string; rating: number };
+
+export interface HomeContentPreset {
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroPrimaryCtaLabel?: string;
+  heroPrimaryCtaHref?: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaHref?: string;
+  trustedByTitle?: string;
+  servicesTitleLine1?: string;
+  servicesTitleLine2?: string;
+  integrationsTitleLine1?: string;
+  integrationsTitleLine2?: string;
+  integrationsSubtitle?: string;
+  integrationsCtaLabel?: string;
+  testimonialsTitleLine1?: string;
+  testimonialsTitleLine2?: string;
+  testimonialsSubtitle?: string;
+  testimonials?: TestimonialItem[];
+  faqTitle?: string;
+  faqSubtitle?: string;
+  faqContactPrefix?: string;
+  faqContactLabel?: string;
+  faqItems?: FAQItem[];
+  transformation?: TransformationContent;
+  howItWorks?: HowItWorksContent;
+  pricing?: PricingContent;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+}
 
 /* ══════════════════════════════════════════════════════
    Q&A DEMO CARD  — typewriter → chart → key finding
@@ -348,7 +386,7 @@ function _DashboardMockup_DELETED() {
 /* ══════════════════════════════════════════════════════
    1. HERO
 ══════════════════════════════════════════════════════ */
-function HeroSection() {
+function HeroSection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="relative overflow-hidden pt-32 pb-24 px-4 flex flex-col items-center">
       {/* Background: pastel in light mode, deep navy with subtle glow in dark */}
@@ -368,9 +406,9 @@ function HeroSection() {
         <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.1, ease:EASE }}
           className="text-5xl sm:text-6xl lg:text-[68px] font-bold text-gray-900 dark:text-white leading-[1.07] tracking-tight mb-5"
         >
-          Unlocking Growth With<br/>
+          {content?.heroTitleLine1 || "Unlocking Growth With"}<br/>
           <span style={{ background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-            Next-Gen Analytics
+            {content?.heroTitleLine2 || "Next-Gen Analytics"}
           </span>
         </motion.h1>
 
@@ -378,19 +416,19 @@ function HeroSection() {
         <motion.p initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.2, ease:EASE }}
           className="text-lg text-gray-500 dark:text-white/70 max-w-xl mx-auto mb-10 leading-relaxed"
         >
-          Ask questions in plain English and get instant insights from GA4, Google Ads, Meta and Search Console — no SQL required.
+          {content?.heroSubtitle || "Ask questions in plain English and get instant insights from GA4, Google Ads, Meta and Search Console — no SQL required."}
         </motion.p>
 
         {/* CTAs */}
         <motion.div initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.3, ease:EASE }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
         >
-          <a href="https://app.conalytic.com" target="_blank" rel="noopener noreferrer"
+          <a href={content?.heroPrimaryCtaHref || "https://app.conalytic.com"} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 dark:bg-brand-600 shadow-xl shadow-brand-600/25 hover:bg-brand-700 dark:hover:bg-brand-700 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-          >Get started</a>
-          <a href="https://app.conalytic.com/demo" target="_blank" rel="noopener noreferrer"
+          >{content?.heroPrimaryCtaLabel || "Get started"}</a>
+          <a href={content?.heroSecondaryCtaHref || "https://app.conalytic.com/demo"} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 hover:border-brand-400 dark:hover:border-brand-400/50 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-          >Book a demo</a>
+          >{content?.heroSecondaryCtaLabel || "Book a demo"}</a>
         </motion.div>
 
         {/* Q&A Demo — scales + blurs in, then gently floats */}
@@ -424,11 +462,11 @@ const LOGOS = [
   { name:"Webflow",  src: siUrl("webflow","146EF5")  },
 ];
 
-function TrustedBySection() {
+function TrustedBySection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="py-10 bg-white dark:bg-[#0C0C12] border-y border-gray-100 dark:border-white/[0.05] overflow-hidden">
       <p className="text-center text-xs font-semibold tracking-widest text-gray-400 dark:text-white/25 uppercase mb-8">
-        Helping to grow the next generation of companies
+        {content?.trustedByTitle || "Helping to grow the next generation of companies"}
       </p>
       <div className="marquee-container relative">
         <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white dark:from-navy-900 to-transparent z-10 pointer-events-none"/>
@@ -450,7 +488,7 @@ function TrustedBySection() {
 /* ══════════════════════════════════════════════════════
    3. SERVICES BENTO GRID
 ══════════════════════════════════════════════════════ */
-function ServicesSection() {
+function ServicesSection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="py-24 px-4 bg-white dark:bg-navy-900">
       <div className="max-w-5xl mx-auto">
@@ -458,7 +496,7 @@ function ServicesSection() {
           transition={{ duration:0.7, ease:EASE }}
           className="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
         >
-          Discover our range of tailored<br/>analytics services
+          {content?.servicesTitleLine1 || "Discover our range of tailored"}<br/>{content?.servicesTitleLine2 || "analytics services"}
         </motion.h2>
 
         <motion.div className="grid grid-cols-6 gap-4" initial="hidden" whileInView="show" viewport={{ once:true }} variants={stagger}>
@@ -753,30 +791,31 @@ function CapabilitiesSection() {
 const HUB_VW = 460, HUB_VH = 280;
 const HUB_CX = 230, HUB_CY = 140; // center of hub
 
+/* Icons from /public — connected lines use gradient; not connected = dotted + grey badge (Meta & LinkedIn). */
 const HUB_INTEGRATIONS = [
   {
     id:"ga4",  name:"Google Analytics 4",       desc:"Website traffic, user behavior, and conversion data",
-    connected:true,  logo: siUrl("googleanalytics","E37400"),   nx: 72, ny: 68,
+    connected:true,  logo: "/ga4.svg",   nx: 72, ny: 68,
   },
   {
     id:"gsc",  name:"Google Search Console",    desc:"Search performance, keywords, and indexing data",
-    connected:true,  logo: siUrl("googlesearchconsole","458CF5"), nx: 72, ny: 212,
+    connected:true,  logo: "/google-search-console-icon.webp", nx: 72, ny: 212,
   },
   {
     id:"gads", name:"Google Ads",               desc:"Ad campaigns, spend, conversions, and ROI",
-    connected:true,  logo: siUrl("googleads","4285F4"),          nx: 388, ny: 68,
+    connected:true,  logo: "/Google20Ads20Logo.webp",          nx: 388, ny: 68,
   },
   {
     id:"meta", name:"Meta Ads",                 desc:"Facebook & Instagram ad performance",
-    connected:false, logo: siUrl("meta","0866FF"),               nx: 388, ny: 140,
+    connected:false, logo: "/meta.svg",               nx: 388, ny: 140,
   },
   {
     id:"li",   name:"LinkedIn Ads",             desc:"LinkedIn campaign analytics and engagement",
-    connected:false, logo: siUrl("linkedin","0077B5"),           nx: 388, ny: 212,
+    connected:false, logo: "/linkedin.svg",           nx: 388, ny: 212,
   },
 ];
 
-function IntegrationsHub() {
+function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
   /* Tile size */
   const T = 54, R = 14, LOGO = 26;
 
@@ -790,11 +829,11 @@ function IntegrationsHub() {
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            Seamless integration with<br/>
-            <span className="font-black">your marketing stack</span>
+            {(content?.integrationsTitleLine1 || "Seamless integration with")}<br/>
+            <span className="font-black">{content?.integrationsTitleLine2 || "your marketing stack"}</span>
           </h2>
           <p className="text-gray-500 dark:text-white/65 text-sm">
-            Connect all your data sources — no engineering required.
+            {content?.integrationsSubtitle || "Connect all your data sources — no engineering required."}
           </p>
         </motion.div>
 
@@ -863,11 +902,12 @@ function IntegrationsHub() {
                   <line key={`line-${item.id}`}
                     x1={item.nx} y1={item.ny}
                     x2={HUB_CX}  y2={HUB_CY}
+                    strokeLinecap="round"
                     stroke={item.connected
                       ? (isRight ? "url(#lgRight)" : "url(#lgLeft)")
-                      : "rgba(107,95,248,0.20)"}
-                    strokeWidth={item.connected ? "1.5" : "1.2"}
-                    strokeDasharray={item.connected ? undefined : "5 4"}
+                      : "rgba(107,95,248,0.42)"}
+                    strokeWidth={item.connected ? "1.5" : "1.5"}
+                    strokeDasharray={item.connected ? undefined : "6 5"}
                   />
                 );
               })}
@@ -982,7 +1022,7 @@ function IntegrationsHub() {
               <Link href="/integrations"
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 font-semibold transition-colors mt-1"
               >
-                View all integrations
+                {content?.integrationsCtaLabel || "View all integrations"}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
                   <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
@@ -1006,11 +1046,12 @@ const TESTIMONIALS = [
   { quote:"Client calls are so much smoother now. Instead of 'let me get back to you,' I can answer any performance question in real-time with confidence.", name:"Rachel Park", title:"Agency Account Manager", photo:"https://i.pravatar.cc/300?img=32", rating:5 },
 ];
 
-function TestimonialsSection() {
+function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
+  const testimonials = content?.testimonials?.length ? content.testimonials : TESTIMONIALS;
   const [current, setCurrent] = useState(0);
-  const t = TESTIMONIALS[current];
-  const prev = ()=>setCurrent(c=>(c-1+TESTIMONIALS.length)%TESTIMONIALS.length);
-  const next = ()=>setCurrent(c=>(c+1)%TESTIMONIALS.length);
+  const t = testimonials[current];
+  const prev = ()=>setCurrent(c=>(c-1+testimonials.length)%testimonials.length);
+  const next = ()=>setCurrent(c=>(c+1)%testimonials.length);
 
   return (
     <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
@@ -1019,10 +1060,10 @@ function TestimonialsSection() {
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
-            What our customers say<br/><span className="font-black">about us</span>
+            {(content?.testimonialsTitleLine1 || "What our customers say")}<br/><span className="font-black">{content?.testimonialsTitleLine2 || "about us"}</span>
           </h2>
           <p className="text-gray-500 dark:text-white/65 max-w-md mx-auto text-sm">
-            Improve marketing performance with AI-powered insights, helping teams make smarter decisions faster.
+            {content?.testimonialsSubtitle || "Improve marketing performance with AI-powered insights, helping teams make smarter decisions faster."}
           </p>
         </motion.div>
 
@@ -1070,7 +1111,7 @@ function TestimonialsSection() {
                 </p>
                 {/* Dots */}
                 <div className="flex gap-1.5 mt-6">
-                  {TESTIMONIALS.map((_,i)=>(
+                  {testimonials.map((_,i)=>(
                     <button key={i} onClick={()=>setCurrent(i)}
                       className={`h-1.5 rounded-full transition-all duration-300 ${i===current ? "bg-brand-500 w-5" : "bg-gray-200 dark:bg-white/15 w-1.5 hover:bg-gray-300"}`}
                     />
@@ -1101,20 +1142,22 @@ const FAQS = [
   { question:"Is my data secure?", answer:"Yes. We are SOC 2 compliant, use end-to-end encryption in transit and at rest, and never share or sell your data." },
 ];
 
-function FAQSection() {
+function FAQSection({ content }: { content?: HomeContentPreset }) {
+  const faqs = content?.faqItems?.length ? content.faqItems : FAQS;
+
   return (
     <section className="py-24 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-2xl mx-auto">
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }} className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">Frequently asked questions</h2>
-          <p className="text-gray-500 dark:text-white/65">Everything you need to know about Conalytic.</p>
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">{content?.faqTitle || "Frequently asked questions"}</h2>
+          <p className="text-gray-500 dark:text-white/65">{content?.faqSubtitle || "Everything you need to know about Conalytic."}</p>
         </motion.div>
         <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, delay:0.15, ease:EASE }}>
-          <Accordion items={FAQS}/>
+          <Accordion items={faqs}/>
         </motion.div>
         <p className="text-center text-gray-400 dark:text-white/58 text-sm mt-8">
-          Still have questions?{" "}
-          <Link href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline font-semibold">Talk to our team</Link>
+          {content?.faqContactPrefix || "Still have questions?"}{" "}
+          <Link href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline font-semibold">{content?.faqContactLabel || "Talk to our team"}</Link>
         </p>
       </div>
     </section>
@@ -1124,20 +1167,31 @@ function FAQSection() {
 /* ══════════════════════════════════════════════════════
    ROOT EXPORT
 ══════════════════════════════════════════════════════ */
-export function HomeClient() {
+export function HomeClient({ content }: { content?: HomeContentPreset }) {
   return (
     <>
-      <HeroSection/>
-      <TrustedBySection/>
-      <Transformation/>
-      <HowItWorks/>
-      <ServicesSection/>
+      <HeroSection content={content}/>
+      <TrustedBySection content={content}/>
+      <Transformation content={content?.transformation}/>
+      <HowItWorks content={content?.howItWorks}/>
+      <ServicesSection content={content}/>
       <StatsSection/>
-      <IntegrationsHub/>
-      <TestimonialsSection/>
-      <Pricing/>
-      <FAQSection/>
-      <CTA/>
+      <IntegrationsHub content={content}/>
+      <TestimonialsSection content={content}/>
+      <Pricing content={content?.pricing}/>
+      <FAQSection content={content}/>
+      <CTA
+        title={content?.ctaTitle}
+        subtitle={content?.ctaSubtitle}
+        primaryCta={content?.ctaPrimaryLabel || content?.ctaPrimaryHref ? {
+          label: content?.ctaPrimaryLabel || "Start for free",
+          href: content?.ctaPrimaryHref || "https://app.conalytic.com/signup",
+        } : undefined}
+        secondaryCta={content?.ctaSecondaryLabel || content?.ctaSecondaryHref ? {
+          label: content?.ctaSecondaryLabel || "Book a demo",
+          href: content?.ctaSecondaryHref || "https://app.conalytic.com/demo",
+        } : undefined}
+      />
     </>
   );
 }

@@ -73,7 +73,23 @@ function IntegrationLogo({ slug, name, color }: { slug: string; name: string; co
   );
 }
 
-export function IntegrationsPageClient() {
+export interface IntegrationsContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function IntegrationsPageClient({ content }: { content?: IntegrationsContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Integrations";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Work Better Together with";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Seamless Integrations";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "Connect Conalytic to the tools your team already loves and streamline your workflow in one place.";
+
   const [search, setSearch]   = useState("");
   const [active, setActive]   = useState("All");
 
@@ -92,16 +108,15 @@ export function IntegrationsPageClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <Zap className="w-3 h-3"/> Integrations
+            <Zap className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Work Better Together with{" "}
-            <span style={GRAD}>Seamless Integrations</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Connect Conalytic to the tools your team already loves and streamline your workflow in one place.
+            {heroSubtitle}
           </motion.p>
         </div>
       </section>
@@ -168,8 +183,8 @@ export function IntegrationsPageClient() {
       </section>
 
       <CTA
-        title="Why Choose Conalytic?"
-        subtitle="Built for teams who want to work smarter, faster, and happier with their marketing data"
+        title={content?.ctaTitle ?? "Why Choose Conalytic?"}
+        subtitle={content?.ctaSubtitle ?? "Built for teams who want to work smarter, faster, and happier with their marketing data"}
       />
     </>
   );

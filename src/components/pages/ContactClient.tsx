@@ -18,7 +18,23 @@ const contactInfo = [
 
 const inputBase = "w-full bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/25 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-500/20 transition-all text-sm";
 
-export function ContactClient() {
+export interface ContactContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  formTitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function ContactClient({ content }: { content?: ContactContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Get in Touch";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "We're Here to";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Help!";
+  const heroSubtitle = content?.heroSubtitle ?? "Have questions, feedback, or just want to say hi? Let's connect!";
+  const formTitle = content?.formTitle ?? "Send us a message";
+
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading]     = useState(false);
 
@@ -37,15 +53,15 @@ export function ContactClient() {
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <Mail className="w-3 h-3"/> Get in Touch
+            <Mail className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            We&apos;re Here to <span style={GRAD}>Help!</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-xl mx-auto leading-relaxed">
-            Have questions, feedback, or just want to say hi? Let&apos;s connect!
+            {heroSubtitle}
           </motion.p>
         </div>
       </section>
@@ -91,7 +107,7 @@ export function ContactClient() {
                 </div>
               ) : (
                 <>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Send us a message</h2>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">{formTitle}</h2>
                   <form className="space-y-5" onSubmit={handleSubmit}>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
@@ -147,8 +163,8 @@ export function ContactClient() {
       </section>
 
       <CTA
-        title="Ready to Transform Your Analytics?"
-        subtitle="Join 2,000+ teams already using Conalytic to turn data into decisions"
+        title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
+        subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
         primaryCta={{label:"Book a demo", href:"https://app.conalytic.com/demo"}}
         secondaryCta={{label:"Start free trial", href:"https://app.conalytic.com/signup"}}
       />

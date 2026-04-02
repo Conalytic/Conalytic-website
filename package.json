@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "storyblok:sync-components": "node scripts/storyblok-upsert-components.mjs",
+    "storyblok:seed": "node scripts/storyblok-seed-stories.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

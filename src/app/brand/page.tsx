@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
+import { CmsPage } from "@/components/storyblok/CmsPage";
+import { getPageMetadata } from "@/lib/storyblok-page";
 
-export const metadata: Metadata = {
+const fallbackMetadata: Metadata = {
   title: "Brand – Conalytic",
   description:
     "Conalytic brand assets, logo guidelines, color palette, and typography. Download our official brand kit for media and partner use.",
@@ -29,7 +31,7 @@ const typography = [
   { name:"Inter", weight:"400 Regular",  usage:"Body text, descriptions",   sample:"Ask questions in plain English.", size:"1rem", fw:400 },
 ];
 
-export default function BrandPage() {
+function BrandFallback() {
   return (
     <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -147,4 +149,12 @@ export default function BrandPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  return getPageMetadata("/brand", fallbackMetadata);
+}
+
+export default async function BrandPage() {
+  return <CmsPage slug="/brand" fallback={<BrandFallback />} />;
 }

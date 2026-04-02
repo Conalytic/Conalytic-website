@@ -1,8 +1,9 @@
 import { MetadataRoute } from "next";
+import { getPublishedBlogStories } from "@/lib/storyblok";
 
 const BASE_URL = "https://conalytic.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const routes = [
     { url: "/", priority: 1.0, changeFrequency: "weekly" as const },
     { url: "/features", priority: 0.9, changeFrequency: "monthly" as const },
@@ -20,10 +21,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "/brand", priority: 0.4, changeFrequency: "yearly" as const },
   ];
 
-  return routes.map((route) => ({
+  const baseRoutes: MetadataRoute.Sitemap = routes.map((route) => ({
     url: `${BASE_URL}${route.url}`,
     lastModified: new Date(),
     changeFrequency: route.changeFrequency,
     priority: route.priority,
   }));
+
+  const blogStories = await getPublishedBlogStories();
+  const blogRoutes: MetadataRoute.Sitemap = blogStories.map((story) => {
+    const publicSlug = story.slug || story.full_slug.replace(/^blogs\//, "").replace(/^blog\//, "");
+
+    return {
+      url: `${BASE_URL}/${publicSlug}`,
+      lastModified: story.published_at ? new Date(story.published_at) : new Date(),
+      changeFrequency: "weekly",
+      priority: 0.7,
+    };
+  });
+
+  return [...baseRoutes, ...blogRoutes];
 }

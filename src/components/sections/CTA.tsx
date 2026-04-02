@@ -61,45 +61,48 @@ export function CTA({
   return (
     <section className="py-16 px-4">
       <div className="max-w-5xl mx-auto">
-        <div className="relative rounded-3xl overflow-hidden border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50">
+        <div className="relative rounded-3xl border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50">
 
-          {/* ── Light mode background ── */}
-          <div className="absolute inset-0 dark:hidden">
-            <Image src="/hero-bg.png" alt="" fill className="object-cover object-center opacity-60" />
-            <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-purple-50/40 to-pink-50/40" />
-          </div>
+          {/* ── Clipped background layers only ── */}
+          <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
+            {/* ── Light mode background ── */}
+            <div className="absolute inset-0 dark:hidden">
+              <Image src="/hero-bg.png" alt="" fill className="object-cover object-center opacity-60" />
+              <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-purple-50/40 to-pink-50/40" />
+            </div>
 
-          {/* ── Dark mode background ── */}
-          <div className="absolute inset-0 hidden dark:block"
-            style={{ background:"linear-gradient(135deg,#0E0B1E 0%,#0C0C12 45%,#0B0E1E 100%)" }}/>
-          <div className="absolute inset-0 hidden dark:block pointer-events-none"
-            style={{ background:"radial-gradient(ellipse 65% 55% at 50% 100%, rgba(107,95,248,0.14) 0%, transparent 65%)" }}/>
+            {/* ── Dark mode background ── */}
+            <div className="absolute inset-0 hidden dark:block"
+              style={{ background:"linear-gradient(135deg,#0E0B1E 0%,#0C0C12 45%,#0B0E1E 100%)" }}/>
+            <div className="absolute inset-0 hidden dark:block pointer-events-none"
+              style={{ background:"radial-gradient(ellipse 65% 55% at 50% 100%, rgba(107,95,248,0.14) 0%, transparent 65%)" }}/>
 
-          {/* ── Grid overlay ── */}
-          <div className="absolute inset-0 pointer-events-none"
-            style={{
-              backgroundImage:"linear-gradient(rgba(107,95,248,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(107,95,248,0.05) 1px,transparent 1px)",
-              backgroundSize:"48px 48px",
-            }}/>
+            {/* ── Grid overlay ── */}
+            <div className="absolute inset-0 pointer-events-none"
+              style={{
+                backgroundImage:"linear-gradient(rgba(107,95,248,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(107,95,248,0.05) 1px,transparent 1px)",
+                backgroundSize:"48px 48px",
+              }}/>
 
-          {/* ── Floating data-stream particles (CSS only) ── */}
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            {[...Array(6)].map((_, i) => (
-              <div key={i}
-                className="absolute w-px bg-gradient-to-b from-transparent via-brand-400/30 to-transparent"
-                style={{
-                  left: `${12 + i * 15}%`,
-                  height: "40%",
-                  top: "-40%",
-                  animation: `ctaStream ${3 + i * 0.7}s linear infinite`,
-                  animationDelay: `${i * 0.55}s`,
-                }}
-              />
-            ))}
+            {/* ── Floating data-stream particles (CSS only) ── */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(6)].map((_, i) => (
+                <div key={i}
+                  className="absolute w-px bg-gradient-to-b from-transparent via-brand-400/30 to-transparent"
+                  style={{
+                    left: `${12 + i * 15}%`,
+                    height: "40%",
+                    top: "-40%",
+                    animation: `ctaStream ${3 + i * 0.7}s linear infinite`,
+                    animationDelay: `${i * 0.55}s`,
+                  }}
+                />
+              ))}
+            </div>
           </div>
 
           {/* ── Content ── */}
-          <div className="relative px-6 sm:px-12 pt-12 pb-14 text-center">
+          <div className="relative z-10 px-6 sm:px-12 pt-12 pb-14 text-center">
 
             {/* Logo chip at top center */}
             <div className="flex justify-center mb-8">
@@ -119,34 +122,38 @@ export function CTA({
               </div>
             </div>
 
-            {/* Typewriter terminal block */}
-            <div className="max-w-2xl mx-auto mb-10">
-              <div className="bg-white/60 dark:bg-[#13131E]/90 border border-gray-200/80 dark:border-white/8 rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/40 text-left">
-                {/* Terminal bar */}
-                <div className="flex items-center gap-2 px-4 py-2.5 bg-gray-50/80 dark:bg-[#0C0C12]/80 border-b border-gray-200/60 dark:border-white/6">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/80"/>
-                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80"/>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80"/>
-                  <span className="ml-2 text-[10px] font-mono text-gray-400 dark:text-white/30">conalytic — ask anything</span>
+            {/* Typewriter terminal — stable box on mobile: fixed chrome height, reserved answer space (invisible while typing). */}
+            <div className="max-w-2xl w-full mx-auto mb-10">
+              <div
+                className="bg-white/85 dark:bg-[#13131E]/95 backdrop-blur-md border border-gray-200/80 dark:border-white/8 rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/40 text-left w-full max-w-2xl"
+              >
+                {/* Terminal bar — never wraps on narrow viewports */}
+                <div className="flex flex-nowrap items-center gap-2 h-10 px-3 sm:px-4 bg-gray-50/80 dark:bg-[#0C0C12]/80 border-b border-gray-200/60 dark:border-white/6 overflow-x-auto">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 shrink-0"/>
+                  <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80 shrink-0"/>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80 shrink-0"/>
+                  <span className="ml-1 sm:ml-2 text-[10px] font-mono text-gray-400 dark:text-white/30 whitespace-nowrap shrink-0">
+                    conalytic — ask anything
+                  </span>
                 </div>
-                <div className="px-5 py-4 min-h-[90px]">
-                  {/* Query line */}
-                  <div className="flex items-start gap-2.5 mb-3">
-                    <span className="text-brand-500 dark:text-brand-400 font-mono text-sm mt-px shrink-0">›</span>
-                    <p className="text-sm font-mono text-gray-700 dark:text-white/80 leading-relaxed">
+                {/* Body: stable min-height + answer row always in layout (invisible while typing) */}
+                <div className="px-4 sm:px-5 py-4 min-h-[11.5rem] sm:min-h-[10rem] flex flex-col">
+                  <div className="flex items-start gap-2.5 mb-3 min-h-[3.25rem]">
+                    <span className="text-brand-500 dark:text-brand-400 font-mono text-[13px] sm:text-sm mt-0.5 shrink-0 leading-5">›</span>
+                    <p className="text-[13px] sm:text-sm font-mono text-gray-700 dark:text-white/80 leading-relaxed [overflow-wrap:anywhere]">
                       {typed}
                       {phase === "typing" && <span className="inline-block w-0.5 h-4 bg-brand-500 align-middle ml-0.5 animate-pulse"/>}
                     </p>
                   </div>
-                  {/* Answer line */}
-                  {phase !== "typing" && (
-                    <div className="flex items-start gap-2.5">
-                      <span className="text-emerald-500 font-mono text-sm mt-px shrink-0">✓</span>
-                      <p className="text-sm font-mono text-emerald-600 dark:text-emerald-400 leading-relaxed">
-                        {QUERIES[qIdx].a}
-                      </p>
-                    </div>
-                  )}
+                  <div
+                    className={`flex items-start gap-2.5 flex-1 min-h-[4.5rem] ${phase === "typing" ? "invisible" : "visible"}`}
+                    aria-hidden={phase === "typing"}
+                  >
+                    <span className="text-emerald-500 font-mono text-[13px] sm:text-sm mt-0.5 shrink-0 leading-5">✓</span>
+                    <p className="text-[13px] sm:text-sm font-mono text-emerald-600 dark:text-emerald-400 leading-relaxed [overflow-wrap:anywhere]">
+                      {QUERIES[qIdx].a}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

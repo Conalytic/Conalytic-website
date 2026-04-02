@@ -179,7 +179,35 @@ const DEPT_COLORS: Record<string,string> = {
   "Growth":      "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
 };
 
-export function CareersClient() {
+export interface CareersContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroButtonLabel?: string;
+  lifeAtConalyticTitle?: string;
+  lifeAtConalyticSubtitle?: string;
+  openPositionsTitle?: string;
+  openPositionsSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function CareersClient({ content }: { content?: CareersContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "We're Hiring";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Join Our Mission to";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Redefine Analytics";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "At Conalytic, we're not just building analytics tools—we're democratizing data insights for every marketer. Let's build the future together.";
+  const heroButtonLabel = content?.heroButtonLabel ?? "See Open Positions";
+  const lifeAtConalyticTitle = content?.lifeAtConalyticTitle ?? "Why You'll Love Building the Future with Us";
+  const lifeAtConalyticSubtitle =
+    content?.lifeAtConalyticSubtitle ??
+    "We're a team of data scientists, product innovators, and marketing experts—here's why talented people choose Conalytic.";
+  const openPositionsTitle = content?.openPositionsTitle ?? "Open Positions";
+  const openPositionsSubtitle = content?.openPositionsSubtitle ?? "Find your next opportunity at Conalytic";
+
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -189,21 +217,20 @@ export function CareersClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
-            <Users className="w-3 h-3"/> We're Hiring
+            <Users className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Join Our Mission to{" "}
-            <span style={GRAD}>Redefine Analytics</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
-            At Conalytic, we&apos;re not just building analytics tools—we&apos;re democratizing data insights for every marketer. Let&apos;s build the future together.
+            {heroSubtitle}
           </motion.p>
           <motion.a initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
             href="#open-positions"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
-            See Open Positions <ArrowRight className="w-4 h-4"/>
+            {heroButtonLabel} <ArrowRight className="w-4 h-4"/>
           </motion.a>
         </div>
       </section>
@@ -226,8 +253,8 @@ export function CareersClient() {
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Life at Conalytic</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Why You&apos;ll Love Building the Future with Us</h2>
-            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">We&apos;re a team of data scientists, product innovators, and marketing experts—here&apos;s why talented people choose Conalytic.</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{lifeAtConalyticTitle}</h2>
+            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">{lifeAtConalyticSubtitle}</p>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {whyJoin.map(r=>(
@@ -258,8 +285,8 @@ export function CareersClient() {
         <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Open Roles</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Open Positions</h2>
-            <p className="text-gray-500 dark:text-white/65">Find your next opportunity at Conalytic</p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{openPositionsTitle}</h2>
+            <p className="text-gray-500 dark:text-white/65">{openPositionsSubtitle}</p>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="space-y-5">
             {openRoles.map(role=>(
@@ -311,8 +338,8 @@ export function CareersClient() {
       </section>
 
       <CTA
-        title="Ready to Transform Your Analytics?"
-        subtitle="Join 2,000+ teams already using Conalytic to turn data into decisions"
+        title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
+        subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
         primaryCta={{label:"Book a demo", href:"https://app.conalytic.com/demo"}}
         secondaryCta={{label:"Start free trial", href:"https://app.conalytic.com/signup"}}
       />

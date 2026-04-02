@@ -201,7 +201,37 @@ function WhiteLabelPreview() {
   );
 }
 
-export function ReportBuilderClient() {
+export interface ReportBuilderContentPreset {
+  heroBadge?: string;
+  heroTitleLine1?: string;
+  heroTitleLine2?: string;
+  heroSubtitle?: string;
+  heroSecondarySubtitle?: string;
+  coreFeaturesTitle?: string;
+  coreFeaturesSubtitle?: string;
+  valueTitle?: string;
+  valueSubtitle?: string;
+  ctaTitle?: string;
+  ctaSubtitle?: string;
+}
+
+export function ReportBuilderClient({ content }: { content?: ReportBuilderContentPreset }) {
+  const heroBadge = content?.heroBadge ?? "Report Builder";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Professional Report Builder &";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Automated Analytics Reporting";
+  const heroSubtitle =
+    content?.heroSubtitle ??
+    "Transform your marketing reports from static data dumps into intelligent, branded presentations that clients actually read.";
+  const heroSecondarySubtitle =
+    content?.heroSecondarySubtitle ??
+    "Perfect for agencies delivering client reports and marketing teams presenting to executives. Create stunning, white-label reports in minutes instead of hours.";
+  const coreFeaturesSubtitle = content?.coreFeaturesSubtitle ?? "Core Features";
+  const coreFeaturesTitle = content?.coreFeaturesTitle ?? "Reporting that practically writes itself";
+  const valueTitle = content?.valueTitle ?? "Want to save 20+ hours weekly on report creation?";
+  const valueSubtitle =
+    content?.valueSubtitle ??
+    "Eliminate manual reporting with intelligent report automation. Replace time-consuming copy-paste workflows with AI-powered report generation.";
+
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -212,20 +242,19 @@ export function ReportBuilderClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 border border-blue-100 dark:border-blue-500/20 mb-6">
-            <LayoutTemplate className="w-3 h-3"/> Report Builder
+            <LayoutTemplate className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            Professional Report Builder &{" "}
-            <span style={GRAD}>Automated Analytics Reporting</span>
+            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-lg text-gray-500 dark:text-white/70 mb-4 max-w-3xl mx-auto leading-relaxed">
-            Transform your marketing reports from static data dumps into intelligent, branded presentations that clients actually read.
+            {heroSubtitle}
           </motion.p>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.25,ease:EASE}}
             className="text-gray-400 dark:text-white/55 text-base mb-10 max-w-2xl mx-auto leading-relaxed">
-            Perfect for agencies delivering client reports and marketing teams presenting to executives. Create stunning, white-label reports in minutes instead of hours.
+            {heroSecondarySubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
@@ -244,8 +273,8 @@ export function ReportBuilderClient() {
       <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Core Features</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">Reporting that practically writes itself</h2>
+            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{coreFeaturesSubtitle}</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{coreFeaturesTitle}</h2>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {keyFeatures.map(f=>(
@@ -276,8 +305,8 @@ export function ReportBuilderClient() {
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">Why Conalytic Reports</span>
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">Want to save 20+ hours weekly on report creation?</h2>
-            <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4 max-w-2xl mx-auto">Eliminate manual reporting with intelligent report automation. Replace time-consuming copy-paste workflows with AI-powered report generation.</p>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">{valueTitle}</h2>
+            <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4 max-w-2xl mx-auto">{valueSubtitle}</p>
             <p className="text-gray-400 dark:text-white/50 text-sm mb-6 max-w-2xl mx-auto leading-relaxed">Generate client reports in 5 minutes instead of 5 hours. Transform your agency workflow with automated insights that add value to every deliverable.</p>
             <p className="text-brand-600 dark:text-brand-400 font-semibold text-sm">More than 50 professional templates with full white-label customization for Google Ads, Meta Ads, GA4, Search Console, and cross-channel performance analysis.</p>
           </motion.div>
@@ -361,7 +390,10 @@ export function ReportBuilderClient() {
         </div>
       </section>
 
-      <CTA/>
+      <CTA
+        title={content?.ctaTitle}
+        subtitle={content?.ctaSubtitle}
+      />
     </>
   );
 }
