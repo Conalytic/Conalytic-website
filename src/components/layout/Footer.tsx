@@ -50,6 +50,10 @@ const fallbackLegalLinks: SiteConfigLink[] = [
   { label: "Security", href: "/cookies" },
 ];
 
+/* Source: Conalytic Assets — served from /public for next/image */
+const TAGLINE_W = 1913;
+const TAGLINE_H = 486;
+
 interface FooterProps {
   config?: FooterConfig | null;
 }
@@ -78,14 +82,33 @@ export function Footer({ config }: FooterProps) {
         />
 
         <div className="relative z-10 mx-auto max-w-6xl px-8 sm:px-12">
-          <div className="flex flex-row flex-wrap items-center justify-between gap-4 pb-6 pt-10">
-            <Link href="/" className="inline-flex shrink-0">
-              <Image src="/logo.png" alt="Conalytic" width={130} height={38} className="h-8 w-auto dark:hidden" />
-              <Image src="/logo-white.png" alt="Conalytic" width={130} height={38} className="hidden h-8 w-auto dark:block" />
+          {/*
+            Mobile: flex row — logo + email stay on one line (same as before).
+            sm+: 4-column grid — matches link columns below; email sits in column 4 with MOVEMENT.
+          */}
+          <div className="flex flex-nowrap items-center justify-between gap-3 pb-6 pt-10 sm:grid sm:grid-cols-4 sm:items-center sm:gap-8">
+            <Link
+              href="/"
+              className="flex min-w-0 shrink items-center leading-none sm:col-span-3"
+            >
+              <Image
+                src="/logo-tagline-light.png"
+                alt="Conalytic"
+                width={TAGLINE_W}
+                height={TAGLINE_H}
+                className="block h-8 w-auto max-w-[min(240px,58vw)] sm:h-9 sm:max-w-[280px] dark:hidden"
+              />
+              <Image
+                src="/logo-tagline-white.png"
+                alt="Conalytic"
+                width={TAGLINE_W}
+                height={TAGLINE_H}
+                className="hidden h-8 w-auto max-w-[min(240px,58vw)] sm:h-9 sm:max-w-[280px] dark:block"
+              />
             </Link>
             <a
               href={`mailto:${email}`}
-              className="inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-800 dark:text-white/50 dark:hover:text-white"
+              className="min-w-0 shrink text-right text-sm font-medium leading-none text-gray-500 transition-colors hover:text-gray-800 dark:text-white/50 dark:hover:text-white sm:text-left"
             >
               {email}
             </a>
@@ -111,35 +134,45 @@ export function Footer({ config }: FooterProps) {
             ))}
           </div>
 
-          <div className="flex flex-col items-center justify-between gap-4 border-t border-black/8 py-6 dark:border-white/8 sm:flex-row">
-            <div className="flex items-center gap-3">
-              <div className="flex h-7 w-7 items-center justify-center rounded-full border border-gray-300 dark:border-white/20">
+          <div className="flex flex-col items-center justify-between gap-5 border-t border-black/8 py-6 dark:border-white/8 sm:flex-row sm:items-center sm:gap-4">
+            <div className="flex max-w-full items-center gap-3 text-center sm:text-left">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-300 dark:border-white/20">
                 <Image src="/logo-icon.png" alt="" width={16} height={16} />
               </div>
               <span className="text-xs text-gray-400 dark:text-white/30">{copyrightText}</span>
             </div>
 
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-3">
+            <div className="flex w-full min-w-0 max-w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-6 sm:gap-y-2">
+              <nav
+                aria-label="Social"
+                className="flex max-w-full flex-wrap justify-center gap-x-3 gap-y-2 sm:justify-end"
+              >
                 {socialLinks.map((social) => (
                   <a
                     key={`${social.label}-${social.href}`}
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-gray-400 transition-colors hover:text-brand-600 dark:text-white/30 dark:hover:text-white"
+                    className="whitespace-nowrap text-xs text-gray-400 transition-colors hover:text-brand-600 dark:text-white/30 dark:hover:text-white"
                   >
                     {social.label}
                   </a>
                 ))}
-              </div>
-              <div className="flex items-center gap-4 text-xs text-gray-400 dark:text-white/30">
+              </nav>
+              <nav
+                aria-label="Legal"
+                className="flex max-w-full flex-wrap justify-center gap-x-3 gap-y-2 sm:justify-end sm:gap-x-4"
+              >
                 {legalLinks.map((link) => (
-                  <Link key={`${link.label}-${link.href}`} href={link.href} className="transition-colors hover:text-gray-600 dark:hover:text-white">
+                  <Link
+                    key={`${link.label}-${link.href}`}
+                    href={link.href}
+                    className="whitespace-nowrap text-xs text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-white dark:text-white/30"
+                  >
                     {link.label}
                   </Link>
                 ))}
-              </div>
+              </nav>
             </div>
           </div>
         </div>

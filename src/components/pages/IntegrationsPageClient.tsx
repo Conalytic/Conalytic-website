@@ -5,21 +5,18 @@ import { useState } from "react";
 import { ExternalLink, Search, Zap } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import Image from "next/image";
+import { MARKETING_STACK_LOGO_BY_INTEGRATION_NAME } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
 const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
-function siUrl(hex: string) {
-  return `https://cdn.simpleicons.org/${hex}`;
-}
-
 const integrations = [
-  { name:"Google Analytics 4",    category:"Analytics",          desc:"Track website traffic, user behavior, and conversion events with deep GA4 integration.",              status:"available",   siSlug:"googleanalytics",  color:"#E37400" },
-  { name:"Google Ads",            category:"Advertising",        desc:"Monitor campaign performance, ad spend, ROAS, and CTR across all Google Ads campaigns.",               status:"available",   siSlug:"googleads",        color:"#4285F4" },
-  { name:"Meta Ads",              category:"Advertising",        desc:"Analyze Facebook and Instagram ad performance, audience insights, and conversion data.",                status:"available",   siSlug:"meta",             color:"#0082FB" },
-  { name:"Google Search Console", category:"SEO",                desc:"Track organic search performance, keyword rankings, and click-through rates.",                          status:"available",   siSlug:"googlesearchconsole", color:"#458CF5" },
+  { name:"Google Analytics 4",    category:"Analytics",          desc:"Track website traffic, user behavior, and conversion events with deep GA4 integration.",              status:"available",   siSlug:"googleanalytics",  color:"#E37400", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Analytics 4"] },
+  { name:"Google Ads",            category:"Advertising",        desc:"Monitor campaign performance, ad spend, ROAS, and CTR across all Google Ads campaigns.",               status:"available",   siSlug:"googleads",        color:"#4285F4", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Ads"] },
+  { name:"Meta Ads",              category:"Advertising",        desc:"Analyze Facebook and Instagram ad performance, audience insights, and conversion data.",                status:"available",   siSlug:"meta",             color:"#0082FB", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"] },
+  { name:"Google Search Console", category:"SEO",                desc:"Track organic search performance, keyword rankings, and click-through rates.",                          status:"available",   siSlug:"googlesearchconsole", color:"#458CF5", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Search Console"] },
   { name:"Slack",                 category:"Collaboration",      desc:"Keep your team in the loop with real-time updates and notifications directly in Slack.",                status:"available",   siSlug:"slack",            color:"#4A154B" },
   { name:"Zoom",                  category:"Communication",      desc:"Schedule and join video meetings without leaving your analytics workflow.",                              status:"available",   siSlug:"zoom",             color:"#2D8CFF" },
   { name:"Trello",                category:"Project Management", desc:"Organize your projects and track progress with Trello's visual collaboration tool.",                    status:"available",   siSlug:"trello",           color:"#0052CC" },
@@ -32,7 +29,7 @@ const integrations = [
   { name:"GitHub",                category:"Development",        desc:"Bridge the gap between development and management by syncing GitHub.",                                   status:"available",   siSlug:"github",           color:"#181717" },
   { name:"Calendly",              category:"Scheduling",         desc:"Streamline scheduling by connecting Calendly to manage meetings effortlessly.",                         status:"available",   siSlug:"calendly",         color:"#006BFF" },
   { name:"Zapier",                category:"Automation",         desc:"Automate workflows by connecting Conalytic with over 2,000 apps using Zapier.",                         status:"available",   siSlug:"zapier",           color:"#FF4A00" },
-  { name:"LinkedIn Ads",          category:"Advertising",        desc:"Analyze LinkedIn advertising performance and B2B lead generation metrics.",                              status:"coming-soon", siSlug:"linkedin",         color:"#0A66C2" },
+  { name:"LinkedIn Ads",          category:"Advertising",        desc:"Analyze LinkedIn advertising performance and B2B lead generation metrics.",                              status:"coming-soon", siSlug:"linkedin",         color:"#0A66C2", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"] },
   { name:"TikTok Ads",            category:"Advertising",        desc:"Track TikTok advertising campaigns and social commerce performance.",                                    status:"coming-soon", siSlug:"tiktok",           color:"#000000" },
 ];
 
@@ -53,23 +50,50 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 const ALL_CATS = ["All", ...Array.from(new Set(integrations.map(i=>i.category)))];
 
-function IntegrationLogo({ slug, name, color }: { slug: string; name: string; color: string }) {
-  const [err, setErr] = useState(false);
-  if (err) {
+function IntegrationLogo({
+  logoSrc,
+  slug,
+  name,
+  color,
+}: {
+  logoSrc?: string;
+  slug: string;
+  name: string;
+  color: string;
+}) {
+  const [localFailed, setLocalFailed] = useState(false);
+  const [siFailed, setSiFailed] = useState(false);
+
+  if (logoSrc && !localFailed) {
     return (
-      <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs" style={{backgroundColor:color}}>
-        {name.substring(0,2).toUpperCase()}
-      </div>
+      <Image
+        src={logoSrc}
+        alt={name}
+        width={36}
+        height={36}
+        className="w-9 h-9 object-contain"
+        onError={() => setLocalFailed(true)}
+        unoptimized
+      />
+    );
+  }
+  if (!siFailed) {
+    return (
+      <Image
+        src={`https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`}
+        alt={name}
+        width={36}
+        height={36}
+        className="w-9 h-9 object-contain"
+        onError={() => setSiFailed(true)}
+        unoptimized
+      />
     );
   }
   return (
-    <Image
-      src={`https://cdn.simpleicons.org/${slug}/${color.replace("#","")}`}
-      alt={name} width={36} height={36}
-      className="w-9 h-9 object-contain"
-      onError={()=>setErr(true)}
-      unoptimized
-    />
+    <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-black text-xs" style={{ backgroundColor: color }}>
+      {name.substring(0, 2).toUpperCase()}
+    </div>
   );
 }
 
@@ -163,7 +187,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
                 )}
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/[0.06] border border-gray-100 dark:border-white/[0.08] flex items-center justify-center p-1.5 shrink-0">
-                    <IntegrationLogo slug={itg.siSlug} name={itg.name} color={itg.color}/>
+                    <IntegrationLogo logoSrc={itg.logoSrc} slug={itg.siSlug} name={itg.name} color={itg.color}/>
                   </div>
                   <h3 className="text-gray-900 dark:text-white font-semibold text-sm leading-tight">{itg.name}</h3>
                 </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -30,10 +31,11 @@ const STEPS = [
 
 const PANEL_TITLES = ["Ask a question", "Reading your data", "Your answer", "Drill deeper"];
 
+const L = MARKETING_STACK_LOGOS;
 const SOURCES = [
-  { name: "Google Analytics 4", pulse: "bg-emerald-400", bg: "bg-orange-50 dark:bg-orange-500/10" },
-  { name: "Google Ads",         pulse: "bg-emerald-400", bg: "bg-blue-50 dark:bg-blue-500/10"    },
-  { name: "Meta Ads",           pulse: "bg-amber-400",   bg: "bg-blue-50 dark:bg-blue-500/10"    },
+  { name: "Google Analytics 4", pulse: "bg-emerald-400", bg: "bg-orange-50 dark:bg-orange-500/10", logo: L.googleAnalytics4 },
+  { name: "Google Ads",         pulse: "bg-emerald-400", bg: "bg-blue-50 dark:bg-blue-500/10",     logo: L.googleAds },
+  { name: "Meta Ads",           pulse: "bg-amber-400",   bg: "bg-blue-50 dark:bg-blue-500/10",     logo: L.metaAds },
   { name: "BigQuery",           pulse: "bg-emerald-400", bg: "bg-purple-50 dark:bg-purple-500/10" },
 ];
 
@@ -77,8 +79,12 @@ function Panel1() {
   return (
     <div className="p-6">
       <div className="flex flex-col gap-2.5 mb-5">
-        {SOURCES.map(({ name, pulse, bg }) => (
+        {SOURCES.map(({ name, pulse, bg, logo }) => (
           <div key={name} className={`flex items-center gap-3 ${bg} rounded-xl px-3 py-2.5`}>
+            {logo ? (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={logo} alt="" width={20} height={20} className="shrink-0 object-contain" />
+            ) : null}
             <span className="flex-1 text-sm text-gray-700 dark:text-white/70">{name}</span>
             <span className={`w-2 h-2 rounded-full ${pulse} animate-pulse`} />
           </div>

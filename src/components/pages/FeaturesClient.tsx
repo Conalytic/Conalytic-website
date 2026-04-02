@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MessageSquare, Sparkles, BarChart3, Zap, Calendar, ShieldCheck, ArrowRight, CheckCircle2, Lock, Shield } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -152,11 +153,12 @@ function ReportBuilderVisual() {
 
 /** 4 · Real-Time Data Sync — sources → BigQuery */
 function DataSyncVisual() {
+  const L = MARKETING_STACK_LOGOS;
   const sources = [
-    { name:"GA4",  color:"#E37400" },
-    { name:"Ads",  color:"#4285F4" },
-    { name:"Meta", color:"#0082FB" },
-    { name:"GSC",  color:"#458CF5" },
+    { name: "GA4",  label: "GA4",  src: L.googleAnalytics4 },
+    { name: "Ads",  label: "Ads",  src: L.googleAds },
+    { name: "Meta", label: "Meta", src: L.metaAds },
+    { name: "GSC",  label: "GSC",  src: L.googleSearchConsole },
   ];
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-1">
@@ -164,10 +166,11 @@ function DataSyncVisual() {
       <div className="flex items-center gap-2 w-full justify-center">
         {sources.map(s=>(
           <div key={s.name} className="flex flex-col items-center gap-1">
-            <div className="w-8 h-8 rounded-xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-white/[0.06] flex items-center justify-center shadow-sm">
-              <span className="text-[7px] font-black" style={{color:s.color}}>{s.name}</span>
+            <div className="w-8 h-8 rounded-xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-white/[0.06] flex items-center justify-center shadow-sm p-1">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={s.src} alt="" width={18} height={18} className="object-contain max-w-[18px] max-h-[18px]" />
             </div>
-            <span className="text-[7px] text-gray-400 dark:text-white/30">{s.name}</span>
+            <span className="text-[7px] text-gray-400 dark:text-white/30">{s.label}</span>
           </div>
         ))}
       </div>

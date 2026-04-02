@@ -92,9 +92,12 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col antialiased transition-colors duration-300" suppressHydrationWarning>
         <ThemeProvider>
           <StoryblokProvider>
-            <Navbar config={navbarConfig} />
-            <main className="flex-1">{children}</main>
-            <Footer config={footerConfig} />
+            {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
+            <div className="flex min-h-full flex-1 flex-col">
+              <Navbar config={navbarConfig} />
+              <main className="min-h-0 w-full flex-1">{children}</main>
+              <Footer config={footerConfig} />
+            </div>
           </StoryblokProvider>
         </ThemeProvider>
       </body>

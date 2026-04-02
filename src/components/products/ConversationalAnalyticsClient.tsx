@@ -5,6 +5,7 @@ import Link from "next/link";
 import { MessageSquare, Globe, Sparkles, CheckCircle2, ArrowRight, Users, Bell } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -113,11 +114,12 @@ function NLQVisual() {
 
 /* Card 2 — Multi-Channel: logo hub grid */
 function MultiChannelVisual() {
+  const L = MARKETING_STACK_LOGOS;
   const channels = [
-    { name:"GA4",   color:"#E37400", bg:"bg-orange-50 dark:bg-orange-500/10" },
-    { name:"Ads",   color:"#4285F4", bg:"bg-blue-50 dark:bg-blue-500/10"     },
-    { name:"Meta",  color:"#0866FF", bg:"bg-indigo-50 dark:bg-indigo-500/10" },
-    { name:"GSC",   color:"#458CF5", bg:"bg-sky-50 dark:bg-sky-500/10"       },
+    { name: "GA4",  bg: "bg-orange-50 dark:bg-orange-500/10", src: L.googleAnalytics4 },
+    { name: "Ads",  bg: "bg-blue-50 dark:bg-blue-500/10",     src: L.googleAds },
+    { name: "Meta", bg: "bg-indigo-50 dark:bg-indigo-500/10", src: L.metaAds },
+    { name: "GSC",  bg: "bg-sky-50 dark:bg-sky-500/10",       src: L.googleSearchConsole },
   ];
   return (
     <div className="flex flex-col items-center gap-3 py-2">
@@ -126,8 +128,7 @@ function MultiChannelVisual() {
         {channels.slice(0,2).map(c=>(
           <div key={c.name} className={`w-11 h-11 rounded-xl ${c.bg} border border-white/80 dark:border-white/10 flex items-center justify-center shadow-sm`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://cdn.simpleicons.org/${c.name === "GA4" ? "googleanalytics" : c.name === "Ads" ? "googleads" : c.name === "Meta" ? "meta" : "googlesearchconsole"}/${c.color.replace("#","")}`}
-              alt={c.name} width={22} height={22} onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
+            <img src={c.src} alt={c.name} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
           </div>
         ))}
       </div>
@@ -150,8 +151,7 @@ function MultiChannelVisual() {
         {channels.slice(2).map(c=>(
           <div key={c.name} className={`w-11 h-11 rounded-xl ${c.bg} border border-white/80 dark:border-white/10 flex items-center justify-center shadow-sm`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={`https://cdn.simpleicons.org/${c.name === "Meta" ? "meta" : "googlesearchconsole"}/${c.color.replace("#","")}`}
-              alt={c.name} width={22} height={22} onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
+            <img src={c.src} alt={c.name} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
           </div>
         ))}
       </div>

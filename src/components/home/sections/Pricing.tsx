@@ -90,8 +90,10 @@ export function Pricing({ content }: { content?: PricingContent }) {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }} transition={{ duration: 0.7, ease: EASE }}
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-12"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
@@ -131,8 +133,10 @@ export function Pricing({ content }: { content?: PricingContent }) {
           {PLANS.map((plan, i) => (
             <motion.div
               key={plan.id}
-              initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.65, delay: i * 0.1, ease: EASE }}
+              initial={{ opacity: 1, y: 0 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.08 }}
+              transition={{ duration: 0.65, delay: i * 0.1, ease: EASE }}
               className={`relative rounded-2xl p-7 flex flex-col ${
                 plan.featured
                   ? "bg-white dark:bg-[#16161D] border-2 border-brand-500 dark:border-brand-500/50 shadow-xl shadow-brand-500/10 dark:shadow-brand-500/15"

@@ -10,6 +10,7 @@ import { Transformation, type TransformationContent } from "@/components/home/se
 import { HowItWorks, type HowItWorksContent } from "@/components/home/sections/HowItWorks";
 import { StatsSection } from "@/components/home/sections/StatsSection";
 import { Pricing, type PricingContent } from "@/components/home/sections/Pricing";
+import { MARKETING_STACK_LOGOS as stackLogo } from "@/lib/marketing-stack-logos";
 
 /* ─── constants ─────────────────────────────────────── */
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -18,7 +19,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const siUrl = (slug: string, hex: string) =>
   `https://cdn.simpleicons.org/${slug}/${hex}`;
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+/* hidden keeps opacity:1 so sections never stay invisible if whileInView/IO fails */
+const fadeUp = { hidden: { opacity: 1, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 
 type FAQItem = { question: string; answer: string };
 type TestimonialItem = { quote: string; name: string; title: string; photo: string; rating: number };
@@ -492,14 +494,17 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="py-24 px-4 bg-white dark:bg-navy-900">
       <div className="max-w-5xl mx-auto">
-        <motion.h2 initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true, margin:"-80px" }}
-          transition={{ duration:0.7, ease:EASE }}
+        <motion.h2
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
         >
           {content?.servicesTitleLine1 || "Discover our range of tailored"}<br/>{content?.servicesTitleLine2 || "analytics services"}
         </motion.h2>
 
-        <motion.div className="grid grid-cols-6 gap-4" initial="hidden" whileInView="show" viewport={{ once:true }} variants={stagger}>
+        <motion.div className="grid grid-cols-6 gap-4" initial="show" animate="show" variants={stagger}>
 
           {/* Card 1 — soft peach, col-span-3 */}
           <motion.div variants={fadeUp}
@@ -711,7 +716,12 @@ function CapabilitiesSection() {
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Left */}
-        <motion.div initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}>
+        <motion.div
+          initial={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE }}
+        >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 dark:bg-orange-500/15 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-300 text-[11px] font-bold uppercase tracking-wider mb-6">
             🔥 Capabilities
           </div>
@@ -739,7 +749,11 @@ function CapabilitiesSection() {
         </motion.div>
 
         {/* Right */}
-        <motion.div initial={{ opacity:0, x:30 }} whileInView={{ opacity:1, x:0 }} viewport={{ once:true }} transition={{ duration:0.7, delay:0.1, ease:EASE }}
+        <motion.div
+          initial={{ opacity: 1, x: 0 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           className="relative"
         >
           {/* Main visual card */}
@@ -791,27 +805,27 @@ function CapabilitiesSection() {
 const HUB_VW = 460, HUB_VH = 280;
 const HUB_CX = 230, HUB_CY = 140; // center of hub
 
-/* Icons from /public — connected lines use gradient; not connected = dotted + grey badge (Meta & LinkedIn). */
+/* Icons: marketing-stack-logos.ts (same assets sitewide) */
 const HUB_INTEGRATIONS = [
   {
     id:"ga4",  name:"Google Analytics 4",       desc:"Website traffic, user behavior, and conversion data",
-    connected:true,  logo: "/ga4.svg",   nx: 72, ny: 68,
+    connected:true,  logo: stackLogo.googleAnalytics4,   nx: 72, ny: 68,
   },
   {
     id:"gsc",  name:"Google Search Console",    desc:"Search performance, keywords, and indexing data",
-    connected:true,  logo: "/google-search-console-icon.webp", nx: 72, ny: 212,
+    connected:true,  logo: stackLogo.googleSearchConsole, nx: 72, ny: 212,
   },
   {
     id:"gads", name:"Google Ads",               desc:"Ad campaigns, spend, conversions, and ROI",
-    connected:true,  logo: "/Google20Ads20Logo.webp",          nx: 388, ny: 68,
+    connected:true,  logo: stackLogo.googleAds,          nx: 388, ny: 68,
   },
   {
     id:"meta", name:"Meta Ads",                 desc:"Facebook & Instagram ad performance",
-    connected:false, logo: "/meta.svg",               nx: 388, ny: 140,
+    connected:false, logo: stackLogo.metaAds,               nx: 388, ny: 140,
   },
   {
     id:"li",   name:"LinkedIn Ads",             desc:"LinkedIn campaign analytics and engagement",
-    connected:false, logo: "/linkedin.svg",           nx: 388, ny: 212,
+    connected:false, logo: stackLogo.linkedinAds,           nx: 388, ny: 212,
   },
 ];
 
@@ -824,8 +838,11 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
       <div className="max-w-5xl mx-auto">
 
         {/* Heading */}
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
-          viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
@@ -841,8 +858,10 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
           {/* ── Pure-SVG hub diagram — zero HTML/SVG hybrid ── */}
           <motion.div
-            initial={{ opacity:0, scale:0.92 }} whileInView={{ opacity:1, scale:1 }}
-            viewport={{ once:true }} transition={{ duration:0.8, ease:EASE }}
+            initial={{ opacity: 1, scale: 1 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.8, ease: EASE }}
             className="w-full lg:w-[500px] shrink-0"
           >
             {/*
@@ -982,8 +1001,10 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
           <div className="flex-1 w-full space-y-3">
             {HUB_INTEGRATIONS.map((item, i) => (
               <motion.div key={item.id}
-                initial={{ opacity:0, x:20 }} whileInView={{ opacity:1, x:0 }}
-                viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.08, ease:EASE }}
+                initial={{ opacity: 1, x: 0 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
                 className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-default group hover:shadow-sm dark:hover:border-white/[0.12] ${
                   item.connected
                     ? "bg-white dark:bg-[#16161D] border-gray-100 dark:border-white/[0.07]"
@@ -1018,7 +1039,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               </motion.div>
             ))}
 
-            <motion.div initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ duration:0.6, delay:0.5 }}>
+            <motion.div initial={{ opacity: 1 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.6, delay: 0.5 }}>
               <Link href="/integrations"
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 font-semibold transition-colors mt-1"
               >
@@ -1056,7 +1077,11 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto">
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
@@ -1148,11 +1173,22 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
   return (
     <section className="py-24 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-2xl mx-auto">
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }} className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="text-center mb-12"
+        >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">{content?.faqTitle || "Frequently asked questions"}</h2>
           <p className="text-gray-500 dark:text-white/65">{content?.faqSubtitle || "Everything you need to know about Conalytic."}</p>
         </motion.div>
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.7, delay:0.15, ease:EASE }}>
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+        >
           <Accordion items={faqs}/>
         </motion.div>
         <p className="text-center text-gray-400 dark:text-white/58 text-sm mt-8">
