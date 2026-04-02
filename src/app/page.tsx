@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { StoryblokStory } from "@storyblok/react/rsc";
 import { HomeClient, type HomeContentPreset } from "@/components/home/HomeClient";
 import { getPageMetadata } from "@/lib/storyblok-page";
 import { getPageStory } from "@/lib/storyblok";
@@ -97,11 +96,7 @@ export default async function HomePage() {
   }
 
   const content = story.content as Record<string, unknown>;
-  const useStoryblokPage = content.use_storyblok_page === true;
-
-  if (useStoryblokPage) {
-    return <StoryblokStory story={story as never} />;
-  }
-
+  /* Always use HomeClient for /. Storyblok home_page fields still override copy via mapHomeContent.
+     Rendering StoryblokStory here would only show whatever is built in the CMS (often a thin hero), not the full marketing page. */
   return <HomeClient content={mapHomeContent(content)} />;
 }
