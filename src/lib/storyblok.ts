@@ -92,7 +92,9 @@ export async function getStoryBySlug(slug: string, options: StoryblokOptions = {
       version: options.version || STORYBLOK_VERSION,
     });
 
-    const response = await fetch(`${BASE_URL}/stories/${slug}?${params}`, {
+    /* full_slug paths like pages/home must be encoded in the CDN URL path */
+    const pathSlug = encodeURIComponent(slug);
+    const response = await fetch(`${BASE_URL}/stories/${pathSlug}?${params}`, {
       next: { revalidate: 60 },
     });
 

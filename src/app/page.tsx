@@ -7,6 +7,9 @@ import { initializeStoryblok } from "@/components/storyblok/storyblok-init";
 
 initializeStoryblok();
 
+/* Always resolve Storyblok at request time so production uses Vercel env and CMS edits show up (avoids stale static shell from build-time null fetch). */
+export const dynamic = "force-dynamic";
+
 const fallbackMetadata: Metadata = {
   title: "Conalytic – AI-Powered Conversational Analytics Platform",
   description:
