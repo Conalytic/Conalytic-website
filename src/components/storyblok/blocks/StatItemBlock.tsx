@@ -1,3 +1,4 @@
+/** One stat cell inside `stats_block`. */
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

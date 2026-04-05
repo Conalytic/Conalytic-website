@@ -1,3 +1,4 @@
+/** Responsive card grid; children are `card_item` (or configured) bloks. */
 import { StoryblokServerComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

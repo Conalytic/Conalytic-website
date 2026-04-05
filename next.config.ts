@@ -1,7 +1,12 @@
+/**
+ * Next.js config: security/perf headers behavior, image remote patterns (Storyblok/CDN), redirects.
+ */
 import type { NextConfig } from "next";
 import path from "path";
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  compress: true,
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -18,6 +23,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/privacy", destination: "https://chat.conalytic.com/privacy-and-policy", permanent: true },
+      { source: "/terms", destination: "https://chat.conalytic.com/terms-of-service", permanent: true },
       // WordPress URL compatibility redirects
       { source: "/about", destination: "/about-us", permanent: true },
       { source: "/blog", destination: "/blogs", permanent: true },

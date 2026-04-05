@@ -1,5 +1,6 @@
 "use client";
 
+/** Accessible FAQ-style accordion (home and other pages). */
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 
@@ -29,9 +30,12 @@ export function Accordion({ items, className }: AccordionProps) {
             )}
           >
             <button
+              type="button"
               className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left group"
               onClick={() => setOpenIndex(isOpen ? null : i)}
               aria-expanded={isOpen}
+              aria-controls={`accordion-panel-${i}`}
+              id={`accordion-heading-${i}`}
             >
               <span
                 className={cn(
@@ -56,6 +60,9 @@ export function Accordion({ items, className }: AccordionProps) {
             </button>
 
             <div
+              id={`accordion-panel-${i}`}
+              role="region"
+              aria-labelledby={`accordion-heading-${i}`}
               className={cn(
                 "overflow-hidden transition-all duration-300 ease-in-out",
                 isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"

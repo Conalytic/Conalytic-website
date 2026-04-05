@@ -1,3 +1,6 @@
+/**
+ * Legacy `/blogs/{slug}` URLs redirect to canonical `/{slug}` for SEO and bookmarks.
+ */
 import { redirect } from "next/navigation";
 
 interface Props {

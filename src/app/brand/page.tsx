@@ -1,3 +1,4 @@
+/** Brand kit / guidelines page; partial CMS + static download CTA. */
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
 import { CmsPage } from "@/components/storyblok/CmsPage";
@@ -19,10 +20,10 @@ const colors = [
 ];
 
 const logoVariants = [
-  { name:"Full Logo – Dark bg",   description:"Primary usage on dark backgrounds" },
-  { name:"Full Logo – Light bg",  description:"Use on white or light backgrounds" },
-  { name:"Icon only – Color",     description:"App icon, favicon, small spaces" },
-  { name:"Wordmark only",         description:"Text-only variant for tight spaces" },
+  { name:"Full Logo – Dark bg",   description:"Primary usage on dark backgrounds", file:"/logo-white.png", filename:"conalytic-logo-white.png" },
+  { name:"Full Logo – Light bg",  description:"Use on white or light backgrounds", file:"/logo.png", filename:"conalytic-logo.png" },
+  { name:"Icon only – Color",     description:"App icon, favicon, small spaces", file:"/logo-icon.png", filename:"conalytic-icon.png" },
+  { name:"Wordmark – Light",      description:"Tagline logo for light backgrounds", file:"/logo-tagline-light.png", filename:"conalytic-wordmark-light.png" },
 ];
 
 const typography = [
@@ -64,16 +65,16 @@ function BrandFallback() {
                     <p className="text-gray-900 dark:text-white text-sm font-semibold">{v.name}</p>
                     <p className="text-gray-400 dark:text-white/40 text-xs mt-0.5">{v.description}</p>
                   </div>
-                  <button className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold hover:text-brand-700 dark:hover:text-brand-300 transition-colors">
-                    <Download className="w-3.5 h-3.5"/> SVG
-                  </button>
+                  <a href={v.file} download={v.filename} className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold hover:text-brand-700 dark:hover:text-brand-300 transition-colors" aria-label={`Download ${v.name}`}>
+                    <Download className="w-3.5 h-3.5" aria-hidden/> PNG
+                  </a>
                 </div>
               </div>
             ))}
           </div>
-          <button className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border-2 border-gray-200 dark:border-white/20 text-gray-700 dark:text-white/80 bg-white dark:bg-white/[0.04] hover:border-brand-400 dark:hover:border-brand-400/50 hover:bg-brand-50 dark:hover:bg-brand-600/5 transition-all">
-            <Download className="w-4 h-4"/> Download Full Brand Kit (.zip)
-          </button>
+          <a href="/contact?topic=brand" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border-2 border-gray-200 dark:border-white/20 text-gray-700 dark:text-white/80 bg-white dark:bg-white/[0.04] hover:border-brand-400 dark:hover:border-brand-400/50 hover:bg-brand-50 dark:hover:bg-brand-600/5 transition-all" aria-label="Request full brand kit — contact us">
+            <Download className="w-4 h-4" aria-hidden/> Request full brand kit
+          </a>
         </section>
 
         {/* Colors */}
@@ -141,7 +142,7 @@ function BrandFallback() {
         <div className="rounded-2xl bg-brand-50 dark:bg-brand-600/10 border border-brand-100 dark:border-brand-500/20 p-8 text-center">
           <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Need something specific?</h3>
           <p className="text-gray-500 dark:text-white/60 mb-6 leading-relaxed">For press inquiries, partnership assets, or custom brand requests, reach out to us directly.</p>
-          <a href="mailto:hello@conalytic.com"
+          <a href="mailto:admin@conalytic.com"
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             Contact Brand Team
           </a>

@@ -1,5 +1,8 @@
+/**
+ * sitemap.xml — static marketing URLs plus published blog posts from Storyblok.
+ */
 import { MetadataRoute } from "next";
-import { getPublishedBlogStories } from "@/lib/storyblok";
+import { getPublishedBlogStories } from "@/lib/storyblok-server";
 
 const BASE_URL = "https://conalytic.com";
 
@@ -15,8 +18,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: "/integrations", priority: 0.8, changeFrequency: "monthly" as const },
     { url: "/blogs", priority: 0.8, changeFrequency: "weekly" as const },
     { url: "/careers", priority: 0.6, changeFrequency: "weekly" as const },
-    { url: "/privacy", priority: 0.3, changeFrequency: "yearly" as const },
-    { url: "/terms", priority: 0.3, changeFrequency: "yearly" as const },
     { url: "/cookies", priority: 0.3, changeFrequency: "yearly" as const },
     { url: "/brand", priority: 0.4, changeFrequency: "yearly" as const },
   ];

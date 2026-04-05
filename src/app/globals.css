@@ -6,7 +6,10 @@
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
-  --font-sans: var(--font-inter);
+  /* Roboto = default / paragraphs; Roboto Slab = headings; Inter = nav, buttons, chrome */
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-roboto-slab), ui-serif, Georgia, serif;
+  --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Brand palette — same in both themes */
   --color-brand-50:  #f0f0ff;
@@ -88,10 +91,30 @@ html { scroll-behavior: smooth; }
 body {
   background-color: var(--bg);
   color: var(--fg);
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headings: Roboto Slab */
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-roboto-slab), ui-serif, Georgia, serif;
+}
+
+/* UI chrome: Inter (nav, footer, actions) */
+:where(header, footer) {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:where(
+  label,
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"]
+) {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ── Scrollbar — hidden ────────────────────────────── */

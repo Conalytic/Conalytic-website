@@ -1,5 +1,6 @@
 "use client";
 
+/** Blog index grid; post cards link to canonical `/{slug}` URLs. */
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, Clock, BookOpen } from "lucide-react";

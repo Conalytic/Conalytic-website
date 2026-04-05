@@ -1,8 +1,9 @@
+/** Integrations directory route; Storyblok optional full page. */
 import type { Metadata } from "next";
 import { IntegrationsPageClient, type IntegrationsContentPreset } from "@/components/pages/IntegrationsPageClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Integrations – Conalytic",

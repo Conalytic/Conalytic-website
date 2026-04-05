@@ -1,5 +1,6 @@
 "use client";
 
+/** Features landing: capability grid, security, integrations strip, shared CTA. */
 import { motion } from "framer-motion";
 import { MessageSquare, Sparkles, BarChart3, Zap, Calendar, ShieldCheck, ArrowRight, CheckCircle2, Lock, Shield } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
@@ -305,7 +306,7 @@ function SecurityVisual() {
 const BENTO_CARDS = [
   { title:"Conversational Analytics",  desc:"Ask questions in plain English and get instant insights from your GA4, Google Ads, and Meta data.",                              icon:MessageSquare, glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   bg:"bg-white dark:bg-[#14141B]", Visual:ConversationalVisual },
   { title:"AI-Powered Insights",        desc:"Automatically generate trend analysis, recommendations, and actionable insights from your marketing data.",                    icon:Sparkles,      glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-[#14141B]", Visual:AIInsightsVisual    },
-  { title:"Custom Report Builder",      desc:"Design professional, branded reports with drag-and-drop simplicity and white-label capabilities.",                             icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:ReportBuilderVisual },
+  { title:"Custom Report Builder",      desc:"Coming soon — design professional, branded reports with drag-and-drop simplicity and white-label capabilities.",              icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:ReportBuilderVisual, comingSoon:true },
   { title:"Real-Time Data Sync",        desc:"Connect all your marketing platforms to BigQuery for unified, always-current analytics.",                                      icon:Zap,           glow:"from-emerald-400/10 to-teal-400/5",   border:"border-emerald-400/20 dark:border-emerald-500/20",bg:"bg-white dark:bg-[#14141B]",Visual:DataSyncVisual     },
   { title:"Automated Reporting",        desc:"Schedule and deliver branded reports automatically with AI commentary and recommendations.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-400/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:AutoReportingVisual },
   { title:"Enterprise Security",        desc:"SOC 2 compliant with encrypted data storage and enterprise-grade access controls.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-[#14141B]", Visual:SecurityVisual      },
@@ -399,18 +400,18 @@ function ReportMockup() {
             <p className="text-[10px] text-gray-500 dark:text-white/55 leading-relaxed">{s.preview}</p>
           </div>
         ))}
-        <button className="w-full text-center text-[11px] font-semibold text-brand-600 dark:text-brand-400 py-2 border border-dashed border-brand-200 dark:border-brand-500/30 rounded-xl hover:bg-brand-50 dark:hover:bg-brand-500/5 transition-colors">
-          + Export PDF / Share Link
-        </button>
+        <a href="/contact" className="block w-full text-center text-[11px] font-semibold text-brand-600 dark:text-brand-400 py-2 border border-dashed border-brand-200 dark:border-brand-500/30 rounded-xl hover:bg-brand-50 dark:hover:bg-brand-500/5 transition-colors">
+          Get Early Access when Report Builder launches
+        </a>
       </div>
     </div>
   );
 }
 
 const deepDives = [
-  { badge:"Chat Interface",      badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Data, Anytime, Anywhere",         desc:"Whether you're analyzing campaigns, tracking conversions, or exploring trends, everything happens through natural conversation with AI.", bullets:['Ask "How did Google Ads perform last month?" and get instant answers',"Automatic visualizations created from your queries in seconds","Context-aware conversations that remember your previous questions"], cta:{label:"Book a demo",href:"https://app.conalytic.com/demo"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
+  { badge:"Chat Interface",      badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Data, Anytime, Anywhere",         desc:"Whether you're analyzing campaigns, tracking conversions, or exploring trends, everything happens through natural conversation with AI.", bullets:['Ask "How did Google Ads perform last month?" and get instant answers',"Automatic visualizations created from your queries in seconds","Context-aware conversations that remember your previous questions"], cta:{label:"Book a demo",href:"/contact"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
   { badge:"Performance Tracking", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Performance That Actually Matters",  desc:"Monitor campaign ROI, conversion trends, and team productivity with AI-generated insights that guide your next move.",                    bullets:["See campaign performance metrics that impact your bottom line","Track conversion rates, CTR, ROAS across all marketing channels","Get AI recommendations for optimization opportunities"],          cta:{label:"Try It Today",href:"https://app.conalytic.com/signup"}, Visual:PerfMockup,  sectionBg:"bg-[#F6F7FE] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
-  { badge:"Report Builder",       badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",             title:"Build Reports That Wow Clients",          desc:"Create stunning, branded reports with AI insights embedded directly into every page — no more manual commentary needed.",                  bullets:["Drag-and-drop report builder with custom branding options","AI automatically generates insights and recommendations for each section","Schedule weekly, monthly, or quarterly reports for automatic delivery"],cta:{label:"Try It Free Today",href:"https://app.conalytic.com/signup"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
+  { badge:"Coming soon",          badgeColor:"bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-500/20",          title:"Build Reports That Wow Clients",          desc:"Report Builder is coming soon. Create stunning, branded reports with AI insights embedded directly into every page — no more manual commentary needed.", bullets:["Drag-and-drop report builder with custom branding options","AI automatically generates insights and recommendations for each section","Schedule weekly, monthly, or quarterly reports for automatic delivery"],cta:{label:"Get Early Access",href:"/contact"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
 ];
 
 export interface FeaturesContentPreset {
@@ -457,8 +458,9 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
             <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              aria-label={`${heroPrimaryCtaLabel} (opens in new tab)`}>
+              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
             </a>
           </motion.div>
         </div>
@@ -486,7 +488,14 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                   <div className={`inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-lg border ${card.border} bg-gradient-to-br ${card.glow}`}>
                     <card.icon className="w-3.5 h-3.5 text-gray-600 dark:text-white/60"/>
                   </div>
-                  <h3 className="text-gray-900 dark:text-white font-bold text-base mb-1.5 leading-snug">{card.title}</h3>
+                  <h3 className="text-gray-900 dark:text-white font-bold text-base mb-1.5 leading-snug flex flex-wrap items-center gap-2">
+                    {card.title}
+                    {card.comingSoon ? (
+                      <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/15 border border-amber-200/80 dark:border-amber-500/30 px-1.5 py-0.5 rounded-md shrink-0">
+                        Coming soon
+                      </span>
+                    ) : null}
+                  </h3>
                   <p className="text-gray-500 dark:text-white/60 text-xs leading-relaxed">{card.desc}</p>
                 </div>
               </motion.div>
@@ -517,9 +526,12 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                     </li>
                   ))}
                 </ul>
-                <a href={s.cta.href} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-                  {s.cta.label} <ArrowRight className="w-4 h-4"/>
+                <a
+                  href={s.cta.href}
+                  {...(s.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                  aria-label={s.cta.href.startsWith("http") ? `${s.cta.label} (opens in new tab)` : s.cta.label}>
+                  {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
                 </a>
               </motion.div>
               {/* Visual side */}

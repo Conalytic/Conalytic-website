@@ -1,9 +1,17 @@
+/**
+ * Public blog article at `/{slug}`: loads Storyblok blog story, canonical + BlogPosting JSON-LD, rich body.
+ */
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
 import { StoryblokRichText } from "@storyblok/react/rsc";
-import { getBlogStoryByPublicSlug } from "@/lib/storyblok";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { blogPostingSchema } from "@/lib/structured-data";
+import { mergeSocialPreviewFromStoryContent } from "@/lib/storyblok";
+import { storyblokImageAlt, storyblokImageSrc, storyblokOgImageSrc } from "@/lib/storyblok-asset";
+import { getBlogStoryByPublicSlug } from "@/lib/storyblok-server";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -37,10 +45,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     (content.description as string) ||
     "";
 
-  return {
+  const canonical = `https://conalytic.com/${slug}`;
+
+  return mergeSocialPreviewFromStoryContent(content, {
     title: `${title} – Conalytic Blog`,
     description,
-  };
+    alternates: { canonical },
+  });
 }
 
 export default async function PublicBlogPage({ params }: Props) {
@@ -57,15 +68,45 @@ export default async function PublicBlogPage({ params }: Props) {
   const readTime = (content.read_time as string) || (content.readTime as string) || "";
   const excerpt = (content.excerpt as string) || "";
   const richText = content.body_rich_text || content.content;
+  const canonicalUrl = `https://conalytic.com/${slug}`;
+  const published = story.first_published_at || story.published_at;
+  const ldDescription =
+    (content.seo_description as string) || excerpt || (content.description as string) || title;
+  const ogUrl = storyblokOgImageSrc(content);
+  const coverSrc = storyblokImageSrc(content.cover_image);
+  const coverAlt = coverSrc ? storyblokImageAlt(content.cover_image, title) : "";
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
+      <JsonLd
+        id={`ld-blog-${slug}`}
+        data={blogPostingSchema({
+          url: canonicalUrl,
+          headline: title,
+          description: ldDescription,
+          datePublished: published ? new Date(published).toISOString() : undefined,
+          imageUrl: ogUrl ?? undefined,
+        })}
+      />
       <Link href="/blogs" className="mb-10 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white">
         <ArrowLeft className="h-4 w-4" />
         Back to Blog
       </Link>
 
       <span className="mb-6 inline-block rounded-full bg-[#6B5FF8]/15 px-3 py-1 text-xs font-medium text-[#a78bfa]">{category}</span>
+
+      {coverSrc ? (
+        <div className="relative mb-10 aspect-[1200/630] w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04]">
+          <Image
+            src={coverSrc}
+            alt={coverAlt}
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 48rem, 100vw"
+            priority
+          />
+        </div>
+      ) : null}
 
       <h1 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">{title}</h1>
 

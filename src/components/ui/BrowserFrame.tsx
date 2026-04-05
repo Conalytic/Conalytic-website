@@ -1,3 +1,4 @@
+/** Decorative browser chrome around a screenshot / asset. */
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 

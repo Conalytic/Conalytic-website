@@ -1,5 +1,6 @@
 "use client";
 
+/** Shared button / Link styling (primary, secondary, outline, ghost). */
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { type ComponentPropsWithoutRef } from "react";

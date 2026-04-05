@@ -1,3 +1,4 @@
+/** Presentational card surface with optional hover lift. */
 import { cn } from "@/lib/utils";
 
 interface CardProps {

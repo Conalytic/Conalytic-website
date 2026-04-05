@@ -1,7 +1,11 @@
 "use client";
 
+/**
+ * Careers listing + culture sections; quick apply posts resume to `/api/careers-application` (no mailto for files).
+ */
 import { motion } from "framer-motion";
-import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users, Zap, CheckCircle2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -179,6 +183,74 @@ const DEPT_COLORS: Record<string,string> = {
   "Growth":      "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
 };
 
+function RoleQuickApply({ roleTitle }: { roleTitle: string }) {
+  const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [notice, setNotice] = useState<{ kind: "ok" | "err"; text: string } | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!file) return;
+    setLoading(true);
+    setNotice(null);
+    const fd = new FormData();
+    fd.set("role", roleTitle);
+    fd.set("resume", file);
+    try {
+      const res = await fetch("/api/careers-application", { method: "POST", body: fd });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) {
+        setNotice({ kind: "err", text: data.error || "Something went wrong. Please try again." });
+        return;
+      }
+      setNotice({ kind: "ok", text: "Thanks — your resume was sent to our team. We'll be in touch." });
+      setFile(null);
+      if (inputRef.current) inputRef.current.value = "";
+    } catch {
+      setNotice({ kind: "err", text: "Network error. Please try again." });
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="flex flex-col sm:flex-row gap-3">
+        <label className="flex items-center gap-3 flex-1 px-4 py-3 rounded-xl border border-dashed border-gray-200 dark:border-white/[0.10] bg-gray-50 dark:bg-white/[0.02] cursor-pointer hover:border-brand-400 dark:hover:border-brand-400/50 hover:bg-brand-50/50 dark:hover:bg-brand-600/5 transition-all group">
+          <Upload className="w-4 h-4 text-gray-400 dark:text-white/30 group-hover:text-brand-500 transition-colors shrink-0"/>
+          <span className="text-gray-500 dark:text-white/45 text-sm group-hover:text-gray-700 dark:group-hover:text-white/70 transition-colors truncate">
+            {file ? file.name : "Upload your resume (PDF, DOC, DOCX)"}
+          </span>
+          <input
+            ref={inputRef}
+            type="file"
+            className="hidden"
+            accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            onChange={(e) => setFile(e.target.files?.[0] ?? null)}
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={loading || !file}
+          aria-label={`Submit resume for ${roleTitle}`}
+          className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0 text-center inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+        >
+          {loading ? "Sending…" : "Submit"}
+        </button>
+      </div>
+      {notice ? (
+        <p
+          role="status"
+          className={`text-xs font-medium ${notice.kind === "ok" ? "text-emerald-600 dark:text-emerald-400" : "text-amber-700 dark:text-amber-300"}`}
+        >
+          {notice.text}
+        </p>
+      ) : null}
+    </form>
+  );
+}
+
 export interface CareersContentPreset {
   heroBadge?: string;
   heroTitleLine1?: string;
@@ -293,21 +365,15 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
               <motion.div key={role.title} variants={fadeUp}
                 className="rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm overflow-hidden hover:border-brand-300 dark:hover:border-brand-500/40 hover:shadow-lg dark:hover:shadow-black/40 transition-all duration-300">
                 <div className="p-6 sm:p-8">
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-4">
-                    <div>
-                      <div className="flex items-center gap-2 mb-1.5">
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${DEPT_COLORS[role.dept]||"bg-gray-100 dark:bg-white/[0.07] text-gray-500 dark:text-white/50"}`}>{role.dept}</span>
-                        <span className="text-[10px] font-semibold text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/30 px-2 py-0.5 rounded-full">{role.type}</span>
-                      </div>
-                      <h3 className="text-gray-900 dark:text-white font-bold text-lg leading-snug">{role.title}</h3>
-                      <div className="flex items-center gap-1.5 mt-2 text-gray-400 dark:text-white/45 text-xs">
-                        <MapPin className="w-3.5 h-3.5"/>{role.location}
-                      </div>
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-1.5">
+                      <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${DEPT_COLORS[role.dept]||"bg-gray-100 dark:bg-white/[0.07] text-gray-500 dark:text-white/50"}`}>{role.dept}</span>
+                      <span className="text-[10px] font-semibold text-brand-600 dark:text-brand-400 border border-brand-200 dark:border-brand-500/30 px-2 py-0.5 rounded-full">{role.type}</span>
                     </div>
-                    <a href={`/careers/${role.title.toLowerCase().replace(/\s+/g,"-").replace(/[–—]/g,"-")}`}
-                      className="shrink-0 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
-                      Apply now <ArrowRight className="w-3.5 h-3.5"/>
-                    </a>
+                    <h3 className="text-gray-900 dark:text-white font-bold text-lg leading-snug">{role.title}</h3>
+                    <div className="flex items-center gap-1.5 mt-2 text-gray-400 dark:text-white/45 text-xs">
+                      <MapPin className="w-3.5 h-3.5"/>{role.location}
+                    </div>
                   </div>
                   <p className="text-gray-500 dark:text-white/65 text-sm leading-relaxed mb-5">{role.description}</p>
                   {/* Skill tags */}
@@ -319,16 +385,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
                   {/* Quick application */}
                   <div className="border-t border-gray-100 dark:border-white/[0.06] pt-5">
                     <p className="text-gray-600 dark:text-white/60 text-xs font-semibold mb-3 flex items-center gap-1.5"><Sparkles className="w-3.5 h-3.5 text-brand-500"/>Quick Application</p>
-                    <div className="flex flex-col sm:flex-row gap-3">
-                      <label className="flex items-center gap-3 flex-1 px-4 py-3 rounded-xl border border-dashed border-gray-200 dark:border-white/[0.10] bg-gray-50 dark:bg-white/[0.02] cursor-pointer hover:border-brand-400 dark:hover:border-brand-400/50 hover:bg-brand-50/50 dark:hover:bg-brand-600/5 transition-all group">
-                        <Upload className="w-4 h-4 text-gray-400 dark:text-white/30 group-hover:text-brand-500 transition-colors"/>
-                        <span className="text-gray-400 dark:text-white/35 text-sm group-hover:text-gray-600 dark:group-hover:text-white/55 transition-colors">Upload your resume</span>
-                        <input type="file" className="hidden" accept=".pdf,.doc,.docx"/>
-                      </label>
-                      <button type="submit" className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0">
-                        Submit
-                      </button>
-                    </div>
+                    <RoleQuickApply roleTitle={role.title} />
                   </div>
                 </div>
               </motion.div>
@@ -340,8 +397,8 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
         subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
-        primaryCta={{label:"Book a demo", href:"https://app.conalytic.com/demo"}}
-        secondaryCta={{label:"Start free trial", href:"https://app.conalytic.com/signup"}}
+        primaryCta={{label:"Book a demo", href:"/contact"}}
+        secondaryCta={{label:"Get started", href:"https://app.conalytic.com/signup"}}
       />
     </>
   );

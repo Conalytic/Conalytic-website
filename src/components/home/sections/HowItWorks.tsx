@@ -1,8 +1,14 @@
 "use client";
 
+/**
+ * Home “How it works” step carousel with integration partner logos (GA4, Ads, etc.) in the visual stack.
+ */
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
+import {
+  MARKETING_STACK_LOGOS,
+  type MarketingStackLogoKey,
+} from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -31,13 +37,22 @@ const STEPS = [
 
 const PANEL_TITLES = ["Ask a question", "Reading your data", "Your answer", "Drill deeper"];
 
-const L = MARKETING_STACK_LOGOS;
-const SOURCES = [
-  { name: "Google Analytics 4", pulse: "bg-emerald-400", bg: "bg-orange-50 dark:bg-orange-500/10", logo: L.googleAnalytics4 },
-  { name: "Google Ads",         pulse: "bg-emerald-400", bg: "bg-blue-50 dark:bg-blue-500/10",     logo: L.googleAds },
-  { name: "Meta Ads",           pulse: "bg-amber-400",   bg: "bg-blue-50 dark:bg-blue-500/10",     logo: L.metaAds },
-  { name: "BigQuery",           pulse: "bg-emerald-400", bg: "bg-purple-50 dark:bg-purple-500/10" },
-];
+type IntegrationSourceRow = {
+  name: string;
+  pulse: string;
+  bg: string;
+  logo?: string;
+};
+
+function buildIntegrationSources(overrides?: Partial<Record<MarketingStackLogoKey, string>>): IntegrationSourceRow[] {
+  const L = { ...MARKETING_STACK_LOGOS, ...overrides };
+  return [
+    { name: "Google Analytics 4", pulse: "bg-emerald-400", bg: "bg-orange-50 dark:bg-orange-500/10", logo: L.googleAnalytics4 },
+    { name: "Google Ads", pulse: "bg-emerald-400", bg: "bg-blue-50 dark:bg-blue-500/10", logo: L.googleAds },
+    { name: "Meta Ads", pulse: "bg-amber-400", bg: "bg-blue-50 dark:bg-blue-500/10", logo: L.metaAds },
+    { name: "BigQuery", pulse: "bg-emerald-400", bg: "bg-purple-50 dark:bg-purple-500/10" },
+  ];
+}
 
 const CHART_BARS = [
   { lbl: "Email",   h: 60,  val: "3.2×" },
@@ -75,11 +90,11 @@ function Panel0() {
   );
 }
 
-function Panel1() {
+function Panel1({ sources }: { sources: IntegrationSourceRow[] }) {
   return (
     <div className="p-6">
       <div className="flex flex-col gap-2.5 mb-5">
-        {SOURCES.map(({ name, pulse, bg, logo }) => (
+        {sources.map(({ name, pulse, bg, logo }) => (
           <div key={name} className={`flex items-center gap-3 ${bg} rounded-xl px-3 py-2.5`}>
             {logo ? (
               /* eslint-disable-next-line @next/next/no-img-element */
@@ -147,15 +162,20 @@ function Panel3() {
   );
 }
 
-const PANELS = [<Panel0 key={0} />, <Panel1 key={1} />, <Panel2 key={2} />, <Panel3 key={3} />];
-
 export interface HowItWorksContent {
   eyebrow?: string;
   title?: string;
   subtitle?: string;
 }
 
-export function HowItWorks({ content }: { content?: HowItWorksContent }) {
+export function HowItWorks({
+  content,
+  stackLogoSrcByKey,
+}: {
+  content?: HowItWorksContent;
+  stackLogoSrcByKey?: Partial<Record<MarketingStackLogoKey, string>>;
+}) {
+  const integrationSources = buildIntegrationSources(stackLogoSrcByKey);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
 
@@ -189,7 +209,7 @@ export function HowItWorks({ content }: { content?: HowItWorksContent }) {
      */
     <div ref={sectionRef} style={{ height: `${(STEPS.length - 1) * 100}vh` }}>
       <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="w-full max-w-5xl mx-auto px-4 py-8">
+        <div className="w-full max-w-5xl mx-auto px-4 py-4 md:py-8">
 
           {/* Section header */}
           <div className="text-center mb-6 sm:mb-10">
@@ -275,7 +295,15 @@ export function HowItWorks({ content }: { content?: HowItWorksContent }) {
                     transition={{ duration: 0.3 }}
                     className="min-h-[260px]"
                   >
-                    {PANELS[active]}
+                    {active === 0 ? (
+                      <Panel0 />
+                    ) : active === 1 ? (
+                      <Panel1 sources={integrationSources} />
+                    ) : active === 2 ? (
+                      <Panel2 />
+                    ) : (
+                      <Panel3 />
+                    )}
                   </motion.div>
                 </AnimatePresence>
               </div>

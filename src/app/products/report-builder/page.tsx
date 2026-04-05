@@ -1,8 +1,9 @@
+/** Product: Report Builder marketing route. */
 import type { Metadata } from "next";
 import { ReportBuilderClient, type ReportBuilderContentPreset } from "@/components/pages/ReportBuilderClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Report Builder – Conalytic",

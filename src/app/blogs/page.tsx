@@ -1,8 +1,9 @@
+/** Blog listing `/blogs`: CMS or fallback `BlogsClient`. */
 import type { Metadata } from "next";
 import { BlogsClient, type BlogsContentPreset } from "@/components/pages/BlogsClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Blog – Conalytic",

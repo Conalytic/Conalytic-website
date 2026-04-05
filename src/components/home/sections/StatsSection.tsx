@@ -1,5 +1,6 @@
 "use client";
 
+/** Animated stat counters for social proof on the home page. */
 import { useEffect, useRef, useState } from "react";
 
 const STATS = [
@@ -55,7 +56,7 @@ export function StatsSection() {
   }, []);
 
   return (
-    <section className="py-20 px-4 border-y border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#0E0E14]">
+    <section className="py-10 md:py-20 px-4 border-y border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#0E0E14]">
       <div ref={ref} className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 divide-x divide-gray-100 dark:divide-white/[0.06]">
         {STATS.map(s => (
           <StatItem key={s.label} {...s} active={active} />

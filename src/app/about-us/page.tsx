@@ -1,8 +1,9 @@
+/** About Us route; Storyblok optional full page. */
 import type { Metadata } from "next";
 import { AboutClient, type AboutContentPreset } from "@/components/pages/AboutClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "About Us – Conalytic",

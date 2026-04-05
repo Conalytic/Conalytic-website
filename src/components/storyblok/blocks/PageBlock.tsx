@@ -1,3 +1,4 @@
+/** Root Storyblok container: renders nested `body` bloks (page / home_page / etc.). */
 import { StoryblokServerComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

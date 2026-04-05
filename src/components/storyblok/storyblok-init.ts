@@ -1,3 +1,6 @@
+/**
+ * Registers Storyblok component map for RSC (`storyblokInit` + `apiPlugin`). Import once before rendering CMS blocks.
+ */
 import { apiPlugin, storyblokInit } from "@storyblok/react/rsc";
 import type { SbReactComponentsMap } from "@storyblok/react";
 import PageBlock from "@/components/storyblok/blocks/PageBlock";
@@ -22,6 +25,7 @@ const components: SbReactComponentsMap = {
   careers_page: PageBlock,
   integrations_page: PageBlock,
   blogs_page: PageBlock,
+  cookies_page: PageBlock,
   ats_page: PageBlock,
   report_builder_page: PageBlock,
   conversational_analytics_page: PageBlock,
@@ -46,7 +50,10 @@ export function initializeStoryblok() {
   }
 
   storyblokInit({
-    accessToken: process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN,
+    accessToken:
+      process.env.NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN?.trim() ||
+      process.env.STORYBLOK_PREVIEW_TOKEN?.trim() ||
+      "",
     use: [apiPlugin],
     components,
     enableFallbackComponent: true,

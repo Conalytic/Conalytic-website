@@ -1,5 +1,6 @@
 "use client";
 
+/** Compact horizontal stat strip (used inside some marketing layouts). */
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 

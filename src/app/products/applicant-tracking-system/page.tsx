@@ -1,8 +1,9 @@
+/** Product: Applicant Tracking System marketing route. */
 import type { Metadata } from "next";
 import { ATSClient, type ATSContentPreset } from "@/components/pages/ATSClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Applicant Tracking System – Conalytic",

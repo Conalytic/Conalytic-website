@@ -1,5 +1,6 @@
 "use client";
 
+/** Applicant Tracking System product page (marketing). */
 import { motion } from "framer-motion";
 import { Users, Search, BarChart3, FileText, CheckCircle2, ArrowRight, Bell, Star } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
@@ -238,8 +239,10 @@ export interface ATSContentPreset {
   ctaSubtitle?: string;
 }
 
+/** Shown in the amber hero pill while the product is pre-launch (Storyblok `ats_hero_badge` is ignored for this pill). */
+const HERO_COMING_SOON_LABEL = "Coming soon";
+
 export function ATSClient({ content }: { content?: ATSContentPreset }) {
-  const heroBadge = content?.heroBadge ?? "Coming Soon";
   const heroTitleLine1 = content?.heroTitleLine1 ?? "Applicant Tracking System for";
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Modern Teams";
   const heroSubtitle =
@@ -261,8 +264,8 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
         <div className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl bg-brand-600/10 dark:bg-brand-600/15 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/25 mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"/> {heroBadge}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/25 mb-8">
+            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden/> {HERO_COMING_SOON_LABEL}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
@@ -277,7 +280,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
             </a>
-            <a href="https://app.conalytic.com/demo" target="_blank" rel="noopener noreferrer"
+            <a href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               {heroSecondaryCtaLabel}
             </a>

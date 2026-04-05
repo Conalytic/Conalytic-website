@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+/** Home pricing tiers; enterprise path points to `/contact`; monthly framing per product copy. */
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -11,7 +12,6 @@ const PLANS = [
     name: "Conalytic Plus",
     badge: null,
     monthlyPrice: 20,
-    annualPrice: 16,
     description: "Perfect for individuals and small teams starting with AI-powered analytics.",
     features: [
       "Up to 3 users",
@@ -21,7 +21,7 @@ const PLANS = [
       "Email support",
       "7-day data history",
     ],
-    cta: "Start free trial",
+    cta: "Get started",
     ctaHref: "https://app.conalytic.com/signup",
     featured: false,
     isEnterprise: false,
@@ -31,7 +31,6 @@ const PLANS = [
     name: "Conalytic Pro",
     badge: "Most Popular",
     monthlyPrice: 50,
-    annualPrice: 40,
     description: "For growing teams that need unlimited analytics and deeper integrations.",
     features: [
       "Up to 15 users",
@@ -43,7 +42,7 @@ const PLANS = [
       "Custom dashboards",
       "Advanced AI models",
     ],
-    cta: "Start free trial",
+    cta: "Get started",
     ctaHref: "https://app.conalytic.com/signup",
     featured: true,
     isEnterprise: false,
@@ -53,7 +52,6 @@ const PLANS = [
     name: "Conalytic Enterprise",
     badge: null,
     monthlyPrice: null,
-    annualPrice: null,
     description: "Custom solutions for large organizations with complex data infrastructure needs.",
     features: [
       "Unlimited users",
@@ -66,7 +64,7 @@ const PLANS = [
       "On-premise deployment",
     ],
     cta: "Raise a Quote",
-    ctaHref: "https://app.conalytic.com/contact",
+    ctaHref: "/contact",
     featured: false,
     isEnterprise: true,
   },
@@ -75,20 +73,13 @@ const PLANS = [
 export interface PricingContent {
   eyebrow?: string;
   title?: string;
-  monthlyLabel?: string;
-  annualLabel?: string;
-  saveLabel?: string;
-  footerNote?: string;
 }
 
 export function Pricing({ content }: { content?: PricingContent }) {
-  const [annual, setAnnual] = useState(false);
-
   return (
-    <section className="py-24 px-4 bg-white dark:bg-[#0C0C12]">
+    <section id="pricing" className="py-12 md:py-24 px-4 bg-white dark:bg-[#0C0C12]">
       <div className="max-w-5xl mx-auto">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -99,36 +90,11 @@ export function Pricing({ content }: { content?: PricingContent }) {
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
             {content?.eyebrow || "Pricing"}
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             {content?.title || "Simple, transparent pricing"}
           </h2>
-
-          {/* Toggle — only visible for non-enterprise plans */}
-          <div className="inline-flex items-center gap-3 bg-gray-50 dark:bg-[#18181F] border border-gray-100 dark:border-white/[0.07] rounded-full px-5 py-2.5">
-            <span className={`text-sm font-medium transition-colors ${!annual ? "text-gray-900 dark:text-white" : "text-gray-400 dark:text-white/35"}`}>
-              {content?.monthlyLabel || "Monthly"}
-            </span>
-            <button
-              onClick={() => setAnnual(a => !a)}
-              role="switch"
-              aria-checked={annual}
-              className={`relative w-11 h-6 rounded-full transition-colors duration-300 focus:outline-none ${annual ? "bg-brand-600" : "bg-gray-200 dark:bg-white/15"}`}
-            >
-              <span
-                className="absolute top-[3px] left-[3px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform duration-300"
-                style={{ transform: annual ? "translateX(20px)" : "translateX(0)" }}
-              />
-            </button>
-            <span className={`text-sm font-medium transition-colors ${annual ? "text-gray-900 dark:text-white" : "text-gray-400 dark:text-white/35"}`}>
-              {content?.annualLabel || "Annual"}
-              <span className="ml-1.5 text-[10px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 px-1.5 py-0.5 rounded-full border border-emerald-100 dark:border-emerald-500/20">
-                {content?.saveLabel || "Save 20%"}
-              </span>
-            </span>
-          </div>
         </motion.div>
 
-        {/* Plan cards — 3 columns */}
         <div className="grid md:grid-cols-3 gap-5 items-stretch">
           {PLANS.map((plan, i) => (
             <motion.div
@@ -145,19 +111,16 @@ export function Pricing({ content }: { content?: PricingContent }) {
                   : "bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm"
               }`}
             >
-              {/* Most popular badge */}
               {plan.badge && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold bg-brand-600 text-white uppercase tracking-widest whitespace-nowrap shadow-md shadow-brand-600/25">
                   {plan.badge}
                 </div>
               )}
 
-              {/* Plan name */}
               <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-3">
                 {plan.name}
               </p>
 
-              {/* Price */}
               <div className="flex items-end gap-1 mb-1 min-h-[56px]">
                 {plan.isEnterprise ? (
                   <div className="flex flex-col justify-center">
@@ -166,32 +129,18 @@ export function Pricing({ content }: { content?: PricingContent }) {
                   </div>
                 ) : (
                   <>
-                    <AnimatePresence mode="wait">
-                      <motion.span
-                        key={annual ? "annual" : "monthly"}
-                        initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 8 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white"
-                      >
-                        ${annual ? plan.annualPrice : plan.monthlyPrice}
-                      </motion.span>
-                    </AnimatePresence>
+                    <span className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      ${plan.monthlyPrice}
+                    </span>
                     <span className="text-sm text-gray-400 dark:text-white/40 mb-2">/mo</span>
                   </>
                 )}
               </div>
 
-              {!plan.isEnterprise && annual && (
-                <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium mb-2">
-                  Billed annually · Save ${((plan.monthlyPrice! - plan.annualPrice!) * 12)}/yr
-                </p>
-              )}
-
               <p className="text-sm text-gray-500 dark:text-white/65 mb-6 leading-relaxed">
                 {plan.description}
               </p>
 
-              {/* Features — right after description */}
               <div className="flex flex-col gap-3 mb-8">
                 {plan.features.map(f => (
                   <div key={f} className="flex items-center gap-2.5">
@@ -207,29 +156,40 @@ export function Pricing({ content }: { content?: PricingContent }) {
                 ))}
               </div>
 
-              {/* CTA — pinned to bottom */}
-              <a
-                href={plan.ctaHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
-                  plan.featured
-                    ? "bg-brand-600 text-white hover:bg-brand-700 shadow-lg shadow-brand-600/20"
-                    : plan.isEnterprise
-                    ? "bg-transparent text-brand-600 dark:text-brand-300 border-2 border-brand-500/40 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
-                    : "bg-gray-900 dark:bg-brand-600 text-white dark:text-white hover:bg-gray-800 dark:hover:bg-brand-700 border border-gray-800 dark:border-transparent shadow-md dark:shadow-brand-600/20"
-                }`}
-              >
-                {plan.cta}
-              </a>
+              {plan.ctaHref.startsWith("http") ? (
+                <a
+                  href={plan.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${plan.cta} — ${plan.name} (opens in new tab)`}
+                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                    plan.featured
+                      ? "bg-brand-600 text-white hover:bg-brand-700 shadow-lg shadow-brand-600/20"
+                      : plan.isEnterprise
+                      ? "bg-transparent text-brand-600 dark:text-brand-300 border-2 border-brand-500/40 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
+                      : "bg-gray-900 dark:bg-brand-600 text-white dark:text-white hover:bg-gray-800 dark:hover:bg-brand-700 border border-gray-800 dark:border-transparent shadow-md dark:shadow-brand-600/20"
+                  }`}
+                >
+                  {plan.cta}
+                </a>
+              ) : (
+                <Link
+                  href={plan.ctaHref}
+                  aria-label={`${plan.cta} — ${plan.name}`}
+                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                    plan.featured
+                      ? "bg-brand-600 text-white hover:bg-brand-700 shadow-lg shadow-brand-600/20"
+                      : plan.isEnterprise
+                      ? "bg-transparent text-brand-600 dark:text-brand-300 border-2 border-brand-500/40 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
+                      : "bg-gray-900 dark:bg-brand-600 text-white dark:text-white hover:bg-gray-800 dark:hover:bg-brand-700 border border-gray-800 dark:border-transparent shadow-md dark:shadow-brand-600/20"
+                  }`}
+                >
+                  {plan.cta}
+                </Link>
+              )}
             </motion.div>
           ))}
         </div>
-
-        {/* Footer note */}
-        <p className="text-center text-sm text-gray-400 dark:text-white/50 mt-8">
-          {content?.footerNote || "All plans include a 14-day free trial · No credit card required"}
-        </p>
       </div>
     </section>
   );

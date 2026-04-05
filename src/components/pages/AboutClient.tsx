@@ -1,5 +1,6 @@
 "use client";
 
+/** About page: mission, values, timeline-style story, CTA. */
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Database, Users, Zap, Target, Globe, Award, ArrowRight } from "lucide-react";

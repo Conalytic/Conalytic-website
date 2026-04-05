@@ -1,15 +1,47 @@
+/**
+ * Root layout: typography (Roboto body, Roboto Slab headings, Inter UI chrome), metadata, providers.
+ */
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { StoryblokProvider } from "@/components/storyblok/StoryblokProvider";
-import { getSiteConfigStory, parseFooterConfig, parseNavbarConfig } from "@/lib/storyblok";
+import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
+import { CookieConsent } from "@/components/layout/CookieConsent";
+import {
+  parseCookieBannerCopy,
+  parseFooterConfig,
+  parseNavbarConfig,
+  parseSiteBrandLogos,
+  parseSiteScriptBuckets,
+  splitSiteScriptBucketsByConsent,
+} from "@/lib/storyblok";
+import { SiteScripts } from "@/components/layout/SiteScripts";
+import {
+  ConsentGatedSiteScripts,
+  MarketingScriptsGateProvider,
+} from "@/components/layout/MarketingScriptConsentGate";
+import { getSiteConfigStory } from "@/lib/storyblok-server";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
+
+const robotoSlab = Roboto_Slab({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-roboto-slab",
   display: "swap",
 });
 
@@ -86,20 +118,38 @@ export default async function RootLayout({
   const useStoryblokLayout = siteConfig.use_storyblok_layout === true;
   const navbarConfig = useStoryblokLayout ? parseNavbarConfig(siteConfig) : null;
   const footerConfig = useStoryblokLayout ? parseFooterConfig(siteConfig) : null;
+  const scriptBuckets = parseSiteScriptBuckets(siteConfig);
+  const { always: scriptsAlways, gated: scriptsGated } = splitSiteScriptBucketsByConsent(scriptBuckets);
+  const cookieBannerCopy = parseCookieBannerCopy(siteConfig);
+  const brandLogos = parseSiteBrandLogos(siteConfig);
 
   return (
-    <html lang="en" className={`${inter.variable} h-full`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${inter.variable} ${roboto.variable} ${robotoSlab.variable} h-full`}
+      suppressHydrationWarning
+    >
       <body className="min-h-full flex flex-col antialiased transition-colors duration-300" suppressHydrationWarning>
-        <ThemeProvider>
-          <StoryblokProvider>
-            {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
-            <div className="flex min-h-full flex-1 flex-col">
-              <Navbar config={navbarConfig} />
-              <main className="min-h-0 w-full flex-1">{children}</main>
-              <Footer config={footerConfig} />
-            </div>
-          </StoryblokProvider>
-        </ThemeProvider>
+        <MarketingScriptsGateProvider>
+          <SiteScripts entries={scriptsAlways.before_interactive} />
+          <ConsentGatedSiteScripts entries={scriptsGated.before_interactive} />
+          <SiteStructuredData />
+          <ThemeProvider>
+            <StoryblokProvider>
+              <SiteScripts entries={scriptsAlways.after_interactive} />
+              <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
+              {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
+              <div className="flex min-h-full flex-1 flex-col">
+                <Navbar config={navbarConfig} brandLogos={brandLogos} />
+                <main className="min-h-0 w-full flex-1">{children}</main>
+                <Footer config={footerConfig} brandLogos={brandLogos} />
+              </div>
+              <SiteScripts entries={scriptsAlways.lazy_onload} />
+              <ConsentGatedSiteScripts entries={scriptsGated.lazy_onload} />
+              <CookieConsent copy={cookieBannerCopy} />
+            </StoryblokProvider>
+          </ThemeProvider>
+        </MarketingScriptsGateProvider>
       </body>
     </html>
   );

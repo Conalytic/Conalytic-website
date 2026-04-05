@@ -72,12 +72,41 @@ async function publishStory(storyId) {
   }
 }
 
+/** Human-readable folder names in the Storyblok tree (slug path stays technical). */
+const FOLDER_TITLES = {
+  globals: "Site settings",
+  pages: "Website",
+  "pages/content": "Core pages",
+  "pages/products": "Product pages",
+  blogs: "Blog articles",
+};
+
+function folderDisplayName(fullSlug) {
+  if (FOLDER_TITLES[fullSlug]) {
+    return FOLDER_TITLES[fullSlug];
+  }
+  const leaf = fullSlug.split("/").filter(Boolean).pop() || fullSlug;
+  return leaf.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+/** Flat `pages/<x>` stories replaced by `pages/content/<x>` — removed after seed if canonical exists. */
+const LEGACY_FLAT_PAGE_SLUGS = [
+  "pages/home",
+  "pages/features",
+  "pages/about-us",
+  "pages/contact",
+  "pages/careers",
+  "pages/integrations",
+  "pages/blogs",
+  "pages/cookies",
+];
+
 async function main() {
   console.log("Fetching existing stories...");
   const existingStories = await fetchAllStories();
   const byFullSlug = new Map(existingStories.map((story) => [story.full_slug || story.slug, story]));
 
-  async function ensureFolder(fullSlug, name) {
+  async function ensureFolder(fullSlug) {
     const existing = byFullSlug.get(fullSlug);
     if (existing) {
       return existing;
@@ -86,14 +115,15 @@ async function main() {
     const parts = fullSlug.split("/").filter(Boolean);
     const slug = parts[parts.length - 1];
     const parentSlug = parts.slice(0, -1).join("/");
-    const parent = parentSlug ? await ensureFolder(parentSlug, parentSlug.split("/").pop()) : null;
+    const parent = parentSlug ? await ensureFolder(parentSlug) : null;
+    const name = folderDisplayName(fullSlug);
 
     console.log(`Creating folder: ${fullSlug}`);
     const response = await api("/stories", {
       method: "POST",
       body: JSON.stringify({
         story: {
-          name: name || slug,
+          name,
           slug,
           is_folder: true,
           parent_id: parent ? parent.id : 0,
@@ -110,7 +140,7 @@ async function main() {
     const parts = fullSlug.split("/").filter(Boolean);
     const slug = parts[parts.length - 1];
     const parentSlug = parts.slice(0, -1).join("/");
-    const parent = parentSlug ? await ensureFolder(parentSlug, parentSlug.split("/").pop()) : null;
+    const parent = parentSlug ? await ensureFolder(parentSlug) : null;
 
     const existing = byFullSlug.get(fullSlug);
 
@@ -159,9 +189,11 @@ async function main() {
     return created;
   }
 
-  await ensureFolder("pages", "Pages");
-  await ensureFolder("blogs", "Blogs");
-  await ensureFolder("globals", "Globals");
+  await ensureFolder("globals");
+  await ensureFolder("pages");
+  await ensureFolder("pages/content");
+  await ensureFolder("pages/products");
+  await ensureFolder("blogs");
 
   await upsertStory({
     fullSlug: "globals/site-config",
@@ -173,14 +205,13 @@ async function main() {
       navbar_links: [
         { _uid: uid(), component: "nav_link", label: "Home", link: link("/") },
         { _uid: uid(), component: "nav_link", label: "Features", link: link("/features") },
-        { _uid: uid(), component: "nav_link", label: "Blogs", link: link("/blogs") },
-        { _uid: uid(), component: "nav_link", label: "Contact", link: link("/contact") }
+        { _uid: uid(), component: "nav_link", label: "Blogs", link: link("/blogs") }
       ],
       navbar_login_label: "Login",
       navbar_login_link: link("https://app.conalytic.com/login", "_blank"),
       navbar_primary_cta_label: "Book A Demo",
-      navbar_primary_cta_link: link("https://app.conalytic.com/demo", "_blank"),
-      footer_email: "info@conalytic.com",
+      navbar_primary_cta_link: link("/contact"),
+      footer_email: "admin@conalytic.com",
       footer_columns: [
         {
           _uid: uid(),
@@ -208,16 +239,25 @@ async function main() {
         { _uid: uid(), component: "social_link", label: "X", link: link("https://twitter.com/conalytic", "_blank") }
       ],
       footer_legal_links: [
-        { _uid: uid(), component: "nav_link", label: "Terms", link: link("/terms") },
-        { _uid: uid(), component: "nav_link", label: "Privacy", link: link("/privacy") },
+        { _uid: uid(), component: "nav_link", label: "Terms", link: link("https://chat.conalytic.com/terms-of-service", "_blank") },
+        { _uid: uid(), component: "nav_link", label: "Privacy", link: link("https://chat.conalytic.com/privacy-and-policy", "_blank") },
         { _uid: uid(), component: "nav_link", label: "Cookies", link: link("/cookies") }
       ],
-      footer_copyright: "© 2026 Conalytic. All rights reserved."
+      footer_copyright: "© 2026 Conalytic. All rights reserved.",
+      site_scripts_head: [],
+      site_scripts_body_start: [],
+      site_scripts_body_end: [],
+      cookie_banner_heading: "Cookies & privacy.",
+      cookie_banner_message:
+        "We use essential cookies so the site works, and a short technical cookie if you open this site from the Storyblok editor. We don't run third-party marketing cookies on this marketing site today.",
+      cookie_banner_policy_link_label: "Cookies Policy",
+      cookie_banner_essential_label: "Essential only",
+      cookie_banner_accept_all_label: "Accept all"
     }
   });
 
   await upsertStory({
-    fullSlug: "pages/home",
+    fullSlug: "pages/content/home",
     name: "Home",
     component: "home_page",
     content: {
@@ -234,8 +274,8 @@ async function main() {
       home_hero_primary_cta_label: "Get started",
       home_hero_primary_cta_href: "https://app.conalytic.com",
       home_hero_secondary_cta_label: "Book a demo",
-      home_hero_secondary_cta_href: "https://app.conalytic.com/demo",
-      home_trusted_by_title: "Helping to grow the next generation of companies",
+      home_hero_secondary_cta_href: "/contact",
+      home_trusted_by_title: "Integration Partners",
       home_services_title_line_1: "Discover our range of tailored",
       home_services_title_line_2: "analytics services",
       home_transformation_eyebrow: "The turning point",
@@ -269,10 +309,6 @@ async function main() {
       ]),
       home_pricing_eyebrow: "Pricing",
       home_pricing_title: "Simple, transparent pricing",
-      home_pricing_monthly_label: "Monthly",
-      home_pricing_annual_label: "Annual",
-      home_pricing_save_label: "Save 20%",
-      home_pricing_footer_note: "All plans include a 14-day free trial · No credit card required",
       home_faq_title: "Frequently asked questions",
       home_faq_subtitle: "Everything you need to know about Conalytic.",
       home_faq_items_json: JSON.stringify([
@@ -289,10 +325,11 @@ async function main() {
       home_faq_contact_label: "Talk to our team",
       home_cta_title: "Turn data into decisions. In seconds, not days.",
       home_cta_subtitle: "Join thousands of teams who replaced their entire dashboard stack with a single conversation.",
-      home_cta_primary_label: "Start for free",
+      home_cta_primary_label: "Get started",
       home_cta_primary_href: "https://app.conalytic.com/signup",
       home_cta_secondary_label: "Book a demo",
-      home_cta_secondary_href: "https://app.conalytic.com/demo",
+      home_cta_secondary_href: "/contact",
+      home_marquee_logos: [],
       body: [
         {
           _uid: uid(),
@@ -308,7 +345,7 @@ async function main() {
               title: "Ask your data. Get answers in seconds.",
               subtitle: "Conalytic connects all your marketing sources and lets your team query performance in plain English.",
               primary_cta_label: "Book A Demo",
-              primary_cta_link: link("https://app.conalytic.com/demo", "_blank"),
+              primary_cta_link: link("/contact"),
               secondary_cta_label: "Explore Features",
               secondary_cta_link: link("/features"),
               align: "center"
@@ -320,7 +357,7 @@ async function main() {
   });
 
   await upsertStory({
-    fullSlug: "pages/features",
+    fullSlug: "pages/content/features",
     name: "Features",
     component: "features_page",
     content: {
@@ -367,7 +404,7 @@ async function main() {
                   _uid: uid(),
                   component: "card_item",
                   title: "Report Builder",
-                  description: "Generate polished reports with AI commentary and white-label branding.",
+                  description: "Coming soon — generate polished reports with AI commentary and white-label branding.",
                   cta_label: "Learn more",
                   cta_link: link("/products/report-builder")
                 },
@@ -389,7 +426,7 @@ async function main() {
 
   const additionalPages = [
     {
-      fullSlug: "pages/about-us",
+      fullSlug: "pages/content/about-us",
       name: "About Us",
       component: "about_page",
       content: {
@@ -414,7 +451,7 @@ async function main() {
       }
     },
     {
-      fullSlug: "pages/contact",
+      fullSlug: "pages/content/contact",
       name: "Contact",
       component: "contact_page",
       content: {
@@ -429,13 +466,13 @@ async function main() {
         contact_hero_title_line_1: "We're Here to",
         contact_hero_title_line_2: "Help!",
         contact_hero_subtitle: "Have questions, feedback, or just want to say hi? Let's connect!",
-        contact_form_title: "Send us a message",
+        contact_form_title: "Schedule a call",
         contact_cta_title: "Ready to Transform Your Analytics?",
         contact_cta_subtitle: "Join 2,000+ teams already using Conalytic to turn data into decisions",
       }
     },
     {
-      fullSlug: "pages/careers",
+      fullSlug: "pages/content/careers",
       name: "Careers",
       component: "careers_page",
       content: {
@@ -460,7 +497,7 @@ async function main() {
       }
     },
     {
-      fullSlug: "pages/integrations",
+      fullSlug: "pages/content/integrations",
       name: "Integrations",
       component: "integrations_page",
       content: {
@@ -491,7 +528,7 @@ async function main() {
         seo_title: "Applicant Tracking System – Conalytic",
         seo_description: "Streamline sourcing, screening, and hiring with Conalytic ATS.",
         use_storyblok_page: false,
-        ats_hero_badge: "Coming Soon",
+        ats_hero_badge: "Coming soon",
         ats_hero_title_line_1: "Applicant Tracking System for",
         ats_hero_title_line_2: "Modern Teams",
         ats_hero_subtitle: "Streamline your entire recruitment process with AI-powered tools that help you source, screen, and hire the best talent faster. Built natively inside Conalytic so your hiring data lives alongside your marketing intelligence.",
@@ -515,7 +552,7 @@ async function main() {
         seo_title: "Report Builder – Conalytic",
         seo_description: "Build and automate white-label analytics reports with AI-generated insights.",
         use_storyblok_page: false,
-        report_builder_hero_badge: "Report Builder",
+        report_builder_hero_badge: "Coming soon",
         report_builder_hero_title_line_1: "Professional Report Builder &",
         report_builder_hero_title_line_2: "Automated Analytics Reporting",
         report_builder_hero_subtitle: "Transform your marketing reports from static data dumps into intelligent, branded presentations that clients actually read.",
@@ -563,7 +600,7 @@ async function main() {
   }
 
   await upsertStory({
-    fullSlug: "pages/blogs",
+    fullSlug: "pages/content/blogs",
     name: "Blogs",
     component: "blogs_page",
     content: {
@@ -601,6 +638,85 @@ async function main() {
           ]
         }
       ]
+    }
+  });
+
+  await upsertStory({
+    fullSlug: "pages/content/cookies",
+    name: "Cookies Policy",
+    component: "cookies_page",
+    content: {
+      _uid: uid(),
+      component: "cookies_page",
+      title: "Cookies Policy – Conalytic",
+      description:
+        "Conalytic uses cookies and similar technologies to enhance your experience and analyze how our services are used.",
+      seo_title: "Cookies Policy – Conalytic",
+      seo_description:
+        "Learn how Conalytic uses cookies, how to manage preferences, and how to contact us about cookie practices.",
+      use_storyblok_page: false,
+      cookies_kicker: "Legal",
+      cookies_page_title: "Cookies Policy",
+      cookies_last_updated: "Last Updated: October 01, 2024",
+      cookies_intro:
+        "This marketing site uses a small set of cookies and similar technologies. When you first visit, you can choose Essential only or Accept all in the banner; your choice is stored in your browser (local storage). If you open the site from the Storyblok Visual Editor, a short technical cookie may be set so draft content can load. For full details, read the sections below.",
+      cookies_toc_json: JSON.stringify([
+        { id: "what-are-cookies", title: "What Are Cookies?" },
+        { id: "types", title: "Types of Cookies We Use" },
+        { id: "why-we-use", title: "Why We Use Cookies" },
+        { id: "managing", title: "Managing Your Preferences" },
+        { id: "updates", title: "Updates to This Policy" },
+        { id: "contact", title: "Contact Us" }
+      ]),
+      cookies_what_heading: "What Are Cookies?",
+      cookies_what_body:
+        "Cookies are small text files stored on your device when you visit a website. They help websites remember your preferences, improve functionality, and provide a more personalized experience. Cookies can be temporary (session cookies) or stored on your device for a longer period (persistent cookies).",
+      cookies_types_section_heading: "Types of Cookies We Use",
+      cookies_types_json: JSON.stringify([
+        {
+          name: "Essential Cookies",
+          description:
+            "These cookies are necessary for the platform to function properly. They enable core features such as account login and security."
+        },
+        {
+          name: "Performance Cookies",
+          description:
+            "These cookies collect information about how users interact with our platform. We use this data to improve functionality and optimize user experience."
+        },
+        {
+          name: "Functional Cookies",
+          description:
+            "These cookies remember your preferences, such as language or region settings, to make your experience more personalized."
+        },
+        {
+          name: "Marketing Cookies",
+          description:
+            "These cookies help us deliver relevant advertisements and measure the effectiveness of our marketing campaigns."
+        }
+      ]),
+      cookies_why_heading: "Why We Use Cookies",
+      cookies_why_intro: "We use cookies to:",
+      cookies_why_list_json: JSON.stringify([
+        "Enable core functionality, such as secure login and navigation.",
+        "Analyze how users engage with our platform to improve performance.",
+        "Remember user preferences for a personalized experience.",
+        "Deliver targeted content and advertisements relevant to your interests."
+      ]),
+      cookies_managing_heading: "Managing Your Cookie Preferences",
+      cookies_managing_intro:
+        "You have control over how cookies are used. Most web browsers allow you to manage or disable cookies through their settings. Please note that disabling essential cookies may affect the functionality of Conalytic. To manage cookies in your browser:",
+      cookies_browser_help_json: JSON.stringify([
+        { browser: "Chrome", steps: "Settings → Privacy and Security → Cookies and other site data" },
+        { browser: "Firefox", steps: "Preferences → Privacy & Security → Cookies and Site Data" },
+        { browser: "Safari", steps: "Preferences → Privacy → Manage Website Data" }
+      ]),
+      cookies_updates_heading: "Updates to This Policy",
+      cookies_updates_body:
+        "We may update this Cookies Policy to reflect changes in our practices or legal requirements. Any updates will be posted on this page, and we encourage you to review the policy periodically.",
+      cookies_contact_heading: "Contact Us",
+      cookies_contact_lead: "If you have questions or concerns about our use of cookies, please contact us at:",
+      cookies_contact_email: "admin@conalytic.com",
+      body: []
     }
   });
 
@@ -651,6 +767,37 @@ async function main() {
       }
     }
   });
+
+  async function removeLegacyFlatPages() {
+    for (const legacySlug of LEGACY_FLAT_PAGE_SLUGS) {
+      const legacy = byFullSlug.get(legacySlug);
+      if (!legacy || legacy.is_folder) {
+        continue;
+      }
+      const segment = legacySlug.replace(/^pages\//, "");
+      const canonical = `pages/content/${segment}`;
+      if (!byFullSlug.has(canonical)) {
+        continue;
+      }
+      console.log(`Removing legacy story (replaced by ${canonical}): ${legacySlug}`);
+      try {
+        const delRes = await fetch(`${baseUrl}/stories/${legacy.id}`, {
+          method: "DELETE",
+          headers: { Authorization: token },
+        });
+        if (!delRes.ok) {
+          const body = await delRes.text();
+          console.warn(`Could not remove ${legacySlug}: ${delRes.status} ${body}`);
+          continue;
+        }
+        byFullSlug.delete(legacySlug);
+      } catch (error) {
+        console.warn(`Could not remove ${legacySlug}:`, error.message);
+      }
+    }
+  }
+
+  await removeLegacyFlatPages();
 
   console.log("Seed stories completed successfully.");
 }

@@ -1,3 +1,4 @@
+/** Small pill label (e.g. “Coming soon” on nav items). */
 import { cn } from "@/lib/utils";
 
 interface BadgeProps {

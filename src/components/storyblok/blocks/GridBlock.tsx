@@ -1,3 +1,4 @@
+/** Multi-column grid of arbitrary nested bloks. */
 import { StoryblokServerComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

@@ -43,8 +43,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 | `/blogs` | Blog listing |
 | `/blogs/[slug]` | Individual blog posts |
 | `/careers` | Open positions |
-| `/privacy` | Privacy Policy |
-| `/terms` | Terms of Service |
+| `/privacy` | 308 → [Privacy Policy](https://chat.conalytic.com/privacy-and-policy) (chat app) |
+| `/terms` | 308 → [Terms of Service](https://chat.conalytic.com/terms-of-service) (chat app) |
 | `/cookies` | Cookies Policy |
 | `/brand` | Brand assets & guidelines |
 

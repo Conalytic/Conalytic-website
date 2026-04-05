@@ -1,5 +1,6 @@
 "use client";
 
+/** Sun/moon control wired to `next-themes` (navbar). */
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";

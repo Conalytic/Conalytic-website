@@ -1,3 +1,4 @@
+/** CMS CTA band with primary/secondary links. */
 import Link from "next/link";
 import { storyblokEditable } from "@storyblok/react/rsc";
 import { resolveStoryblokLink } from "@/lib/storyblok";

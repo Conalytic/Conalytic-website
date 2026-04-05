@@ -1,3 +1,4 @@
+/** Renders Storyblok rich text field in RSC. */
 import { StoryblokRichText, storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

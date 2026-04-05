@@ -1,3 +1,4 @@
+/** Simple headline teaser blok for flexible layouts. */
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

@@ -1,3 +1,4 @@
+/** Stats row container; items rendered as `stat_item` bloks. */
 import { StoryblokServerComponent, storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

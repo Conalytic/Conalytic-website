@@ -1,8 +1,9 @@
+/** Features marketing route; Storyblok optional full page. */
 import type { Metadata } from "next";
 import { FeaturesClient, type FeaturesContentPreset } from "@/components/pages/FeaturesClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Features – Conalytic",

@@ -1,5 +1,6 @@
 "use client";
 
+/** Integrations directory: searchable list with logos from `marketing-stack-logos`. */
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ExternalLink, Search, Zap } from "lucide-react";
@@ -162,7 +163,9 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
             {/* Category pills */}
             <div className="flex flex-wrap justify-center gap-2">
               {ALL_CATS.map(cat=>(
-                <button key={cat} onClick={()=>setActive(cat)}
+                <button key={cat} type="button" onClick={()=>setActive(cat)}
+                  aria-pressed={active===cat}
+                  aria-label={`Show ${cat} integrations`}
                   className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${active===cat ? "bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-600/25" : "bg-white dark:bg-[#14141B] text-gray-600 dark:text-white/60 border-gray-200 dark:border-white/[0.08] hover:border-brand-400 dark:hover:border-brand-500/40"}`}>
                   {cat}
                 </button>

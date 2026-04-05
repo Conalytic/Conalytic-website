@@ -1,5 +1,6 @@
 "use client";
 
+/** Product landing: conversational analytics positioning, reuse home `Pricing` for tiers. */
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { MessageSquare, Globe, Sparkles, CheckCircle2, ArrowRight, Users, Bell } from "lucide-react";
@@ -412,7 +413,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               Get Started
               <ArrowRight className="w-4 h-4"/>
             </a>
-            <a href="https://app.conalytic.com/demo" target="_blank" rel="noopener noreferrer"
+            <a href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             >
               Book a Demo

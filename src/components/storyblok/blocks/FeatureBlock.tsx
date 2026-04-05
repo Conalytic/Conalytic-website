@@ -1,3 +1,4 @@
+/** Minimal feature line item blok (name). */
 import { storyblokEditable } from "@storyblok/react/rsc";
 
 type Blok = {

@@ -1,10 +1,15 @@
+/**
+ * Home route (/): force-dynamic for fresh Storyblok copy. Maps home_page fields → HomeContentPreset,
+ * emits WebPage + FAQPage JSON-LD, then renders HomeClient (full marketing page, client-heavy).
+ */
 import type { Metadata } from "next";
 import { HomeClient, type HomeContentPreset } from "@/components/home/HomeClient";
+import { HomeStructuredData } from "@/components/seo/HomeStructuredData";
+import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
+import { parseHomeMarqueeLogoBloks } from "@/lib/home-storyblok-media";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
-import { initializeStoryblok } from "@/components/storyblok/storyblok-init";
-
-initializeStoryblok();
+import { storyblokImageSrc } from "@/lib/storyblok-asset";
+import { getPageStory } from "@/lib/storyblok-server";
 
 /* Always resolve Storyblok at request time so production uses Vercel env and CMS edits show up (avoids stale static shell from build-time null fetch). */
 export const dynamic = "force-dynamic";
@@ -16,7 +21,11 @@ const fallbackMetadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadata("/", fallbackMetadata);
+  const base = await getPageMetadata("/", fallbackMetadata);
+  return {
+    ...base,
+    alternates: { canonical: "https://conalytic.com/" },
+  };
 }
 
 function str(value: unknown): string | undefined {
@@ -37,6 +46,15 @@ function parseJsonArray<T>(value: unknown): T[] | undefined {
 }
 
 function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
+  const marquee = parseHomeMarqueeLogoBloks(content.home_marquee_logos);
+  const hasCustomUrls = Object.keys(marquee.logoUrls).length > 0;
+  const hasCustomLabels = Object.keys(marquee.partnerLabels).length > 0;
+  const hasMarqueeBloks =
+    Array.isArray(content.home_marquee_logos) &&
+    content.home_marquee_logos.some(
+      (b) => b && typeof b === "object" && (b as { component?: string }).component === "home_marquee_logo"
+    );
+
   return {
     heroTitleLine1: str(content.home_hero_title_line_1),
     heroTitleLine2: str(content.home_hero_title_line_2),
@@ -45,7 +63,13 @@ function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
     heroPrimaryCtaHref: str(content.home_hero_primary_cta_href),
     heroSecondaryCtaLabel: str(content.home_hero_secondary_cta_label),
     heroSecondaryCtaHref: str(content.home_hero_secondary_cta_href),
-    trustedByTitle: str(content.home_trusted_by_title),
+    trustedByTitle: (() => {
+      const t = str(content.home_trusted_by_title);
+      if (!t || t === "Helping to grow the next generation of companies") {
+        return "Integration Partners";
+      }
+      return t;
+    })(),
     servicesTitleLine1: str(content.home_services_title_line_1),
     servicesTitleLine2: str(content.home_services_title_line_2),
     integrationsTitleLine1: str(content.home_integrations_title_line_1),
@@ -74,10 +98,6 @@ function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
     pricing: {
       eyebrow: str(content.home_pricing_eyebrow),
       title: str(content.home_pricing_title),
-      monthlyLabel: str(content.home_pricing_monthly_label),
-      annualLabel: str(content.home_pricing_annual_label),
-      saveLabel: str(content.home_pricing_save_label),
-      footerNote: str(content.home_pricing_footer_note),
     },
     ctaTitle: str(content.home_cta_title),
     ctaSubtitle: str(content.home_cta_subtitle),
@@ -85,18 +105,43 @@ function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
     ctaPrimaryHref: str(content.home_cta_primary_href),
     ctaSecondaryLabel: str(content.home_cta_secondary_label),
     ctaSecondaryHref: str(content.home_cta_secondary_href),
+    heroBackgroundImageUrl: storyblokImageSrc(content.home_hero_background_image) ?? undefined,
+    heroBackgroundImageAlt: str(content.home_hero_background_alt),
+    brandIconUrl: storyblokImageSrc(content.home_brand_icon) ?? undefined,
+    brandIconAlt: str(content.home_brand_icon_alt),
+    integrationMarqueeOrder: hasMarqueeBloks ? marquee.orderedKeys : undefined,
+    integrationLogoUrls: hasCustomUrls ? marquee.logoUrls : undefined,
+    integrationPartnerLabels: hasCustomLabels ? marquee.partnerLabels : undefined,
   };
+}
+
+function homeJsonLdFaq(content: Record<string, unknown> | undefined): { question: string; answer: string }[] {
+  const parsed = parseJsonArray<{ question: string; answer: string }>(content?.home_faq_items_json);
+  if (parsed?.length) return parsed;
+  return [...DEFAULT_HOME_FAQ];
+}
+
+function homeJsonLdTitleDescription(preset: HomeContentPreset | undefined): { title: string; description: string } {
+  const line1 = preset?.heroTitleLine1 ?? "Unlocking Growth With";
+  const line2 = preset?.heroTitleLine2 ?? "Next-Gen Analytics";
+  const title = `${line1} ${line2}`.replace(/\s+/g, " ").trim();
+  const description =
+    preset?.heroSubtitle ??
+    "Ask questions in plain English and get instant insights from GA4, Google Ads, Meta and Search Console — no SQL required.";
+  return { title, description };
 }
 
 export default async function HomePage() {
   const story = await getPageStory("/");
+  const content = story ? (story.content as Record<string, unknown>) : undefined;
+  const preset = content ? mapHomeContent(content) : undefined;
+  const faqForLd = homeJsonLdFaq(content);
+  const { title: homeLdTitle, description: homeLdDescription } = homeJsonLdTitleDescription(preset);
 
-  if (!story) {
-    return <HomeClient />;
-  }
-
-  const content = story.content as Record<string, unknown>;
-  /* Always use HomeClient for /. Storyblok home_page fields still override copy via mapHomeContent.
-     Rendering StoryblokStory here would only show whatever is built in the CMS (often a thin hero), not the full marketing page. */
-  return <HomeClient content={mapHomeContent(content)} />;
+  return (
+    <>
+      <HomeStructuredData faqItems={faqForLd} pageTitle={homeLdTitle} pageDescription={homeLdDescription} />
+      <HomeClient content={preset} />
+    </>
+  );
 }

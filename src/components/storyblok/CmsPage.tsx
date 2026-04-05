@@ -1,5 +1,8 @@
+/**
+ * Loads a Storyblok page story by slug; if `use_storyblok_page`, renders `StoryblokStory`, else returns fallback children.
+ */
 import { StoryblokStory } from "@storyblok/react/rsc";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 import { initializeStoryblok } from "@/components/storyblok/storyblok-init";
 
 initializeStoryblok();

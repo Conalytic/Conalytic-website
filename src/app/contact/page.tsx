@@ -1,8 +1,11 @@
+/**
+ * Contact route: Storyblok metadata + optional full CMS page; default UI is `ContactClient`.
+ */
 import type { Metadata } from "next";
 import { ContactClient, type ContactContentPreset } from "@/components/pages/ContactClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Contact Us – Conalytic",

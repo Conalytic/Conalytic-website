@@ -1,5 +1,6 @@
 "use client";
 
+/** “The turning point” before/after metrics block; tuned for mobile spacing with following home sections. */
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
@@ -46,7 +47,7 @@ export function Transformation({ content }: { content?: TransformationContent })
   }, []);
 
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+    <section className="relative pt-24 pb-12 md:py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
 
       <div className="relative z-10 max-w-5xl mx-auto">
 

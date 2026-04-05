@@ -1,3 +1,4 @@
+/** Product: Conversational Analytics deep-dive + pricing reuse. */
 import type { Metadata } from "next";
 import {
   ConversationalAnalyticsClient,
@@ -5,7 +6,7 @@ import {
 } from "@/components/products/ConversationalAnalyticsClient";
 import { CmsPage } from "@/components/storyblok/CmsPage";
 import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok";
+import { getPageStory } from "@/lib/storyblok-server";
 
 const fallbackMetadata: Metadata = {
   title: "Conversational Analytics – Conalytic",
