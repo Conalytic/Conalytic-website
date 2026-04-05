@@ -7,6 +7,14 @@ import path from "path";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+    ];
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },

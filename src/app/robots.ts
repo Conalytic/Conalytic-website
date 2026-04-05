@@ -1,5 +1,5 @@
 /**
- * robots.txt — allow public crawl; block /api/; point crawlers to sitemap.xml.
+ * robots.txt — sitewide no-crawl (pairs with root layout noindex,nofollow + X-Robots-Tag).
  */
 import { MetadataRoute } from "next";
 
@@ -8,10 +8,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
-        disallow: ["/api/", "/_next/"],
+        disallow: "/",
       },
     ],
-    sitemap: "https://conalytic.com/sitemap.xml",
   };
 }
