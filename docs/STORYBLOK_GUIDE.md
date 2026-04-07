@@ -70,16 +70,23 @@ Each **`site_script`** blok: **`script_url`** (full `https://…` to a `.js` fil
 
 ## 4. Visual Editor (preview on your site)
 
+Official reference: [Visual Editor (Storyblok docs)](https://www.storyblok.com/docs/concepts/visual-editor.html).
+
+### Team access (e.g. admin@conalytic.com)
+
+Storyblok accounts are separate from your site deploy. In **app.storyblok.com**, open your **space** → **Settings** → **Collaborators** (or your org’s **Users / Teams**, depending on plan) and **invite** `admin@conalytic.com` with an appropriate role (e.g. Editor or Admin). They must accept the email invite before they can edit.
+
 ### In Storyblok
 
 1. **Settings → Visual Editor**  
-   - **Location (default preview URL):** your deployed preview or local URL, e.g. `https://localhost:3000/` or `https://your-preview.vercel.app/`.  
-   - For **home**, set the story’s **Real path** to `/` if needed.
+   - **Location (default preview URL):** your deployed site or local HTTPS URL, e.g. `https://localhost:3000/` (see §HTTPS below) or `https://conalytic.vercel.app/` (or your production domain).  
+   - For **home** at slug `pages/content/home`, set the story’s **Real path** to `/` so the iframe opens `/` instead of a non-existent `/pages/content/home` path.
 
 2. Storyblok loads your site in an iframe with bridge query params (`_storyblok`, etc.).
 
 ### In this repo
 
+- **`next.config.ts`** sends `Content-Security-Policy: frame-ancestors https://app.storyblok.com` so the Visual Editor iframe is allowed to embed your site (per Storyblok’s [Visual Editor](https://www.storyblok.com/docs/concepts/visual-editor.html) CSP guidance).
 - **`src/middleware.ts`** sets a short-lived cookie when those params are present so **draft** content loads reliably.
 - **`src/lib/storyblok-server.ts`** loads **draft** when:
   - `NODE_ENV === "development"`, or  

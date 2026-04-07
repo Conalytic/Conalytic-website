@@ -11,7 +11,11 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/:path*",
-        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+        headers: [
+          { key: "X-Robots-Tag", value: "noindex, nofollow" },
+          // Storyblok Visual Editor loads the site in an iframe (see frame-ancestors).
+          { key: "Content-Security-Policy", value: "frame-ancestors https://app.storyblok.com" },
+        ],
       },
     ];
   },
