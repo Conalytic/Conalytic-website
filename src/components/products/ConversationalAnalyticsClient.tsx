@@ -7,6 +7,7 @@ import { MessageSquare, Globe, Sparkles, CheckCircle2, ArrowRight, Users, Bell }
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
+import { handleSamePageHashClick } from "@/lib/hash-nav";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -409,6 +410,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           >
             <a
               href="#pricing"
+              onClick={(e) => handleSamePageHashClick(e, "#pricing")}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               aria-label="Get started — view pricing"
             >
@@ -633,6 +635,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               </ul>
               <a
                 href="#pricing"
+                onClick={(e) => handleSamePageHashClick(e, "#pricing")}
                 className="inline-flex items-center gap-2 mt-8 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label="Get started — view pricing"
               >
@@ -694,6 +697,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               </ul>
               <a
                 href="#pricing"
+                onClick={(e) => handleSamePageHashClick(e, "#pricing")}
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label="Get started — view pricing"
               >

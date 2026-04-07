@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import { Inter, Roboto, Roboto_Slab } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { StoryblokProvider } from "@/components/storyblok/StoryblokProvider";
@@ -137,6 +138,7 @@ export default async function RootLayout({
               <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
               {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
               <div className="flex min-h-full flex-1 flex-col">
+                <HashScrollRestorer />
                 <Navbar config={navbarConfig} brandLogos={brandLogos} />
                 <main className="min-h-0 w-full flex-1">{children}</main>
                 <Footer config={footerConfig} brandLogos={brandLogos} />

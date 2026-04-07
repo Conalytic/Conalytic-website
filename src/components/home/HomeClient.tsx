@@ -21,6 +21,7 @@ import {
   type MarketingStackLogoKey,
 } from "@/lib/marketing-stack-logos";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
+import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
 
 /* ─── constants ─────────────────────────────────────── */
@@ -467,6 +468,10 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
             {...(isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
+            onClick={(e) => {
+              const h = content?.heroPrimaryCtaHref || "#pricing";
+              if (!isExternalNavigationHref(h)) handleSamePageHashClick(e, h);
+            }}
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 dark:bg-brand-600 shadow-xl shadow-brand-600/25 hover:bg-brand-700 dark:hover:bg-brand-700 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             aria-label={
               isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")

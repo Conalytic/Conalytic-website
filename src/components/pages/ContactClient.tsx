@@ -5,7 +5,7 @@
  */
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Mail, MapPin, Phone, ArrowRight, Calendar } from "lucide-react";
+import { Mail, MapPin, Phone, Calendar } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 
@@ -168,20 +168,6 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
                   </form>
               </>
             </div>
-          </motion.div>
-
-          <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6,delay:0.2,ease:EASE}}
-            className="mt-8">
-            <a
-              href="#pricing"
-              aria-label="Get started — view pricing"
-              className="group flex items-center justify-between p-4 rounded-2xl bg-[#F6F7FE] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07] hover:border-brand-300 dark:hover:border-brand-500/40 hover:bg-brand-50/50 dark:hover:bg-brand-600/5 transition-all duration-200">
-              <div>
-                <p className="text-gray-900 dark:text-white font-semibold text-sm">Get started</p>
-                <p className="text-gray-400 dark:text-white/45 text-xs mt-0.5">View plans and create your account.</p>
-              </div>
-              <ArrowRight className="w-4 h-4 text-gray-400 dark:text-white/30 group-hover:text-brand-500 group-hover:translate-x-0.5 transition-all duration-200"/>
-            </a>
           </motion.div>
         </div>
       </section>

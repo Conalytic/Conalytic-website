@@ -32,6 +32,21 @@ function str(value: unknown): string | undefined {
   return typeof value === "string" && value.trim().length ? value : undefined;
 }
 
+/** Hero / closing CTA “Get started” should scroll to on-page pricing; Storyblok seed used app root/signup. */
+function homePrimaryCtaHrefFromCms(href: string | undefined): string | undefined {
+  const raw = href?.trim();
+  if (!raw) return undefined;
+  try {
+    const u = new URL(raw);
+    if (u.hostname !== "app.conalytic.com") return raw;
+    const path = (u.pathname.replace(/\/$/, "") || "/").toLowerCase();
+    if (path === "/" || path === "/signup") return "#pricing";
+  } catch {
+    /* relative URLs etc. */
+  }
+  return raw;
+}
+
 function parseJsonArray<T>(value: unknown): T[] | undefined {
   if (typeof value !== "string" || !value.trim()) {
     return undefined;
@@ -60,7 +75,7 @@ function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
     heroTitleLine2: str(content.home_hero_title_line_2),
     heroSubtitle: str(content.home_hero_subtitle),
     heroPrimaryCtaLabel: str(content.home_hero_primary_cta_label),
-    heroPrimaryCtaHref: str(content.home_hero_primary_cta_href),
+    heroPrimaryCtaHref: homePrimaryCtaHrefFromCms(str(content.home_hero_primary_cta_href)),
     heroSecondaryCtaLabel: str(content.home_hero_secondary_cta_label),
     heroSecondaryCtaHref: str(content.home_hero_secondary_cta_href),
     trustedByTitle: (() => {
@@ -102,7 +117,7 @@ function mapHomeContent(content: Record<string, unknown>): HomeContentPreset {
     ctaTitle: str(content.home_cta_title),
     ctaSubtitle: str(content.home_cta_subtitle),
     ctaPrimaryLabel: str(content.home_cta_primary_label),
-    ctaPrimaryHref: str(content.home_cta_primary_href),
+    ctaPrimaryHref: homePrimaryCtaHrefFromCms(str(content.home_cta_primary_href)),
     ctaSecondaryLabel: str(content.home_cta_secondary_label),
     ctaSecondaryHref: str(content.home_cta_secondary_href),
     heroBackgroundImageUrl: storyblokImageSrc(content.home_hero_background_image) ?? undefined,

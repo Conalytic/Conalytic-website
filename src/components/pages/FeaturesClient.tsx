@@ -6,6 +6,7 @@ import { MessageSquare, Sparkles, BarChart3, Zap, Calendar, ShieldCheck, ArrowRi
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
+import { handleSamePageHashClick } from "@/lib/hash-nav";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -434,7 +435,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
   const heroSubtitle =
     content?.heroSubtitle ??
     "From connecting data to real-time conversations and report building, Conalytic has everything your team needs to thrive.";
-  const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "Try It Free Today";
+  const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "try it today";
   const includedTitle = content?.includedTitle ?? "One platform, every capability you need";
   const includedSubtitle = content?.includedSubtitle ?? "Everything included";
 
@@ -460,6 +461,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
             <a
               href="#pricing"
+              onClick={(e) => handleSamePageHashClick(e, "#pricing")}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               aria-label={`${heroPrimaryCtaLabel} — view pricing`}>
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
@@ -531,6 +533,9 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                 <a
                   href={s.cta.href}
                   {...(s.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  onClick={(e) => {
+                    if (!s.cta.href.startsWith("http")) handleSamePageHashClick(e, s.cta.href);
+                  }}
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                   aria-label={
                     s.cta.href.startsWith("http")

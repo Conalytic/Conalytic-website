@@ -3,6 +3,7 @@
 /** Footer-adjacent CTA with line-chart demo + key finding; primary button respects external vs internal hrefs. */
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
 
 const MONTHS = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
@@ -344,6 +345,9 @@ export function CTA({
               <a
                 href={primaryCta.href}
                 {...(primaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                onClick={(e) => {
+                  if (!primaryExternal) handleSamePageHashClick(e, primaryCta.href);
+                }}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label={primaryExternal ? `${primaryCta.label} (opens in new tab)` : primaryCta.label}
               >
@@ -355,6 +359,9 @@ export function CTA({
               <a
                 href={secondaryCta.href}
                 {...(secondaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                onClick={(e) => {
+                  if (!secondaryExternal) handleSamePageHashClick(e, secondaryCta.href);
+                }}
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-gray-700 dark:text-white/80 border-2 border-gray-200 dark:border-white/12 bg-white/70 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label={secondaryExternal ? `${secondaryCta.label} (opens in new tab)` : secondaryCta.label}
               >
