@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { Pricing } from "@/components/home/sections/Pricing";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
@@ -394,11 +395,13 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
         </div>
       </section>
 
+      <Pricing />
+
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
         subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
         primaryCta={{label:"Book a demo", href:"/contact"}}
-        secondaryCta={{label:"Get started", href:"https://app.conalytic.com/signup"}}
+        secondaryCta={{label:"Get started", href:"#pricing"}}
       />
     </>
   );

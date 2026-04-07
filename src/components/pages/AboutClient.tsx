@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { Database, Users, Zap, Target, Globe, Award, ArrowRight } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { Pricing } from "@/components/home/sections/Pricing";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
@@ -24,12 +25,6 @@ const milestones = [
   { year:"2025", title:"Industry Leader",  desc:"Recognized as a leading conversational analytics platform for marketers.",    icon:Award  },
 ];
 
-const teamMembers = [
-  { name:"Alex Johnson",   role:"CEO & Founder",     initials:"AJ", grad:"from-brand-600 to-violet-600"  },
-  { name:"Sarah Chen",     role:"CTO & Co-Founder",  initials:"SC", grad:"from-emerald-600 to-teal-600"  },
-  { name:"Marcus Williams",role:"Head of Product",   initials:"MW", grad:"from-blue-600 to-cyan-600"     },
-];
-
 export interface AboutContentPreset {
   heroBadge?: string;
   heroTitleLine1?: string;
@@ -37,9 +32,6 @@ export interface AboutContentPreset {
   heroSubtitle?: string;
   storyBadge?: string;
   storyTitle?: string;
-  teamBadge?: string;
-  teamTitle?: string;
-  teamSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
 }
@@ -76,12 +68,6 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
     "At Conalytic, we're passionate about building tools that empower teams to analyze, create, and succeed—together.";
   const storyBadge = content?.storyBadge ?? "How It All Started";
   const storyTitle = content?.storyTitle ?? "Built by marketers, for marketers";
-  const teamBadge = content?.teamBadge ?? "The Team";
-  const teamTitle = content?.teamTitle ?? "Meet the People Behind Conalytic";
-  const teamSubtitle =
-    content?.teamSubtitle ??
-    "Passionate builders on a mission to democratize marketing intelligence for every team on the planet.";
-
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -172,27 +158,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
         </div>
       </section>
 
-      {/* ── TEAM ────────────────────────────────────── */}
-      <section className="relative py-24 px-4 overflow-hidden bg-[#F6F7FE] dark:bg-[#0E0E14]">
-        <div className="relative z-10 max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">{teamBadge}</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{teamTitle}</h2>
-            <p className="text-gray-500 dark:text-white/65 max-w-xl mx-auto">{teamSubtitle}</p>
-          </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {teamMembers.map(m=>(
-              <motion.div key={m.name} variants={fadeUp}
-                className="relative text-center p-8 rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-1 transition-all duration-300 overflow-hidden group">
-                <div className="absolute inset-0 bg-gradient-to-b from-brand-50/50 dark:from-brand-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"/>
-                <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${m.grad} flex items-center justify-center text-white text-xl font-black mx-auto mb-4 shadow-lg`}>{m.initials}</div>
-                <h3 className="text-gray-900 dark:text-white font-semibold text-lg">{m.name}</h3>
-                <p className="text-gray-400 dark:text-white/55 text-sm mt-1">{m.role}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <Pricing />
 
       <CTA
         title={content?.ctaTitle}

@@ -77,7 +77,10 @@ export interface PricingContent {
 
 export function Pricing({ content }: { content?: PricingContent }) {
   return (
-    <section id="pricing" className="py-12 md:py-24 px-4 bg-white dark:bg-[#0C0C12]">
+    <section
+      id="pricing"
+      className="scroll-mt-28 py-12 md:py-24 px-4 bg-white dark:bg-[#0C0C12]"
+    >
       <div className="max-w-5xl mx-auto">
 
         <motion.div

@@ -1,5 +1,5 @@
 /**
- * Site footer: newsletter signup, link columns, legal + social; Storyblok `FooterConfig` overrides fallbacks.
+ * Site footer: newsletter signup, link columns, legal; Storyblok `FooterConfig` overrides fallbacks.
  */
 import type { ReactNode } from "react";
 import Image from "next/image";
@@ -38,18 +38,11 @@ const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
     title: "Product",
     links: [
       { label: "Conversational Analytics", href: "/products/conversational-analytics" },
-      { label: "Report Builder", href: "/products/report-builder", comingSoon: true },
-      { label: "Applicant Tracking System", href: "/products/applicant-tracking-system", comingSoon: true },
+      { label: "Report Builder", href: "/products/report-builder" },
+      { label: "Applicant Tracking System", href: "/products/applicant-tracking-system" },
       { label: "Brand assets", href: "/brand" },
     ],
   },
-];
-
-const fallbackSocialLinks = [
-  { label: "Facebook", href: "https://facebook.com/conalytic" },
-  { label: "LinkedIn", href: "https://linkedin.com/company/conalytic" },
-  { label: "Instagram", href: "https://instagram.com/conalytic" },
-  { label: "X", href: "https://twitter.com/conalytic" },
 ];
 
 const fallbackLegalLinks: SiteConfigLink[] = [
@@ -97,9 +90,8 @@ export function Footer({ config, brandLogos }: FooterProps) {
   const taglineAlt = brandLogos?.footerTaglineAlt ?? "Conalytic";
   const footerMark = brandLogos?.footerMarkIcon ?? "/logo-icon.png";
   const columns = config?.columns?.length ? config.columns : fallbackColumns;
-  const socialLinks = config?.socialLinks?.length ? config.socialLinks : fallbackSocialLinks;
   const legalLinks = config?.legalLinks?.length ? config.legalLinks : fallbackLegalLinks;
-  const copyrightText = config?.copyrightText || "© 2025 Conalytic. All rights reserved.";
+  const copyrightText = config?.copyrightText || "© 2026 Conalytic. All rights reserved.";
 
   return (
     <div className="px-4 pb-4 pt-2">
@@ -121,8 +113,8 @@ export function Footer({ config, brandLogos }: FooterProps) {
           {/*
             Top band: newsletter (copy + form) on the left; larger logo with contact email stacked on the right.
           */}
-          <div className="flex flex-col gap-10 border-b border-black/8 pb-10 pt-10 dark:border-white/8 lg:flex-row lg:items-start lg:justify-between lg:gap-14">
-            <NewsletterSignup className="flex-1 lg:max-w-none" />
+          <div className="flex flex-col gap-8 border-b border-black/8 pb-8 pt-8 dark:border-white/8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+            <NewsletterSignup className="w-full max-w-[16.5rem] shrink-0 sm:max-w-[18rem]" />
 
             <div className="flex shrink-0 flex-col items-start gap-3 sm:gap-4 lg:items-end lg:pt-1">
               <Link
@@ -166,14 +158,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
                         href={link.href}
                         className="text-sm leading-none text-gray-500 transition-colors hover:text-brand-600 dark:text-white/45 dark:hover:text-white"
                       >
-                        <span className="inline-flex flex-wrap items-center gap-2">
-                          {link.label}
-                          {link.comingSoon ? (
-                            <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/15 border border-amber-200/80 dark:border-amber-500/30 px-1.5 py-0.5 rounded-md">
-                              Coming soon
-                            </span>
-                          ) : null}
-                        </span>
+                        <span className="inline-flex flex-wrap items-center gap-2">{link.label}</span>
                       </FooterColumnLink>
                     </li>
                   ))}
@@ -191,23 +176,6 @@ export function Footer({ config, brandLogos }: FooterProps) {
             </div>
 
             <div className="flex w-full min-w-0 max-w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-6 sm:gap-y-2">
-              <nav
-                aria-label="Social"
-                className="flex max-w-full flex-wrap justify-center gap-x-3 gap-y-2 sm:justify-end"
-              >
-                {socialLinks.map((social) => (
-                  <a
-                    key={`${social.label}-${social.href}`}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="whitespace-nowrap text-xs text-gray-400 transition-colors hover:text-brand-600 dark:text-white/30 dark:hover:text-white"
-                    aria-label={`${social.label} (opens in new tab)`}
-                  >
-                    {social.label}
-                  </a>
-                ))}
-              </nav>
               <nav
                 aria-label="Legal"
                 className="flex max-w-full flex-wrap justify-center gap-x-3 gap-y-2 sm:justify-end sm:gap-x-4"

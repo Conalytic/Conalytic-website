@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Primary nav + mobile menu: Storyblok `NavbarConfig` when present, else fallback links (Products dropdown, coming soon).
+ * Primary nav + mobile menu: Storyblok `NavbarConfig` when present, else fallback links (Products dropdown).
  */
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -123,11 +123,6 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                           >
                             <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
                               {child.label}
-                              {child.comingSoon ? (
-                                <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/15 border border-amber-200/80 dark:border-amber-500/30 px-1.5 py-0.5 rounded-md">
-                                  Coming soon
-                                </span>
-                              ) : null}
                             </span>
                             {child.description && <span className="text-xs text-gray-400 dark:text-white/58">{child.description}</span>}
                           </Link>
@@ -220,14 +215,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                           href={child.href}
                           className="block rounded-xl px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/55 dark:hover:bg-white/5 dark:hover:text-white"
                         >
-                          <span className="flex flex-wrap items-center gap-2">
-                            {child.label}
-                            {child.comingSoon ? (
-                              <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/15 border border-amber-200/80 dark:border-amber-500/30 px-1.5 py-0.5 rounded-md">
-                                Coming soon
-                              </span>
-                            ) : null}
-                          </span>
+                          <span className="flex flex-wrap items-center gap-2">{child.label}</span>
                         </Link>
                       ))}
                     </div>

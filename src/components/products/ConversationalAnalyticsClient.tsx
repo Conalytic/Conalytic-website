@@ -407,8 +407,10 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             transition={{ duration:0.75, delay:0.3, ease:EASE }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
+            <a
+              href="#pricing"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              aria-label="Get started — view pricing"
             >
               Get Started
               <ArrowRight className="w-4 h-4"/>
@@ -629,8 +631,10 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                   </li>
                 ))}
               </ul>
-              <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
+              <a
+                href="#pricing"
                 className="inline-flex items-center gap-2 mt-8 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                aria-label="Get started — view pricing"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4"/>
@@ -688,8 +692,10 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                   </li>
                 ))}
               </ul>
-              <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
+              <a
+                href="#pricing"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                aria-label="Get started — view pricing"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4"/>

@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { Users, Search, BarChart3, FileText, CheckCircle2, ArrowRight, Bell, Star } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { Pricing } from "@/components/home/sections/Pricing";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -365,6 +366,8 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
           </motion.div>
         </div>
       </section>
+
+      <Pricing />
 
       <CTA
         title={content?.ctaTitle ?? "Be First to Access Conalytic ATS"}

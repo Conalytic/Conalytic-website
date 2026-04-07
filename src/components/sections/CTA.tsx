@@ -183,7 +183,7 @@ interface CTAProps {
 export function CTA({
   title:    _title,
   subtitle: _subtitle,
-  primaryCta   = { label: "Get started", href: "https://app.conalytic.com/signup" },
+  primaryCta   = { label: "Get started", href: "#pricing" },
   secondaryCta = { label: "Book a demo",    href: "/contact" },
 }: CTAProps) {
   const primaryExternal = isExternalNavigationHref(primaryCta.href);

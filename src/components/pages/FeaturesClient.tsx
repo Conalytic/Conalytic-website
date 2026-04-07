@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { MessageSquare, Sparkles, BarChart3, Zap, Calendar, ShieldCheck, ArrowRight, CheckCircle2, Lock, Shield } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { Pricing } from "@/components/home/sections/Pricing";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -410,7 +411,7 @@ function ReportMockup() {
 
 const deepDives = [
   { badge:"Chat Interface",      badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Data, Anytime, Anywhere",         desc:"Whether you're analyzing campaigns, tracking conversions, or exploring trends, everything happens through natural conversation with AI.", bullets:['Ask "How did Google Ads perform last month?" and get instant answers',"Automatic visualizations created from your queries in seconds","Context-aware conversations that remember your previous questions"], cta:{label:"Book a demo",href:"/contact"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
-  { badge:"Performance Tracking", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Performance That Actually Matters",  desc:"Monitor campaign ROI, conversion trends, and team productivity with AI-generated insights that guide your next move.",                    bullets:["See campaign performance metrics that impact your bottom line","Track conversion rates, CTR, ROAS across all marketing channels","Get AI recommendations for optimization opportunities"],          cta:{label:"Try It Today",href:"https://app.conalytic.com/signup"}, Visual:PerfMockup,  sectionBg:"bg-[#F6F7FE] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
+  { badge:"Performance Tracking", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Performance That Actually Matters",  desc:"Monitor campaign ROI, conversion trends, and team productivity with AI-generated insights that guide your next move.",                    bullets:["See campaign performance metrics that impact your bottom line","Track conversion rates, CTR, ROAS across all marketing channels","Get AI recommendations for optimization opportunities"],          cta:{label:"Try It Today",href:"#pricing"}, Visual:PerfMockup,  sectionBg:"bg-[#F6F7FE] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
   { badge:"Coming soon",          badgeColor:"bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-500/20",          title:"Build Reports That Wow Clients",          desc:"Report Builder is coming soon. Create stunning, branded reports with AI insights embedded directly into every page — no more manual commentary needed.", bullets:["Drag-and-drop report builder with custom branding options","AI automatically generates insights and recommendations for each section","Schedule weekly, monthly, or quarterly reports for automatic delivery"],cta:{label:"Get Early Access",href:"/contact"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
 ];
 
@@ -457,9 +458,10 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
             {heroSubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
-            <a href="https://app.conalytic.com/signup" target="_blank" rel="noopener noreferrer"
+            <a
+              href="#pricing"
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-              aria-label={`${heroPrimaryCtaLabel} (opens in new tab)`}>
+              aria-label={`${heroPrimaryCtaLabel} — view pricing`}>
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
             </a>
           </motion.div>
@@ -473,30 +475,30 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{includedSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
             {BENTO_CARDS.map(card=>(
               <motion.div key={card.title} variants={fadeUp}
-                className={`relative flex flex-col rounded-2xl overflow-hidden ${card.bg} border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group`}>
+                className={`relative flex h-full min-h-0 flex-col rounded-2xl overflow-hidden ${card.bg} border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group`}>
                 {/* Gradient glow corner */}
                 <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full bg-gradient-to-br ${card.glow} blur-2xl opacity-80 pointer-events-none`}/>
                 {/* Visual area */}
-                <div className="relative z-10 p-4 min-h-[200px] flex flex-col border-b border-gray-100 dark:border-white/[0.06]">
+                <div className="relative z-10 flex min-h-[200px] shrink-0 flex-col border-b border-gray-100 p-4 dark:border-white/[0.06]">
                   <card.Visual/>
                 </div>
-                {/* Text area */}
-                <div className="relative z-10 p-5">
-                  <div className={`inline-flex items-center gap-1.5 mb-3 px-2.5 py-1 rounded-lg border ${card.border} bg-gradient-to-br ${card.glow}`}>
+                {/* Text area — equal-height cards; title + copy centered */}
+                <div className="relative z-10 flex flex-1 flex-col items-center justify-center p-5 text-center">
+                  <div className={`mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border ${card.border} bg-gradient-to-br ${card.glow}`}>
                     <card.icon className="w-3.5 h-3.5 text-gray-600 dark:text-white/60"/>
                   </div>
-                  <h3 className="text-gray-900 dark:text-white font-bold text-base mb-1.5 leading-snug flex flex-wrap items-center gap-2">
+                  <h3 className="mb-1.5 flex flex-wrap items-center justify-center gap-2 text-base font-bold leading-snug text-gray-900 dark:text-white">
                     {card.title}
                     {card.comingSoon ? (
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/15 border border-amber-200/80 dark:border-amber-500/30 px-1.5 py-0.5 rounded-md shrink-0">
+                      <span className="shrink-0 rounded-md border border-amber-200/80 bg-amber-50 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-amber-700 dark:border-amber-500/30 dark:bg-amber-500/15 dark:text-amber-300">
                         Coming soon
                       </span>
                     ) : null}
                   </h3>
-                  <p className="text-gray-500 dark:text-white/60 text-xs leading-relaxed">{card.desc}</p>
+                  <p className="max-w-sm text-xs leading-relaxed text-gray-500 dark:text-white/60">{card.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -530,7 +532,13 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                   href={s.cta.href}
                   {...(s.cta.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                  aria-label={s.cta.href.startsWith("http") ? `${s.cta.label} (opens in new tab)` : s.cta.label}>
+                  aria-label={
+                    s.cta.href.startsWith("http")
+                      ? `${s.cta.label} (opens in new tab)`
+                      : s.cta.href.startsWith("#")
+                        ? `${s.cta.label} — scroll to section`
+                        : s.cta.label
+                  }>
                   {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
                 </a>
               </motion.div>
@@ -543,6 +551,8 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           </div>
         </section>
       ))}
+
+      <Pricing />
 
       <CTA
         title={content?.ctaTitle}

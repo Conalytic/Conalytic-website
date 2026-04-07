@@ -462,9 +462,17 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
         <motion.div initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.3, ease:EASE }}
           className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
         >
-          <a href={content?.heroPrimaryCtaHref || "https://app.conalytic.com/signup"} target="_blank" rel="noopener noreferrer"
+          <a
+            href={content?.heroPrimaryCtaHref || "#pricing"}
+            {...(isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 dark:bg-brand-600 shadow-xl shadow-brand-600/25 hover:bg-brand-700 dark:hover:bg-brand-700 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-            aria-label={`${content?.heroPrimaryCtaLabel || "Get started"} (opens Conalytic app in new tab)`}
+            aria-label={
+              isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")
+                ? `${content?.heroPrimaryCtaLabel || "Get started"} (opens in new tab)`
+                : `${content?.heroPrimaryCtaLabel || "Get started"} — view pricing`
+            }
           >{content?.heroPrimaryCtaLabel || "Get started"}</a>
           <a
             href={content?.heroSecondaryCtaHref || "/contact"}
@@ -1304,7 +1312,7 @@ export function HomeClient({ content }: { content?: HomeContentPreset }) {
         subtitle={content?.ctaSubtitle}
         primaryCta={content?.ctaPrimaryLabel || content?.ctaPrimaryHref ? {
           label: content?.ctaPrimaryLabel || "Get started",
-          href: content?.ctaPrimaryHref || "https://app.conalytic.com/signup",
+          href: content?.ctaPrimaryHref || "#pricing",
         } : undefined}
         secondaryCta={content?.ctaSecondaryLabel || content?.ctaSecondaryHref ? {
           label: content?.ctaSecondaryLabel || "Book a demo",

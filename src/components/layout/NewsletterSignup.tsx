@@ -8,20 +8,20 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { EXTERNAL_PRIVACY_POLICY_URL } from "@/lib/legal-external-urls";
 
-/** Mobile: min 48px + padding + 16px text (iOS respects this better than h-11 alone). Desktop: h-11. */
+/** Compact footer field: still touch-friendly on mobile, tighter on sm+. */
 const inputClasses =
-  "appearance-none box-border min-h-12 w-full min-w-0 flex-1 rounded-lg border border-gray-200 bg-white px-4 py-3.5 text-base leading-normal text-gray-900 shadow-sm " +
+  "appearance-none box-border min-h-10 w-full min-w-0 flex-1 rounded-md border border-gray-200 bg-white px-3 py-2.5 text-sm leading-normal text-gray-900 shadow-sm " +
   "placeholder:text-gray-400 " +
   "focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 " +
   "disabled:cursor-not-allowed disabled:opacity-60 " +
   "dark:border-white/[0.12] dark:bg-white/[0.06] dark:text-white dark:placeholder:text-white/35 " +
   "dark:focus:border-brand-400 dark:focus:ring-brand-400/25 " +
-  "sm:h-11 sm:min-h-0 sm:py-0 sm:text-sm";
+  "sm:h-9 sm:min-h-0 sm:py-0 sm:px-3";
 
 const buttonClasses =
-  "box-border inline-flex min-h-12 w-full shrink-0 items-center justify-center rounded-lg bg-brand-600 px-5 py-3 text-base font-semibold text-white shadow-sm " +
+  "box-border inline-flex min-h-10 w-full shrink-0 items-center justify-center rounded-md bg-brand-600 px-3.5 py-2 text-sm font-semibold text-white shadow-sm " +
   "transition hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-70 " +
-  "sm:h-11 sm:min-h-11 sm:w-auto sm:min-w-[10.5rem] sm:py-0 sm:text-sm";
+  "sm:h-9 sm:min-h-9 sm:w-auto sm:min-w-[7.5rem] sm:py-0";
 
 export function NewsletterSignup({ className }: { className?: string }) {
   const [email, setEmail] = useState("");
@@ -63,18 +63,18 @@ export function NewsletterSignup({ className }: { className?: string }) {
 
   return (
     <section aria-labelledby="footer-newsletter-heading" className={cn("min-w-0", className)}>
-      <div className="w-full max-w-lg space-y-5">
+      <div className="w-full space-y-3">
         <div>
-          <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-gray-500 dark:text-white/45">
+          <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-gray-500 dark:text-white/45">
             Newsletter
           </p>
           <h2
             id="footer-newsletter-heading"
-            className="mt-2 text-base font-semibold leading-snug tracking-tight text-gray-900 dark:text-white sm:text-[17px]"
+            className="mt-1 text-sm font-semibold leading-snug tracking-tight text-gray-900 dark:text-white sm:text-[15px]"
           >
             Subscribe for updates
           </h2>
-          <p className="mt-1.5 text-sm leading-relaxed text-gray-500 dark:text-white/55">
+          <p className="mt-1 text-xs leading-relaxed text-gray-500 dark:text-white/55">
             Product news, analytics tips, and launch notes. Unsubscribe anytime.
           </p>
         </div>
@@ -82,7 +82,7 @@ export function NewsletterSignup({ className }: { className?: string }) {
         <div>
           <form
             onSubmit={onSubmit}
-            className="flex w-full flex-col gap-2.5 sm:flex-row sm:items-stretch sm:gap-2"
+            className="flex w-full flex-col gap-2 sm:flex-row sm:items-stretch sm:gap-1.5"
           >
             <label htmlFor="footer-newsletter-email" className="sr-only">
               Email address
@@ -115,7 +115,7 @@ export function NewsletterSignup({ className }: { className?: string }) {
             </button>
           </form>
 
-          <p className="mt-2.5 text-left text-[11px] leading-relaxed text-gray-400 dark:text-white/35">
+          <p className="mt-2 text-left text-[10px] leading-relaxed text-gray-400 dark:text-white/35">
             By subscribing you agree to our{" "}
             <a
               href={EXTERNAL_PRIVACY_POLICY_URL}

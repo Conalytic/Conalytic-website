@@ -1,10 +1,11 @@
 "use client";
 
-/** Integrations directory: searchable list with logos from `marketing-stack-logos`. */
+/** Integrations page: same seven connectors as the home hero / marketing stack (`marketing-stack-logos`). */
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Search, Zap } from "lucide-react";
+import { ExternalLink, Zap } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
+import { Pricing } from "@/components/home/sections/Pricing";
 import Image from "next/image";
 import { MARKETING_STACK_LOGO_BY_INTEGRATION_NAME } from "@/lib/marketing-stack-logos";
 
@@ -13,43 +14,71 @@ const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
 const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
+/** Same set as the home hero marketing stack — no search/filters. */
 const integrations = [
-  { name:"Google Analytics 4",    category:"Analytics",          desc:"Track website traffic, user behavior, and conversion events with deep GA4 integration.",              status:"available",   siSlug:"googleanalytics",  color:"#E37400", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Analytics 4"] },
-  { name:"Google Ads",            category:"Advertising",        desc:"Monitor campaign performance, ad spend, ROAS, and CTR across all Google Ads campaigns.",               status:"available",   siSlug:"googleads",        color:"#4285F4", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Ads"] },
-  { name:"Meta Ads",              category:"Advertising",        desc:"Analyze Facebook and Instagram ad performance, audience insights, and conversion data.",                status:"available",   siSlug:"meta",             color:"#0082FB", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"] },
-  { name:"Google Search Console", category:"SEO",                desc:"Track organic search performance, keyword rankings, and click-through rates.",                          status:"available",   siSlug:"googlesearchconsole", color:"#458CF5", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Search Console"] },
-  { name:"Slack",                 category:"Collaboration",      desc:"Keep your team in the loop with real-time updates and notifications directly in Slack.",                status:"available",   siSlug:"slack",            color:"#4A154B" },
-  { name:"Zoom",                  category:"Communication",      desc:"Schedule and join video meetings without leaving your analytics workflow.",                              status:"available",   siSlug:"zoom",             color:"#2D8CFF" },
-  { name:"Trello",                category:"Project Management", desc:"Organize your projects and track progress with Trello's visual collaboration tool.",                    status:"available",   siSlug:"trello",           color:"#0052CC" },
-  { name:"Asana",                 category:"Project Management", desc:"Empower your team with Asana's work tracking software connected to your analytics.",                    status:"available",   siSlug:"asana",            color:"#F06A6A" },
-  { name:"Google Docs",           category:"Productivity",       desc:"Collaborate on documents in real-time with Google Docs integration.",                                   status:"available",   siSlug:"googledocs",       color:"#4285F4" },
-  { name:"Notion",                category:"Productivity",       desc:"Capture ideas, share feedback, and stay organized with Notion.",                                        status:"available",   siSlug:"notion",           color:"#000000" },
-  { name:"Microsoft Teams",       category:"Collaboration",      desc:"Connect your team with Microsoft Teams, a chat-based workspace.",                                       status:"available",   siSlug:"microsoftteams",   color:"#6264A7" },
-  { name:"Dropbox",               category:"Storage",            desc:"Access and share files stored in Dropbox directly from your projects.",                                  status:"available",   siSlug:"dropbox",          color:"#0061FF" },
-  { name:"HubSpot",               category:"CRM",                desc:"Track your team's sales tasks and customer interactions by connecting HubSpot.",                        status:"available",   siSlug:"hubspot",          color:"#FF7A59" },
-  { name:"GitHub",                category:"Development",        desc:"Bridge the gap between development and management by syncing GitHub.",                                   status:"available",   siSlug:"github",           color:"#181717" },
-  { name:"Calendly",              category:"Scheduling",         desc:"Streamline scheduling by connecting Calendly to manage meetings effortlessly.",                         status:"available",   siSlug:"calendly",         color:"#006BFF" },
-  { name:"Zapier",                category:"Automation",         desc:"Automate workflows by connecting Conalytic with over 2,000 apps using Zapier.",                         status:"available",   siSlug:"zapier",           color:"#FF4A00" },
-  { name:"LinkedIn Ads",          category:"Advertising",        desc:"Analyze LinkedIn advertising performance and B2B lead generation metrics.",                              status:"coming-soon", siSlug:"linkedin",         color:"#0A66C2", logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"] },
-  { name:"TikTok Ads",            category:"Advertising",        desc:"Track TikTok advertising campaigns and social commerce performance.",                                    status:"coming-soon", siSlug:"tiktok",           color:"#000000" },
+  {
+    name: "Meta Ads",
+    category: "Advertising",
+    desc: "Analyze Facebook and Instagram ad performance, audience insights, and conversion data.",
+    siSlug: "meta",
+    color: "#0082FB",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"],
+  },
+  {
+    name: "LinkedIn Ads",
+    category: "Advertising",
+    desc: "Measure LinkedIn campaign performance, lead gen forms, and B2B funnel metrics.",
+    siSlug: "linkedin",
+    color: "#0A66C2",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"],
+  },
+  {
+    name: "Microsoft Clarity",
+    category: "Analytics",
+    desc: "Session recordings, heatmaps, and behavioral insights to see how visitors use your site.",
+    siSlug: "microsoft",
+    color: "#00A4EF",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Microsoft Clarity"],
+  },
+  {
+    name: "Bing Webmaster",
+    category: "SEO",
+    desc: "Monitor Bing search performance, indexing, and queries alongside your other search channels.",
+    siSlug: "bing",
+    color: "#008373",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Bing Webmaster"],
+  },
+  {
+    name: "Google Analytics 4",
+    category: "Analytics",
+    desc: "Track website traffic, user behavior, and conversion events with deep GA4 integration.",
+    siSlug: "googleanalytics",
+    color: "#E37400",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Analytics 4"],
+  },
+  {
+    name: "Google Search Console",
+    category: "SEO",
+    desc: "Track organic search performance, keyword rankings, and click-through rates.",
+    siSlug: "googlesearchconsole",
+    color: "#458CF5",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Search Console"],
+  },
+  {
+    name: "Google Ads",
+    category: "Advertising",
+    desc: "Monitor campaign performance, ad spend, ROAS, and CTR across your Google Ads accounts.",
+    siSlug: "googleads",
+    color: "#4285F4",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Ads"],
+  },
 ];
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "Analytics":          "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
-  "Advertising":        "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",
-  "SEO":                "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
-  "Collaboration":      "bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-500/20",
-  "Communication":      "bg-pink-50 dark:bg-pink-500/10 text-pink-700 dark:text-pink-300 border-pink-100 dark:border-pink-500/20",
-  "Project Management": "bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border-violet-100 dark:border-violet-500/20",
-  "Productivity":       "bg-cyan-50 dark:bg-cyan-500/10 text-cyan-700 dark:text-cyan-300 border-cyan-100 dark:border-cyan-500/20",
-  "Storage":            "bg-orange-50 dark:bg-orange-500/10 text-orange-700 dark:text-orange-300 border-orange-100 dark:border-orange-500/20",
-  "CRM":                "bg-red-50 dark:bg-red-500/10 text-red-700 dark:text-red-300 border-red-100 dark:border-red-500/20",
-  "Development":        "bg-gray-100 dark:bg-white/[0.07] text-gray-700 dark:text-white/60 border-gray-200 dark:border-white/[0.1]",
-  "Scheduling":         "bg-lime-50 dark:bg-lime-500/10 text-lime-700 dark:text-lime-300 border-lime-100 dark:border-lime-500/20",
-  "Automation":         "bg-fuchsia-50 dark:bg-fuchsia-500/10 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-100 dark:border-fuchsia-500/20",
+  Analytics: "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
+  Advertising: "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",
+  SEO: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
 };
-
-const ALL_CATS = ["All", ...Array.from(new Set(integrations.map(i=>i.category)))];
 
 function IntegrationLogo({
   logoSrc,
@@ -115,15 +144,6 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
     content?.heroSubtitle ??
     "Connect Conalytic to the tools your team already loves and streamline your workflow in one place.";
 
-  const [search, setSearch]   = useState("");
-  const [active, setActive]   = useState("All");
-
-  const filtered = integrations.filter(i=>{
-    const matchCat  = active === "All" || i.category === active;
-    const matchSrch = i.name.toLowerCase().includes(search.toLowerCase()) || i.category.toLowerCase().includes(search.toLowerCase());
-    return matchCat && matchSrch;
-  });
-
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -146,48 +166,17 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
         </div>
       </section>
 
-      {/* ── FILTERS + GRID ──────────────────────────── */}
+      {/* ── GRID (marketing stack only) ─────────────── */}
       <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-6xl mx-auto">
-          {/* Search + category filter */}
-          <motion.div initial={{opacity:0,y:20}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.6,ease:EASE}} className="mb-8 space-y-4">
-            {/* Search */}
-            <div className="relative max-w-md mx-auto">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-white/30 pointer-events-none"/>
-              <input
-                type="text" value={search} onChange={e=>setSearch(e.target.value)}
-                placeholder="Search integrations…"
-                className="w-full pl-10 pr-4 py-3 rounded-xl bg-white dark:bg-[#14141B] border border-gray-200 dark:border-white/[0.08] text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/30 focus:outline-none focus:border-brand-500 focus:ring-2 focus:ring-brand-500/20 text-sm transition-all"
-              />
-            </div>
-            {/* Category pills */}
-            <div className="flex flex-wrap justify-center gap-2">
-              {ALL_CATS.map(cat=>(
-                <button key={cat} type="button" onClick={()=>setActive(cat)}
-                  aria-pressed={active===cat}
-                  aria-label={`Show ${cat} integrations`}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold border transition-all duration-150 ${active===cat ? "bg-brand-600 text-white border-brand-600 shadow-md shadow-brand-600/25" : "bg-white dark:bg-[#14141B] text-gray-600 dark:text-white/60 border-gray-200 dark:border-white/[0.08] hover:border-brand-400 dark:hover:border-brand-500/40"}`}>
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </motion.div>
+          <p className="text-center text-sm text-gray-400 dark:text-white/40 mb-8">
+            {integrations.length} data sources connected in Conalytic
+          </p>
 
-          {/* Count */}
-          <p className="text-center text-sm text-gray-400 dark:text-white/40 mb-6">{filtered.length} integration{filtered.length!==1?"s":""}</p>
-
-          {/* Grid */}
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {filtered.map(itg=>(
+            {integrations.map(itg=>(
               <motion.div key={itg.name} variants={fadeUp}
-                className={`relative rounded-2xl p-5 border group transition-all duration-200 hover:-translate-y-0.5 ${
-                  itg.status==="coming-soon"
-                    ? "bg-gray-50 dark:bg-[#14141B]/50 border-gray-100 dark:border-white/[0.04] opacity-65"
-                    : "bg-white dark:bg-[#14141B] border-gray-100 dark:border-white/[0.07] hover:border-brand-300 dark:hover:border-brand-500/40 hover:shadow-lg dark:hover:shadow-black/40"
-                }`}>
-                {itg.status==="coming-soon" && (
-                  <span className="absolute top-3 right-3 text-[9px] font-semibold text-gray-400 dark:text-white/35 border border-gray-200 dark:border-white/[0.08] rounded-full px-2 py-0.5">Coming soon</span>
-                )}
+                className="relative rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 group hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 dark:hover:shadow-black/40">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/[0.06] border border-gray-100 dark:border-white/[0.08] flex items-center justify-center p-1.5 shrink-0">
                     <IntegrationLogo logoSrc={itg.logoSrc} slug={itg.siSlug} name={itg.name} color={itg.color}/>
@@ -198,16 +187,17 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
                   {itg.category}
                 </span>
                 <p className="text-gray-400 dark:text-white/55 text-xs leading-relaxed">{itg.desc}</p>
-                {itg.status==="available" && (
-                  <div className="mt-3 flex items-center gap-1 text-brand-600 dark:text-brand-400 text-xs font-semibold opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span>View docs</span><ExternalLink className="w-3 h-3"/>
-                  </div>
-                )}
+                <div className="mt-3 flex items-center gap-1 text-brand-600 dark:text-brand-400 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100">
+                  <span>View docs</span>
+                  <ExternalLink className="w-3 h-3"/>
+                </div>
               </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
+
+      <Pricing />
 
       <CTA
         title={content?.ctaTitle ?? "Why Choose Conalytic?"}
