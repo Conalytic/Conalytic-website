@@ -2,12 +2,12 @@
 
 /**
  * First-visit banner: records choice in localStorage (`COOKIE_CONSENT_STORAGE_KEY`).
- * Storyblok Visual Editor still sets a short `sb_visual_editor` cookie when you open the site from Storyblok (technical / preview).
+ * Third-party analytics scripts (if added later) should respect the user’s cookie choice.
  */
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { COOKIE_CONSENT_STORAGE_KEY, type CookieConsentChoice } from "@/lib/cookie-consent";
-import type { CookieBannerCopy } from "@/lib/storyblok-core";
+import type { CookieBannerCopy } from "@/lib/site-layout";
 
 export function CookieConsent({ copy }: { copy: CookieBannerCopy }) {
   const [open, setOpen] = useState(false);

@@ -240,7 +240,7 @@ export interface ATSContentPreset {
   ctaSubtitle?: string;
 }
 
-/** Shown in the amber hero pill while the product is pre-launch (Storyblok `ats_hero_badge` is ignored for this pill). */
+/** Shown in the amber hero pill while the product is pre-launch. */
 const HERO_COMING_SOON_LABEL = "Coming soon";
 
 export function ATSClient({ content }: { content?: ATSContentPreset }) {

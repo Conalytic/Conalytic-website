@@ -7,7 +7,7 @@ export const CHAT_APP_SIGNUP_URL = "https://chat.conalytic.com/signup";
 /** Enterprise / demo — use path for same-origin nav in dev & prod */
 export const MARKETING_CONTACT_PATH = "/contact";
 
-/** Absolute URL when linking from emails, Storyblok, or off-site contexts */
+/** Absolute URL when linking from emails or off-site contexts */
 export const MARKETING_CONTACT_ABSOLUTE = "https://www.conalytic.com/contact";
 
 /** Hostnames for the conversational product (home CTA remap → #pricing) */

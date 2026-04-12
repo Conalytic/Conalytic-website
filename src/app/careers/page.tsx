@@ -1,11 +1,7 @@
-/**
- * Careers route: Storyblok-backed copy with `CareersClient` (resume upload API).
- */
+/** Careers route (resume upload API via `CareersClient`). */
 import type { Metadata } from "next";
-import { CareersClient, type CareersContentPreset } from "@/components/pages/CareersClient";
-import { CmsPage } from "@/components/storyblok/CmsPage";
-import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok-server";
+import { CareersClient } from "@/components/pages/CareersClient";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
   title: "Careers – Conalytic",
@@ -14,42 +10,9 @@ const fallbackMetadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadata("/careers", fallbackMetadata);
+  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/careers` } };
 }
 
-function str(value: unknown): string | undefined {
-  return typeof value === "string" && value.trim().length ? value : undefined;
-}
-
-function mapCareersContent(content: Record<string, unknown>): CareersContentPreset {
-  return {
-    heroBadge: str(content.careers_hero_badge),
-    heroTitleLine1: str(content.careers_hero_title_line_1),
-    heroTitleLine2: str(content.careers_hero_title_line_2),
-    heroSubtitle: str(content.careers_hero_subtitle),
-    heroButtonLabel: str(content.careers_hero_button_label),
-    lifeAtConalyticTitle: str(content.careers_life_title),
-    lifeAtConalyticSubtitle: str(content.careers_life_subtitle),
-    openPositionsTitle: str(content.careers_open_positions_title),
-    openPositionsSubtitle: str(content.careers_open_positions_subtitle),
-    ctaTitle: str(content.careers_cta_title),
-    ctaSubtitle: str(content.careers_cta_subtitle),
-  };
-}
-
-export default async function CareersPage() {
-  const story = await getPageStory("/careers");
-
-  if (!story) {
-    return <CareersClient />;
-  }
-
-  const content = story.content as Record<string, unknown>;
-  const useStoryblokPage = content.use_storyblok_page === true;
-
-  if (useStoryblokPage) {
-    return <CmsPage slug="/careers" fallback={<CareersClient />} />;
-  }
-
-  return <CareersClient content={mapCareersContent(content)} />;
+export default function CareersPage() {
+  return <CareersClient />;
 }

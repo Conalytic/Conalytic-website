@@ -126,7 +126,7 @@ export function blogPostingSchema(input: {
   description: string;
   datePublished?: string;
   dateModified?: string;
-  /** Hero / OG image URL (e.g. Storyblok CDN). */
+  /** Hero / OG image URL (absolute). */
   imageUrl?: string;
 }) {
   const base: Record<string, unknown> = {

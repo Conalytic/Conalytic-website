@@ -1,29 +1,24 @@
 /**
- * Public blog article at `/{slug}`: loads Storyblok blog story, canonical + BlogPosting JSON-LD, rich body.
+ * Public blog article at `/{slug}` — static markdown content; canonical + BlogPosting JSON-LD.
  */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock } from "lucide-react";
-import { StoryblokRichText } from "@storyblok/react/rsc";
+import { BlogPostMarkdown } from "@/components/blog/BlogPostMarkdown";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { getBlogPostBySlug } from "@/content/blog-posts";
 import { blogPostingSchema } from "@/lib/structured-data";
-import { mergeSocialPreviewFromStoryContent } from "@/lib/storyblok";
-import { storyblokImageAlt, storyblokImageSrc, storyblokOgImageSrc } from "@/lib/storyblok-asset";
-import { getBlogStoryByPublicSlug } from "@/lib/storyblok-server";
+import { mergeSocialPreviewImage } from "@/lib/site-layout";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-function formatDate(value: string | undefined) {
-  if (!value) {
-    return "";
-  }
-
-  return new Date(value).toLocaleDateString("en-US", {
+function formatDateLabel(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
     year: "numeric",
@@ -32,75 +27,68 @@ function formatDate(value: string | undefined) {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const story = await getBlogStoryByPublicSlug(slug);
-
-  if (!story) {
+  const post = getBlogPostBySlug(slug);
+  if (!post) {
     return {};
   }
-
-  const content = story.content as Record<string, unknown>;
-  const title = (content.seo_title as string) || (content.title as string) || story.name;
-  const description =
-    (content.seo_description as string) ||
-    (content.excerpt as string) ||
-    (content.description as string) ||
-    "";
-
-  const canonical = `${SITE_ORIGIN}/${slug}`;
-
-  return mergeSocialPreviewFromStoryContent(content, {
-    title: `${title} – Conalytic Blog`,
-    description,
+  const canonical = `${SITE_ORIGIN}/${post.slug}`;
+  const base: Metadata = {
+    title: `${post.title} – Conalytic Blog`,
+    description: post.description || post.excerpt,
     alternates: { canonical },
-  });
+  };
+  const absoluteCover = post.coverImage?.startsWith("http")
+    ? post.coverImage
+    : post.coverImage
+      ? `${SITE_ORIGIN}${post.coverImage}`
+      : null;
+  return mergeSocialPreviewImage(base, absoluteCover);
 }
 
 export default async function PublicBlogPage({ params }: Props) {
   const { slug } = await params;
-  const story = await getBlogStoryByPublicSlug(slug);
-
-  if (!story) {
+  const post = getBlogPostBySlug(slug);
+  if (!post) {
     notFound();
   }
 
-  const content = story.content as Record<string, unknown>;
-  const title = (content.title as string) || story.name;
-  const category = (content.category as string) || "Article";
-  const readTime = (content.read_time as string) || (content.readTime as string) || "";
-  const excerpt = (content.excerpt as string) || "";
-  const richText = content.body_rich_text || content.content;
-  const canonicalUrl = `${SITE_ORIGIN}/${slug}`;
-  const published = story.first_published_at || story.published_at;
-  const ldDescription =
-    (content.seo_description as string) || excerpt || (content.description as string) || title;
-  const ogUrl = storyblokOgImageSrc(content);
-  const coverSrc = storyblokImageSrc(content.cover_image);
-  const coverAlt = coverSrc ? storyblokImageAlt(content.cover_image, title) : "";
+  const canonicalUrl = `${SITE_ORIGIN}/${post.slug}`;
+  const coverSrc = post.coverImage?.startsWith("/") ? post.coverImage : undefined;
+  const ogForLd = coverSrc
+    ? coverSrc.startsWith("http")
+      ? coverSrc
+      : `${SITE_ORIGIN}${coverSrc}`
+    : undefined;
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
       <JsonLd
-        id={`ld-blog-${slug}`}
+        id={`ld-blog-${post.slug}`}
         data={blogPostingSchema({
           url: canonicalUrl,
-          headline: title,
-          description: ldDescription,
-          datePublished: published ? new Date(published).toISOString() : undefined,
-          imageUrl: ogUrl ?? undefined,
+          headline: post.title,
+          description: post.description || post.excerpt,
+          datePublished: post.datePublished,
+          imageUrl: ogForLd,
         })}
       />
-      <Link href="/blogs" className="mb-10 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white">
+      <Link
+        href="/blogs"
+        className="mb-10 inline-flex items-center gap-2 text-sm text-white/50 transition-colors hover:text-white"
+      >
         <ArrowLeft className="h-4 w-4" />
         Back to Blog
       </Link>
 
-      <span className="mb-6 inline-block rounded-full bg-[#6B5FF8]/15 px-3 py-1 text-xs font-medium text-[#a78bfa]">{category}</span>
+      <span className="mb-6 inline-block rounded-full bg-[#6B5FF8]/15 px-3 py-1 text-xs font-medium text-[#a78bfa]">
+        {post.category}
+      </span>
 
       {coverSrc ? (
         <div className="relative mb-10 aspect-[1200/630] w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04]">
           <Image
             src={coverSrc}
-            alt={coverAlt}
+            alt={post.title}
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 48rem, 100vw"
@@ -109,31 +97,24 @@ export default async function PublicBlogPage({ params }: Props) {
         </div>
       ) : null}
 
-      <h1 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">{title}</h1>
+      <h1 className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl">{post.title}</h1>
 
       <div className="mb-12 flex items-center gap-5 border-b border-white/[0.07] pb-8 text-sm text-white/30">
         <span className="flex items-center gap-1.5">
           <Calendar className="h-4 w-4" />
-          {formatDate(story.first_published_at)}
+          {formatDateLabel(post.datePublished)}
         </span>
-        {readTime && (
+        {post.readTime ? (
           <span className="flex items-center gap-1.5">
             <Clock className="h-4 w-4" />
-            {readTime}
+            {post.readTime}
           </span>
-        )}
+        ) : null}
       </div>
 
-      {excerpt && <p className="mb-8 text-lg leading-relaxed text-white/70">{excerpt}</p>}
+      {post.excerpt ? <p className="mb-8 text-lg leading-relaxed text-white/70">{post.excerpt}</p> : null}
 
-      {richText ? (
-        <div className="prose prose-invert prose-lg max-w-none">
-          <StoryblokRichText doc={richText as never} />
-        </div>
-      ) : (
-        <p className="text-white/70">No content added yet.</p>
-      )}
+      <BlogPostMarkdown markdown={post.bodyMarkdown} />
     </article>
   );
 }
-

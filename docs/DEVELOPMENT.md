@@ -1,6 +1,8 @@
 # Conalytic Website – Development Documentation
 
-> **Tech Stack:** Next.js 16 · TypeScript · Tailwind CSS v4 · Storyblok CMS  
+> **Note:** Storyblok was **removed** from this app; marketing copy and blog posts live in the **repository** (`src/`, `src/content/`). Sections below that describe Storyblok are **historical** unless updated.
+>
+> **Tech Stack:** Next.js 16 · TypeScript · Tailwind CSS v4  
 > **Status:** In Development  
 > **Last Updated:** March 2026
 

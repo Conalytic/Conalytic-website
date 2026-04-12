@@ -1,10 +1,11 @@
 /**
- * Validates external script URLs from Storyblok before passing to `next/script`.
- * Set `STORYBLOK_SCRIPT_ALLOWED_HOSTS` (comma-separated hostnames) to restrict; otherwise any `https:` origin is allowed.
+ * Validates external script URLs before passing to `next/script`.
+ * Set `SITE_SCRIPT_ALLOWED_HOSTS` (comma-separated hostnames) to restrict; otherwise any `https:` origin is allowed.
  */
 
 function parseAllowlist(): Set<string> | null {
-  const raw = process.env.STORYBLOK_SCRIPT_ALLOWED_HOSTS?.trim();
+  const raw =
+    process.env.SITE_SCRIPT_ALLOWED_HOSTS?.trim() || process.env.STORYBLOK_SCRIPT_ALLOWED_HOSTS?.trim();
   if (!raw) {
     return null;
   }

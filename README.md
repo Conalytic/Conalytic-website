@@ -9,7 +9,7 @@ Official website for [Conalytic](https://conalytic.com) — AI-powered conversat
 | Framework | [Next.js 16](https://nextjs.org) (App Router, RSC) |
 | Language | TypeScript |
 | Styling | Tailwind CSS v4 |
-| CMS | [Storyblok](https://storyblok.com) |
+| Content | React pages + `src/content/` (e.g. static blog posts) |
 | Deployment | [Vercel](https://vercel.com) |
 
 ## Getting Started
@@ -18,9 +18,8 @@ Official website for [Conalytic](https://conalytic.com) — AI-powered conversat
 # Install dependencies
 npm install --legacy-peer-deps
 
-# Copy env vars
-cp .env.local.example .env.local
-# Fill in your Storyblok tokens
+# Optional: copy env template if you add one (Resend, schedule URL, etc.)
+# cp .env.local.example .env.local
 
 # Run development server
 npm run dev
@@ -41,7 +40,8 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 | `/contact` | Contact us |
 | `/integrations` | Integrations listing |
 | `/blogs` | Blog listing |
-| `/blogs/[slug]` | Individual blog posts |
+| `/{slug}` | Individual blog posts (canonical URLs) |
+| `/blogs/[slug]` | Redirects to `/{slug}` |
 | `/careers` | Open positions |
 | `/privacy` | 308 → [Privacy Policy](https://chat.conalytic.com/privacy-and-policy) (chat app) |
 | `/terms` | 308 → [Terms of Service](https://chat.conalytic.com/terms-of-service) (chat app) |
@@ -50,23 +50,21 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 
 ## Development Docs
 
-See [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) for full documentation including:
-- Architecture decisions
-- Storyblok CMS setup guide
-- Component library reference
-- SEO strategy
-- Deployment guide
-- Content editing workflow
+See [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) for architecture notes (some sections may still mention the old CMS; content now lives in the repo).
 
 ## Environment Variables
 
+Typical local/production variables (see API route handlers for careers/newsletter):
+
 ```bash
-STORYBLOK_API_TOKEN=           # Public delivery token
-STORYBLOK_PREVIEW_TOKEN=       # Preview token (for draft content)
-NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN=
-NEXT_PUBLIC_STORYBLOK_SPACE_ID=
 NEXT_PUBLIC_SITE_URL=
+NEXT_PUBLIC_SCHEDULE_CALL_URL=
+RESEND_API_KEY=
+RESEND_FROM=
+CAREERS_APPLICATION_TO=
 ```
+
+Optional script allowlist for injected third-party scripts: `SITE_SCRIPT_ALLOWED_HOSTS` (comma-separated hostnames; see `src/lib/site-scripts.ts`).
 
 ## Deployment
 

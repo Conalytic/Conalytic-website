@@ -1,8 +1,8 @@
 /**
- * Renders Storyblok `site_script` entries via `next/script` (root layout only).
+ * Renders optional third-party script entries via `next/script` (root layout only).
  */
 import Script from "next/script";
-import type { SiteScriptEntry, SiteScriptLoadStrategy } from "@/lib/storyblok-core";
+import type { SiteScriptEntry, SiteScriptLoadStrategy } from "@/lib/site-layout";
 import { isAllowedThirdPartyScriptUrl } from "@/lib/site-scripts";
 
 function toNextStrategy(s: SiteScriptLoadStrategy): "beforeInteractive" | "afterInteractive" | "lazyOnload" {
@@ -26,7 +26,7 @@ export function SiteScripts({ entries }: { entries: SiteScriptEntry[] }) {
         return (
           <Script
             key={e._uid}
-            id={`storyblok-script-${e._uid}`}
+            id={`site-script-${e._uid}`}
             src={e.src.trim()}
             strategy={strategy}
             async={e.async !== false}

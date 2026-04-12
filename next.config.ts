@@ -1,5 +1,5 @@
 /**
- * Next.js config: security/perf headers behavior, image remote patterns (Storyblok/CDN), redirects.
+ * Next.js config: security/perf headers, image remote patterns, redirects.
  */
 import type { NextConfig } from "next";
 import path from "path";
@@ -10,8 +10,7 @@ const nextConfig: NextConfig = {
   compress: true,
   async headers() {
     const headers: { key: string; value: string }[] = [
-      // Storyblok Visual Editor loads the site in an iframe (see frame-ancestors).
-      { key: "Content-Security-Policy", value: "frame-ancestors https://app.storyblok.com" },
+      { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
     ];
     if (!allowSearchIndexing()) {
       headers.unshift({ key: "X-Robots-Tag", value: "noindex, nofollow" });
@@ -26,10 +25,8 @@ const nextConfig: NextConfig = {
   },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "a.storyblok.com",    pathname: "/**" },
-      { protocol: "https", hostname: "img2.storyblok.com", pathname: "/**" },
-      { protocol: "https", hostname: "i.pravatar.cc",      pathname: "/**" },
-      { protocol: "https", hostname: "images.unsplash.com",pathname: "/**" },
+      { protocol: "https", hostname: "i.pravatar.cc", pathname: "/**" },
+      { protocol: "https", hostname: "images.unsplash.com", pathname: "/**" },
     ],
   },
   async redirects() {
@@ -44,17 +41,16 @@ const nextConfig: NextConfig = {
       { source: "/contact-us", destination: "/contact", permanent: true },
       { source: "/resources/integrations", destination: "/integrations", permanent: true },
       { source: "/resources/careers", destination: "/careers", permanent: true },
-      // WordPress blog post slugs → /blogs/[slug]
-      { source: "/how-to-build-a-thriving-remote-team-culture", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-2", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-3", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-4", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-5", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-6", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-7", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-8", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-9", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
-      { source: "/how-to-build-a-thriving-remote-team-culture-10", destination: "/blogs/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      // WordPress duplicate blog slugs → canonical /{slug}
+      { source: "/how-to-build-a-thriving-remote-team-culture-2", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-3", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-4", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-5", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-6", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-7", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-8", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-9", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
+      { source: "/how-to-build-a-thriving-remote-team-culture-10", destination: "/how-to-build-a-thriving-remote-team-culture", permanent: true },
     ];
   },
 };

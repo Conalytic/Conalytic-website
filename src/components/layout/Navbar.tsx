@@ -1,7 +1,7 @@
 "use client";
 
 /**
- * Primary nav + mobile menu: Storyblok `NavbarConfig` when present, else fallback links (Products dropdown).
+ * Primary nav + mobile menu: optional `NavbarConfig`, else fallback links (Products dropdown).
  */
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn, isExternalNavigationHref } from "@/lib/utils";
-import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/storyblok";
+import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 
 const fallbackNavigation: SiteConfigLink[] = [
@@ -39,7 +39,7 @@ const fallbackNavigation: SiteConfigLink[] = [
 
 interface NavbarProps {
   config?: NavbarConfig | null;
-  /** From Storyblok `site_config` assets; optional. */
+  /** Optional brand image URLs for nav. */
   brandLogos?: SiteBrandLogos | null;
 }
 

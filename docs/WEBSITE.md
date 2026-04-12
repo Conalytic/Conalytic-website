@@ -1,6 +1,6 @@
 # Conalytic marketing website — documentation
 
-This document describes the **Conalytic** public site in the `conalytic/` Next.js app: architecture, content, integrations, and decisions gathered from implementation work (including prior chat sessions). For CMS setup (new space, preview, images), see **[STORYBLOK_GUIDE.md](./STORYBLOK_GUIDE.md)**. Field/slug reference: **[STORYBLOK_STRUCTURE.md](./STORYBLOK_STRUCTURE.md)**.
+This document describes the **Conalytic** public site. **Storyblok was removed**; treat CMS-specific sections as historical. Blog posts are static in **`src/content/blog-posts.ts`** (canonical URLs `/{slug}`). Layout helpers live in **`src/lib/site-layout.ts`** (nav/footer parsers are unused unless you wire JSON/config later).
 
 ---
 
@@ -11,7 +11,7 @@ This document describes the **Conalytic** public site in the `conalytic/` Next.j
 | Framework | **Next.js 15** (App Router), **React 19** |
 | Styling | **Tailwind CSS 4** |
 | Motion | **Framer Motion** (marketing animations) |
-| CMS | **Storyblok** (optional per page; fallbacks in code) |
+| Content | **In-repo** (React pages + `src/content/` for blog) |
 | Email (careers) | **Resend** API (`/api/careers-application`) |
 | Fonts | **Inter** (Google Font, `next/font`) |
 
@@ -32,14 +32,12 @@ Production URL: **https://conalytic.com** (`metadataBase` in `src/app/layout.tsx
 | `components/products/` | Product landings (e.g. conversational analytics) |
 | `components/sections/` | Shared `CTA`, `StatsBar` |
 | `components/seo/` | JSON-LD (`JsonLd`, `SiteStructuredData`, `HomeStructuredData`) |
-| `components/storyblok/` | Storyblok init, provider, `CmsPage`, block components |
+| `components/blog/` | `BlogPostMarkdown` (article body) |
+| `content/blog-posts.ts` | Static blog metadata + markdown bodies |
 | `components/ui/` | Accordion, buttons, theme toggle, etc. |
-| `lib/storyblok-core.ts` | Types, `resolveStoryblokLink`, nav/footer parsers, **`parseSiteScriptBuckets`** (client-safe) |
-| `lib/site-scripts.ts` | Allowlist / HTTPS validation for Storyblok `site_script` URLs |
-| `components/layout/SiteScripts.tsx` | Injects `next/script` from Storyblok `site_config` |
-| `lib/storyblok-server.ts` | CDN fetch (`next/headers` draft/preview) — Server Components only |
-| `lib/storyblok.ts` | Re-exports **core** only (for convenient imports from blok components) |
-| `lib/storyblok-page.ts` | `getPageMetadata` helper |
+| `lib/site-layout.ts` | Nav/footer/cookie/script **types & parsers** (optional JSON-driven chrome later) |
+| `lib/site-scripts.ts` | HTTPS + optional hostname allowlist for script URLs |
+| `components/layout/SiteScripts.tsx` | Injects `next/script` entries from layout buckets |
 | `lib/structured-data.ts` | Schema.org builders (Organization, WebSite, FAQPage, BlogPosting, WebPage) |
 | `lib/marketing-stack-logos.ts` | Logo URLs for integration partner strip |
 | `lib/default-home-faq.ts` | Default FAQ copy (shared by UI + FAQ JSON-LD) |
@@ -55,10 +53,7 @@ Copy **`.env.local.example`** → **`.env.local`**. Common keys:
 
 | Variable | Purpose |
 |----------|---------|
-| `STORYBLOK_API_TOKEN` / `STORYBLOK_PREVIEW_TOKEN` | Storyblok CDN (published vs draft) |
-| `NEXT_PUBLIC_STORYBLOK_PREVIEW_TOKEN` | Same as preview token — **Storyblok Bridge** (Visual Editor in browser) |
-| `NEXT_PUBLIC_STORYBLOK_SPACE_ID` | Space id (client-safe) |
-| `STORYBLOK_MANAGEMENT_TOKEN` | Scripts only (seed, component sync) |
+| `SITE_SCRIPT_ALLOWED_HOSTS` | Optional comma-separated hostnames for third-party script URLs |
 | `NEXT_PUBLIC_SITE_URL` | Site origin for absolute URLs where needed |
 | `NEXT_PUBLIC_SCHEDULE_CALL_URL` | Contact form “Schedule a call” redirect (e.g. Google Calendar booking page) |
 | `RESEND_API_KEY` | Careers resume emails |
@@ -72,23 +67,21 @@ Never commit **`.env.local`** or API keys into source.
 
 ---
 
-## 4. Storyblok and pages
+## 4. Content model
 
-- Stories drive **metadata** and optional **full CMS pages** (`use_storyblok_page`, `CmsPage`).
-- **Home** (`/`) always uses **`HomeClient`**; Storyblok **home_page** fields map into `HomeContentPreset` via `app/page.tsx` (`mapHomeContent`).
-- **Site config** (`globals/site-config` or variants): optional **navbar/footer** when `use_storyblok_layout` is true; **cookie banner** copy and **third-party scripts** also live here.
-- **Formatted space layout, full content map, and media ownership** (what is CMS vs still in `public/` or code): **[STORYBLOK_STRUCTURE.md](./STORYBLOK_STRUCTURE.md)** (especially §9–§12).
-- Slug and blog URL rules: same file, §1 and §4.
+- **Pages** are React route components; copy defaults live in each `*Client` component.
+- **Blog**: `src/content/blog-posts.ts` + `app/[slug]/page.tsx` (canonical **`/{slug}`**); listing at **`/blogs`**.
+- **Layout**: `app/layout.tsx` uses code defaults for cookie banner and passes `config={null}` to nav/footer (fallback links in components).
 
 ---
 
 ## 5. Home page (product decisions from sessions)
 
-- **Integration partners** marquee: GA4, Google Search Console, Google Ads, Meta, LinkedIn, Microsoft Clarity, Bing Webmaster (see `marketing-stack-logos.ts` and `HomeClient` trusted-by section). Legacy Storyblok title **“Helping to grow…”** is mapped to **“Integration Partners”** in `mapHomeContent`.
+- **Integration partners** marquee: GA4, Google Search Console, Google Ads, Meta, LinkedIn, Microsoft Clarity, Bing Webmaster (see `marketing-stack-logos.ts` and `HomeClient` trusted-by section).
 - **Mobile spacing**: Tighter vertical rhythm after **“The turning point”** (`Transformation` + following sections) on small screens.
 - **Footer CTA block** (`CTA.tsx`): Line chart + **Key finding** demo (aligned with hero-style visualization), not text-only.
 - **Pricing**: Monthly-only presentation; enterprise CTA routes to **`/contact`**; trial wording removed where specified.
-- **FAQ / contact**: Link copy toward **`/contact`**; integration with `home_faq_*` and optional JSON in CMS.
+- **FAQ / contact**: Link copy toward **`/contact`**; FAQ JSON-LD uses `default-home-faq.ts`.
 
 ---
 
@@ -103,8 +96,8 @@ Never commit **`.env.local`** or API keys into source.
 
 ## 6. Navigation and CTAs
 
-- **Navbar** primary CTA default: **Book A Demo** → **`/contact`** (internal). External URLs still open in a new tab when configured in CMS.
-- **Products** dropdown: **Report Builder** and **Applicant Tracking System** show **Coming soon** (code + optional Storyblok `coming_soon` on `nav_link`).
+- **Navbar** primary CTA default: **Book A Demo** → **`/contact`** (internal). External URLs open in a new tab when applicable.
+- **Products** dropdown: **Report Builder** and **Applicant Tracking System** show **Coming soon** (code).
 - **Footer**: Product column includes both products + **Coming soon** chips; default contact email **admin@conalytic.com**.
 
 ---
@@ -130,17 +123,17 @@ Never commit **`.env.local`** or API keys into source.
   - Layout: **Organization**, **WebSite**  
   - Home: **WebPage**, **FAQPage** (matches visible FAQ)  
   - Blog posts: **BlogPosting** + canonical in metadata  
-- **`sitemap.ts`**: Static routes + published blog stories.  
+- **`sitemap.ts`**: Static routes + blog URLs from `src/content/blog-posts.ts` when indexing is enabled.  
 - **`robots.ts`**: Allow `/`, disallow `/api/`, `_next` via rules; sitemap URL.  
 - **`next.config.ts`**: `poweredByHeader: false`, `compress: true`, redirects (e.g. `/privacy` / `/terms` → chat app, `/contact-us` → `/contact`, blog slug compatibility).  
-- Home uses **`dynamic = "force-dynamic"`** so CMS-backed content stays fresh (RSC payload in “view source” is expected in App Router).
+- Home and marketing routes are **static** by default unless a route opts into dynamic behavior.
 
 ---
 
 ## 10. Legal and brand
 
 - **Privacy** and **Terms** on the marketing site point to the chat app: **https://chat.conalytic.com/privacy-and-policy** and **https://chat.conalytic.com/terms-of-service** (footer, newsletter, cookies page links). **`/privacy`** and **`/terms`** still **308 redirect** there for old bookmarks and CMS links (`next.config.ts`). Constants: **`src/lib/legal-external-urls.ts`**.
-- **Cookies** remains on this site at **`/cookies`**. A **`CookieConsent`** banner (first visit) stores **`essential`** vs **`all`** in **localStorage** (`src/lib/cookie-consent.ts`). The marketing site does not load third‑party marketing tags by default; **`all`** is reserved for optional analytics if you add them later. **`sb_visual_editor`** (HTTP cookie) may still be set when opening from Storyblok preview — see **`src/middleware.ts`**.
+- **Cookies** remains on this site at **`/cookies`**. A **`CookieConsent`** banner (first visit) stores **`essential`** vs **`all`** in **localStorage** (`src/lib/cookie-consent.ts`). The marketing site does not load third‑party marketing tags by default; **`all`** is reserved for optional analytics if you add them later.
 - **Brand** page: kit download + **mailto** / contact with `topic=brand` where applicable.
 
 ---
@@ -148,12 +141,9 @@ Never commit **`.env.local`** or API keys into source.
 ## 11. Commands
 
 ```bash
-cd conalytic
-npm install
+npm install --legacy-peer-deps
 npm run dev          # development
 npm run build && npm start   # production locally
-npm run storyblok:sync-components
-npm run storyblok:seed     # requires management token + space id in env
 ```
 
 ---
@@ -166,6 +156,6 @@ Prior Cursor sessions (parent agent transcripts live under your Cursor project f
 
 ## 13. Maintenance notes
 
-- Rotate **Resend** / **Storyblok** keys if ever exposed.  
+- Rotate **Resend** keys if ever exposed.  
 - After verifying **conalytic.com** in Resend, set **`RESEND_FROM`** to an address on that domain in production.  
-- Keep **FAQ** JSON-LD in sync with visible FAQ by using **`default-home-faq.ts`** and CMS `home_faq_items_json` when present.
+- Keep **FAQ** JSON-LD in sync with visible FAQ by updating **`default-home-faq.ts`** and the home page structured data wiring.

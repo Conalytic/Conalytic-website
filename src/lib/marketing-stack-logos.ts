@@ -14,7 +14,7 @@ export const MARKETING_STACK_LOGOS = {
 
 export type MarketingStackLogoKey = keyof typeof MARKETING_STACK_LOGOS;
 
-/** Default partner names (marquee + hub) when Storyblok `label` is empty. */
+/** Default partner names (marquee + hub) when no custom label is set. */
 export const DEFAULT_INTEGRATION_PARTNER_LABELS: Record<MarketingStackLogoKey, string> = {
   googleAnalytics4: "Google Analytics 4",
   googleSearchConsole: "Google Search Console",

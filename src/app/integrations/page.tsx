@@ -1,9 +1,7 @@
-/** Integrations directory route; Storyblok optional full page. */
+/** Integrations directory route. */
 import type { Metadata } from "next";
-import { IntegrationsPageClient, type IntegrationsContentPreset } from "@/components/pages/IntegrationsPageClient";
-import { CmsPage } from "@/components/storyblok/CmsPage";
-import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok-server";
+import { IntegrationsPageClient } from "@/components/pages/IntegrationsPageClient";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
   title: "Integrations – Conalytic",
@@ -12,37 +10,9 @@ const fallbackMetadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadata("/integrations", fallbackMetadata);
+  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/integrations` } };
 }
 
-function str(value: unknown): string | undefined {
-  return typeof value === "string" && value.trim().length ? value : undefined;
-}
-
-function mapIntegrationsContent(content: Record<string, unknown>): IntegrationsContentPreset {
-  return {
-    heroBadge: str(content.integrations_hero_badge),
-    heroTitleLine1: str(content.integrations_hero_title_line_1),
-    heroTitleLine2: str(content.integrations_hero_title_line_2),
-    heroSubtitle: str(content.integrations_hero_subtitle),
-    ctaTitle: str(content.integrations_cta_title),
-    ctaSubtitle: str(content.integrations_cta_subtitle),
-  };
-}
-
-export default async function IntegrationsPage() {
-  const story = await getPageStory("/integrations");
-
-  if (!story) {
-    return <IntegrationsPageClient />;
-  }
-
-  const content = story.content as Record<string, unknown>;
-  const useStoryblokPage = content.use_storyblok_page === true;
-
-  if (useStoryblokPage) {
-    return <CmsPage slug="/integrations" fallback={<IntegrationsPageClient />} />;
-  }
-
-  return <IntegrationsPageClient content={mapIntegrationsContent(content)} />;
+export default function IntegrationsPage() {
+  return <IntegrationsPageClient />;
 }

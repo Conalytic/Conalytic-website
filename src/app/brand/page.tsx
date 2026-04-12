@@ -1,8 +1,7 @@
-/** Brand kit / guidelines page; partial CMS + static download CTA. */
+/** Brand kit / guidelines page. */
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
-import { CmsPage } from "@/components/storyblok/CmsPage";
-import { getPageMetadata } from "@/lib/storyblok-page";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
   title: "Brand – Conalytic",
@@ -153,9 +152,9 @@ function BrandFallback() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadata("/brand", fallbackMetadata);
+  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/brand` } };
 }
 
-export default async function BrandPage() {
-  return <CmsPage slug="/brand" fallback={<BrandFallback />} />;
+export default function BrandPage() {
+  return <BrandFallback />;
 }

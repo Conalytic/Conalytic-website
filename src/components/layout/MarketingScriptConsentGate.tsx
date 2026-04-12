@@ -6,7 +6,7 @@
  */
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { COOKIE_CONSENT_STORAGE_KEY } from "@/lib/cookie-consent";
-import type { SiteScriptEntry } from "@/lib/storyblok-core";
+import type { SiteScriptEntry } from "@/lib/site-layout";
 import { SiteScripts } from "@/components/layout/SiteScripts";
 
 const MarketingScriptsAllowedContext = createContext(false);

@@ -35,7 +35,7 @@ export const COOKIES_DEFAULT_PRESET: CookiesContentPreset = {
   pageTitle: "Cookies Policy",
   lastUpdated: "Last Updated: October 01, 2024",
   intro:
-    "This marketing site uses a small set of cookies and similar technologies. When you first visit, you can choose Essential only or Accept all in the banner; your choice is stored in your browser (local storage). If you open the site from the Storyblok Visual Editor, a short technical cookie may be set so draft content can load. For full details, read the sections below.",
+    "This marketing site uses a small set of cookies and similar technologies. When you first visit, you can choose Essential only or Accept all in the banner; your choice is stored in your browser (local storage). For full details, read the sections below.",
   toc: [
     { id: "what-are-cookies", title: "What Are Cookies?" },
     { id: "types", title: "Types of Cookies We Use" },

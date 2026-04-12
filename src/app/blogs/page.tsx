@@ -1,9 +1,7 @@
-/** Blog listing `/blogs`: CMS or fallback `BlogsClient`. */
+/** Blog listing `/blogs`. */
 import type { Metadata } from "next";
-import { BlogsClient, type BlogsContentPreset } from "@/components/pages/BlogsClient";
-import { CmsPage } from "@/components/storyblok/CmsPage";
-import { getPageMetadata } from "@/lib/storyblok-page";
-import { getPageStory } from "@/lib/storyblok-server";
+import { BlogsClient } from "@/components/pages/BlogsClient";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
   title: "Blog – Conalytic",
@@ -12,35 +10,9 @@ const fallbackMetadata: Metadata = {
 };
 
 export async function generateMetadata(): Promise<Metadata> {
-  return getPageMetadata("/blogs", fallbackMetadata);
+  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/blogs` } };
 }
 
-function str(value: unknown): string | undefined {
-  return typeof value === "string" && value.trim().length ? value : undefined;
-}
-
-function mapBlogsContent(content: Record<string, unknown>): BlogsContentPreset {
-  return {
-    heroBadge: str(content.blogs_hero_badge),
-    heroTitleLine1: str(content.blogs_hero_title_line_1),
-    heroTitleLine2: str(content.blogs_hero_title_line_2),
-    heroSubtitle: str(content.blogs_hero_subtitle),
-  };
-}
-
-export default async function BlogsPage() {
-  const story = await getPageStory("/blogs");
-
-  if (!story) {
-    return <BlogsClient />;
-  }
-
-  const content = story.content as Record<string, unknown>;
-  const useStoryblokPage = content.use_storyblok_page === true;
-
-  if (useStoryblokPage) {
-    return <CmsPage slug="/blogs" fallback={<BlogsClient />} />;
-  }
-
-  return <BlogsClient content={mapBlogsContent(content)} />;
+export default function BlogsPage() {
+  return <BlogsClient />;
 }

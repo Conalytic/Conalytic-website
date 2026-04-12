@@ -1,10 +1,10 @@
 /**
- * Site footer: newsletter signup, link columns, legal; Storyblok `FooterConfig` overrides fallbacks.
+ * Site footer: newsletter signup, link columns, legal; optional `FooterConfig` overrides fallbacks.
  */
 import type { ReactNode } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/storyblok";
+import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
 import { EXTERNAL_PRIVACY_POLICY_URL, EXTERNAL_TERMS_OF_SERVICE_URL } from "@/lib/legal-external-urls";
 

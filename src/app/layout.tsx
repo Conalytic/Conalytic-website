@@ -8,23 +8,18 @@ import { Navbar } from "@/components/layout/Navbar";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { Footer } from "@/components/layout/Footer";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { StoryblokProvider } from "@/components/storyblok/StoryblokProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import {
   parseCookieBannerCopy,
-  parseFooterConfig,
-  parseNavbarConfig,
-  parseSiteBrandLogos,
   parseSiteScriptBuckets,
   splitSiteScriptBucketsByConsent,
-} from "@/lib/storyblok";
+} from "@/lib/site-layout";
 import { SiteScripts } from "@/components/layout/SiteScripts";
 import {
   ConsentGatedSiteScripts,
   MarketingScriptsGateProvider,
 } from "@/components/layout/MarketingScriptConsentGate";
-import { getSiteConfigStory } from "@/lib/storyblok-server";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 
@@ -128,20 +123,14 @@ export const metadata: Metadata = {
       },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteConfigStory = await getSiteConfigStory();
-  const siteConfig = (siteConfigStory?.content || {}) as Record<string, unknown>;
-  const useStoryblokLayout = siteConfig.use_storyblok_layout === true;
-  const navbarConfig = useStoryblokLayout ? parseNavbarConfig(siteConfig) : null;
-  const footerConfig = useStoryblokLayout ? parseFooterConfig(siteConfig) : null;
-  const scriptBuckets = parseSiteScriptBuckets(siteConfig);
+  const scriptBuckets = parseSiteScriptBuckets(undefined);
   const { always: scriptsAlways, gated: scriptsGated } = splitSiteScriptBucketsByConsent(scriptBuckets);
-  const cookieBannerCopy = parseCookieBannerCopy(siteConfig);
-  const brandLogos = parseSiteBrandLogos(siteConfig);
+  const cookieBannerCopy = parseCookieBannerCopy(undefined);
 
   return (
     <html
@@ -156,20 +145,18 @@ export default async function RootLayout({
           <SiteStructuredData />
           <ThemeProvider>
             <MotionConfigProvider>
-            <StoryblokProvider>
               <SiteScripts entries={scriptsAlways.after_interactive} />
               <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
               {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
               <div className="flex min-h-full flex-1 flex-col">
                 <HashScrollRestorer />
-                <Navbar config={navbarConfig} brandLogos={brandLogos} />
+                <Navbar config={null} brandLogos={null} />
                 <main className="min-h-0 w-full flex-1">{children}</main>
-                <Footer config={footerConfig} brandLogos={brandLogos} />
+                <Footer config={null} brandLogos={null} />
               </div>
               <SiteScripts entries={scriptsAlways.lazy_onload} />
               <ConsentGatedSiteScripts entries={scriptsGated.lazy_onload} />
               <CookieConsent copy={cookieBannerCopy} />
-            </StoryblokProvider>
             </MotionConfigProvider>
           </ThemeProvider>
         </MarketingScriptsGateProvider>

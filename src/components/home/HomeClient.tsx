@@ -15,7 +15,7 @@ import { Transformation, type TransformationContent } from "@/components/home/se
 import { HowItWorks, type HowItWorksContent } from "@/components/home/sections/HowItWorks";
 import { StatsSection } from "@/components/home/sections/StatsSection";
 import { Pricing, type PricingContent } from "@/components/home/sections/Pricing";
-import { MARQUEE_LOGO_ORDER } from "@/lib/home-storyblok-media";
+import { MARQUEE_LOGO_ORDER } from "@/lib/marquee-logos";
 import {
   DEFAULT_INTEGRATION_PARTNER_LABELS,
   MARKETING_STACK_LOGOS,
@@ -69,10 +69,10 @@ export interface HomeContentPreset {
   ctaPrimaryHref?: string;
   ctaSecondaryLabel?: string;
   ctaSecondaryHref?: string;
-  /** Storyblok `home_hero_background_image` or default `/hero-bg.png`. */
+  /** Optional hero background image URL, or default `/hero-bg.png`. */
   heroBackgroundImageUrl?: string;
   heroBackgroundImageAlt?: string;
-  /** Storyblok `home_brand_icon` or default `/logo-icon.png` (hub center, bento mocks). */
+  /** Optional brand icon URL for hub / bento mocks, or default `/logo-icon.png`. */
   brandIconUrl?: string;
   brandIconAlt?: string;
   /** Set when editors add `home_marquee_logo` bloks (marquee order). */
@@ -427,7 +427,7 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
     <section className="relative overflow-hidden pt-32 pb-24 px-4 flex flex-col items-center">
       {/* Background: pastel in light mode, deep navy with subtle glow in dark */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Default hero-bg.png; override via Storyblok `home_hero_background_image`. */}
+        {/* Default hero-bg.png; optional override via `content.heroBackgroundImageUrl`. */}
         <Image
           src={heroBg}
           alt={heroBgAlt}
