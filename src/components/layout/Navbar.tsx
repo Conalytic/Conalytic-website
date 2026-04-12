@@ -11,6 +11,7 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn, isExternalNavigationHref } from "@/lib/utils";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/storyblok";
+import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 
 const fallbackNavigation: SiteConfigLink[] = [
   { label: "Home", href: "/" },
@@ -50,12 +51,12 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
 
   const navigation = config?.links?.length ? config.links : fallbackNavigation;
   const loginLabel = config?.loginLabel || "Login";
-  const loginHref = config?.loginHref || "https://app.conalytic.com/login";
+  const loginHref = config?.loginHref || CHAT_APP_LOGIN_URL;
   const primaryCtaLabel = config?.primaryCtaLabel || "Book A Demo";
-  const primaryCtaHref = config?.primaryCtaHref || "/contact";
+  const primaryCtaHref = config?.primaryCtaHref || MARKETING_CONTACT_PATH;
   const primaryCtaIsExternal = isExternalNavigationHref(primaryCtaHref);
   const navLogoLight = brandLogos?.navbarLogoLight ?? "/logo.png";
-  const navLogoDark = brandLogos?.navbarLogoDark ?? "/logo-white.png";
+  const navLogoDark = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
   const navLogoAlt = brandLogos?.navbarLogoAlt ?? "Conalytic";
 
   useEffect(() => {

@@ -10,6 +10,8 @@ import { parseHomeMarqueeLogoBloks } from "@/lib/home-storyblok-media";
 import { getPageMetadata } from "@/lib/storyblok-page";
 import { storyblokImageSrc } from "@/lib/storyblok-asset";
 import { getPageStory } from "@/lib/storyblok-server";
+import { CHAT_APP_HOSTNAMES } from "@/lib/app-urls";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 /* Always resolve Storyblok at request time so production uses Vercel env and CMS edits show up (avoids stale static shell from build-time null fetch). */
 export const dynamic = "force-dynamic";
@@ -24,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const base = await getPageMetadata("/", fallbackMetadata);
   return {
     ...base,
-    alternates: { canonical: "https://conalytic.com/" },
+    alternates: { canonical: `${SITE_ORIGIN}/` },
   };
 }
 
@@ -32,13 +34,14 @@ function str(value: unknown): string | undefined {
   return typeof value === "string" && value.trim().length ? value : undefined;
 }
 
-/** Hero / closing CTA “Get started” should scroll to on-page pricing; Storyblok seed used app root/signup. */
+/** Hero / closing CTA “Get started” should scroll to on-page pricing when CMS points at product signup/home. */
 function homePrimaryCtaHrefFromCms(href: string | undefined): string | undefined {
   const raw = href?.trim();
   if (!raw) return undefined;
   try {
     const u = new URL(raw);
-    if (u.hostname !== "app.conalytic.com") return raw;
+    const host = u.hostname.replace(/^www\./i, "").toLowerCase();
+    if (!CHAT_APP_HOSTNAMES.has(host)) return raw;
     const path = (u.pathname.replace(/\/$/, "") || "/").toLowerCase();
     if (path === "/" || path === "/signup") return "#pricing";
   } catch {

@@ -12,6 +12,7 @@ import { blogPostingSchema } from "@/lib/structured-data";
 import { mergeSocialPreviewFromStoryContent } from "@/lib/storyblok";
 import { storyblokImageAlt, storyblokImageSrc, storyblokOgImageSrc } from "@/lib/storyblok-asset";
 import { getBlogStoryByPublicSlug } from "@/lib/storyblok-server";
+import { SITE_ORIGIN } from "@/lib/seo-config";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     (content.description as string) ||
     "";
 
-  const canonical = `https://conalytic.com/${slug}`;
+  const canonical = `${SITE_ORIGIN}/${slug}`;
 
   return mergeSocialPreviewFromStoryContent(content, {
     title: `${title} – Conalytic Blog`,
@@ -68,7 +69,7 @@ export default async function PublicBlogPage({ params }: Props) {
   const readTime = (content.read_time as string) || (content.readTime as string) || "";
   const excerpt = (content.excerpt as string) || "";
   const richText = content.body_rich_text || content.content;
-  const canonicalUrl = `https://conalytic.com/${slug}`;
+  const canonicalUrl = `${SITE_ORIGIN}/${slug}`;
   const published = story.first_published_at || story.published_at;
   const ldDescription =
     (content.seo_description as string) || excerpt || (content.description as string) || title;

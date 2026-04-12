@@ -3,6 +3,10 @@
  */
 import type { Metadata } from "next";
 import { storyblokImageSrc, storyblokOgImageSrc } from "@/lib/storyblok-asset";
+import {
+  CHAT_APP_LOGIN_URL,
+  MARKETING_CONTACT_PATH,
+} from "@/lib/app-urls";
 
 export interface StoryblokOptions {
   version?: "draft" | "published";
@@ -214,8 +218,8 @@ export function parseNavbarConfig(content: Record<string, unknown> | undefined):
     return null;
   }
 
-  const login = resolveStoryblokLink(content.navbar_login_link, "https://app.conalytic.com/login");
-  const primary = resolveStoryblokLink(content.navbar_primary_cta_link, "/contact");
+  const login = resolveStoryblokLink(content.navbar_login_link, CHAT_APP_LOGIN_URL);
+  const primary = resolveStoryblokLink(content.navbar_primary_cta_link, MARKETING_CONTACT_PATH);
 
   return {
     links,

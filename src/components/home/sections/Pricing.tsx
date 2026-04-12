@@ -1,49 +1,50 @@
 "use client";
 
-/** Home pricing tiers; enterprise path points to `/contact`; monthly framing per product copy. */
+/** Home pricing: Pro → chat signup; Enterprise → marketing contact. */
 import Link from "next/link";
 import { motion } from "framer-motion";
+import {
+  SAAS_EASE as EASE,
+  staggerContainer,
+  fadeUpChild,
+  viewportOnce,
+  springCard,
+} from "@/lib/motion";
+import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 
-const EASE = [0.22, 1, 0.36, 1] as const;
+type PlanPrice = { kind: "free" } | { kind: "custom" };
 
-const PLANS = [
-  {
-    id: "plus",
-    name: "Conalytic Plus",
-    badge: null,
-    monthlyPrice: 20,
-    description: "Perfect for individuals and small teams starting with AI-powered analytics.",
-    features: [
-      "Up to 3 users",
-      "Connect 2 data sources",
-      "500 queries / month",
-      "GA4 & Google Ads",
-      "Email support",
-      "7-day data history",
-    ],
-    cta: "Get started",
-    ctaHref: "https://app.conalytic.com/signup",
-    featured: false,
-    isEnterprise: false,
-  },
+const PLANS: Array<{
+  id: string;
+  name: string;
+  badge: string | null;
+  price: PlanPrice;
+  description: string;
+  features: string[];
+  cta: string;
+  ctaHref: string;
+  featured: boolean;
+  isEnterprise: boolean;
+}> = [
   {
     id: "pro",
     name: "Conalytic Pro",
     badge: "Most Popular",
-    monthlyPrice: 50,
-    description: "For growing teams that need unlimited analytics and deeper integrations.",
+    price: { kind: "free" },
+    description:
+      "Start free: create an account and get tokens to use Conalytic. Queries consume tokens; when you run low, purchase a top-up and keep going.",
     features: [
-      "Up to 15 users",
-      "Connect unlimited sources",
-      "Unlimited queries",
-      "All integrations + BigQuery",
-      "Priority support + Slack",
+      "Free signup tokens — 252,631",
+      "Connect up to 4 platforms",
+      "Usage-based queries",
+      "Top-up available",
+      "Priority support",
       "12-month data history",
       "Custom dashboards",
       "Advanced AI models",
     ],
     cta: "Get started",
-    ctaHref: "https://app.conalytic.com/signup",
+    ctaHref: CHAT_APP_SIGNUP_URL,
     featured: true,
     isEnterprise: false,
   },
@@ -51,8 +52,8 @@ const PLANS = [
     id: "enterprise",
     name: "Conalytic Enterprise",
     badge: null,
-    monthlyPrice: null,
-    description: "Custom solutions for large organizations with complex data infrastructure needs.",
+    price: { kind: "custom" },
+    description: "Custom solutions for large organizations with complex data, security, and deployment needs.",
     features: [
       "Unlimited users",
       "Dedicated infrastructure",
@@ -64,7 +65,7 @@ const PLANS = [
       "On-premise deployment",
     ],
     cta: "Raise a Quote",
-    ctaHref: "/contact",
+    ctaHref: MARKETING_CONTACT_PATH,
     featured: false,
     isEnterprise: true,
   },
@@ -81,13 +82,13 @@ export function Pricing({ content }: { content?: PricingContent }) {
       id="pricing"
       className="scroll-mt-28 py-12 md:py-24 px-4 bg-white dark:bg-[#0C0C12]"
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-4xl mx-auto">
 
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.6, ease: EASE }}
           className="text-center mb-12"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
@@ -98,14 +99,20 @@ export function Pricing({ content }: { content?: PricingContent }) {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5 items-stretch">
-          {PLANS.map((plan, i) => (
+        <motion.div
+          className="grid md:grid-cols-2 gap-5 items-stretch"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+        >
+          {PLANS.map((plan) => (
             <motion.div
               key={plan.id}
-              initial={{ opacity: 1, y: 0 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.08 }}
-              transition={{ duration: 0.65, delay: i * 0.1, ease: EASE }}
+              variants={fadeUpChild}
+              layout
+              whileHover={{ y: -5, transition: springCard }}
+              whileTap={{ scale: 0.992 }}
               className={`relative rounded-2xl p-7 flex flex-col ${
                 plan.featured
                   ? "bg-white dark:bg-[#16161D] border-2 border-brand-500 dark:border-brand-500/50 shadow-xl shadow-brand-500/10 dark:shadow-brand-500/15"
@@ -124,19 +131,13 @@ export function Pricing({ content }: { content?: PricingContent }) {
                 {plan.name}
               </p>
 
-              <div className="flex items-end gap-1 mb-1 min-h-[56px]">
-                {plan.isEnterprise ? (
-                  <div className="flex flex-col justify-center">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white leading-tight">Custom</span>
-                    <span className="text-xs text-gray-400 dark:text-white/40 mt-1">tailored to your needs</span>
-                  </div>
+              <div className="mb-1 min-h-[44px] flex flex-col justify-center">
+                {plan.price.kind === "custom" ? (
+                  <span className="text-3xl font-bold text-gray-900 dark:text-white leading-tight">Custom</span>
                 ) : (
-                  <>
-                    <span className="text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      ${plan.monthlyPrice}
-                    </span>
-                    <span className="text-sm text-gray-400 dark:text-white/40 mb-2">/mo</span>
-                  </>
+                  <span className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">
+                    Free signup
+                  </span>
                 )}
               </div>
 
@@ -192,7 +193,7 @@ export function Pricing({ content }: { content?: PricingContent }) {
               )}
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

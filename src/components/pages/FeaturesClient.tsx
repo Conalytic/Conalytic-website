@@ -13,6 +13,9 @@ const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transi
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
+/** Fixed height so every feature card’s mockup + text block line up across the row */
+const BENTO_VISUAL_H = "h-[268px]";
+
 /* ═══════════════════════════════════════════════
    BENTO CARD MINI-VISUALS
 ═══════════════════════════════════════════════ */
@@ -20,7 +23,7 @@ const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0
 /** 1 · Conversational Analytics — mini chat Q&A */
 function ConversationalVisual() {
   return (
-    <div className="w-full h-full flex flex-col gap-2 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col gap-1.5 overflow-hidden p-0.5">
       {/* User query */}
       <div className="flex justify-end">
         <div className="flex items-end gap-1.5 max-w-[85%]">
@@ -73,7 +76,7 @@ function AIInsightsVisual() {
   const max = Math.max(...SPARK);
   const pts = SPARK.map((v,i)=>`${(i/(SPARK.length-1))*100},${100-(v/max)*80}`).join(" ");
   return (
-    <div className="w-full h-full flex flex-col gap-2 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col gap-1.5 overflow-hidden p-0.5">
       {/* Sparkline chart */}
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 border border-gray-100 dark:border-white/[0.05]">
         <div className="flex items-center justify-between mb-2">
@@ -115,7 +118,7 @@ function ReportBuilderVisual() {
     { w:"w-full", h:"h-4",   bg:"bg-violet-50 dark:bg-violet-500/10", text:"AI Commentary" },
   ];
   return (
-    <div className="w-full h-full flex flex-col gap-1.5 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col gap-1 overflow-hidden p-0.5">
       {/* Toolbar */}
       <div className="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 dark:bg-white/[0.04] rounded-lg border border-gray-100 dark:border-white/[0.05] mb-1">
         {["Text","Chart","KPI","AI"].map(t=>(
@@ -164,7 +167,7 @@ function DataSyncVisual() {
     { name: "GSC",  label: "GSC",  src: L.googleSearchConsole },
   ];
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center gap-3 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col items-center justify-center gap-2 overflow-hidden p-0.5">
       {/* Sources row */}
       <div className="flex items-center gap-2 w-full justify-center">
         {sources.map(s=>(
@@ -216,42 +219,42 @@ function AutoReportingVisual() {
   const today = 16;
   const nums = Array.from({length:30},(_,i)=>i+1);
   return (
-    <div className="w-full h-full flex flex-col gap-2 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col gap-1 overflow-hidden p-0.5">
       {/* Month header */}
-      <div className="flex items-center justify-between">
-        <span className="text-[10px] font-black text-gray-700 dark:text-white/80">July 2025</span>
-        <span className="text-[9px] text-pink-600 dark:text-pink-400 font-semibold bg-pink-50 dark:bg-pink-500/10 border border-pink-100 dark:border-pink-500/20 px-2 py-0.5 rounded-full">Auto-schedule on</span>
+      <div className="flex shrink-0 items-center justify-between">
+        <span className="text-[9px] font-black text-gray-700 dark:text-white/80">July 2025</span>
+        <span className="text-[8px] text-pink-600 dark:text-pink-400 font-semibold bg-pink-50 dark:bg-pink-500/10 border border-pink-100 dark:border-pink-500/20 px-1.5 py-0.5 rounded-full">Auto-schedule</span>
       </div>
       {/* Day headers */}
-      <div className="grid grid-cols-7 gap-0.5">
+      <div className="grid shrink-0 grid-cols-7 gap-px">
         {days.map((d, i) => (
-          <span key={`cal-h-${i}`} className="text-[7px] text-center text-gray-400 dark:text-white/30 font-semibold">{d}</span>
+          <span key={`cal-h-${i}`} className="text-[6px] text-center text-gray-400 dark:text-white/30 font-semibold">{d}</span>
         ))}
       </div>
-      {/* Calendar grid */}
-      <div className="grid grid-cols-7 gap-0.5">
+      {/* Calendar grid — compact cells so row height matches other cards */}
+      <div className="grid min-h-0 flex-1 grid-cols-7 gap-px overflow-hidden">
         {nums.map(n=>{
           const isSent = sent.includes(n);
           const isToday = n===today;
           return (
-            <div key={n} className={`aspect-square rounded flex items-center justify-center text-[7px] font-semibold relative
-              ${isToday ? "bg-pink-600 text-white rounded-lg" :
+            <div key={n} className={`flex min-h-[14px] items-center justify-center rounded text-[6px] font-semibold relative
+              ${isToday ? "bg-pink-600 text-white" :
                 isSent ? "bg-pink-50 dark:bg-pink-500/10 text-pink-600 dark:text-pink-400" :
                 "text-gray-400 dark:text-white/25"}`}>
               {n}
-              {isSent && !isToday && <span className="absolute -top-0.5 -right-0.5 w-1 h-1 rounded-full bg-pink-500"/>}
+              {isSent && !isToday && <span className="absolute -right-px -top-px h-0.5 w-0.5 rounded-full bg-pink-500"/>}
             </div>
           );
         })}
       </div>
       {/* Next scheduled */}
-      <div className="flex items-center gap-2 bg-pink-50 dark:bg-pink-500/10 border border-pink-100 dark:border-pink-500/20 rounded-xl px-2.5 py-2 mt-auto">
-        <Calendar className="w-3.5 h-3.5 text-pink-500 shrink-0"/>
-        <div>
-          <p className="text-[9px] font-bold text-gray-700 dark:text-white/75">Next report: Jul 18</p>
-          <p className="text-[8px] text-gray-400 dark:text-white/40">Monthly Performance · Auto-send</p>
+      <div className="mt-auto flex shrink-0 items-center gap-1.5 rounded-lg border border-pink-100 bg-pink-50 px-2 py-1.5 dark:border-pink-500/20 dark:bg-pink-500/10">
+        <Calendar className="h-3 w-3 shrink-0 text-pink-500"/>
+        <div className="min-w-0 text-left">
+          <p className="text-[8px] font-bold text-gray-700 dark:text-white/75">Next: Jul 18</p>
+          <p className="text-[7px] text-gray-400 dark:text-white/40">Auto-send</p>
         </div>
-        <CheckCircle2 className="w-3.5 h-3.5 text-pink-500 ml-auto shrink-0"/>
+        <CheckCircle2 className="ml-auto h-3 w-3 shrink-0 text-pink-500"/>
       </div>
     </div>
   );
@@ -266,7 +269,7 @@ function SecurityVisual() {
     { label:"SSO / MFA",         status:"active",     icon:"👤" },
   ];
   return (
-    <div className="w-full h-full flex flex-col gap-2 p-1">
+    <div className="flex h-full min-h-0 w-full flex-col gap-1.5 overflow-hidden p-0.5">
       {/* Shield badge */}
       <div className="flex items-center gap-2 bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 rounded-xl px-3 py-2.5">
         <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center shrink-0">
@@ -484,11 +487,14 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                 {/* Gradient glow corner */}
                 <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full bg-gradient-to-br ${card.glow} blur-2xl opacity-80 pointer-events-none`}/>
                 {/* Visual area */}
-                <div className="relative z-10 flex min-h-[200px] shrink-0 flex-col border-b border-gray-100 p-4 dark:border-white/[0.06]">
-                  <card.Visual/>
+                <div
+                  className={`relative z-10 ${BENTO_VISUAL_H} shrink-0 overflow-hidden border-b border-gray-100 p-4 dark:border-white/[0.06]`}>
+                  <div className="h-full min-h-0 w-full">
+                    <card.Visual />
+                  </div>
                 </div>
-                {/* Text area — equal-height cards; title + copy centered */}
-                <div className="relative z-10 flex flex-1 flex-col items-center justify-center p-5 text-center">
+                {/* Text area — starts at same baseline across each row once visuals are fixed-height */}
+                <div className="relative z-10 flex flex-1 flex-col items-center justify-start px-5 pb-6 pt-6 text-center">
                   <div className={`mb-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg border ${card.border} bg-gradient-to-br ${card.glow}`}>
                     <card.icon className="w-3.5 h-3.5 text-gray-600 dark:text-white/60"/>
                   </div>

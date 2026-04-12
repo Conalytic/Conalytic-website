@@ -14,7 +14,7 @@ interface BrowserFrameProps {
 export function BrowserFrame({
   src,
   alt,
-  url = "app.conalytic.com",
+  url = "chat.conalytic.com",
   className,
   width = 1200,
   height = 750,

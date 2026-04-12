@@ -25,6 +25,10 @@ import {
   MarketingScriptsGateProvider,
 } from "@/components/layout/MarketingScriptConsentGate";
 import { getSiteConfigStory } from "@/lib/storyblok-server";
+import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
+import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
+
+const seoIndexable = allowSearchIndexing();
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,7 +51,7 @@ const robotoSlab = Roboto_Slab({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://conalytic.com"),
+  metadataBase: new URL(SITE_ORIGIN),
   icons: {
     icon: "/favicon.png",
     apple: "/favicon.png",
@@ -57,53 +61,71 @@ export const metadata: Metadata = {
     template: "%s | Conalytic",
   },
   description:
-    "Transform your marketing analytics with AI-powered conversations. Ask questions in plain English and get instant insights from GA4, Google Ads, Meta, and Search Console. No SQL required.",
+    "Conalytic is conversational analytics for marketers: connect GA4, Google Ads, Meta & Search Console, ask questions in plain English, get answers without SQL. Free signup with tokens.",
   keywords: [
     "conversational analytics",
-    "AI analytics",
-    "marketing analytics",
-    "GA4 analytics",
-    "Google Ads insights",
+    "AI marketing analytics",
+    "natural language analytics",
+    "GA4",
+    "Google Analytics 4",
+    "Google Ads analytics",
     "Meta Ads analytics",
-    "report builder",
+    "Search Console insights",
+    "marketing intelligence platform",
+    "no-code analytics",
+    "BigQuery marketing",
+    "B2B SaaS analytics",
+    "India marketing analytics",
+    "Pune SaaS",
     "automated reporting",
-    "BigQuery",
-    "marketing intelligence",
+    "AI report builder",
   ],
-  authors: [{ name: "Conalytic" }],
+  authors: [{ name: "Conalytic", url: SITE_ORIGIN }],
   creator: "Conalytic",
+  publisher: "Conalytic",
+  category: "technology",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://conalytic.com",
+    url: SITE_ORIGIN,
     siteName: "Conalytic",
-    title: "Conalytic – AI-Powered Conversational Analytics Platform",
+    title: "Conalytic – Conversational Analytics for Marketing Teams",
     description:
-      "Ask questions in plain English and get instant insights from your marketing data. No SQL required.",
+      "Query GA4, Google Ads, Meta & Search Console in plain English. Free signup, token-based usage, optional top-ups.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Conalytic – Conversational Analytics",
+        alt: "Conalytic – conversational analytics platform",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Conalytic – AI-Powered Analytics",
-    description: "Conversational analytics for marketing teams. GA4, Google Ads, Meta, and more.",
+    title: "Conalytic – AI-Powered Marketing Analytics",
+    description:
+      "Ask your marketing data questions in plain English. GA4, Google Ads, Meta, Search Console — no SQL.",
     creator: "@conalytic",
     images: ["/og-image.png"],
   },
-  robots: {
-    index: false,
-    follow: false,
-    googleBot: {
-      index: false,
-      follow: false,
-    },
-  },
+  robots: seoIndexable
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      }
+      : {
+        index: false,
+        follow: false,
+        googleBot: { index: false, follow: false },
+      },
 };
 
 export default async function RootLayout({
@@ -133,6 +155,7 @@ export default async function RootLayout({
           <ConsentGatedSiteScripts entries={scriptsGated.before_interactive} />
           <SiteStructuredData />
           <ThemeProvider>
+            <MotionConfigProvider>
             <StoryblokProvider>
               <SiteScripts entries={scriptsAlways.after_interactive} />
               <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
@@ -147,6 +170,7 @@ export default async function RootLayout({
               <ConsentGatedSiteScripts entries={scriptsGated.lazy_onload} />
               <CookieConsent copy={cookieBannerCopy} />
             </StoryblokProvider>
+            </MotionConfigProvider>
           </ThemeProvider>
         </MarketingScriptsGateProvider>
       </body>

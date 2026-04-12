@@ -2,9 +2,8 @@
 
 /** “The turning point” before/after metrics block; tuned for mobile spacing with following home sections. */
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { motion, useReducedMotion } from "framer-motion";
+import { SAAS_EASE as EASE, viewportOnce } from "@/lib/motion";
 
 const BEFORE = [
   { label: "Hours to get a report",  value: "8h avg",   pct: 85 },
@@ -34,6 +33,7 @@ export interface TransformationContent {
 export function Transformation({ content }: { content?: TransformationContent }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
@@ -53,10 +53,10 @@ export function Transformation({ content }: { content?: TransformationContent })
 
         {/* Eyebrow + Title */}
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
           className="text-center mb-14"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-white/60 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 backdrop-blur-sm mb-4">
@@ -73,10 +73,10 @@ export function Transformation({ content }: { content?: TransformationContent })
 
           {/* ── BEFORE card ── */}
           <motion.div
-            initial={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: reduceMotion ? 0 : -32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, ease: EASE }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.65, ease: EASE }}
             className="relative rounded-3xl overflow-hidden"
           >
             {/* Glass background */}
@@ -130,10 +130,10 @@ export function Transformation({ content }: { content?: TransformationContent })
 
           {/* ── AFTER card ── */}
           <motion.div
-            initial={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: reduceMotion ? 0 : 32 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.65, delay: 0.12, ease: EASE }}
             className="relative rounded-3xl overflow-hidden"
           >
             {/* Glass background */}

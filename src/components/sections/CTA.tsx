@@ -3,8 +3,15 @@
 /** Footer-adjacent CTA with line-chart demo + key finding; primary button respects external vs internal hrefs. */
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
+import {
+  SAAS_EASE,
+  staggerContainer,
+  fadeUpChild,
+  viewportOnce,
+} from "@/lib/motion";
 
 const MONTHS = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
 
@@ -233,7 +240,13 @@ export function CTA({
   return (
     <section className="py-8 md:py-16 px-4">
       <div className="max-w-5xl mx-auto">
-        <div className="relative rounded-3xl border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50">
+        <motion.div
+          className="relative rounded-3xl border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50"
+          initial={{ opacity: 0, y: 32, scale: 0.985 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.7, ease: SAAS_EASE }}
+        >
 
           <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
             <div className="absolute inset-0 dark:hidden">
@@ -331,15 +344,27 @@ export function CTA({
               </div>
             </div>
 
-            <h2 className="text-3xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4 leading-tight tracking-tight">
+            <motion.h2
+              className="text-3xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4 leading-tight tracking-tight"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.55, delay: 0.05, ease: SAAS_EASE }}
+            >
               Turn data into decisions.<br/>
               <span style={{ background:"linear-gradient(135deg,#6B5FF8,#a78bfa,#60a5fa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 In seconds, not days.
               </span>
-            </h2>
-            <p className="text-gray-500 dark:text-white/68 text-base mb-10 max-w-lg mx-auto leading-relaxed">
+            </motion.h2>
+            <motion.p
+              className="text-gray-500 dark:text-white/68 text-base mb-10 max-w-lg mx-auto leading-relaxed"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.5, delay: 0.12, ease: SAAS_EASE }}
+            >
               Join thousands of teams who replaced their entire dashboard stack with a single conversation.
-            </p>
+            </motion.p>
 
             <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
               <a
@@ -372,17 +397,23 @@ export function CTA({
               </a>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-8">
-              {STATS.map(s => (
-                <div key={s.label} className="text-center">
+            <motion.div
+              className="flex flex-wrap items-center justify-center gap-8"
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="show"
+              viewport={viewportOnce}
+            >
+              {STATS.map((s) => (
+                <motion.div key={s.label} variants={fadeUpChild} className="text-center">
                   <p className="text-xl font-black text-gray-900 dark:text-white tabular-nums">{s.value}</p>
                   <p className="text-[11px] text-gray-400 dark:text-white/55 font-medium uppercase tracking-wider mt-0.5">{s.label}</p>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
           </div>
-        </div>
+        </motion.div>
       </div>
 
       <style>{`

@@ -3,21 +3,20 @@
  */
 import type { NextConfig } from "next";
 import path from "path";
+import { allowSearchIndexing } from "./src/lib/seo-config";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Robots-Tag", value: "noindex, nofollow" },
-          // Storyblok Visual Editor loads the site in an iframe (see frame-ancestors).
-          { key: "Content-Security-Policy", value: "frame-ancestors https://app.storyblok.com" },
-        ],
-      },
+    const headers: { key: string; value: string }[] = [
+      // Storyblok Visual Editor loads the site in an iframe (see frame-ancestors).
+      { key: "Content-Security-Policy", value: "frame-ancestors https://app.storyblok.com" },
     ];
+    if (!allowSearchIndexing()) {
+      headers.unshift({ key: "X-Robots-Tag", value: "noindex, nofollow" });
+    }
+    return [{ source: "/:path*", headers }];
   },
   eslint: {
     ignoreDuringBuilds: true,

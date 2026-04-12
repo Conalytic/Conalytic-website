@@ -250,6 +250,19 @@ body {
 
 .marquee-container:hover .animate-marquee { animation-play-state: paused; }
 
+/* Respect reduced motion — CSS loops + marquee (Framer uses MotionConfig too) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-fade-in-up {
+    animation: none !important;
+  }
+  .marquee-container .animate-marquee {
+    transform: none;
+  }
+}
+
 /* ── Scroll reveal ─────────────────────────────────── */
 .reveal {
   opacity: 0;

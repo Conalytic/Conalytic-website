@@ -4,10 +4,11 @@
  * Full marketing home: hero, integrations marquee, transformation, how-it-works, stats, pricing, FAQ, CTA.
  * Content merges CMS `HomeContentPreset` with sensible defaults; FAQ defaults from `default-home-faq.ts`.
  */
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { BarChart3, Settings2, Zap } from "lucide-react";
 import { Accordion } from "@/components/ui/Accordion";
 import { CTA } from "@/components/sections/CTA";
 import { Transformation, type TransformationContent } from "@/components/home/sections/Transformation";
@@ -23,13 +24,14 @@ import {
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
+import {
+  SAAS_EASE as EASE,
+  staggerContainer as stagger,
+  fadeUpChild as fadeUp,
+  viewportOnce,
+} from "@/lib/motion";
 
 /* ─── constants ─────────────────────────────────────── */
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-/* hidden keeps opacity:1 so sections never stay invisible if whileInView/IO fails */
-const fadeUp = { hidden: { opacity: 1, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 
 type FAQItem = { question: string; answer: string };
 type TestimonialItem = { quote: string; name: string; title: string; photo: string; rating: number };
@@ -418,6 +420,7 @@ function _DashboardMockup_DELETED() {
    1. HERO
 ══════════════════════════════════════════════════════ */
 function HeroSection({ content }: { content?: HomeContentPreset }) {
+  const reduceMotion = useReducedMotion();
   const heroBg = content?.heroBackgroundImageUrl ?? "/hero-bg.png";
   const heroBgAlt = content?.heroBackgroundImageAlt ?? "";
   return (
@@ -439,6 +442,33 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
           style={{ background:"radial-gradient(ellipse 80% 55% at 50% -10%, rgba(107,95,248,0.22) 0%, transparent 70%)" }}/>
       </div>
       <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
+
+      {/* Ambient SaaS orbs — depth without clutter */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
+        <motion.div
+          className="absolute -top-[20%] left-[10%] h-[min(480px,55vw)] w-[min(480px,55vw)] rounded-full bg-brand-500/25 dark:bg-brand-500/18 blur-[100px]"
+          animate={
+            reduceMotion
+              ? undefined
+              : { scale: [1, 1.12, 1], opacity: [0.35, 0.55, 0.35] }
+          }
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute top-[30%] -right-[10%] h-[min(360px,45vw)] w-[min(360px,45vw)] rounded-full bg-violet-500/20 dark:bg-fuchsia-500/15 blur-[90px]"
+          animate={
+            reduceMotion
+              ? undefined
+              : { scale: [1.08, 1, 1.08], opacity: [0.25, 0.45, 0.25] }
+          }
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-1/2 h-[200px] w-[80%] max-w-3xl -translate-x-1/2 rounded-full bg-gradient-to-t from-brand-600/15 to-transparent dark:from-brand-500/10 blur-3xl"
+          animate={reduceMotion ? undefined : { opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
 
       <div className="relative z-10 max-w-3xl mx-auto text-center w-full">
 
@@ -495,12 +525,15 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
 
         {/* Q&A Demo — scales + blurs in, then gently floats */}
         <motion.div
-          initial={{ opacity:0, scale:0.88, y:60, filter:"blur(10px)" }}
+          initial={{ opacity:0, scale:0.92, y:48, filter:"blur(8px)" }}
           animate={{ opacity:1, scale:1, y:0, filter:"blur(0px)" }}
-          transition={{ duration:1.1, delay:0.5, ease:EASE }}
+          transition={{ duration:1, delay:0.45, ease:EASE }}
           className="w-full max-w-2xl mx-auto"
         >
-          <motion.div animate={{ y:[0,-6,0] }} transition={{ duration:8, repeat:Infinity, ease:"easeInOut" }}>
+          <motion.div
+            animate={reduceMotion ? undefined : { y: [0, -7, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+          >
             <QADemoCard />
           </motion.div>
         </motion.div>
@@ -525,11 +558,16 @@ function TrustedBySection({ content }: { content?: HomeContentPreset }) {
         <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white dark:from-navy-900 to-transparent z-10 pointer-events-none"/>
         <div className="flex animate-marquee" style={{ width:"max-content" }}>
           {[...partners, ...partners].map((logo, i) => (
-            <div key={`${logo.name}-${i}`} className="flex items-center gap-2 mx-10 opacity-40 hover:opacity-70 transition-opacity grayscale hover:grayscale-0">
+            <motion.div
+              key={`${logo.name}-${i}`}
+              whileHover={{ scale: 1.04, opacity: 0.9 }}
+              transition={{ type: "spring", stiffness: 400, damping: 25 }}
+              className="flex items-center gap-2 mx-10 opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-[opacity,filter] duration-300 cursor-default"
+            >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={logo.src} alt="" width={22} height={22} className="object-contain shrink-0" loading="lazy"/>
               <span className="text-sm font-semibold text-gray-600 dark:text-white/50 whitespace-nowrap">{logo.name}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -547,16 +585,22 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
     <section className="py-12 md:py-24 px-4 bg-white dark:bg-navy-900">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
           className="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
         >
           {content?.servicesTitleLine1 || "Discover our range of tailored"}<br/>{content?.servicesTitleLine2 || "analytics services"}
         </motion.h2>
 
-        <motion.div className="grid grid-cols-6 gap-4" initial="show" animate="show" variants={stagger}>
+        <motion.div
+          className="grid grid-cols-6 gap-4"
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+        >
 
           {/* Card 1 — soft peach, col-span-3 */}
           <motion.div variants={fadeUp}
@@ -764,20 +808,40 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
    4. CAPABILITIES (SPLIT LAYOUT)
 ══════════════════════════════════════════════════════ */
 function CapabilitiesSection() {
+  const reduceMotion = useReducedMotion();
+  const caps = [
+    {
+      Icon: BarChart3,
+      title: "Enhanced Data Analytics",
+      desc: "Use AI-powered insights to improve campaign performance through live marketing analytics and trend detection.",
+    },
+    {
+      Icon: Settings2,
+      title: "Smart Report Automation",
+      desc: "Streamline workflows with automation for reporting and delivery, reducing manual tasks and increasing efficiency.",
+    },
+  ] as const;
+
   return (
     <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
         {/* Left */}
         <motion.div
-          initial={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: -28 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 dark:bg-orange-500/15 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-300 text-[11px] font-bold uppercase tracking-wider mb-6">
-            🔥 Capabilities
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewportOnce}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 dark:bg-orange-500/15 border border-orange-200 dark:border-orange-500/20 text-orange-600 dark:text-orange-300 text-[11px] font-bold uppercase tracking-wider mb-6"
+          >
+            <Zap className="h-3.5 w-3.5" aria-hidden />
+            Capabilities
+          </motion.div>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight mb-4">
             Supercharge Your Analytics<br/>
             <span className="font-black">Team&apos;s Capabilities.</span>
@@ -785,28 +849,33 @@ function CapabilitiesSection() {
           <p className="text-gray-500 dark:text-white/65 mb-8 leading-relaxed">
             Empower your team with the tools and insights needed to drive smarter decisions and improve marketing performance.
           </p>
-          <div className="space-y-6">
-            {[
-              { icon:"📊", title:"Enhanced Data Analytics", desc:"Use AI-powered insights to improve campaign performance through live marketing analytics and trend detection." },
-              { icon:"⚙️", title:"Smart Report Automation", desc:"Streamline workflows with automation for reporting and delivery, reducing manual tasks and increasing efficiency." },
-            ].map(f=>(
-              <div key={f.title} className="flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-600/20 flex items-center justify-center text-xl shrink-0">{f.icon}</div>
-                <div>
-                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{f.title}</p>
-                  <p className="text-sm text-gray-500 dark:text-white/65 leading-relaxed">{f.desc}</p>
+          <motion.div
+            className="space-y-6"
+            variants={stagger}
+            initial="hidden"
+            whileInView="show"
+            viewport={viewportOnce}
+          >
+            {caps.map(({ Icon, title, desc }) => (
+              <motion.div key={title} variants={fadeUp} className="flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-600/20 flex items-center justify-center shrink-0 border border-brand-100/80 dark:border-brand-500/20">
+                  <Icon className="h-5 w-5 text-brand-600 dark:text-brand-400" aria-hidden />
                 </div>
-              </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-1">{title}</p>
+                  <p className="text-sm text-gray-500 dark:text-white/65 leading-relaxed">{desc}</p>
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Right */}
         <motion.div
-          initial={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 28 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, delay: 0.08, ease: EASE }}
           className="relative"
         >
           {/* Main visual card */}
@@ -825,7 +894,8 @@ function CapabilitiesSection() {
 
           {/* Floating stat card */}
           <motion.div
-            animate={{ y:[0,-6,0] }} transition={{ duration:5, repeat:Infinity, ease:"easeInOut" }}
+            animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -bottom-5 -left-5 bg-white dark:bg-navy-700 rounded-2xl p-4 shadow-xl border border-gray-100 dark:border-white/10"
           >
             <p className="text-[9px] text-gray-400 dark:text-white/40 mb-1">Queries today</p>
@@ -835,10 +905,13 @@ function CapabilitiesSection() {
 
           {/* Second floating card */}
           <motion.div
-            animate={{ y:[0,-4,0] }} transition={{ duration:7, repeat:Infinity, ease:"easeInOut", delay:1 }}
+            animate={reduceMotion ? undefined : { y: [0, -4, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute -top-4 -right-4 bg-white dark:bg-navy-700 rounded-xl p-3 shadow-lg border border-gray-100 dark:border-white/10 flex items-center gap-3"
           >
-            <div className="w-8 h-8 rounded-lg bg-brand-600/10 flex items-center justify-center text-brand-600 text-sm">📈</div>
+            <div className="w-8 h-8 rounded-lg bg-brand-600/10 flex items-center justify-center text-brand-600">
+              <BarChart3 className="h-4 w-4" aria-hidden />
+            </div>
             <div>
               <p className="text-[10px] font-semibold text-gray-800 dark:text-white">Analytics</p>
               <p className="text-[9px] text-gray-400 dark:text-white/35">$4,220.00</p>
@@ -938,10 +1011,10 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
           className="text-center mb-14"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
@@ -957,10 +1030,11 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
           {/* ── Pure-SVG hub diagram — zero HTML/SVG hybrid ── */}
           <motion.div
-            initial={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: EASE }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.75, ease: EASE }}
+            whileHover={{ scale: 1.01 }}
             className="w-full lg:w-[500px] shrink-0"
           >
             {/*
@@ -1100,11 +1174,12 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
           <div className="flex-1 w-full space-y-3">
             {hubRows.map((item, i) => (
               <motion.div key={item.id}
-                initial={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.5, delay: i * 0.08, ease: EASE }}
-                className={`flex items-center gap-4 p-4 rounded-2xl border transition-all duration-200 cursor-default group hover:shadow-sm dark:hover:border-white/[0.12] ${
+                viewport={viewportOnce}
+                transition={{ duration: 0.45, delay: i * 0.07, ease: EASE }}
+                whileHover={{ x: -2, transition: { duration: 0.2 } }}
+                className={`flex items-center gap-4 p-4 rounded-2xl border transition-shadow duration-200 cursor-default group hover:shadow-md dark:hover:border-white/[0.12] ${
                   item.connected
                     ? "bg-white dark:bg-[#16161D] border-gray-100 dark:border-white/[0.07]"
                     : "bg-gray-50/80 dark:bg-[#131318] border-gray-100/70 dark:border-white/[0.05]"
@@ -1138,7 +1213,12 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               </motion.div>
             ))}
 
-            <motion.div initial={{ opacity: 1 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.05 }} transition={{ duration: 0.6, delay: 0.5 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={viewportOnce}
+              transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
+            >
               <Link href="/integrations"
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-700 font-semibold transition-colors mt-1"
                 aria-label="View all integrations"
@@ -1178,10 +1258,10 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
     <section className="py-12 md:py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
@@ -1270,20 +1350,20 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
     <section id="faq" className="py-12 md:py-24 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.7, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.65, ease: EASE }}
           className="text-center mb-12"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">{content?.faqTitle || "Frequently asked questions"}</h2>
           <p className="text-gray-500 dark:text-white/65">{content?.faqSubtitle || "Everything you need to know about Conalytic."}</p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
+          viewport={viewportOnce}
+          transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
         >
           <Accordion items={faqs}/>
         </motion.div>

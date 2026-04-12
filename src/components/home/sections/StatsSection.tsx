@@ -2,6 +2,8 @@
 
 /** Animated stat counters for social proof on the home page. */
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { staggerContainer, fadeUpChild, viewportOnce } from "@/lib/motion";
 
 const STATS = [
   { end: 2000, suffix: "+",  label: "teams using Conalytic", decimal: false },
@@ -57,11 +59,20 @@ export function StatsSection() {
 
   return (
     <section className="py-10 md:py-20 px-4 border-y border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#0E0E14]">
-      <div ref={ref} className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 divide-x divide-gray-100 dark:divide-white/[0.06]">
-        {STATS.map(s => (
-          <StatItem key={s.label} {...s} active={active} />
+      <motion.div
+        ref={ref}
+        className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 divide-x divide-gray-100 dark:divide-white/[0.06]"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={viewportOnce}
+      >
+        {STATS.map((s) => (
+          <motion.div key={s.label} variants={fadeUpChild} className="flex justify-center">
+            <StatItem {...s} active={active} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

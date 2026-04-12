@@ -208,7 +208,7 @@ async function main() {
         { _uid: uid(), component: "nav_link", label: "Blogs", link: link("/blogs") }
       ],
       navbar_login_label: "Login",
-      navbar_login_link: link("https://app.conalytic.com/login", "_blank"),
+      navbar_login_link: link("https://chat.conalytic.com/login", "_blank"),
       navbar_primary_cta_label: "Book A Demo",
       navbar_primary_cta_link: link("/contact"),
       footer_email: "admin@conalytic.com",
