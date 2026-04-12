@@ -5,6 +5,7 @@
  */
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { Mail, MapPin, Phone, Calendar } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
@@ -36,6 +37,7 @@ export interface ContactContentPreset {
 }
 
 export function ContactClient({ content }: { content?: ContactContentPreset }) {
+  const router = useRouter();
   const heroBadge = content?.heroBadge ?? "Get in Touch";
   const heroTitleLine1 = content?.heroTitleLine1 ?? "We're Here to";
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Help!";
@@ -67,9 +69,15 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
       return;
     }
     setLoading(true);
-    window.setTimeout(() => {
+    /* Open Google Calendar in a new tab (must be synchronous — delayed window.open is often blocked).
+       Main tab goes to our thank-you page; Google’s “Close” after booking cannot redirect to our site. */
+    const cal = window.open(SCHEDULE_CALL_URL, "_blank", "noopener,noreferrer");
+    if (cal) {
+      router.push("/contact/thank-you");
+    } else {
       window.location.assign(SCHEDULE_CALL_URL);
-    }, 350);
+    }
+    setLoading(false);
   }
 
   return (
