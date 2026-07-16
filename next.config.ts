@@ -31,8 +31,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      { source: "/privacy", destination: "https://chat.conalytic.com/privacy-and-policy", permanent: true },
-      { source: "/terms", destination: "https://chat.conalytic.com/terms-of-service", permanent: true },
+      { source: "/privacy", destination: "/privacy-and-policy", permanent: true },
+      { source: "/terms", destination: "/terms-of-service", permanent: true },
       // WordPress URL compatibility redirects
       { source: "/about", destination: "/about-us", permanent: true },
       { source: "/blog", destination: "/blogs", permanent: true },

@@ -3,6 +3,7 @@
  */
 import { MetadataRoute } from "next";
 import { STATIC_BLOG_POSTS } from "@/content/blog-posts";
+import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { allowSearchIndexing, SITE_ORIGIN } from "@/lib/seo-config";
 
 const STATIC_PATHS: MetadataRoute.Sitemap = [
@@ -17,6 +18,8 @@ const STATIC_PATHS: MetadataRoute.Sitemap = [
   { url: `${SITE_ORIGIN}/blogs`, changeFrequency: "weekly", priority: 0.85 },
   { url: `${SITE_ORIGIN}/careers`, changeFrequency: "monthly", priority: 0.75 },
   { url: `${SITE_ORIGIN}/cookies`, changeFrequency: "yearly", priority: 0.4 },
+  { url: `${SITE_ORIGIN}${PRIVACY_POLICY_PATH}`, changeFrequency: "yearly", priority: 0.5 },
+  { url: `${SITE_ORIGIN}${TERMS_OF_SERVICE_PATH}`, changeFrequency: "yearly", priority: 0.5 },
   { url: `${SITE_ORIGIN}/brand`, changeFrequency: "yearly", priority: 0.5 },
 ];
 

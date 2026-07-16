@@ -5,8 +5,9 @@
  * Renders as one column: label, headline, body, then form (for placement beside logo in footer).
  */
 import { useState } from "react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { EXTERNAL_PRIVACY_POLICY_URL } from "@/lib/legal-external-urls";
+import { PRIVACY_POLICY_PATH } from "@/lib/legal-urls";
 
 /** Compact footer field: still touch-friendly on mobile, tighter on sm+. */
 const inputClasses =
@@ -117,14 +118,12 @@ export function NewsletterSignup({ className }: { className?: string }) {
 
           <p className="mt-2 text-left text-[10px] leading-relaxed text-gray-400 dark:text-white/35">
             By subscribing you agree to our{" "}
-            <a
-              href={EXTERNAL_PRIVACY_POLICY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={PRIVACY_POLICY_PATH}
               className="underline decoration-gray-300 underline-offset-2 hover:text-brand-600 dark:decoration-white/20 dark:hover:text-brand-400"
             >
               Privacy Policy
-            </a>
+            </Link>
             .
           </p>
 

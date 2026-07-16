@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
-import { EXTERNAL_PRIVACY_POLICY_URL, EXTERNAL_TERMS_OF_SERVICE_URL } from "@/lib/legal-external-urls";
+import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 
 const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
   {
@@ -46,8 +46,8 @@ const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
 ];
 
 const fallbackLegalLinks: SiteConfigLink[] = [
-  { label: "Terms", href: EXTERNAL_TERMS_OF_SERVICE_URL },
-  { label: "Privacy", href: EXTERNAL_PRIVACY_POLICY_URL },
+  { label: "Terms", href: TERMS_OF_SERVICE_PATH },
+  { label: "Privacy", href: PRIVACY_POLICY_PATH },
   { label: "Cookies", href: "/cookies" },
 ];
 

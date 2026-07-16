@@ -42,7 +42,7 @@ Production URL: **https://conalytic.com** (`metadataBase` in `src/app/layout.tsx
 | `lib/marketing-stack-logos.ts` | Logo URLs for integration partner strip |
 | `lib/default-home-faq.ts` | Default FAQ copy (shared by UI + FAQ JSON-LD) |
 | `lib/utils.ts` | `cn()`, `isExternalNavigationHref()` |
-| `lib/legal-external-urls.ts` | Privacy & terms URLs on **chat.conalytic.com** (shared links + redirects) |
+| `lib/legal-urls.ts` | Privacy & terms paths on this site (`/privacy-and-policy`, `/terms-of-service`) |
 | `public/` | Static assets (logos, OG image, integration art) |
 
 ---
@@ -125,14 +125,14 @@ Never commit **`.env.local`** or API keys into source.
   - Blog posts: **BlogPosting** + canonical in metadata  
 - **`sitemap.ts`**: Static routes + blog URLs from `src/content/blog-posts.ts` when indexing is enabled.  
 - **`robots.ts`**: Allow `/`, disallow `/api/`, `_next` via rules; sitemap URL.  
-- **`next.config.ts`**: `poweredByHeader: false`, `compress: true`, redirects (e.g. `/privacy` / `/terms` → chat app, `/contact-us` → `/contact`, blog slug compatibility).  
+- **`next.config.ts`**: `poweredByHeader: false`, `compress: true`, redirects (e.g. `/privacy` / `/terms` → local legal pages, `/contact-us` → `/contact`, blog slug compatibility).  
 - Home and marketing routes are **static** by default unless a route opts into dynamic behavior.
 
 ---
 
 ## 10. Legal and brand
 
-- **Privacy** and **Terms** on the marketing site point to the chat app: **https://chat.conalytic.com/privacy-and-policy** and **https://chat.conalytic.com/terms-of-service** (footer, newsletter, cookies page links). **`/privacy`** and **`/terms`** still **308 redirect** there for old bookmarks and CMS links (`next.config.ts`). Constants: **`src/lib/legal-external-urls.ts`**.
+- **Privacy** and **Terms** are served on this site at **`/privacy-and-policy`** and **`/terms-of-service`** (same content/layout as the chat app). Footer, newsletter, and cookies page link locally. **`/privacy`** and **`/terms`** **308 redirect** to those paths (`next.config.ts`). Constants: **`src/lib/legal-urls.ts`**.
 - **Cookies** remains on this site at **`/cookies`**. A **`CookieConsent`** banner (first visit) stores **`essential`** vs **`all`** in **localStorage** (`src/lib/cookie-consent.ts`). The marketing site does not load third‑party marketing tags by default; **`all`** is reserved for optional analytics if you add them later.
 - **Brand** page: kit download + **mailto** / contact with `topic=brand` where applicable.
 

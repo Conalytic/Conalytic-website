@@ -7,6 +7,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { CookieConsent } from "@/components/layout/CookieConsent";
@@ -147,16 +148,16 @@ export default function RootLayout({
             <MotionConfigProvider>
               <SiteScripts entries={scriptsAlways.after_interactive} />
               <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
-              {/* Explicit column so main flex-1 works (ThemeProvider may not forward layout to body) */}
-              <div className="flex min-h-full flex-1 flex-col">
-                <HashScrollRestorer />
-                <Navbar config={null} brandLogos={null} />
-                <main className="min-h-0 w-full flex-1">{children}</main>
-                <Footer config={null} brandLogos={null} />
-              </div>
+              <HashScrollRestorer />
+              <SiteChrome
+                navbar={<Navbar config={null} brandLogos={null} />}
+                footer={<Footer config={null} brandLogos={null} />}
+                cookieConsent={<CookieConsent copy={cookieBannerCopy} />}
+              >
+                {children}
+              </SiteChrome>
               <SiteScripts entries={scriptsAlways.lazy_onload} />
               <ConsentGatedSiteScripts entries={scriptsGated.lazy_onload} />
-              <CookieConsent copy={cookieBannerCopy} />
             </MotionConfigProvider>
           </ThemeProvider>
         </MarketingScriptsGateProvider>

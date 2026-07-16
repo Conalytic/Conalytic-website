@@ -9,6 +9,7 @@
   /* Roboto = default / paragraphs; Roboto Slab = headings; Inter = nav, buttons, chrome */
   --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-roboto-slab), ui-serif, Georgia, serif;
+  --font-body: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
   --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   /* Brand palette — same in both themes */
@@ -274,6 +275,15 @@ body {
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Legal document pages (chat-app parity) ─────────── */
+.legal-scroll-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.legal-scroll-hide::-webkit-scrollbar {
+  display: none;
+}
 
 /* ── Browser frame chrome ──────────────────────────── */
 .browser-frame-dots span {

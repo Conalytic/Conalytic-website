@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { EXTERNAL_PRIVACY_POLICY_URL, EXTERNAL_TERMS_OF_SERVICE_URL } from "@/lib/legal-external-urls";
+import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 
 export type CookiesTocItem = { id: string; title: string };
 export type CookiesTypeItem = { name: string; description: string };
@@ -199,23 +199,19 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
             </div>
 
             <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-400 dark:text-white/35 pt-4">
-              <a
-                href={EXTERNAL_PRIVACY_POLICY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={PRIVACY_POLICY_PATH}
                 className="hover:text-brand-600 dark:hover:text-brand-300 transition-colors"
               >
                 Privacy Policy
-              </a>
+              </Link>
               <span>·</span>
-              <a
-                href={EXTERNAL_TERMS_OF_SERVICE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href={TERMS_OF_SERVICE_PATH}
                 className="hover:text-brand-600 dark:hover:text-brand-300 transition-colors"
               >
                 Terms of Service
-              </a>
+              </Link>
               <span>·</span>
               <Link href="/contact" className="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 Contact Us
