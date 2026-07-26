@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/page-seo";
 
 const PAGE_TITLE = "Conalytic – Marketing Analytics: Chat, KPIs & Reports";
 const PAGE_DESCRIPTION =
-  "Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free signup with token-based Pro.";
+  "Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free to start.";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildPageMetadata({

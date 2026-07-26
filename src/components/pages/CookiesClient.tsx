@@ -110,7 +110,7 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
           <aside className="lg:col-span-1">
-            <div className="sticky top-28 rounded-2xl bg-[#F6F7FE] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07] p-5">
+            <div className="sticky top-28 rounded-2xl bg-[#f0f1f5] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07] p-5">
               <p className="text-gray-400 dark:text-white/45 text-xs font-bold uppercase tracking-widest mb-4">Contents</p>
               <nav className="space-y-1">
                 {c.toc.map((s) => (
@@ -141,7 +141,7 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
                 {c.cookieTypes.map((type) => (
                   <div
                     key={type.name}
-                    className="rounded-xl border border-gray-100 dark:border-white/[0.07] bg-[#F6F7FE] dark:bg-white/[0.03] p-5"
+                    className="rounded-xl border border-gray-100 dark:border-white/[0.07] bg-[#f0f1f5] dark:bg-white/[0.03] p-5"
                   >
                     <h3 className="text-gray-900 dark:text-white font-semibold mb-2">{type.name}</h3>
                     <p className="text-gray-500 dark:text-white/60 text-sm leading-relaxed">{type.description}</p>
@@ -191,7 +191,7 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
                 {c.contactLead}{" "}
                 <a
                   href={`mailto:${c.contactEmail}`}
-                  className="text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors font-medium"
+                  className="text-brand-600 dark:text-brand-400 hover:text-brand-300 dark:hover:text-brand-300 transition-colors font-medium"
                 >
                   {c.contactEmail}
                 </a>

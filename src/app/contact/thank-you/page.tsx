@@ -12,7 +12,7 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ContactThankYouPage() {
   return (
-    <div className="min-h-[70vh] bg-[#F6F7FE] dark:bg-[#0E0E14] px-4 py-28">
+    <div className="min-h-[70vh] bg-[#f0f1f5] dark:bg-[#0E0E14] px-4 py-28">
       <div className="mx-auto max-w-lg text-center">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-500/25">
           <CheckCircle2 className="h-9 w-9 text-emerald-600 dark:text-emerald-400" aria-hidden />
@@ -42,7 +42,7 @@ export default function ContactThankYouPage() {
             href={process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "/contact"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-brand-600/25 transition hover:bg-brand-700"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-brand-500 shadow-lg shadow-brand-600/25 transition hover:bg-brand-500 hover:text-brand-600"
           >
             <Calendar className="h-4 w-4" aria-hidden />
             Open calendar again

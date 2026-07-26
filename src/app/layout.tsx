@@ -1,48 +1,25 @@
 /**
- * Root layout: typography (Roboto body, Roboto Slab headings, Inter UI chrome), metadata, providers.
+ * Root layout: Nunito Sans typography site-wide, metadata, providers.
  */
 import type { Metadata } from "next";
-import { Inter, Roboto, Roboto_Slab } from "next/font/google";
+import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { Footer } from "@/components/layout/Footer";
 import { SiteChrome } from "@/components/layout/SiteChrome";
-import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { CookieConsent } from "@/components/layout/CookieConsent";
-import {
-  parseCookieBannerCopy,
-  parseSiteScriptBuckets,
-  splitSiteScriptBucketsByConsent,
-} from "@/lib/site-layout";
-import { SiteScripts } from "@/components/layout/SiteScripts";
-import {
-  ConsentGatedSiteScripts,
-  MarketingScriptsGateProvider,
-} from "@/components/layout/MarketingScriptConsentGate";
+import { COOKIE_BANNER_DEFAULTS } from "@/lib/cookie-consent";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 
 const seoIndexable = allowSearchIndexing();
 
-const inter = Inter({
+const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-roboto",
-  display: "swap",
-});
-
-const robotoSlab = Roboto_Slab({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-roboto-slab",
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-nunito-sans",
   display: "swap",
 });
 
@@ -87,7 +64,7 @@ export const metadata: Metadata = {
     siteName: "Conalytic",
     title: "Conalytic – Chat, KPIs & Reports for Marketing Teams",
     description:
-      "Three tools in one platform: chat with GA4, Ads, GTM & Meta data; track KPI goals; build HTML report decks. Free signup with token-based Pro usage.",
+      "Three tools in one platform: chat with GA4, Ads, GTM & Meta data; track KPI goals; build HTML report decks. Free to start.",
     images: [
       {
         url: "/og-image.png",
@@ -117,7 +94,7 @@ export const metadata: Metadata = {
           "max-video-preview": -1,
         },
       }
-      : {
+    : {
         index: false,
         follow: false,
         googleBot: { index: false, follow: false },
@@ -129,38 +106,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const scriptBuckets = parseSiteScriptBuckets(undefined);
-  const { always: scriptsAlways, gated: scriptsGated } = splitSiteScriptBucketsByConsent(scriptBuckets);
-  const cookieBannerCopy = parseCookieBannerCopy(undefined);
-
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${roboto.variable} ${robotoSlab.variable} h-full`}
+      className={`dark ${nunitoSans.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col antialiased transition-colors duration-300" suppressHydrationWarning>
-        <MarketingScriptsGateProvider>
-          <SiteScripts entries={scriptsAlways.before_interactive} />
-          <ConsentGatedSiteScripts entries={scriptsGated.before_interactive} />
-          <SiteStructuredData />
-          <ThemeProvider>
-            <MotionConfigProvider>
-              <SiteScripts entries={scriptsAlways.after_interactive} />
-              <ConsentGatedSiteScripts entries={scriptsGated.after_interactive} />
-              <HashScrollRestorer />
-              <SiteChrome
-                navbar={<Navbar config={null} brandLogos={null} />}
-                footer={<Footer config={null} brandLogos={null} />}
-                cookieConsent={<CookieConsent copy={cookieBannerCopy} />}
-              >
-                {children}
-              </SiteChrome>
-              <SiteScripts entries={scriptsAlways.lazy_onload} />
-              <ConsentGatedSiteScripts entries={scriptsGated.lazy_onload} />
-            </MotionConfigProvider>
-          </ThemeProvider>
-        </MarketingScriptsGateProvider>
+      <body className="min-h-full flex flex-col font-sans antialiased" suppressHydrationWarning>
+        <SiteStructuredData />
+        <MotionConfigProvider>
+            <HashScrollRestorer />
+            <SiteChrome
+              navbar={<Navbar config={null} brandLogos={null} />}
+              footer={<Footer config={null} brandLogos={null} />}
+              cookieConsent={<CookieConsent copy={COOKIE_BANNER_DEFAULTS} />}
+            >
+              {children}
+            </SiteChrome>
+        </MotionConfigProvider>
       </body>
     </html>
   );

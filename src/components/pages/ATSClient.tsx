@@ -9,7 +9,7 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#10b981 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 55%,#10b981 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /* ── Mini visuals for ATS feature cards ─────────── */
 function CandidateSearchVisual() {
@@ -54,7 +54,7 @@ function CollabHiringVisual() {
     <div className="w-full p-3 space-y-2">
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05] mb-1">
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-violet-600 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center">
             <span className="text-[7px] font-black text-white">JD</span>
           </div>
           <div>
@@ -99,7 +99,7 @@ function HiringAnalyticsVisual() {
             <span className="text-[9px] font-bold text-gray-700 dark:text-white/70">{Math.round(s.pct*0.48)}  </span>
           </div>
           <div className="w-full bg-gray-100 dark:bg-white/[0.05] rounded-full h-1.5">
-            <div className="h-1.5 rounded-full" style={{width:`${s.pct}%`,background:`rgba(107,95,248,${0.3+i*0.15})`}}/>
+            <div className="h-1.5 rounded-full" style={{width:`${s.pct}%`,background:`rgba(201,255,51,${0.3+i*0.15})`}}/>
           </div>
         </div>
       ))}
@@ -219,9 +219,9 @@ const features = [
 ];
 
 const pipeline = [
-  { step:"01", label:"Source",    description:"Post to job boards & collect applications",        color:"from-brand-600 to-violet-600" },
-  { step:"02", label:"Screen",    description:"AI-assisted resume screening & scoring",            color:"from-violet-600 to-purple-600" },
-  { step:"03", label:"Interview", description:"Schedule and conduct structured interviews",        color:"from-purple-600 to-indigo-600" },
+  { step:"01", label:"Source",    description:"Post to job boards & collect applications",        color:"from-brand-600 to-brand-700" },
+  { step:"02", label:"Screen",    description:"AI-assisted resume screening & scoring",            color:"from-brand-700 to-brand-700" },
+  { step:"03", label:"Interview", description:"Schedule and conduct structured interviews",        color:"from-brand-700 to-indigo-600" },
   { step:"04", label:"Evaluate",  description:"Team scorecards and collaborative decisions",       color:"from-indigo-600 to-blue-600" },
   { step:"05", label:"Offer",     description:"Send offers and collect e-signatures",              color:"from-blue-600 to-cyan-600" },
   { step:"06", label:"Onboard",   description:"Seamless transition from hire to team member",     color:"from-cyan-600 to-emerald-600" },
@@ -278,7 +278,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
             </a>
             <a href="/contact"
@@ -290,7 +290,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       </section>
 
       {/* ── FEATURES ────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">ATS Capabilities</span>
@@ -322,7 +322,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
 
       {/* ── PIPELINE ────────────────────────────────── */}
       <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 70% 60% at 50% 100%, rgba(107,95,248,0.08) 0%, transparent 70%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-16">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Hiring Pipeline</span>
@@ -348,7 +348,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       </section>
 
       {/* ── STATS ───────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[

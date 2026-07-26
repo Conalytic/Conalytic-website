@@ -1,0 +1,68 @@
+"use client";
+
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+export function DemoFrame({
+  children,
+  className,
+  float = true,
+  glow = true,
+  embedded = false,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  float?: boolean;
+  glow?: boolean;
+  embedded?: boolean;
+}) {
+  if (embedded) {
+    return (
+      <div className={cn("flex h-full w-full items-center justify-center", className)}>
+        <div className="flex h-full w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#14141B] shadow-lg">
+          {children}
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 32, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.75, ease: EASE }}
+      className={cn("relative", className)}
+    >
+      {glow ? <div className="absolute -inset-6 rounded-[2rem] bg-brand-500/15 blur-3xl" aria-hidden /> : null}
+      <motion.div
+        animate={float ? { y: [0, -8, 0] } : undefined}
+        transition={float ? { duration: 6, repeat: Infinity, ease: "easeInOut" } : undefined}
+        className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#14141B]/95 shadow-2xl shadow-black/50 backdrop-blur-md"
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
+}
+
+export function DemoHeader({
+  title,
+  badge,
+}: {
+  title: string;
+  badge?: string;
+}) {
+  return (
+    <div className="flex items-center justify-between border-b border-white/[0.08] px-4 py-3 sm:px-5">
+      <span className="text-xs font-bold text-white sm:text-sm">{title}</span>
+      {badge ? (
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2 py-0.5 text-[9px] font-semibold text-emerald-300">
+          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+          {badge}
+        </span>
+      ) : null}
+    </div>
+  );
+}

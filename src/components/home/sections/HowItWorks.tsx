@@ -127,7 +127,7 @@ function Panel2() {
         {CHART_BARS.map(({ lbl, h, val }) => (
           <div key={lbl} className="flex-1 flex flex-col items-center gap-1">
             <span className="text-[9px] font-bold text-gray-500 dark:text-white/50">{val}</span>
-            <div className="w-full rounded-t-md" style={{ height: `${(h / 100) * 72}px`, background: "rgba(107,95,248,0.8)" }} />
+            <div className="w-full rounded-t-md" style={{ height: `${(h / 100) * 72}px`, background: "rgba(201,255,51,0.8)" }} />
           </div>
         ))}
       </div>
@@ -152,7 +152,7 @@ function Panel3() {
         <div key={i} className={`flex ${user ? "justify-end" : "justify-start"}`}>
           <div className={`max-w-[85%] px-3 py-2.5 rounded-2xl text-xs leading-relaxed ${
             user
-              ? "bg-brand-600 text-white rounded-br-sm"
+              ? "bg-brand-600 text-brand-500 rounded-br-sm"
               : "bg-gray-100 dark:bg-white/8 text-gray-700 dark:text-white/70 rounded-bl-sm"
           }`}>
             {text}

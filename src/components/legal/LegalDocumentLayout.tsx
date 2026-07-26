@@ -143,7 +143,7 @@ export function LegalDocumentLayout({
               />
             </span>
             <span className="truncate font-heading text-lg font-bold tracking-tight">
-              <span className="bg-gradient-to-r from-[#3d3556] to-[#532775] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#0f0f0f] to-[#1a1b1e] bg-clip-text text-transparent">
                 {BRAND.name}
               </span>
             </span>
@@ -154,7 +154,7 @@ export function LegalDocumentLayout({
           >
             <Link
               href={otherHref}
-              className="hidden text-sm font-medium text-[#1D2939]/70 underline-offset-4 transition-colors hover:text-[#5E56E7] sm:inline"
+              className="hidden text-sm font-medium text-[#1D2939]/70 underline-offset-4 transition-colors hover:text-[#0f0f0f] sm:inline"
             >
               {otherLabel}
             </Link>
@@ -166,10 +166,11 @@ export function LegalDocumentLayout({
             </Link>
             <a
               href={CHAT_APP_LOGIN_URL}
-              className="inline-flex h-9 items-center rounded-full px-4 text-sm font-semibold text-white shadow-md transition-[filter] hover:brightness-110"
+              className="inline-flex h-9 items-center rounded-full px-4 text-sm font-semibold shadow-md transition-[filter] hover:brightness-110"
               style={{
-                background: `linear-gradient(135deg, ${C.electricBlue}, ${C.dancingPurple})`,
-                boxShadow: `0 8px 24px -6px ${C.electricBlue}55`,
+                background: C.ink,
+                color: C.accent,
+                boxShadow: `0 8px 24px -6px ${C.ink}55`,
               }}
             >
               Sign in
@@ -187,16 +188,17 @@ export function LegalDocumentLayout({
               type="button"
               onClick={() => scrollToId(item.id)}
               className={cn(
-                "shrink-0 rounded-full border px-3.5 py-1.5 text-left text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E56E7] focus-visible:ring-offset-2",
+                "shrink-0 rounded-full border px-3.5 py-1.5 text-left text-xs font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f0f0f] focus-visible:ring-offset-2",
                 activeId === item.id
-                  ? "border-transparent text-white shadow-md"
-                  : "border-black/10 bg-white text-[#1D2939]/80 hover:border-[#5E56E7]/35",
+                  ? "border-transparent shadow-md"
+                  : "border-black/10 bg-white text-[#1D2939]/80 hover:border-[#0f0f0f]/35",
               )}
               style={
                 activeId === item.id
                   ? {
-                      background: `linear-gradient(135deg, ${C.electricBlue}, ${C.dancingPurple})`,
-                      boxShadow: `0 4px 14px -4px ${C.electricBlue}66`,
+                      background: C.ink,
+                      color: C.accent,
+                      boxShadow: `0 4px 14px -4px ${C.ink}66`,
                     }
                   : undefined
               }
@@ -228,7 +230,7 @@ export function LegalDocumentLayout({
                   type="button"
                   onClick={() => scrollToId(item.id)}
                   className={cn(
-                    "relative flex w-full items-center rounded-xl py-2.5 pl-4 pr-3 text-left text-[0.8125rem] font-medium leading-snug transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5E56E7] focus-visible:ring-offset-2",
+                    "relative flex w-full items-center rounded-xl py-2.5 pl-4 pr-3 text-left text-[0.8125rem] font-medium leading-snug transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0f0f0f] focus-visible:ring-offset-2",
                     active
                       ? "text-[#17191C]"
                       : "text-[#1D2939]/65 hover:bg-black/[0.03] hover:text-[#1D2939]",

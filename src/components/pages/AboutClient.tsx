@@ -10,7 +10,7 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 const stats = [
   { value:"2.5M+",  label:"Data Points Analyzed", icon:Database, end:2.5,  suffix:"M+", isFloat:true  },
@@ -91,7 +91,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       </section>
 
       {/* ── STATS ───────────────────────────────────── */}
-      <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-4xl mx-auto">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {stats.map(s=>(
@@ -112,7 +112,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
 
       {/* ── OUR STORY ───────────────────────────────── */}
       <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(107,95,248,0.08) 0%, transparent 65%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.08) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
@@ -125,7 +125,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                 Today, Conalytic is trusted by teams around the world to do just that. From marketing agencies serving Fortune 500 clients to in-house teams at fast-growing startups, our platform turns complex data into clear conversations.
               </p>
               <a href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
                 Get in touch <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
@@ -139,11 +139,11 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                 {milestones.map((m) => (
                   <div key={m.year} className="flex gap-4 items-start">
                     <div className="relative z-10 flex w-10 shrink-0 justify-center pt-1">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-violet-600 shadow-md shadow-brand-500/20 ring-4 ring-white dark:ring-[#0C0C12]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-700 shadow-md shadow-brand-500/20 ring-4 ring-white dark:ring-[#0C0C12]">
                         <m.icon className="h-4 w-4 text-white" />
                       </div>
                     </div>
-                    <div className="min-w-0 flex-1 rounded-2xl border border-gray-100 bg-[#F6F7FE] p-4 dark:border-white/[0.07] dark:bg-white/[0.04]">
+                    <div className="min-w-0 flex-1 rounded-2xl border border-gray-100 bg-[#f0f1f5] p-4 dark:border-white/[0.07] dark:bg-white/[0.04]">
                       <div className="mb-1 flex flex-wrap items-center gap-2">
                         <span className="text-xs font-black text-brand-600 dark:text-brand-300">{m.year}</span>
                         <span className="text-sm font-semibold text-gray-900 dark:text-white">{m.title}</span>

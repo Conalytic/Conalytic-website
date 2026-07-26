@@ -15,7 +15,7 @@ import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /** OAuth marketing integrations available in Conalytic-Chat. */
 const integrations = [
@@ -168,7 +168,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       </section>
 
       {/* ── GRID (marketing stack only) ─────────────── */}
-      <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             OAuth integrations for marketing analytics

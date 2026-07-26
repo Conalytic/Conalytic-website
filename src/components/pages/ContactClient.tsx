@@ -6,22 +6,21 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, MapPin, Phone, Calendar } from "lucide-react";
+import { Mail, MapPin, Calendar } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 const SCHEDULE_CALL_URL = (process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL ?? "").trim();
 const CONTACT_INBOX = "admin@conalytic.com";
 
 const contactInfo = [
-  { icon:Mail,   title:"Email",    subtitle:"Our friendly team is here to help.", value:CONTACT_INBOX,    href:`mailto:${CONTACT_INBOX}`, color:"from-brand-500/15 to-violet-500/10", border:"border-brand-500/20", iconColor:"text-brand-600 dark:text-brand-400" },
+  { icon:Mail,   title:"Email",    subtitle:"Our friendly team is here to help.", value:CONTACT_INBOX,    href:`mailto:${CONTACT_INBOX}`, color:"from-brand-500/15 to-brand-500/10", border:"border-brand-500/20", iconColor:"text-brand-600 dark:text-brand-400" },
   { icon:MapPin, title:"Location", subtitle:"Let's catch up for a coffee.",        value:"Pune, Maharashtra, India", href:null,                        color:"from-emerald-500/15 to-teal-500/10", border:"border-emerald-500/20",iconColor:"text-emerald-600 dark:text-emerald-400" },
-  { icon:Phone,  title:"Phone",    subtitle:"Let's get on a call to walk through the product.",value:"+91-7900615417",       href:"tel:+917900615417",          color:"from-blue-500/15 to-cyan-500/10",    border:"border-blue-500/20",   iconColor:"text-blue-600 dark:text-blue-400"   },
 ];
 
 const inputBase = "w-full bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/25 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-500/20 transition-all text-sm";
@@ -103,12 +102,12 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
       </section>
 
       {/* ── CONTACT INFO CARDS ──────────────────────── */}
-      <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-10">
             Contact information
           </h2>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
             {contactInfo.map(info=>(
               <motion.div key={info.title} variants={fadeUp}
                 className="relative overflow-hidden rounded-2xl p-6 text-center bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-300">
@@ -119,7 +118,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
                 <h3 className="relative z-10 text-gray-900 dark:text-white font-semibold text-lg mb-1">{info.title}</h3>
                 <p className="relative z-10 text-gray-400 dark:text-white/45 text-sm mb-3">{info.subtitle}</p>
                 {info.href ? (
-                  <a href={info.href} className="relative z-10 text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors font-semibold text-sm">{info.value}</a>
+                  <a href={info.href} className="relative z-10 text-brand-600 dark:text-brand-400 hover:text-brand-300 dark:hover:text-brand-300 transition-colors font-semibold text-sm">{info.value}</a>
                 ) : (
                   <p className="relative z-10 text-gray-700 dark:text-white/75 font-semibold text-sm">{info.value}</p>
                 )}
@@ -131,7 +130,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
 
       {/* ── CONTACT FORM ────────────────────────────── */}
       <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(107,95,248,0.08) 0%, transparent 70%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-2xl mx-auto">
           <motion.div id="contact-schedule" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <div className="rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-lg p-8 sm:p-10">
@@ -156,10 +155,6 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
                       <input type="email" placeholder="john@company.com" className={inputBase} required/>
                     </div>
                     <div>
-                      <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Phone Number</label>
-                      <input type="tel" placeholder="+1 (555) 000-0000" className={inputBase}/>
-                    </div>
-                    <div>
                       <label htmlFor="contact-message" className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Message</label>
                       <textarea id="contact-message" name="message" rows={5} placeholder="How can we help you?" className={`${inputBase} resize-none`} required value={message} onChange={(e)=>setMessage(e.target.value)}/>
                     </div>
@@ -169,7 +164,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
                       </p>
                     ) : null}
                     <button type="submit" disabled={loading} aria-label="Schedule a call"
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
+                      className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
                       {loading ? (
                         <><span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"/><span>Opening calendar…</span></>
                       ) : (

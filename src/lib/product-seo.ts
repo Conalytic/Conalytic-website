@@ -23,6 +23,7 @@ export function buildProductMetadata(product: ProductDefinition): Metadata {
       title: `${product.metaTitle} | Conalytic`,
       description: product.metaDescription,
       siteName: "Conalytic",
+      locale: "en_US",
       images: [
         {
           url: "/og-image.png",

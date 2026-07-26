@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
-import { conalyticLogoAlt, heroBackgroundAlt } from "@/lib/image-alt";
+import { conalyticLogoAlt } from "@/lib/image-alt";
 import {
   SAAS_EASE,
   staggerContainer,
@@ -147,7 +147,7 @@ function CtaLineChart({
         <path
           d={dCurrent}
           fill="none"
-          stroke="#6B5FF8"
+          stroke="#c9ff33"
           strokeWidth="2.25"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -251,19 +251,15 @@ export function CTA({
         >
 
           <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
-            <div className="absolute inset-0 dark:hidden">
-              <Image src="/hero-bg.png" alt={heroBackgroundAlt()} fill className="object-cover object-center opacity-60" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-purple-50/40 to-pink-50/40" />
-            </div>
-
-            <div className="absolute inset-0 hidden dark:block"
-              style={{ background:"linear-gradient(135deg,#0E0B1E 0%,#0C0C12 45%,#0B0E1E 100%)" }}/>
-            <div className="absolute inset-0 hidden dark:block pointer-events-none"
-              style={{ background:"radial-gradient(ellipse 65% 55% at 50% 100%, rgba(107,95,248,0.14) 0%, transparent 65%)" }}/>
+            <div className="absolute inset-0 bg-[#0f0f0f]" />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, rgba(201,255,51,0.12) 0%, transparent 65%)" }}
+            />
 
             <div className="absolute inset-0 pointer-events-none"
               style={{
-                backgroundImage:"linear-gradient(rgba(107,95,248,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(107,95,248,0.05) 1px,transparent 1px)",
+                backgroundImage:"linear-gradient(rgba(15,15,15,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,0.04) 1px,transparent 1px)",
                 backgroundSize:"48px 48px",
               }}/>
 
@@ -354,7 +350,7 @@ export function CTA({
               transition={{ duration: 0.55, delay: 0.05, ease: SAAS_EASE }}
             >
               Turn data into decisions.<br/>
-              <span style={{ background:"linear-gradient(135deg,#6B5FF8,#a78bfa,#60a5fa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              <span style={{ background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
                 In seconds, not days.
               </span>
             </motion.h2>
@@ -375,7 +371,7 @@ export function CTA({
                 onClick={(e) => {
                   if (!primaryExternal) handleSamePageHashClick(e, primaryCta.href);
                 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label={primaryExternal ? `${primaryCta.label} (opens in new tab)` : primaryCta.label}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">

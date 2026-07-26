@@ -14,8 +14,6 @@ import {
 import { BRAND } from "@/lib/brand";
 import {
   getLegalContactEmail,
-  getLegalContactPhoneDisplay,
-  getLegalContactPhoneTel,
   getLegalDisputeVenue,
   getLegalEntityName,
   getLegalGoverningLawJurisdiction,
@@ -59,8 +57,6 @@ export default function TermsOfServicePage() {
   const governingLaw = getLegalGoverningLawJurisdiction();
   const disputeVenue = getLegalDisputeVenue();
   const address = getLegalRegisteredAddress();
-  const phoneDisplay = getLegalContactPhoneDisplay();
-  const phoneTel = getLegalContactPhoneTel();
 
   return (
     <LegalDocumentLayout
@@ -125,13 +121,7 @@ export default function TermsOfServicePage() {
           any minimum age required by applicable law and by connected platforms. You are
           responsible for the accuracy of registration information and for safeguarding
           credentials. Notify{" "}
-          <LegalLink href={`mailto:${email}`}>{email}</LegalLink> or call{" "}
-          <a
-            href={`tel:${phoneTel}`}
-            className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-          >
-            {phoneDisplay}
-          </a>{" "}
+          <LegalLink href={`mailto:${email}`}>{email}</LegalLink>{" "}
           promptly if you suspect unauthorized use. We may suspend accounts involved in
           suspected compromise until risks are mitigated.
         </p>
@@ -332,13 +322,7 @@ export default function TermsOfServicePage() {
       <LegalSection id="disputes" title="18. Dispute resolution">
         <p>
           Before filing a claim, contact us at{" "}
-          <LegalLink href={`mailto:${email}`}>{email}</LegalLink> or{" "}
-          <a
-            href={`tel:${phoneTel}`}
-            className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-          >
-            {phoneDisplay}
-          </a>{" "}
+          <LegalLink href={`mailto:${email}`}>{email}</LegalLink>{" "}
           to seek an informal resolution. If a dispute is not resolved within a reasonable
           period (for example, thirty (30) days), either party may pursue remedies in the
           courts described below or as required by mandatory law.
@@ -391,15 +375,6 @@ export default function TermsOfServicePage() {
           items={[
             <>
               Email: <LegalLink href={`mailto:${email}`}>{email}</LegalLink>
-            </>,
-            <>
-              Phone:{" "}
-              <a
-                href={`tel:${phoneTel}`}
-                className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-              >
-                {phoneDisplay}
-              </a>
             </>,
             <>
               Address:{" "}

@@ -1,6 +1,7 @@
 /** Integrations directory route. */
 import type { Metadata } from "next";
 import { IntegrationsPageClient } from "@/components/pages/IntegrationsPageClient";
+import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
 import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
 import { buildPageMetadata } from "@/lib/page-seo";
@@ -28,6 +29,13 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function IntegrationsPage() {
   return (
     <>
+      <BreadcrumbStructuredData
+        id="ld-integrations-breadcrumbs"
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Integrations", path: "/integrations" },
+        ]}
+      />
       <MarketingPageStructuredData
         path="/integrations"
         pageTitle={PAGE_TITLE}

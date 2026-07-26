@@ -25,7 +25,7 @@ export const DEFAULT_INTEGRATION_PARTNER_LABELS: Record<MarketingStackLogoKey, s
   bingWebmaster: "Bing Webmaster",
 };
 
-/** Integration page / CMS display name → same asset as home */
+/** Integration page display name → same asset as home */
 export const MARKETING_STACK_LOGO_BY_INTEGRATION_NAME: Record<string, string> = {
   "Google Analytics 4": MARKETING_STACK_LOGOS.googleAnalytics4,
   "Google Search Console": MARKETING_STACK_LOGOS.googleSearchConsole,

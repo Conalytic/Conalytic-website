@@ -25,7 +25,7 @@ export const CONVERSATIONAL_ANALYTICS_FAQ: MarketingFaqItem[] = [
   {
     question: "How does billing work for Conalytic chat?",
     answer:
-      "Conalytic Pro meters chat usage by tokens (prompt + completion). New accounts receive signup credit; you can top up via PayPal when your balance runs low. Composer refine actions are billed separately from standard chat messages.",
+      "Conalytic Pro is free to start. Conversational Analytics uses usage-based pricing for AI-powered chat. KPIs Tracker goal monitoring is included without per-query AI charges. See pricing in the app after signup.",
   },
   {
     question: "Can I upload context files to a Conalytic chat?",
@@ -63,7 +63,7 @@ export const KPIS_TRACKER_FAQ: MarketingFaqItem[] = [
   {
     question: "Is KPIs Tracker included in Conalytic Pro?",
     answer:
-      "Yes. KPI evaluation uses live platform APIs and is not token-metered like Conversational Analytics chat or AI-powered Report Builder insights. Connect GA4, GSC, and Google Ads via OAuth and start tracking marketing KPI goals from one dashboard.",
+      "Yes. Connect GA4, GSC, and Google Ads via OAuth and start tracking marketing KPI goals from one dashboard. Goal evaluation uses live platform data with rules-based scoring—not AI-generated status labels.",
   },
   {
     question: "How often does Conalytic refresh KPI data?",
@@ -91,7 +91,7 @@ export const REPORT_BUILDER_FAQ: MarketingFaqItem[] = [
   {
     question: "Can I turn off AI insights in marketing reports?",
     answer:
-      "Yes. Toggle AI insights off for a data-only deck, or enable them to personalize slide copy, findings, and recommendations using GPT-5.4, Claude Opus 4.8, or Gemini 3.1 Pro. AI report generation is token-metered on Conalytic Pro.",
+      "Yes. Toggle AI insights off for a data-only deck, or enable them to personalize slide copy, findings, and recommendations using GPT-5.4, Claude Opus 4.8, or Gemini 3.1 Pro.",
   },
   {
     question: "How do I share Conalytic reports with clients?",
@@ -117,9 +117,9 @@ export const FEATURES_PAGE_FAQ: MarketingFaqItem[] = [
       "No. Conversational Analytics answers marketing questions in plain English. KPIs Tracker uses rules-based goal scoring without LLM calls. Report Builder assembles client-ready HTML decks from connected APIs—you focus on insights, not query languages or slide formatting.",
   },
   {
-    question: "Which Conalytic features use AI tokens?",
+    question: "Which Conalytic features use AI?",
     answer:
-      "Conversational Analytics chat and composer refine actions are token-metered on Pro. Report Builder charges tokens when AI insights are enabled for slide narratives. KPIs Tracker uses deterministic API evaluation and is not billed per LLM request.",
+      "Conversational Analytics uses AI to answer questions about your connected marketing data. Report Builder can optionally add AI-written slide narratives. KPIs Tracker uses rules-based scoring without AI for goal status labels.",
   },
   {
     question: "Can agencies use Conalytic for client reporting?",
@@ -134,7 +134,7 @@ export const FEATURES_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "Is there a free way to try Conalytic features?",
     answer:
-      "Sign up for Conalytic Pro at chat.conalytic.com/signup to receive free signup tokens. Explore Conversational Analytics, KPIs Tracker, and Report Builder with your connected marketing accounts; purchase PayPal top-ups as usage grows.",
+      "Sign up free at chat.conalytic.com/signup and explore Conversational Analytics, KPIs Tracker, and Report Builder with your connected marketing accounts.",
   },
 ];
 

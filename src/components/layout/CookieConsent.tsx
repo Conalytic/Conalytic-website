@@ -6,8 +6,7 @@
  */
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { COOKIE_CONSENT_STORAGE_KEY, type CookieConsentChoice } from "@/lib/cookie-consent";
-import type { CookieBannerCopy } from "@/lib/site-layout";
+import { COOKIE_CONSENT_STORAGE_KEY, type CookieConsentChoice, type CookieBannerCopy } from "@/lib/cookie-consent";
 
 export function CookieConsent({ copy }: { copy: CookieBannerCopy }) {
   const [open, setOpen] = useState(false);
@@ -65,7 +64,7 @@ export function CookieConsent({ copy }: { copy: CookieBannerCopy }) {
           <button
             type="button"
             onClick={() => save("all")}
-            className="rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition hover:bg-brand-700"
+            className="rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-brand-500 shadow-lg shadow-brand-600/20 transition hover:bg-brand-500 hover:text-brand-600"
           >
             {copy.acceptAllButtonLabel}
           </button>

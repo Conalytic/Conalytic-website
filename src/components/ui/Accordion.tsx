@@ -49,7 +49,7 @@ export function Accordion({ items, className }: AccordionProps) {
                 className={cn(
                   "flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 border",
                   isOpen
-                    ? "bg-brand-600 border-brand-500 rotate-45 text-white"
+                    ? "bg-brand-600 border-brand-500 rotate-45 text-brand-500"
                     : "bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 group-hover:border-brand-500/50"
                 )}
               >

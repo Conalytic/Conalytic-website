@@ -40,7 +40,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "Conalytic Conversational Analytics turns natural language into live marketing insights. Connect Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, or Meta Ads via OAuth, scope each chat to a property or account, and get AI answers with inline charts, tables, and KPI rows—no SQL, no dashboard drilling, no Looker required.",
     metaTitle: "Conversational Analytics — GA4 & Google Ads AI Chat",
     metaDescription:
-      "Chat with GA4, Google Search Console, Google Ads, GTM, and Meta Ads in plain English. Conalytic Conversational Analytics delivers natural-language marketing insights, inline visualizations, GPT-5.4 / Claude / Gemini models, and token-based Pro billing.",
+      "Conalytic Conversational Analytics delivers natural-language marketing insights, inline visualizations, and GPT-5.4 / Claude / Gemini models. Free to start on Conalytic Pro.",
     keywords: [
       "conversational analytics",
       "natural language analytics",
@@ -78,7 +78,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "Ask marketing analytics questions; Conalytic streams live API answers with viz",
       "Attach context files, refine prompts, and follow up in the same conversation",
     ],
-    billingNote: "Pro plans meter chat and composer refine by tokens (prompt + completion) with signup credit and PayPal top-ups.",
+    billingNote: "Free to start. Usage-based pricing for AI-powered chat on Pro plans.",
     signupUrl: CHAT_APP_SIGNUP_URL,
     heroTitleLine1: "Conversational Analytics for",
     heroTitleLine2: "GA4, Google Ads & Meta",
@@ -175,7 +175,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "Toggle AI insights and generate the HTML marketing presentation deck",
       "View, download HTML, or regenerate for updated GA4, GSC, Ads, or GTM data",
     ],
-    billingNote: "Report generation with AI insights enabled is token-metered on Conalytic Pro.",
+    billingNote: "Optional AI insights available on Pro plans.",
     signupUrl: CHAT_APP_SIGNUP_URL,
     heroTitleLine1: "AI Marketing Report Builder for",
     heroTitleLine2: "GA4, GSC, Ads & GTM",

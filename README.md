@@ -52,7 +52,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 
 ## Development Docs
 
-See [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) for architecture notes (some sections may still mention the old CMS; content now lives in the repo).
+See [`docs/DEVELOPMENT.md`](docs/DEVELOPMENT.md) for architecture and content workflow.
 
 ## Environment Variables
 
@@ -65,8 +65,6 @@ RESEND_API_KEY=
 RESEND_FROM=
 CAREERS_APPLICATION_TO=
 ```
-
-Optional script allowlist for injected third-party scripts: `SITE_SCRIPT_ALLOWED_HOSTS` (comma-separated hostnames; see `src/lib/site-scripts.ts`).
 
 ## Deployment
 

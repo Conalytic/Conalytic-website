@@ -1,115 +1,133 @@
-/** Blog body: Conversational Analytics (Chats) — 1000+ words, aligned with Conalytic-Chat. */
+/** Blog body: Conversational Analytics — customer-facing guide. */
 export const conversationalAnalyticsBody = `
-Marketing teams drown in dashboards. Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, and Meta Ads each ship their own UI, their own vocabulary, and their own export paths. When a stakeholder asks a simple question—*“Which campaign drove the most conversions last month?”*—someone still opens three tabs, copies numbers into a spreadsheet, and replies hours later. **Conversational Analytics** in Conalytic (labeled **Chats** in the app) closes that gap: you connect your accounts once, scope a chat to the property or ad account you care about, and ask in plain English. Conalytic calls live APIs, streams an answer, and renders inline charts, tables, and KPI rows through its \`conalytic-viz\` layer—no SQL, no Looker workbook, no ticket to the data team.
+Marketing teams drown in dashboards. Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, and Meta Ads each ship their own UI, their own vocabulary, and their own export paths. When a stakeholder asks a simple question—*“Which campaign drove the most conversions last month?”*—someone still opens three tabs, copies numbers into a spreadsheet, and replies hours later.
 
-This guide explains what Conversational Analytics is, how it works inside Conalytic-Chat, which integrations are supported today, and how marketing leaders can adopt it without sacrificing governance or accuracy.
+**Conversational Analytics** in Conalytic solves that. Connect your accounts once, ask questions in plain English, and get answers backed by your real marketing data—with inline charts, tables, and KPI summaries. No SQL, no manual exports, no waiting on the data team.
 
-## What is Conversational Analytics in Conalytic?
+This guide explains what Conversational Analytics is, what Conalytic does, how to get started, and the benefits for marketing teams.
 
-Conalytic’s tagline—*Casting Spells of Clarity on Your Data*—maps to a concrete product behavior: **natural-language questions over authorized marketing data**. In the app, you open **Chats** from the sidebar, start a **New chat**, and walk through three steps: **Platform**, **Connection**, and **Data**. You pick GA4, Search Console, Google Ads, GTM, Meta, or LinkedIn (connect only), choose the OAuth sign-in, then select the property, site, account, container, or ad account. Each conversation is **scoped** to that single connection and entity, so answers never bleed across clients or brands by accident.
+## What is Conalytic?
 
-You can also start a **general marketing chat** with **No data source**—useful for strategy, definitions, or copy—while data-backed threads always use the platforms you connected on the **Connections** page. That page copy is explicit: *“Link your marketing and analytics accounts so Conalytic can answer from your real data. Read-only OAuth—you stay in control.”*
+**Conalytic** is a marketing analytics platform that helps teams understand performance across Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, and Meta Ads—without jumping between tools.
 
-## Integrations: what Chats can query live
+Instead of rebuilding the same reports every week, you connect your accounts through secure read-only access and work from one workspace. Conalytic offers three core products:
 
-Accuracy starts with knowing which APIs Conalytic actually calls:
+- **Conversational Analytics (Chats)** — ask questions in natural language and get live answers with visualizations
+- **KPIs Tracker** — monitor goals and see whether performance is on track, at risk, or off track
+- **Report Builder** — generate polished HTML presentation decks for clients and stakeholders
 
-| Platform | Live chat tools | Typical questions |
-|----------|-----------------|-------------------|
-| **Google Analytics 4** | Yes | Traffic, users, engagement, conversions, channels, pages, trends |
-| **Google Search Console** | Yes | Queries, pages, CTR, ranking opportunities, non-branded filters |
-| **Google Ads** | Yes | Campaigns, spend, conversions, devices, ROAS, trends |
-| **Google Tag Manager** | Yes | Full container audit—tags, triggers, variables, consent, security |
-| **Meta Ads** | Yes | Account, campaign, ad set, and ad insights (daily or aggregated) |
-| **LinkedIn Ads** | Connect + scope only | OAuth works; live data tools are not implemented yet |
+Conversational Analytics is the fastest way to go from question to insight.
 
-KPIs Tracker and Report Builder share some of the same OAuth connections but use different surfaces. Chats is the broadest for **interactive exploration** across GA4, GSC, Ads, GTM, and Meta.
+## What is Conversational Analytics?
 
-## Core features marketers use every day
+Conversational Analytics lets you **talk to your marketing data** the way you would talk to a colleague. Open **Chats** in Conalytic, choose the platform and account you want to analyze, and type your question. Conalytic pulls live metrics from your connected sources and responds with a clear answer—often including charts and tables you can share in meetings or Slack.
 
-### Scoped conversations and saved history
+Each conversation is **scoped** to a single connection (one GA4 property, one Ads account, one Search Console site, and so on). That keeps client and brand data separate and makes answers trustworthy.
 
-Every chat thread is pinned, renamed, or deleted from the sidebar. **Pinned** chats stay at the top for weekly reviews; **recent** chats resume where you left off. Suggested prompts in the empty state nudge common workflows: *“Show me traffic trends this month,”* *“Compare ad spend vs conversions,”* *“Top performing keywords,”* *“Analyze bounce rate by channel,”* *“Campaign ROI breakdown,”* and *“Social media engagement summary.”*
+You can also start a **general marketing chat** without connecting a data source—useful for strategy, definitions, or campaign ideas. For numbers from your accounts, connect your platforms on the **Connections** page first.
 
-### Inline visualizations (conalytic-viz)
+## Which platforms can you query?
 
-Answers are not text walls. Conalytic returns **line and bar charts**, **tables**, and **KPI rows** inside the thread so you can screenshot or follow up in the same message. That matters for Slack updates and client calls—you show the viz, not a paraphrase.
+| Platform | What you can explore |
+|----------|----------------------|
+| **Google Analytics 4** | Traffic, users, engagement, conversions, channels, pages, trends |
+| **Google Search Console** | Queries, pages, CTR, ranking opportunities |
+| **Google Ads** | Campaigns, spend, conversions, devices, ROAS |
+| **Google Tag Manager** | Container audits—tags, triggers, variables, consent |
+| **Meta Ads** | Account, campaign, ad set, and ad performance |
 
-### AI models and composer tools
+Connect only the platforms you need. Conalytic uses read-only OAuth—you stay in control of what you authorize.
 
-Choose **GPT-5.4**, **Claude Opus 4.8**, or **Gemini 3.1 Pro** per conversation. Before sending, use **Improve** or **Make longer** in the composer to refine tone and depth (**Translate** is marked coming soon in the UI). Composer refine actions are billed separately from standard chat messages on Pro plans.
+## Key benefits for marketing teams
 
-### Per-chat context files
+### Get answers in minutes, not hours
 
-Upload a optional **context file** per chat—brand voice, conversion definitions, client KPI notes. Context applies only to that thread, which is ideal when one workspace serves multiple accounts with different rules.
+Stop exporting CSVs and stitching slides together. Ask *“How did paid search perform last month?”* or *“Which landing pages have the highest exit rate?”* and get a direct answer while the meeting is still happening.
 
-### Agentic retrieval
+### See data, not just text
 
-Behind the scenes, Conalytic uses **agentic API tools** to fetch live metrics for the scoped entity, then streams the narrative. You ask follow-ups in the same thread; the model retains conversation history (note: refreshing mid-reply cannot resume the same stream—start a new message instead).
+Responses include **line and bar charts**, **tables**, and **KPI summaries** inside the chat thread. Screenshot them for standups or follow up with another question in the same conversation.
 
-## How Conversational Analytics differs from BI dashboards
+### Work the way your team thinks
 
-Traditional BI rewards people who already know where metrics live. Conversational Analytics rewards people who know **what decision they need to make**. The comparison is not “replace GA4”—it is **stop re-implementing GA4 in slides every Monday**.
+Marketing leaders ask business questions; they should not need to memorize where every metric lives in GA4. Conversational Analytics bridges that gap.
 
-- **Dashboards** excel at monitoring fixed KPIs on a wallboard.
-- **Chats** excel at ad hoc investigation: *“Why did bounce spike on Tuesday?”* *“Which landing page has the highest exit rate?”* *“Compare GA4 vs Meta ROAS for Q1.”*
+### Stay scoped and governed
 
-Conalytic’s empty-state **Limitations** section is honest: the model may occasionally misread metrics—**always verify** critical numbers; coverage depends on connected platforms; data stays within authorized accounts; mid-stream refresh does not resume.
+One chat per client, brand, or property reduces mix-ups. Optional **context files** let you attach brand voice, conversion definitions, or client notes to a specific thread.
 
-## Workflow: from connect to insight
+### Choose the AI model that fits
 
-1. **Connect** GA4, GSC, Google Ads, GTM, Meta, or LinkedIn on the Connections page (read-only OAuth).
-2. **New chat** → choose platform, connection, and entity (auto-skips steps when only one option exists).
-3. **Ask** in natural language; review inline charts and tables.
-4. **Attach** optional context files; refine prompts before send.
-5. **Pin** high-value threads for weekly standups or client Q&A.
+Select from leading models (such as GPT, Claude, or Gemini) per conversation. Refine your question before sending with built-in composer tools.
 
-For a deeper product tour, see the [Conversational Analytics product page](/products/conversational-analytics).
+## How to use Conversational Analytics
 
-## Billing and tokens on Conalytic Pro
+1. **Sign up** for Conalytic and open the app.
+2. **Connect** your marketing platforms on the Connections page (read-only OAuth).
+3. **Open Chats** and click **New chat**.
+4. **Select** your platform, connection, and property or account.
+5. **Ask** your question in plain English.
+6. **Review** the answer and any inline charts or tables.
+7. **Follow up** in the same thread—or pin important chats for weekly reviews.
 
-Chat usage is **token-metered** on Pro: prompt tokens plus completion tokens, priced at provider list cost with a **50% platform markup**. The **Billing and Usage** page tracks ledger types: **Chat**, **Composer refine**, **Report** (separate product), signup credit, top-ups, and admin grants. New accounts receive **signup credit** (documented as free tokens on signup); **PayPal top-ups** have a minimum **$20 USD**. Enterprise and Super Admin roles have unlimited assisted usage while tokens are still tracked.
+Suggested prompts to get started:
 
-KPI evaluation in KPIs Tracker is **not** token-metered; only Chats and AI-enabled Report insights consume LLM tokens.
+- *“Show me traffic trends this month”*
+- *“Compare ad spend vs conversions”*
+- *“Top performing keywords in Search Console”*
+- *“Which campaigns drove the most conversions last week?”*
+
+## Conversational Analytics vs traditional dashboards
+
+| | Dashboards | Conversational Analytics |
+|---|-----------|--------------------------|
+| **Best for** | Fixed KPIs on a wallboard | Ad hoc questions and investigations |
+| **Learning curve** | High—must know where metrics live | Low—ask in plain English |
+| **Flexibility** | Pre-built views | Any question, any time |
+| **Speed to insight** | Build a report first | Ask and get an answer |
+
+Conversational Analytics does not replace GA4 or Google Ads. It helps you **use them faster**—especially when stakeholders ask questions you have not dashboarded yet.
+
+## Best practices
+
+**Define terms upfront.** ROAS, conversions, and sessions mean different things across platforms. Add a context file with your definitions.
+
+**Scope one chat per client or brand.** Keeps answers accurate and conversations easy to find.
+
+**Verify important numbers.** When a answer drives budget decisions, spot-check in the native platform or ask a follow-up question.
+
+**Pin recurring reviews.** Weekly standup questions? Pin those chats at the top of your sidebar.
+
+**Review connections quarterly.** Remove OAuth access for accounts you no longer manage.
 
 ## Who should use Conversational Analytics?
 
-- **In-house marketers** who need GA4 and Ads answers without waiting on analytics.
-- **Agencies** doing live client calls—scope one chat per client property.
-- **Growth leads** comparing channels during budget cycles.
-- **Technical marketers** auditing GTM containers through chat instead of manual exports.
+- **In-house marketers** who need GA4 and Ads answers without a dedicated analyst
+- **Agencies** running live client calls—one scoped chat per client property
+- **Growth leads** comparing channels during budget planning
+- **Technical marketers** auditing GTM containers through conversation instead of manual exports
 
-If your team only needs goal status across GA4, GSC, and Ads without LLM calls, pair Chats with [KPIs Tracker](/products/kpis-tracker). If you need stakeholder decks, add [Report Builder](/products/report-builder).
-
-## Best practices for trustworthy chat analytics
-
-**Align on definitions first.** ROAS, conversions, and sessions mean different things across platforms. Put definitions in a per-chat context file.
-
-**Scope narrowly.** One chat per client property reduces cross-talk and speeds responses.
-
-**Verify outliers.** When an answer drives budget decisions, spot-check in the native platform or cross-ask in the same thread.
-
-**Use suggested prompts as templates.** Customize them for your vertical (ecommerce, B2B, local).
-
-**Govern OAuth.** Review connected accounts quarterly; remove stale LinkedIn or Meta connections you no longer need.
+Pair with [KPIs Tracker](/products/kpis-tracker) for ongoing goal monitoring, or [Report Builder](/products/report-builder) when you need a polished deck for stakeholders.
 
 ## Frequently asked questions
 
 **Can I chat without connecting data?**  
-Yes. Choose “No data source” for general marketing chat. Live metrics require a scoped OAuth connection.
+Yes. Choose a general marketing chat for strategy and definitions. Live metrics require a connected account.
 
-**Does Conalytic write to my ad accounts?**  
-No. Connections use read-only scopes where applicable.
+**Does Conalytic change my ad accounts or tags?**  
+No. Connections use read-only access where applicable.
 
-**Which AI model should I pick?**  
-Start with the default; switch if you need longer reasoning (Claude) or faster iteration (GPT). All three are supported in production.
+**How is this different from a general AI chatbot?**  
+Conalytic grounds answers in **your** connected marketing data via live APIs—not guesses from training data.
 
-**How is this different from ChatGPT alone?**  
-Conalytic grounds answers in **your** GA4, GSC, Ads, GTM, and Meta data via live API tools—not training-data guesses.
+**Which AI model should I use?**  
+Start with the default. Switch models if you prefer longer reasoning or faster responses.
 
-## Get started with Conalytic Chats
+## Get started
 
-Conversational Analytics is live in Conalytic today. [Create a free Pro account](https://chat.conalytic.com/signup), connect your marketing platforms, and open **Chats** from the sidebar. Ask your first question before your next dashboard export is due—your future self (and your stakeholders) will thank you.
+Conversational Analytics is available in Conalytic today. [Create a free account](https://chat.conalytic.com/signup), connect your marketing platforms, and open **Chats** from the sidebar.
 
-For platform-wide context, explore [all Conalytic features](/features) or [book a demo](/contact) with our team.
+Ask your first question before your next dashboard export is due—your stakeholders will notice the difference.
+
+Explore the [Conversational Analytics product page](/products/conversational-analytics), see [all Conalytic features](/features), or [contact us](/contact) to book a walkthrough with our team.
 `;

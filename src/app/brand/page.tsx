@@ -9,12 +9,12 @@ const PAGE_DESCRIPTION =
   "Download Conalytic logos, brand colors, and typography guidelines for media, partners, and marketing materials. Official brand kit for the marketing analytics platform.";
 
 const colors = [
-  { name:"Brand Purple", hex:"#6B5FF8", rgb:"107, 95, 248", usage:"Primary CTA, links, icons" },
-  { name:"Light Purple", hex:"#a78bfa", rgb:"167, 139, 250", usage:"Accents, highlights" },
-  { name:"Dark BG",      hex:"#08080E", rgb:"8, 8, 14",      usage:"Dark page background" },
-  { name:"Surface Dark", hex:"#14141B", rgb:"20, 20, 27",    usage:"Dark section surfaces" },
-  { name:"Pure White",   hex:"#FFFFFF", rgb:"255, 255, 255", usage:"Headings (dark mode)" },
-  { name:"Light Gray",   hex:"#F6F7FE", rgb:"246, 247, 254", usage:"Light section backgrounds" },
+  { name: "Brand Ink", hex: "#0f0f0f", rgb: "15, 15, 15", usage: "Primary text, buttons, navigation" },
+  { name: "Accent Lime", hex: "#c9ff33", rgb: "201, 255, 51", usage: "CTA labels, highlights, accents" },
+  { name: "Accent Soft", hex: "#edf7c8", rgb: "237, 247, 200", usage: "Soft badges, callout backgrounds" },
+  { name: "Elevated Dark", hex: "#1a1b1e", rgb: "26, 27, 30", usage: "Dark surfaces, hover states" },
+  { name: "Shell Gray", hex: "#f0f1f5", rgb: "240, 241, 245", usage: "Page backgrounds" },
+  { name: "Border", hex: "#e8eaef", rgb: "232, 234, 239", usage: "Cards, inputs, dividers" },
 ];
 
 const logoVariants = [
@@ -25,9 +25,9 @@ const logoVariants = [
 ];
 
 const typography = [
-  { name:"Inter", weight:"700 Bold",     usage:"Headings (H1–H3)",          sample:"Conalytic",                   size:"2rem",   fw:700 },
-  { name:"Inter", weight:"600 SemiBold", usage:"Subheadings, UI labels",    sample:"Analytics Platform",          size:"1.25rem", fw:600 },
-  { name:"Inter", weight:"400 Regular",  usage:"Body text, descriptions",   sample:"Ask questions in plain English.", size:"1rem", fw:400 },
+  { name:"Nunito Sans", weight:"700 Bold",     usage:"Headings (H1–H3)",          sample:"Conalytic",                   size:"2rem",   fw:700 },
+  { name:"Nunito Sans", weight:"600 SemiBold", usage:"Subheadings, UI labels",    sample:"Analytics Platform",          size:"1.25rem", fw:600 },
+  { name:"Nunito Sans", weight:"400 Regular",  usage:"Body text, descriptions",   sample:"Ask questions in plain English.", size:"1rem", fw:400 },
 ];
 
 function BrandFallback() {
@@ -39,7 +39,7 @@ function BrandFallback() {
         <div className="mb-16">
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Brand Assets</span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-            Conalytic <span style={{background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Brand</span>
+            Conalytic <span style={{background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Brand</span>
           </h1>
           <p className="text-gray-500 dark:text-white/65 text-lg max-w-2xl leading-relaxed">Official brand assets, guidelines, and resources for media, partners, and press. Please follow these guidelines when representing Conalytic.</p>
         </div>
@@ -50,9 +50,9 @@ function BrandFallback() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
             {logoVariants.map(v=>(
               <div key={v.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-[#14141B] overflow-hidden shadow-sm">
-                <div className="h-36 flex items-center justify-center bg-[#F6F7FE] dark:bg-[#0C0C12]">
+                <div className="h-36 flex items-center justify-center bg-[#f0f1f5] dark:bg-[#0C0C12]">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/30">
                       <span className="text-white font-black text-base">C</span>
                     </div>
                     <span className="text-gray-900 dark:text-white font-semibold text-xl tracking-tight">Conalytic</span>
@@ -63,7 +63,7 @@ function BrandFallback() {
                     <p className="text-gray-900 dark:text-white text-sm font-semibold">{v.name}</p>
                     <p className="text-gray-400 dark:text-white/40 text-xs mt-0.5">{v.description}</p>
                   </div>
-                  <a href={v.file} download={v.filename} className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold hover:text-brand-700 dark:hover:text-brand-300 transition-colors" aria-label={`Download ${v.name}`}>
+                  <a href={v.file} download={v.filename} className="flex items-center gap-1.5 text-brand-600 dark:text-brand-400 text-xs font-semibold hover:text-brand-300 dark:hover:text-brand-300 transition-colors" aria-label={`Download ${v.name}`}>
                     <Download className="w-3.5 h-3.5" aria-hidden/> PNG
                   </a>
                 </div>
@@ -141,7 +141,7 @@ function BrandFallback() {
           <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Need something specific?</h3>
           <p className="text-gray-500 dark:text-white/60 mb-6 leading-relaxed">For press inquiries, partnership assets, or custom brand requests, reach out to us directly.</p>
           <a href="mailto:admin@conalytic.com"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             Contact Brand Team
           </a>
         </div>

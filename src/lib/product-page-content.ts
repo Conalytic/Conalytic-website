@@ -87,7 +87,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
         tag: "Composer",
         title: "Improve & Make longer",
         description:
-          "Refine prompts before sending. Composer actions are token-metered separately from standard chat messages.",
+          "Refine prompts before sending with built-in Improve and Make longer tools.",
       },
       {
         tag: "History",
@@ -115,7 +115,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
       "Scoped conversations prevent data bleeding across clients or brands",
       "GTM security and consent checks without exporting container JSON",
       "Follow-up questions refine the same thread — no re-scoping",
-      "Token-based Pro billing with signup credit and PayPal top-ups",
+      "Free to start — explore with your connected marketing accounts",
     ],
   },
   "kpis-tracker": {
@@ -152,7 +152,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
       { value: "6mo", label: "History backfill" },
       { value: "300", label: "GSC keywords" },
       { value: "4", label: "Status labels" },
-      { value: "0", label: "LLM tokens used" },
+      { value: "Live", label: "Platform data" },
     ],
     capabilityTitle: "Rules-based goal monitoring — no AI guesswork",
     capabilitySubtitle:
@@ -195,8 +195,8 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
     deepDiveBullets: [
       "On track / At risk / Off track / No data — fixed semantics across all projects",
       "Sparklines and % change on every goal card with summary counts at the top",
-      "Refresh (superadmin) forces a re-pull when you need live numbers mid-month",
-      "Not token-metered — KPI evaluation uses API calls, not LLM credits",
+      "Refresh data when you need updated numbers mid-month",
+      "Rules-based scoring — consistent status labels every time",
     ],
   },
   "report-builder": {
@@ -277,7 +277,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
       "Date presets: last 7/28/30 days, last month, last 90 days, or custom up to 366 days",
       "Comparisons: previous period, previous period same year, previous year, or none",
       "Regenerate keeps slide structure consistent month over month",
-      "AI-enabled reports consume tokens under the Report ledger in Billing and Usage",
+      "Optional AI insights personalize narratives when you need them",
     ],
   },
 };

@@ -1,78 +1,61 @@
 # Conalytic Website – Development Documentation
 
-> **Note:** Storyblok was **removed** from this app; marketing copy and blog posts live in the **repository** (`src/`, `src/content/`). Sections below that describe Storyblok are **historical** unless updated.
->
-> **Tech Stack:** Next.js 16 · TypeScript · Tailwind CSS v4  
-> **Status:** In Development  
-> **Last Updated:** March 2026
+**Tech stack:** Next.js 15 · React 19 · TypeScript · Tailwind CSS v4  
+**Content:** In-repo React pages + static blog posts in `src/content/`  
+**Last updated:** July 2026
 
 ---
 
 ## Table of Contents
 
 1. [Project Overview](#1-project-overview)
-2. [Tech Stack Decisions](#2-tech-stack-decisions)
+2. [Tech Stack](#2-tech-stack)
 3. [Project Structure](#3-project-structure)
 4. [Getting Started](#4-getting-started)
-5. [Storyblok CMS Setup](#5-storyblok-cms-setup)
-6. [Pages & Content Mapping](#6-pages--content-mapping)
-7. [Component Architecture](#7-component-architecture)
-8. [SEO Strategy](#8-seo-strategy)
-9. [URL Migration from WordPress](#9-url-migration-from-wordpress)
-10. [Deployment Guide](#10-deployment-guide)
-11. [Development Workflow](#11-development-workflow)
-12. [Content Editing with Storyblok](#12-content-editing-with-storyblok)
+5. [Pages & Content](#5-pages--content)
+6. [Component Architecture](#6-component-architecture)
+7. [SEO](#7-seo)
+8. [URL Migration](#8-url-migration)
+9. [Deployment](#9-deployment)
+10. [Development Workflow](#10-development-workflow)
 
 ---
 
 ## 1. Project Overview
 
-### Background
-The Conalytic website was originally built with **WordPress**. This project migrates it to a modern **Next.js + Storyblok** stack for:
+The Conalytic marketing site is a **Next.js App Router** application. All copy, product pages, and blog posts live in the repository — there is no external CMS.
 
-- **Performance** – Static generation and edge delivery via Vercel
-- **SEO preservation** – All existing URLs redirected, metadata carried over exactly
-- **Developer experience** – TypeScript, component-based architecture, hot reload
-- **Content flexibility** – Non-developers can edit content via Storyblok's Visual Editor
-- **Scalability** – No PHP server needed, edge-deployed globally
+### Site map
 
-### Site Map (Migrated Pages)
-| WordPress URL | Next.js Route | Status |
-|---|---|---|
-| `/` | `/` | ✅ Done |
-| `/features` | `/features` | ✅ Done |
-| `/products/conversational-analytics` | `/products/conversational-analytics` | ✅ Done |
-| `/products/report-builder` | `/products/report-builder` | ✅ Done |
-| `/about-us` | `/about-us` | ✅ Done |
-| `/contact` | `/contact` | ✅ Done |
-| `/integrations` | `/integrations` | ✅ Done |
-| `/blogs` | `/blogs` | ✅ Done |
-| `/careers` | `/careers` | ✅ Done |
+| Route | Description |
+|---|---|
+| `/` | Home |
+| `/features` | Platform features |
+| `/products/conversational-analytics` | Conversational Analytics |
+| `/products/kpis-tracker` | KPIs Tracker |
+| `/products/report-builder` | Report Builder |
+| `/about-us` | About |
+| `/contact` | Contact |
+| `/integrations` | Integrations |
+| `/blogs` | Blog listing |
+| `/{slug}` | Blog post (canonical) |
+| `/blogs/[slug]` | Redirects to `/{slug}` |
+| `/careers` | Careers + Resend application form |
+| `/privacy-and-policy`, `/terms-of-service`, `/cookies` | Legal |
 
 ---
 
-## 2. Tech Stack Decisions
+## 2. Tech Stack
 
-### Why Next.js 16 (App Router)?
-- **App Router** gives us React Server Components (RSC) for zero-JS static pages
-- Built-in **image optimization**, **font optimization**, **metadata API**
-- **Static Site Generation (SSG)** + **Incremental Static Regeneration (ISR)** means pages rebuild automatically when content changes in Storyblok
-- First-class **TypeScript** support
-- Native **sitemap.ts** and **robots.ts** API routes
-
-### Why Storyblok?
-- **Visual Editor** – Content editors can click and edit directly on the live preview
-- **Component-based** – Maps 1:1 with our React component architecture
-- **Content Delivery API** – Fast, CDN-backed content delivery
-- **Draft/Published** – Built-in staging workflow for content approval
-- **Webhooks** – Auto-rebuild on content publish via Vercel webhooks
-- **Rich text** – Built-in rich text with React renderer
-
-### Why Tailwind CSS v4?
-- **CSS-first config** – No more `tailwind.config.js`, theme defined in CSS with `@theme`
-- **Smaller bundle** – Only generates CSS for used classes
-- **Custom properties** – Maps directly to CSS variables for dynamic theming
-- **v4 alpha is production-ready** for this scale
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router, RSC) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Motion | Framer Motion |
+| Blog | Markdown in `src/content/blog-bodies/` |
+| Email | Resend (`/api/careers-application`, `/api/newsletter`) |
+| Deployment | Vercel |
 
 ---
 
@@ -81,49 +64,25 @@ The Conalytic website was originally built with **WordPress**. This project migr
 ```
 conalytic/
 ├── docs/
-│   └── DEVELOPMENT.md          ← This file
-├── public/
-│   ├── og-image.png            ← Open Graph image (1200×630)
-│   └── favicon.ico
+│   ├── DEVELOPMENT.md
+│   └── WEBSITE.md
+├── public/                 # Static assets (logos, OG image, blog covers)
 ├── src/
-│   ├── app/                    ← Next.js App Router pages
-│   │   ├── layout.tsx          ← Root layout (Navbar + Footer)
-│   │   ├── page.tsx            ← Home page (/)
-│   │   ├── globals.css         ← Global styles + Tailwind v4 theme
-│   │   ├── sitemap.ts          ← Auto-generates /sitemap.xml
-│   │   ├── robots.ts           ← Auto-generates /robots.txt
-│   │   ├── features/
-│   │   │   └── page.tsx
-│   │   ├── products/
-│   │   │   ├── conversational-analytics/page.tsx
-│   │   │   └── report-builder/page.tsx
-│   │   ├── about-us/page.tsx
-│   │   ├── contact/page.tsx
-│   │   ├── integrations/page.tsx
-│   │   ├── blogs/
-│   │   │   ├── page.tsx        ← Blog listing
-│   │   │   └── [slug]/page.tsx ← Individual blog posts (via Storyblok)
-│   │   └── careers/page.tsx
+│   ├── app/                # Routes, layout, sitemap, robots, API routes
 │   ├── components/
-│   │   ├── layout/
-│   │   │   ├── Navbar.tsx      ← Responsive navigation with dropdowns
-│   │   │   └── Footer.tsx      ← Footer with newsletter signup
-│   │   ├── ui/
-│   │   │   ├── Button.tsx      ← Multi-variant button component
-│   │   │   ├── Badge.tsx       ← Label/tag component
-│   │   │   └── Card.tsx        ← Content card component
-│   │   ├── sections/
-│   │   │   └── CTA.tsx         ← Reusable CTA section
-│   │   └── storyblok/
-│   │       ├── StoryblokProvider.tsx  ← Storyblok visual editor bridge
-│   │       └── blocks/               ← Storyblok block components (add here)
-│   ├── lib/
-│   │   ├── storyblok.ts        ← Storyblok API utility functions
-│   │   └── utils.ts            ← cn() and other utilities
-│   └── types/
-│       └── storyblok.ts        ← TypeScript types for Storyblok content
-├── .env.local.example          ← Environment variable template
-├── next.config.ts              ← Next.js config (images, redirects)
+│   │   ├── blog/           # BlogPostMarkdown, BlogArticleCta
+│   │   ├── home/           # HomeClient + sections
+│   │   ├── layout/         # Navbar, Footer, CookieConsent, ThemeProvider
+│   │   ├── pages/          # Large marketing page clients
+│   │   ├── products/       # Product landing sections
+│   │   ├── sections/       # Shared CTA, etc.
+│   │   ├── seo/            # JSON-LD components
+│   │   └── ui/             # Accordion, buttons, theme toggle
+│   ├── content/
+│   │   ├── blog-posts.ts   # Blog metadata + slug registry
+│   │   └── blog-bodies/    # Markdown bodies per post
+│   └── lib/                # SEO, products, FAQs, utilities
+├── next.config.ts          # Redirects, image domains
 └── package.json
 ```
 
@@ -132,325 +91,121 @@ conalytic/
 ## 4. Getting Started
 
 ### Prerequisites
-- Node.js 20+ (`node --version`)
+
+- Node.js 20+
 - npm 10+
 
 ### Installation
 
 ```bash
-# 1. Clone/navigate to project
-cd "conalytic"
-
-# 2. Install dependencies
+cd conalytic
 npm install
-
-# 3. Set up environment variables
-cp .env.local.example .env.local
-# Fill in your Storyblok tokens (see Section 5)
-
-# 4. Start development server
 npm run dev
 ```
 
-The site will be available at `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000).
 
-### Available Scripts
+### Scripts
 
 | Script | Description |
 |---|---|
-| `npm run dev` | Start development server with hot reload |
-| `npm run build` | Build production bundle |
-| `npm run start` | Start production server locally |
-| `npm run lint` | Run ESLint |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Production server locally |
+| `npm run lint` | ESLint |
 
----
+### Environment variables
 
-## 5. Storyblok CMS Setup
-
-### Step 1: Create a Storyblok Account & Space
-
-1. Go to [app.storyblok.com](https://app.storyblok.com) and sign up
-2. Create a new **Space** (project) – name it "Conalytic"
-3. Choose **Community plan** (free) to get started
-
-### Step 2: Get API Tokens
-
-1. In your Space, go to **Settings → Access Tokens**
-2. You'll see two tokens:
-   - **Preview Token** – For draft content in development
-   - **Public Token** – For published content in production
-3. Copy both tokens
-
-### Step 3: Configure Environment Variables
-
-Edit `.env.local`:
 ```bash
-STORYBLOK_API_TOKEN=your_public_token_here
-STORYBLOK_PREVIEW_TOKEN=your_preview_token_here
-NEXT_PUBLIC_STORYBLOK_SPACE_ID=12345678
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_SITE_URL=https://conalytic.com
+NEXT_PUBLIC_SCHEDULE_CALL_URL=   # Contact “Schedule a call” link
+RESEND_API_KEY=
+RESEND_FROM=
+CAREERS_APPLICATION_TO=
 ```
-
-### Step 4: Create Content Types in Storyblok
-
-In Storyblok, go to **Block Library** and create these content types:
-
-#### Page (base type for all pages)
-```
-Fields:
-- title: Text (required)
-- description: Text (SEO description)
-- body: Blocks (page sections)
-```
-
-#### Blog Post
-```
-Fields:
-- title: Text (required)
-- slug: Text (required, URL-safe)
-- excerpt: Textarea
-- content: Richtext
-- category: Text
-- published_at: Date
-- featured_image: Asset
-- read_time: Text
-```
-
-#### Job Listing
-```
-Fields:
-- title: Text (required)
-- location: Text
-- type: Text (Full-time/Part-time/Contract)
-- description: Richtext
-- requirements: Richtext
-```
-
-### Step 5: Configure Storyblok Visual Editor
-
-1. In Storyblok Space Settings → Visual Editor
-2. Set **Default environment URL** to `http://localhost:3000`
-3. Set **Preview URL** to `http://localhost:3000/api/storyblok/preview`
-
-### Step 6: Set Up Webhooks for Auto-Rebuild (Production)
-
-1. In Vercel: Project → Settings → Git → Deploy Hooks
-2. Create a hook for the `main` branch, copy the URL
-3. In Storyblok: Settings → Webhooks → Add new
-4. Paste the Vercel deploy hook URL
-5. Trigger on: `story_published`, `story_unpublished`
 
 ---
 
-## 6. Pages & Content Mapping
+## 5. Pages & Content
 
-### Home Page (`/`)
-**Current content source:** Static in `src/app/page.tsx`  
-**Storyblok migration:** Create a "Home" story with these blocks:
-- `hero` block → Hero section
-- `trusted-logos` block → Trusted by section
-- `feature-grid` block → 4-feature grid
-- `platform-cards` block → 3 platform comparison cards
-- `testimonials` block → 6 testimonials
-- `faq` block → FAQ accordion
-- `cta` block → CTA section
+### Home (`/`)
 
-### Blog Posts (`/blogs/[slug]`)
-**Managed in Storyblok** under `blogs/` folder.  
-Each post = one Story with slug matching the URL.
+`src/app/page.tsx` renders `HomeClient` with optional `HomeContentPreset` overrides. Defaults are baked into the component.
+
+### Product pages
+
+Each product has a dedicated client component under `src/components/pages/` or `src/components/products/`, with copy from `src/lib/product-page-content.ts` and `src/lib/products.ts`.
+
+### Blog posts
+
+1. Add markdown in `src/content/blog-bodies/{slug}.ts`
+2. Register the post in `src/content/blog-posts.ts` (title, slug, excerpt, cover image, category)
+3. Canonical URL is `/{slug}` via `src/app/[slug]/page.tsx`
 
 ---
 
-## 7. Component Architecture
+## 6. Component Architecture
 
-### Design System
+### Design tokens
 
-#### Colors
 | Token | Value | Use |
 |---|---|---|
-| `brand-500` | `#6B5FF8` | Primary purple – buttons, links, icons |
-| `brand-400` | `#a78bfa` | Light purple – accents, highlights |
-| `navy-900` | `#0A0F1E` | Page background |
-| `navy-800` | `#0E1526` | Section alternating background |
-| `navy-700` | `#141C30` | Card background |
+| `brand-500` | `#6B5FF8` | Primary purple |
+| Page background | `#F6F7FE` | Light sections |
+| Dark background | `#0E0E14` | Dark mode sections |
 
-#### Typography
-- **Font:** Inter (Google Fonts, variable font)
-- **Headings:** `font-bold`, sizes from `text-3xl` to `text-7xl`
-- **Body:** `text-white/60` for regular text, `text-white/50` for muted
+### Layout chrome
 
-#### Spacing
-- **Section padding:** `py-24` (6rem top/bottom)
-- **Container:** `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
-- **Card padding:** `p-6` or `p-8`
-
-### Button Component
-```tsx
-<Button variant="primary" size="lg" href="/features">
-  Get Started
-</Button>
-```
-Variants: `primary` | `secondary` | `outline` | `ghost`  
-Sizes: `sm` | `md` | `lg`
-
-### Card Component
-```tsx
-<Card hover>
-  Content here
-</Card>
-```
+- **Navbar** / **Footer** accept optional config objects; when `null`, built-in fallback links are used.
+- **CookieConsent** stores preference in `localStorage` (`conalytic-cookie-consent-v1`).
 
 ---
 
-## 8. SEO Strategy
+## 7. SEO
 
-### Preserved from WordPress
-All content was carefully migrated with the **exact same** titles, descriptions, and copy from the WordPress site to maintain SEO rankings.
-
-### Metadata Implementation
-Every page has a `metadata` export:
-```tsx
-export const metadata: Metadata = {
-  title: "Exact WordPress title preserved",
-  description: "Exact WordPress meta description preserved",
-  openGraph: { ... },
-  twitter: { ... },
-};
-```
-
-### Structured Data (TODO)
-Add JSON-LD structured data for:
-- `Organization` schema on all pages
-- `FAQPage` schema on Home page
-- `JobPosting` schema on Careers page
-- `BlogPosting` schema on Blog posts
-
-### Core Web Vitals Optimization
-- **LCP:** Hero images use `priority` prop
-- **CLS:** All layout shifts prevented with fixed dimensions
-- **FID/INP:** Minimal client-side JS (RSC by default)
-- **Images:** Next.js `<Image>` component with automatic WebP/AVIF
-
-### Sitemap
-Auto-generated at `/sitemap.xml` via `src/app/sitemap.ts`.  
-Updates every build automatically.
+- Per-page `metadata` exports
+- JSON-LD via `src/lib/structured-data.ts` and `components/seo/`
+- Auto-generated `/sitemap.xml` and `/robots.txt`
+- Blog posts: `BlogPosting` schema on `/{slug}`
+- Non-www canonicals configured in `next.config.ts`
 
 ---
 
-## 9. URL Migration from WordPress
+## 8. URL Migration
 
-WordPress used some different URL patterns. All handled in `next.config.ts`:
+WordPress legacy paths redirect in `next.config.ts`:
 
-| Old WordPress URL | Redirects To | Type |
-|---|---|---|
-| `/about` | `/about-us` | 301 Permanent |
-| `/blog` | `/blogs` | 301 Permanent |
-| `/resources/blogs` | `/blogs` | 301 Permanent |
-| `/contact-us` | `/contact` | 301 Permanent |
-| `/resources/integrations` | `/integrations` | 301 Permanent |
-| `/resources/careers` | `/careers` | 301 Permanent |
-
-**Important:** All blog post slugs from WordPress must be preserved exactly as-is to maintain SEO.
+| Old URL | Redirects to |
+|---|---|
+| `/about` | `/about-us` |
+| `/blog` | `/blogs` |
+| `/contact-us` | `/contact` |
+| `/resources/*` | Matching new routes |
 
 ---
 
-## 10. Deployment Guide
+## 9. Deployment
 
-### Vercel (Recommended)
+Deploy to Vercel on push to `main`. Set environment variables in the Vercel project settings.
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy from project root
-cd "conalytic"
-vercel
-
-# Set environment variables in Vercel dashboard:
-# STORYBLOK_API_TOKEN
-# STORYBLOK_PREVIEW_TOKEN
-# NEXT_PUBLIC_STORYBLOK_SPACE_ID
-# NEXT_PUBLIC_SITE_URL=https://conalytic.com
-```
-
-### Custom Domain Setup
-1. In Vercel: Project → Settings → Domains
-2. Add `conalytic.com` and `www.conalytic.com`
-3. Update DNS records as instructed by Vercel
-4. SSL is automatic via Let's Encrypt
-
-### Environment Variables in Vercel
-1. Project → Settings → Environment Variables
-2. Add each variable from `.env.local.example`
-3. Set scope: `Production`, `Preview`, `Development` as appropriate
+**Production URL:** https://conalytic.com
 
 ---
 
-## 11. Development Workflow
+## 10. Development Workflow
 
-### Adding a New Page
+### New page
 
-1. Create `src/app/[route]/page.tsx`
-2. Add metadata export
-3. Add route to `src/app/sitemap.ts`
-4. Add redirect if there was a different WordPress URL in `next.config.ts`
+1. Create `src/app/[route]/page.tsx` with `metadata` export
+2. Add route to `src/app/sitemap.ts` if needed
+3. Add redirect in `next.config.ts` for legacy URLs
 
-### Adding a New Component
+### New blog post
 
-1. Create component in appropriate `src/components/` subfolder
-2. Export from component file
-3. Import in the page/section that needs it
-
-### Adding a Blog Post
-
-**Without Storyblok (dev mode):**  
-Add to the `blogPosts` array in `src/app/blogs/page.tsx`
-
-**With Storyblok configured:**  
-1. Go to Storyblok → Content → Blogs folder
-2. Create new Story
-3. Fill in title, slug (must match WordPress slug), content
-4. Publish – page auto-regenerates
+1. Write markdown body in `src/content/blog-bodies/`
+2. Add entry to `src/content/blog-posts.ts`
+3. Add cover image to `public/blog/` if needed
 
 ---
 
-## 12. Content Editing with Storyblok
-
-### For Non-Developers: Editing Content
-
-1. Log in to [app.storyblok.com](https://app.storyblok.com)
-2. Navigate to **Content** in the sidebar
-3. Click any Story (page) to edit
-4. Use the **Visual Editor** to see live preview
-5. Edit text fields on the right panel
-6. Click **Save** to save as draft
-7. Click **Publish** to make changes live
-
-### Storyblok Block Mapping
-
-Each page section in Next.js has a corresponding Storyblok block:
-
-| Block Name | Component | Notes |
-|---|---|---|
-| `hero` | `HeroBlock` | Page hero with title, subtitle, CTAs |
-| `feature-grid` | `FeatureGridBlock` | 2/3/4 column feature cards |
-| `testimonials` | `TestimonialsBlock` | Customer testimonial cards |
-| `faq` | `FAQBlock` | Accordion FAQ section |
-| `cta` | `CTABlock` | Full-width CTA section |
-| `pricing-table` | `PricingBlock` | Pricing plan comparison |
-| `rich-text` | `RichTextBlock` | Blog post content |
-
----
-
-## Changelog
-
-| Date | Change | Author |
-|---|---|---|
-| Mar 2026 | Initial Next.js + Storyblok migration from WordPress | Dev |
-| Mar 2026 | All 9 pages built with static content | Dev |
-| Mar 2026 | SEO metadata, sitemap, robots.txt, redirects configured | Dev |
-| Mar 2026 | Storyblok API utilities and provider set up | Dev |
-
----
-
-*For questions, contact the development team or file an issue in the repository.*
+*For operational details see [`WEBSITE.md`](./WEBSITE.md).*

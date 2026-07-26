@@ -8,7 +8,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn, isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
@@ -55,8 +54,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
   const primaryCtaLabel = config?.primaryCtaLabel || "Book A Demo";
   const primaryCtaHref = config?.primaryCtaHref || MARKETING_CONTACT_PATH;
   const primaryCtaIsExternal = isExternalNavigationHref(primaryCtaHref);
-  const navLogoLight = brandLogos?.navbarLogoLight ?? "/logo.png";
-  const navLogoDark = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
+  const navLogo = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
   const navLogoAlt = brandLogos?.navbarLogoAlt ?? conalyticLogoAlt("wordmark");
 
   useEffect(() => {
@@ -71,20 +69,19 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
   }, [pathname]);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-4">
+    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-3 sm:pt-4">
       <div
         className={cn(
-          "mx-auto max-w-5xl rounded-2xl transition-all duration-300",
+          "mx-auto max-w-6xl rounded-2xl transition-all duration-300",
           scrolled
-            ? "border border-black/8 bg-white/88 shadow-xl shadow-black/8 backdrop-blur-2xl dark:border-white/[0.07] dark:bg-[#121219]/90 dark:shadow-black/50"
-            : "border border-black/6 bg-white/72 shadow-lg shadow-black/5 backdrop-blur-xl dark:border-white/[0.06] dark:bg-[#0C0C12]/80 dark:shadow-black/30"
+            ? "border border-gray-200/90 bg-white/92 shadow-lg shadow-black/6 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0f0f0f]/92 dark:shadow-black/40"
+            : "border border-transparent bg-white/60 backdrop-blur-md dark:bg-[#0f0f0f]/55"
         )}
       >
-        <nav className="px-5 sm:px-6">
-          <div className="flex h-14 items-center justify-between">
-            <Link href="/" className="flex shrink-0 items-center" aria-label="Conalytic — Home">
-              <Image src={navLogoLight} alt={navLogoAlt} width={140} height={40} className="h-8 w-auto dark:hidden" priority />
-              <Image src={navLogoDark} alt={navLogoAlt} width={140} height={40} className="hidden h-8 w-auto dark:block" priority />
+        <nav className="px-4 sm:px-6">
+          <div className="flex h-[3.25rem] items-center justify-between">
+            <Link href="/" className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.02]" aria-label="Conalytic — Home">
+              <Image src={navLogo} alt={navLogoAlt} width={140} height={40} className="h-8 w-auto" priority />
             </Link>
 
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -149,7 +146,6 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
             </div>
 
             <div className="hidden shrink-0 items-center gap-2 lg:flex">
-              <ThemeToggle />
               <a
                 href={loginHref}
                 target="_blank"
@@ -164,7 +160,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                   href={primaryCtaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-gray-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] dark:bg-brand-600 dark:shadow-brand-600/25 dark:hover:bg-brand-700"
+                  className="rounded-xl bg-brand-600 px-4 py-1.5 text-sm font-semibold text-brand-500 shadow-sm transition-all duration-200 hover:bg-brand-500 hover:text-brand-600 hover:scale-[1.02] active:scale-[0.98]"
                   aria-label={`${primaryCtaLabel} (opens in new tab)`}
                 >
                   {primaryCtaLabel}
@@ -172,7 +168,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
               ) : (
                 <Link
                   href={primaryCtaHref}
-                  className="rounded-xl bg-gray-900 px-4 py-1.5 text-sm font-semibold text-white shadow-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] dark:bg-brand-600 dark:shadow-brand-600/25 dark:hover:bg-brand-700"
+                  className="rounded-xl bg-brand-600 px-4 py-1.5 text-sm font-semibold text-brand-500 shadow-sm transition-all duration-200 hover:bg-brand-500 hover:text-brand-600 hover:scale-[1.02] active:scale-[0.98]"
                   aria-label={primaryCtaLabel}
                 >
                   {primaryCtaLabel}
@@ -181,7 +177,6 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
             </div>
 
             <div className="flex items-center gap-2 lg:hidden">
-              <ThemeToggle />
               <button
                 className="rounded-lg p-1.5 text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
                 onClick={() => setIsOpen(!isOpen)}
@@ -252,7 +247,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                   href={primaryCtaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full rounded-xl bg-gray-900 py-2.5 text-center text-sm font-semibold text-white transition-all dark:bg-brand-600 dark:hover:bg-brand-700"
+                  className="w-full rounded-xl bg-brand-600 py-2.5 text-center text-sm font-semibold text-brand-500 transition-all hover:bg-brand-500 hover:text-brand-600"
                   aria-label={`${primaryCtaLabel} (opens in new tab)`}
                 >
                   {primaryCtaLabel}
@@ -260,7 +255,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
               ) : (
                 <Link
                   href={primaryCtaHref}
-                  className="w-full rounded-xl bg-gray-900 py-2.5 text-center text-sm font-semibold text-white transition-all dark:bg-brand-600 dark:hover:bg-brand-700"
+                  className="w-full rounded-xl bg-brand-600 py-2.5 text-center text-sm font-semibold text-brand-500 transition-all hover:bg-brand-500 hover:text-brand-600"
                   aria-label={primaryCtaLabel}
                 >
                   {primaryCtaLabel}

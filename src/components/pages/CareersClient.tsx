@@ -5,14 +5,14 @@
  */
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
-import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users } from "lucide-react";
+import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users, Medal, Star, Globe, Heart, BookOpen, Clock, Wallet, Coffee } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /* ── Why-join bento visuals ──────────────────────── */
 
@@ -46,7 +46,7 @@ function AIInnovationVisual() {
         <p className="text-[8px] uppercase tracking-wider text-gray-400 dark:text-white/30 font-semibold mb-1">Detected Intent</p>
         <div className="flex items-center gap-2">
           <div className="flex-1 h-1.5 bg-gray-200 dark:bg-white/[0.07] rounded-full overflow-hidden">
-            <div className="h-full w-[92%] bg-gradient-to-r from-brand-600 to-violet-500 rounded-full"/>
+            <div className="h-full w-[92%] bg-gradient-to-r from-brand-600 to-brand-700 rounded-full"/>
           </div>
           <span className="text-[10px] font-black text-brand-600 dark:text-brand-300 shrink-0">92% ROI query</span>
         </div>
@@ -127,9 +127,9 @@ function GrowthVisual() {
 /** 4 · Industry Recognition — awards + hackathon wall */
 function RecognitionVisual() {
   const awards = [
-    {emoji:"🏆", title:"Product of the Year",    org:"G2 Analytics Awards 2024",  color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20"},
-    {emoji:"🥇", title:"Best AI Startup",         org:"TechCrunch Disrupt 2024",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
-    {emoji:"⭐", title:"4.9★ Customer Rating",    org:"2,000+ verified reviews",   color:"bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20"},
+    { icon: Trophy, title:"Product of the Year",    org:"G2 Analytics Awards 2024",  color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20"},
+    { icon: Medal, title:"Best AI Startup",         org:"TechCrunch Disrupt 2024",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
+    { icon: Star, title:"4.9 Customer Rating",    org:"2,000+ verified reviews",   color:"bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20"},
   ];
   return (
     <div className="w-full p-3 space-y-2">
@@ -141,15 +141,17 @@ function RecognitionVisual() {
         </div>
         <span className="ml-auto text-[9px] font-bold text-amber-600 dark:text-amber-400">#1</span>
       </div>
-      {awards.map((a,i)=>(
+      {awards.map((a,i)=>{
+        const Icon = a.icon;
+        return (
         <div key={i} className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl border ${a.color}`}>
-          <span className="text-base leading-none shrink-0">{a.emoji}</span>
+          <Icon className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-300" />
           <div className="min-w-0">
             <p className="text-[10px] font-bold text-gray-800 dark:text-white/80 truncate">{a.title}</p>
             <p className="text-[8px] text-gray-400 dark:text-white/35 truncate">{a.org}</p>
           </div>
         </div>
-      ))}
+      );})}
     </div>
   );
 }
@@ -162,12 +164,12 @@ const whyJoin = [
 ];
 
 const perks = [
-  { emoji:"🌍", label:"Remote-first" },
-  { emoji:"🏥", label:"Health benefits" },
-  { emoji:"📚", label:"Learning budget" },
-  { emoji:"🕐", label:"Flexible hours" },
-  { emoji:"💰", label:"Equity options" },
-  { emoji:"🎉", label:"Team offsites" },
+  { icon: Globe, label:"Remote-first" },
+  { icon: Heart, label:"Health benefits" },
+  { icon: BookOpen, label:"Learning budget" },
+  { icon: Clock, label:"Flexible hours" },
+  { icon: Wallet, label:"Equity options" },
+  { icon: Coffee, label:"Team offsites" },
 ];
 
 const openRoles = [
@@ -235,7 +237,7 @@ function RoleQuickApply({ roleTitle }: { roleTitle: string }) {
           type="submit"
           disabled={loading || !file}
           aria-label={`Submit resume for ${roleTitle}`}
-          className="px-6 py-3 rounded-xl text-sm font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0 text-center inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="px-6 py-3 rounded-xl text-sm font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0 text-center inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           {loading ? "Sending…" : "Submit"}
         </button>
@@ -302,7 +304,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
           </motion.p>
           <motion.a initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
             href="#open-positions"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             {heroButtonLabel} <ArrowRight className="w-4 h-4"/>
           </motion.a>
         </div>
@@ -312,17 +314,19 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       <section className="py-10 px-4 bg-white dark:bg-[#0C0C12] border-b border-gray-100 dark:border-white/[0.05]">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap justify-center gap-3">
-            {perks.map(p=>(
-              <div key={p.label} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#F6F7FE] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07] text-sm font-medium text-gray-700 dark:text-white/70">
-                <span>{p.emoji}</span><span>{p.label}</span>
+            {perks.map(p=>{
+              const Icon = p.icon;
+              return (
+              <div key={p.label} className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#f0f1f5] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07] text-sm font-medium text-gray-700 dark:text-white/70">
+                <Icon className="h-4 w-4 text-brand-600 dark:text-brand-300" /><span>{p.label}</span>
               </div>
-            ))}
+            );})}
           </div>
         </div>
       </section>
 
       {/* ── WHY JOIN ────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Life at Conalytic</span>
@@ -354,7 +358,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
 
       {/* ── OPEN POSITIONS ──────────────────────────── */}
       <section id="open-positions" className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(107,95,248,0.08) 0%, transparent 70%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Open Roles</span>

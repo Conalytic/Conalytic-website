@@ -23,15 +23,15 @@ export function LegalSection({
       <div className="flex gap-0 sm:gap-5">
         <div
           className="hidden w-1 shrink-0 rounded-full sm:block"
-          style={{
-            background: `linear-gradient(180deg, ${C.electricBlue}, ${C.blueLight}, ${C.dancingPurple})`,
-          }}
+            style={{
+              background: `linear-gradient(180deg, ${C.accent}, ${C.ink})`,
+            }}
           aria-hidden
         />
         <div className="min-w-0 flex-1 space-y-4 border-l-2 border-transparent pl-0 sm:border-none sm:pl-0">
           <h2 className="font-heading text-xl font-bold leading-tight tracking-tight text-[#17191C] sm:text-[1.35rem] lg:text-2xl">
             <span
-              className="bg-gradient-to-r from-[#17191C] via-[#532775] to-[#5E56E7] bg-clip-text text-transparent"
+              className="bg-gradient-to-r from-[#0f0f0f] via-[#1a1b1e] to-[#c9ff33] bg-clip-text text-transparent"
             >
               {title}
             </span>
@@ -47,7 +47,7 @@ export function LegalSection({
 
 export function LegalH3({ children }: { children: ReactNode }) {
   return (
-    <h3 className="pt-2 font-heading text-base font-bold text-[#532775]">
+    <h3 className="pt-2 font-heading text-base font-bold text-[#0f0f0f]">
       {children}
     </h3>
   );
@@ -76,7 +76,7 @@ export function LegalProseList({ items }: { items: ReactNode[] }) {
 /** Numbered list for sequential obligations or steps. */
 export function LegalOrderedList({ items }: { items: ReactNode[] }) {
   return (
-    <ol className="list-decimal space-y-3 pl-5 marker:font-semibold marker:text-[#5E56E7]">
+    <ol className="list-decimal space-y-3 pl-5 marker:font-semibold marker:text-[#0f0f0f]">
       {items.map((item, i) => (
         <li key={i} className="pl-1 text-[0.9375rem] leading-relaxed text-[#1D2939]/90">
           {item}
@@ -127,7 +127,7 @@ export function LegalCallout({
 }
 
 const legalLinkClassName =
-  "font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 transition-colors hover:text-[#532775] hover:decoration-[#532775]/50";
+  "font-semibold text-[#0f0f0f] underline decoration-[#0f0f0f]/30 underline-offset-2 transition-colors hover:text-[#1a1b1e] hover:decoration-[#1a1b1e]/50";
 
 export function LegalLink({
   href,

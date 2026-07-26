@@ -1,151 +1,155 @@
-/** Blog body: Report Builder (Reports) — 1000+ words, aligned with Conalytic-Chat. */
+/** Blog body: Report Builder — customer-facing guide. */
 export const reportBuilderBody = `
-Client reporting is where great marketing work goes to die—in copy-paste hell. Analysts export GA4, pull Search Console queries into Sheets, screenshot Google Ads, paste into slides, write commentary, fix formatting, send a PDF, and repeat next month. **Report Builder** in Conalytic (labeled **Reports** in the app) automates the assembly: connect GA4, Google Search Console, Google Ads, and Google Tag Manager, configure date ranges and comparisons, optionally enable **AI insights**, and generate a **premium HTML presentation deck** you can view in-app or download for stakeholders.
+Client reporting is where great marketing work often gets buried—in copy-paste hell. Analysts export GA4, pull Search Console into spreadsheets, screenshot Google Ads, paste into slides, write commentary, fix formatting, and repeat next month.
 
-This guide covers what Report Builder produces, how it differs from Conversational Analytics and KPIs Tracker, configuration options in Conalytic-Chat, and best practices for agencies shipping monthly client reports.
+**Report Builder** in Conalytic automates that workflow. Connect your marketing platforms, choose date ranges and focus areas, optionally add AI-written insights, and generate a **polished HTML presentation** your clients can open in any browser.
+
+This guide explains what Report Builder is, how it works in Conalytic, and how agencies and in-house teams ship better reports with less manual work.
+
+## What is Conalytic?
+
+**Conalytic** helps marketing teams understand and communicate performance across Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, and more—from one workspace.
+
+Three products work together:
+
+- **[Conversational Analytics](/products/conversational-analytics)** — ask questions and explore data in chat
+- **[KPIs Tracker](/products/kpis-tracker)** — monitor goals with on-track / at-risk status
+- **Report Builder** — deliver presentation-ready HTML decks for clients and leadership
+
+Report Builder is for the moment you need a **finished deliverable**, not just an answer.
 
 ## What is Report Builder?
 
-The Reports list page headline says it clearly: *“Premium HTML presentations from your connected marketing data.”* Output is not a static PDF factory—it is a **multi-slide HTML deck** with cover, table of contents, executive summary, health check, KPI snapshot, platform sections, cross-source findings, recommendations, methodology, action plan, and thank-you slides. Decks are **viewed inside Conalytic** (embedded viewer) or **downloaded as HTML** for email and archiving.
+Report Builder turns your connected marketing data into a **multi-slide HTML presentation**. Each deck includes a cover, table of contents, executive summary, platform sections, cross-channel findings, methodology, and an action plan—viewable inside Conalytic or downloadable as HTML.
 
-Meta and LinkedIn appear in the new-report data-source grid but are **disabled** in production—the active platforms are **GA4, GSC, Google Ads, and GTM** only.
+Active platforms today: **Google Analytics 4**, **Google Search Console**, **Google Ads**, and **Google Tag Manager**.
 
-## Active integrations and per-platform focus
+## What goes into a report?
 
-When you configure a report, each connected platform exposes **focus options** tailored to how marketers actually review that channel:
+A typical deck includes:
+
+- **Cover** with client name, report title, and date range
+- **Executive summary** for leadership
+- **Health check** and **KPI snapshot**
+- **Platform sections** with charts and tables per channel
+- **Cross-source findings** connecting organic, paid, and site behavior
+- **Methodology** documenting the reporting window and data in scope
+- **Prioritized action plan** for next steps
+
+Methodology slides help agencies show rigor—especially when clients compare your numbers to their internal GA4 view.
+
+## Platform focus areas
+
+When you configure a report, choose what to emphasize per platform:
 
 ### Google Analytics 4
-
-- Traffic  
-- Channels  
-- Pages  
-- Conversions  
-- Devices  
+Traffic, channels, pages, conversions, devices
 
 ### Google Search Console
-
-- Queries  
-- Pages  
-- Page + query  
-- Device  
+Queries, pages, page + query combinations, device breakdowns
 
 ### Google Ads
-
-- Trend  
-- Campaigns  
-- Devices  
+Trends, campaigns, devices
 
 ### Google Tag Manager
+Full container audit, overview, security, consent
 
-- Full container audit  
-- Overview  
-- Security  
-- Consent  
+Ecommerce teams lean on GA4 conversions; SEO retainers emphasize GSC queries; paid media reviews need Ads campaigns; technical retainers add GTM security and consent slides.
 
-Pick the lenses that match your client SOW—ecommerce teams lean on GA4 conversions and pages; SEO retainers emphasize GSC queries; paid media reviews need Ads campaigns and devices; technical retainers add GTM security/consent slides.
+## Key benefits
 
-## Creating a report: step by step
+### Save hours every reporting cycle
 
-1. Open **Reports** and click **New report**.  
-2. Enter **title** and **client name** (surfaces on the cover and cards).  
-3. Choose **date range**: Last 7/28/30 days, Last month, Last 90 days, or **Custom** (up to 366 days).  
-4. Set **comparison**: No comparison, Previous period, Previous period same year, or Previous year.  
-5. Add optional **scoped notes** (e.g., *“organic report”*) to limit narrative emphasis.  
-6. Configure **data sources**—connection + property/site/account/container per platform. Auto-configure fills the form when only one connection exists.  
-7. Toggle **AI insights** and select **GPT-5.4**, **Claude Opus 4.8**, or **Gemini 3.1 Pro** if enabled.  
-8. Click **Generate report** and wait for status **ready** (or **failed** with retry).
+Generate a structured deck in minutes instead of rebuilding slides from scratch.
 
-When data refreshes, use **Regenerate** with frozen settings so slide structure stays consistent month to month—clients notice when layouts jump.
+### Professional output clients can open anywhere
 
-## What slides and narratives include
+HTML decks work in any browser—no PowerPoint license required. Download and send, or walk through the in-app viewer on a call.
 
-**Rule-based cross-source detectors** flag patterns across GA4, GSC, and Ads without LLM cost. When **AI insights** are on, slide copy, findings, and recommendations are **personalized** and token-metered on Pro plans.
+### Consistent structure month to month
 
-Typical deck flow:
+Regenerate with the same settings so layouts stay familiar—clients notice when formats jump around.
 
-- **Cover** with client name, report title, and date range label  
-- **Contents** for navigation inside the HTML viewer  
-- **Executive summary** for leadership skimmers  
-- **Health check** and **KPI snapshot** anchoring performance  
-- **Platform sections** with charts and tables per focus area  
-- **Cross-source findings** connecting organic, paid, and site behavior  
-- **Methodology** documenting reporting window, properties in scope, GA4/GSC volumes, and organic gap notes  
-- **Prioritized action plan** for next steps  
-- **Thank you** closing slide  
+### Optional AI narratives
 
-Methodology slides matter for agencies proving rigor—especially when clients compare your numbers to their internal GA4 view.
+Turn on **AI insights** when you want personalized slide copy, findings, and recommendations. Turn them off when you need a data-only deck you will edit yourself.
 
-## AI insights: when to enable them
+### Cross-channel story in one place
 
-| Scenario | AI insights |
-|----------|-------------|
+See how organic, paid, and site behavior connect—without manually stitching screenshots from four tools.
+
+## How to create a report
+
+1. Open **Reports** and click **New report**.
+2. Enter a **title** and **client name** (shown on the cover).
+3. Choose a **date range**: last 7, 28, 30, or 90 days; last month; or a custom range.
+4. Set a **comparison**: previous period, same period last year, or none.
+5. Add optional **scoped notes** (for example, *“organic focus only”*) to guide the narrative.
+6. Configure **data sources**—select the connection and property, site, account, or container for each platform.
+7. Toggle **AI insights** on or off and pick your preferred model if enabled.
+8. Click **Generate report** and review when status shows ready.
+
+Use **Regenerate** with the same settings when data refreshes—keeps slide structure consistent across months.
+
+## When to enable AI insights
+
+| Scenario | Recommendation |
+|----------|----------------|
 | Executive readout needing narrative | **On** |
 | Data-only appendix for analysts | **Off** |
-| Tight token budget mid-month | **Off** for drafts, **On** for final |
-| Regulated client requiring exact wording | **Off**; edit HTML manually |
+| Regulated client requiring exact wording | **Off**—edit HTML manually |
+| First draft before your team adds commentary | **On**, then refine |
 
-Report generation with AI enabled posts to the **Report** ledger type in Billing and Usage, separate from **Chat** and **Composer refine**.
+AI insights personalize slide copy and recommendations. Data-only reports rely on charts and tables without generated narrative.
 
-## How Report Builder compares to other Conalytic tools
+## Report Builder vs other Conalytic tools
 
 | Tool | Output | Best for |
 |------|--------|----------|
 | **Report Builder** | HTML presentation deck | Client deliverables, board packs |
-| **Conversational Analytics** | Chat + inline viz | Live Q&A, investigations |
-| **KPIs Tracker** | Status dashboard | Ongoing goal monitoring |
+| **Conversational Analytics** | Chat answers with inline charts | Live Q&A, investigations |
+| **KPIs Tracker** | Goal status dashboard | Ongoing monitoring |
 
-Workflow many agencies adopt: **KPIs Tracker** all month for health → **Chats** for anomaly deep dives → **Report Builder** for the monthly send.
+A common agency workflow: **KPIs Tracker** all month for health → **Conversational Analytics** for anomaly deep dives → **Report Builder** for the monthly send.
 
-## Date ranges and comparisons that work in real life
+## Tips for better reports
 
-**Last 28 vs 30 days:** Align with Meta and Ads billing cycles where possible.
+**Spot-check the methodology slide** against your statement of work date range.
 
-**Previous period same year:** Seasonal brands (retail, travel) avoid YoY noise from holiday shifts.
+**Verify each platform section** uses the correct property or account—wrong GA4 property selection is the most common mistake.
 
-**Custom 366-day cap:** Annual reviews without leaving Conalytic.
+**Read AI recommendations** before sending—edit the downloaded HTML if any wording needs adjustment.
 
-**Scoped notes:** Use *“brand vs non-brand organic”* or *“paid search only”* hints when AI is enabled so narratives stay on brief.
+**Regenerate once** if a platform returned partial data due to a temporary API delay.
 
-## White-label and client experience
-
-Agency positioning benefits from HTML decks clients can open in any browser—no PowerPoint license required. Download HTML, host on your portal, or walk through the in-app viewer on calls. For positioning alongside your brand, pair Report Builder output with your cover messaging in the **client name** and **title** fields each cycle.
-
-## Quality assurance before send
-
-1. **Spot-check methodology slide** against the SOW date range.  
-2. **Verify each platform section** matches the connected property (common failure: wrong GA4 property selected).  
-3. **Read AI recommendations** for hallucinated causality—swap with human edits in the HTML if needed.  
-4. **Regenerate** once if a platform returned partial data due to API delay.  
-5. **Archive** the downloaded HTML in your PM tool for audit trails.
-
-## Token economics on Conalytic Pro
-
-Reports with AI insights consume **prompt + completion tokens** under the same Pro markup model as chat. KPI dashboards do not. Planning three AI-enabled client decks and twenty investigative chats per month? Monitor **Billing and Usage** and top up via PayPal when balance runs low ($20 minimum). Signup includes promotional token credit for evaluation.
+**Archive the HTML** in your project management tool for audit trails.
 
 ## Who benefits most?
 
-- **Marketing agencies** shipping recurring GA4 + GSC + Ads recaps  
-- **In-house growth teams** preparing monthly leadership decks  
-- **Consultants** delivering GTM audit readouts with security/consent focus slides  
-- **Freelance PPC managers** who need professional presentation without slide grunt work  
+- **Marketing agencies** shipping recurring GA4 + GSC + Ads recaps
+- **In-house growth teams** preparing monthly leadership decks
+- **Consultants** delivering GTM audit readouts
+- **Freelance PPC managers** who want professional presentations without slide grunt work
 
 ## Frequently asked questions
 
 **Can I edit the deck after generation?**  
-Download HTML and edit locally, or regenerate after fixing data sources.
+Yes. Download the HTML and edit locally, or regenerate after fixing data sources.
 
 **Does Report Builder email clients automatically?**  
-Download and send through your ESP today; scheduling is a workflow outside the core generate/view/download loop.
+Download and send through your own email or client portal today.
 
 **Are Meta Ads included?**  
-Not in active report generation—UI shows Meta/LinkedIn as disabled future sources.
+Report Builder currently focuses on GA4, GSC, Google Ads, and GTM. Use Conversational Analytics for Meta exploration.
 
-**How is this different from Looker Studio PDF exports?**  
-Report Builder ships a **structured narrative deck** with executive summary and action plan—not just charts.
+**How is this different from Looker Studio?**  
+Report Builder delivers a **structured narrative deck** with executive summary and action plan—not just a dashboard export.
 
-## Get started with Report Builder
+## Get started
 
-Report Builder is live in Conalytic. [Create your account](https://chat.conalytic.com/signup), connect GA4, GSC, Google Ads, and/or GTM, then open **Reports → New report**. Your first deck can be ready before your next client call ends.
+Report Builder is available in Conalytic today. [Create your account](https://chat.conalytic.com/signup), connect your platforms, and open **Reports → New report**.
 
-Dive deeper on the [Report Builder product page](/products/report-builder), see [all features](/features), or [book a demo](/contact) to walk through a sample HTML presentation with our team.
+Your first deck can be ready before your next client call ends.
+
+Explore the [Report Builder product page](/products/report-builder), see [all features](/features), or [contact us](/contact) to walk through a sample presentation with our team.
 `;

@@ -18,7 +18,8 @@ import { handleSamePageHashClick } from "@/lib/hash-nav";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+import { BrandAmbient } from "@/components/visual/BrandAmbient";
+import { BRAND_HERO_GRADIENT_TEXT } from "@/lib/brand";
 
 /** Fixed height so every feature card’s mockup + text block line up across the row */
 const BENTO_VISUAL_H = "h-[268px]";
@@ -34,7 +35,7 @@ function ConversationalVisual() {
       {/* User query */}
       <div className="flex justify-end">
         <div className="flex items-end gap-1.5 max-w-[85%]">
-          <div className="bg-brand-600 text-white text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
+          <div className="bg-brand-600 text-brand-500 text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
             Which campaigns had the best ROI?
           </div>
           <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center shrink-0 mb-0.5">
@@ -44,7 +45,7 @@ function ConversationalVisual() {
       </div>
       {/* AI response */}
       <div className="flex items-end gap-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center shrink-0 mb-0.5">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shrink-0 mb-0.5">
           <span className="text-[6px] font-black text-white">CA</span>
         </div>
         <div className="bg-gray-100 dark:bg-white/[0.07] text-gray-700 dark:text-white/80 text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-bl-sm max-w-[85%]">
@@ -56,7 +57,7 @@ function ConversationalVisual() {
         <div className="flex items-end gap-1.5 h-8">
           {[{h:80,l:"Brand"},{h:55,l:"Retarg."},{h:40,l:"Display"},{h:65,l:"Video"}].map((b,i)=>(
             <div key={b.l} className="flex-1 flex flex-col items-center justify-end gap-0.5">
-              <div className="w-full rounded-t-[2px]" style={{height:`${Math.round(b.h*0.01*28)}px`,background:`rgba(107,95,248,${0.45+i*0.1})`}}/>
+              <div className="w-full rounded-t-[2px]" style={{height:`${Math.round(b.h*0.01*28)}px`,background:`rgba(201,255,51,${0.45+i*0.1})`}}/>
               <span className="text-[7px] text-gray-400 dark:text-white/30 truncate w-full text-center">{b.l}</span>
             </div>
           ))}
@@ -64,7 +65,7 @@ function ConversationalVisual() {
       </div>
       {/* Typing indicator */}
       <div className="flex items-center gap-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center shrink-0">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shrink-0">
           <span className="text-[6px] font-black text-white">CA</span>
         </div>
         <div className="bg-gray-100 dark:bg-white/[0.07] px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1 items-center">
@@ -93,12 +94,12 @@ function AIInsightsVisual() {
         <svg viewBox="0 0 100 60" className="w-full h-10" preserveAspectRatio="none">
           <defs>
             <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.18"/>
-              <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0"/>
+              <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.18"/>
+              <stop offset="100%" stopColor="#c9ff33" stopOpacity="0"/>
             </linearGradient>
           </defs>
           <polygon points={`0,100 ${pts} 100,100`} fill="url(#sg1)"/>
-          <polyline points={pts} fill="none" stroke="#6B5FF8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points={pts} fill="none" stroke="#c9ff33" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       {/* Insight chips */}
@@ -342,12 +343,12 @@ function ChatMockup() {
       <div className="p-4 space-y-3">
         {msgs.map((m,i)=>(
           <div key={i} className={`flex ${m.user?"justify-end":"justify-start"}`}>
-            {!m.user&&<div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold text-white">CA</span></div>}
-            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"bg-brand-600 text-white rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
+            {!m.user&&<div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold text-brand-500">CA</span></div>}
+            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"bg-brand-600 text-brand-500 rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
             {m.user&&<div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center ml-2 shrink-0 mt-0.5"><span className="text-[8px] font-bold text-gray-500 dark:text-white/50">U</span></div>}
           </div>
         ))}
-        <div className="flex justify-start"><div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold text-white">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
+        <div className="flex justify-start"><div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold text-brand-500">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
       </div>
     </div>
   );
@@ -377,7 +378,7 @@ function PerfMockup() {
             {PERF_BARS.map((b,i)=>(
               <div key={b.lbl} className="flex-1 flex flex-col items-center justify-end gap-1">
                 <span className="text-[8px] text-gray-500 dark:text-white/40 font-semibold">{(b.pct/20).toFixed(1)}×</span>
-                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*PERF_MAX)}px`,background:`rgba(107,95,248,${0.4+i*0.12})`}}/>
+                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*PERF_MAX)}px`,background:`rgba(201,255,51,${0.4+i*0.12})`}}/>
               </div>
             ))}
           </div>
@@ -393,7 +394,7 @@ function ReportMockup() {
     <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-md bg-brand-600 flex items-center justify-center"><BarChart3 className="w-3 h-3 text-white"/></div>
+          <div className="w-5 h-5 rounded-md bg-brand-600 flex items-center justify-center"><BarChart3 className="w-3 h-3 text-brand-500"/></div>
           <span className="text-xs font-semibold text-gray-700 dark:text-white/80">Monthly Marketing Report</span>
         </div>
         <span className="text-[10px] bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 px-2 py-0.5 rounded-full font-medium">Auto-generated</span>
@@ -421,9 +422,9 @@ function ReportMockup() {
 }
 
 const deepDives = [
-  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, GTM, or Meta. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
-  { badge:"KPIs Tracker", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Goals With On-Track / At-Risk Status",  desc:"Create KPI projects for GA4, GSC, and Google Ads. Set targets, compare month or year-to-date, and review six months of achievement history.",                    bullets:["Status labels: On track, At risk, Off track, No data","Rules-based scoring—no AI guesswork on KPI health","Optional GSC keyword ranking tracking per project"],          cta:{label:"Explore KPI Tracker",href:"/products/kpis-tracker"}, Visual:PerfMockup,  sectionBg:"bg-[#F6F7FE] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
-  { badge:"Report Builder",          badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",          title:"Deliver HTML Decks Clients Actually Read",          desc:"Generate multi-platform presentation decks with executive summary, platform sections, cross-source findings, methodology, and a prioritized action plan.", bullets:["GA4, GSC, Google Ads, and GTM sources with per-platform focus","Optional AI insights for slide narratives (token-metered on Pro)","View in-app, download HTML, or regenerate with the same settings"],cta:{label:"Explore Reports",href:"/products/report-builder"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)" },
+  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, GTM, or Meta. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)" },
+  { badge:"KPIs Tracker", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Goals With On-Track / At-Risk Status",  desc:"Create KPI projects for GA4, GSC, and Google Ads. Set targets, compare month or year-to-date, and review six months of achievement history.",                    bullets:["Status labels: On track, At risk, Off track, No data","Rules-based scoring—no AI guesswork on KPI health","Optional GSC keyword ranking tracking per project"],          cta:{label:"Explore KPI Tracker",href:"/products/kpis-tracker"}, Visual:PerfMockup,  sectionBg:"bg-[#f0f1f5] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
+  { badge:"Report Builder",          badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",          title:"Deliver HTML Decks Clients Actually Read",          desc:"Generate multi-platform presentation decks with executive summary, platform sections, cross-source findings, methodology, and a prioritized action plan.", bullets:["GA4, GSC, Google Ads, and GTM sources with per-platform focus","Optional AI insights for slide narratives","View in-app, download HTML, or regenerate with the same settings"],cta:{label:"Explore Reports",href:"/products/report-builder"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)" },
 ];
 
 export interface FeaturesContentPreset {
@@ -452,9 +453,8 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-32 pb-24 px-4 hero-gradient">
-        <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
+      <section className="relative overflow-hidden pt-32 pb-24 px-4">
+        <BrandAmbient variant="hero" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
@@ -462,7 +462,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span style={BRAND_HERO_GRADIENT_TEXT}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -473,7 +473,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
               href={CHAT_APP_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               aria-label={`${heroPrimaryCtaLabel} (opens in new tab)`}>
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
             </a>
@@ -482,7 +482,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       </section>
 
       {/* ── FEATURES BENTO GRID ───────────────────────── */}
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{includedSubtitle}</span>
@@ -572,7 +572,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                     href={s.cta.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={`${s.cta.label} (opens in new tab)`}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
@@ -581,7 +581,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                   <a
                     href={s.cta.href}
                     onClick={(e) => handleSamePageHashClick(e, s.cta.href)}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={`${s.cta.label} — scroll to section`}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
@@ -589,7 +589,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                 ) : (
                   <Link
                     href={s.cta.href}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={s.cta.label}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>

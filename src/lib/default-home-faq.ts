@@ -6,7 +6,7 @@ export const DEFAULT_HOME_FAQ = [
   {
     question: "What is Conalytic marketing analytics software?",
     answer:
-      "Conalytic is an AI-powered marketing analytics platform with three tools: Conversational Analytics (natural-language chat over GA4, Google Ads, Search Console, GTM, and Meta), KPIs Tracker (goal monitoring for GA4, GSC, and Google Ads), and Report Builder (automated HTML client presentation decks). Sign up free at chat.conalytic.com with token-based Pro usage.",
+      "Conalytic is an AI-powered marketing analytics platform with three tools: Conversational Analytics (natural-language chat over GA4, Google Ads, Search Console, GTM, and Meta), KPIs Tracker (goal monitoring for GA4, GSC, and Google Ads), and Report Builder (automated HTML client presentation decks). Sign up free at chat.conalytic.com.",
   },
   {
     question: "What products does Conalytic include?",
@@ -34,9 +34,9 @@ export const DEFAULT_HOME_FAQ = [
       "Report Builder generates stakeholder-ready HTML presentation decks from connected marketing data—executive summary, platform sections for GA4, GSC, Google Ads, and GTM, cross-source findings, methodology, prioritized action plan, and optional AI-written slide narratives. Download HTML for agency client reporting.",
   },
   {
-    question: "How does Conalytic Pro pricing and tokens work?",
+    question: "How does Conalytic Pro pricing work?",
     answer:
-      "Conalytic Pro is free to start with signup tokens. Conversational Analytics chat, composer refine, and AI-powered report insights consume tokens (prompt + completion). Purchase PayPal top-ups when your balance runs low. KPI Tracker goal evaluation is not token-metered.",
+      "Conalytic Pro is free to start. Conversational Analytics and AI-powered report insights use usage-based pricing. KPIs Tracker goal monitoring is included for connected accounts. See current plans in the app after signup.",
   },
   {
     question: "Is my marketing data secure with Conalytic?",

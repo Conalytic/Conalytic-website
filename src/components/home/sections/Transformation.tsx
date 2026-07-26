@@ -18,7 +18,7 @@ const AFTER = [
 ];
 
 const TITLE_GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)",
+  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",

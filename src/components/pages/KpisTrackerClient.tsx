@@ -23,7 +23,6 @@ import {
   KpiStatusLegend,
   ProductCapabilitiesGrid,
   ProductDeepDive,
-  ProductFeatureMarquee,
   ProductHeroVisual,
   ProductHowItWorks,
   ProductStatsStrip,
@@ -36,7 +35,7 @@ const fadeUp = {
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 const GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)",
+  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -133,15 +132,15 @@ function HistoryVisual() {
         <svg viewBox="0 0 100 50" className="h-10 w-full" preserveAspectRatio="none">
           <defs>
             <linearGradient id="kpiTrend" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.2" />
-              <stop offset="100%" stopColor="#6B5FF8" stopOpacity="0" />
+              <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#c9ff33" stopOpacity="0" />
             </linearGradient>
           </defs>
           <polygon points={`0,100 ${pts} 100,100`} fill="url(#kpiTrend)" />
           <polyline
             points={pts}
             fill="none"
-            stroke="#6B5FF8"
+            stroke="#c9ff33"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -247,7 +246,7 @@ export function KpisTrackerClient() {
           >
             <a
               href={CHAT_APP_SIGNUP_URL}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             >
               Start tracking KPIs <ArrowRight className="w-4 h-4" />
             </a>
@@ -260,34 +259,14 @@ export function KpisTrackerClient() {
           </motion.div>
         </div>
 
-        <ProductHeroVisual
-          src={pageContent.heroImage}
-          alt={pageContent.heroImageAlt}
-          accent="emerald"
-        />
+        <ProductHeroVisual variant="kpis" />
       </section>
 
       <ProductStatsStrip stats={pageContent.stats} />
 
       <ProductHowItWorks steps={pageContent.howItWorks} />
 
-      <ProductFeatureMarquee
-        tags={[
-          "On track",
-          "At risk",
-          "Off track",
-          "GA4 sessions",
-          "GSC keyword rankings",
-          "Google Ads ROAS",
-          "Monthly KPI view",
-          "YTD comparison",
-          "6-month history",
-          "Rules-based scoring",
-          "300 GSC keywords",
-        ]}
-      />
-
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

@@ -21,7 +21,7 @@ export function ProductSuiteLinks({ current }: { current: ProductId }) {
             <Link
               key={product.id}
               href={product.path}
-              className="group flex flex-col rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-[#F6F7FE] dark:bg-white/[0.03] p-6 transition-all duration-200 hover:border-brand-200 dark:hover:border-brand-500/30 hover:shadow-lg hover:-translate-y-0.5"
+              className="group flex flex-col rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-[#f0f1f5] dark:bg-white/[0.03] p-6 transition-all duration-200 hover:border-brand-200 dark:hover:border-brand-500/30 hover:shadow-lg hover:-translate-y-0.5"
               aria-label={`Explore ${product.name}`}
             >
               <p className="text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-300 mb-2">

@@ -2,7 +2,12 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import type { ProductId } from "@/lib/products";
 import { getProduct } from "@/lib/products";
 import type { MarketingFaqItem } from "@/lib/marketing-faqs";
-import { faqPageSchema, productSoftwareSchema, webPageSchema } from "@/lib/structured-data";
+import {
+  breadcrumbListSchema,
+  faqPageSchema,
+  productSoftwareSchema,
+  webPageSchema,
+} from "@/lib/structured-data";
 
 /** Product route JSON-LD: WebPage + SoftwareApplication + optional FAQPage. */
 export function ProductStructuredData({
@@ -27,6 +32,13 @@ export function ProductStructuredData({
       {faqItems.length > 0 ? (
         <JsonLd id={`ld-product-faq-${productId}`} data={faqPageSchema(faqItems)} />
       ) : null}
+      <JsonLd
+        id={`ld-product-breadcrumbs-${productId}`}
+        data={breadcrumbListSchema([
+          { name: "Home", path: "/" },
+          { name: product.name, path: product.path },
+        ])}
+      />
     </>
   );
 }

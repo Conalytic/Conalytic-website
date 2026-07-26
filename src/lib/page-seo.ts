@@ -4,10 +4,21 @@
 import type { Metadata } from "next";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
+const DEFAULT_OG_IMAGE = {
+  url: "/og-image.png",
+  width: 1200,
+  height: 630,
+  alt: "Conalytic — marketing analytics platform",
+} as const;
+
 export function canonicalUrl(path: string): string {
   if (!path || path === "/") return `${SITE_ORIGIN}/`;
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `${SITE_ORIGIN}${normalized}`;
+}
+
+function socialImages(alt?: string) {
+  return [{ ...DEFAULT_OG_IMAGE, ...(alt ? { alt } : {}) }];
 }
 
 export function buildPageMetadata(input: {
@@ -34,23 +45,66 @@ export function buildPageMetadata(input: {
       title: titleAbsolute,
       description: input.description,
       siteName: "Conalytic",
-      images: [
-        {
-          url: "/og-image.png",
-          width: 1200,
-          height: 630,
-          alt: "Conalytic — marketing analytics platform",
-        },
-      ],
+      locale: "en_US",
+      images: socialImages(),
     },
     twitter: {
       card: "summary_large_image",
       title: titleAbsolute,
       description: input.description,
-      images: ["/og-image.png"],
+      images: [DEFAULT_OG_IMAGE.url],
     },
     ...(input.indexable === false
       ? { robots: { index: false, follow: false } }
       : {}),
+  };
+}
+
+export function buildBlogPostMetadata(input: {
+  slug: string;
+  title: string;
+  description: string;
+  excerpt: string;
+  category: string;
+  datePublished: string;
+}): Metadata {
+  const url = canonicalUrl(`/${input.slug}`);
+  const titleAbsolute = `${input.title} | Conalytic Blog`;
+  const description = input.description || input.excerpt;
+  const keywords = [
+    input.category,
+    "Conalytic blog",
+    "marketing analytics",
+    "conversational analytics",
+    "KPI tracker",
+    "report builder",
+    "GA4",
+    "Google Ads",
+  ];
+
+  return {
+    title: { absolute: titleAbsolute },
+    description,
+    keywords,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      title: titleAbsolute,
+      description,
+      siteName: "Conalytic",
+      locale: "en_US",
+      publishedTime: input.datePublished,
+      modifiedTime: input.datePublished,
+      section: input.category,
+      tags: [input.category],
+      images: socialImages(input.title),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: titleAbsolute,
+      description,
+      images: [DEFAULT_OG_IMAGE.url],
+    },
   };
 }

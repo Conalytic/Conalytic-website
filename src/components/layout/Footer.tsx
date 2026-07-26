@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
+import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { conalyticLogoAlt } from "@/lib/image-alt";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
@@ -53,7 +54,6 @@ const fallbackLegalLinks: SiteConfigLink[] = [
   { label: "Cookies", href: "/cookies" },
 ];
 
-/* Source: Conalytic Assets — served from /public for next/image */
 const TAGLINE_W = 1913;
 const TAGLINE_H = 486;
 
@@ -86,7 +86,6 @@ function FooterColumnLink({ href, className, children }: { href: string; classNa
 }
 
 export function Footer({ config, brandLogos }: FooterProps) {
-  const taglineLight = brandLogos?.footerTaglineLight ?? "/logo-tagline-light.png";
   const taglineDark = brandLogos?.footerTaglineDark ?? "/logo-tagline-white.png";
   const taglineAlt = brandLogos?.footerTaglineAlt ?? conalyticLogoAlt("wordmark with tagline");
   const footerMark = brandLogos?.footerMarkIcon ?? "/logo-icon.png";
@@ -96,61 +95,38 @@ export function Footer({ config, brandLogos }: FooterProps) {
 
   return (
     <div className="px-4 pb-4 pt-2">
-      <footer className="relative overflow-hidden rounded-3xl">
-        <div
-          className="absolute inset-0 dark:hidden"
-          style={{ background: "linear-gradient(135deg,#ede9fe 0%,#f3e8ff 30%,#fce7f3 60%,#fef3c7 100%)" }}
-        />
-        <div
-          className="absolute inset-0 hidden dark:block"
-          style={{ background: "linear-gradient(135deg,#0E0B1C 0%,#0C0C12 40%,#0B0E1C 100%)" }}
-        />
-        <div
-          className="pointer-events-none absolute inset-0 hidden dark:block"
-          style={{ background: "radial-gradient(ellipse 70% 60% at 30% 100%, rgba(107,95,248,0.08) 0%, transparent 65%)" }}
-        />
+      <footer className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white dark:border-white/[0.08] dark:bg-[#14141B]">
+        <BrandAmbient variant="footer" />
 
         <div className="relative z-10 mx-auto max-w-6xl px-8 sm:px-12">
-          {/*
-            Top band: newsletter (copy + form) on the left; logo on the right.
-          */}
-          <div className="flex flex-col gap-8 border-b border-black/8 pb-8 pt-8 dark:border-white/8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+          <div className="flex flex-col gap-8 border-b border-gray-200/80 pb-8 pt-10 dark:border-white/[0.08] lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             <NewsletterSignup className="w-full max-w-[16.5rem] shrink-0 sm:max-w-[18rem]" />
 
             <div className="flex shrink-0 flex-col items-start gap-3 sm:gap-4 lg:items-end lg:pt-1">
-              <Link
-                href="/"
-                className="inline-flex leading-none"
-                aria-label="Conalytic — Home"
-              >
-                <Image
-                  src={taglineLight}
-                  alt={taglineAlt}
-                  width={TAGLINE_W}
-                  height={TAGLINE_H}
-                  className="block h-11 w-auto max-w-[min(300px,88vw)] sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px] dark:hidden"
-                />
+              <Link href="/" className="inline-flex leading-none" aria-label="Conalytic — Home">
                 <Image
                   src={taglineDark}
                   alt={taglineAlt}
                   width={TAGLINE_W}
                   height={TAGLINE_H}
-                  className="hidden h-11 w-auto max-w-[min(300px,88vw)] sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px] dark:block"
+                  className="block h-11 w-auto max-w-[min(300px,88vw)] sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
                 />
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 pb-8 pt-8 sm:grid-cols-4 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 pb-8 pt-8 sm:grid-cols-4">
             {columns.map((column) => (
               <div key={column.title}>
-                <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-800 dark:text-white">{column.title}</h4>
+                <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">
+                  {column.title}
+                </h4>
                 <ul className="space-y-2.5">
                   {column.links.map((link) => (
                     <li key={`${link.label}-${link.href}`}>
                       <FooterColumnLink
                         href={link.href}
-                        className="text-sm leading-none text-gray-500 transition-colors hover:text-brand-600 dark:text-white/45 dark:hover:text-white"
+                        className="text-sm leading-none text-gray-500 transition-colors hover:text-brand-600 dark:text-white/45 dark:hover:text-brand-300"
                       >
                         <span className="inline-flex flex-wrap items-center gap-2">{link.label}</span>
                       </FooterColumnLink>
@@ -161,34 +137,31 @@ export function Footer({ config, brandLogos }: FooterProps) {
             ))}
           </div>
 
-          <div className="flex flex-col items-center justify-between gap-5 border-t border-black/8 py-6 dark:border-white/8 sm:flex-row sm:items-center sm:gap-4">
+          <div className="flex flex-col items-center justify-between gap-5 border-t border-gray-200/80 py-6 dark:border-white/[0.08] sm:flex-row">
             <div className="flex max-w-full items-center gap-3 text-center sm:text-left">
-              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-300 dark:border-white/20">
+              <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-200 dark:border-white/15">
                 <Image src={footerMark} alt={conalyticLogoAlt("footer icon")} width={16} height={16} />
               </div>
-              <span className="text-xs text-gray-400 dark:text-white/30">{copyrightText}</span>
+              <span className="text-xs text-gray-400 dark:text-white/35">{copyrightText}</span>
             </div>
 
-            <div className="flex w-full min-w-0 max-w-full flex-col items-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-x-6 sm:gap-y-2">
-              <nav
-                aria-label="Legal"
-                className="flex max-w-full flex-wrap justify-center gap-x-3 gap-y-2 sm:justify-end sm:gap-x-4"
-              >
-                {legalLinks.map((link) => (
-                  <FooterColumnLink
-                    key={`${link.label}-${link.href}`}
-                    href={link.href}
-                    className="whitespace-nowrap text-xs text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-white dark:text-white/30"
-                  >
-                    {link.label}
-                  </FooterColumnLink>
-                ))}
-              </nav>
-            </div>
+            <nav
+              aria-label="Legal"
+              className="flex max-w-full flex-wrap justify-center gap-x-4 gap-y-2 sm:justify-end"
+            >
+              {legalLinks.map((link) => (
+                <FooterColumnLink
+                  key={`${link.label}-${link.href}`}
+                  href={link.href}
+                  className="whitespace-nowrap text-xs text-gray-400 transition-colors hover:text-gray-700 dark:text-white/35 dark:hover:text-white"
+                >
+                  {link.label}
+                </FooterColumnLink>
+              ))}
+            </nav>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-

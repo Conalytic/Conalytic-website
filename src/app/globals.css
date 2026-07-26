@@ -1,59 +1,46 @@
 @import "tailwindcss";
 
-/* Class-based dark mode — next-themes sets .dark on <html> */
+/* Dark-only site — `.dark` class on <html> for Tailwind `dark:` utilities */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
-  /* Roboto = default / paragraphs; Roboto Slab = headings; Inter = nav, buttons, chrome */
-  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-roboto-slab), ui-serif, Georgia, serif;
-  --font-body: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
-  --font-ui: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Nunito Sans — site-wide (body, UI, headings) */
+  --font-sans: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-ui: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Brand palette — same in both themes */
-  --color-brand-50:  #f0f0ff;
-  --color-brand-100: #e4e4ff;
-  --color-brand-200: #cbccff;
-  --color-brand-300: #a8a9ff;
-  --color-brand-400: #817ffe;
-  --color-brand-500: #6B5FF8;
-  --color-brand-600: #5a43f0;
-  --color-brand-700: #4b34da;
-  --color-brand-800: #3d2bb0;
-  --color-brand-900: #34268a;
-  --color-brand-950: #201660;
+  /* Conalytic Chat brand palette */
+  --color-brand-50:  #edf7c8;
+  --color-brand-100: #e3f2b0;
+  --color-brand-200: #d4eb92;
+  --color-brand-300: #d0f060;
+  --color-brand-400: #c9ff33;
+  --color-brand-500: #c9ff33;
+  --color-brand-600: #0f0f0f;
+  --color-brand-700: #1a1b1e;
+  --color-brand-800: #0a0a0a;
+  --color-brand-900: #050505;
+  --color-brand-950: #000000;
 
-  --color-navy-950: #08080C;
-  --color-navy-900: #0C0C12;
-  --color-navy-800: #121219;
-  --color-navy-700: #18181F;
-  --color-navy-600: #1F1F2B;
+  --color-navy-950: #0a0a0a;
+  --color-navy-900: #0f0f0f;
+  --color-navy-800: #1a1b1e;
+  --color-navy-700: #25262b;
+  --color-navy-600: #2f3036;
 }
 
 /* ══════════════════════════════════════════════════════
-   LIGHT theme (default)
+   Theme tokens (dark only)
 ══════════════════════════════════════════════════════ */
 :root {
-  --bg:          #F6F7FE;
-  --bg-elevated: #FFFFFF;
-  --surface:     rgba(255, 255, 255, 0.80);
-  --surface-hover: rgba(255, 255, 255, 0.95);
-  --border:      rgba(10, 15, 30, 0.08);
-  --border-subtle: rgba(10, 15, 30, 0.05);
-  --fg:          #0A0F1E;
-  --fg-muted:    rgba(10, 15, 30, 0.55);
-  --fg-faint:    rgba(10, 15, 30, 0.30);
-  --shadow:      0 4px 24px rgba(10, 15, 30, 0.08);
-}
-
-/* ══════════════════════════════════════════════════════
-   DARK theme
-══════════════════════════════════════════════════════ */
-.dark {
-  --bg:            #08080E;
-  --bg-elevated:   #0F0F18;
+  --brand-ink: #0f0f0f;
+  --brand-accent: #c9ff33;
+  --brand-accent-soft: #edf7c8;
+  --bg:            #0f0f0f;
+  --bg-elevated:   #1a1b1e;
   --surface:       rgba(255, 255, 255, 0.055);
   --surface-hover: rgba(255, 255, 255, 0.09);
   --border:        rgba(255, 255, 255, 0.08);
@@ -62,60 +49,33 @@
   --fg-muted:      rgba(232, 234, 246, 0.72);
   --fg-faint:      rgba(232, 234, 246, 0.45);
   --shadow:        0 4px 32px rgba(0, 0, 0, 0.6);
+
+  --hub-tile:        #1A1A24;
+  --hub-tile-stroke: rgba(255,255,255,0.09);
+  --hub-bg:          #13131A;
+  --hub-center:      #1E1E2C;
 }
 
-/* ── Dark mode: single unified fixed canvas ──────────────────────────────────
-   Everything lives here — image + scrim in one declaration.
-   Positioning at "center 32%" keeps the teal → magenta → blue zone centred
-   in the viewport, pushing the orange blobs above/below the visible area.
-─────────────────────────────────────────────────────────────────────────── */
-.dark body {
-  background-color: #08080E;
-  background-image:
-    /* readability scrim — one layer, no per-section repetition */
-    linear-gradient(rgba(8, 8, 14, 0.52), rgba(8, 8, 14, 0.52)),
-    url('/dark-bg.png');
-  background-attachment: fixed, fixed;
-  background-size: auto, cover;
-  background-position: center, center 32%;
-  background-repeat: no-repeat, no-repeat;
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Transparent wrappers so the single body canvas shows through everywhere */
-.dark main { background: transparent; }
+main { background: transparent; }
+section { background: transparent !important; }
 
 /* ── Base ─────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
 
-body {
-  background-color: var(--bg);
-  color: var(--fg);
-  font-family: var(--font-roboto), ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Headings: Roboto Slab */
+/* Headings: bold Nunito Sans */
 :where(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-roboto-slab), ui-serif, Georgia, serif;
-}
-
-/* UI chrome: Inter (nav, footer, actions) */
-:where(header, footer) {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-}
-
-:where(
-  label,
-  button,
-  input[type="button"],
-  input[type="submit"],
-  input[type="reset"]
-) {
-  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
 }
 
 /* ── Scrollbar — hidden ────────────────────────────── */
@@ -123,11 +83,11 @@ body {
 * { scrollbar-width: none; -ms-overflow-style: none; }
 
 /* ── Selection ─────────────────────────────────────── */
-::selection { background-color: #6B5FF8; color: #fff; }
+::selection { background-color: #c9ff33; color: #0f0f0f; }
 
 /* ── Gradient text ─────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #6B5FF8 0%, #a78bfa 50%, #60a5fa 100%);
+  background: linear-gradient(135deg, #e8eaf6 0%, #9ca3af 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -135,49 +95,34 @@ body {
 
 /* ── Glow ──────────────────────────────────────────── */
 .glow-purple {
-  box-shadow: 0 0 40px rgba(107, 95, 248, 0.35);
-}
-
-/* ── Hub diagram CSS vars ──────────────────────────── */
-:root {
-  --hub-tile:        #FFFFFF;
-  --hub-tile-stroke: #E5E7EB;
-  --hub-bg:          #F4F5FA;
-  --hub-center:      #FFFFFF;
-}
-.dark {
-  --hub-tile:        #1A1A24;
-  --hub-tile-stroke: rgba(255,255,255,0.09);
-  --hub-bg:          #13131A;
-  --hub-center:      #1E1E2C;
+  box-shadow: 0 0 40px rgba(201, 255, 51, 0.28);
 }
 
 /* ── Glass card ────────────────────────────────────── */
 .glass-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-}
-.dark .glass-card {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.07);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-/* ── Hero gradient — matches reference video: soft lavender/pink sides, white center ── */
+/* ── Hero gradient — animated lime aurora wash ── */
 .hero-gradient {
-  background:
-    radial-gradient(ellipse 55% 90% at -5%  80%, rgba(168,  85, 247, 0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 80% at 105% 20%, rgba(236,  72, 153, 0.14) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 45% at 50%  -5%, rgba(139,  92, 246, 0.08) 0%, transparent 60%),
-    #f8f9ff;
+  background-color: transparent;
+  position: relative;
 }
 
-.dark .hero-gradient {
-  /* transparent — lets the fixed body background image show through */
-  background: transparent;
+.hero-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 90% at -5%  80%, rgba(201, 255, 51, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 80% at 105% 20%, rgba(201, 255, 51, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 45% at 50%  -5%, rgba(201, 255, 51, 0.05) 0%, transparent 60%);
+  animation: aurora-shift 18s ease-in-out infinite alternate;
 }
 
 /* ── Grid overlay ──────────────────────────────────── */
@@ -188,25 +133,20 @@ body {
   background-size: 60px 60px;
 }
 
-/* ── Dark sections: fully transparent — body canvas shows through everywhere ── */
-.dark section {
-  background: transparent !important;
-}
-
-/* Accent glow blobs — kept for opt-in use on specific elements */
+/* Accent glow blobs */
 .dark-glow-left::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 50% 60% at -10% 50%, rgba(107,95,248,0.06) 0%, transparent 65%);
+  background: radial-gradient(ellipse 50% 60% at -10% 50%, rgba(201, 255, 51, 0.08) 0%, transparent 65%);
 }
 .dark-glow-right::before {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse 50% 60% at 110% 50%, rgba(107,95,248,0.06) 0%, transparent 65%);
+  background: radial-gradient(ellipse 50% 60% at 110% 50%, rgba(201, 255, 51, 0.08) 0%, transparent 65%);
 }
 
 /* ══════════════════════════════════════════════════════
@@ -229,13 +169,58 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(107, 95, 248, 0.3); }
-  50%       { box-shadow: 0 0 50px rgba(107, 95, 248, 0.6); }
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 255, 51, 0.25); }
+  50%       { box-shadow: 0 0 50px rgba(201, 255, 51, 0.45); }
 }
 
 @keyframes shimmer {
   0%   { background-position: -200% center; }
   100% { background-position:  200% center; }
+}
+
+@keyframes aurora-shift {
+  0%   { transform: scale(1) translate(0%, 0%);   opacity: 0.85; }
+  50%  { transform: scale(1.08) translate(2%, -1%); opacity: 1; }
+  100% { transform: scale(1.04) translate(-1%, 2%); opacity: 0.9; }
+}
+
+@keyframes orb-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(4%, -6%) scale(1.06); }
+  66%       { transform: translate(-3%, 4%) scale(0.96); }
+}
+
+@keyframes orb-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-5%, 3%) scale(1.08); }
+  70%       { transform: translate(3%, -4%) scale(0.94); }
+}
+
+@keyframes orb-drift-c {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-48%, -54%) scale(1.1); }
+}
+
+@keyframes mesh-rotate {
+  0%   { transform: rotate(0deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1.2); }
+}
+
+@keyframes grain-shift {
+  0%, 100% { transform: translate(0, 0); }
+  25%       { transform: translate(-2%, -1%); }
+  50%       { transform: translate(1%, 2%); }
+  75%       { transform: translate(-1%, 1%); }
+}
+
+@keyframes border-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(201, 255, 51, 0.15), 0 8px 32px rgba(15, 15, 15, 0.06); }
+  50%       { box-shadow: 0 0 0 1px rgba(201, 255, 51, 0.35), 0 12px 40px rgba(201, 255, 51, 0.08); }
+}
+
+@keyframes text-shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
 }
 
 @keyframes progress {
@@ -248,6 +233,77 @@ body {
 .animate-float      { animation: float 5s ease-in-out infinite; }
 .animate-fade-in-up { animation: fadeInUp 0.6s ease-out both; }
 .animate-pulse-glow { animation: pulseGlow 3s ease-in-out infinite; }
+.animate-border-glow { animation: border-glow 4s ease-in-out infinite; }
+
+/* ── Global ambient layers (PageAmbient + BrandAmbient) ── */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  will-change: transform;
+}
+.ambient-orb-a {
+  top: -10%;
+  left: -8%;
+  width: min(520px, 65vw);
+  height: min(520px, 65vw);
+  background: rgba(201, 255, 51, 0.14);
+  animation: orb-drift-a 22s ease-in-out infinite;
+}
+.ambient-orb-b {
+  bottom: -5%;
+  right: -10%;
+  width: min(440px, 55vw);
+  height: min(440px, 55vw);
+  background: rgba(201, 255, 51, 0.09);
+  animation: orb-drift-b 26s ease-in-out infinite;
+}
+.ambient-orb-c {
+  top: 40%;
+  left: 50%;
+  width: min(360px, 45vw);
+  height: min(360px, 45vw);
+  background: rgba(201, 255, 51, 0.06);
+  animation: orb-drift-c 30s ease-in-out infinite;
+}
+.ambient-mesh {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.35;
+  background:
+    conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(201, 255, 51, 0.04) 60deg, transparent 120deg, rgba(201, 255, 51, 0.03) 200deg, transparent 280deg);
+  animation: mesh-rotate 90s linear infinite;
+}
+.ambient-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 20%, transparent 75%);
+}
+.ambient-grain {
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain-shift 8s steps(4) infinite;
+}
+
+/* ── Interactive card effects ── */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 255, 51, 0.15);
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, #e8eaf6 0%, #c9ff33 40%, #e8eaf6 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 6s linear infinite;
+}
 
 .marquee-container:hover .animate-marquee { animation-play-state: paused; }
 
@@ -256,21 +312,69 @@ body {
   .animate-marquee,
   .animate-float,
   .animate-pulse-glow,
-  .animate-fade-in-up {
+  .animate-fade-in-up,
+  .animate-border-glow,
+  .ambient-orb,
+  .ambient-mesh,
+  .ambient-grain,
+  .text-shimmer {
     animation: none !important;
   }
   .marquee-container .animate-marquee {
     transform: none;
   }
+  .reveal,
+  main section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .hero-gradient::before {
+    animation: none !important;
+  }
 }
 
-/* ── Scroll reveal ─────────────────────────────────── */
-.reveal {
+/* ── Scroll reveal (auto via ScrollRevealInit + manual .reveal) ── */
+.reveal,
+main section {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.reveal.revealed { opacity: 1; transform: translateY(0); }
+.reveal.revealed,
+main section.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero sections animate immediately — no wait for scroll */
+main section.hero-gradient,
+main section:first-of-type {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+/* Scroll-driven fallback for modern browsers */
+@supports (animation-timeline: view()) {
+  main section:not(.hero-gradient):not(:first-of-type) {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: section-reveal linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+}
+
+@keyframes section-reveal {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 .reveal-delay-1 { transition-delay: 0.1s; }
 .reveal-delay-2 { transition-delay: 0.2s; }
 .reveal-delay-3 { transition-delay: 0.3s; }

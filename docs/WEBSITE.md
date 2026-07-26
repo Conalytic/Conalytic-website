@@ -1,6 +1,6 @@
 # Conalytic marketing website — documentation
 
-This document describes the **Conalytic** public site. **Storyblok was removed**; treat CMS-specific sections as historical. Blog posts are static in **`src/content/blog-posts.ts`** (canonical URLs `/{slug}`). Layout helpers live in **`src/lib/site-layout.ts`** (nav/footer parsers are unused unless you wire JSON/config later).
+This document describes the **Conalytic** public site. Blog posts are static in **`src/content/blog-posts.ts`** (canonical URLs `/{slug}`). Nav and footer use built-in fallback links in **`Navbar.tsx`** and **`Footer.tsx`**.
 
 ---
 
@@ -13,7 +13,7 @@ This document describes the **Conalytic** public site. **Storyblok was removed**
 | Motion | **Framer Motion** (marketing animations) |
 | Content | **In-repo** (React pages + `src/content/` for blog) |
 | Email (careers) | **Resend** API (`/api/careers-application`) |
-| Fonts | **Inter** (Google Font, `next/font`) |
+| Fonts | **Nunito Sans** (Google Font, `next/font`) |
 
 Production URL: **https://conalytic.com** (`metadataBase` in `src/app/layout.tsx`).
 
@@ -35,9 +35,7 @@ Production URL: **https://conalytic.com** (`metadataBase` in `src/app/layout.tsx
 | `components/blog/` | `BlogPostMarkdown` (article body) |
 | `content/blog-posts.ts` | Static blog metadata + markdown bodies |
 | `components/ui/` | Accordion, buttons, theme toggle, etc. |
-| `lib/site-layout.ts` | Nav/footer/cookie/script **types & parsers** (optional JSON-driven chrome later) |
-| `lib/site-scripts.ts` | HTTPS + optional hostname allowlist for script URLs |
-| `components/layout/SiteScripts.tsx` | Injects `next/script` entries from layout buckets |
+| `lib/site-layout.ts` | Nav/footer config types + Open Graph image helper |
 | `lib/structured-data.ts` | Schema.org builders (Organization, WebSite, FAQPage, BlogPosting, WebPage) |
 | `lib/marketing-stack-logos.ts` | Logo URLs for integration partner strip |
 | `lib/default-home-faq.ts` | Default FAQ copy (shared by UI + FAQ JSON-LD) |
@@ -53,7 +51,6 @@ Copy **`.env.local.example`** → **`.env.local`**. Common keys:
 
 | Variable | Purpose |
 |----------|---------|
-| `SITE_SCRIPT_ALLOWED_HOSTS` | Optional comma-separated hostnames for third-party script URLs |
 | `NEXT_PUBLIC_SITE_URL` | Site origin for absolute URLs where needed |
 | `NEXT_PUBLIC_SCHEDULE_CALL_URL` | Contact form “Schedule a call” redirect (e.g. Google Calendar booking page) |
 | `RESEND_API_KEY` | Careers resume emails |
@@ -150,7 +147,7 @@ npm run build && npm start   # production locally
 
 ## 12. Reference to other chats
 
-Prior Cursor sessions (parent agent transcripts live under your Cursor project folder: `agent-transcripts/*.jsonl`) covered concrete UI tasks: integration partner strip replacement, mobile spacing after the transformation section, CTA visualization, navbar/footer routing, pricing and trial copy, Storyblok seeds, **coming soon** for Report Builder / ATS, contact scheduling, careers **Resend** wiring, and SEO JSON-LD. This file is the **consolidated** operational doc; each `.jsonl` file is the raw history for one session. When you need to point a teammate at a specific session, use a short title and the filename **without** `.jsonl` as the id (Cursor’s usual citation form).
+Prior Cursor sessions covered integration partner strip replacement, mobile spacing, CTA visualization, navbar/footer routing, pricing and trial copy, **coming soon** for Report Builder / ATS, contact scheduling, careers **Resend** wiring, and SEO JSON-LD.
 
 ---
 

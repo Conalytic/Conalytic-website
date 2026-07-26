@@ -2,8 +2,9 @@
 
 /** Reusable modern sections for product landing pages (Chats, KPIs, Reports). */
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
+import { ProductVisual } from "@/components/visual/product-demos/ProductVisual";
+import type { ProductVisualVariant } from "@/lib/product-visual";
 import type { ProductPageContent } from "@/lib/product-page-content";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -14,62 +15,21 @@ const fadeUp = {
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)",
+  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
 };
 
-export function ProductHeroVisual({
-  src,
-  alt,
-  accent = "brand",
-}: {
-  src: string;
-  alt: string;
-  accent?: "brand" | "emerald" | "blue";
-}) {
-  const glow =
-    accent === "emerald"
-      ? "bg-emerald-600/15"
-      : accent === "blue"
-        ? "bg-blue-600/15"
-        : "bg-brand-600/15";
-
+export function ProductHeroVisual({ variant }: { variant: ProductVisualVariant }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.96 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
-      className="relative z-10 max-w-5xl mx-auto mt-16 px-4"
+      className="relative z-10 mx-auto mt-16 max-w-5xl px-4"
     >
-      <div className={`absolute inset-0 rounded-3xl blur-3xl ${glow} scale-90 pointer-events-none`} />
-      <motion.div
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="relative rounded-2xl overflow-hidden border border-white/10 dark:border-white/[0.08] shadow-2xl shadow-brand-600/10 dark:shadow-black/50 bg-white/[0.02] backdrop-blur-sm"
-      >
-        <Image
-          src={src}
-          alt={alt}
-          width={1200}
-          height={675}
-          className="w-full h-auto object-cover"
-          priority
-          sizes="(min-width: 1024px) 1024px, 100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0E0E14]/40 via-transparent to-transparent pointer-events-none" />
-      </motion.div>
-      <motion.div
-        animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -top-4 -right-4 w-20 h-20 rounded-full bg-brand-500/20 blur-2xl pointer-events-none"
-      />
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-violet-500/15 blur-2xl pointer-events-none"
-      />
+      <ProductVisual variant={variant} />
     </motion.div>
   );
 }
@@ -89,7 +49,7 @@ export function ProductStatsStrip({ stats }: { stats: ProductPageContent["stats"
             <motion.div
               key={stat.label}
               variants={fadeUp}
-              className="relative text-center p-5 rounded-2xl bg-[#F6F7FE] dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] overflow-hidden group"
+              className="relative text-center p-5 rounded-2xl bg-[#f0f1f5] dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-500/0 to-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <p className="relative text-3xl sm:text-4xl font-black mb-1" style={GRAD}>
@@ -141,7 +101,7 @@ export function ProductHowItWorks({
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="relative mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-violet-600 flex items-center justify-center shadow-lg shadow-brand-600/25"
+                    className="relative mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-600/25"
                   >
                     <span className="text-lg font-black text-white">{step.step}</span>
                     <motion.div
@@ -172,12 +132,12 @@ export function ProductCapabilitiesGrid({
   capabilities: ProductPageContent["capabilities"];
 }) {
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-[#F6F7FE] dark:bg-[#0E0E14]">
+    <section className="relative py-24 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(107,95,248,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,255,51,0.08) 0%, transparent 60%)",
         }}
       />
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -188,7 +148,7 @@ export function ProductCapabilitiesGrid({
           transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-14"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-600 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">
+          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
             Capabilities
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
@@ -246,8 +206,8 @@ export function ProductDeepDive({
         className="absolute inset-0 pointer-events-none hidden dark:block"
         style={{
           background: reverse
-            ? "radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)"
-            : "radial-gradient(ellipse 55% 50% at 105% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)",
+            ? "radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"
+            : "radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)",
         }}
       />
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -288,28 +248,6 @@ export function ProductDeepDive({
           >
             {visual}
           </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function ProductFeatureMarquee({ tags }: { tags: string[] }) {
-  const doubled = [...tags, ...tags];
-  return (
-    <section className="py-8 overflow-hidden bg-[#F6F7FE] dark:bg-[#0E0E14] border-y border-gray-100 dark:border-white/[0.05]">
-      <div className="marquee-container relative">
-        <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#F6F7FE] dark:from-[#0E0E14] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#F6F7FE] dark:from-[#0E0E14] to-transparent z-10 pointer-events-none" />
-        <div className="flex animate-marquee gap-3" style={{ width: "max-content" }}>
-          {doubled.map((tag, i) => (
-            <span
-              key={`${tag}-${i}`}
-              className="inline-flex items-center px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap bg-white dark:bg-white/[0.05] text-gray-600 dark:text-white/60 border border-gray-200 dark:border-white/[0.08] shadow-sm"
-            >
-              {tag}
-            </span>
-          ))}
         </div>
       </div>
     </section>
@@ -463,7 +401,7 @@ export function ReportDeckTimeline() {
             whileHover={{ scale: 1.05 }}
             className={`text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border ${
               i === 0
-                ? "bg-brand-600 text-white border-brand-500"
+                ? "bg-brand-600 text-brand-500 border-brand-500"
                 : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-white/60 border-gray-200 dark:border-white/[0.08]"
             }`}
           >

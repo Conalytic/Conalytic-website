@@ -14,8 +14,6 @@ import {
 import { BRAND } from "@/lib/brand";
 import {
   getLegalContactEmail,
-  getLegalContactPhoneDisplay,
-  getLegalContactPhoneTel,
   getLegalEntityName,
   getLegalRegisteredAddress,
 } from "@/lib/legal-site";
@@ -55,8 +53,6 @@ export default function PrivacyPolicyPage() {
   const entity = getLegalEntityName();
   const email = getLegalContactEmail();
   const address = getLegalRegisteredAddress();
-  const phoneDisplay = getLegalContactPhoneDisplay();
-  const phoneTel = getLegalContactPhoneTel();
 
   return (
     <LegalDocumentLayout
@@ -74,7 +70,7 @@ export default function PrivacyPolicyPage() {
           enterprise agreement).
         </p>
         <div
-          className="rounded-2xl border border-[#5E56E7]/20 bg-gradient-to-br from-[#5E56E7]/[0.06] to-[#532775]/[0.05] px-5 py-4"
+          className="rounded-2xl border border-[#e8eaef] bg-[#edf7c8] px-5 py-4"
         >
           <p className="font-semibold text-[#17191C]">{entity}</p>
           <p className="mt-2 whitespace-pre-line text-[0.9rem] text-[#1D2939]/85">
@@ -83,15 +79,6 @@ export default function PrivacyPolicyPage() {
           <p className="mt-3 text-[0.9rem]">
             <span className="text-[#1D2939]/70">Email: </span>
             <LegalLink href={`mailto:${email}`}>{email}</LegalLink>
-          </p>
-          <p className="mt-2 text-[0.9rem]">
-            <span className="text-[#1D2939]/70">Phone: </span>
-            <a
-              href={`tel:${phoneTel}`}
-              className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-            >
-              {phoneDisplay}
-            </a>
           </p>
         </div>
         <LegalH3>Representatives and processors</LegalH3>
@@ -457,13 +444,7 @@ export default function PrivacyPolicyPage() {
         />
         <p>
           To exercise rights, contact us at{" "}
-          <LegalLink href={`mailto:${email}`}>{email}</LegalLink> or{" "}
-          <a
-            href={`tel:${phoneTel}`}
-            className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-          >
-            {phoneDisplay}
-          </a>
+          <LegalLink href={`mailto:${email}`}>{email}</LegalLink>
           . We may need to verify your identity. We typically respond within{" "}
           <strong>one month</strong> (or timelines required by applicable law), extendable
           where complexity permits under law. You may also use in-product tools (e.g.
@@ -702,15 +683,6 @@ export default function PrivacyPolicyPage() {
           items={[
             <>
               Email: <LegalLink href={`mailto:${email}`}>{email}</LegalLink>
-            </>,
-            <>
-              Phone:{" "}
-              <a
-                href={`tel:${phoneTel}`}
-                className="font-semibold text-[#5E56E7] underline decoration-[#5E56E7]/35 underline-offset-2 hover:text-[#532775]"
-              >
-                {phoneDisplay}
-              </a>
             </>,
             <>
               Postal address:{" "}

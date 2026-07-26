@@ -1,6 +1,8 @@
 /** Blog listing `/blogs`. */
 import type { Metadata } from "next";
 import { BlogsClient } from "@/components/pages/BlogsClient";
+import { BlogListingStructuredData } from "@/components/seo/BlogListingStructuredData";
+import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
 import { buildPageMetadata } from "@/lib/page-seo";
 
@@ -20,7 +22,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function BlogsPage() {
   return (
     <>
+      <BreadcrumbStructuredData
+        id="ld-blogs-breadcrumbs"
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blogs" },
+        ]}
+      />
       <MarketingPageStructuredData path="/blogs" pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION} />
+      <BlogListingStructuredData />
       <BlogsClient />
     </>
   );

@@ -15,7 +15,6 @@ import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
 import {
   ProductCapabilitiesGrid,
   ProductDeepDive,
-  ProductFeatureMarquee,
   ProductHeroVisual,
   ProductHowItWorks,
   ProductStatsStrip,
@@ -25,7 +24,7 @@ import {
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
+const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /* ── Mini visuals for key feature cards ─────────── */
 function DragDropVisual() {
@@ -73,9 +72,9 @@ function AIInsightVisual() {
           <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400">↑ 38%</span>
         </div>
         <svg viewBox="0 0 100 50" className="w-full h-8" preserveAspectRatio="none">
-          <defs><linearGradient id="rbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#6B5FF8" stopOpacity="0.2"/><stop offset="100%" stopColor="#6B5FF8" stopOpacity="0"/></linearGradient></defs>
+          <defs><linearGradient id="rbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#c9ff33" stopOpacity="0.2"/><stop offset="100%" stopColor="#c9ff33" stopOpacity="0"/></linearGradient></defs>
           <polygon points={`0,100 ${pts} 100,100`} fill="url(#rbg)"/>
-          <polyline points={pts} fill="none" stroke="#6B5FF8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points={pts} fill="none" stroke="#c9ff33" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       {[
@@ -155,10 +154,10 @@ function ReportPreview() {
   return (
     <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
       {/* Report header */}
-      <div className="px-5 py-4 bg-gradient-to-r from-brand-600 to-violet-600">
+      <div className="px-5 py-4 bg-gradient-to-r from-brand-600 to-brand-700">
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">
-            <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center"><BarChart3 className="w-3 h-3 text-white"/></div>
+            <div className="w-5 h-5 rounded bg-white/20 flex items-center justify-center"><BarChart3 className="w-3 h-3 text-brand-500"/></div>
             <span className="text-xs font-bold text-white">Monthly Performance Report</span>
           </div>
           <span className="text-[9px] bg-white/20 text-white px-2 py-0.5 rounded-full">June 2025</span>
@@ -182,7 +181,7 @@ function ReportPreview() {
           <div className="flex items-end gap-1.5" style={{height:RB_MAX+4}}>
             {RB_BARS.map((b,i)=>(
               <div key={b.lbl} className="flex-1 flex flex-col items-center justify-end">
-                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*RB_MAX)}px`,background:`rgba(107,95,248,${0.35+i*0.11})`}}/>
+                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*RB_MAX)}px`,background:`rgba(201,255,51,${0.35+i*0.11})`}}/>
               </div>
             ))}
           </div>
@@ -257,7 +256,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CHAT_APP_SIGNUP_URL}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               Generate your first report <ArrowRight className="w-4 h-4"/>
             </a>
             <a href={SITE_ROUTES.contact}
@@ -267,35 +266,15 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
           </motion.div>
         </div>
 
-        <ProductHeroVisual
-          src={pageContent.heroImage}
-          alt={pageContent.heroImageAlt}
-          accent="blue"
-        />
+        <ProductHeroVisual variant="reports" />
       </section>
 
       <ProductStatsStrip stats={pageContent.stats} />
 
       <ProductHowItWorks steps={pageContent.howItWorks} />
 
-      <ProductFeatureMarquee
-        tags={[
-          "HTML presentation deck",
-          "Executive summary",
-          "GA4 traffic slides",
-          "GSC query analysis",
-          "Google Ads campaigns",
-          "GTM security audit",
-          "Cross-source findings",
-          "Methodology slide",
-          "Action plan",
-          "AI insights",
-          "Download HTML",
-        ]}
-      />
-
       {/* ── KEY FEATURES ────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
+      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{coreFeaturesSubtitle}</span>
@@ -339,7 +318,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
 
       {/* ── VALUE PROPOSITION ───────────────────────── */}
       <section className="relative py-16 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(107,95,248,0.09) 0%, transparent 70%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.09) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">Why Conalytic Reports</span>
@@ -355,7 +334,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.15,ease:EASE}}
             className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[{val:"12+",label:"Slide types per deck"},{val:"366",label:"Max day range"},{val:"4",label:"Active platforms"},{val:"HTML",label:"Output format"}].map(s=>(
-              <div key={s.label} className="bg-[#F6F7FE] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
+              <div key={s.label} className="bg-[#f0f1f5] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
                 <p className="text-3xl font-black mb-1" style={GRAD}>{s.val}</p>
                 <p className="text-xs text-gray-400 dark:text-white/55 font-medium">{s.label}</p>
               </div>
@@ -368,8 +347,8 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <Pricing/>
 
       {/* ── BUILD REPORTS SECTION ───────────────────── */}
-      <section className="relative py-24 px-4 overflow-hidden bg-[#F6F7FE] dark:bg-[#0E0E14]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)"}}/>
+      <section className="relative py-24 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
@@ -389,7 +368,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
               <a href={CHAT_APP_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                 Start building reports <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
@@ -402,7 +381,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
 
       {/* ── CLIENT DELIVERY ─────────────────────────── */}
       <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)"}}/>
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">Client delivery</span>
@@ -416,7 +395,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
                 { icon: Link2, title: "Downloadable HTML", description: "Open in any browser — no PowerPoint license required for stakeholders." },
                 { icon: Calendar, title: "Regenerate on refresh", description: "Frozen settings keep slide structure consistent when you regenerate after data updates." },
               ].map(b=>(
-                <motion.div key={b.title} variants={fadeUp} className="flex items-start gap-4 p-5 rounded-2xl bg-[#F6F7FE] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07]">
+                <motion.div key={b.title} variants={fadeUp} className="flex items-start gap-4 p-5 rounded-2xl bg-[#f0f1f5] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07]">
                   <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-600/20 border border-brand-100 dark:border-brand-500/20 flex items-center justify-center shrink-0">
                     <b.icon className="w-5 h-5 text-brand-600 dark:text-brand-300"/>
                   </div>
@@ -430,7 +409,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
                 <a href={CHAT_APP_SIGNUP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
                   Get started with Reports <ArrowRight className="w-4 h-4"/>
                 </a>
               </div>

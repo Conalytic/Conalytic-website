@@ -40,8 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# cursor / editor internals
-.cursor/
+# storyblok CLI artefacts (not used)
+.storyblok/
+
 
 # local dev artefacts (symlinks & binaries created by npm)
 conalytic@*

@@ -72,6 +72,55 @@ export function websiteSchema() {
     description:
       "Conalytic: marketing analytics with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Google Ads, Search Console, GTM, and Meta; ask questions in plain English, track KPI goals, and generate HTML report decks.",
     publisher: { "@id": `${SITE}/#organization` },
+    about: { "@id": `${SITE}/#softwareapplication` },
+  };
+}
+
+export function breadcrumbListSchema(
+  items: ReadonlyArray<{ name: string; path: string }>,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: canonicalPathToUrl(item.path),
+    })),
+  };
+}
+
+function canonicalPathToUrl(path: string): string {
+  if (!path || path === "/") return `${SITE}/`;
+  return `${SITE}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+export function blogListingSchema(
+  posts: ReadonlyArray<{ slug: string; title: string; datePublished: string }>,
+) {
+  const url = `${SITE}/blogs`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${url}#webpage`,
+    url,
+    name: "Conalytic Blog",
+    description:
+      "Product guides for Conversational Analytics, KPIs Tracker, and Report Builder — how to use Conalytic for GA4, Google Ads, Search Console, and marketing reporting.",
+    inLanguage: "en-US",
+    isPartOf: { "@id": `${SITE}/#website` },
+    publisher: { "@id": `${SITE}/#organization` },
+    mainEntity: {
+      "@type": "ItemList",
+      numberOfItems: posts.length,
+      itemListElement: posts.map((post, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        url: `${SITE}/${post.slug}`,
+        name: post.title,
+      })),
+    },
   };
 }
 
@@ -89,13 +138,13 @@ export function softwareApplicationSchema() {
     url: CHAT_APP_SIGNUP_URL,
     screenshot: `${SITE}/og-image.png`,
     description:
-      "Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Free signup with token-based Pro usage.",
+      "Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Free to start on Conalytic Pro.",
     featureList: [
       "Conversational Analytics — plain-English chat over connected marketing data",
       "KPIs Tracker — GA4, Search Console, and Google Ads goal status dashboards",
       "Report Builder — multi-platform HTML presentation decks with optional AI insights",
       "OAuth integrations: GA4, Search Console, Google Ads, GTM, Meta Ads",
-      "Token-based Pro billing with signup credit and top-ups",
+      "Free to start with usage-based pricing for AI features",
     ],
     hasPart: PRODUCT_LIST.map((p) => ({ "@id": `${SITE}${p.path}#softwareapplication` })),
     offers: {
@@ -103,7 +152,7 @@ export function softwareApplicationSchema() {
       name: "Conalytic Pro — free signup",
       price: "0",
       priceCurrency: "USD",
-      description: "Free account with included tokens; purchase top-ups as usage grows.",
+      description: "Free account to explore all three products; usage-based pricing for AI features.",
       url: CHAT_APP_SIGNUP_URL,
     },
     provider: { "@id": `${SITE}/#organization` },
@@ -155,6 +204,8 @@ export function blogPostingSchema(input: {
   description: string;
   datePublished?: string;
   dateModified?: string;
+  articleSection?: string;
+  keywords?: string[];
   /** Hero / OG image URL (absolute). */
   imageUrl?: string;
 }) {
@@ -164,16 +215,33 @@ export function blogPostingSchema(input: {
     headline: input.headline,
     description: input.description,
     url: input.url,
+    inLanguage: "en-US",
     mainEntityOfPage: { "@type": "WebPage", "@id": input.url },
+    isPartOf: { "@id": `${SITE}/blogs#webpage` },
     publisher: { "@id": `${SITE}/#organization` },
-    author: { "@id": `${SITE}/#organization` },
+    author: {
+      "@type": "Organization",
+      "@id": `${SITE}/#organization`,
+      name: "Conalytic",
+    },
   };
+  if (input.articleSection) {
+    base.articleSection = input.articleSection;
+  }
+  if (input.keywords?.length) {
+    base.keywords = input.keywords.join(", ");
+  }
   if (input.datePublished) {
     base.datePublished = input.datePublished;
     base.dateModified = input.dateModified ?? input.datePublished;
   }
   if (input.imageUrl) {
-    base.image = input.imageUrl;
+    base.image = {
+      "@type": "ImageObject",
+      url: input.imageUrl,
+      width: 1200,
+      height: 630,
+    };
   }
   return base;
 }
