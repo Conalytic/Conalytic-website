@@ -5,10 +5,16 @@ import remarkGfm from "remark-gfm";
 import type { Components } from "react-markdown";
 import Link from "next/link";
 import { useMemo, useRef } from "react";
+import { BlogFaqAccordion } from "@/components/blog/BlogFaqAccordion";
+import { splitBlogMarkdownWithFaq } from "@/lib/parse-blog-faq";
 
-const createComponents = (headingIds: string[], h2IndexRef: { current: number }): Components => ({
+const createComponents = (
+  headingIds: string[],
+  h2IndexRef: { current: number },
+  h2StartIndex = 0,
+): Components => ({
   h2: ({ children, ...props }) => {
-    const id = headingIds[h2IndexRef.current++] ?? undefined;
+    const id = headingIds[h2StartIndex + h2IndexRef.current++] ?? undefined;
     return (
       <h2
         id={id}
@@ -141,6 +147,9 @@ const createComponents = (headingIds: string[], h2IndexRef: { current: number })
   hr: () => <hr className="my-12 border-gray-200 dark:border-white/[0.08]" />,
 });
 
+const faqHeadingClassName =
+  "mt-12 mb-4 scroll-mt-24 border-b border-gray-100 pb-3 text-xl font-bold tracking-tight text-gray-900 dark:border-white/[0.08] dark:text-white sm:mt-14 sm:scroll-mt-28 sm:text-2xl md:text-3xl";
+
 export function BlogPostMarkdown({
   markdown,
   headingIds = [],
@@ -148,18 +157,50 @@ export function BlogPostMarkdown({
   markdown: string;
   headingIds?: string[];
 }) {
-  const h2IndexRef = useRef(0);
-  h2IndexRef.current = 0;
-  const components = useMemo(
-    () => createComponents(headingIds, h2IndexRef),
+  const beforeH2Ref = useRef(0);
+  const afterH2Ref = useRef(0);
+  beforeH2Ref.current = 0;
+  afterH2Ref.current = 0;
+
+  const { before, faqs, after, hasFaq } = useMemo(
+    () => splitBlogMarkdownWithFaq(markdown),
+    [markdown],
+  );
+
+  const faqH2Index = useMemo(() => (before.match(/^## /gm) || []).length, [before]);
+  const faqHeadingId = hasFaq ? headingIds[faqH2Index] : undefined;
+
+  const beforeComponents = useMemo(
+    () => createComponents(headingIds, beforeH2Ref, 0),
     [headingIds],
+  );
+  const afterComponents = useMemo(
+    () => createComponents(headingIds, afterH2Ref, faqH2Index + 1),
+    [headingIds, faqH2Index],
   );
 
   return (
     <div className="blog-article-prose">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
-        {markdown.trim()}
-      </ReactMarkdown>
+      {before ? (
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={beforeComponents}>
+          {before.trim()}
+        </ReactMarkdown>
+      ) : null}
+
+      {hasFaq ? (
+        <>
+          <h2 id={faqHeadingId} className={faqHeadingClassName}>
+            Frequently asked questions
+          </h2>
+          <BlogFaqAccordion items={faqs} />
+        </>
+      ) : null}
+
+      {after ? (
+        <ReactMarkdown remarkPlugins={[remarkGfm]} components={afterComponents}>
+          {after.trim()}
+        </ReactMarkdown>
+      ) : null}
     </div>
   );
 }
