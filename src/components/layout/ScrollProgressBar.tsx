@@ -30,7 +30,7 @@ export function ScrollProgressBar() {
       aria-hidden
     >
       <div
-        className="h-full bg-brand-500 shadow-[0_0_12px_rgba(201,255,51,0.6)] transition-[width] duration-150 ease-out"
+        className="h-full bg-brand-500 shadow-[0_0_12px_color-mix(in_srgb,var(--brand-500)_60%,transparent)] transition-[width] duration-150 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

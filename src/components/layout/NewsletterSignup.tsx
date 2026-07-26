@@ -20,8 +20,8 @@ const inputClasses =
   "sm:h-9 sm:min-h-0 sm:py-0 sm:px-3";
 
 const buttonClasses =
-  "box-border inline-flex min-h-10 w-full shrink-0 items-center justify-center rounded-md bg-brand-600 px-3.5 py-2 text-sm font-semibold text-brand-500 shadow-sm " +
-  "transition hover:bg-brand-500 hover:text-brand-600 disabled:cursor-not-allowed disabled:opacity-70 " +
+  "box-border inline-flex min-h-10 w-full shrink-0 items-center justify-center rounded-md btn-brand-primary px-3.5 py-2 text-sm shadow-sm " +
+  "transition disabled:cursor-not-allowed disabled:opacity-70 " +
   "sm:h-9 sm:min-h-9 sm:w-auto sm:min-w-[7.5rem] sm:py-0";
 
 export function NewsletterSignup({ className }: { className?: string }) {

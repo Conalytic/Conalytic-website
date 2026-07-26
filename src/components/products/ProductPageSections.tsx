@@ -6,6 +6,7 @@ import { CheckCircle2 } from "lucide-react";
 import { ProductVisual } from "@/components/visual/product-demos/ProductVisual";
 import type { ProductVisualVariant } from "@/lib/product-visual";
 import type { ProductPageContent } from "@/lib/product-page-content";
+import { BRAND_HERO_GRADIENT_CLASS, BRAND_INK_BADGE_CLASS } from "@/lib/brand";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -14,12 +15,6 @@ const fadeUp = {
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
-const GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
 
 export function ProductHeroVisual({ variant }: { variant: ProductVisualVariant }) {
   return (
@@ -52,7 +47,7 @@ export function ProductStatsStrip({ stats }: { stats: ProductPageContent["stats"
               className="relative text-center p-5 rounded-2xl bg-[#f0f1f5] dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-brand-500/0 to-brand-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <p className="relative text-3xl sm:text-4xl font-black mb-1" style={GRAD}>
+              <p className={`relative text-3xl sm:text-4xl font-black mb-1 ${BRAND_HERO_GRADIENT_CLASS}`}>
                 {stat.value}
               </p>
               <p className="relative text-xs text-gray-500 dark:text-white/50 font-medium">{stat.label}</p>
@@ -88,7 +83,7 @@ export function ProductHowItWorks({
         </motion.div>
 
         <div className="relative">
-          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-brand-500/40 via-brand-500/20 to-transparent" />
+          <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent dark:from-brand-500/30 dark:via-brand-500/15" />
           <motion.div
             variants={stagger}
             initial="hidden"
@@ -101,13 +96,13 @@ export function ProductHowItWorks({
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                   <motion.div
                     whileHover={{ scale: 1.05 }}
-                    className="relative mb-5 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-600/25"
+                    className={`relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl ${BRAND_INK_BADGE_CLASS}`}
                   >
-                    <span className="text-lg font-black text-white">{step.step}</span>
+                    <span className="text-lg font-black text-brand-lime">{step.step}</span>
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      className="absolute inset-0 rounded-2xl border border-white/20 border-dashed"
+                      className="absolute inset-0 rounded-2xl border border-dashed border-gray-900/10 dark:border-white/20"
                     />
                   </motion.div>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">{step.title}</h3>
@@ -401,7 +396,7 @@ export function ReportDeckTimeline() {
             whileHover={{ scale: 1.05 }}
             className={`text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border ${
               i === 0
-                ? "bg-brand-600 text-brand-500 border-brand-500"
+                ? "bg-brand-600 text-brand-lime border-brand-500"
                 : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-white/60 border-gray-200 dark:border-white/[0.08]"
             }`}
           >

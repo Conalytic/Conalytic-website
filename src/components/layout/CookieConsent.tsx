@@ -64,7 +64,7 @@ export function CookieConsent({ copy }: { copy: CookieBannerCopy }) {
           <button
             type="button"
             onClick={() => save("all")}
-            className="rounded-xl bg-brand-600 px-4 py-2.5 text-sm font-semibold text-brand-500 shadow-lg shadow-brand-600/20 transition hover:bg-brand-500 hover:text-brand-600"
+            className="btn-brand-primary rounded-xl px-4 py-2.5 text-sm shadow-lg"
           >
             {copy.acceptAllButtonLabel}
           </button>

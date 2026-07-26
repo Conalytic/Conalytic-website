@@ -3,6 +3,13 @@
 import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
+function themeParticleColors() {
+  const isDark = document.documentElement.classList.contains("dark");
+  return isDark
+    ? { line: (a: number) => `rgba(201, 255, 51, ${a})`, node: "rgba(201, 255, 51, 0.55)" }
+    : { line: (a: number) => `rgba(95, 143, 0, ${a})`, node: "rgba(95, 143, 0, 0.45)" };
+}
+
 /** Local particle mesh for hero sections. */
 function AmbientCanvas({ className }: { className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -16,6 +23,7 @@ function AmbientCanvas({ className }: { className?: string }) {
     let raf = 0;
     let w = 0;
     let h = 0;
+    let colors = themeParticleColors();
 
     const nodes = Array.from({ length: 42 }, () => ({
       x: Math.random(),
@@ -37,6 +45,11 @@ function AmbientCanvas({ className }: { className?: string }) {
       ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     };
 
+    const observer = new MutationObserver(() => {
+      colors = themeParticleColors();
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
@@ -56,7 +69,7 @@ function AmbientCanvas({ className }: { className?: string }) {
           const dist = Math.hypot(dx, dy);
           if (dist < 140) {
             const alpha = (1 - dist / 140) * 0.14;
-            ctx.strokeStyle = `rgba(201, 255, 51, ${alpha})`;
+            ctx.strokeStyle = colors.line(alpha);
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x * w, a.y * h);
@@ -67,7 +80,7 @@ function AmbientCanvas({ className }: { className?: string }) {
       }
 
       for (const n of nodes) {
-        ctx.fillStyle = "rgba(201, 255, 51, 0.55)";
+        ctx.fillStyle = colors.node;
         ctx.beginPath();
         ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2);
         ctx.fill();
@@ -82,6 +95,7 @@ function AmbientCanvas({ className }: { className?: string }) {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      observer.disconnect();
     };
   }, []);
 
@@ -108,11 +122,11 @@ export function BrandAmbient({
       {variant === "subtle" && (
         <>
           <div className="ambient-orb ambient-orb-c opacity-50" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(201,255,51,0.08),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,var(--ambient-orb-a),transparent_60%)]" />
         </>
       )}
       {variant === "footer" && (
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_100%,rgba(201,255,51,0.06),transparent_65%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_60%_at_20%_100%,var(--ambient-orb-b),transparent_65%)]" />
       )}
       <div className="ambient-grid absolute inset-0 opacity-60" />
     </div>

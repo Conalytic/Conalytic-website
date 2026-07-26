@@ -512,7 +512,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
               {/* Quote panel */}
               <div className="flex-1 p-8 flex flex-col justify-between">
                 {/* Opening quote mark */}
-                <svg className="mb-4 h-8 w-8 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
+                <svg className="mb-4 h-8 w-8 text-brand-400 dark:text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden>
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
                 </svg>
                 <p className="text-gray-700 dark:text-white/88 text-base sm:text-lg leading-relaxed flex-1">
@@ -534,7 +534,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
           </AnimatePresence>
 
           {/* Next button */}
-          <button type="button" onClick={next} aria-label="Next testimonial" className="w-10 h-10 shrink-0 rounded-full bg-brand-600 flex items-center justify-center text-brand-500 hover:bg-brand-500 hover:text-brand-600 transition-all shadow-lg shadow-brand-500/30 hover:scale-105">
+          <button type="button" onClick={next} aria-label="Next testimonial" className="btn-brand-primary h-10 w-10 shrink-0 rounded-full shadow-lg hover:scale-105">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M9 18l6-6-6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
         </div>

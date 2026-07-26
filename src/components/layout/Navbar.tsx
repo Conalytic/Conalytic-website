@@ -12,6 +12,7 @@ import { cn, isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const fallbackNavigation: SiteConfigLink[] = [
   {
@@ -54,7 +55,8 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
   const primaryCtaLabel = config?.primaryCtaLabel || "Book A Demo";
   const primaryCtaHref = config?.primaryCtaHref || MARKETING_CONTACT_PATH;
   const primaryCtaIsExternal = isExternalNavigationHref(primaryCtaHref);
-  const navLogo = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
+  const navLogoLight = brandLogos?.navbarLogoLight ?? "/logo.png";
+  const navLogoDark = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
   const navLogoAlt = brandLogos?.navbarLogoAlt ?? conalyticLogoAlt("wordmark");
 
   useEffect(() => {
@@ -93,7 +95,8 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
         <nav className="px-4 sm:px-6">
           <div className="flex h-[3.25rem] items-center justify-between">
             <Link href="/" className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.02]" aria-label="Conalytic — Home">
-              <Image src={navLogo} alt={navLogoAlt} width={140} height={40} className="h-8 w-auto" priority />
+              <Image src={navLogoLight} alt={navLogoAlt} width={140} height={40} className="h-8 w-auto dark:hidden" priority />
+              <Image src={navLogoDark} alt={navLogoAlt} width={140} height={40} className="hidden h-8 w-auto dark:block" priority />
             </Link>
 
             <div className="hidden items-center gap-0.5 lg:flex">
@@ -158,6 +161,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
             </div>
 
             <div className="hidden shrink-0 items-center gap-2 lg:flex">
+              <ThemeToggle />
               <a
                 href={loginHref}
                 target="_blank"
@@ -172,7 +176,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                   href={primaryCtaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-xl bg-brand-600 px-4 py-1.5 text-sm font-semibold text-brand-500 shadow-sm transition-all duration-200 hover:bg-brand-500 hover:text-brand-600 hover:scale-[1.02] active:scale-[0.98]"
+                  className="btn-brand-primary rounded-xl px-4 py-1.5 text-sm shadow-sm"
                   aria-label={`${primaryCtaLabel} (opens in new tab)`}
                 >
                   {primaryCtaLabel}
@@ -180,7 +184,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
               ) : (
                 <Link
                   href={primaryCtaHref}
-                  className="rounded-xl bg-brand-600 px-4 py-1.5 text-sm font-semibold text-brand-500 shadow-sm transition-all duration-200 hover:bg-brand-500 hover:text-brand-600 hover:scale-[1.02] active:scale-[0.98]"
+                  className="btn-brand-primary rounded-xl px-4 py-1.5 text-sm shadow-sm"
                   aria-label={primaryCtaLabel}
                 >
                   {primaryCtaLabel}
@@ -189,6 +193,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
             </div>
 
             <div className="flex items-center gap-1 lg:hidden">
+              <ThemeToggle />
               <button
                 type="button"
                 className="touch-target flex items-center justify-center rounded-lg p-2 text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
@@ -266,7 +271,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                   href={primaryCtaHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full rounded-xl bg-brand-600 py-2.5 text-center text-sm font-semibold text-brand-500 transition-all hover:bg-brand-500 hover:text-brand-600"
+                  className="btn-brand-primary w-full rounded-xl py-2.5 text-center text-sm"
                   aria-label={`${primaryCtaLabel} (opens in new tab)`}
                 >
                   {primaryCtaLabel}
@@ -274,7 +279,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
               ) : (
                 <Link
                   href={primaryCtaHref}
-                  className="w-full rounded-xl bg-brand-600 py-2.5 text-center text-sm font-semibold text-brand-500 transition-all hover:bg-brand-500 hover:text-brand-600"
+                  className="btn-brand-primary w-full rounded-xl py-2.5 text-center text-sm"
                   aria-label={primaryCtaLabel}
                 >
                   {primaryCtaLabel}

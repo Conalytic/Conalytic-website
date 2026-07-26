@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageSquare, LineChart, FileText } from "lucide-react";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { ChatProductDemo } from "@/components/visual/product-demos/ChatProductDemo";
-import { BRAND_HERO_GRADIENT_TEXT } from "@/lib/brand";
+import { BRAND_HERO_GRADIENT_CLASS, BRAND_SECONDARY_BUTTON_LG_CLASS } from "@/lib/brand";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
@@ -48,7 +48,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
           >
             {content?.heroTitleLine1 || "Marketing analytics with"}
             <br />
-            <span style={BRAND_HERO_GRADIENT_TEXT}>
+            <span className={BRAND_HERO_GRADIENT_CLASS}>
               {content?.heroTitleLine2 || "Chat, KPIs & Reports"}
             </span>
           </motion.h1>
@@ -75,14 +75,14 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
               onClick={(e) => {
                 if (!isExternalNavigationHref(primaryHref)) handleSamePageHashClick(e, primaryHref);
               }}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-7 py-3.5 text-base font-bold text-brand-500 shadow-lg shadow-brand-600/20 transition hover:bg-brand-500 hover:text-brand-600 hover:scale-[1.02]"
+              className="btn-brand-primary px-7 py-3.5 text-base font-bold"
             >
               {content?.heroPrimaryCtaLabel || "Get started"}
               <ArrowRight className="h-4 w-4" />
             </a>
             <Link
               href={secondaryHref}
-              className="inline-flex items-center justify-center rounded-xl border-2 border-gray-200 bg-white/80 px-7 py-3.5 text-base font-semibold text-gray-800 backdrop-blur-sm transition hover:border-brand-400 dark:border-white/15 dark:bg-white/[0.04] dark:text-white/85 dark:hover:border-brand-500/40"
+              className={BRAND_SECONDARY_BUTTON_LG_CLASS}
             >
               {content?.heroSecondaryCtaLabel || "Book a demo"}
             </Link>

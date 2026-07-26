@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** Applicant Tracking System product page (marketing). */
 import { motion } from "framer-motion";
@@ -9,7 +10,6 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 55%,#10b981 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /* ── Mini visuals for ATS feature cards ─────────── */
 function CandidateSearchVisual() {
@@ -54,7 +54,7 @@ function CollabHiringVisual() {
     <div className="w-full p-3 space-y-2">
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05] mb-1">
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center">
+          <div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center">
             <span className="text-[7px] font-black text-white">JD</span>
           </div>
           <div>
@@ -219,9 +219,9 @@ const features = [
 ];
 
 const pipeline = [
-  { step:"01", label:"Source",    description:"Post to job boards & collect applications",        color:"from-brand-600 to-brand-700" },
-  { step:"02", label:"Screen",    description:"AI-assisted resume screening & scoring",            color:"from-brand-700 to-brand-700" },
-  { step:"03", label:"Interview", description:"Schedule and conduct structured interviews",        color:"from-brand-700 to-indigo-600" },
+  { step:"01", label:"Source",    description:"Post to job boards & collect applications",        color:"from-gray-900 to-gray-800" },
+  { step:"02", label:"Screen",    description:"AI-assisted resume screening & scoring",            color:"from-gray-800 to-gray-700" },
+  { step:"03", label:"Interview", description:"Schedule and conduct structured interviews",        color:"from-gray-700 to-indigo-700" },
   { step:"04", label:"Evaluate",  description:"Team scorecards and collaborative decisions",       color:"from-indigo-600 to-blue-600" },
   { step:"05", label:"Offer",     description:"Send offers and collect e-signatures",              color:"from-blue-600 to-cyan-600" },
   { step:"06", label:"Onboard",   description:"Seamless transition from hire to team member",     color:"from-cyan-600 to-emerald-600" },
@@ -270,7 +270,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-lg text-gray-500 dark:text-white/70 mb-6 max-w-3xl mx-auto leading-relaxed">
@@ -278,7 +278,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
             </a>
             <a href="/contact"

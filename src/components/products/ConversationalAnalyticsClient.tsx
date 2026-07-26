@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS, BRAND_SECONDARY_BUTTON_LG_CLASS } from "@/lib/brand";
 
 /** Product landing: conversational analytics positioning, reuse home `Pricing` for tiers. */
 import { motion } from "framer-motion";
@@ -23,17 +24,20 @@ import {
   ProductStatsStrip,
 } from "@/components/products/ProductPageSections";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
+import {
+  ANALYTICS_DEMO_ANSWERED_BADGE_CLASS,
+  ANALYTICS_DEMO_BODY_CLASS,
+  ANALYTICS_DEMO_INPUT_ROW_CLASS,
+  ANALYTICS_DEMO_KEY_FINDING_CLASS,
+  ANALYTICS_DEMO_KEY_FINDING_LABEL_CLASS,
+  ANALYTICS_DEMO_SHELL_CLASS,
+  analyticsDemoBarStyle,
+} from "@/components/visual/product-demos/analytics-demo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 
-const GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
 
 /* ── Data ─────────────────────────────────────────── */
 const chatProduct = getProduct("conversational-analytics");
@@ -87,48 +91,49 @@ const performanceBullets = [
 /* Card 1 — Natural Language: animated query input + response */
 function NLQVisual() {
   const query = "Which campaigns had the best ROI last quarter?";
+  const NLQ_MAX = 36;
+  const nlqBars = [45, 72, 38, 88, 62, 95];
+
   return (
-    <div className="w-full rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.07] overflow-hidden">
-      {/* Input bar */}
-      <div className="flex items-center gap-2.5 px-4 py-3 border-b border-gray-200 dark:border-white/[0.06]">
+    <div className={`w-full ${ANALYTICS_DEMO_SHELL_CLASS}`}>
+      <div className={ANALYTICS_DEMO_INPUT_ROW_CLASS}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-brand-500 shrink-0">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
         <span className="text-xs text-gray-600 dark:text-white/70 font-mono flex-1 truncate">{query}</span>
         <span className="inline-block w-0.5 h-3.5 bg-brand-500 animate-pulse shrink-0"/>
       </div>
-      {/* Response */}
-      <div className="p-4">
+      <div className={ANALYTICS_DEMO_BODY_CLASS}>
         <div className="flex items-start gap-2.5 mb-3">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shrink-0">
-            <span className="text-[7px] font-bold text-brand-500">CA</span>
+          <div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center shrink-0 text-[7px] font-bold">
+            CA
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-1.5 mb-2">
               <span className="text-[10px] font-semibold text-gray-700 dark:text-white/70">Conalytic</span>
-              <span className="text-[9px] bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20 px-1.5 py-0.5 rounded-full font-medium">Answered in 1.8s</span>
+              <span className={ANALYTICS_DEMO_ANSWERED_BADGE_CLASS}>Answered in 1.8s</span>
             </div>
-            {/* Mini bar chart — explicit px heights */}
-            {(() => {
-              const NLQ_MAX = 36;
-              const nlqBars = [45,72,38,88,62,95];
-              return (
-                <div className="flex items-end gap-1 mb-2" style={{ height: NLQ_MAX }}>
-                  {nlqBars.map((pct, i) => (
-                    <div key={i} className="flex-1 rounded-t-[2px]"
-                      style={{ height: `${Math.round((pct/100)*NLQ_MAX)}px`, background:`rgba(201,255,51,${0.4+i*0.1})` }}/>
-                  ))}
-                </div>
-              );
-            })()}
+            <div className="flex items-end gap-1 mb-2" style={{ height: NLQ_MAX }}>
+              {nlqBars.map((pct, i) => (
+                <div
+                  key={i}
+                  className="flex-1 rounded-t-[2px]"
+                  style={analyticsDemoBarStyle(Math.round((pct / 100) * NLQ_MAX), i)}
+                />
+              ))}
+            </div>
             <p className="text-[10px] text-gray-400 dark:text-white/40 flex gap-1 justify-between">
-              {["Aug","Sep","Oct","Nov","Dec","Jan"].map(l=><span key={l}>{l}</span>)}
+              {["Aug", "Sep", "Oct", "Nov", "Dec", "Jan"].map((l) => (
+                <span key={l}>{l}</span>
+              ))}
             </p>
           </div>
         </div>
-        <div className="flex items-center gap-2 bg-brand-50 dark:bg-brand-500/10 border border-brand-100 dark:border-brand-500/20 rounded-lg px-3 py-2">
-          <span className="text-brand-600 dark:text-brand-300 text-[10px] font-bold shrink-0">↑ Key finding</span>
-          <span className="text-[10px] text-gray-600 dark:text-white/60 leading-relaxed">Organic search led at 5.8× ROI in Q4</span>
+        <div className={ANALYTICS_DEMO_KEY_FINDING_CLASS}>
+          <span className={ANALYTICS_DEMO_KEY_FINDING_LABEL_CLASS}>↑ Key finding</span>
+          <span className="text-[10px] text-gray-600 dark:text-white/60 leading-relaxed">
+            Organic search led at 5.8× ROI in Q4
+          </span>
         </div>
       </div>
     </div>
@@ -161,7 +166,7 @@ function MultiChannelVisual() {
         <line x1="60" y1="0" x2="40" y2="28" stroke="#c9ff33" strokeWidth="1.5" strokeDasharray="3 2"/>
       </svg>
       {/* Center hub */}
-      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/30">
+      <div className="w-14 h-14 rounded-2xl brand-ink-badge flex items-center justify-center shadow-lg shadow-brand-500/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/logo-icon.png" alt={conalyticLogoAlt("app icon")} width={32} height={32}/>
       </div>
@@ -246,13 +251,13 @@ function ChatVisual() {
         {messages.map((m, i) => (
           <div key={i} className={`flex ${m.user ? "justify-end" : "justify-start"}`}>
             {!m.user && (
-              <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0 mt-0.5">
+              <div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0 mt-0.5">
                 <span className="text-[7px] font-bold text-brand-500">CA</span>
               </div>
             )}
             <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${
               m.user
-                ? "bg-brand-600 text-brand-500 rounded-br-sm"
+                ? "bg-brand-600 text-brand-lime rounded-br-sm"
                 : "bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"
             }`}>
               {m.text}
@@ -266,7 +271,7 @@ function ChatVisual() {
         ))}
         {/* Typing indicator */}
         <div className="flex justify-start">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0">
+          <div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0">
             <span className="text-[7px] font-bold text-brand-500">CA</span>
           </div>
           <div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1">
@@ -403,7 +408,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             transition={{ duration:0.75, delay:0.1, ease:EASE }}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6"
           >
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
 
           <motion.p
@@ -431,7 +436,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               href={CHAT_APP_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               aria-label="Get started (opens in new tab)"
             >
               Get Started
@@ -439,7 +444,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             </a>
             <Link
               href={SITE_ROUTES.contact}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className={BRAND_SECONDARY_BUTTON_LG_CLASS}
             >
               Book a Demo
             </Link>
@@ -626,7 +631,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               { val:"4.9★", label:"Customer rating" },
             ].map(s => (
               <div key={s.label} className="bg-[#f0f1f5] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
-                <p className="text-3xl font-black text-gray-900 dark:text-white mb-1" style={GRAD}>{s.val}</p>
+                <p className={`text-3xl font-black mb-1 ${BRAND_HERO_GRADIENT_CLASS}`}>{s.val}</p>
                 <p className="text-xs text-gray-400 dark:text-white/55 font-medium">{s.label}</p>
               </div>
             ))}
@@ -677,7 +682,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                 href={CHAT_APP_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 mt-8 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 mt-8 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label="Get started (opens in new tab)"
               >
                 Get Started
@@ -740,7 +745,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                 href={CHAT_APP_SIGNUP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label="Get started (opens in new tab)"
               >
                 Get Started

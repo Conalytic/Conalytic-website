@@ -52,7 +52,7 @@ function BrandFallback() {
               <div key={v.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-[#14141B] overflow-hidden shadow-sm">
                 <div className="h-36 flex items-center justify-center bg-[#f0f1f5] dark:bg-[#0C0C12]">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/30">
+                    <div className="w-10 h-10 rounded-xl brand-ink-badge flex items-center justify-center shadow-lg shadow-brand-500/30">
                       <span className="text-white font-black text-base">C</span>
                     </div>
                     <span className="text-gray-900 dark:text-white font-semibold text-xl tracking-tight">Conalytic</span>
@@ -141,7 +141,7 @@ function BrandFallback() {
           <h3 className="text-gray-900 dark:text-white font-bold text-xl mb-2">Need something specific?</h3>
           <p className="text-gray-500 dark:text-white/60 mb-6 leading-relaxed">For press inquiries, partnership assets, or custom brand requests, reach out to us directly.</p>
           <a href="mailto:admin@conalytic.com"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             Contact Brand Team
           </a>
         </div>

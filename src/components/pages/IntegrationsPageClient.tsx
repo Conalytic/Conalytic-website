@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** Integrations page: same seven connectors as the home hero / marketing stack (`marketing-stack-logos`). */
 import { motion } from "framer-motion";
@@ -15,7 +16,6 @@ import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /** OAuth marketing integrations available in Conalytic-Chat. */
 const integrations = [
@@ -158,7 +158,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">

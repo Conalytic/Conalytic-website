@@ -18,7 +18,7 @@ const answerComponents = {
   ),
   a: ({ href, children }: { href?: string; children?: React.ReactNode }) => {
     const className =
-      "font-medium text-brand-300 underline decoration-brand-500/40 underline-offset-2 transition-colors hover:text-brand-500";
+      "font-medium text-brand-600 underline decoration-brand-300/50 underline-offset-2 transition-colors hover:text-brand-700 dark:text-brand-300 dark:decoration-brand-500/40 dark:hover:text-brand-500";
     if (href?.startsWith("http")) {
       return (
         <a href={href} className={className} target="_blank" rel="noopener noreferrer">
@@ -73,7 +73,7 @@ export function BlogFaqAccordion({ items }: { items: BlogFaqItem[] }) {
                 className={cn(
                   "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
                   isOpen
-                    ? "rotate-45 border-brand-500 bg-brand-600 text-brand-500"
+                    ? "rotate-45 border-brand-500 bg-brand-600 text-brand-lime"
                     : "border-black/10 bg-black/5 group-hover:border-brand-500/50 dark:border-white/10 dark:bg-white/5",
                 )}
               >

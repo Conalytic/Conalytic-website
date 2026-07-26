@@ -8,6 +8,7 @@ import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_HERO_GRADIENT_CLASS, BRAND_SECONDARY_BUTTON_LG_CLASS } from "@/lib/brand";
 import {
   SAAS_EASE,
   staggerContainer,
@@ -251,22 +252,37 @@ export function CTA({
         >
 
           <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
-            <div className="absolute inset-0 bg-[#0f0f0f]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9fb] to-[#f3f4f6] dark:from-[#0f0f0f] dark:via-[#0f0f0f] dark:to-[#0f0f0f]" />
             <div
-              className="absolute inset-0 pointer-events-none"
+              className="absolute inset-0 pointer-events-none opacity-100 dark:opacity-100"
+              style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, rgba(95,143,0,0.08) 0%, transparent 65%)" }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none hidden dark:block"
               style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, rgba(201,255,51,0.12) 0%, transparent 65%)" }}
             />
 
-            <div className="absolute inset-0 pointer-events-none"
+            <div
+              className="absolute inset-0 pointer-events-none opacity-60 dark:opacity-100"
               style={{
-                backgroundImage:"linear-gradient(rgba(15,15,15,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,0.04) 1px,transparent 1px)",
-                backgroundSize:"48px 48px",
-              }}/>
+                backgroundImage:
+                  "linear-gradient(rgba(15,15,15,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,0.05) 1px,transparent 1px)",
+                backgroundSize: "48px 48px",
+              }}
+            />
+            <div
+              className="absolute inset-0 pointer-events-none hidden dark:block"
+              style={{
+                backgroundImage:
+                  "linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)",
+                backgroundSize: "48px 48px",
+              }}
+            />
 
             <div className="absolute inset-0 overflow-hidden">
               {[...Array(6)].map((_, i) => (
                 <div key={i}
-                  className="absolute w-px bg-gradient-to-b from-transparent via-brand-400/30 to-transparent"
+                  className="absolute w-px bg-gradient-to-b from-transparent via-brand-500/25 to-transparent dark:via-brand-400/30"
                   style={{
                     left: `${12 + i * 15}%`,
                     height: "40%",
@@ -350,7 +366,7 @@ export function CTA({
               transition={{ duration: 0.55, delay: 0.05, ease: SAAS_EASE }}
             >
               Turn data into decisions.<br/>
-              <span style={{ background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
+              <span className={BRAND_HERO_GRADIENT_CLASS}>
                 In seconds, not days.
               </span>
             </motion.h2>
@@ -371,7 +387,7 @@ export function CTA({
                 onClick={(e) => {
                   if (!primaryExternal) handleSamePageHashClick(e, primaryCta.href);
                 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold btn-brand-primary shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                 aria-label={primaryExternal ? `${primaryCta.label} (opens in new tab)` : primaryCta.label}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
@@ -385,7 +401,7 @@ export function CTA({
                 onClick={(e) => {
                   if (!secondaryExternal) handleSamePageHashClick(e, secondaryCta.href);
                 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-semibold text-gray-700 dark:text-white/80 border-2 border-gray-200 dark:border-white/12 bg-white/70 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className={`${BRAND_SECONDARY_BUTTON_LG_CLASS} px-8 py-4`}
                 aria-label={secondaryExternal ? `${secondaryCta.label} (opens in new tab)` : secondaryCta.label}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">

@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** KPIs Tracker product page (marketing). */
 import { motion } from "framer-motion";
@@ -34,12 +35,6 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
-const GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
 
 function KpiDashboardVisual() {
   const kpis = [
@@ -228,7 +223,7 @@ export function KpisTrackerClient() {
             className="marketing-hero-title text-gray-900 dark:text-white mb-6"
           >
             {kpiProduct.heroTitleLine1}{" "}
-            <span style={GRAD}>{kpiProduct.heroTitleLine2}</span>
+            <span className={BRAND_HERO_GRADIENT_CLASS}>{kpiProduct.heroTitleLine2}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -246,7 +241,7 @@ export function KpisTrackerClient() {
           >
             <a
               href={CHAT_APP_SIGNUP_URL}
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             >
               Start tracking KPIs <ArrowRight className="w-4 h-4" />
             </a>

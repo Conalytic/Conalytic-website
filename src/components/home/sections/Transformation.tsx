@@ -17,12 +17,7 @@ const AFTER = [
   { label: "Team using data daily",  value: "Everyone", pct: 97 },
 ];
 
-const TITLE_GRAD: React.CSSProperties = {
-  background: "linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)",
-  WebkitBackgroundClip: "text",
-  WebkitTextFillColor: "transparent",
-  backgroundClip: "text",
-};
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 export interface TransformationContent {
   eyebrow?: string;
@@ -64,7 +59,7 @@ export function Transformation({ content }: { content?: TransformationContent })
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
             {(content?.titleLine1 || "The same data.")}<br />
-            <span style={TITLE_GRAD}>{content?.titleLine2 || "A completely different outcome."}</span>
+            <span className={BRAND_HERO_GRADIENT_CLASS}>{content?.titleLine2 || "A completely different outcome."}</span>
           </h2>
         </motion.div>
 

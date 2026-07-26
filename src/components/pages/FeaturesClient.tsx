@@ -19,7 +19,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
-import { BRAND_HERO_GRADIENT_TEXT } from "@/lib/brand";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** Fixed height so every feature card’s mockup + text block line up across the row */
 const BENTO_VISUAL_H = "h-[268px]";
@@ -35,7 +35,7 @@ function ConversationalVisual() {
       {/* User query */}
       <div className="flex justify-end">
         <div className="flex items-end gap-1.5 max-w-[85%]">
-          <div className="bg-brand-600 text-brand-500 text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
+          <div className="bg-brand-600 text-brand-lime text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
             Which campaigns had the best ROI?
           </div>
           <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center shrink-0 mb-0.5">
@@ -45,7 +45,7 @@ function ConversationalVisual() {
       </div>
       {/* AI response */}
       <div className="flex items-end gap-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shrink-0 mb-0.5">
+        <div className="w-5 h-5 rounded-full brand-ink-badge flex items-center justify-center shrink-0 mb-0.5">
           <span className="text-[6px] font-black text-white">CA</span>
         </div>
         <div className="bg-gray-100 dark:bg-white/[0.07] text-gray-700 dark:text-white/80 text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-bl-sm max-w-[85%]">
@@ -65,7 +65,7 @@ function ConversationalVisual() {
       </div>
       {/* Typing indicator */}
       <div className="flex items-center gap-1.5">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center shrink-0">
+        <div className="w-5 h-5 rounded-full brand-ink-badge flex items-center justify-center shrink-0">
           <span className="text-[6px] font-black text-white">CA</span>
         </div>
         <div className="bg-gray-100 dark:bg-white/[0.07] px-3 py-2 rounded-2xl rounded-bl-sm flex gap-1 items-center">
@@ -343,12 +343,12 @@ function ChatMockup() {
       <div className="p-4 space-y-3">
         {msgs.map((m,i)=>(
           <div key={i} className={`flex ${m.user?"justify-end":"justify-start"}`}>
-            {!m.user&&<div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold text-brand-500">CA</span></div>}
-            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"bg-brand-600 text-brand-500 rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
+            {!m.user&&<div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold text-brand-lime">CA</span></div>}
+            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"bg-brand-600 text-brand-lime rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
             {m.user&&<div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center ml-2 shrink-0 mt-0.5"><span className="text-[8px] font-bold text-gray-500 dark:text-white/50">U</span></div>}
           </div>
         ))}
-        <div className="flex justify-start"><div className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-600 to-brand-700 flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold text-brand-500">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
+        <div className="flex justify-start"><div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold text-brand-lime">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
       </div>
     </div>
   );
@@ -462,7 +462,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={BRAND_HERO_GRADIENT_TEXT}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -473,7 +473,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
               href={CHAT_APP_SIGNUP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
+              className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
               aria-label={`${heroPrimaryCtaLabel} (opens in new tab)`}>
               {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
             </a>
@@ -572,7 +572,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                     href={s.cta.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={`${s.cta.label} (opens in new tab)`}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
@@ -581,7 +581,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                   <a
                     href={s.cta.href}
                     onClick={(e) => handleSamePageHashClick(e, s.cta.href)}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={`${s.cta.label} — scroll to section`}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
@@ -589,7 +589,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                 ) : (
                   <Link
                     href={s.cta.href}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
                     aria-label={s.cta.label}
                   >
                     {s.cta.label} <ArrowRight className="w-4 h-4" aria-hidden/>

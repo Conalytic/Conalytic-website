@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /**
  * Contact / “Schedule a call”: form submit then redirects to `NEXT_PUBLIC_SCHEDULE_CALL_URL` (e.g. Google Calendar).
@@ -13,7 +14,6 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 const SCHEDULE_CALL_URL = (process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL ?? "").trim();
 const CONTACT_INBOX = "admin@conalytic.com";
@@ -92,7 +92,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-xl mx-auto leading-relaxed">
@@ -164,7 +164,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
                       </p>
                     ) : null}
                     <button type="submit" disabled={loading} aria-label="Schedule a call"
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
+                      className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
                       {loading ? (
                         <><span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"/><span>Opening calendar…</span></>
                       ) : (

@@ -34,22 +34,35 @@ export const BRAND_GRADIENT_TEXT: CSSProperties = {
   backgroundClip: "text",
 };
 
-/** Lime accent gradient for marketing hero highlights. */
+/** Lime → ink gradient for marketing hero highlights (theme-aware via CSS). */
+export const BRAND_HERO_GRADIENT_CLASS = "hero-gradient-text";
+
+/** @deprecated Use BRAND_HERO_GRADIENT_CLASS — kept for gradual migration */
 export const BRAND_HERO_GRADIENT_TEXT: CSSProperties = {
-  background: "linear-gradient(135deg, #c9ff33 0%, #b8eb2e 50%, #0f0f0f 100%)",
+  background: "linear-gradient(135deg, #5f8f00 0%, #0f0f0f 55%, #374151 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
 };
 
-/** Primary CTA: ink bg + lime label; hover inverts to lime bg + ink text. */
-export const BRAND_PRIMARY_BUTTON_CLASS =
-  "inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-brand-500 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:bg-brand-500 hover:text-brand-600 hover:shadow-[0_0_24px_rgba(201,255,51,0.35)] hover:scale-[1.02] active:scale-[0.98]";
+/** Primary CTA sizes */
+export const BRAND_PRIMARY_BUTTON_CLASS = "btn-brand-primary px-6 py-3 text-sm shadow-lg";
+export const BRAND_PRIMARY_BUTTON_LG_CLASS =
+  "btn-brand-primary px-8 py-3.5 text-base font-semibold shadow-xl";
+export const BRAND_PRIMARY_BUTTON_SM_CLASS = "btn-brand-primary px-4 py-1.5 text-sm shadow-sm";
 
-/** Secondary CTA on dark surfaces — visible border + lime tint on hover. */
+/** Lime on ink surfaces (chat bubbles, icons on dark chips) */
+export const BRAND_LIME_TEXT_CLASS = "text-brand-lime";
+
+/** Step numbers, avatars — ink + lime; avoids olive brand-700 in light mode */
+export const BRAND_INK_BADGE_CLASS = "brand-ink-badge";
+
+/** Secondary CTA — crisp on light, soft on dark */
 export const BRAND_SECONDARY_BUTTON_CLASS =
-  "inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white/85 transition-all duration-200 hover:border-brand-500/50 hover:bg-brand-500/12 hover:text-brand-300 active:scale-[0.98]";
+  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-gray-900/12 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm transition-all duration-200 hover:border-[var(--brand-lime)] hover:bg-[#f4fae8] active:scale-[0.98] dark:border-white/15 dark:bg-white/[0.04] dark:text-white/85 dark:hover:border-brand-500/50 dark:hover:bg-brand-500/12 dark:hover:text-brand-300";
+export const BRAND_SECONDARY_BUTTON_LG_CLASS =
+  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-gray-900/12 bg-white px-8 py-3.5 text-base font-semibold text-gray-900 shadow-sm transition-all duration-200 hover:border-[var(--brand-lime)] hover:bg-[#f4fae8] active:scale-[0.98] dark:border-white/15 dark:bg-white/[0.04] dark:text-white/85 dark:hover:border-brand-500/40";
 
-/** Text links on dark backgrounds — never use brand-600/700 for hover text (ink colors). */
+/** Text links — readable green on light, lime on dark. */
 export const BRAND_LINK_CLASS =
-  "font-medium text-brand-300 underline decoration-brand-500/40 underline-offset-2 transition-colors hover:text-brand-500";
+  "font-medium text-brand-600 underline decoration-brand-300/50 underline-offset-2 transition-colors hover:text-brand-700 dark:text-brand-300 dark:decoration-brand-500/40 dark:hover:text-brand-500";

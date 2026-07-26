@@ -86,6 +86,7 @@ function FooterColumnLink({ href, className, children }: { href: string; classNa
 }
 
 export function Footer({ config, brandLogos }: FooterProps) {
+  const taglineLight = brandLogos?.footerTaglineLight ?? "/logo-tagline-light.png";
   const taglineDark = brandLogos?.footerTaglineDark ?? "/logo-tagline-white.png";
   const taglineAlt = brandLogos?.footerTaglineAlt ?? conalyticLogoAlt("wordmark with tagline");
   const footerMark = brandLogos?.footerMarkIcon ?? "/logo-icon.png";
@@ -105,11 +106,18 @@ export function Footer({ config, brandLogos }: FooterProps) {
             <div className="flex shrink-0 flex-col items-start gap-3 sm:gap-4 lg:items-end lg:pt-1">
               <Link href="/" className="inline-flex leading-none" aria-label="Conalytic — Home">
                 <Image
+                  src={taglineLight}
+                  alt={taglineAlt}
+                  width={TAGLINE_W}
+                  height={TAGLINE_H}
+                  className="block h-11 w-auto max-w-[min(300px,88vw)] dark:hidden sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
+                />
+                <Image
                   src={taglineDark}
                   alt={taglineAlt}
                   width={TAGLINE_W}
                   height={TAGLINE_H}
-                  className="block h-11 w-auto max-w-[min(300px,88vw)] sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
+                  className="hidden h-11 w-auto max-w-[min(300px,88vw)] dark:block sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
                 />
               </Link>
             </div>

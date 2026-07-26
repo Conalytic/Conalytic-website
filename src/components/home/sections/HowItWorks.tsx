@@ -152,7 +152,7 @@ function Panel3() {
         <div key={i} className={`flex ${user ? "justify-end" : "justify-start"}`}>
           <div className={`max-w-[85%] px-3 py-2.5 rounded-2xl text-xs leading-relaxed ${
             user
-              ? "bg-brand-600 text-brand-500 rounded-br-sm"
+              ? "bg-brand-600 text-brand-lime rounded-br-sm"
               : "bg-gray-100 dark:bg-white/8 text-gray-700 dark:text-white/70 rounded-bl-sm"
           }`}>
             {text}

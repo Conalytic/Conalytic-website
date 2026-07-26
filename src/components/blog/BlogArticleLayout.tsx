@@ -47,27 +47,27 @@ export function BlogArticleLayout({
         <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:pb-16 md:pt-32">
           <Link
             href="/blogs"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/50 transition-colors hover:text-brand-300"
+            className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-brand-600 dark:text-white/50 dark:hover:text-brand-300"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
           </Link>
 
-          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-white/45">
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-gray-500 dark:text-white/45">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
-                <Link href="/" className="transition-colors hover:text-brand-300">
+                <Link href="/" className="transition-colors hover:text-brand-600 dark:hover:text-brand-300">
                   Home
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/blogs" className="transition-colors hover:text-brand-300">
+                <Link href="/blogs" className="transition-colors hover:text-brand-600 dark:hover:text-brand-300">
                   Blog
                 </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li className="text-white/70">{post.category}</li>
+              <li className="text-gray-700 dark:text-white/70">{post.category}</li>
             </ol>
           </nav>
 
@@ -132,7 +132,7 @@ export function BlogArticleLayout({
                       <span className="mb-2 text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300">
                         {r.category}
                       </span>
-                      <h3 className="mb-3 flex-1 text-base font-bold leading-snug text-white group-hover:text-brand-300">
+                      <h3 className="mb-3 flex-1 text-base font-bold leading-snug text-gray-900 group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
                         {r.title}
                       </h3>
                       <span className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500 dark:text-white/45">

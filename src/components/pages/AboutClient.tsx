@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** About page: mission, values, timeline-style story, CTA. */
 import { motion } from "framer-motion";
@@ -10,7 +11,6 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 const stats = [
   { value:"2.5M+",  label:"Data Points Analyzed", icon:Database, end:2.5,  suffix:"M+", isFloat:true  },
@@ -81,7 +81,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
@@ -101,7 +101,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                   <s.icon className="w-6 h-6 text-brand-600 dark:text-brand-300"/>
                 </div>
                 <div>
-                  <div className="text-3xl font-black" style={GRAD}><CountUp end={s.end} suffix={s.suffix} isFloat={s.isFloat}/></div>
+                  <div className={`text-3xl font-black ${BRAND_HERO_GRADIENT_CLASS}`}><CountUp end={s.end} suffix={s.suffix} isFloat={s.isFloat}/></div>
                   <div className="text-gray-500 dark:text-white/55 text-sm">{s.label}</div>
                 </div>
               </motion.div>
@@ -125,7 +125,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                 Today, Conalytic is trusted by teams around the world to do just that. From marketing agencies serving Fortune 500 clients to in-house teams at fast-growing startups, our platform turns complex data into clear conversations.
               </p>
               <a href="/contact"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
                 Get in touch <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
@@ -139,7 +139,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                 {milestones.map((m) => (
                   <div key={m.year} className="flex gap-4 items-start">
                     <div className="relative z-10 flex w-10 shrink-0 justify-center pt-1">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-brand-600 to-brand-700 shadow-md shadow-brand-500/20 ring-4 ring-white dark:ring-[#0C0C12]">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full brand-ink-badge shadow-md shadow-brand-500/20 ring-4 ring-white dark:ring-[#0C0C12]">
                         <m.icon className="h-4 w-4 text-white" />
                       </div>
                     </div>

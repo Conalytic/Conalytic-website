@@ -122,7 +122,7 @@ export function Pricing({ content }: { content?: PricingContent }) {
               }`}
             >
               {plan.badge && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold bg-brand-600 text-brand-500 uppercase tracking-widest whitespace-nowrap shadow-md shadow-brand-600/25">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold bg-brand-600 text-brand-lime uppercase tracking-widest whitespace-nowrap shadow-md shadow-brand-600/25">
                   {plan.badge}
                 </div>
               )}
@@ -166,12 +166,12 @@ export function Pricing({ content }: { content?: PricingContent }) {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`${plan.cta} — ${plan.name} (opens in new tab)`}
-                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     plan.featured
-                      ? "bg-brand-600 text-brand-500 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20"
+                      ? "btn-brand-primary shadow-lg"
                       : plan.isEnterprise
-                      ? "bg-transparent text-brand-600 dark:text-brand-300 border-2 border-brand-500/40 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
-                      : "bg-gray-900 dark:bg-brand-600 text-brand-500 hover:bg-gray-800 dark:hover:bg-brand-500 hover:text-brand-600 border border-gray-800 dark:border-transparent shadow-md dark:shadow-brand-600/20"
+                      ? "bg-transparent text-brand-700 dark:text-brand-300 border-2 border-brand-600/25 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
+                      : "btn-brand-primary shadow-md"
                   }`}
                 >
                   {plan.cta}
@@ -180,12 +180,12 @@ export function Pricing({ content }: { content?: PricingContent }) {
                 <Link
                   href={plan.ctaHref}
                   aria-label={`${plan.cta} — ${plan.name}`}
-                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] ${
+                  className={`mt-auto block text-center py-3.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
                     plan.featured
-                      ? "bg-brand-600 text-brand-500 hover:bg-brand-500 hover:text-brand-600 shadow-lg shadow-brand-600/20"
+                      ? "btn-brand-primary shadow-lg"
                       : plan.isEnterprise
-                      ? "bg-transparent text-brand-600 dark:text-brand-300 border-2 border-brand-500/40 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
-                      : "bg-gray-900 dark:bg-brand-600 text-brand-500 hover:bg-gray-800 dark:hover:bg-brand-500 hover:text-brand-600 border border-gray-800 dark:border-transparent shadow-md dark:shadow-brand-600/20"
+                      ? "bg-transparent text-brand-700 dark:text-brand-300 border-2 border-brand-600/25 dark:border-brand-500/30 hover:bg-brand-50 dark:hover:bg-brand-500/10"
+                      : "btn-brand-primary shadow-md"
                   }`}
                 >
                   {plan.cta}

@@ -8,11 +8,13 @@ import { Navbar } from "@/components/layout/Navbar";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { Footer } from "@/components/layout/Footer";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { COOKIE_BANNER_DEFAULTS } from "@/lib/cookie-consent";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
+import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
 const seoIndexable = allowSearchIndexing();
 
@@ -20,7 +22,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0f0f0f",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f6f9" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f0f" },
+  ],
 };
 
 const nunitoSans = Nunito_Sans({
@@ -116,12 +121,16 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${nunitoSans.variable} h-full`}
+      className={`${nunitoSans.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col overflow-x-clip font-sans antialiased" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
+      <body className="min-h-full flex flex-col overflow-x-clip bg-[var(--bg)] font-sans text-[var(--fg)] antialiased" suppressHydrationWarning>
         <SiteStructuredData />
-        <MotionConfigProvider>
+        <ThemeProvider>
+          <MotionConfigProvider>
             <HashScrollRestorer />
             <SiteChrome
               navbar={<Navbar config={null} brandLogos={null} />}
@@ -130,7 +139,8 @@ export default function RootLayout({
             >
               {children}
             </SiteChrome>
-        </MotionConfigProvider>
+          </MotionConfigProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

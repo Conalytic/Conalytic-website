@@ -38,6 +38,13 @@ function ParticleMesh() {
       ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
     };
 
+    let isDark = document.documentElement.classList.contains("dark");
+
+    const observer = new MutationObserver(() => {
+      isDark = document.documentElement.classList.contains("dark");
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
@@ -59,7 +66,9 @@ function ParticleMesh() {
             const dist = Math.hypot(dx, dy);
             if (dist < 160) {
               const alpha = (1 - dist / 160) * 0.1;
-              ctx.strokeStyle = `rgba(201, 255, 51, ${alpha})`;
+              ctx.strokeStyle = isDark
+                ? `rgba(201, 255, 51, ${alpha})`
+                : `rgba(95, 143, 0, ${alpha})`;
               ctx.lineWidth = 1;
               ctx.beginPath();
               ctx.moveTo(a.x * w, a.y * h);
@@ -71,7 +80,9 @@ function ParticleMesh() {
 
         for (const n of nodes) {
           const glow = 0.35 + Math.sin(n.pulse) * 0.15;
-          ctx.fillStyle = `rgba(201, 255, 51, ${glow})`;
+          ctx.fillStyle = isDark
+            ? `rgba(201, 255, 51, ${glow})`
+            : `rgba(95, 143, 0, ${glow * 0.85})`;
           ctx.beginPath();
           ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2);
           ctx.fill();
@@ -87,6 +98,7 @@ function ParticleMesh() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
+      observer.disconnect();
     };
   }, []);
 
@@ -136,7 +148,7 @@ function CursorSpotlight() {
       className="pointer-events-none fixed left-0 top-0 z-0 h-[560px] w-[560px] rounded-full opacity-60 transition-opacity duration-500 lg:opacity-50"
       style={{
         background:
-          "radial-gradient(circle, rgba(201,255,51,0.07) 0%, rgba(201,255,51,0.02) 40%, transparent 70%)",
+          "radial-gradient(circle, var(--ambient-spotlight) 0%, transparent 70%)",
       }}
       aria-hidden
     />
@@ -174,7 +186,7 @@ export function PageAmbient({ className }: { className?: string }) {
       <div className="ambient-grain absolute inset-0" />
 
       {/* Top vignette for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0f0f0f]/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[#0f0f0f]/60" />
     </div>
   );
 }

@@ -66,7 +66,7 @@ const createComponents = (
   a: ({ href, children, ...props }) => {
     const isExternal = href?.startsWith("http");
     const className =
-      "font-medium text-brand-300 underline decoration-brand-500/40 underline-offset-2 transition-colors hover:text-brand-500";
+      "font-medium text-brand-600 underline decoration-brand-300/50 underline-offset-2 transition-colors hover:text-brand-700 dark:text-brand-300 dark:decoration-brand-500/40 dark:hover:text-brand-500";
     if (isExternal) {
       return (
         <a href={href} className={className} target="_blank" rel="noopener noreferrer" {...props}>

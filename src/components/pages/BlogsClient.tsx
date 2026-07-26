@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Clock } from "lucide-react";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BlogCardVisual, BlogFeaturedVisual } from "@/components/visual/product-demos/ProductVisual";
-import { BRAND_HERO_GRADIENT_TEXT } from "@/lib/brand";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 import { categoryToProductVisual } from "@/lib/product-visual";
 import { STATIC_BLOG_POSTS } from "@/content/blog-posts";
 
@@ -62,7 +62,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
             className="marketing-hero-title mb-6 text-gray-900 dark:text-white sm:mb-6"
           >
             {heroTitleLine1}{" "}
-            <span style={BRAND_HERO_GRADIENT_TEXT}>{heroTitleLine2}</span>
+            <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -103,7 +103,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
                     Featured
                   </span>
                 </div>
-                <h2 className="mb-4 text-2xl font-bold leading-tight text-white transition-colors group-hover:text-brand-300 sm:text-3xl">
+                <h2 className="mb-4 text-2xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300 sm:text-3xl">
                   {featured.title}
                 </h2>
                 <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-600 dark:text-white/60 sm:text-base">
@@ -145,7 +145,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
                     >
                       {post.category}
                     </span>
-                    <h3 className="mb-3 flex-1 text-lg font-bold leading-snug text-white transition-colors group-hover:text-brand-300">
+                    <h3 className="mb-3 flex-1 text-lg font-bold leading-snug text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
                       {post.title}
                     </h3>
                     <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-white/55">
@@ -153,7 +153,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
                     </p>
                     <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-xs text-gray-400 dark:border-white/[0.06] dark:text-white/35">
                       <span>{post.dateLabel}</span>
-                      <span className="inline-flex items-center gap-1 font-semibold text-brand-300 opacity-0 transition-opacity group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-1 font-semibold text-brand-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-brand-300">
                         Read <ArrowRight className="h-3 w-3" />
                       </span>
                     </div>

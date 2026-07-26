@@ -71,7 +71,7 @@ export function HomeProducts({ content }: { content?: { servicesTitleLine1?: str
                   href={p.href}
                   className="group flex h-full flex-col rounded-2xl border border-gray-200/80 bg-[#f0f1f5] p-6 transition-all hover:border-brand-400 hover:shadow-lg dark:border-white/[0.08] dark:bg-[#14141B] dark:hover:border-brand-500/40 hover-lift"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-brand-500">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-brand-lime">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">{p.title}</h3>

@@ -42,7 +42,7 @@ export default function ContactThankYouPage() {
             href={process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "/contact"}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-brand-500 shadow-lg shadow-brand-600/25 transition hover:bg-brand-500 hover:text-brand-600"
+            className="btn-brand-primary px-6 py-3 text-sm shadow-lg"
           >
             <Calendar className="h-4 w-4" aria-hidden />
             Open calendar again

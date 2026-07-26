@@ -1,4 +1,5 @@
 "use client";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /**
  * Careers listing + culture sections; quick apply posts resume to `/api/careers-application` (no mailto for files).
@@ -12,7 +13,6 @@ import { Pricing } from "@/components/home/sections/Pricing";
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
-const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 50%,#0f0f0f 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
 /* ── Why-join bento visuals ──────────────────────── */
 
@@ -46,7 +46,7 @@ function AIInnovationVisual() {
         <p className="text-[8px] uppercase tracking-wider text-gray-400 dark:text-white/30 font-semibold mb-1">Detected Intent</p>
         <div className="flex items-center gap-2">
           <div className="flex-1 h-1.5 bg-gray-200 dark:bg-white/[0.07] rounded-full overflow-hidden">
-            <div className="h-full w-[92%] bg-gradient-to-r from-brand-600 to-brand-700 rounded-full"/>
+            <div className="h-full w-[92%] brand-ink-bar rounded-full"/>
           </div>
           <span className="text-[10px] font-black text-brand-600 dark:text-brand-300 shrink-0">92% ROI query</span>
         </div>
@@ -237,7 +237,7 @@ function RoleQuickApply({ roleTitle }: { roleTitle: string }) {
           type="submit"
           disabled={loading || !file}
           aria-label={`Submit resume for ${roleTitle}`}
-          className="px-6 py-3 rounded-xl text-sm font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0 text-center inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="px-6 py-3 rounded-xl text-sm font-semibold btn-brand-primary shadow-md shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] shrink-0 text-center inline-flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
           {loading ? "Sending…" : "Submit"}
         </button>
@@ -296,7 +296,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
-            {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
+            {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
@@ -304,7 +304,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
           </motion.p>
           <motion.a initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
             href="#open-positions"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-brand-500 bg-brand-600 hover:bg-brand-500 hover:text-brand-600 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             {heroButtonLabel} <ArrowRight className="w-4 h-4"/>
           </motion.a>
         </div>
