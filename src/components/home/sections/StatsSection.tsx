@@ -34,7 +34,7 @@ function StatItem({ end, suffix, label, decimal, active }: {
 
   return (
     <div className="flex flex-col items-center text-center px-6">
-      <p className="text-5xl sm:text-6xl font-black tabular-nums text-gray-900 dark:text-white mb-2">
+      <p className="mb-2 text-4xl font-black tabular-nums text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
         {display}{suffix}
       </p>
       <p className="text-sm text-gray-500 dark:text-white/62 max-w-[120px] leading-snug">{label}</p>

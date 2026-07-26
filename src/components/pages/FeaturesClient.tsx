@@ -453,7 +453,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-32 pb-24 px-4">
+      <section className="relative overflow-hidden px-4 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
@@ -461,7 +461,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
             <Sparkles className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
-            className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
+            className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span style={BRAND_HERO_GRADIENT_TEXT}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}

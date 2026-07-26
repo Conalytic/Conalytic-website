@@ -70,7 +70,54 @@ section { background: transparent !important; }
 /* ── Base ─────────────────────────────────────────── */
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* Mobile-first marketing hero titles */
+.marketing-hero-title {
+  font-size: clamp(1.75rem, 4vw + 1rem, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+/* Comfortable tap targets on touch devices */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prose: prevent overflow on small screens */
+.prose-safe {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.prose-safe :where(table) {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose-safe :where(img, video, svg) {
+  max-width: 100%;
+  height: auto;
+}
+
+.blog-article-prose {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 
 /* Headings: bold Nunito Sans */
 :where(h1, h2, h3, h4, h5, h6) {

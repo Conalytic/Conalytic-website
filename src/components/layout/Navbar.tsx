@@ -68,8 +68,20 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
     setActiveDropdown(null);
   }, [pathname]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      document.body.style.overflow = "";
+      return;
+    }
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [isOpen]);
+
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-4 pt-3 sm:pt-4">
+    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-2 sm:px-4 sm:pt-3 md:pt-4">
       <div
         className={cn(
           "mx-auto max-w-6xl rounded-2xl transition-all duration-300",
@@ -176,10 +188,12 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
               )}
             </div>
 
-            <div className="flex items-center gap-2 lg:hidden">
+            <div className="flex items-center gap-1 lg:hidden">
               <button
-                className="rounded-lg p-1.5 text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
+                type="button"
+                className="touch-target flex items-center justify-center rounded-lg p-2 text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
                 onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
                 aria-label="Toggle menu"
               >
                 {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -188,8 +202,13 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
           </div>
         </nav>
 
-        <div className={cn("overflow-hidden transition-all duration-300 lg:hidden", isOpen ? "max-h-screen" : "max-h-0")}>
-          <div className="space-y-0.5 border-t border-black/6 px-4 pb-4 pt-1 dark:border-white/6">
+        <div
+          className={cn(
+            "overflow-hidden transition-all duration-300 lg:hidden",
+            isOpen ? "max-h-[min(85dvh,32rem)] overflow-y-auto overscroll-contain" : "max-h-0",
+          )}
+        >
+          <div className="space-y-0.5 border-t border-black/6 px-3 pb-[max(1rem,env(safe-area-inset-bottom))] pt-1 dark:border-white/6 sm:px-4">
             {navigation.map((item) =>
               item.children && item.children.length > 0 ? (
                 <div key={`${item.label}-${item.href}`}>
@@ -197,7 +216,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                     type="button"
                     aria-expanded={activeDropdown === item.label}
                     aria-haspopup="true"
-                    className="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
+                    className="flex w-full min-h-[44px] items-center justify-between rounded-xl px-3 py-3 text-sm font-medium text-gray-600 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"
                     onClick={() => setActiveDropdown(activeDropdown === item.label ? null : item.label)}
                   >
                     {item.label}
@@ -209,7 +228,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                         <Link
                           key={`${child.label}-${child.href}`}
                           href={child.href}
-                          className="block rounded-xl px-3 py-2 text-sm text-gray-500 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/55 dark:hover:bg-white/5 dark:hover:text-white"
+                          className="flex min-h-[44px] items-center rounded-xl px-3 py-3 text-sm text-gray-500 transition-colors hover:bg-black/5 hover:text-gray-900 dark:text-white/55 dark:hover:bg-white/5 dark:hover:text-white"
                         >
                           <span className="flex flex-wrap items-center gap-2">{child.label}</span>
                         </Link>
@@ -222,7 +241,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
                   key={`${item.label}-${item.href}`}
                   href={item.href}
                   className={cn(
-                    "block rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                    "flex min-h-[44px] items-center rounded-xl px-3 py-3 text-sm font-medium transition-colors",
                     pathname === item.href
                       ? "bg-brand-50 text-brand-600 dark:bg-brand-600/10 dark:text-brand-300"
                       : "text-gray-600 hover:bg-black/5 hover:text-gray-900 dark:text-white/70 dark:hover:bg-white/5 dark:hover:text-white"

@@ -25,7 +25,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
   const secondaryHref = content?.heroSecondaryCtaHref || SITE_ROUTES.contact;
 
   return (
-    <section className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20">
+    <section className="relative overflow-hidden pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20">
       <BrandAmbient variant="hero" />
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
@@ -44,7 +44,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
-            className="mb-5 text-4xl font-bold leading-[1.08] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-[3.5rem]"
+            className="marketing-hero-title mb-5 text-gray-900 dark:text-white"
           >
             {content?.heroTitleLine1 || "Marketing analytics with"}
             <br />
@@ -57,7 +57,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
-            className="mb-8 max-w-lg text-lg leading-relaxed text-gray-600 dark:text-white/65"
+            className="mb-8 max-w-lg text-base leading-relaxed text-gray-600 dark:text-white/65 sm:text-lg"
           >
             {content?.heroSubtitle ||
               "Ask questions in plain English. Track goals across GA4, Search Console, and Google Ads. Ship client-ready HTML reports — one platform, no SQL."}
@@ -92,7 +92,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.24, ease: EASE }}
-            className="grid grid-cols-3 gap-3"
+            className="mb-10 grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-3 sm:gap-3"
           >
             {PILLARS.map(({ icon: Icon, label, desc }) => (
               <div

@@ -94,13 +94,13 @@ export function Footer({ config, brandLogos }: FooterProps) {
   const copyrightText = config?.copyrightText || "© 2026 Conalytic. All rights reserved.";
 
   return (
-    <div className="px-4 pb-4 pt-2">
-      <footer className="relative overflow-hidden rounded-3xl border border-gray-200/80 bg-white dark:border-white/[0.08] dark:bg-[#14141B]">
+    <div className="px-3 pb-3 pt-2 sm:px-4">
+      <footer className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-white/[0.08] dark:bg-[#14141B] sm:rounded-3xl">
         <BrandAmbient variant="footer" />
 
-        <div className="relative z-10 mx-auto max-w-6xl px-8 sm:px-12">
-          <div className="flex flex-col gap-8 border-b border-gray-200/80 pb-8 pt-10 dark:border-white/[0.08] lg:flex-row lg:items-start lg:justify-between lg:gap-12">
-            <NewsletterSignup className="w-full max-w-[16.5rem] shrink-0 sm:max-w-[18rem]" />
+        <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-12">
+          <div className="flex flex-col gap-8 border-b border-gray-200/80 pb-8 pt-8 dark:border-white/[0.08] sm:pt-10 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+            <NewsletterSignup className="w-full max-w-none sm:max-w-[18rem] lg:shrink-0" />
 
             <div className="flex shrink-0 flex-col items-start gap-3 sm:gap-4 lg:items-end lg:pt-1">
               <Link href="/" className="inline-flex leading-none" aria-label="Conalytic — Home">
@@ -115,7 +115,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 pb-8 pt-8 sm:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 pb-8 pt-8 min-[480px]:grid-cols-2 sm:grid-cols-4">
             {columns.map((column) => (
               <div key={column.title}>
                 <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">

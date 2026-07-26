@@ -1,7 +1,7 @@
 /**
  * Root layout: Nunito Sans typography site-wide, metadata, providers.
  */
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
@@ -15,6 +15,13 @@ import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 
 const seoIndexable = allowSearchIndexing();
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0f0f0f",
+};
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
@@ -112,7 +119,7 @@ export default function RootLayout({
       className={`dark ${nunitoSans.variable} h-full`}
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans antialiased" suppressHydrationWarning>
+      <body className="min-h-full flex flex-col overflow-x-clip font-sans antialiased" suppressHydrationWarning>
         <SiteStructuredData />
         <MotionConfigProvider>
             <HashScrollRestorer />

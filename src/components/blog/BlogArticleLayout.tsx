@@ -44,7 +44,7 @@ export function BlogArticleLayout({
 
       <header className="relative overflow-hidden border-b border-gray-200/80 dark:border-white/[0.06]">
         <BrandAmbient variant="hero" />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 pb-12 pt-28 sm:px-6 sm:pb-16 sm:pt-32">
+        <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:pb-16 md:pt-32">
           <Link
             href="/blogs"
             className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-white/50 transition-colors hover:text-brand-300"
@@ -71,14 +71,14 @@ export function BlogArticleLayout({
             </ol>
           </nav>
 
-          <div className="grid gap-10 lg:grid-cols-[1fr_min(420px,38%)] lg:items-end">
-            <div>
+          <div className="grid gap-8 lg:grid-cols-[1fr_min(420px,38%)] lg:items-end lg:gap-10">
+            <div className="min-w-0">
               <span
                 className={`mb-5 inline-flex rounded-full border px-3 py-1 text-[11px] font-bold uppercase tracking-widest ${categoryClass}`}
               >
                 {post.category}
               </span>
-              <h1 className="mb-6 max-w-3xl text-4xl font-bold leading-[1.1] tracking-tight text-gray-900 dark:text-white sm:text-5xl lg:text-[3.25rem]">
+              <h1 className="marketing-hero-title mb-5 max-w-3xl text-gray-900 dark:text-white sm:mb-6">
                 {post.title}
               </h1>
               <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-white/45">
@@ -94,19 +94,27 @@ export function BlogArticleLayout({
                 ) : null}
               </div>
               {post.excerpt ? (
-                <p className="max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-white/70">{post.excerpt}</p>
+                <p className="max-w-2xl text-base leading-relaxed text-gray-600 dark:text-white/70 sm:text-lg">
+                  {post.excerpt}
+                </p>
               ) : null}
             </div>
 
-            <BlogArticleHeroVisual variant={visualVariant} />
+            <div className="min-w-0 lg:order-none">
+              <BlogArticleHeroVisual variant={visualVariant} />
+            </div>
           </div>
         </div>
       </header>
 
-      <div className="px-4 py-12 sm:px-6 sm:py-16">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,1fr)_240px] xl:grid-cols-[minmax(0,1fr)_260px]">
+      <div className="px-4 py-10 sm:px-6 sm:py-14 md:py-16">
+        <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_260px]">
           <div className="min-w-0">
-            <div className="rounded-2xl border border-gray-200/80 bg-white px-6 py-10 shadow-sm dark:border-white/[0.07] dark:bg-[#14141B] sm:px-10 sm:py-12 lg:px-14 lg:py-14">
+            <aside className="mb-8 lg:hidden">
+              <BlogTableOfContents headings={headings} collapsible />
+            </aside>
+
+            <div className="prose-safe rounded-2xl border border-gray-200/80 bg-white px-4 py-8 shadow-sm dark:border-white/[0.07] dark:bg-[#14141B] sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-14 lg:py-14">
               <BlogPostMarkdown markdown={post.bodyMarkdown} headingIds={headings.map((h) => h.id)} />
               <BlogArticleCta category={post.category} />
             </div>

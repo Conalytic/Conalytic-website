@@ -12,7 +12,7 @@ const createComponents = (headingIds: string[], h2IndexRef: { current: number })
     return (
       <h2
         id={id}
-        className="mt-14 mb-4 scroll-mt-28 border-b border-gray-100 pb-3 text-2xl font-bold tracking-tight text-gray-900 dark:border-white/[0.08] dark:text-white sm:text-3xl"
+        className="mt-12 mb-4 scroll-mt-24 border-b border-gray-100 pb-3 text-xl font-bold tracking-tight text-gray-900 dark:border-white/[0.08] dark:text-white sm:mt-14 sm:scroll-mt-28 sm:text-2xl md:text-3xl"
         {...props}
       >
         {children}
@@ -21,14 +21,14 @@ const createComponents = (headingIds: string[], h2IndexRef: { current: number })
   },
   h3: ({ children, ...props }) => (
     <h3
-      className="mt-10 mb-3 scroll-mt-28 text-xl font-bold text-gray-900 dark:text-white sm:text-2xl"
+      className="mt-8 mb-3 scroll-mt-24 text-lg font-bold text-gray-900 dark:text-white sm:mt-10 sm:scroll-mt-28 sm:text-xl md:text-2xl"
       {...props}
     >
       {children}
     </h3>
   ),
   p: ({ children, ...props }) => (
-    <p className="mb-5 text-[1.0625rem] leading-[1.8] text-gray-600 dark:text-white/72" {...props}>
+    <p className="mb-5 text-base leading-[1.75] text-gray-600 dark:text-white/72 sm:text-[1.0625rem] sm:leading-[1.8]" {...props}>
       {children}
     </p>
   ),

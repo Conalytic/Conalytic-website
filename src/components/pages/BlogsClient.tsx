@@ -43,7 +43,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-gray-200/80 pt-32 pb-20 px-4 dark:border-white/[0.06] sm:pb-24">
+      <section className="relative overflow-hidden border-b border-gray-200/80 px-4 pt-24 pb-16 dark:border-white/[0.06] sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <motion.div
@@ -59,7 +59,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
-            className="mb-6 text-5xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white sm:text-6xl"
+            className="marketing-hero-title mb-6 text-gray-900 dark:text-white sm:mb-6"
           >
             {heroTitleLine1}{" "}
             <span style={BRAND_HERO_GRADIENT_TEXT}>{heroTitleLine2}</span>

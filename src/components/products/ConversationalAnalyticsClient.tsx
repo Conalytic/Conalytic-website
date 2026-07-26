@@ -383,7 +383,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
   return (
     <>
       {/* ── 1. HERO ──────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-32 pb-24 px-4 hero-gradient">
+      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
 
@@ -401,7 +401,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           <motion.h1
             initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.75, delay:0.1, ease:EASE }}
-            className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight"
+            className="marketing-hero-title text-gray-900 dark:text-white mb-6"
           >
             {heroTitleLine1} <span style={GRAD}>{heroTitleLine2}</span>
           </motion.h1>
