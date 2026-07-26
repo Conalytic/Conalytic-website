@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { DemoFrame, DemoHeader } from "@/components/visual/product-demos/DemoFrame";
+import { analyticsDemoBarFill } from "@/components/visual/product-demos/analytics-demo";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 import { cn } from "@/lib/utils";
 
@@ -15,9 +16,17 @@ const KPIS = [
 ];
 
 const STATUS_CLASS = {
-  emerald: "border-emerald-500/30 bg-emerald-500/10 text-emerald-300",
-  amber: "border-amber-500/30 bg-amber-500/10 text-amber-300",
-  red: "border-red-500/30 bg-red-500/10 text-red-300",
+  emerald:
+    "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300",
+  amber:
+    "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300",
+  red: "border-red-200 bg-red-50 text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300",
+};
+
+const DELTA_CLASS = {
+  emerald: "text-emerald-600 dark:text-emerald-400",
+  amber: "text-amber-600 dark:text-amber-400",
+  red: "text-red-600 dark:text-red-400",
 };
 
 const PLATFORMS = [
@@ -33,9 +42,10 @@ function Sparkline({ points, animate, compact }: { points: number[]; animate: bo
       {points.map((p, i) => (
         <motion.div
           key={i}
-          className="flex-1 rounded-sm bg-brand-500"
+          className="flex-1 rounded-sm"
           initial={{ height: 0, opacity: 0.3 }}
-          animate={{ height: animate ? `${(p / max) * 100}%` : 0, opacity: 0.4 + i * 0.08 }}
+          animate={{ height: animate ? `${(p / max) * 100}%` : 0, opacity: 1 }}
+          style={analyticsDemoBarFill(i, 0.08, 0.42)}
           transition={{ duration: 0.4, delay: i * 0.06 }}
         />
       ))}
@@ -68,12 +78,12 @@ function KpisCore({ compact }: { compact?: boolean }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.08 }}
             className={cn(
-              "flex flex-col rounded-xl border border-white/[0.08] bg-white/[0.03]",
+              "flex flex-col rounded-xl border border-gray-200/80 bg-gray-50/90 dark:border-white/[0.08] dark:bg-white/[0.03]",
               compact ? "justify-between p-2" : "p-2.5 sm:p-3",
             )}
           >
             <div className="mb-1 flex items-center justify-between gap-1">
-              <span className={cn("font-medium text-white/45", compact ? "text-[8px]" : "text-[9px]")}>
+              <span className={cn("font-medium text-gray-500 dark:text-white/45", compact ? "text-[8px]" : "text-[9px]")}>
                 {kpi.label}
               </span>
               {!compact ? (
@@ -82,8 +92,16 @@ function KpisCore({ compact }: { compact?: boolean }) {
                 </span>
               ) : null}
             </div>
-            <p className={cn("font-bold text-white", compact ? "text-xs" : "text-sm sm:text-base")}>{kpi.value}</p>
-            <p className={cn("font-semibold text-brand-300", compact ? "mb-1 text-[8px]" : "mb-1.5 text-[9px]")}>
+            <p className={cn("font-bold text-gray-900 dark:text-white", compact ? "text-xs" : "text-sm sm:text-base")}>
+              {kpi.value}
+            </p>
+            <p
+              className={cn(
+                "font-semibold",
+                DELTA_CLASS[kpi.tone],
+                compact ? "mb-1 text-[8px]" : "mb-1.5 text-[9px]",
+              )}
+            >
               {kpi.delta}
             </p>
             <Sparkline points={kpi.spark} animate={ready} compact={compact} />
@@ -91,17 +109,19 @@ function KpisCore({ compact }: { compact?: boolean }) {
         ))}
       </div>
       {!compact ? (
-        <div className="border-t border-white/[0.06] px-4 pb-4 pt-3 sm:px-5">
-          <p className="mb-2 text-[9px] font-bold uppercase tracking-wider text-white/35">6-month trend</p>
-          <div className="flex items-end gap-1 h-12">
+        <div className="border-t border-gray-200/80 dark:border-white/[0.06] px-4 pb-4 pt-3 sm:px-5">
+          <p className="mb-2 text-[9px] font-bold uppercase tracking-wider text-gray-400 dark:text-white/35">
+            6-month trend
+          </p>
+          <div className="flex h-12 items-end gap-1">
             {[32, 38, 42, 48, 55, 62, 70, 78, 85, 92].map((h, i) => (
               <motion.div
                 key={i}
-                className="flex-1 rounded-t bg-brand-500"
+                className="flex-1 rounded-t"
                 initial={{ height: 0 }}
                 animate={{ height: ready ? `${h}%` : 0 }}
+                style={analyticsDemoBarFill(i, 0.06, 0.35)}
                 transition={{ duration: 0.5, delay: 0.3 + i * 0.05 }}
-                style={{ opacity: 0.35 + i * 0.06 }}
               />
             ))}
           </div>
@@ -133,10 +153,10 @@ export function KpisProductDemo({ compact = false, embedded = false }: { compact
             key={p.label}
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 3.5, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
-            className="flex items-center gap-2 rounded-xl border border-white/10 bg-[#1a1b1e] px-3 py-2 shadow-lg"
+            className="flex items-center gap-2 rounded-xl border border-gray-200/80 bg-white px-3 py-2 shadow-lg dark:border-white/10 dark:bg-[#1a1b1e]"
           >
             <Image src={p.src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
-            <span className="text-[10px] font-semibold text-white/50">{p.label}</span>
+            <span className="text-[10px] font-semibold text-gray-700 dark:text-white/50">{p.label}</span>
             <span className="ml-1 h-1.5 w-1.5 rounded-full bg-emerald-400" />
           </motion.div>
         ))}

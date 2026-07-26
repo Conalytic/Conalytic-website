@@ -21,6 +21,18 @@ export const ANALYTICS_DEMO_KEY_FINDING_LABEL_CLASS =
 export const ANALYTICS_DEMO_ANSWERED_BADGE_CLASS =
   "text-[9px] bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20 px-1.5 py-0.5 rounded-full font-medium";
 
+/** Lime bar fill only — pair with CSS height / motion height. */
+export function analyticsDemoBarFill(
+  index: number,
+  step = 0.1,
+  base = 0.4,
+): CSSProperties {
+  const mix = Math.min(95, Math.round((base + index * step) * 100));
+  return {
+    background: `color-mix(in srgb, var(--brand-lime) ${mix}%, transparent)`,
+  };
+}
+
 /** Lime bars — uses --brand-lime so light/dark stay consistent (not theme brand-500 olive). */
 export function analyticsDemoBarStyle(
   heightPx: number,
