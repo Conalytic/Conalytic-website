@@ -7,40 +7,41 @@ import Link from "next/link";
 import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
 
 const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
   {
     title: "Company",
     links: [
-      { label: "Home", href: "/" },
-      { label: "Features", href: "/features" },
-      { label: "About Us", href: "/about-us" },
-      { label: "Pricing", href: "/#pricing" },
+      { label: "Home", href: SITE_ROUTES.home },
+      { label: "Features", href: SITE_ROUTES.features },
+      { label: "About Us", href: SITE_ROUTES.about },
+      { label: "Pricing", href: SITE_ROUTES.pricing },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Blog", href: "/blogs" },
-      { label: "Integrations", href: "/integrations" },
-      { label: "Careers", href: "/careers" },
+      { label: "Blog", href: SITE_ROUTES.blogs },
+      { label: "Integrations", href: SITE_ROUTES.integrations },
+      { label: "Careers", href: SITE_ROUTES.careers },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Support Center", href: "/contact" },
-      { label: "Contact Us", href: "/contact" },
-      { label: "FAQs", href: "/#faq" },
+      { label: "Support Center", href: SITE_ROUTES.contact },
+      { label: "Contact Us", href: SITE_ROUTES.contact },
+      { label: "FAQs", href: SITE_ROUTES.faq },
     ],
   },
   {
     title: "Product",
     links: [
-      { label: "Conversational Analytics", href: "/products/conversational-analytics" },
-      { label: "Report Builder", href: "/products/report-builder" },
-      { label: "Applicant Tracking System", href: "/products/applicant-tracking-system" },
-      { label: "Brand assets", href: "/brand" },
+      { label: "Conversational Analytics", href: SITE_ROUTES.products.conversationalAnalytics },
+      { label: "KPIs Tracker", href: SITE_ROUTES.products.kpisTracker },
+      { label: "Report Builder", href: SITE_ROUTES.products.reportBuilder },
+      { label: "Brand assets", href: SITE_ROUTES.brand },
     ],
   },
 ];

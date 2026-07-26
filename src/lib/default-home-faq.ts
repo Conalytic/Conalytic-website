@@ -1,31 +1,36 @@
 /**
  * Default home FAQ — visible on the page and mirrored in FAQPage JSON-LD.
- * Written for clarity in search snippets and generative answers (who, what, integrations, trust).
+ * Written for search snippets and generative answers (products, integrations, trust).
  */
 export const DEFAULT_HOME_FAQ = [
   {
-    question: "How quickly can we see results with Conalytic?",
+    question: "What products does Conalytic include?",
     answer:
-      "Most teams connect GA4, Google Ads, Meta Ads, or Search Console in a few minutes. You can ask your first questions in plain English right away—no SQL, no lengthy onboarding.",
-  },
-  {
-    question: "What makes Conalytic different from dashboards or BI tools?",
-    answer:
-      "Conalytic is conversational analytics: you ask in natural language and get explanations, trends, and next-step ideas—not just charts. It is built for marketers who want answers fast, not another dashboard to maintain.",
-  },
-  {
-    question: "Can we white-label or customize reports for clients?",
-    answer:
-      "Yes. Conalytic supports professional, branded reporting workflows so agencies and teams can deliver client-ready outputs with your logos and visual identity.",
+      "Conalytic has three built-in tools: Conversational Analytics (Chats) for plain-English questions over live marketing data; KPIs Tracker for goal-based monitoring across GA4, Search Console, and Google Ads; and Report Builder for multi-platform HTML presentation decks with optional AI insights.",
   },
   {
     question: "Which marketing platforms does Conalytic connect to?",
     answer:
-      "Conalytic integrates with Google Analytics 4 (GA4), Google Search Console, Google Ads, and Meta (Facebook/Instagram) Ads. The product roadmap adds more connectors over time.",
+      "Conalytic connects via OAuth to Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads. Conversational Analytics supports live queries on GA4, GSC, Google Ads, GTM, and Meta; KPI Tracker uses GA4, GSC, and Google Ads; Report Builder uses GA4, GSC, Google Ads, and GTM.",
+  },
+  {
+    question: "How is Conversational Analytics different from a BI dashboard?",
+    answer:
+      "Instead of building reports or writing SQL, you ask questions in natural language. Each chat is scoped to the accounts you connect, and Conalytic retrieves live metrics, returns explanations, and can render inline charts and tables in the conversation.",
+  },
+  {
+    question: "How does KPIs Tracker work?",
+    answer:
+      "You create a KPI project, connect GA4, Search Console, and/or Google Ads, set target goals per metric, and monitor on-track, at-risk, or off-track status with six months of history. Evaluation is rules-based—not AI-generated scores.",
+  },
+  {
+    question: "What does Report Builder produce?",
+    answer:
+      "Report Builder generates stakeholder-ready HTML presentation decks from your connected data, including executive summary slides, per-platform sections, cross-source findings, methodology notes, an action plan, and optional AI-written slide narratives.",
   },
   {
     question: "Is my marketing data secure with Conalytic?",
     answer:
-      "Conalytic is built for business use: data is encrypted in transit and at rest, access is controlled, and we do not sell your data. Details on compliance and policies are available in our security and legal documentation.",
+      "Conalytic uses OAuth with read-only scopes where applicable, encrypts data in transit, and does not sell your data. Privacy and security details are in our Privacy Policy at conalytic.com/privacy-and-policy.",
   },
 ] as const;

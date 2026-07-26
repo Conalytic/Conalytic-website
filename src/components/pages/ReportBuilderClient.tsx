@@ -5,6 +5,10 @@ import { motion } from "framer-motion";
 import { LayoutTemplate, Sparkles, Calendar, ArrowRight, CheckCircle2, Palette, Link2, BarChart3 } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { ProductSuiteLinks } from "@/components/products/ProductSuiteLinks";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { getProduct } from "@/lib/products";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -216,18 +220,17 @@ export interface ReportBuilderContentPreset {
   ctaSubtitle?: string;
 }
 
-/** Shown in the amber hero pill while the product is pre-launch. */
-const HERO_COMING_SOON_LABEL = "Coming soon";
+/** Shown in the hero pill — product is live in the Conalytic app. */
+const HERO_LIVE_LABEL = "Available in Conalytic";
 
 export function ReportBuilderClient({ content }: { content?: ReportBuilderContentPreset }) {
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Professional Report Builder &";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "Automated Analytics Reporting";
-  const heroSubtitle =
-    content?.heroSubtitle ??
-    "Transform your marketing reports from static data dumps into intelligent, branded presentations that clients actually read.";
+  const reportProduct = getProduct("report-builder");
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Report Builder for";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "stakeholder-ready HTML decks";
+  const heroSubtitle = content?.heroSubtitle ?? reportProduct.description;
   const heroSecondarySubtitle =
     content?.heroSecondarySubtitle ??
-    "Perfect for agencies delivering client reports and marketing teams presenting to executives. Create stunning, white-label reports in minutes instead of hours.";
+    "Choose GA4, Search Console, Google Ads, and GTM sources, set date ranges and comparisons, toggle AI insights, and generate presentation-style reports with executive summary, platform sections, and an action plan.";
   const coreFeaturesSubtitle = content?.coreFeaturesSubtitle ?? "Core Features";
   const coreFeaturesTitle = content?.coreFeaturesTitle ?? "Reporting that practically writes itself";
   const valueTitle = content?.valueTitle ?? "Want to save 20+ hours weekly on report creation?";
@@ -244,8 +247,8 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/25 mb-6">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden/> {HERO_COMING_SOON_LABEL}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-brand-50 dark:bg-brand-500/15 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-500/25 mb-6">
+            <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" aria-hidden/> {HERO_LIVE_LABEL}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight">
@@ -260,11 +263,11 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
             {heroSecondarySubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact"
+            <a href={CHAT_APP_SIGNUP_URL}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              Get Early Access <ArrowRight className="w-4 h-4"/>
+              Generate your first report <ArrowRight className="w-4 h-4"/>
             </a>
-            <a href="/contact"
+            <a href={SITE_ROUTES.contact}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               Book a Demo
             </a>
@@ -334,22 +337,24 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border border-amber-100 dark:border-amber-500/20 mb-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" aria-hidden/> Coming soon
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+                Report Builder
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Build Reports That Impress Clients</h2>
-              <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-8">Whether you're creating monthly performance reviews, campaign analysis, or executive summaries, every report includes AI-generated insights that explain what the data means and what to do next.</p>
+              <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-8">Whether you&apos;re creating monthly performance reviews, campaign analysis, or executive summaries, every report includes AI-generated insights that explain what the data means and what to do next.</p>
               <ul className="space-y-4 mb-8">
-                {["Drag widgets, charts, and KPI cards onto your branded canvas instantly",'AI automatically writes insights like "Facebook Ads drove 40% more leads at 25% lower cost"',"Schedule automatic delivery with fresh data and updated commentary"].map((b,i)=>(
+                {["Generate HTML decks from GA4, GSC, Google Ads, and GTM in minutes",'Optional AI slide narratives explain trends like "Facebook Ads drove 40% more leads at 25% lower cost"',"Download HTML or regenerate when your connected data refreshes"].map((b,i)=>(
                   <li key={i} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-500/15 border border-brand-200 dark:border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5"><CheckCircle2 className="w-3 h-3 text-brand-600 dark:text-brand-400"/></div>
                     <span className="text-gray-600 dark:text-white/70 text-sm leading-relaxed">{b}</span>
                   </li>
                 ))}
               </ul>
-              <a href="/contact"
+              <a href={CHAT_APP_SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-                Get Early Access <ArrowRight className="w-4 h-4"/>
+                Start building reports <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
             <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
@@ -382,9 +387,11 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
                 </motion.div>
               ))}
               <div className="pt-2">
-                <a href="/contact"
+                <a href={CHAT_APP_SIGNUP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]">
-                  Get Early Access <ArrowRight className="w-4 h-4"/>
+                  Get started with Reports <ArrowRight className="w-4 h-4"/>
                 </a>
               </div>
             </motion.div>
@@ -395,9 +402,13 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         </div>
       </section>
 
+      <ProductSuiteLinks current="report-builder" />
+
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
+        primaryCta={{ label: "Get started", href: CHAT_APP_SIGNUP_URL }}
+        secondaryCta={{ label: "Book a demo", href: SITE_ROUTES.contact }}
       />
     </>
   );

@@ -1,0 +1,35 @@
+# Conalytic
+
+> Conalytic is a marketing analytics platform with three built-in tools: Conversational Analytics (Chats), KPIs Tracker, and Report Builder. Connect Google and Meta ad accounts via OAuth, then query data in plain English, track KPI goals, or generate HTML report decks.
+
+## Products
+
+- [Conversational Analytics](https://www.conalytic.com/products/conversational-analytics): Chat with live GA4, Search Console, Google Ads, GTM, and Meta Ads data. Scoped per conversation with inline charts and tables. App sidebar label: **Chats**.
+- [KPIs Tracker](https://www.conalytic.com/products/kpis-tracker): Goal-based KPI monitoring for GA4, Search Console, and Google Ads with on-track / at-risk / off-track status and six-month history. App sidebar label: **KPIs**.
+- [Report Builder](https://www.conalytic.com/products/report-builder): Multi-platform HTML presentation decks with executive summary, platform sections, cross-source insights, optional AI narratives, and action plans. App sidebar label: **Reports**.
+
+## App & signup
+
+- Marketing site: https://www.conalytic.com
+- Product app (login): https://chat.conalytic.com/login
+- Sign up: https://chat.conalytic.com/signup
+
+## Integrations (OAuth)
+
+Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, LinkedIn Ads (connection supported).
+
+## Company
+
+- Name: Conalytic
+- Location: Pune, Maharashtra, India
+- Email: admin@conalytic.com
+- Tagline: Casting Spells of Clarity on Your Data
+
+## Policies
+
+- Privacy: https://www.conalytic.com/privacy-and-policy
+- Terms: https://www.conalytic.com/terms-of-service
+
+## Pricing model
+
+Free signup with included tokens on Pro; usage-metered chat and AI report insights; optional PayPal top-ups. KPI Tracker uses live API data without LLM token metering.

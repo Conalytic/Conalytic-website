@@ -4,6 +4,7 @@
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
 import {
@@ -191,8 +192,8 @@ interface CTAProps {
 export function CTA({
   title:    _title,
   subtitle: _subtitle,
-  primaryCta   = { label: "Get started", href: "#pricing" },
-  secondaryCta = { label: "Book a demo",    href: "/contact" },
+  primaryCta   = { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+  secondaryCta = { label: "Book a demo", href: MARKETING_CONTACT_PATH },
 }: CTAProps) {
   const primaryExternal = isExternalNavigationHref(primaryCta.href);
   const secondaryExternal = isExternalNavigationHref(secondaryCta.href);

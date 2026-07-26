@@ -23,6 +23,8 @@ import {
 } from "@/lib/marketing-stack-logos";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
 import { isExternalNavigationHref } from "@/lib/utils";
 import {
   SAAS_EASE as EASE,
@@ -476,9 +478,9 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
         <motion.h1 initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.75, delay:0.1, ease:EASE }}
           className="text-5xl sm:text-6xl lg:text-[68px] font-bold text-gray-900 dark:text-white leading-[1.07] tracking-tight mb-5"
         >
-          {content?.heroTitleLine1 || "Unlocking Growth With"}<br/>
+          {content?.heroTitleLine1 || "Marketing analytics with"}<br/>
           <span style={{ background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-            {content?.heroTitleLine2 || "Next-Gen Analytics"}
+            {content?.heroTitleLine2 || "Chat, KPIs & Reports"}
           </span>
         </motion.h1>
 
@@ -494,29 +496,29 @@ function HeroSection({ content }: { content?: HomeContentPreset }) {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-20"
         >
           <a
-            href={content?.heroPrimaryCtaHref || "#pricing"}
-            {...(isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")
+            href={content?.heroPrimaryCtaHref || CHAT_APP_SIGNUP_URL}
+            {...(isExternalNavigationHref(content?.heroPrimaryCtaHref || CHAT_APP_SIGNUP_URL)
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
             onClick={(e) => {
-              const h = content?.heroPrimaryCtaHref || "#pricing";
+              const h = content?.heroPrimaryCtaHref || CHAT_APP_SIGNUP_URL;
               if (!isExternalNavigationHref(h)) handleSamePageHashClick(e, h);
             }}
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 dark:bg-brand-600 shadow-xl shadow-brand-600/25 hover:bg-brand-700 dark:hover:bg-brand-700 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             aria-label={
-              isExternalNavigationHref(content?.heroPrimaryCtaHref || "#pricing")
+              isExternalNavigationHref(content?.heroPrimaryCtaHref || CHAT_APP_SIGNUP_URL)
                 ? `${content?.heroPrimaryCtaLabel || "Get started"} (opens in new tab)`
-                : `${content?.heroPrimaryCtaLabel || "Get started"} — view pricing`
+                : content?.heroPrimaryCtaLabel || "Get started"
             }
           >{content?.heroPrimaryCtaLabel || "Get started"}</a>
           <a
-            href={content?.heroSecondaryCtaHref || "/contact"}
-            {...(isExternalNavigationHref(content?.heroSecondaryCtaHref || "/contact")
+            href={content?.heroSecondaryCtaHref || SITE_ROUTES.contact}
+            {...(isExternalNavigationHref(content?.heroSecondaryCtaHref || SITE_ROUTES.contact)
               ? { target: "_blank", rel: "noopener noreferrer" }
               : {})}
             className="inline-flex items-center justify-center px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 hover:border-brand-400 dark:hover:border-brand-400/50 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             aria-label={
-              isExternalNavigationHref(content?.heroSecondaryCtaHref || "/contact")
+              isExternalNavigationHref(content?.heroSecondaryCtaHref || SITE_ROUTES.contact)
                 ? `${content?.heroSecondaryCtaLabel || "Book a demo"} (opens in new tab)`
                 : content?.heroSecondaryCtaLabel || "Book a demo"
             }
@@ -591,7 +593,7 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
           transition={{ duration: 0.65, ease: EASE }}
           className="text-3xl sm:text-4xl font-bold text-center text-gray-900 dark:text-white mb-12"
         >
-          {content?.servicesTitleLine1 || "Discover our range of tailored"}<br/>{content?.servicesTitleLine2 || "analytics services"}
+          {content?.servicesTitleLine1 || "Three products built into"}<br/>{content?.servicesTitleLine2 || "one marketing analytics platform"}
         </motion.h2>
 
         <motion.div
@@ -603,8 +605,9 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
         >
 
           {/* Card 1 — soft peach, col-span-3 */}
+          <Link href={SITE_ROUTES.products.conversationalAnalytics} className="col-span-6 sm:col-span-3 block group" aria-label="Explore Conversational Analytics">
           <motion.div variants={fadeUp}
-            className="col-span-6 sm:col-span-3 rounded-2xl p-6 overflow-hidden relative min-h-[300px] flex flex-col border border-orange-100/80 dark:border-orange-500/10"
+            className="rounded-2xl p-6 overflow-hidden relative min-h-[300px] flex flex-col border border-orange-100/80 dark:border-orange-500/10 h-full transition-all duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg"
             style={{ background:"linear-gradient(145deg,#fffaf5 0%,#fff3e8 45%,#ffe8d6 100%)" }}
           >
             {/* dark mode bg */}
@@ -617,8 +620,8 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                 <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
               </svg>
             </div>
-            <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Ask in Plain English</h3>
-            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">Discover insights through natural conversations — no SQL or analysts required.</p>
+            <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Conversational Analytics</h3>
+            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">Chat with GA4, Search Console, Google Ads, GTM, and Meta—scoped conversations with inline charts.</p>
 
             {/* Mini chat mockup */}
             <div className="relative z-10 mt-auto bg-white dark:bg-[#1C1C24] rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.07)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/[0.07]">
@@ -644,11 +647,17 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                 </div>
               </div>
             </div>
+            <span className="relative z-10 mt-4 inline-flex items-center gap-1 text-xs font-semibold text-brand-600 dark:text-brand-300 group-hover:gap-2 transition-all">
+              Explore Conversational Analytics
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
           </motion.div>
+          </Link>
 
           {/* Card 2 — soft lime/green, col-span-3 */}
+          <Link href={SITE_ROUTES.products.reportBuilder} className="col-span-6 sm:col-span-3 block group" aria-label="Explore Report Builder">
           <motion.div variants={fadeUp}
-            className="col-span-6 sm:col-span-3 rounded-2xl p-6 overflow-hidden relative min-h-[300px] flex flex-col border border-green-100/80 dark:border-emerald-500/10"
+            className="rounded-2xl p-6 overflow-hidden relative min-h-[300px] flex flex-col border border-green-100/80 dark:border-emerald-500/10 h-full transition-all duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg"
             style={{ background:"linear-gradient(145deg,#f5fff8 0%,#e8faf0 45%,#d4f5e2 100%)" }}
           >
             {/* dark mode bg */}
@@ -660,8 +669,8 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                 <path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" y1="12" x2="16" y2="12"/>
               </svg>
             </div>
-            <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Automated Reporting</h3>
-            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">Branded, client-ready reports generated and delivered on your schedule automatically.</p>
+            <h3 className="relative z-10 text-base font-bold text-gray-900 dark:text-white mb-1.5">Report Builder</h3>
+            <p className="relative z-10 text-sm text-gray-500 dark:text-white/68 mb-5 leading-relaxed">HTML presentation decks with executive summary, platform sections, and optional AI insights.</p>
 
             {/* Mini report card */}
             <div className="relative z-10 mt-auto bg-white dark:bg-[#1C1C24] rounded-2xl p-4 shadow-[0_4px_20px_rgba(0,0,0,0.07)] dark:shadow-[0_4px_20px_rgba(0,0,0,0.4)] border border-gray-100 dark:border-white/[0.07]">
@@ -686,11 +695,17 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                 <div className="flex-1 py-1 rounded-lg border border-gray-200 dark:border-white/10 text-gray-600 dark:text-white/50 text-[9px] font-semibold text-center">Schedule</div>
               </div>
             </div>
+            <span className="relative z-10 mt-4 inline-flex items-center gap-1 text-xs font-semibold text-emerald-600 dark:text-emerald-300 group-hover:gap-2 transition-all">
+              Explore Report Builder
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
           </motion.div>
+          </Link>
 
-          {/* Card 3 — Reliability stat */}
+          {/* Card 3 — KPIs Tracker */}
+          <Link href={SITE_ROUTES.products.kpisTracker} className="col-span-6 sm:col-span-2 block group" aria-label="Explore KPIs Tracker">
           <motion.div variants={fadeUp}
-            className="col-span-6 sm:col-span-2 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[180px]"
+            className="rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[180px] h-full transition-all duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg"
             style={{ background:"linear-gradient(145deg,rgba(255,255,255,0.75) 0%,rgba(240,238,255,0.6) 100%)" }}
           >
             <div className="absolute inset-0 rounded-2xl hidden dark:block pointer-events-none" style={{ background:"linear-gradient(145deg,#151520 0%,#1A1A28 100%)" }}/>
@@ -706,10 +721,10 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
               </div>
               <p className="text-4xl font-black mb-1"
                 style={{ background:"linear-gradient(135deg,#6B5FF8,#a78bfa)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>
-                100%
+                3
               </p>
-              <p className="text-sm font-bold text-gray-800 dark:text-white mb-1">Reliability</p>
-              <p className="text-xs text-gray-400 dark:text-white/60 leading-relaxed">Enterprise-grade uptime for all analytics pipelines.</p>
+              <p className="text-sm font-bold text-gray-800 dark:text-white mb-1">KPIs Tracker</p>
+              <p className="text-xs text-gray-400 dark:text-white/60 leading-relaxed">Goal-based monitoring for GA4, GSC, and Google Ads.</p>
             </div>
 
             {/* Mini uptime bars */}
@@ -719,11 +734,17 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                   style={{ height:`${8 + (v/100)*8}px`, background: v < 100 ? "#fbbf24" : "#6B5FF8", opacity: 0.6 + i*0.02 }}/>
               ))}
             </div>
+            <span className="relative z-10 mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-brand-600 dark:text-brand-300 group-hover:gap-2 transition-all">
+              Explore KPIs Tracker
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
           </motion.div>
+          </Link>
 
           {/* Card 4 — Queries stat */}
+          <Link href={SITE_ROUTES.products.conversationalAnalytics} className="col-span-6 sm:col-span-2 block group" aria-label="Explore Conversational Analytics">
           <motion.div variants={fadeUp}
-            className="col-span-6 sm:col-span-2 rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[180px]"
+            className="rounded-2xl p-6 relative overflow-hidden flex flex-col justify-between min-h-[180px] h-full transition-all duration-200 group-hover:-translate-y-0.5 group-hover:shadow-lg"
             style={{ background:"linear-gradient(145deg,rgba(255,255,255,0.75) 0%,rgba(236,253,245,0.6) 100%)" }}
           >
             <div className="absolute inset-0 rounded-2xl hidden dark:block pointer-events-none" style={{ background:"linear-gradient(145deg,#111A14 0%,#161F18 100%)" }}/>
@@ -758,7 +779,12 @@ function ServicesSection({ content }: { content?: HomeContentPreset }) {
                 <path d="M0 22 C15 20,25 18,35 14 S55 8,65 10 S80 6,100 2" stroke="#10b981" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
               </svg>
             </div>
+            <span className="relative z-10 mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-300 group-hover:gap-2 transition-all">
+              Explore Chats
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
           </motion.div>
+          </Link>
 
           {/* Card 5 — Features CTA — rich glass gradient */}
           <motion.div variants={fadeUp}
@@ -812,13 +838,13 @@ function CapabilitiesSection() {
   const caps = [
     {
       Icon: BarChart3,
-      title: "Enhanced Data Analytics",
-      desc: "Use AI-powered insights to improve campaign performance through live marketing analytics and trend detection.",
+      title: "Conversational Analytics",
+      desc: "Ask questions in plain English over live GA4, Search Console, Google Ads, GTM, and Meta data with inline visualizations.",
     },
     {
       Icon: Settings2,
-      title: "Smart Report Automation",
-      desc: "Streamline workflows with automation for reporting and delivery, reducing manual tasks and increasing efficiency.",
+      title: "KPIs & Report Builder",
+      desc: "Track KPI goals across Google marketing platforms and generate HTML stakeholder decks with cross-source insights.",
     },
   ] as const;
 
@@ -1397,11 +1423,11 @@ export function HomeClient({ content }: { content?: HomeContentPreset }) {
         subtitle={content?.ctaSubtitle}
         primaryCta={content?.ctaPrimaryLabel || content?.ctaPrimaryHref ? {
           label: content?.ctaPrimaryLabel || "Get started",
-          href: content?.ctaPrimaryHref || "#pricing",
+          href: content?.ctaPrimaryHref || CHAT_APP_SIGNUP_URL,
         } : undefined}
         secondaryCta={content?.ctaSecondaryLabel || content?.ctaSecondaryHref ? {
           label: content?.ctaSecondaryLabel || "Book a demo",
-          href: content?.ctaSecondaryHref || "/contact",
+          href: content?.ctaSecondaryHref || SITE_ROUTES.contact,
         } : undefined}
       />
     </>

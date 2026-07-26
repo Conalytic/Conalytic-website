@@ -3,6 +3,7 @@
  * Tuned for traditional SEO + GEO (clear entities, citable facts, product definition).
  */
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_ABSOLUTE } from "@/lib/app-urls";
+import { PRODUCT_LIST, type ProductDefinition } from "@/lib/products";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const SITE = SITE_ORIGIN;
@@ -17,9 +18,9 @@ export function organizationSchema() {
     url: SITE,
     logo: { "@type": "ImageObject", url: `${SITE}/logo.png` },
     image: `${SITE}/og-image.png`,
-    slogan: "Ask your marketing data questions in plain English. Get answers in seconds.",
+    slogan: "Casting Spells of Clarity on Your Data.",
     description:
-      "Conalytic is a conversational analytics platform for marketing teams. Connect GA4, Google Ads, Meta Ads, and Search Console; query data with natural language instead of SQL or dashboards.",
+      "Conalytic is a marketing analytics platform with three tools: Conversational Analytics (chat over live data), KPIs Tracker (goal monitoring), and Report Builder (HTML presentation decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads via OAuth.",
     email: "admin@conalytic.com",
     knowsAbout: [
       "Conversational analytics",
@@ -29,8 +30,9 @@ export function organizationSchema() {
       "Meta Ads",
       "Search Console",
       "Natural language processing",
-      "AI reporting",
-      "BigQuery",
+      "KPI tracking",
+      "Marketing report automation",
+      "Google Tag Manager",
       "B2B SaaS",
     ],
     areaServed: [
@@ -68,12 +70,12 @@ export function websiteSchema() {
     url: SITE,
     inLanguage: "en-US",
     description:
-      "Conalytic: AI-powered conversational analytics for marketers. Connect GA4, Google Ads, Meta, and Search Console; ask questions in plain English and get instant, cited insights—no SQL.",
+      "Conalytic: marketing analytics with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Google Ads, Search Console, GTM, and Meta; ask questions in plain English, track KPI goals, and generate HTML report decks.",
     publisher: { "@id": `${SITE}/#organization` },
   };
 }
 
-/** Primary product — helps search + answer engines disambiguate “Conalytic” the software. */
+/** Platform suite — parent application referenced on the home page. */
 export function softwareApplicationSchema() {
   return {
     "@context": "https://schema.org",
@@ -84,17 +86,18 @@ export function softwareApplicationSchema() {
     applicationSubCategory: "Marketing Analytics Software",
     operatingSystem: "Web browser",
     browserRequirements: "Requires JavaScript. Modern evergreen browser.",
-    url: SITE,
+    url: CHAT_APP_SIGNUP_URL,
     screenshot: `${SITE}/og-image.png`,
     description:
-      "Conalytic lets marketing and growth teams query GA4, Google Ads, Meta Ads, and Google Search Console through a chat interface. Sign up free with included tokens; usage is token-based with optional top-ups.",
+      "Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Free signup with token-based Pro usage.",
     featureList: [
-      "Natural-language questions over connected marketing data",
-      "Integrations: GA4, Google Ads, Meta Ads, Search Console, BigQuery-oriented workflows",
-      "Usage-based queries with free signup tokens and top-ups",
-      "Custom dashboards and advanced AI models (Pro)",
-      "Priority support and extended data history (Pro)",
+      "Conversational Analytics — plain-English chat over connected marketing data",
+      "KPIs Tracker — GA4, Search Console, and Google Ads goal status dashboards",
+      "Report Builder — multi-platform HTML presentation decks with optional AI insights",
+      "OAuth integrations: GA4, Search Console, Google Ads, GTM, Meta Ads",
+      "Token-based Pro billing with signup credit and top-ups",
     ],
+    hasPart: PRODUCT_LIST.map((p) => ({ "@id": `${SITE}${p.path}#softwareapplication` })),
     offers: {
       "@type": "Offer",
       name: "Conalytic Pro — free signup",
@@ -105,6 +108,32 @@ export function softwareApplicationSchema() {
     },
     provider: { "@id": `${SITE}/#organization` },
     author: { "@id": `${SITE}/#organization` },
+  };
+}
+
+/** Per-product SoftwareApplication for product landing pages and GEO. */
+export function productSoftwareSchema(product: ProductDefinition) {
+  const url = `${SITE}${product.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": `${url}#softwareapplication`,
+    name: product.name,
+    applicationCategory: "BusinessApplication",
+    applicationSubCategory: "Marketing Analytics Software",
+    operatingSystem: "Web browser",
+    url: CHAT_APP_SIGNUP_URL,
+    description: product.description,
+    featureList: product.features,
+    isPartOf: { "@id": `${SITE}/#softwareapplication` },
+    provider: { "@id": `${SITE}/#organization` },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+      url: product.signupUrl,
+      description: product.billingNote ?? "Available with Conalytic Pro signup.",
+    },
   };
 }
 

@@ -14,14 +14,13 @@ import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-la
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 
 const fallbackNavigation: SiteConfigLink[] = [
-  { label: "Home", href: "/" },
   {
     label: "Products",
     href: "#",
     children: [
       { label: "Conversational Analytics", href: "/products/conversational-analytics", description: "Ask questions in plain English, get instant insights" },
-      { label: "Report Builder", href: "/products/report-builder", description: "AI-powered professional report automation", comingSoon: true },
-      { label: "Applicant Tracking System", href: "/products/applicant-tracking-system", description: "Smart recruitment and talent management", comingSoon: true },
+      { label: "KPIs Tracker", href: "/products/kpis-tracker", description: "Track goals across GA4, Search Console, and Google Ads" },
+      { label: "Report Builder", href: "/products/report-builder", description: "HTML presentation decks from connected marketing data" },
     ],
   },
   { label: "Features", href: "/features" },

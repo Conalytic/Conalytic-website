@@ -6,8 +6,11 @@ import Link from "next/link";
 import { MessageSquare, Globe, Sparkles, CheckCircle2, ArrowRight, Users, Bell } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { ProductSuiteLinks } from "@/components/products/ProductSuiteLinks";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { getProduct } from "@/lib/products";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
-import { handleSamePageHashClick } from "@/lib/hash-nav";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -21,27 +24,32 @@ const GRAD: React.CSSProperties = {
 };
 
 /* ── Data ─────────────────────────────────────────── */
+const chatProduct = getProduct("conversational-analytics");
+
 const keyFeatures = [
   {
     icon: MessageSquare,
-    title: "Natural Language Queries",
-    description: "Ask complex analytics questions in plain English and get instant visualizations with AI-generated insights.",
+    title: "Plain-English chat over live data",
+    description:
+      "Ask questions in natural language. Conalytic calls platform APIs and streams answers with inline charts and tables—no SQL or dashboard building.",
     color: "from-brand-500/20 to-violet-500/10",
     iconColor: "text-brand-400",
     border: "border-brand-500/20",
   },
   {
     icon: Globe,
-    title: "Multi-Channel Integration",
-    description: "Connect GA4, Google Ads, Meta Ads, and Search Console data into one unified BigQuery warehouse.",
+    title: "Scoped OAuth connections",
+    description:
+      "Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Each chat uses the connection and property or account you choose.",
     color: "from-blue-500/20 to-cyan-500/10",
     iconColor: "text-blue-400",
     border: "border-blue-500/20",
   },
   {
     icon: Sparkles,
-    title: "Automated Insights",
-    description: "Receive AI-powered recommendations, trend analysis, and actionable next steps with every query response.",
+    title: "Agentic analysis & viz",
+    description:
+      "Model-assisted tool calls retrieve metrics, run audits (e.g. GTM), and render conalytic-viz charts. Refine prompts before sending.",
     color: "from-emerald-500/20 to-teal-500/10",
     iconColor: "text-emerald-400",
     border: "border-emerald-500/20",
@@ -349,15 +357,13 @@ export interface ConversationalAnalyticsContentPreset {
 }
 
 export function ConversationalAnalyticsClient({ content }: { content?: ConversationalAnalyticsContentPreset }) {
-  const heroBadge = content?.heroBadge ?? "AI-Powered Analytics";
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Conversational Analytics &";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "Marketing Intelligence Platform";
-  const heroSubtitle =
-    content?.heroSubtitle ??
-    "Transform how your team analyzes marketing data with AI-powered conversations. Conalytic lets you ask questions in plain English and get instant insights from GA4, Google Ads, Meta, and Search Console.";
+  const heroBadge = content?.heroBadge ?? "Conversational Analytics · Chats";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Chat with your";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "marketing data in plain English";
+  const heroSubtitle = content?.heroSubtitle ?? chatProduct.description;
   const heroSecondarySubtitle =
     content?.heroSecondarySubtitle ??
-    "This isn't just a static dashboard — it's your intelligent analytics partner that turns complex data queries into simple conversations, helping you make data-driven decisions faster than ever before.";
+    "Start a new chat, pick GA4, Search Console, Google Ads, GTM, or Meta, and ask anything—from traffic trends to campaign ROAS. General marketing chat is available without a data source.";
   const coreCapabilitiesSubtitle = content?.coreCapabilitiesSubtitle ?? "Core Capabilities";
   const coreCapabilitiesTitle = content?.coreCapabilitiesTitle ?? "Everything you need to understand your marketing data";
 
@@ -409,19 +415,21 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <a
-              href="#pricing"
-              onClick={(e) => handleSamePageHashClick(e, "#pricing")}
+              href={CHAT_APP_SIGNUP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-              aria-label="Get started — view pricing"
+              aria-label="Get started (opens in new tab)"
             >
               Get Started
               <ArrowRight className="w-4 h-4"/>
             </a>
-            <a href="/contact"
+            <Link
+              href={SITE_ROUTES.contact}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
             >
               Book a Demo
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
@@ -634,10 +642,11 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                 ))}
               </ul>
               <a
-                href="#pricing"
-                onClick={(e) => handleSamePageHashClick(e, "#pricing")}
+                href={CHAT_APP_SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-8 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                aria-label="Get started — view pricing"
+                aria-label="Get started (opens in new tab)"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4"/>
@@ -696,10 +705,11 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                 ))}
               </ul>
               <a
-                href="#pricing"
-                onClick={(e) => handleSamePageHashClick(e, "#pricing")}
+                href={CHAT_APP_SIGNUP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-white bg-brand-600 hover:bg-brand-700 shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-                aria-label="Get started — view pricing"
+                aria-label="Get started (opens in new tab)"
               >
                 Get Started
                 <ArrowRight className="w-4 h-4"/>
@@ -709,9 +719,13 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
         </div>
       </section>
 
+      <ProductSuiteLinks current="conversational-analytics" />
+
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
+        primaryCta={{ label: "Get started", href: CHAT_APP_SIGNUP_URL }}
+        secondaryCta={{ label: "Book a demo", href: SITE_ROUTES.contact }}
       />
     </>
   );

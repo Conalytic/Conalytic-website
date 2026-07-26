@@ -53,28 +53,28 @@ export const metadata: Metadata = {
     apple: "/favicon.png",
   },
   title: {
-    default: "Conalytic – AI-Powered Conversational Analytics Platform",
-    template: "%s | Conalytic",
+    default: "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
+    template: "%s",
   },
   description:
-    "Conalytic is conversational analytics for marketers: connect GA4, Google Ads, Meta & Search Console, ask questions in plain English, get answers without SQL. Free signup with tokens.",
+    "Conalytic is a marketing analytics platform with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Ask questions in plain English, track KPI goals, and generate HTML report decks.",
   keywords: [
     "conversational analytics",
+    "KPI tracker marketing",
+    "marketing report builder",
     "AI marketing analytics",
     "natural language analytics",
     "GA4",
     "Google Analytics 4",
     "Google Ads analytics",
+    "Google Tag Manager",
     "Meta Ads analytics",
     "Search Console insights",
     "marketing intelligence platform",
     "no-code analytics",
-    "BigQuery marketing",
     "B2B SaaS analytics",
     "India marketing analytics",
     "Pune SaaS",
-    "automated reporting",
-    "AI report builder",
   ],
   authors: [{ name: "Conalytic", url: SITE_ORIGIN }],
   creator: "Conalytic",
@@ -85,9 +85,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_ORIGIN,
     siteName: "Conalytic",
-    title: "Conalytic – Conversational Analytics for Marketing Teams",
+    title: "Conalytic – Chat, KPIs & Reports for Marketing Teams",
     description:
-      "Query GA4, Google Ads, Meta & Search Console in plain English. Free signup, token-based usage, optional top-ups.",
+      "Three tools in one platform: chat with GA4, Ads, GTM & Meta data; track KPI goals; build HTML report decks. Free signup with token-based Pro usage.",
     images: [
       {
         url: "/og-image.png",
@@ -99,9 +99,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Conalytic – AI-Powered Marketing Analytics",
+    title: "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
     description:
-      "Ask your marketing data questions in plain English. GA4, Google Ads, Meta, Search Console — no SQL.",
+      "Chat with marketing data, track KPI goals, and generate HTML report decks. GA4, Search Console, Google Ads, GTM, and Meta integrations.",
     creator: "@conalytic",
     images: ["/og-image.png"],
   },

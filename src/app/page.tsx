@@ -8,9 +8,9 @@ import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
-  title: "Conalytic – AI-Powered Conversational Analytics Platform",
+  title: { absolute: "Conalytic – Marketing Analytics: Chat, KPIs & Reports" },
   description:
-    "Casting Spells of Clarity on Your Data. From fragmented dashboards to unified intelligence. Ask questions in plain English and get instant insights from GA4, Google Ads, Meta, and Search Console.",
+    "Conalytic combines Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Search Console, Google Ads, GTM, and Meta; ask questions in plain English, monitor goals, and deliver HTML report decks.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -21,11 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function HomePage() {
-  const line1 = "Unlocking Growth With";
-  const line2 = "Next-Gen Analytics";
+  const line1 = "Marketing analytics with";
+  const line2 = "Chat, KPIs & Reports";
   const homeLdTitle = `${line1} ${line2}`.replace(/\s+/g, " ").trim();
   const homeLdDescription =
-    "Ask questions in plain English and get instant insights from GA4, Google Ads, Meta and Search Console — no SQL required.";
+    "Conalytic includes Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Search Console, Google Ads, GTM, and Meta Ads.";
 
   return (
     <>

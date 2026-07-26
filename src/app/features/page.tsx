@@ -4,9 +4,9 @@ import { FeaturesClient } from "@/components/pages/FeaturesClient";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const fallbackMetadata: Metadata = {
-  title: "Features – Conalytic",
+  title: { absolute: "Features – Conalytic Marketing Analytics Platform" },
   description:
-    "Features that make analytics fun, easy, and super productive. From connecting data to real-time conversations and report building, Conalytic has everything your team needs.",
+    "Explore Conalytic features: Conversational Analytics chat, KPIs Tracker goal monitoring, and Report Builder HTML decks for GA4, Search Console, Google Ads, GTM, and Meta.",
 };
 
 export async function generateMetadata(): Promise<Metadata> {
