@@ -21,6 +21,7 @@ import {
   MARKETING_STACK_LOGOS,
   type MarketingStackLogoKey,
 } from "@/lib/marketing-stack-logos";
+import { integrationLogoAlt, conalyticLogoAlt, heroBackgroundAlt, testimonialPhotoAlt } from "@/lib/image-alt";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
@@ -243,7 +244,7 @@ function _DashboardMockup_DELETED() {
         {/* Sidebar — hidden on mobile, visible sm+ */}
         <aside className="hidden sm:flex w-36 lg:w-48 shrink-0 border-r border-gray-100 dark:border-white/8 bg-white dark:bg-navy-800 flex-col py-3">
           <div className="flex items-center gap-2 px-4 mb-4">
-            <Image src="/logo-icon.png" alt="Conalytic" width={22} height={22} className="shrink-0" />
+            <Image src="/logo-icon.png" alt={conalyticLogoAlt("app icon")} width={22} height={22} className="shrink-0" />
             <span className="text-[11px] font-extrabold text-gray-900 dark:text-white">Conalytic</span>
           </div>
 
@@ -424,7 +425,7 @@ function _DashboardMockup_DELETED() {
 function HeroSection({ content }: { content?: HomeContentPreset }) {
   const reduceMotion = useReducedMotion();
   const heroBg = content?.heroBackgroundImageUrl ?? "/hero-bg.png";
-  const heroBgAlt = content?.heroBackgroundImageAlt ?? "";
+  const heroBgAlt = content?.heroBackgroundImageAlt ?? heroBackgroundAlt();
   return (
     <section className="relative overflow-hidden pt-32 pb-24 px-4 flex flex-col items-center">
       {/* Background: pastel in light mode, deep navy with subtle glow in dark */}
@@ -567,7 +568,7 @@ function TrustedBySection({ content }: { content?: HomeContentPreset }) {
               className="flex items-center gap-2 mx-10 opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-[opacity,filter] duration-300 cursor-default"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={logo.src} alt="" width={22} height={22} className="object-contain shrink-0" loading="lazy"/>
+              <img src={logo.src} alt={integrationLogoAlt(logo.name)} width={22} height={22} className="object-contain shrink-0" loading="lazy"/>
               <span className="text-sm font-semibold text-gray-600 dark:text-white/50 whitespace-nowrap">{logo.name}</span>
             </motion.div>
           ))}
@@ -582,7 +583,7 @@ function TrustedBySection({ content }: { content?: HomeContentPreset }) {
 ══════════════════════════════════════════════════════ */
 function ServicesSection({ content }: { content?: HomeContentPreset }) {
   const miniBrand = content?.brandIconUrl ?? "/logo-icon.png";
-  const miniBrandAlt = content?.brandIconAlt ?? "";
+  const miniBrandAlt = content?.brandIconAlt ?? conalyticLogoAlt("icon");
   return (
     <section className="py-12 md:py-24 px-4 bg-white dark:bg-navy-900">
       <div className="max-w-5xl mx-auto">
@@ -1072,7 +1073,10 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               viewBox={`0 0 ${HUB_VW} ${HUB_VH}`}
               className="w-full h-auto rounded-3xl border border-gray-200 dark:border-white/[0.07] overflow-visible"
               style={{ display:"block" }}
+              role="img"
+              aria-label="Diagram of Conalytic hub connected to Google Analytics 4, Google Ads, Search Console, Meta Ads, and other marketing data integrations"
             >
+              <title>Conalytic marketing integrations hub diagram</title>
               {/* ── Background ── */}
               <rect
                 x="0" y="0" width={HUB_VW} height={HUB_VH} rx="24"
@@ -1214,7 +1218,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                 {/* Icon */}
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white dark:bg-[#1E1E28] shadow-sm border border-gray-100 dark:border-white/[0.07]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.logo} alt="" width={22} height={22}
+                  <img src={item.logo} alt={integrationLogoAlt(item.name)} width={22} height={22}
                     onError={(e)=>{ (e.target as HTMLImageElement).style.display="none"; }}/>
                 </div>
 
@@ -1315,7 +1319,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
               {/* Avatar panel */}
               <div className="sm:w-48 shrink-0 relative overflow-hidden bg-gray-50 dark:bg-[#1A1A22] flex flex-col items-center justify-center p-6 gap-3 border-b sm:border-b-0 sm:border-r border-gray-100 dark:border-white/[0.07]">
                 <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-brand-100 dark:ring-brand-500/20 shadow-md">
-                  <Image src={t.photo} alt={t.name} width={80} height={80} className="object-cover w-full h-full"/>
+                  <Image src={t.photo} alt={testimonialPhotoAlt(t.name, t.title)} width={80} height={80} className="object-cover w-full h-full"/>
                 </div>
                 <div className="text-center">
                   <p className="text-sm font-bold text-gray-900 dark:text-white">{t.name}</p>

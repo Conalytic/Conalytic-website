@@ -13,9 +13,21 @@ import {
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { ProductSuiteLinks } from "@/components/products/ProductSuiteLinks";
+import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { KPIS_TRACKER_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { getProduct } from "@/lib/products";
+import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
+import {
+  KpiStatusLegend,
+  ProductCapabilitiesGrid,
+  ProductDeepDive,
+  ProductFeatureMarquee,
+  ProductHeroVisual,
+  ProductHowItWorks,
+  ProductStatsStrip,
+} from "@/components/products/ProductPageSections";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -193,6 +205,7 @@ const benefits = [
 
 export function KpisTrackerClient() {
   const kpiProduct = getProduct("kpis-tracker");
+  const pageContent = PRODUCT_PAGE_CONTENT["kpis-tracker"];
 
   return (
     <>
@@ -215,7 +228,8 @@ export function KpisTrackerClient() {
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
             className="text-5xl sm:text-6xl font-bold text-gray-900 dark:text-white mb-6 leading-tight tracking-tight"
           >
-            Track marketing KPIs <span style={GRAD}>against real goals</span>
+            {kpiProduct.heroTitleLine1}{" "}
+            <span style={GRAD}>{kpiProduct.heroTitleLine2}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -245,7 +259,33 @@ export function KpisTrackerClient() {
             </a>
           </motion.div>
         </div>
+
+        <ProductHeroVisual
+          src={pageContent.heroImage}
+          alt={pageContent.heroImageAlt}
+          accent="emerald"
+        />
       </section>
+
+      <ProductStatsStrip stats={pageContent.stats} />
+
+      <ProductHowItWorks steps={pageContent.howItWorks} />
+
+      <ProductFeatureMarquee
+        tags={[
+          "On track",
+          "At risk",
+          "Off track",
+          "GA4 sessions",
+          "GSC keyword rankings",
+          "Google Ads ROAS",
+          "Monthly KPI view",
+          "YTD comparison",
+          "6-month history",
+          "Rules-based scoring",
+          "300 GSC keywords",
+        ]}
+      />
 
       <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
@@ -301,6 +341,20 @@ export function KpisTrackerClient() {
         </div>
       </section>
 
+      <ProductCapabilitiesGrid
+        title={pageContent.capabilityTitle}
+        subtitle={pageContent.capabilitySubtitle}
+        capabilities={pageContent.capabilities}
+      />
+
+      <ProductDeepDive
+        title={pageContent.deepDiveTitle}
+        subtitle={pageContent.deepDiveSubtitle}
+        bullets={pageContent.deepDiveBullets}
+        visual={<KpiStatusLegend />}
+        reverse
+      />
+
       <section className="py-24 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -323,6 +377,12 @@ export function KpisTrackerClient() {
       <Pricing />
 
       <ProductSuiteLinks current="kpis-tracker" />
+
+      <MarketingFaqSection
+        items={KPIS_TRACKER_FAQ}
+        title="KPI Tracker FAQ"
+        subtitle="Answers about GA4, Search Console, and Google Ads goal tracking, keyword rankings, and KPI dashboards."
+      />
 
       <CTA
         title="Start tracking the KPIs that matter"

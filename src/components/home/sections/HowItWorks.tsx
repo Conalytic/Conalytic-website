@@ -9,6 +9,7 @@ import {
   MARKETING_STACK_LOGOS,
   type MarketingStackLogoKey,
 } from "@/lib/marketing-stack-logos";
+import { integrationLogoAlt } from "@/lib/image-alt";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -98,7 +99,7 @@ function Panel1({ sources }: { sources: IntegrationSourceRow[] }) {
           <div key={name} className={`flex items-center gap-3 ${bg} rounded-xl px-3 py-2.5`}>
             {logo ? (
               /* eslint-disable-next-line @next/next/no-img-element */
-              <img src={logo} alt="" width={20} height={20} className="shrink-0 object-contain" />
+              <img src={logo} alt={integrationLogoAlt(name)} width={20} height={20} className="shrink-0 object-contain" />
             ) : null}
             <span className="flex-1 text-sm text-gray-700 dark:text-white/70">{name}</span>
             <span className={`w-2 h-2 rounded-full ${pulse} animate-pulse`} />

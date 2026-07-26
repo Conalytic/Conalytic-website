@@ -7,9 +7,22 @@ import { MessageSquare, Globe, Sparkles, CheckCircle2, ArrowRight, Users, Bell }
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { ProductSuiteLinks } from "@/components/products/ProductSuiteLinks";
+import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { CONVERSATIONAL_ANALYTICS_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { integrationLogoAlt, conalyticLogoAlt } from "@/lib/image-alt";
 import { getProduct } from "@/lib/products";
+import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
+import {
+  AiModelsSection,
+  ProductCapabilitiesGrid,
+  ProductDeepDive,
+  ProductFeatureMarquee,
+  ProductHeroVisual,
+  ProductHowItWorks,
+  ProductStatsStrip,
+} from "@/components/products/ProductPageSections";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -25,6 +38,7 @@ const GRAD: React.CSSProperties = {
 
 /* ── Data ─────────────────────────────────────────── */
 const chatProduct = getProduct("conversational-analytics");
+const pageContent = PRODUCT_PAGE_CONTENT["conversational-analytics"];
 
 const keyFeatures = [
   {
@@ -138,7 +152,7 @@ function MultiChannelVisual() {
         {channels.slice(0,2).map(c=>(
           <div key={c.name} className={`w-11 h-11 rounded-xl ${c.bg} border border-white/80 dark:border-white/10 flex items-center justify-center shadow-sm`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={c.src} alt={c.name} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
+            <img src={c.src} alt={integrationLogoAlt(c.name)} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
           </div>
         ))}
       </div>
@@ -150,7 +164,7 @@ function MultiChannelVisual() {
       {/* Center hub */}
       <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-600 to-violet-500 flex items-center justify-center shadow-lg shadow-brand-500/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo-icon.png" alt="Conalytic" width={32} height={32}/>
+        <img src="/logo-icon.png" alt={conalyticLogoAlt("app icon")} width={32} height={32}/>
       </div>
       <svg width="80" height="28" viewBox="0 0 80 28" className="opacity-50 rotate-180">
         <line x1="20" y1="0" x2="40" y2="28" stroke="#6B5FF8" strokeWidth="1.5" strokeDasharray="3 2"/>
@@ -161,7 +175,7 @@ function MultiChannelVisual() {
         {channels.slice(2).map(c=>(
           <div key={c.name} className={`w-11 h-11 rounded-xl ${c.bg} border border-white/80 dark:border-white/10 flex items-center justify-center shadow-sm`}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={c.src} alt={c.name} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
+            <img src={c.src} alt={integrationLogoAlt(c.name)} width={22} height={22} className="object-contain max-h-[22px] max-w-[22px]" onError={e=>{(e.target as HTMLImageElement).style.display="none"}}/>
           </div>
         ))}
       </div>
@@ -358,8 +372,8 @@ export interface ConversationalAnalyticsContentPreset {
 
 export function ConversationalAnalyticsClient({ content }: { content?: ConversationalAnalyticsContentPreset }) {
   const heroBadge = content?.heroBadge ?? "Conversational Analytics · Chats";
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Chat with your";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "marketing data in plain English";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? chatProduct.heroTitleLine1;
+  const heroTitleLine2 = content?.heroTitleLine2 ?? chatProduct.heroTitleLine2;
   const heroSubtitle = content?.heroSubtitle ?? chatProduct.description;
   const heroSecondarySubtitle =
     content?.heroSecondarySubtitle ??
@@ -432,7 +446,33 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             </Link>
           </motion.div>
         </div>
+
+        <ProductHeroVisual
+          src={pageContent.heroImage}
+          alt={pageContent.heroImageAlt}
+          accent="brand"
+        />
       </section>
+
+      <ProductStatsStrip stats={pageContent.stats} />
+
+      <ProductHowItWorks steps={pageContent.howItWorks} />
+
+      <ProductFeatureMarquee
+        tags={[
+          "GA4 chat",
+          "Google Ads AI",
+          "GTM container audit",
+          "Meta Ads insights",
+          "Search Console queries",
+          "conalytic-viz charts",
+          "Context file uploads",
+          "Scoped OAuth chats",
+          "GPT-5.4",
+          "Claude Opus 4.8",
+          "Gemini 3.1 Pro",
+        ]}
+      />
 
       {/* ── 2. KEY FEATURES — bento cards with live mockups ── */}
       <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
@@ -550,7 +590,20 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
         </div>
       </section>
 
-      {/* ── 3. VALUE PROPOSITION ─────────────────────── */}
+      <ProductCapabilitiesGrid
+        title={pageContent.capabilityTitle}
+        subtitle={pageContent.capabilitySubtitle}
+        capabilities={pageContent.capabilities}
+      />
+
+      <AiModelsSection />
+
+      <ProductDeepDive
+        title={pageContent.deepDiveTitle}
+        subtitle={pageContent.deepDiveSubtitle}
+        bullets={pageContent.deepDiveBullets}
+        visual={<ChatVisual />}
+      />
       <section className="relative py-16 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         {/* Accent glow */}
         <div className="absolute inset-0 pointer-events-none hidden dark:block"
@@ -720,6 +773,12 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       </section>
 
       <ProductSuiteLinks current="conversational-analytics" />
+
+      <MarketingFaqSection
+        items={CONVERSATIONAL_ANALYTICS_FAQ}
+        title="Conversational Analytics FAQ"
+        subtitle="Common questions about marketing data chat, GA4 integrations, AI models, and token billing."
+      />
 
       <CTA
         title={content?.ctaTitle}

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
+import { conalyticLogoAlt, heroBackgroundAlt } from "@/lib/image-alt";
 import {
   SAAS_EASE,
   staggerContainer,
@@ -251,7 +252,7 @@ export function CTA({
 
           <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
             <div className="absolute inset-0 dark:hidden">
-              <Image src="/hero-bg.png" alt="" fill className="object-cover object-center opacity-60" />
+              <Image src="/hero-bg.png" alt={heroBackgroundAlt()} fill className="object-cover object-center opacity-60" />
               <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-purple-50/40 to-pink-50/40" />
             </div>
 
@@ -288,7 +289,7 @@ export function CTA({
               <div className="relative inline-flex items-center gap-3 bg-white/80 dark:bg-white/[0.06] border border-black/6 dark:border-white/10 backdrop-blur-md rounded-2xl px-5 py-3 shadow-lg shadow-black/5 dark:shadow-black/30">
                 <div className="absolute inset-0 rounded-2xl border border-brand-400/30 dark:border-brand-500/25 animate-ping opacity-0"
                   style={{ animationDuration:"2.5s" }}/>
-                <Image src="/logo-icon.png" alt="Conalytic" width={28} height={28} className="shrink-0"/>
+                <Image src="/logo-icon.png" alt={conalyticLogoAlt("icon")} width={28} height={28} className="shrink-0"/>
                 <div className="text-left">
                   <p className="text-xs font-black text-gray-900 dark:text-white tracking-tight leading-none">Conalytic</p>
                   <p className="text-[9px] text-gray-400 dark:text-white/40 font-medium mt-0.5">AI Analytics</p>

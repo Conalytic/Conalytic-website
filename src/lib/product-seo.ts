@@ -4,10 +4,10 @@
 import type { Metadata } from "next";
 import type { ProductDefinition, ProductId } from "@/lib/products";
 import { getProduct } from "@/lib/products";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { canonicalUrl } from "@/lib/page-seo";
 
 export function productCanonical(path: string): string {
-  return `${SITE_ORIGIN}${path.startsWith("/") ? path : `/${path}`}`;
+  return canonicalUrl(path);
 }
 
 export function buildProductMetadata(product: ProductDefinition): Metadata {

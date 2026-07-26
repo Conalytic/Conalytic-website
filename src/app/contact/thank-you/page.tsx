@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CheckCircle2, Calendar, Home } from "lucide-react";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { buildPageMetadata } from "@/lib/page-seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
+  path: "/contact/thank-you",
   title: "Thank you – Conalytic",
   description: "Thanks for reaching out. Complete your booking in Google Calendar if you have not already.",
-  robots: { index: false, follow: false },
-  alternates: { canonical: `${SITE_ORIGIN}/contact/thank-you` },
-};
+  indexable: false,
+});
 
 export default function ContactThankYouPage() {
   return (

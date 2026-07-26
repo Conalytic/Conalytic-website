@@ -12,6 +12,7 @@ import { getBlogPostBySlug } from "@/content/blog-posts";
 import { blogPostingSchema } from "@/lib/structured-data";
 import { mergeSocialPreviewImage } from "@/lib/site-layout";
 import { SITE_ORIGIN } from "@/lib/seo-config";
+import { blogCoverAlt } from "@/lib/image-alt";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -88,7 +89,7 @@ export default async function PublicBlogPage({ params }: Props) {
         <div className="relative mb-10 aspect-[1200/630] w-full overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.04]">
           <Image
             src={coverSrc}
-            alt={post.title}
+            alt={blogCoverAlt(post.title)}
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 48rem, 100vw"

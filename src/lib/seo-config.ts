@@ -4,10 +4,25 @@
  * **Indexing is locked off in code** until public launch. Set `SITE_LAUNCHED_FOR_PUBLIC_INDEXING`
  * to `true` and add `ALLOW_SEARCH_INDEXING=1` on the deployment environment when you are ready
  * for search engines to crawl and index the site.
+ *
+ * Canonical host is always **non-www** (`https://conalytic.com`).
  */
-export const SITE_ORIGIN = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://www.conalytic.com"
-).replace(/\/$/, "");
+function normalizeSiteOrigin(raw: string): string {
+  const trimmed = raw.replace(/\/$/, "");
+  try {
+    const url = new URL(trimmed);
+    if (url.hostname.startsWith("www.")) {
+      url.hostname = url.hostname.slice(4);
+    }
+    return url.origin;
+  } catch {
+    return trimmed;
+  }
+}
+
+export const SITE_ORIGIN = normalizeSiteOrigin(
+  process.env.NEXT_PUBLIC_SITE_URL || "https://conalytic.com"
+);
 
 /** Flip to `true` at launch (with `ALLOW_SEARCH_INDEXING=1` on deploy). Until then: sitewide noindex/nofollow. */
 export const SITE_LAUNCHED_FOR_PUBLIC_INDEXING = false;

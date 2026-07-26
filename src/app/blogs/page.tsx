@@ -1,18 +1,27 @@
 /** Blog listing `/blogs`. */
 import type { Metadata } from "next";
 import { BlogsClient } from "@/components/pages/BlogsClient";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
+import { buildPageMetadata } from "@/lib/page-seo";
 
-const fallbackMetadata: Metadata = {
-  title: "Blog – Conalytic",
-  description:
-    "Insights, tips, and stories to supercharge your analytics. Explore the latest trends in marketing analytics, productivity hacks, and updates from Conalytic.",
-};
+const PAGE_TITLE = "Conalytic Blog – Product Guides for Chats, KPIs & Reports";
+const PAGE_DESCRIPTION =
+  "In-depth guides to Conalytic Conversational Analytics (Chats), KPIs Tracker, and Report Builder—connect GA4, Search Console, Google Ads, GTM, and Meta; ask questions, track goals, and ship HTML client decks.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/blogs` } };
+  return buildPageMetadata({
+    path: "/blogs",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    keywords: ["marketing analytics blog", "GA4 tips", "Google Ads insights", "conversational analytics", "agency reporting"],
+  });
 }
 
 export default function BlogsPage() {
-  return <BlogsClient />;
+  return (
+    <>
+      <MarketingPageStructuredData path="/blogs" pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION} />
+      <BlogsClient />
+    </>
+  );
 }

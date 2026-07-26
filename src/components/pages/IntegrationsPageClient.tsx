@@ -3,74 +3,75 @@
 /** Integrations page: same seven connectors as the home hero / marketing stack (`marketing-stack-logos`). */
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { ExternalLink, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import Image from "next/image";
+import { integrationLogoAlt } from "@/lib/image-alt";
 import { MARKETING_STACK_LOGO_BY_INTEGRATION_NAME } from "@/lib/marketing-stack-logos";
+import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
 const GRAD: React.CSSProperties = { background:"linear-gradient(135deg,#6B5FF8 0%,#a78bfa 55%,#ec4899 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" };
 
-/** Same set as the home hero marketing stack — no search/filters. */
+/** OAuth marketing integrations available in Conalytic-Chat. */
 const integrations = [
-  {
-    name: "Meta Ads",
-    category: "Advertising",
-    desc: "Analyze Facebook and Instagram ad performance, audience insights, and conversion data.",
-    siSlug: "meta",
-    color: "#0082FB",
-    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"],
-  },
-  {
-    name: "LinkedIn Ads",
-    category: "Advertising",
-    desc: "Measure LinkedIn campaign performance, lead gen forms, and B2B funnel metrics.",
-    siSlug: "linkedin",
-    color: "#0A66C2",
-    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"],
-  },
-  {
-    name: "Microsoft Clarity",
-    category: "Analytics",
-    desc: "Session recordings, heatmaps, and behavioral insights to see how visitors use your site.",
-    siSlug: "microsoft",
-    color: "#00A4EF",
-    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Microsoft Clarity"],
-  },
-  {
-    name: "Bing Webmaster",
-    category: "SEO",
-    desc: "Monitor Bing search performance, indexing, and queries alongside your other search channels.",
-    siSlug: "bing",
-    color: "#008373",
-    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Bing Webmaster"],
-  },
   {
     name: "Google Analytics 4",
     category: "Analytics",
-    desc: "Track website traffic, user behavior, and conversion events with deep GA4 integration.",
+    desc: "Conversational Analytics, KPI Tracker, and Report Builder use GA4 for traffic, conversions, channels, pages, and device insights.",
     siSlug: "googleanalytics",
     color: "#E37400",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Analytics 4"],
+    products: "Chats · KPIs · Reports",
   },
   {
     name: "Google Search Console",
     category: "SEO",
-    desc: "Track organic search performance, keyword rankings, and click-through rates.",
+    desc: "Query, page, CTR, and keyword ranking data for SEO chat, GSC KPI goals, and organic performance slides in HTML reports.",
     siSlug: "googlesearchconsole",
     color: "#458CF5",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Search Console"],
+    products: "Chats · KPIs · Reports",
   },
   {
     name: "Google Ads",
     category: "Advertising",
-    desc: "Monitor campaign performance, ad spend, ROAS, and CTR across your Google Ads accounts.",
+    desc: "Campaign, spend, CPC, conversion, and ROAS analysis in marketing chat, paid media KPI dashboards, and Google Ads report sections.",
     siSlug: "googleads",
     color: "#4285F4",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Ads"],
+    products: "Chats · KPIs · Reports",
+  },
+  {
+    name: "Google Tag Manager",
+    category: "Analytics",
+    desc: "GTM container audits in Conversational Analytics and GTM security, consent, and overview slides in Report Builder decks.",
+    siSlug: "googletagmanager",
+    color: "#4285F4",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Google Tag Manager"],
+    products: "Chats · Reports",
+  },
+  {
+    name: "Meta Ads",
+    category: "Advertising",
+    desc: "Facebook and Instagram ad account insights in Conversational Analytics—campaign, ad set, and ad-level performance chat.",
+    siSlug: "meta",
+    color: "#0082FB",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"],
+    products: "Chats",
+  },
+  {
+    name: "LinkedIn Ads",
+    category: "Advertising",
+    desc: "OAuth connect and chat scoping for LinkedIn ad accounts. Live data tools for LinkedIn are not yet available in Chats.",
+    siSlug: "linkedin",
+    color: "#0A66C2",
+    logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"],
+    products: "Connect",
   },
 ];
 
@@ -98,7 +99,7 @@ function IntegrationLogo({
     return (
       <Image
         src={logoSrc}
-        alt={name}
+        alt={integrationLogoAlt(name)}
         width={36}
         height={36}
         className="w-9 h-9 object-contain"
@@ -111,7 +112,7 @@ function IntegrationLogo({
     return (
       <Image
         src={`https://cdn.simpleicons.org/${slug}/${color.replace("#", "")}`}
-        alt={name}
+        alt={integrationLogoAlt(name)}
         width={36}
         height={36}
         className="w-9 h-9 object-contain"
@@ -138,11 +139,11 @@ export interface IntegrationsContentPreset {
 
 export function IntegrationsPageClient({ content }: { content?: IntegrationsContentPreset }) {
   const heroBadge = content?.heroBadge ?? "Integrations";
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Work Better Together with";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "Seamless Integrations";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Marketing Data Integrations for";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "GA4, Google Ads & Meta";
   const heroSubtitle =
     content?.heroSubtitle ??
-    "Connect Conalytic to the tools your team already loves and streamline your workflow in one place.";
+    "Connect Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads with read-only OAuth. Power Conversational Analytics chat, KPI Tracker goals, and automated HTML marketing report decks.";
 
   return (
     <>
@@ -169,8 +170,11 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       {/* ── GRID (marketing stack only) ─────────────── */}
       <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-6xl mx-auto">
-          <p className="text-center text-sm text-gray-400 dark:text-white/40 mb-8">
-            {integrations.length} data sources connected in Conalytic
+          <h2 className="text-center text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+            OAuth integrations for marketing analytics
+          </h2>
+          <p className="text-center text-sm text-gray-500 dark:text-white/55 mb-10 max-w-2xl mx-auto">
+            {integrations.length} platforms connect to Conalytic Chats, KPIs Tracker, and Report Builder via secure read-only OAuth.
           </p>
 
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -187,10 +191,9 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
                   {itg.category}
                 </span>
                 <p className="text-gray-400 dark:text-white/55 text-xs leading-relaxed">{itg.desc}</p>
-                <div className="mt-3 flex items-center gap-1 text-brand-600 dark:text-brand-400 text-xs font-semibold opacity-0 transition-opacity group-hover:opacity-100">
-                  <span>View docs</span>
-                  <ExternalLink className="w-3 h-3"/>
-                </div>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                  {itg.products}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -198,6 +201,12 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       </section>
 
       <Pricing />
+
+      <MarketingFaqSection
+        items={INTEGRATIONS_PAGE_FAQ}
+        title="Marketing integrations FAQ"
+        subtitle="How Conalytic connects GA4, Google Ads, Search Console, GTM, Meta, and LinkedIn to chat, KPIs, and reports."
+      />
 
       <CTA
         title={content?.ctaTitle ?? "Why Choose Conalytic?"}

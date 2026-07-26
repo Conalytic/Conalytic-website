@@ -10,6 +10,7 @@ import {
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { conalyticLogoAlt } from "@/lib/image-alt";
 import { BRAND } from "@/lib/brand";
 import { CHAT_APP_LOGIN_URL } from "@/lib/app-urls";
 import { LEGAL_DOCUMENTS_LAST_UPDATED } from "@/lib/legal-site";
@@ -134,7 +135,7 @@ export function LegalDocumentLayout({
             <span className="relative block size-9 shrink-0 rounded-xl bg-white shadow-sm ring-1 ring-black/5">
               <Image
                 src="/logo-icon.png"
-                alt=""
+                alt={conalyticLogoAlt("icon")}
                 fill
                 className="object-contain p-1"
                 sizes="36px"

@@ -1,10 +1,17 @@
 import { JsonLd } from "@/components/seo/JsonLd";
 import type { ProductId } from "@/lib/products";
 import { getProduct } from "@/lib/products";
-import { productSoftwareSchema, webPageSchema } from "@/lib/structured-data";
+import type { MarketingFaqItem } from "@/lib/marketing-faqs";
+import { faqPageSchema, productSoftwareSchema, webPageSchema } from "@/lib/structured-data";
 
-/** Product route JSON-LD: WebPage + dedicated SoftwareApplication. */
-export function ProductStructuredData({ productId }: { productId: ProductId }) {
+/** Product route JSON-LD: WebPage + SoftwareApplication + optional FAQPage. */
+export function ProductStructuredData({
+  productId,
+  faqItems = [],
+}: {
+  productId: ProductId;
+  faqItems?: MarketingFaqItem[];
+}) {
   const product = getProduct(productId);
 
   return (
@@ -17,6 +24,9 @@ export function ProductStructuredData({ productId }: { productId: ProductId }) {
         id={`ld-product-software-${productId}`}
         data={productSoftwareSchema(product)}
       />
+      {faqItems.length > 0 ? (
+        <JsonLd id={`ld-product-faq-${productId}`} data={faqPageSchema(faqItems)} />
+      ) : null}
     </>
   );
 }

@@ -6,8 +6,8 @@ export const MARKETING_STACK_LOGOS = {
   googleAnalytics4: "/ga4.svg",
   googleSearchConsole: "/google-search-console-icon.webp",
   googleAds: "/integrations/google-ads.svg",
-  metaAds: "/meta.svg",
-  linkedinAds: "/linkedin.svg",
+  metaAds: "/integrations/meta.svg",
+  linkedinAds: "/integrations/linkedin.svg",
   microsoftClarity: "/integrations/microsoft-clarity.svg",
   bingWebmaster: "/integrations/bing-webmaster.svg",
 } as const;

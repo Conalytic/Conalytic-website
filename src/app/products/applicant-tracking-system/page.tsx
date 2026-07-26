@@ -1,19 +1,16 @@
-/** Product: Applicant Tracking System marketing route. */
+/** Product: Applicant Tracking System marketing route (legacy — not in main product suite). */
 import type { Metadata } from "next";
 import { ATSClient } from "@/components/pages/ATSClient";
-import { SITE_ORIGIN } from "@/lib/seo-config";
-
-const fallbackMetadata: Metadata = {
-  title: "Applicant Tracking System – Conalytic",
-  description:
-    "Streamline your recruitment process with Conalytic's AI-powered Applicant Tracking System. Track candidates, automate workflows, and hire smarter with data-driven insights.",
-};
+import { buildPageMetadata } from "@/lib/page-seo";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
-    ...fallbackMetadata,
-    alternates: { canonical: `${SITE_ORIGIN}/products/applicant-tracking-system` },
-  };
+  return buildPageMetadata({
+    path: "/products/applicant-tracking-system",
+    title: "Applicant Tracking System – Conalytic",
+    description:
+      "Legacy Conalytic ATS page. Conalytic's current marketing analytics platform focuses on Conversational Analytics, KPIs Tracker, and Report Builder.",
+    indexable: false,
+  });
 }
 
 export default function ATSPage() {

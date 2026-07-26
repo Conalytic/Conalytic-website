@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
+import { conalyticLogoAlt } from "@/lib/image-alt";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 
@@ -85,10 +86,9 @@ function FooterColumnLink({ href, className, children }: { href: string; classNa
 }
 
 export function Footer({ config, brandLogos }: FooterProps) {
-  const email = config?.email || "admin@conalytic.com";
   const taglineLight = brandLogos?.footerTaglineLight ?? "/logo-tagline-light.png";
   const taglineDark = brandLogos?.footerTaglineDark ?? "/logo-tagline-white.png";
-  const taglineAlt = brandLogos?.footerTaglineAlt ?? "Conalytic";
+  const taglineAlt = brandLogos?.footerTaglineAlt ?? conalyticLogoAlt("wordmark with tagline");
   const footerMark = brandLogos?.footerMarkIcon ?? "/logo-icon.png";
   const columns = config?.columns?.length ? config.columns : fallbackColumns;
   const legalLinks = config?.legalLinks?.length ? config.legalLinks : fallbackLegalLinks;
@@ -112,7 +112,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
 
         <div className="relative z-10 mx-auto max-w-6xl px-8 sm:px-12">
           {/*
-            Top band: newsletter (copy + form) on the left; larger logo with contact email stacked on the right.
+            Top band: newsletter (copy + form) on the left; logo on the right.
           */}
           <div className="flex flex-col gap-8 border-b border-black/8 pb-8 pt-8 dark:border-white/8 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
             <NewsletterSignup className="w-full max-w-[16.5rem] shrink-0 sm:max-w-[18rem]" />
@@ -138,13 +138,6 @@ export function Footer({ config, brandLogos }: FooterProps) {
                   className="hidden h-11 w-auto max-w-[min(300px,88vw)] sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px] dark:block"
                 />
               </Link>
-              <a
-                href={`mailto:${email}`}
-                className="max-w-full break-all text-left text-sm font-medium text-gray-600 transition-colors hover:text-gray-900 dark:text-white/55 dark:hover:text-white lg:text-right"
-                aria-label={`Email ${email}`}
-              >
-                {email}
-              </a>
             </div>
           </div>
 
@@ -171,7 +164,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
           <div className="flex flex-col items-center justify-between gap-5 border-t border-black/8 py-6 dark:border-white/8 sm:flex-row sm:items-center sm:gap-4">
             <div className="flex max-w-full items-center gap-3 text-center sm:text-left">
               <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-gray-300 dark:border-white/20">
-                <Image src={footerMark} alt="" width={16} height={16} />
+                <Image src={footerMark} alt={conalyticLogoAlt("footer icon")} width={16} height={16} />
               </div>
               <span className="text-xs text-gray-400 dark:text-white/30">{copyrightText}</span>
             </div>

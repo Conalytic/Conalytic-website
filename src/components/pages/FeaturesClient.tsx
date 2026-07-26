@@ -6,8 +6,11 @@ import { MessageSquare, Sparkles, BarChart3, Zap, Calendar, ShieldCheck, ArrowRi
 import Link from "next/link";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
+import { integrationLogoAlt } from "@/lib/image-alt";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { FEATURES_PAGE_FAQ } from "@/lib/marketing-faqs";
 import { PRIVACY_POLICY_PATH } from "@/lib/legal-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
@@ -165,10 +168,10 @@ function ReportBuilderVisual() {
 function DataSyncVisual() {
   const L = MARKETING_STACK_LOGOS;
   const sources = [
-    { name: "GA4",  label: "GA4",  src: L.googleAnalytics4 },
-    { name: "Ads",  label: "Ads",  src: L.googleAds },
-    { name: "Meta", label: "Meta", src: L.metaAds },
-    { name: "GSC",  label: "GSC",  src: L.googleSearchConsole },
+    { name: "GA4",  label: "GA4",  fullName: "Google Analytics 4", src: L.googleAnalytics4 },
+    { name: "Ads",  label: "Ads",  fullName: "Google Ads", src: L.googleAds },
+    { name: "Meta", label: "Meta", fullName: "Meta Ads", src: L.metaAds },
+    { name: "GSC",  label: "GSC",  fullName: "Google Search Console", src: L.googleSearchConsole },
   ];
   return (
     <div className="flex h-full min-h-0 w-full flex-col items-center justify-center gap-2 overflow-hidden p-0.5">
@@ -178,7 +181,7 @@ function DataSyncVisual() {
           <div key={s.name} className="flex flex-col items-center gap-1">
             <div className="w-8 h-8 rounded-xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-white/[0.06] flex items-center justify-center shadow-sm p-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={s.src} alt="" width={18} height={18} className="object-contain max-w-[18px] max-h-[18px]" />
+              <img src={s.src} alt={integrationLogoAlt(s.fullName)} width={18} height={18} className="object-contain max-w-[18px] max-h-[18px]" />
             </div>
             <span className="text-[7px] text-gray-400 dark:text-white/30">{s.label}</span>
           </div>
@@ -437,11 +440,11 @@ export interface FeaturesContentPreset {
 
 export function FeaturesClient({ content }: { content?: FeaturesContentPreset }) {
   const heroBadge = content?.heroBadge ?? "Platform Features";
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Features That Make Analytics";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "Fun, Easy & Productive!";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "Marketing Analytics Features for";
+  const heroTitleLine2 = content?.heroTitleLine2 ?? "Chat, KPIs & HTML Reports";
   const heroSubtitle =
     content?.heroSubtitle ??
-    "Explore Conalytic's three products—Conversational Analytics, KPIs Tracker, and Report Builder—plus OAuth integrations for GA4, Search Console, Google Ads, GTM, and Meta.";
+    "Conalytic features include Conversational Analytics (natural-language GA4, Google Ads, Search Console, GTM, and Meta chat), KPIs Tracker (goal monitoring dashboard), and Report Builder (automated HTML client presentation decks)—all with OAuth marketing data integrations.";
   const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "try it today";
   const includedTitle = content?.includedTitle ?? "One platform, every capability you need";
   const includedSubtitle = content?.includedSubtitle ?? "Everything included";
@@ -604,6 +607,12 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       ))}
 
       <Pricing />
+
+      <MarketingFaqSection
+        items={FEATURES_PAGE_FAQ}
+        title="Conalytic platform FAQ"
+        subtitle="Keyword-rich answers about conversational analytics, KPI tracking, report automation, and integrations."
+      />
 
       <CTA
         title={content?.ctaTitle}

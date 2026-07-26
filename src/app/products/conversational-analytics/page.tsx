@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { ProductStructuredData } from "@/components/seo/ProductStructuredData";
 import { ConversationalAnalyticsClient } from "@/components/products/ConversationalAnalyticsClient";
+import { CONVERSATIONAL_ANALYTICS_FAQ } from "@/lib/marketing-faqs";
 import { buildProductMetadataById } from "@/lib/product-seo";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,7 +12,10 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function ConversationalAnalyticsPage() {
   return (
     <>
-      <ProductStructuredData productId="conversational-analytics" />
+      <ProductStructuredData
+        productId="conversational-analytics"
+        faqItems={CONVERSATIONAL_ANALYTICS_FAQ}
+      />
       <ConversationalAnalyticsClient />
     </>
   );

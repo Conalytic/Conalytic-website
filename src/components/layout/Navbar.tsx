@@ -10,6 +10,7 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { cn, isExternalNavigationHref } from "@/lib/utils";
+import { conalyticLogoAlt } from "@/lib/image-alt";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 
@@ -56,7 +57,7 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
   const primaryCtaIsExternal = isExternalNavigationHref(primaryCtaHref);
   const navLogoLight = brandLogos?.navbarLogoLight ?? "/logo.png";
   const navLogoDark = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
-  const navLogoAlt = brandLogos?.navbarLogoAlt ?? "Conalytic";
+  const navLogoAlt = brandLogos?.navbarLogoAlt ?? conalyticLogoAlt("wordmark");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);

@@ -1,13 +1,12 @@
 /** Brand kit / guidelines page. */
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
+import { buildPageMetadata } from "@/lib/page-seo";
 
-const fallbackMetadata: Metadata = {
-  title: "Brand – Conalytic",
-  description:
-    "Conalytic brand assets, logo guidelines, color palette, and typography. Download our official brand kit for media and partner use.",
-};
+const PAGE_TITLE = "Conalytic Brand Assets & Logo Guidelines";
+const PAGE_DESCRIPTION =
+  "Download Conalytic logos, brand colors, and typography guidelines for media, partners, and marketing materials. Official brand kit for the marketing analytics platform.";
 
 const colors = [
   { name:"Brand Purple", hex:"#6B5FF8", rgb:"107, 95, 248", usage:"Primary CTA, links, icons" },
@@ -152,9 +151,18 @@ function BrandFallback() {
 }
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/brand` } };
+  return buildPageMetadata({
+    path: "/brand",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+  });
 }
 
 export default function BrandPage() {
-  return <BrandFallback />;
+  return (
+    <>
+      <MarketingPageStructuredData path="/brand" pageTitle={PAGE_TITLE} pageDescription={PAGE_DESCRIPTION} />
+      <BrandFallback />
+    </>
+  );
 }

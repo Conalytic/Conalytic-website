@@ -1,18 +1,40 @@
 /** Integrations directory route. */
 import type { Metadata } from "next";
 import { IntegrationsPageClient } from "@/components/pages/IntegrationsPageClient";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
+import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
+import { buildPageMetadata } from "@/lib/page-seo";
 
-const fallbackMetadata: Metadata = {
-  title: "Integrations – Conalytic",
-  description:
-    "Connect Conalytic to the tools your team already loves. Integrate with GA4, Google Ads, Meta Ads, Search Console, Slack, and many more.",
-};
+const PAGE_TITLE = "Integrations – GA4, Google Ads, GSC, GTM & Meta";
+const PAGE_DESCRIPTION =
+  "Connect Conalytic to Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads via read-only OAuth. Power Conversational Analytics chat, KPI Tracker goals, and HTML marketing report decks.";
 
 export async function generateMetadata(): Promise<Metadata> {
-  return { ...fallbackMetadata, alternates: { canonical: `${SITE_ORIGIN}/integrations` } };
+  return buildPageMetadata({
+    path: "/integrations",
+    title: PAGE_TITLE,
+    description: PAGE_DESCRIPTION,
+    keywords: [
+      "GA4 integration",
+      "Google Ads integration",
+      "Search Console integration",
+      "GTM integration",
+      "Meta Ads integration",
+      "marketing data connections",
+    ],
+  });
 }
 
 export default function IntegrationsPage() {
-  return <IntegrationsPageClient />;
+  return (
+    <>
+      <MarketingPageStructuredData
+        path="/integrations"
+        pageTitle={PAGE_TITLE}
+        pageDescription={PAGE_DESCRIPTION}
+        faqItems={INTEGRATIONS_PAGE_FAQ}
+      />
+      <IntegrationsPageClient />
+    </>
+  );
 }

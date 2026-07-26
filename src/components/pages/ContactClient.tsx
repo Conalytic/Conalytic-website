@@ -105,6 +105,9 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
       {/* ── CONTACT INFO CARDS ──────────────────────── */}
       <section className="py-16 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
         <div className="max-w-4xl mx-auto">
+          <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-10">
+            Contact information
+          </h2>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {contactInfo.map(info=>(
               <motion.div key={info.title} variants={fadeUp}

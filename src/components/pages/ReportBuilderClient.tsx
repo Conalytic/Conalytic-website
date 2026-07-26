@@ -6,9 +6,21 @@ import { LayoutTemplate, Sparkles, Calendar, ArrowRight, CheckCircle2, Palette, 
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { ProductSuiteLinks } from "@/components/products/ProductSuiteLinks";
+import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { REPORT_BUILDER_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { getProduct } from "@/lib/products";
+import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
+import {
+  ProductCapabilitiesGrid,
+  ProductDeepDive,
+  ProductFeatureMarquee,
+  ProductHeroVisual,
+  ProductHowItWorks,
+  ProductStatsStrip,
+  ReportDeckTimeline,
+} from "@/components/products/ProductPageSections";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -106,15 +118,33 @@ function ScheduleVisual() {
 }
 
 const keyFeatures = [
-  { icon:LayoutTemplate, title:"Drag-and-Drop Studio",  description:"Build professional reports with intuitive visual editor, custom branding, and white-label capabilities for client delivery.", glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   Visual:DragDropVisual  },
-  { icon:Sparkles,        title:"AI-Generated Insights", description:"Automatically generate contextual commentary, trend analysis, and actionable recommendations for every report section.",     glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   Visual:AIInsightVisual },
-  { icon:Calendar,        title:"Automated Scheduling",  description:"Set up weekly, monthly, or quarterly report delivery with fresh data and updated insights automatically generated.",         glow:"from-emerald-400/10 to-teal-400/5",   border:"border-emerald-400/20 dark:border-emerald-500/20",Visual:ScheduleVisual  },
-];
-
-const agencyBenefits = [
-  { icon:Palette,  title:"Custom Branding",    description:"Upload your logo, set brand colors, and customize fonts across all reports." },
-  { icon:Link2,    title:"Shareable Links",    description:"Responsive reports that look professional on desktop, tablet, and mobile."   },
-  { icon:Calendar, title:"Automated Delivery", description:"Shareable links with your domain for seamless client experience."            },
+  {
+    icon: LayoutTemplate,
+    title: "HTML presentation decks",
+    description:
+      "Generate multi-slide HTML reports with cover, executive summary, platform sections, cross-source findings, methodology, and action plan.",
+    glow: "from-brand-400/10 to-violet-400/5",
+    border: "border-brand-400/20 dark:border-brand-500/20",
+    Visual: DragDropVisual,
+  },
+  {
+    icon: Sparkles,
+    title: "Optional AI insights",
+    description:
+      "Toggle AI narratives with GPT-5.4, Claude Opus 4.8, or Gemini 3.1 Pro for personalized slide copy, findings, and recommendations.",
+    glow: "from-amber-400/10 to-orange-400/5",
+    border: "border-amber-400/20 dark:border-amber-500/20",
+    Visual: AIInsightVisual,
+  },
+  {
+    icon: Calendar,
+    title: "Date ranges & comparisons",
+    description:
+      "Last 7/28/30/90 days, last month, or custom up to 366 days. Compare previous period, same year, or previous year.",
+    glow: "from-emerald-400/10 to-teal-400/5",
+    border: "border-emerald-400/20 dark:border-emerald-500/20",
+    Visual: ScheduleVisual,
+  },
 ];
 
 /* ── Report builder preview mockup ──────────────────── */
@@ -168,44 +198,6 @@ function ReportPreview() {
   );
 }
 
-/* ── White-label preview ─────────────────────────────── */
-function WhiteLabelPreview() {
-  const brandColors = ["#6B5FF8","#10b981","#f59e0b","#ec4899","#0ea5e9"];
-  return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
-        <span className="w-2.5 h-2.5 rounded-full bg-red-400"/><span className="w-2.5 h-2.5 rounded-full bg-amber-400"/><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"/>
-        <span className="ml-3 text-[11px] font-mono text-gray-400 dark:text-white/30">Brand Customization Studio</span>
-      </div>
-      <div className="p-4 space-y-3">
-        {/* Logo upload */}
-        <div className="border-2 border-dashed border-gray-200 dark:border-white/10 rounded-xl p-4 text-center hover:border-brand-400 dark:hover:border-brand-400/50 transition-colors cursor-pointer">
-          <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-500/10 border border-brand-100 dark:border-brand-500/20 flex items-center justify-center mx-auto mb-2">
-            <Palette className="w-5 h-5 text-brand-600 dark:text-brand-400"/>
-          </div>
-          <p className="text-[11px] font-semibold text-gray-700 dark:text-white/70">Upload your logo</p>
-          <p className="text-[10px] text-gray-400 dark:text-white/35 mt-0.5">PNG, SVG up to 2MB</p>
-        </div>
-        {/* Brand colors */}
-        <div>
-          <p className="text-[10px] font-semibold text-gray-600 dark:text-white/60 mb-2">Brand colours</p>
-          <div className="flex items-center gap-2">
-            {brandColors.map(c=>(
-              <div key={c} className="w-8 h-8 rounded-lg border-2 border-white dark:border-white/10 shadow-sm cursor-pointer hover:scale-110 transition-transform" style={{backgroundColor:c}}/>
-            ))}
-            <div className="w-8 h-8 rounded-lg border-2 border-dashed border-gray-300 dark:border-white/15 flex items-center justify-center text-gray-400 dark:text-white/30 text-lg cursor-pointer hover:border-brand-400 transition-colors">+</div>
-          </div>
-        </div>
-        {/* Preview tag */}
-        <div className="flex items-center justify-between bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 rounded-xl px-3 py-2.5">
-          <span className="text-[10px] font-semibold text-emerald-700 dark:text-emerald-400">White-label enabled</span>
-          <span className="flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/><span className="text-[10px] text-emerald-600 dark:text-emerald-400">Conalytic branding hidden</span></span>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export interface ReportBuilderContentPreset {
   heroBadge?: string;
   heroTitleLine1?: string;
@@ -225,8 +217,9 @@ const HERO_LIVE_LABEL = "Available in Conalytic";
 
 export function ReportBuilderClient({ content }: { content?: ReportBuilderContentPreset }) {
   const reportProduct = getProduct("report-builder");
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Report Builder for";
-  const heroTitleLine2 = content?.heroTitleLine2 ?? "stakeholder-ready HTML decks";
+  const pageContent = PRODUCT_PAGE_CONTENT["report-builder"];
+  const heroTitleLine1 = content?.heroTitleLine1 ?? reportProduct.heroTitleLine1;
+  const heroTitleLine2 = content?.heroTitleLine2 ?? reportProduct.heroTitleLine2;
   const heroSubtitle = content?.heroSubtitle ?? reportProduct.description;
   const heroSecondarySubtitle =
     content?.heroSecondarySubtitle ??
@@ -273,7 +266,33 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
             </a>
           </motion.div>
         </div>
+
+        <ProductHeroVisual
+          src={pageContent.heroImage}
+          alt={pageContent.heroImageAlt}
+          accent="blue"
+        />
       </section>
+
+      <ProductStatsStrip stats={pageContent.stats} />
+
+      <ProductHowItWorks steps={pageContent.howItWorks} />
+
+      <ProductFeatureMarquee
+        tags={[
+          "HTML presentation deck",
+          "Executive summary",
+          "GA4 traffic slides",
+          "GSC query analysis",
+          "Google Ads campaigns",
+          "GTM security audit",
+          "Cross-source findings",
+          "Methodology slide",
+          "Action plan",
+          "AI insights",
+          "Download HTML",
+        ]}
+      />
 
       {/* ── KEY FEATURES ────────────────────────────── */}
       <section className="py-24 px-4 bg-[#F6F7FE] dark:bg-[#0E0E14]">
@@ -305,6 +324,19 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         </div>
       </section>
 
+      <ProductCapabilitiesGrid
+        title={pageContent.capabilityTitle}
+        subtitle={pageContent.capabilitySubtitle}
+        capabilities={pageContent.capabilities}
+      />
+
+      <ProductDeepDive
+        title={pageContent.deepDiveTitle}
+        subtitle={pageContent.deepDiveSubtitle}
+        bullets={pageContent.deepDiveBullets}
+        visual={<ReportDeckTimeline />}
+      />
+
       {/* ── VALUE PROPOSITION ───────────────────────── */}
       <section className="relative py-16 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(107,95,248,0.09) 0%, transparent 70%)"}}/>
@@ -313,12 +345,16 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">Why Conalytic Reports</span>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">{valueTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4 max-w-2xl mx-auto">{valueSubtitle}</p>
-            <p className="text-gray-400 dark:text-white/50 text-sm mb-6 max-w-2xl mx-auto leading-relaxed">Generate client reports in 5 minutes instead of 5 hours. Transform your agency workflow with automated insights that add value to every deliverable.</p>
-            <p className="text-brand-600 dark:text-brand-400 font-semibold text-sm">More than 50 professional templates with full white-label customization for Google Ads, Meta Ads, GA4, Search Console, and cross-channel performance analysis.</p>
+            <p className="text-gray-400 dark:text-white/50 text-sm mb-6 max-w-2xl mx-auto leading-relaxed">
+              Generate client-ready HTML decks from GA4, Search Console, Google Ads, and GTM in minutes — not hours of copy-paste into slides.
+            </p>
+            <p className="text-brand-600 dark:text-brand-400 font-semibold text-sm">
+              View in-app or download HTML. Regenerate with frozen settings when your connected data refreshes.
+            </p>
           </motion.div>
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.15,ease:EASE}}
             className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {[{val:"5 min",label:"Report creation time"},{val:"50+",label:"Pro templates"},{val:"20h+",label:"Saved per week"},{val:"100%",label:"White-label ready"}].map(s=>(
+            {[{val:"12+",label:"Slide types per deck"},{val:"366",label:"Max day range"},{val:"4",label:"Active platforms"},{val:"HTML",label:"Output format"}].map(s=>(
               <div key={s.label} className="bg-[#F6F7FE] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
                 <p className="text-3xl font-black mb-1" style={GRAD}>{s.val}</p>
                 <p className="text-xs text-gray-400 dark:text-white/55 font-medium">{s.label}</p>
@@ -364,18 +400,22 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         </div>
       </section>
 
-      {/* ── WHITE-LABEL ─────────────────────────────── */}
+      {/* ── CLIENT DELIVERY ─────────────────────────── */}
       <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(107,95,248,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">White-Label</span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Perfect White-Label Solution for Agencies</h2>
-            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">Remove all Conalytic branding and replace with your agency&apos;s logo, colors, and custom styling. Clients see only your brand on every report.</p>
+            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">Client delivery</span>
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Professional HTML decks for agency clients</h2>
+            <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">Set client name and report title on the cover slide. Download HTML for email delivery or walk through the in-app viewer on client calls.</p>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="space-y-5">
-              {agencyBenefits.map(b=>(
+              {[
+                { icon: Palette, title: "Branded cover slides", description: "Client name and report title surface on every deck cover and card." },
+                { icon: Link2, title: "Downloadable HTML", description: "Open in any browser — no PowerPoint license required for stakeholders." },
+                { icon: Calendar, title: "Regenerate on refresh", description: "Frozen settings keep slide structure consistent when you regenerate after data updates." },
+              ].map(b=>(
                 <motion.div key={b.title} variants={fadeUp} className="flex items-start gap-4 p-5 rounded-2xl bg-[#F6F7FE] dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.07]">
                   <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-600/20 border border-brand-100 dark:border-brand-500/20 flex items-center justify-center shrink-0">
                     <b.icon className="w-5 h-5 text-brand-600 dark:text-brand-300"/>
@@ -396,13 +436,19 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
               </div>
             </motion.div>
             <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
-              <WhiteLabelPreview/>
+              <ReportPreview/>
             </motion.div>
           </div>
         </div>
       </section>
 
       <ProductSuiteLinks current="report-builder" />
+
+      <MarketingFaqSection
+        items={REPORT_BUILDER_FAQ}
+        title="Report Builder FAQ"
+        subtitle="Answers about HTML marketing reports, GA4 and Google Ads deck automation, AI insights, and client delivery."
+      />
 
       <CTA
         title={content?.ctaTitle}

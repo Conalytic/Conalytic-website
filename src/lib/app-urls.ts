@@ -8,7 +8,7 @@ export const CHAT_APP_SIGNUP_URL = "https://chat.conalytic.com/signup";
 export const MARKETING_CONTACT_PATH = "/contact";
 
 /** Absolute URL when linking from emails or off-site contexts */
-export const MARKETING_CONTACT_ABSOLUTE = "https://www.conalytic.com/contact";
+export const MARKETING_CONTACT_ABSOLUTE = "https://conalytic.com/contact";
 
 /** Hostnames for the conversational product (home CTA remap → #pricing) */
 export const CHAT_APP_HOSTNAMES = new Set(["chat.conalytic.com", "app.conalytic.com"]);
