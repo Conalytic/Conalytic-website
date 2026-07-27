@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { ArrowUp, Paperclip, Sparkles, X } from "lucide-react";
 import { clsx } from "clsx";
-import { UPLOAD_ACCEPT } from "@/lib/cms/extract-upload-text";
+import { UPLOAD_ACCEPT } from "@/lib/cms/upload-constants";
 
 type Props = {
   value: string;

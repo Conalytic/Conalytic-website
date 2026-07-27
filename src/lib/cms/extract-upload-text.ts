@@ -1,3 +1,5 @@
+import "server-only";
+
 /**
  * Extract plain text from analyst uploads (PDF, Office, CSV, etc.) for the CMS agent.
  */
@@ -129,5 +131,3 @@ export function formatUploadsForPrompt(uploads: ExtractedUpload[]): string {
     .join("\n\n");
 }
 
-export const UPLOAD_ACCEPT =
-  ".pdf,.docx,.xlsx,.xls,.csv,.txt,.md,.json,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,text/plain,text/csv";
