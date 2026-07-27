@@ -50,8 +50,8 @@ function ChatCore({ compact }: { compact?: boolean }) {
       {!compact ? <DemoHeader title="Conalytic" badge="4 sources live" /> : null}
       <div
         className={cn(
-          "flex flex-1 flex-col justify-center",
-          compact ? "gap-2 p-2.5" : ANALYTICS_DEMO_BODY_CLASS,
+          "flex flex-1 flex-col gap-3",
+          compact ? "justify-center p-2.5" : cn(ANALYTICS_DEMO_BODY_CLASS, "justify-start"),
         )}
       >
         <div className="rounded-xl border border-gray-200/80 dark:border-white/[0.06] bg-gray-50/90 dark:bg-white/[0.05] px-3 py-2.5 text-xs text-gray-700 dark:text-white/80 sm:text-sm">
@@ -62,8 +62,8 @@ function ChatCore({ compact }: { compact?: boolean }) {
         </div>
         {phase !== "typing" ? (
           <div className="space-y-2.5">
-            <div className="flex items-center gap-2">
-              <div className="brand-ink-badge flex h-6 w-6 items-center justify-center rounded-full text-[8px] font-bold">
+            <div className="flex items-center gap-2 pt-0.5">
+              <div className="brand-ink-badge flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[8px] font-bold">
                 CA
               </div>
               <span className="text-[10px] font-semibold text-gray-600 dark:text-white/60">Answered in 2.8s</span>

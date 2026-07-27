@@ -1,0 +1,99 @@
+{
+  "email": "admin@conalytic.com",
+  "columns": [
+    {
+      "title": "Company",
+      "links": [
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Features",
+          "href": "/features"
+        },
+        {
+          "label": "About Us",
+          "href": "/about-us"
+        },
+        {
+          "label": "Pricing",
+          "href": "/#pricing"
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        {
+          "label": "Blog",
+          "href": "/blogs"
+        },
+        {
+          "label": "Integrations",
+          "href": "/integrations"
+        },
+        {
+          "label": "Careers",
+          "href": "/careers"
+        }
+      ]
+    },
+    {
+      "title": "Support",
+      "links": [
+        {
+          "label": "Support Center",
+          "href": "/contact"
+        },
+        {
+          "label": "Contact Us",
+          "href": "/contact"
+        },
+        {
+          "label": "FAQs",
+          "href": "/#faq"
+        }
+      ]
+    },
+    {
+      "title": "Product",
+      "links": [
+        {
+          "label": "Conversational Analytics",
+          "href": "/products/conversational-analytics"
+        },
+        {
+          "label": "KPIs Tracker",
+          "href": "/products/kpis-tracker"
+        },
+        {
+          "label": "Report Builder",
+          "href": "/products/report-builder"
+        },
+        {
+          "label": "Brand assets",
+          "href": "/brand"
+        }
+      ]
+    }
+  ],
+  "socialLinks": [],
+  "legalLinks": [
+    {
+      "label": "Terms",
+      "href": "/terms-of-service"
+    },
+    {
+      "label": "Privacy",
+      "href": "/privacy-and-policy"
+    },
+    {
+      "label": "Cookies",
+      "href": "/cookies"
+    }
+  ],
+  "copyrightText": "© 2026 Conalytic. All rights reserved.",
+  "newsletterTitle": "Stay in the loop",
+  "newsletterSubtitle": "Product updates and analytics tips — no spam."
+}

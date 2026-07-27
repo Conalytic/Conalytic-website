@@ -7,6 +7,9 @@ import { useEffect, useRef, useState } from "react";
 import { Database, Users, Zap, Target, Globe, Award, ArrowRight } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
@@ -34,6 +37,10 @@ export interface AboutContentPreset {
   storyTitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 function CountUp({ end, suffix, isFloat }: { end: number; suffix: string; isFloat: boolean }) {
@@ -68,6 +75,10 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
     "At Conalytic, we're passionate about building tools that empower teams to analyze, create, and succeed—together.";
   const storyBadge = content?.storyBadge ?? "How It All Started";
   const storyTitle = content?.storyTitle ?? "Built by marketers, for marketers";
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+    secondary: { label: "Book a demo", href: SITE_ROUTES.contact },
+  });
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
@@ -163,6 +174,8 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

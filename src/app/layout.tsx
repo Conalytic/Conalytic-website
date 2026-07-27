@@ -4,14 +4,8 @@
 import type { Metadata, Viewport } from "next";
 import { Nunito_Sans } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/layout/Navbar";
-import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
-import { Footer } from "@/components/layout/Footer";
-import { SiteChrome } from "@/components/layout/SiteChrome";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
-import { CookieConsent } from "@/components/layout/CookieConsent";
-import { COOKIE_BANNER_DEFAULTS } from "@/lib/cookie-consent";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
@@ -113,7 +107,7 @@ export const metadata: Metadata = {
       },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -121,7 +115,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunitoSans.variable} h-full`}
+      className={`${nunitoSans.variable} ${nunitoSans.className} h-full font-sans`}
       suppressHydrationWarning
     >
       <head>
@@ -131,14 +125,7 @@ export default function RootLayout({
         <SiteStructuredData />
         <ThemeProvider>
           <MotionConfigProvider>
-            <HashScrollRestorer />
-            <SiteChrome
-              navbar={<Navbar config={null} brandLogos={null} />}
-              footer={<Footer config={null} brandLogos={null} />}
-              cookieConsent={<CookieConsent copy={COOKIE_BANNER_DEFAULTS} />}
-            >
-              {children}
-            </SiteChrome>
+            {children}
           </MotionConfigProvider>
         </ThemeProvider>
       </body>

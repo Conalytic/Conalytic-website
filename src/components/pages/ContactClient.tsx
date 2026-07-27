@@ -10,6 +10,9 @@ import { useRouter } from "next/navigation";
 import { Mail, MapPin, Calendar } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
@@ -33,6 +36,10 @@ export interface ContactContentPreset {
   formTitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 export function ContactClient({ content }: { content?: ContactContentPreset }) {
@@ -42,6 +49,10 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Help!";
   const heroSubtitle = content?.heroSubtitle ?? "Have questions, feedback, or just want to say hi? Let's connect!";
   const formTitle = content?.formTitle ?? "Schedule a call";
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Schedule a call", href: SCHEDULE_CALL_URL || "#contact-schedule" },
+    secondary: { label: "Get started", href: "#pricing" },
+  });
 
   const [loading, setLoading] = useState(false);
   const [scheduleError, setScheduleError] = useState(false);
@@ -183,11 +194,8 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
         subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
-        primaryCta={{
-          label: "Schedule a call",
-          href: SCHEDULE_CALL_URL || "#contact-schedule",
-        }}
-        secondaryCta={{label:"Get started", href:"#pricing"}}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

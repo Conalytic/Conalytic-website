@@ -12,6 +12,8 @@ import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { CONVERSATIONAL_ANALYTICS_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
+import { isExternalNavigationHref } from "@/lib/utils";
 import { integrationLogoAlt, conalyticLogoAlt } from "@/lib/image-alt";
 import { getProduct } from "@/lib/products";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
@@ -372,6 +374,14 @@ export interface ConversationalAnalyticsContentPreset {
   coreCapabilitiesSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  heroPrimaryCtaLabel?: string;
+  heroPrimaryCtaHref?: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaHref?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 export function ConversationalAnalyticsClient({ content }: { content?: ConversationalAnalyticsContentPreset }) {
@@ -384,6 +394,19 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
     "Start a new chat, pick GA4, Search Console, Google Ads, GTM, or Meta, and ask anything—from traffic trends to campaign ROAS. General marketing chat is available without a data source.";
   const coreCapabilitiesSubtitle = content?.coreCapabilitiesSubtitle ?? "Core Capabilities";
   const coreCapabilitiesTitle = content?.coreCapabilitiesTitle ?? "Everything you need to understand your marketing data";
+  const heroPrimaryCta = resolveCtaPair(content, "heroPrimaryCtaLabel", "heroPrimaryCtaHref", {
+    label: "Get Started",
+    href: CHAT_APP_SIGNUP_URL,
+  });
+  const heroSecondaryCta = resolveCtaPair(content, "heroSecondaryCtaLabel", "heroSecondaryCtaHref", {
+    label: "Book a Demo",
+    href: SITE_ROUTES.contact,
+  });
+  const heroPrimaryExternal = isExternalNavigationHref(heroPrimaryCta.href);
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+    secondary: { label: "Book a demo", href: SITE_ROUTES.contact },
+  });
 
   return (
     <>
@@ -433,21 +456,28 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <a
-              href={CHAT_APP_SIGNUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={heroPrimaryCta.href}
+              {...(heroPrimaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-              aria-label="Get started (opens in new tab)"
+              aria-label={heroPrimaryExternal ? `${heroPrimaryCta.label} (opens in new tab)` : heroPrimaryCta.label}
             >
-              Get Started
+              {heroPrimaryCta.label}
               <ArrowRight className="w-4 h-4"/>
             </a>
-            <Link
-              href={SITE_ROUTES.contact}
-              className={BRAND_SECONDARY_BUTTON_LG_CLASS}
-            >
-              Book a Demo
-            </Link>
+            {isExternalNavigationHref(heroSecondaryCta.href) ? (
+              <a
+                href={heroSecondaryCta.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={BRAND_SECONDARY_BUTTON_LG_CLASS}
+              >
+                {heroSecondaryCta.label}
+              </a>
+            ) : (
+              <Link href={heroSecondaryCta.href} className={BRAND_SECONDARY_BUTTON_LG_CLASS}>
+                {heroSecondaryCta.label}
+              </Link>
+            )}
           </motion.div>
         </div>
 
@@ -767,8 +797,8 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
-        primaryCta={{ label: "Get started", href: CHAT_APP_SIGNUP_URL }}
-        secondaryCta={{ label: "Book a demo", href: SITE_ROUTES.contact }}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

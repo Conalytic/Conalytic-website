@@ -9,6 +9,8 @@ import { useRef, useState } from "react";
 import { MapPin, Upload, Cpu, Target, TrendingUp, Trophy, Sparkles, ArrowRight, Users, Medal, Star, Globe, Heart, BookOpen, Clock, Wallet, Coffee } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
@@ -260,12 +262,17 @@ export interface CareersContentPreset {
   heroTitleLine2?: string;
   heroSubtitle?: string;
   heroButtonLabel?: string;
+  heroButtonHref?: string;
   lifeAtConalyticTitle?: string;
   lifeAtConalyticSubtitle?: string;
   openPositionsTitle?: string;
   openPositionsSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 export function CareersClient({ content }: { content?: CareersContentPreset }) {
@@ -275,7 +282,14 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
   const heroSubtitle =
     content?.heroSubtitle ??
     "At Conalytic, we're not just building analytics tools—we're democratizing data insights for every marketer. Let's build the future together.";
-  const heroButtonLabel = content?.heroButtonLabel ?? "See Open Positions";
+  const heroButton = resolveCtaPair(content, "heroButtonLabel", "heroButtonHref", {
+    label: content?.heroButtonLabel ?? "See Open Positions",
+    href: "#open-positions",
+  });
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Book a demo", href: SITE_ROUTES.contact },
+    secondary: { label: "Get started", href: "#pricing" },
+  });
   const lifeAtConalyticTitle = content?.lifeAtConalyticTitle ?? "Why You'll Love Building the Future with Us";
   const lifeAtConalyticSubtitle =
     content?.lifeAtConalyticSubtitle ??
@@ -303,9 +317,9 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
             {heroSubtitle}
           </motion.p>
           <motion.a initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
-            href="#open-positions"
+            href={heroButton.href}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
-            {heroButtonLabel} <ArrowRight className="w-4 h-4"/>
+            {heroButton.label} <ArrowRight className="w-4 h-4"/>
           </motion.a>
         </div>
       </section>
@@ -404,8 +418,8 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
         subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
-        primaryCta={{label:"Book a demo", href:"/contact"}}
-        secondaryCta={{label:"Get started", href:"#pricing"}}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

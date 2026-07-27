@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Users, Search, BarChart3, FileText, CheckCircle2, ArrowRight, Bell, Star } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -233,11 +234,17 @@ export interface ATSContentPreset {
   heroTitleLine2?: string;
   heroSubtitle?: string;
   heroPrimaryCtaLabel?: string;
+  heroPrimaryCtaHref?: string;
   heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaHref?: string;
   featuresTitle?: string;
   featuresSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 /** Shown in the amber hero pill while the product is pre-launch. */
@@ -251,6 +258,18 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
     "Streamline your entire recruitment process with AI-powered tools that help you source, screen, and hire the best talent faster. Built natively inside Conalytic so your hiring data lives alongside your marketing intelligence.";
   const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "Get Early Access";
   const heroSecondaryCtaLabel = content?.heroSecondaryCtaLabel ?? "Book a Demo";
+  const heroPrimaryCta = resolveCtaPair(content, "heroPrimaryCtaLabel", "heroPrimaryCtaHref", {
+    label: heroPrimaryCtaLabel,
+    href: "/contact",
+  });
+  const heroSecondaryCta = resolveCtaPair(content, "heroSecondaryCtaLabel", "heroSecondaryCtaHref", {
+    label: heroSecondaryCtaLabel,
+    href: "/contact",
+  });
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get Early Access", href: "/contact" },
+    secondary: { label: "Learn More", href: "/features" },
+  });
   const featuresTitle = content?.featuresTitle ?? "Everything You Need to Hire Smarter";
   const featuresSubtitle =
     content?.featuresSubtitle ??
@@ -277,13 +296,13 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
             {heroSubtitle}
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact"
+            <a href={heroPrimaryCta.href}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4"/>
+              {heroPrimaryCta.label} <ArrowRight className="w-4 h-4"/>
             </a>
-            <a href="/contact"
+            <a href={heroSecondaryCta.href}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold text-gray-700 dark:text-white/85 border-2 border-gray-300 dark:border-white/20 bg-white/60 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.08] hover:border-brand-400 dark:hover:border-brand-400/50 backdrop-blur-sm transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
-              {heroSecondaryCtaLabel}
+              {heroSecondaryCta.label}
             </a>
           </motion.div>
         </div>
@@ -372,8 +391,8 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       <CTA
         title={content?.ctaTitle ?? "Be First to Access Conalytic ATS"}
         subtitle={content?.ctaSubtitle ?? "Join the waitlist and get early access when we launch"}
-        primaryCta={{label:"Get Early Access", href:"/contact"}}
-        secondaryCta={{label:"Learn More", href:"/features"}}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

@@ -41,9 +41,11 @@ interface NavbarProps {
   config?: NavbarConfig | null;
   /** Optional brand image URLs for nav. */
   brandLogos?: SiteBrandLogos | null;
+  /** CMS chrome preview: in-flow layout with solid bar styling. */
+  preview?: boolean;
 }
 
-export function Navbar({ config, brandLogos }: NavbarProps) {
+export function Navbar({ config, brandLogos, preview }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -83,11 +85,16 @@ export function Navbar({ config, brandLogos }: NavbarProps) {
   }, [isOpen]);
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 px-3 pt-2 sm:px-4 sm:pt-3 md:pt-4">
+    <header
+      className={cn(
+        "z-50 px-3 pt-2 sm:px-4 sm:pt-3 md:pt-4",
+        preview ? "relative w-full" : "fixed left-0 right-0 top-0",
+      )}
+    >
       <div
         className={cn(
           "mx-auto max-w-6xl rounded-2xl transition-all duration-300",
-          scrolled
+          preview || scrolled
             ? "border border-gray-200/90 bg-white/92 shadow-lg shadow-black/6 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0f0f0f]/92 dark:shadow-black/40"
             : "border border-transparent bg-white/60 backdrop-blur-md dark:bg-[#0f0f0f]/55"
         )}

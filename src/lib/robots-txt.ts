@@ -101,6 +101,7 @@ Allow: /
 
 # Block internal / utility paths
 Disallow: /api/
+Disallow: /admin/
 Disallow: /contact/thank-you
 
 # Block hash fragments and non-UTM query strings (Google wildcard syntax)

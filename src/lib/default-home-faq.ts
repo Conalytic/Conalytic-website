@@ -16,7 +16,7 @@ export const DEFAULT_HOME_FAQ = [
   {
     question: "Which marketing platforms does Conalytic connect to?",
     answer:
-      "OAuth integrations include Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads. Conversational Analytics supports live queries on GA4, GSC, Google Ads, GTM, and Meta; KPI Tracker uses GA4, GSC, and Google Ads; Report Builder generates decks from GA4, GSC, Google Ads, and GTM data.",
+      "OAuth integrations include Google Analytics 4, Google Search Console, Google Ads, and Google Tag Manager today. Meta Ads (Facebook & Instagram) and LinkedIn Ads are coming soon. Conversational Analytics supports live queries on GA4, GSC, Google Ads, and GTM; KPI Tracker uses GA4, GSC, and Google Ads; Report Builder generates decks from GA4, GSC, Google Ads, and GTM data.",
   },
   {
     question: "How is Conversational Analytics different from a BI dashboard?",

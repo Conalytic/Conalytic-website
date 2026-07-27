@@ -55,3 +55,6 @@ samples/
 # python cache
 __pycache__/
 *.pyc
+
+# local CMS drafts (when Redis is not configured)
+.cms-drafts/

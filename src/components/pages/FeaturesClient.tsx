@@ -14,6 +14,8 @@ import { FEATURES_PAGE_FAQ } from "@/lib/marketing-faqs";
 import { PRIVACY_POLICY_PATH } from "@/lib/legal-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
+import { isExternalNavigationHref } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -433,10 +435,15 @@ export interface FeaturesContentPreset {
   heroTitleLine2?: string;
   heroSubtitle?: string;
   heroPrimaryCtaLabel?: string;
+  heroPrimaryCtaHref?: string;
   includedTitle?: string;
   includedSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 export function FeaturesClient({ content }: { content?: FeaturesContentPreset }) {
@@ -447,8 +454,17 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
     content?.heroSubtitle ??
     "Conalytic features include Conversational Analytics (natural-language GA4, Google Ads, Search Console, GTM, and Meta chat), KPIs Tracker (goal monitoring dashboard), and Report Builder (automated HTML client presentation decks)—all with OAuth marketing data integrations.";
   const heroPrimaryCtaLabel = content?.heroPrimaryCtaLabel ?? "try it today";
+  const heroPrimaryCta = resolveCtaPair(content, "heroPrimaryCtaLabel", "heroPrimaryCtaHref", {
+    label: heroPrimaryCtaLabel,
+    href: CHAT_APP_SIGNUP_URL,
+  });
+  const heroPrimaryExternal = isExternalNavigationHref(heroPrimaryCta.href);
   const includedTitle = content?.includedTitle ?? "One platform, every capability you need";
   const includedSubtitle = content?.includedSubtitle ?? "Everything included";
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+    secondary: { label: "Book a demo", href: SITE_ROUTES.contact },
+  });
 
   return (
     <>
@@ -470,12 +486,14 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           </motion.p>
           <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
             <a
-              href={CHAT_APP_SIGNUP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={heroPrimaryCta.href}
+              {...(heroPrimaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              onClick={(e) => {
+                if (!heroPrimaryExternal) handleSamePageHashClick(e, heroPrimaryCta.href);
+              }}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]"
-              aria-label={`${heroPrimaryCtaLabel} (opens in new tab)`}>
-              {heroPrimaryCtaLabel} <ArrowRight className="w-4 h-4" aria-hidden/>
+              aria-label={heroPrimaryExternal ? `${heroPrimaryCta.label} (opens in new tab)` : heroPrimaryCta.label}>
+              {heroPrimaryCta.label} <ArrowRight className="w-4 h-4" aria-hidden/>
             </a>
           </motion.div>
         </div>
@@ -617,8 +635,8 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
-        primaryCta={{ label: "Get started", href: CHAT_APP_SIGNUP_URL }}
-        secondaryCta={{ label: "Book a demo", href: SITE_ROUTES.contact }}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

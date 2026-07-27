@@ -2,7 +2,6 @@
  * Next.js config: security/perf headers, image remote patterns, redirects.
  */
 import type { NextConfig } from "next";
-import path from "path";
 import { allowSearchIndexing } from "./src/lib/seo-config";
 
 const nextConfig: NextConfig = {
@@ -19,9 +18,6 @@ const nextConfig: NextConfig = {
   },
   eslint: {
     ignoreDuringBuilds: true,
-  },
-  turbopack: {
-    root: path.resolve(__dirname),
   },
   images: {
     remotePatterns: [

@@ -6,10 +6,11 @@
 @theme inline {
   --color-background: var(--bg);
   --color-foreground: var(--fg);
-  --font-sans: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-ui: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-nunito-sans);
+  --font-heading: var(--font-nunito-sans);
+  --font-body: var(--font-nunito-sans);
+  --font-ui: var(--font-nunito-sans);
+  --font-mono: var(--font-nunito-sans);
 
   --color-brand-50:  var(--brand-50);
   --color-brand-100: var(--brand-100);
@@ -130,29 +131,34 @@
   --selection-fg: #0f0f0f;
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  font-family: var(--font-nunito-sans);
+}
+
 body {
   background-color: var(--bg);
   color: var(--fg);
-  font-family: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+button,
+input,
+textarea,
+select,
+optgroup {
+  font-family: inherit;
 }
 
 main { background: transparent; }
 section { background: transparent !important; }
 
-/* ── Base ─────────────────────────────────────────── */
 * { box-sizing: border-box; }
-
-html {
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
-
-body {
-  overflow-x: clip;
-}
 
 /* Mobile-first marketing hero titles */
 .marketing-hero-title {
@@ -193,9 +199,9 @@ body {
   word-break: break-word;
 }
 
-/* Headings: bold Nunito Sans */
+/* Headings: Nunito Sans */
 :where(h1, h2, h3, h4, h5, h6) {
-  font-family: var(--font-nunito-sans), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-nunito-sans);
   font-weight: 700;
 }
 

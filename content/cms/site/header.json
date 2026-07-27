@@ -1,0 +1,58 @@
+{
+  "links": [
+    {
+      "label": "Products",
+      "href": "#",
+      "children": [
+        {
+          "label": "Conversational Analytics",
+          "href": "/products/conversational-analytics",
+          "description": "Ask questions in plain English, get instant insights"
+        },
+        {
+          "label": "KPIs Tracker",
+          "href": "/products/kpis-tracker",
+          "description": "Track goals across GA4, Search Console, and Google Ads"
+        },
+        {
+          "label": "Report Builder",
+          "href": "/products/report-builder",
+          "description": "HTML presentation decks from connected marketing data"
+        }
+      ]
+    },
+    {
+      "label": "Features",
+      "href": "/features"
+    },
+    {
+      "label": "About",
+      "href": "/about-us"
+    },
+    {
+      "label": "Resources",
+      "href": "#",
+      "children": [
+        {
+          "label": "Integrations",
+          "href": "/integrations",
+          "description": "Connect with your favorite tools"
+        },
+        {
+          "label": "Blogs",
+          "href": "/blogs",
+          "description": "Tips, trends, and analytics insights"
+        },
+        {
+          "label": "Careers",
+          "href": "/careers",
+          "description": "Join the Conalytic team"
+        }
+      ]
+    }
+  ],
+  "loginLabel": "Login",
+  "loginHref": "https://chat.conalytic.com/login",
+  "primaryCtaLabel": "Book A Demo",
+  "primaryCtaHref": "/contact"
+}

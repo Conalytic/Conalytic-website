@@ -11,7 +11,14 @@ import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import Image from "next/image";
 import { integrationLogoAlt } from "@/lib/image-alt";
 import { MARKETING_STACK_LOGO_BY_INTEGRATION_NAME } from "@/lib/marketing-stack-logos";
+import {
+  COMING_SOON_INTEGRATION_BADGE_CLASS,
+  COMING_SOON_INTEGRATION_LABEL,
+} from "@/lib/marketing-integrations";
 import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
+import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
@@ -62,16 +69,18 @@ const integrations = [
     siSlug: "meta",
     color: "#0082FB",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"],
-    products: "Chats",
+    products: COMING_SOON_INTEGRATION_LABEL,
+    comingSoon: true,
   },
   {
     name: "LinkedIn Ads",
     category: "Advertising",
-    desc: "OAuth connect and chat scoping for LinkedIn ad accounts. Live data tools for LinkedIn are not yet available in Chats.",
+    desc: "LinkedIn campaign analytics and B2B ad performance in Conversational Analytics.",
     siSlug: "linkedin",
     color: "#0A66C2",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["LinkedIn Ads"],
-    products: "Connect",
+    products: COMING_SOON_INTEGRATION_LABEL,
+    comingSoon: true,
   },
 ];
 
@@ -135,6 +144,10 @@ export interface IntegrationsContentPreset {
   heroSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 export function IntegrationsPageClient({ content }: { content?: IntegrationsContentPreset }) {
@@ -144,6 +157,10 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
   const heroSubtitle =
     content?.heroSubtitle ??
     "Connect Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads with read-only OAuth. Power Conversational Analytics chat, KPI Tracker goals, and automated HTML marketing report decks.";
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+    secondary: { label: "Book a demo", href: SITE_ROUTES.contact },
+  });
 
   return (
     <>
@@ -181,6 +198,13 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
             {integrations.map(itg=>(
               <motion.div key={itg.name} variants={fadeUp}
                 className="relative rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 group hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 dark:hover:shadow-black/40">
+                {itg.comingSoon ? (
+                  <span
+                    className={`absolute right-4 top-4 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide ${COMING_SOON_INTEGRATION_BADGE_CLASS}`}
+                  >
+                    {COMING_SOON_INTEGRATION_LABEL}
+                  </span>
+                ) : null}
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-gray-50 dark:bg-white/[0.06] border border-gray-100 dark:border-white/[0.08] flex items-center justify-center p-1.5 shrink-0">
                     <IntegrationLogo logoSrc={itg.logoSrc} slug={itg.siSlug} name={itg.name} color={itg.color}/>
@@ -191,7 +215,11 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
                   {itg.category}
                 </span>
                 <p className="text-gray-400 dark:text-white/55 text-xs leading-relaxed">{itg.desc}</p>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
+                <p className={`mt-2 text-[10px] font-semibold uppercase tracking-wider ${
+                  itg.comingSoon
+                    ? "text-amber-700 dark:text-amber-400"
+                    : "text-brand-600 dark:text-brand-400"
+                }`}>
                   {itg.products}
                 </p>
               </motion.div>
@@ -211,6 +239,8 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       <CTA
         title={content?.ctaTitle ?? "Why Choose Conalytic?"}
         subtitle={content?.ctaSubtitle ?? "Built for teams who want to work smarter, faster, and happier with their marketing data"}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

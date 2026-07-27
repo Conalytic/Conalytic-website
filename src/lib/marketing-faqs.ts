@@ -15,7 +15,7 @@ export const CONVERSATIONAL_ANALYTICS_FAQ: MarketingFaqItem[] = [
   {
     question: "Which integrations work with Conalytic Chats?",
     answer:
-      "Live conversational analytics supports Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, and Meta Ads. LinkedIn Ads can be connected for chat scoping; general marketing chat works without a linked data source. KPI Tracker and Report Builder use overlapping but different integration sets.",
+      "Live conversational analytics supports Google Analytics 4, Google Search Console, Google Ads, and Google Tag Manager. Meta Ads (Facebook & Instagram) and LinkedIn Ads are coming soon. General marketing chat works without a linked data source. KPI Tracker and Report Builder use overlapping but different integration sets.",
   },
   {
     question: "What AI models does Conalytic Conversational Analytics use?",

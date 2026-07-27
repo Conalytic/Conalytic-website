@@ -47,10 +47,18 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
             className="marketing-hero-title mb-5 text-gray-900 dark:text-white"
           >
             {content?.heroTitleLine1 || "Marketing analytics with"}
-            <br />
-            <span className={BRAND_HERO_GRADIENT_CLASS}>
-              {content?.heroTitleLine2 || "Chat, KPIs & Reports"}
-            </span>
+            {(() => {
+              const line2 =
+                content?.heroTitleLine2 === ""
+                  ? null
+                  : content?.heroTitleLine2 || "Chat, KPIs & Reports";
+              return line2 ? (
+                <>
+                  <br />
+                  <span className={BRAND_HERO_GRADIENT_CLASS}>{line2}</span>
+                </>
+              ) : null;
+            })()}
           </motion.h1>
 
           <motion.p

@@ -7,7 +7,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, Fragment } from "react";
 import { Accordion } from "@/components/ui/Accordion";
 import { CTA } from "@/components/sections/CTA";
 import { Transformation, type TransformationContent } from "@/components/home/sections/Transformation";
@@ -18,6 +18,11 @@ import { HomeHero } from "@/components/home/sections/HomeHero";
 import { HomeProducts } from "@/components/home/sections/HomeProducts";
 import { MARQUEE_LOGO_ORDER } from "@/lib/marquee-logos";
 import {
+  COMING_SOON_INTEGRATION_BADGE_CLASS,
+  COMING_SOON_INTEGRATION_LABEL,
+  isMarketingIntegrationComingSoon,
+} from "@/lib/marketing-integrations";
+import {
   DEFAULT_INTEGRATION_PARTNER_LABELS,
   MARKETING_STACK_LOGOS,
   type MarketingStackLogoKey,
@@ -26,6 +31,7 @@ import { integrationLogoAlt, testimonialPhotoAlt } from "@/lib/image-alt";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/cms/agent-prompt";
 import {
   SAAS_EASE as EASE,
   staggerContainer as stagger,
@@ -53,6 +59,7 @@ export interface HomeContentPreset {
   integrationsTitleLine2?: string;
   integrationsSubtitle?: string;
   integrationsCtaLabel?: string;
+  integrationsCtaHref?: string;
   testimonialsTitleLine1?: string;
   testimonialsTitleLine2?: string;
   testimonialsSubtitle?: string;
@@ -61,6 +68,7 @@ export interface HomeContentPreset {
   faqSubtitle?: string;
   faqContactPrefix?: string;
   faqContactLabel?: string;
+  faqContactHref?: string;
   faqItems?: FAQItem[];
   transformation?: TransformationContent;
   howItWorks?: HowItWorksContent;
@@ -83,9 +91,14 @@ export interface HomeContentPreset {
   integrationPartnerLabels?: Partial<Record<MarketingStackLogoKey, string>>;
 }
 
-function integrationPartnerRows(content?: HomeContentPreset): { name: string; src: string }[] {
+function integrationPartnerRows(content?: HomeContentPreset): {
+  key: MarketingStackLogoKey;
+  name: string;
+  src: string;
+}[] {
   const order = content?.integrationMarqueeOrder ?? MARQUEE_LOGO_ORDER;
   return order.map((key) => ({
+    key,
     name: content?.integrationPartnerLabels?.[key] ?? DEFAULT_INTEGRATION_PARTNER_LABELS[key],
     src: content?.integrationLogoUrls?.[key] ?? MARKETING_STACK_LOGOS[key],
   }));
@@ -116,6 +129,13 @@ function TrustedBySection({ content }: { content?: HomeContentPreset }) {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={logo.src} alt={integrationLogoAlt(logo.name)} width={22} height={22} className="object-contain shrink-0" loading="lazy"/>
               <span className="text-sm font-semibold text-gray-600 dark:text-white/50 whitespace-nowrap">{logo.name}</span>
+              {isMarketingIntegrationComingSoon(logo.key) ? (
+                <span
+                  className={`rounded-full border px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide ${COMING_SOON_INTEGRATION_BADGE_CLASS}`}
+                >
+                  {COMING_SOON_INTEGRATION_LABEL}
+                </span>
+              ) : null}
             </motion.div>
           ))}
         </div>
@@ -138,6 +158,7 @@ const HUB_BASE: Array<{
   name: string;
   desc: string;
   connected: boolean;
+  comingSoon?: boolean;
   nx: number;
   ny: number;
 }> = [
@@ -174,6 +195,7 @@ const HUB_BASE: Array<{
     name: "Meta Ads",
     desc: "Facebook & Instagram ad performance",
     connected: false,
+    comingSoon: true,
     nx: 388,
     ny: 140,
   },
@@ -183,6 +205,7 @@ const HUB_BASE: Array<{
     name: "LinkedIn Ads",
     desc: "LinkedIn campaign analytics and engagement",
     connected: false,
+    comingSoon: true,
     nx: 388,
     ny: 212,
   },
@@ -194,6 +217,7 @@ function hubIntegrationRows(content?: HomeContentPreset) {
     name: content?.integrationPartnerLabels?.[b.logoKey] ?? b.name,
     desc: b.desc,
     connected: b.connected,
+    comingSoon: b.comingSoon ?? isMarketingIntegrationComingSoon(b.logoKey),
     logo: content?.integrationLogoUrls?.[b.logoKey] ?? MARKETING_STACK_LOGOS[b.logoKey],
     nx: b.nx,
     ny: b.ny,
@@ -401,11 +425,17 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                   <div className="flex items-center gap-2 mb-0.5">
                     <p className="text-sm font-semibold text-gray-900 dark:text-white">{item.name}</p>
                     <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${
-                      item.connected
-                        ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20"
-                        : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/8"
+                      item.comingSoon
+                        ? COMING_SOON_INTEGRATION_BADGE_CLASS
+                        : item.connected
+                          ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20"
+                          : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/8"
                     }`}>
-                      {item.connected ? "Connected" : "Not connected"}
+                      {item.comingSoon
+                        ? COMING_SOON_INTEGRATION_LABEL
+                        : item.connected
+                          ? "Connected"
+                          : "Not connected"}
                     </span>
                   </div>
                   <p className="text-xs text-gray-400 dark:text-white/60 truncate">{item.desc}</p>
@@ -423,7 +453,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
             >
-              <Link href="/integrations"
+              <Link href={content?.integrationsCtaHref || "/integrations"}
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-300 font-semibold transition-colors mt-1"
                 aria-label="View all integrations"
               >
@@ -573,7 +603,7 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
         </motion.div>
         <p className="text-center text-gray-400 dark:text-white/58 text-sm mt-8">
           {content?.faqContactPrefix || "Still have questions?"}{" "}
-          <Link href="/contact" className="text-brand-600 dark:text-brand-400 hover:underline font-semibold" aria-label="Contact us — talk to our team">{content?.faqContactLabel || "Talk to our team"}</Link>
+          <Link href={content?.faqContactHref || "/contact"} className="text-brand-600 dark:text-brand-400 hover:underline font-semibold" aria-label="Contact us — talk to our team">{content?.faqContactLabel || "Talk to our team"}</Link>
         </p>
       </div>
     </section>
@@ -583,31 +613,68 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
 /* ══════════════════════════════════════════════════════
    ROOT EXPORT
 ══════════════════════════════════════════════════════ */
-export function HomeClient({ content }: { content?: HomeContentPreset }) {
-  return (
-    <>
-      <HomeHero content={content}/>
-      <TrustedBySection content={content}/>
-      <Transformation content={content?.transformation}/>
+function normalizeSectionOrder(custom: string[] | undefined, defaults: readonly string[]): string[] {
+  if (!custom?.length) return [...defaults];
+  const allowed = new Set(defaults);
+  const seen = new Set<string>();
+  const result: string[] = [];
+  for (const id of custom) {
+    if (allowed.has(id) && !seen.has(id)) {
+      result.push(id);
+      seen.add(id);
+    }
+  }
+  for (const id of defaults) {
+    if (!seen.has(id)) result.push(id);
+  }
+  return result;
+}
+
+export function HomeClient({
+  content,
+  sectionOrder,
+}: {
+  content?: HomeContentPreset;
+  sectionOrder?: string[];
+}) {
+  const order = normalizeSectionOrder(sectionOrder, HOME_DEFAULT_SECTION_ORDER);
+
+  const blocks: Record<string, React.ReactNode> = {
+    hero: <HomeHero content={content} />,
+    trustedBy: <TrustedBySection content={content} />,
+    transformation: <Transformation content={content?.transformation} />,
+    howItWorks: (
       <HowItWorks content={content?.howItWorks} stackLogoSrcByKey={content?.integrationLogoUrls} />
-      <HomeProducts content={content}/>
-      <StatsSection/>
-      <IntegrationsHub content={content}/>
-      <TestimonialsSection content={content}/>
-      <Pricing content={content?.pricing}/>
-      <FAQSection content={content}/>
+    ),
+    products: <HomeProducts content={content} />,
+    stats: <StatsSection />,
+    integrations: <IntegrationsHub content={content} />,
+    testimonials: <TestimonialsSection content={content} />,
+    pricing: <Pricing content={content?.pricing} />,
+    faq: <FAQSection content={content} />,
+    cta: (
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
-        primaryCta={content?.ctaPrimaryLabel || content?.ctaPrimaryHref ? {
-          label: content?.ctaPrimaryLabel || "Get started",
-          href: content?.ctaPrimaryHref || CHAT_APP_SIGNUP_URL,
-        } : undefined}
-        secondaryCta={content?.ctaSecondaryLabel || content?.ctaSecondaryHref ? {
-          label: content?.ctaSecondaryLabel || "Book a demo",
-          href: content?.ctaSecondaryHref || SITE_ROUTES.contact,
-        } : undefined}
+        primaryCta={
+          content?.ctaPrimaryLabel || content?.ctaPrimaryHref
+            ? {
+                label: content?.ctaPrimaryLabel || "Get started",
+                href: content?.ctaPrimaryHref || CHAT_APP_SIGNUP_URL,
+              }
+            : undefined
+        }
+        secondaryCta={
+          content?.ctaSecondaryLabel || content?.ctaSecondaryHref
+            ? {
+                label: content?.ctaSecondaryLabel || "Book a demo",
+                href: content?.ctaSecondaryHref || SITE_ROUTES.contact,
+              }
+            : undefined
+        }
       />
-    </>
-  );
+    ),
+  };
+
+  return <>{order.map((id) => <Fragment key={id}>{blocks[id]}</Fragment>)}</>;
 }

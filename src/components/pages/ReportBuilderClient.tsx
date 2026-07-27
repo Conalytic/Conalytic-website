@@ -11,6 +11,7 @@ import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { REPORT_BUILDER_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 import { getProduct } from "@/lib/products";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
 import {
@@ -209,6 +210,10 @@ export interface ReportBuilderContentPreset {
   valueSubtitle?: string;
   ctaTitle?: string;
   ctaSubtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
 }
 
 /** Shown in the hero pill — product is live in the Conalytic app. */
@@ -229,6 +234,10 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
   const valueSubtitle =
     content?.valueSubtitle ??
     "Eliminate manual reporting with intelligent report automation. Replace time-consuming copy-paste workflows with AI-powered report generation.";
+  const bottomCtas = resolveBottomCtas(content, {
+    primary: { label: "Get started", href: CHAT_APP_SIGNUP_URL },
+    secondary: { label: "Book a demo", href: SITE_ROUTES.contact },
+  });
 
   return (
     <>
@@ -432,8 +441,8 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <CTA
         title={content?.ctaTitle}
         subtitle={content?.ctaSubtitle}
-        primaryCta={{ label: "Get started", href: CHAT_APP_SIGNUP_URL }}
-        secondaryCta={{ label: "Book a demo", href: SITE_ROUTES.contact }}
+        primaryCta={bottomCtas.primaryCta}
+        secondaryCta={bottomCtas.secondaryCta}
       />
     </>
   );

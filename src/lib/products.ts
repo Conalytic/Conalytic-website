@@ -60,8 +60,8 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "Google Search Console",
       "Google Ads",
       "Google Tag Manager",
-      "Meta Ads",
-      "LinkedIn Ads (connect)",
+      "Meta Ads (coming soon)",
+      "LinkedIn Ads (coming soon)",
     ],
     features: [
       "Plain-English marketing questions over live GA4, GSC, Google Ads, GTM, and Meta data",
