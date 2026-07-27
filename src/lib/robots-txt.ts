@@ -1,7 +1,7 @@
 /**
  * robots.txt — Google SERP–friendly rules, Cloudflare Content-Signal block, and UTM-safe query handling.
  */
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { allowSearchIndexing, SITE_ORIGIN } from "@/lib/seo-config";
 
 const SITE_HOST = new URL(SITE_ORIGIN).host;
 
@@ -115,7 +115,15 @@ ${utmAllowRules()}
 ${searchDisallowRules()}`;
 }
 
+function stagingRobotsTxt(): string {
+  return ["User-agent: *", "Disallow: /", ""].join("\n");
+}
+
 export function buildRobotsTxt(): string {
+  if (!allowSearchIndexing()) {
+    return stagingRobotsTxt();
+  }
+
   return [
     CONTENT_SIGNAL_COMMENTS,
     "",

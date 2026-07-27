@@ -12,7 +12,7 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
    Uses author **Conalytic Admin <admin@conalytic.com>** for any local git metadata. The publish API also attributes CMS commits to that identity.
 2. **GitHub PAT** — Fine-grained token with **Contents: Read and write** on this repo. Save it in **Admin → Settings** or set `GITHUB_TOKEN`.
 3. **Vercel** — Keep **Production Branch** as `main`. Enable preview deployments for `staging`, or add a separate project pointed at `staging`.
-4. **Staging env** — Set `NEXT_PUBLIC_SITE_URL` to your staging URL, `ALLOW_SEARCH_INDEXING=false`, and the same admin env vars as production.
+4. **Staging env** — Set `NEXT_PUBLIC_SITE_URL` to your staging URL and the same admin env vars as production. Staging is **always** `noindex, nofollow` in code (meta tags, `X-Robots-Tag`, and `robots.txt`); `ALLOW_SEARCH_INDEXING` cannot override that on the staging branch or non-production URL.
 
 ## Publish safety
 
