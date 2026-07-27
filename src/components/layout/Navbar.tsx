@@ -102,8 +102,8 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
         <nav className="px-4 sm:px-6">
           <div className="flex h-[3.25rem] items-center justify-between">
             <Link href="/" className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.02]" aria-label="Conalytic — Home">
-              <Image src={navLogoLight} alt={navLogoAlt} width={140} height={40} className="h-8 w-auto dark:hidden" priority />
-              <Image src={navLogoDark} alt={navLogoAlt} width={140} height={40} className="hidden h-8 w-auto dark:block" priority />
+              <Image src={navLogoLight} alt={navLogoAlt} width={140} height={40} className="h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:hidden" priority />
+              <Image src={navLogoDark} alt={navLogoAlt} width={140} height={40} className="hidden h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:block" priority />
             </Link>
 
             <div className="hidden items-center gap-0.5 lg:flex">

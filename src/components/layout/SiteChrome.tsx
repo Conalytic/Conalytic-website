@@ -34,7 +34,7 @@ export function SiteChrome({
       <PageAmbient />
       <ScrollRevealInit />
       <ScrollProgressBar />
-      <div className="relative z-[1] flex min-h-full min-w-0 flex-1 flex-col overflow-x-clip">
+      <div className="relative z-[1] flex min-h-dvh min-w-0 flex-1 flex-col overflow-x-clip">
         {navbar}
         <main className="min-h-0 w-full flex-1">{children}</main>
         {footer}

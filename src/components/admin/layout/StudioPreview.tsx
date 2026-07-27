@@ -42,12 +42,14 @@ export function StudioPreview({
   }, []);
 
   const desktopScale =
-    !narrow && frameSize.width > 0
-      ? Math.min(1, frameSize.width / DESKTOP_PREVIEW_WIDTH)
-      : 1;
+    !narrow && frameSize.width > 0 ? Math.min(1, frameSize.width / DESKTOP_PREVIEW_WIDTH) : 1;
+
+  const mobileScale =
+    narrow && frameSize.width > 0 ? Math.min(1, frameSize.width / MOBILE_PREVIEW_WIDTH) : 1;
+
   const iframeHeight =
     narrow || desktopScale <= 0
-      ? Math.max(frameSize.height, 480)
+      ? Math.max(frameSize.height / (narrow ? mobileScale : 1), 480)
       : Math.max(frameSize.height / desktopScale, 480);
 
   return (
@@ -76,13 +78,29 @@ export function StudioPreview({
         className={`studio-preview-frame flex-1 ${narrow ? "studio-preview-frame--narrow" : "studio-preview-frame--desktop"}`}
       >
         {narrow ? (
-          <div className="studio-preview-viewport studio-preview-viewport--mobile">
-            <iframe
-              key={previewSrc}
-              title={`Preview: ${pageLabel}`}
-              src={previewSrc}
-              style={{ width: MOBILE_PREVIEW_WIDTH, height: iframeHeight }}
-            />
+          <div
+            className="studio-preview-viewport studio-preview-viewport--mobile"
+            style={{
+              width: MOBILE_PREVIEW_WIDTH * mobileScale,
+              maxWidth: "100%",
+            }}
+          >
+            <div
+              className="studio-preview-scaler"
+              style={{
+                width: MOBILE_PREVIEW_WIDTH,
+                height: iframeHeight,
+                transform: `scale(${mobileScale})`,
+                transformOrigin: "top center",
+              }}
+            >
+              <iframe
+                key={previewSrc}
+                title={`Preview: ${pageLabel}`}
+                src={previewSrc}
+                style={{ width: MOBILE_PREVIEW_WIDTH, height: iframeHeight }}
+              />
+            </div>
           </div>
         ) : (
           <div

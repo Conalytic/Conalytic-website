@@ -1,8 +1,12 @@
 import { NextResponse } from "next/server";
+import { requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { getAdminSettings, saveAdminSettings, type AdminSettings } from "@/lib/cms/draft-store";
 import { assertPublishBranchAllowed } from "@/lib/cms/publish-config";
 
 export async function GET() {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const settings = await getAdminSettings();
   return NextResponse.json({
     openaiConfigured: Boolean(settings.openaiApiKey || process.env.OPENAI_API_KEY),
@@ -16,6 +20,9 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const body = (await request.json()) as Partial<AdminSettings>;
   const current = await getAdminSettings();
   const next: AdminSettings = {

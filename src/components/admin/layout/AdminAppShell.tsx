@@ -7,6 +7,8 @@ type Props = {
   children: React.ReactNode;
   showNav?: boolean;
   onCloseNav?: () => void;
+  showInspector?: boolean;
+  onCloseInspector?: () => void;
   sidebar: React.ReactNode;
   className?: string;
 };
@@ -15,6 +17,8 @@ export function AdminAppShell({
   children,
   showNav,
   onCloseNav,
+  showInspector,
+  onCloseInspector,
   sidebar,
   className,
 }: Props) {
@@ -26,6 +30,9 @@ export function AdminAppShell({
           <div className="studio-drawer-backdrop lg:hidden" onClick={onCloseNav} aria-hidden />
           <div className="studio-drawer studio-drawer--left lg:hidden studio-sidebar">{sidebar}</div>
         </>
+      ) : null}
+      {showInspector && onCloseInspector ? (
+        <div className="studio-drawer-backdrop lg:hidden" onClick={onCloseInspector} aria-hidden />
       ) : null}
     </div>
   );

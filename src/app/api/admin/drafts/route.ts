@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/lib/admin/session";
+import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { listDraftRegistryIds } from "@/lib/cms/draft-store";
 import { CMS_REGISTRY } from "@/lib/cms/page-registry";
 
 export async function GET() {
-  const session = await getAdminSession();
-  const sessionId = String(session.loggedInAt || "admin");
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
+  const sessionId = adminSessionId(auth);
   const dirtyIds = await listDraftRegistryIds(sessionId);
 
   return NextResponse.json({

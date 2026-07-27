@@ -1,14 +1,12 @@
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/lib/admin/session";
+import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { getAiChatHistory, saveAiChatHistory, clearAiChatHistory, type AiChatMessage } from "@/lib/cms/draft-store";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 
-async function sessionId() {
-  const session = await getAdminSession();
-  return String(session.loggedInAt || "admin");
-}
-
 export async function GET(request: Request) {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const registryId = new URL(request.url).searchParams.get("registryId") || "";
   if (!registryId) {
     return NextResponse.json({ error: "registryId required" }, { status: 400 });
@@ -17,13 +15,16 @@ export async function GET(request: Request) {
   const entry = getRegistryEntryById(registryId);
   if (!entry) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const sid = await sessionId();
-  const messages = await getAiChatHistory(sid, registryId);
+  const sessionId = adminSessionId(auth);
+  const messages = await getAiChatHistory(sessionId, registryId);
 
   return NextResponse.json({ messages });
 }
 
 export async function PUT(request: Request) {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const body = (await request.json()) as { registryId?: string; messages?: AiChatMessage[] };
   const registryId = body.registryId?.trim() || "";
   if (!registryId) {
@@ -44,13 +45,16 @@ export async function PUT(request: Request) {
       (m.role === "user" || m.role === "assistant" || m.role === "system"),
   );
 
-  const sid = await sessionId();
-  await saveAiChatHistory(sid, registryId, messages);
+  const sessionId = adminSessionId(auth);
+  await saveAiChatHistory(sessionId, registryId, messages);
 
   return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(request: Request) {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const registryId = new URL(request.url).searchParams.get("registryId") || "";
   if (!registryId) {
     return NextResponse.json({ error: "registryId required" }, { status: 400 });
@@ -59,8 +63,8 @@ export async function DELETE(request: Request) {
   const entry = getRegistryEntryById(registryId);
   if (!entry) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
-  const sid = await sessionId();
-  await clearAiChatHistory(sid, registryId);
+  const sessionId = adminSessionId(auth);
+  await clearAiChatHistory(sessionId, registryId);
 
   return NextResponse.json({ ok: true });
 }

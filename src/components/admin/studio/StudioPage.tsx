@@ -81,6 +81,17 @@ export function StudioPage() {
     if (selectedId) void loadDraft(selectedId);
   }, [selectedId, loadDraft]);
 
+  useEffect(() => {
+    function onResize() {
+      if (window.innerWidth >= 1024) {
+        setNavOpen(false);
+        setInspectorOpen(false);
+      }
+    }
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   const saveDraft = useCallback(async () => {
     if (!selectedId) return;
     setSaving(true);
@@ -201,7 +212,13 @@ export function StudioPage() {
   );
 
   return (
-    <AdminAppShell showNav={navOpen} onCloseNav={() => setNavOpen(false)} sidebar={sidebarDrawer}>
+    <AdminAppShell
+      showNav={navOpen}
+      onCloseNav={() => setNavOpen(false)}
+      showInspector={inspectorOpen}
+      onCloseInspector={() => setInspectorOpen(false)}
+      sidebar={sidebarDrawer}
+    >
       <StudioShellLayout
         navOpen={navOpen}
         inspectorOpen={inspectorOpen}

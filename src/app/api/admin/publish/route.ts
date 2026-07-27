@@ -1,6 +1,6 @@
 import { Octokit } from "octokit";
 import { NextResponse } from "next/server";
-import { getAdminSession } from "@/lib/admin/session";
+import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import {
   clearAllDrafts,
   getAdminSettings,
@@ -16,8 +16,10 @@ import { readFile } from "fs/promises";
 import { cmsFilePath } from "@/lib/cms/read-cms-file";
 
 export async function POST() {
-  const session = await getAdminSession();
-  const sessionId = String(session.loggedInAt || "admin");
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
+  const sessionId = adminSessionId(auth);
   const dirtyIds = await listDraftRegistryIds(sessionId);
 
   if (dirtyIds.length === 0) {

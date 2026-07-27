@@ -30,7 +30,7 @@ export function StudioInspector({
   const aiMode = activeTab === "ai";
 
   return (
-    <aside className="studio-inspector">
+    <aside className="studio-inspector studio-inspector--drawer">
       <div className="shrink-0 border-b border-[var(--studio-border)] p-2">
         <StudioTabs
           tabs={tabs.map((id) => ({ id, label: tabLabels[id] }))}

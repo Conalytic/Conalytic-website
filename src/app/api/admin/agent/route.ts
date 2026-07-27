@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import Anthropic from "@anthropic-ai/sdk";
-import { getAdminSession } from "@/lib/admin/session";
+import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { getAdminSettings, getDraft, saveDraft, saveAiUndoSnapshot } from "@/lib/cms/draft-store";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 import { schemaForRegistryType } from "@/lib/cms/schemas";
@@ -18,6 +18,9 @@ import { parseAgentResponse } from "@/lib/cms/parse-agent-response";
 import { stableJson } from "@/lib/cms/stable-json";
 
 export async function POST(request: Request) {
+  const auth = await requireAdminSessionOrRespond();
+  if (auth instanceof NextResponse) return auth;
+
   const form = await request.formData();
   const registryId = String(form.get("registryId") || "");
   const prompt = String(form.get("prompt") || "").trim();
@@ -43,8 +46,7 @@ export async function POST(request: Request) {
   }
 
   const settings = await getAdminSettings();
-  const session = await getAdminSession();
-  const sessionId = String(session.loggedInAt || "admin");
+  const sessionId = adminSessionId(auth);
 
   const published = (await readCmsJson<Record<string, unknown>>(entry.contentFile)) ?? {};
   const existingDraft = await getDraft(sessionId, registryId);

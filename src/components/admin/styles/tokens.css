@@ -54,6 +54,20 @@
   --studio-chrome-px: 12px;
 }
 
+@media (max-width: 1280px) {
+  .admin-root {
+    --studio-inspector-w: 360px;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-root {
+    --studio-ui-scale: 0.94;
+    --studio-header-h: 48px;
+    --studio-chrome-px: 10px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .admin-root:not([data-theme="light"]) {
     --studio-bg: #262b34;

@@ -25,7 +25,7 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | Variable | Required | Purpose |
 |----------|----------|---------|
 | `ADMIN_PASSWORD` | Yes | Shared admin login password |
-| `ADMIN_SESSION_SECRET` | Yes | 32+ character secret for iron-session |
+| `ADMIN_SESSION_SECRET` | Yes | 32+ character secret for iron-session (required in production; never use the dev default) |
 | `ADMIN_ENCRYPTION_KEY` | Recommended | Encrypts API keys in settings (falls back to session secret) |
 | `UPSTASH_REDIS_REST_URL` | Optional | Draft storage (uses `.cms-drafts/` locally if unset) |
 | `UPSTASH_REDIS_REST_TOKEN` | Optional | Draft storage |
