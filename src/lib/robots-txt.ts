@@ -1,5 +1,5 @@
 /**
- * robots.txt — Google SERP–friendly rules, Cloudflare Content-Signal block, and UTM-safe query handling.
+ * robots.txt — CMS body, Content-Signal directives, and crawl rules.
  */
 import { readCmsJson } from "@/lib/cms/read-cms-file";
 import { buildDefaultRobotsTxt, stagingRobotsTxt } from "@/lib/cms/robots-default";
