@@ -63,7 +63,7 @@ const SEARCH_QUERY_PARAMS = [
 
 function cloudflareManagedSection(): string {
   const botBlocks = CLOUDFLARE_MANAGED_BOTS.map((bot) => `User-agent: ${bot}\nDisallow: /`).join("\n\n");
-  return `# BEGIN Cloudflare Managed content
+  return `# BEGIN AI crawler disallow rules
 
 User-agent: *
 Content-Signal: search=yes,ai-train=no,use=reference
@@ -71,7 +71,7 @@ Allow: /
 
 ${botBlocks}
 
-# END Cloudflare Managed Content`;
+# END AI crawler disallow rules`;
 }
 
 function utmAllowRules(): string {
