@@ -19,6 +19,7 @@ const PAGE_ENTRIES: CmsRegistryEntry[] = [
   { id: "product-ats", label: "ATS (legacy)", type: "page", path: "/products/applicant-tracking-system", contentFile: "products/applicant-tracking-system.json", creatable: false, hasSeo: true },
   { id: "privacy", label: "Privacy Policy", type: "page", path: "/privacy-and-policy", contentFile: "legal/privacy.json", creatable: false, hasSeo: true },
   { id: "terms", label: "Terms of Service", type: "page", path: "/terms-of-service", contentFile: "legal/terms.json", creatable: false, hasSeo: true },
+  { id: "robots", label: "Robots.txt", type: "robots", path: "/robots.txt", contentFile: "site/robots.json", creatable: false, hasSeo: false },
 ];
 
 const BLOG_ENTRIES: CmsRegistryEntry[] = STATIC_BLOG_POSTS.map((post) => ({

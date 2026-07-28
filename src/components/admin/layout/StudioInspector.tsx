@@ -3,7 +3,7 @@
 import { StudioButton } from "@/components/admin/ui/StudioButton";
 import { StudioTabs } from "@/components/admin/ui/StudioTabs";
 
-export type InspectorTab = "ai" | "seo";
+export type InspectorTab = "ai" | "seo" | "content";
 
 type Props = {
   tabs: InspectorTab[];
@@ -17,6 +17,7 @@ type Props = {
 const tabLabels: Record<InspectorTab, string> = {
   ai: "AI assistant",
   seo: "SEO",
+  content: "robots.txt",
 };
 
 export function StudioInspector({

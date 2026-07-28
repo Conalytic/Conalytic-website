@@ -50,7 +50,8 @@ export function StudioSidebar({
 }: Props) {
   const q = filter.trim().toLowerCase();
   const chrome = registry.filter((e) => e.type === "chrome" && (!q || e.label.toLowerCase().includes(q)));
-  const pages = registry.filter((e) => e.type !== "chrome" && e.type !== "blog" && (!q || e.label.toLowerCase().includes(q) || e.path.includes(q)));
+  const siteFiles = registry.filter((e) => e.type === "robots" && (!q || e.label.toLowerCase().includes(q) || e.path.includes(q)));
+  const pages = registry.filter((e) => e.type === "page" && (!q || e.label.toLowerCase().includes(q) || e.path.includes(q)));
   const blogs = registry.filter((e) => e.type === "blog" && (!q || e.label.toLowerCase().includes(q) || e.path.includes(q)));
 
   function NavItem({ entry }: { entry: CmsRegistryEntry }) {
@@ -128,6 +129,12 @@ export function StudioSidebar({
           <>
             <NavSection label="Site chrome" show={chrome.length > 0}>
               {chrome.map((e) => (
+                <NavItem key={e.id} entry={e} />
+              ))}
+            </NavSection>
+
+            <NavSection label="Site files" show={siteFiles.length > 0}>
+              {siteFiles.map((e) => (
                 <NavItem key={e.id} entry={e} />
               ))}
             </NavSection>

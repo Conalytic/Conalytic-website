@@ -1,7 +1,7 @@
 import type { FooterConfig, NavbarConfig } from "@/lib/site-layout";
 
 /** Registry entry — fixed list; never created from admin UI. */
-export type CmsRegistryType = "page" | "chrome" | "blog";
+export type CmsRegistryType = "page" | "chrome" | "blog" | "robots";
 
 export type CmsRegistryEntry = {
   id: string;
@@ -62,8 +62,13 @@ export type CmsFooterOverlay = Partial<FooterConfig> & {
   newsletterSubtitle?: string;
 };
 
+export type CmsRobotsOverlay = {
+  body?: string;
+};
+
 export type CmsDraftPayload =
   | { kind: "page"; data: CmsPageOverlay }
   | { kind: "blog"; data: CmsBlogOverlay }
   | { kind: "chrome-header"; data: CmsHeaderOverlay }
-  | { kind: "chrome-footer"; data: CmsFooterOverlay };
+  | { kind: "chrome-footer"; data: CmsFooterOverlay }
+  | { kind: "robots"; data: CmsRobotsOverlay };

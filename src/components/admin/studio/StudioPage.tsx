@@ -15,6 +15,7 @@ import { StudioDialog } from "@/components/admin/ui/StudioDialog";
 import { useStudioToast } from "@/components/admin/ui/StudioToast";
 import { AdminSeoForm } from "@/components/admin/forms/AdminSeoForm";
 import { AdminAiPanel } from "@/components/admin/forms/AdminAiPanel";
+import { AdminRobotsForm } from "@/components/admin/forms/AdminRobotsForm";
 import type { InspectorTab } from "@/components/admin/layout/StudioInspector";
 
 type DraftResponse = {
@@ -60,15 +61,25 @@ export function StudioPage() {
       return;
     }
     const json = (await res.json()) as DraftResponse;
-    const merged = normalizePageOverlay(
-      id,
-      deepMerge(
-        (json.published ?? {}) as Record<string, unknown>,
-        (json.draft?.data ?? {}) as Record<string, unknown>,
-      ),
-    );
-    const effectiveSeo = resolveEffectiveSeo(id, merged.seo as CmsSeoFields | undefined);
-    setData({ ...merged, seo: effectiveSeo });
+    const isRobots = json.entry.type === "robots";
+    const merged = isRobots
+      ? deepMerge(
+          (json.published ?? {}) as Record<string, unknown>,
+          (json.draft?.data ?? {}) as Record<string, unknown>,
+        )
+      : normalizePageOverlay(
+          id,
+          deepMerge(
+            (json.published ?? {}) as Record<string, unknown>,
+            (json.draft?.data ?? {}) as Record<string, unknown>,
+          ),
+        );
+    if (isRobots) {
+      setData(merged);
+    } else {
+      const effectiveSeo = resolveEffectiveSeo(id, merged.seo as CmsSeoFields | undefined);
+      setData({ ...merged, seo: effectiveSeo });
+    }
     setStatus(json.draft ? "You have unsaved edits" : "All changes saved");
     setPreviewKey((k) => k + 1);
   }, []);
@@ -174,8 +185,12 @@ export function StudioPage() {
   }
 
   useEffect(() => {
-    if (tab === "seo" && !selected?.hasSeo) setTab("ai");
-  }, [tab, selected?.hasSeo]);
+    if (tab === "seo" && !selected?.hasSeo) {
+      setTab(selected?.type === "robots" ? "content" : "ai");
+    }
+    if (tab === "content" && selected?.type !== "robots") setTab("ai");
+    if ((tab === "ai" || tab === "seo") && selected?.type === "robots") setTab("content");
+  }, [tab, selected?.hasSeo, selected?.type]);
 
   const seo = (data.seo as CmsSeoFields | undefined) ?? {};
 
@@ -183,7 +198,10 @@ export function StudioPage() {
     ? `/admin/preview/frame?chrome=${selected.id === "chrome-header" ? "header" : "footer"}&k=${previewKey}`
     : `/admin/preview/frame?registryId=${encodeURIComponent(selectedId)}&k=${previewKey}`;
 
-  const tabs: InspectorTab[] = selected?.hasSeo ? ["ai", "seo"] : ["ai"];
+  const tabs: InspectorTab[] =
+    selected?.type === "robots" ? ["content"] : selected?.hasSeo ? ["ai", "seo"] : ["ai"];
+
+  const robotsBody = typeof data.body === "string" ? data.body : "";
 
   const dirtyLabels = dirtyIds
     .map((id) => registry.find((e) => e.id === id)?.label)
@@ -201,7 +219,8 @@ export function StudioPage() {
       onFilterChange={setFilter}
       onSelect={(id) => {
         setSelectedId(id);
-        setTab("ai");
+        const entry = registry.find((e) => e.id === id);
+        setTab(entry?.type === "robots" ? "content" : "ai");
         setNavOpen(false);
       }}
     />
@@ -218,7 +237,8 @@ export function StudioPage() {
       onFilterChange={setFilter}
       onSelect={(id) => {
         setSelectedId(id);
-        setTab("ai");
+        const entry = registry.find((e) => e.id === id);
+        setTab(entry?.type === "robots" ? "content" : "ai");
         setNavOpen(false);
       }}
       onToggleNav={() => setNavOpen(false)}
@@ -276,6 +296,12 @@ export function StudioPage() {
                 ))}
               </div>
             ) : null}
+            {!loading && tab === "content" && selected?.type === "robots" ? (
+              <AdminRobotsForm
+                body={robotsBody}
+                onChange={(body) => setData({ ...data, body })}
+              />
+            ) : null}
             {!loading && tab === "seo" && selected?.hasSeo ? (
               <div className="p-4">
                 <AdminSeoForm
@@ -285,7 +311,7 @@ export function StudioPage() {
                 />
               </div>
             ) : null}
-            {!loading && tab === "ai" ? (
+            {!loading && tab === "ai" && selected?.type !== "robots" ? (
               <AdminAiPanel
                 key={selectedId}
                 registryId={selectedId}

@@ -69,6 +69,10 @@ export const cmsPageSchema = z.object({
   layout: cmsPageLayoutSchema.optional(),
 });
 
+export const cmsRobotsSchema = z.object({
+  body: z.string().max(100_000).optional(),
+});
+
 export const cmsBlogSchema = z.object({
   seo: cmsSeoSchema.optional(),
   title: z.string().max(200).optional(),
@@ -82,7 +86,11 @@ export const cmsBlogSchema = z.object({
   bodyMarkdown: z.string().max(200_000).optional(),
 });
 
-export function schemaForRegistryType(type: "page" | "chrome" | "blog", chromeKind?: "header" | "footer") {
+export function schemaForRegistryType(
+  type: "page" | "chrome" | "blog" | "robots",
+  chromeKind?: "header" | "footer",
+) {
+  if (type === "robots") return cmsRobotsSchema;
   if (type === "blog") return cmsBlogSchema;
   if (type === "chrome") return chromeKind === "footer" ? cmsFooterSchema : cmsHeaderSchema;
   return cmsPageSchema;

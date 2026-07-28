@@ -139,17 +139,27 @@ export async function POST(request: Request) {
         ? "chrome-footer"
         : entry.type === "blog"
           ? "blog"
-          : "page";
+          : entry.type === "robots"
+            ? "robots"
+            : "page";
+
+  const normalizedData =
+    entry.type === "robots"
+      ? agentData
+      : normalizePageOverlay(registryId, agentData);
 
   const payload = {
     kind,
-    data: normalizePageOverlay(registryId, agentData),
+    data: normalizedData,
   } as CmsDraftPayload;
 
-  const previousData = normalizePageOverlay(
-    registryId,
-    (existingDraft?.data as Record<string, unknown> | undefined) ?? published,
-  );
+  const previousData =
+    entry.type === "robots"
+      ? deepMerge(published, (existingDraft?.data as Record<string, unknown> | undefined) ?? {})
+      : normalizePageOverlay(
+          registryId,
+          (existingDraft?.data as Record<string, unknown> | undefined) ?? published,
+        );
   let changed = !readOnly && stableJson(payload.data) !== stableJson(previousData);
 
   if (changed) {

@@ -4,6 +4,7 @@ import { deleteDraft, getDraft, saveDraft } from "@/lib/cms/draft-store";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 import { schemaForRegistryType } from "@/lib/cms/schemas";
 import { readCmsJson } from "@/lib/cms/read-cms-file";
+import { resolveRobotsBody } from "@/lib/robots-txt";
 import type { CmsDraftPayload } from "@/lib/cms/types";
 
 function kindForEntry(entry: ReturnType<typeof getRegistryEntryById>): CmsDraftPayload["kind"] {
@@ -11,6 +12,7 @@ function kindForEntry(entry: ReturnType<typeof getRegistryEntryById>): CmsDraftP
   if (entry.id === "chrome-header") return "chrome-header";
   if (entry.id === "chrome-footer") return "chrome-footer";
   if (entry.type === "blog") return "blog";
+  if (entry.type === "robots") return "robots";
   return "page";
 }
 
@@ -24,7 +26,12 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const sessionId = adminSessionId(auth);
   const draft = await getDraft(sessionId, id);
-  const published = await readCmsJson<Record<string, unknown>>(entry.contentFile);
+  const stored = await readCmsJson<Record<string, unknown>>(entry.contentFile);
+
+  let published = stored;
+  if (entry.type === "robots") {
+    published = { body: resolveRobotsBody(stored, null) };
+  }
 
   return NextResponse.json({ entry, draft, published });
 }

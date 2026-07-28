@@ -3,6 +3,7 @@ import { getDraft } from "@/lib/cms/draft-store";
 import { getRegistryEntryById, getRegistryEntryByPath } from "@/lib/cms/page-registry";
 import { readCmsJson } from "@/lib/cms/read-cms-file";
 import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
+import { resolveRobotsBody } from "@/lib/robots-txt";
 import type { CmsBlogOverlay, CmsPageOverlay } from "@/lib/cms/types";
 
 export async function getMergedRegistryData(
@@ -13,6 +14,12 @@ export async function getMergedRegistryData(
   if (!entry) return null;
 
   const published = (await readCmsJson<Record<string, unknown>>(entry.contentFile)) ?? {};
+
+  if (entry.type === "robots") {
+    const draft = sessionId ? await getDraft(sessionId, registryId) : null;
+    return { body: resolveRobotsBody(published, (draft?.data as Record<string, unknown>) ?? null) };
+  }
+
   if (!sessionId) return normalizePageOverlay(registryId, published);
 
   const draft = await getDraft(sessionId, registryId);
