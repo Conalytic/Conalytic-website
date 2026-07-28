@@ -1,5 +1,5 @@
 /**
- * Serves /robots.txt with full Content-Signal comments and Google SERP crawl rules.
+ * Serves /robots.txt from CMS or site defaults.
  */
 import { buildRobotsTxt } from "@/lib/robots-txt";
 
