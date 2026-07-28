@@ -144,19 +144,33 @@ export function StudioPage() {
 
   async function pushToStaging() {
     setPublishing(true);
-    const res = await fetch("/api/admin/publish", { method: "POST" });
-    const json = (await res.json()) as { error?: string; commitUrl?: string };
-    setPublishing(false);
-    setPublishOpen(false);
-    if (!res.ok) {
-      setStatus(json.error || "Publish failed");
-      toast(json.error || "Publish failed", "error");
-      return;
+    try {
+      const res = await fetch("/api/admin/publish", {
+        method: "POST",
+        signal: AbortSignal.timeout(90_000),
+      });
+      const json = (await res.json().catch(() => ({}))) as { error?: string; commitUrl?: string };
+      if (!res.ok) {
+        setStatus(json.error || "Publish failed");
+        toast(json.error || "Publish failed", "error");
+        return;
+      }
+      await loadRegistry();
+      await loadDraft(selectedId);
+      setStatus("Pushed to staging");
+      toast("Pushed to staging successfully", "success");
+      setPublishOpen(false);
+      if (json.commitUrl) window.open(json.commitUrl, "_blank");
+    } catch (error) {
+      const timedOut = error instanceof DOMException && error.name === "TimeoutError";
+      const message = timedOut
+        ? "Publish timed out. Check your GitHub token and try again."
+        : "Publish failed — check GitHub token in Settings.";
+      setStatus(message);
+      toast(message, "error");
+    } finally {
+      setPublishing(false);
     }
-    await loadRegistry();
-    setStatus("Pushed to staging");
-    toast("Pushed to staging successfully", "success");
-    if (json.commitUrl) window.open(json.commitUrl, "_blank");
   }
 
   useEffect(() => {
@@ -306,7 +320,9 @@ export function StudioPage() {
         confirmLabel="Push to staging"
         loading={publishing}
         onConfirm={() => void pushToStaging()}
-        onClose={() => setPublishOpen(false)}
+        onClose={() => {
+          if (!publishing) setPublishOpen(false);
+        }}
       />
     </AdminAppShell>
   );
