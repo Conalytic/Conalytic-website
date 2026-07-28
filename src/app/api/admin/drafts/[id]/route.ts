@@ -3,7 +3,7 @@ import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { deleteDraft, getDraft, saveDraft } from "@/lib/cms/draft-store";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 import { schemaForRegistryType } from "@/lib/cms/schemas";
-import { readCmsJson } from "@/lib/cms/read-cms-file";
+import { getStagingPublishedCmsJson } from "@/lib/cms/staging-published";
 import { resolveRobotsBody } from "@/lib/robots-txt";
 import type { CmsDraftPayload } from "@/lib/cms/types";
 
@@ -26,7 +26,7 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const sessionId = adminSessionId(auth);
   const draft = await getDraft(sessionId, id);
-  const stored = await readCmsJson<Record<string, unknown>>(entry.contentFile);
+  const stored = await getStagingPublishedCmsJson(entry.contentFile);
 
   let published = stored;
   if (entry.type === "robots") {

@@ -196,6 +196,7 @@ export function StudioPage() {
         commitUrl?: string;
         deployTriggered?: boolean;
         deployMessage?: string;
+        files?: string[];
       };
       if (!res.ok) {
         setStatus(json.error || "Publish failed");
@@ -206,7 +207,11 @@ export function StudioPage() {
       await loadDraft(selectedId);
       const deployNote = json.deployMessage || "Staging deploy in progress on Vercel.";
       setStatus(`Pushed to staging — ${deployNote}`);
-      toast("Pushed to staging — Vercel build will start from git", "success");
+      const fileNote =
+        json.files && json.files.length > 0
+          ? ` Updated ${json.files.length} file(s) on GitHub staging.`
+          : "";
+      toast(`Pushed to staging — Vercel build will start from git.${fileNote}`, "success");
       setPublishOpen(false);
       setPreviewKey((k) => k + 1);
       scheduleStagingPreviewRefresh();

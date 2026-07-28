@@ -13,8 +13,8 @@ import {
   cmsPublishCommitIdentity,
   resolveStagingBranch,
 } from "@/lib/cms/publish-config";
-import { readFile } from "fs/promises";
-import { cmsFilePath } from "@/lib/cms/read-cms-file";
+import { deepMerge } from "@/lib/cms/deep-merge";
+import { fetchGithubJsonFile, resolveGithubRepo } from "@/lib/cms/github-cms";
 
 export const maxDuration = 60;
 
@@ -55,10 +55,11 @@ export async function POST() {
     }
 
     const repoFull = settings.githubRepo || process.env.GITHUB_REPO || "Conalytic/Conalytic-website";
-    const [owner, repo] = repoFull.split("/");
-    if (!owner || !repo) {
+    const repoParts = resolveGithubRepo(settings);
+    if (!repoParts) {
       return NextResponse.json({ error: "Invalid repository setting (use owner/name)." }, { status: 400 });
     }
+    const { owner, repo } = repoParts;
 
     let branch: string;
     try {
@@ -99,15 +100,10 @@ export async function POST() {
       if (!draft) continue;
 
       const filePath = `content/cms/${entry.contentFile}`;
-      let existing: Record<string, unknown> = {};
-      try {
-        const raw = await readFile(cmsFilePath(entry.contentFile), "utf8");
-        existing = JSON.parse(raw) as Record<string, unknown>;
-      } catch {
-        /* new file */
-      }
+      const existing =
+        (await fetchGithubJsonFile(octokit, owner, repo, branch, filePath)) ?? {};
 
-      const merged = { ...existing, ...draft.data };
+      const merged = deepMerge(existing, draft.data as Record<string, unknown>);
       treeItems.push({
         path: filePath,
         mode: "100644",
@@ -160,6 +156,7 @@ export async function POST() {
       ok: true,
       commitUrl: `https://github.com/${owner}/${repo}/commit/${commit.sha}`,
       branch,
+      files: treeItems.map((t) => t.path),
       deployTriggered: deploy.triggered,
       deployMessage: deploy.message,
     });
