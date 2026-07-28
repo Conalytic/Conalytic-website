@@ -12,7 +12,8 @@ type Props = {
   pagePath: string;
   previewSrc: string;
   displayUrl: string;
-  previewMode: "staging" | "draft";
+  previewMode: "staging" | "local";
+  stagingPending?: boolean;
   narrow: boolean;
   onRefresh: () => void;
   onToggleNarrow: () => void;
@@ -24,6 +25,7 @@ export function StudioPreview({
   previewSrc,
   displayUrl,
   previewMode,
+  stagingPending,
   narrow,
   onRefresh,
   onToggleNarrow,
@@ -66,11 +68,11 @@ export function StudioPreview({
           <span
             className={
               previewMode === "staging"
-                ? "mr-1.5 rounded bg-[var(--studio-badge-draft-bg)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-badge-draft-fg)]"
+                ? "mr-1.5 rounded bg-[var(--studio-badge-success-bg)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-badge-success-fg)]"
                 : "mr-1.5 rounded bg-[var(--studio-border)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-muted)]"
             }
           >
-            {previewMode === "staging" ? "Staging" : "Draft"}
+            {previewMode === "staging" ? "Staging" : "Local"}
           </span>
           {displayUrl}
         </div>
@@ -86,6 +88,22 @@ export function StudioPreview({
           </StudioIconButton>
         </div>
       </div>
+      {previewMode === "local" ? (
+        <p
+          className="border-b border-[var(--studio-border)] bg-[var(--studio-bg)] px-3 py-2 text-center text-[11px] text-[var(--studio-muted)]"
+          role="status"
+        >
+          Set <strong>Staging preview URL</strong> in Settings to load your Vercel staging site here.
+        </p>
+      ) : null}
+      {stagingPending ? (
+        <p
+          className="border-b border-[var(--studio-badge-draft-bg)] bg-[var(--studio-badge-draft-bg)] px-3 py-2 text-center text-[11px] text-[var(--studio-badge-draft-fg)]"
+          role="status"
+        >
+          You have unsaved or unpublished drafts — push to staging to update this preview after Vercel deploys.
+        </p>
+      ) : null}
       <div
         ref={frameRef}
         className={`studio-preview-frame flex-1 ${narrow ? "studio-preview-frame--narrow" : "studio-preview-frame--desktop"}`}

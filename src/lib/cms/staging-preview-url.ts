@@ -1,4 +1,5 @@
 import type { AdminSettings } from "@/lib/cms/draft-store";
+import type { CmsRegistryEntry } from "@/lib/cms/types";
 
 /** Normalize a configured staging base URL (no trailing slash on origin path). */
 export function resolveStagingPreviewBase(settings?: AdminSettings): string | null {
@@ -38,4 +39,10 @@ export function stagingPreviewDisplayUrl(base: string, pagePath: string): string
   } catch {
     return pagePath;
   }
+}
+
+/** Path on the staging site to load in Studio preview. */
+export function stagingPreviewPathForEntry(entry: CmsRegistryEntry): string {
+  if (entry.type === "chrome" || entry.path.startsWith("__")) return "/";
+  return entry.path;
 }

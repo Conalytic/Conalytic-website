@@ -13,12 +13,9 @@ export function AdminRobotsForm({ body, onChange }: Props) {
     <div className="space-y-4 p-4">
       <StudioCard>
         <p className="text-sm text-[var(--studio-muted)]">
-          Edit the production <strong className="text-[var(--studio-fg)]">robots.txt</strong> served at{" "}
-          <code className="text-xs">/robots.txt</code>. Push to staging to preview on the staging site, then promote
-          to main for production.
-        </p>
-        <p className="mt-2 text-xs text-[var(--studio-muted)]">
-          Staging always serves <code className="text-[11px]">Disallow: /</code> regardless of this file.
+          Edit the <strong className="text-[var(--studio-fg)]">robots.txt</strong> served on production after you promote staging to main.
+          The Studio preview loads your <strong className="text-[var(--studio-fg)]">staging site</strong> — staging always serves{" "}
+          <code className="text-[11px]">Disallow: /</code> for robots regardless of this file.
         </p>
       </StudioCard>
       <StudioTextarea

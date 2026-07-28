@@ -4,14 +4,13 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { CmsRegistryEntry, CmsSeoFields } from "@/lib/cms/types";
 import { resolveEffectiveSeo } from "@/lib/cms/seo-defaults";
-import { buildStagingPreviewPageUrl, stagingPreviewDisplayUrl } from "@/lib/cms/staging-preview-url";
+import { buildStagingPreviewPageUrl, stagingPreviewDisplayUrl, stagingPreviewPathForEntry } from "@/lib/cms/staging-preview-url";
 import { deepMerge } from "@/lib/cms/deep-merge";
 import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
 import { AdminAppShell, StudioShellLayout } from "@/components/admin/layout/AdminAppShell";
 import { StudioHeader } from "@/components/admin/layout/StudioHeader";
 import { StudioSidebar } from "@/components/admin/layout/StudioSidebar";
 import { StudioPreview } from "@/components/admin/layout/StudioPreview";
-import { StudioRobotsPreview } from "@/components/admin/layout/StudioRobotsPreview";
 import { StudioInspector } from "@/components/admin/layout/StudioInspector";
 import { StudioDialog } from "@/components/admin/ui/StudioDialog";
 import { useStudioToast } from "@/components/admin/ui/StudioToast";
@@ -96,8 +95,8 @@ export function StudioPage() {
     }
     setStatus(
       json.draft
-        ? "Draft saved — preview shows your draft until you push to staging"
-        : "No draft — preview shows live staging when configured",
+        ? "Draft saved — push to staging to update the preview"
+        : "Preview shows live staging — save drafts then push to publish changes",
     );
     setPreviewKey((k) => k + 1);
   }, []);
@@ -234,14 +233,12 @@ export function StudioPage() {
 
   const seo = (data.seo as CmsSeoFields | undefined) ?? {};
 
-  const pagePath = selected?.path ?? "/";
+  const pagePath = selected ? stagingPreviewPathForEntry(selected) : "/";
   const hasStoredDraft = dirtyIds.includes(selectedId);
   const inspectorDirty = stableJson(data) !== stableJson(savedData);
-  const useDraftPreview =
-    selected?.type !== "robots" &&
-    (hasStoredDraft || inspectorDirty || selected?.type === "chrome");
-  const useStagingPreview =
-    Boolean(stagingPreviewBase) && selected?.type !== "chrome" && !useDraftPreview;
+  const stagingPending = hasStoredDraft || inspectorDirty;
+
+  const useStagingPreview = Boolean(stagingPreviewBase && selected);
 
   const localPreviewSrc =
     selected?.type === "chrome"
@@ -252,7 +249,7 @@ export function StudioPage() {
     ? buildStagingPreviewPageUrl(stagingPreviewBase!, pagePath, previewKey)
     : localPreviewSrc;
 
-  const previewMode: "staging" | "draft" = useStagingPreview ? "staging" : "draft";
+  const previewMode: "staging" | "local" = useStagingPreview ? "staging" : "local";
   const displayUrl = useStagingPreview
     ? stagingPreviewDisplayUrl(stagingPreviewBase!, pagePath)
     : `conalytic.com${pagePath === "/" ? "" : pagePath}`;
@@ -320,7 +317,7 @@ export function StudioPage() {
           <StudioHeader
             pageLabel={selected?.label ?? "Studio"}
             status={status}
-            pageDirty={hasStoredDraft || (selected?.type === "robots" && inspectorDirty)}
+            pageDirty={hasStoredDraft || inspectorDirty}
             stagingDraftCount={dirtyIds.length}
             publishing={publishing}
             onSave={() => void saveDraft()}
@@ -331,26 +328,17 @@ export function StudioPage() {
           />
         }
         main={
-          selected?.type === "robots" ? (
-            <StudioRobotsPreview
-              body={robotsBody}
-              previewMode={hasStoredDraft || inspectorDirty ? "draft" : "staging"}
-              displayUrl={`conalytic.com/robots.txt`}
-              narrow={narrowPreview}
-              onToggleNarrow={() => setNarrowPreview((n) => !n)}
-            />
-          ) : (
-            <StudioPreview
-              pageLabel={selected?.label ?? "Page"}
-              pagePath={pagePath}
-              previewSrc={previewSrc}
-              displayUrl={displayUrl}
-              previewMode={previewMode}
-              narrow={narrowPreview}
-              onRefresh={() => setPreviewKey((k) => k + 1)}
-              onToggleNarrow={() => setNarrowPreview((n) => !n)}
-            />
-          )
+          <StudioPreview
+            pageLabel={selected?.label ?? "Page"}
+            pagePath={pagePath}
+            previewSrc={previewSrc}
+            displayUrl={displayUrl}
+            previewMode={previewMode}
+            stagingPending={stagingPending}
+            narrow={narrowPreview}
+            onRefresh={() => setPreviewKey((k) => k + 1)}
+            onToggleNarrow={() => setNarrowPreview((n) => !n)}
+          />
         }
         inspector={
           <StudioInspector
