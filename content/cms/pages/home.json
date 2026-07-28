@@ -18,7 +18,7 @@
     "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Conalytic – Marketing Analytics: Chat, KPIs & Reports\",\n  \"description\": \"Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free to start.\",\n  \"url\": \"https://conalytic.com/\",\n  \"additionalType\": [\n    \"WebPage\",\n    \"FAQPage\"\n  ]\n}"
   },
   "sections": {
-    "heroTitleLine1": "Marketing analytics with",
-    "heroTitleLine2": "Conalytics"
+    "heroTitleLine1": "Mridul malhotra",
+    "heroTitleLine2": ""
   }
 }
