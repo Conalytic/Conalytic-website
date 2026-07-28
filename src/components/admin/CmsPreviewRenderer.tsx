@@ -58,14 +58,16 @@ export async function CmsPreviewRenderer({ registryId, chrome }: PreviewProps) {
     const merged = await getMergedRegistryData(registryId, sessionId);
     const body = typeof merged?.body === "string" ? merged.body : "";
     return (
-      <div className="min-h-screen bg-[#0f1419] p-6 text-[#e8edf4]">
+      <div
+        className="min-h-screen bg-[var(--bg)] p-6 text-[var(--muted-fg)]"
+      >
         <div className="mx-auto max-w-3xl">
-          <p className="mb-4 text-sm text-[#94a3b8]">
-            Preview of production <code className="rounded bg-black/40 px-1 py-0.5 text-xs">/robots.txt</code>
+          <p className="mb-4 text-sm text-[var(--muted-fg)]">
+            Preview of production <code className="rounded bg-[var(--studio-border)] px-1 py-0.5 text-xs">/robots.txt</code>
             (staging deploys always use <code className="text-xs">Disallow: /</code>).
           </p>
           <pre
-            className="overflow-auto rounded-lg border border-white/10 bg-black/50 p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap"
+            className="overflow-auto rounded-lg border border-[var(--studio-border)] bg-[var(--studio-surface)] p-4 font-mono text-xs leading-relaxed whitespace-pre-wrap text-[var(--studio-fg)]"
           >
             {body}
           </pre>

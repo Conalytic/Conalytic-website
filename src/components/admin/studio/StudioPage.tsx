@@ -11,6 +11,7 @@ import { AdminAppShell, StudioShellLayout } from "@/components/admin/layout/Admi
 import { StudioHeader } from "@/components/admin/layout/StudioHeader";
 import { StudioSidebar } from "@/components/admin/layout/StudioSidebar";
 import { StudioPreview } from "@/components/admin/layout/StudioPreview";
+import { StudioRobotsPreview } from "@/components/admin/layout/StudioRobotsPreview";
 import { StudioInspector } from "@/components/admin/layout/StudioInspector";
 import { StudioDialog } from "@/components/admin/ui/StudioDialog";
 import { useStudioToast } from "@/components/admin/ui/StudioToast";
@@ -237,7 +238,8 @@ export function StudioPage() {
   const hasStoredDraft = dirtyIds.includes(selectedId);
   const inspectorDirty = stableJson(data) !== stableJson(savedData);
   const useDraftPreview =
-    hasStoredDraft || inspectorDirty || selected?.type === "chrome";
+    selected?.type !== "robots" &&
+    (hasStoredDraft || inspectorDirty || selected?.type === "chrome");
   const useStagingPreview =
     Boolean(stagingPreviewBase) && selected?.type !== "chrome" && !useDraftPreview;
 
@@ -318,7 +320,7 @@ export function StudioPage() {
           <StudioHeader
             pageLabel={selected?.label ?? "Studio"}
             status={status}
-            pageDirty={hasStoredDraft}
+            pageDirty={hasStoredDraft || (selected?.type === "robots" && inspectorDirty)}
             stagingDraftCount={dirtyIds.length}
             publishing={publishing}
             onSave={() => void saveDraft()}
@@ -329,16 +331,26 @@ export function StudioPage() {
           />
         }
         main={
-          <StudioPreview
-            pageLabel={selected?.label ?? "Page"}
-            pagePath={pagePath}
-            previewSrc={previewSrc}
-            displayUrl={displayUrl}
-            previewMode={previewMode}
-            narrow={narrowPreview}
-            onRefresh={() => setPreviewKey((k) => k + 1)}
-            onToggleNarrow={() => setNarrowPreview((n) => !n)}
-          />
+          selected?.type === "robots" ? (
+            <StudioRobotsPreview
+              body={robotsBody}
+              previewMode={hasStoredDraft || inspectorDirty ? "draft" : "staging"}
+              displayUrl={`conalytic.com/robots.txt`}
+              narrow={narrowPreview}
+              onToggleNarrow={() => setNarrowPreview((n) => !n)}
+            />
+          ) : (
+            <StudioPreview
+              pageLabel={selected?.label ?? "Page"}
+              pagePath={pagePath}
+              previewSrc={previewSrc}
+              displayUrl={displayUrl}
+              previewMode={previewMode}
+              narrow={narrowPreview}
+              onRefresh={() => setPreviewKey((k) => k + 1)}
+              onToggleNarrow={() => setNarrowPreview((n) => !n)}
+            />
+          )
         }
         inspector={
           <StudioInspector
