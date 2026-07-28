@@ -277,6 +277,7 @@ export function StudioPage() {
                 registryId={selectedId}
                 pageLabel={selected?.label}
                 onApplied={() => {
+                  setPreviewKey((k) => k + 1);
                   void loadDraft(selectedId);
                   void loadRegistry();
                   toast("AI updated your draft", "success");

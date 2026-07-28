@@ -178,7 +178,9 @@ export function AdminAiPanel({ registryId, pageLabel, onApplied }: Props) {
         undoable: canUndo,
       },
     ]);
-    if (json.changed) onApplied();
+    if (json.changed) {
+      onApplied();
+    }
   }
 
   async function undoLastEdit() {

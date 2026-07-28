@@ -44,12 +44,40 @@ export function sanitizeAgentData(data: unknown): Record<string, unknown> {
   const out: Record<string, unknown> = {};
 
   if (raw.seo !== undefined) out.seo = sanitizeSeo(raw.seo);
-  if (raw.sections !== undefined && typeof raw.sections === "object" && !Array.isArray(raw.sections)) {
-    out.sections = raw.sections;
-  }
   if (raw.layout !== undefined && typeof raw.layout === "object" && !Array.isArray(raw.layout)) {
     out.layout = raw.layout;
   }
+
+  const sections: Record<string, unknown> =
+    raw.sections && typeof raw.sections === "object" && !Array.isArray(raw.sections)
+      ? { ...(raw.sections as Record<string, unknown>) }
+      : {};
+
+  // AI often puts section copy at the root instead of under sections.*
+  for (const [key, value] of Object.entries(raw)) {
+    if (key === "seo" || key === "layout" || key === "sections") continue;
+    if (
+      key.startsWith("hero") ||
+      key.startsWith("cta") ||
+      key.startsWith("faq") ||
+      key.startsWith("trusted") ||
+      key.startsWith("services") ||
+      key.startsWith("integrations") ||
+      key.startsWith("testimonials") ||
+      key.endsWith("TitleLine1") ||
+      key.endsWith("TitleLine2") ||
+      key.endsWith("Subtitle")
+    ) {
+      if (sections[key] === undefined) sections[key] = value;
+      continue;
+    }
+    if (key === "faqItems" || key === "testimonials") {
+      if (sections[key] === undefined) sections[key] = value;
+      continue;
+    }
+  }
+
+  if (Object.keys(sections).length > 0) out.sections = sections;
 
   for (const key of ["title", "category", "readTime", "dateLabel", "datePublished", "excerpt", "description", "bodyMarkdown"]) {
     if (typeof raw[key] === "string") out[key] = raw[key];

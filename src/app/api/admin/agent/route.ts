@@ -117,6 +117,10 @@ export async function POST(request: Request) {
 
   if (readOnly) {
     agentData = current;
+  } else if (parsedResult.value.usedFallbackData) {
+    agentData = current;
+    agentSummary =
+      "I could not apply those edits — the AI response did not match the page schema. Try being explicit, e.g. set sections.heroTitleLine1 to \"Marketing analytics with\" and sections.heroTitleLine2 to \"Conalytic\".";
   }
 
   const kind: CmsDraftPayload["kind"] =
