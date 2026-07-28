@@ -97,7 +97,7 @@ export function StudioPage() {
     }
     setStatus(
       json.draft
-        ? "Draft saved — push to staging to update the preview"
+        ? "Draft preview — push to staging to publish on Vercel"
         : "Preview shows live staging — save drafts then push to publish changes",
     );
     setPreviewKey((k) => k + 1);
@@ -245,7 +245,8 @@ export function StudioPage() {
   const inspectorDirty = stableJson(data) !== stableJson(savedData);
   const stagingPending = hasStoredDraft || inspectorDirty;
 
-  const useStagingPreview = Boolean(stagingPreviewBase && selected);
+  // Live staging iframe only when there is nothing unpublished; drafts show in local preview frame.
+  const useStagingPreview = Boolean(stagingPreviewBase && selected && !stagingPending);
 
   const localPreviewSrc =
     selected?.type === "chrome"
@@ -256,7 +257,11 @@ export function StudioPage() {
     ? buildStagingPreviewPageUrl(stagingPreviewBase!, pagePath, previewKey)
     : localPreviewSrc;
 
-  const previewMode: "staging" | "local" = useStagingPreview ? "staging" : "local";
+  const previewMode: "staging" | "draft" | "local" = useStagingPreview
+    ? "staging"
+    : stagingPreviewBase && stagingPending
+      ? "draft"
+      : "local";
   const displayUrl = useStagingPreview
     ? stagingPreviewDisplayUrl(stagingPreviewBase!, pagePath)
     : `conalytic.com${pagePath === "/" ? "" : pagePath}`;
@@ -341,7 +346,6 @@ export function StudioPage() {
             previewSrc={previewSrc}
             displayUrl={displayUrl}
             previewMode={previewMode}
-            stagingPending={stagingPending}
             narrow={narrowPreview}
             onRefresh={() => setPreviewKey((k) => k + 1)}
             onToggleNarrow={() => setNarrowPreview((n) => !n)}

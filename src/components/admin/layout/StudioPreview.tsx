@@ -12,8 +12,7 @@ type Props = {
   pagePath: string;
   previewSrc: string;
   displayUrl: string;
-  previewMode: "staging" | "local";
-  stagingPending?: boolean;
+  previewMode: "staging" | "draft" | "local";
   narrow: boolean;
   onRefresh: () => void;
   onToggleNarrow: () => void;
@@ -25,7 +24,6 @@ export function StudioPreview({
   previewSrc,
   displayUrl,
   previewMode,
-  stagingPending,
   narrow,
   onRefresh,
   onToggleNarrow,
@@ -69,10 +67,12 @@ export function StudioPreview({
             className={
               previewMode === "staging"
                 ? "mr-1.5 rounded bg-[var(--studio-badge-success-bg)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-badge-success-fg)]"
-                : "mr-1.5 rounded bg-[var(--studio-border)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-muted)]"
+                : previewMode === "draft"
+                  ? "mr-1.5 rounded bg-[var(--studio-badge-draft-bg)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-badge-draft-fg)]"
+                  : "mr-1.5 rounded bg-[var(--studio-border)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-muted)]"
             }
           >
-            {previewMode === "staging" ? "Staging" : "Local"}
+            {previewMode === "staging" ? "Staging" : previewMode === "draft" ? "Draft" : "Local"}
           </span>
           {displayUrl}
         </div>
@@ -96,12 +96,12 @@ export function StudioPreview({
           Set <strong>Staging preview URL</strong> in Settings to load your Vercel staging site here.
         </p>
       ) : null}
-      {stagingPending ? (
+      {previewMode === "draft" ? (
         <p
           className="border-b border-[var(--studio-badge-draft-bg)] bg-[var(--studio-badge-draft-bg)] px-3 py-2 text-center text-[11px] text-[var(--studio-badge-draft-fg)]"
           role="status"
         >
-          You have unsaved or unpublished drafts — push to staging to update this preview after Vercel deploys.
+          Showing your saved draft — use <strong>Push to staging</strong> to publish on staging.conalytic.com after Vercel deploys.
         </p>
       ) : null}
       <div
