@@ -107,7 +107,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "AI returned invalid JSON" }, { status: 502 });
   }
 
-  const parsedResult = parseAgentResponse(parsed, contentSchema, current);
+  const parsedResult = parseAgentResponse(parsed, contentSchema, current, registryId);
   if (!parsedResult.ok) {
     return NextResponse.json({ error: parsedResult.error }, { status: 400 });
   }
@@ -117,10 +117,14 @@ export async function POST(request: Request) {
 
   if (readOnly) {
     agentData = current;
-  } else if (parsedResult.value.usedFallbackData) {
+  } else if (parsedResult.value.validationFailed) {
     agentData = current;
     agentSummary =
       "I could not apply those edits — the AI response did not match the page schema. Try being explicit, e.g. set sections.heroTitleLine1 to \"Marketing analytics with\" and sections.heroTitleLine2 to \"Conalytic\".";
+  } else if (parsedResult.value.usedFallbackData) {
+    agentData = current;
+    agentSummary =
+      "No editable fields were returned. Ask again with explicit sections.* field names (see field hints), or paste the exact heroTitleLine1 / heroTitleLine2 values you want.";
   }
 
   const kind: CmsDraftPayload["kind"] =

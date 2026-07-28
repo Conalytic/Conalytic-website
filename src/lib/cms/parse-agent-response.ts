@@ -1,5 +1,7 @@
 import { z } from "zod";
 import type { ZodType } from "zod";
+import { deepMerge } from "@/lib/cms/deep-merge";
+import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
 
 function coerceKeywords(value: unknown): string[] | undefined {
   if (Array.isArray(value)) {
@@ -41,6 +43,12 @@ export function sanitizeAgentData(data: unknown): Record<string, unknown> {
   if (!data || typeof data !== "object" || Array.isArray(data)) return {};
 
   const raw = data as Record<string, unknown>;
+
+  // Model often echoes the user prompt wrapper { cmsOverlay, effectiveLiveSeo }.
+  if (raw.cmsOverlay && typeof raw.cmsOverlay === "object" && !Array.isArray(raw.cmsOverlay)) {
+    return sanitizeAgentData(raw.cmsOverlay);
+  }
+
   const out: Record<string, unknown> = {};
 
   if (raw.seo !== undefined) out.seo = sanitizeSeo(raw.seo);
@@ -99,13 +107,17 @@ const agentEnvelopeSchema = z.object({
 export type ParsedAgentResponse = {
   summary: string;
   data: Record<string, unknown>;
+  /** True when the model returned no usable field patches. */
   usedFallbackData: boolean;
+  /** True when patches were present but failed schema validation after merge. */
+  validationFailed: boolean;
 };
 
 export function parseAgentResponse(
   parsed: unknown,
   contentSchema: ZodType,
   fallbackData: Record<string, unknown>,
+  registryId?: string,
 ): { ok: true; value: ParsedAgentResponse } | { ok: false; error: string } {
   const envelope = agentEnvelopeSchema.safeParse(parsed);
   if (!envelope.success) {
@@ -113,9 +125,23 @@ export function parseAgentResponse(
   }
 
   const sanitized = sanitizeAgentData(envelope.data.data);
-  const validated = contentSchema.safeParse(
-    Object.keys(sanitized).length > 0 ? sanitized : fallbackData,
-  );
+  const hasPatch = Object.keys(sanitized).length > 0;
+
+  if (!hasPatch) {
+    return {
+      ok: true,
+      value: {
+        summary: envelope.data.summary.trim(),
+        data: fallbackData,
+        usedFallbackData: true,
+        validationFailed: false,
+      },
+    };
+  }
+
+  const merged = deepMerge(fallbackData, sanitized);
+  const normalized = registryId ? normalizePageOverlay(registryId, merged) : merged;
+  const validated = contentSchema.safeParse(normalized);
 
   if (validated.success) {
     return {
@@ -123,22 +149,19 @@ export function parseAgentResponse(
       value: {
         summary: envelope.data.summary.trim(),
         data: validated.data as Record<string, unknown>,
-        usedFallbackData: Object.keys(sanitized).length === 0,
+        usedFallbackData: false,
+        validationFailed: false,
       },
     };
   }
 
-  const fallbackValidated = contentSchema.safeParse(fallbackData);
-  if (fallbackValidated.success) {
-    return {
-      ok: true,
-      value: {
-        summary: envelope.data.summary.trim(),
-        data: fallbackValidated.data as Record<string, unknown>,
-        usedFallbackData: true,
-      },
-    };
-  }
-
-  return { ok: false, error: "AI output failed validation" };
+  return {
+    ok: true,
+    value: {
+      summary: envelope.data.summary.trim(),
+      data: fallbackData,
+      usedFallbackData: true,
+      validationFailed: true,
+    },
+  };
 }
