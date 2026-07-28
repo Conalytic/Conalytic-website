@@ -1,6 +1,7 @@
 import { CMS_REGISTRY } from "@/lib/cms/page-registry";
 import { getFieldHintsForRegistry } from "@/lib/cms/field-hints";
 import { getSiteRoutesHint } from "@/lib/cms/site-routes-hint";
+import { getEffectiveSectionOrder } from "@/lib/cms/section-order";
 import type { CmsSeoFields } from "@/lib/cms/types";
 
 const HOME_SECTION_ORDER_KEYS = [
@@ -27,6 +28,75 @@ export function getSectionOrderKeys(registryId: string): string[] {
   return PAGE_SECTION_HINTS[registryId] ?? [];
 }
 
+function buildSectionOrderHint(registryId: string, current: Record<string, unknown>): string {
+  const keys = getSectionOrderKeys(registryId);
+  if (!keys.length) return "";
+
+  const layout = current.layout as { sectionOrder?: string[] } | undefined;
+  const order = getEffectiveSectionOrder(layout, registryId);
+  const numbered = order.map((key, i) => `${i + 1}. ${key}`).join("\n");
+
+  return `
+SECTION ORDER (home page blocks — reorder via layout.sectionOrder only):
+Allowed keys: ${keys.join(", ")}
+Current order:
+${numbered}
+
+To move a section, return layout.sectionOrder as a full array of ALL keys in the new order.
+Example — move pricing before FAQ:
+"layout": { "sectionOrder": ["hero","trustedBy","transformation","howItWorks","products","stats","integrations","testimonials","pricing","faq","cta"] }
+Example — move FAQ above pricing: swap "faq" and "pricing" positions in that array.`;
+}
+
+function buildExamplesBlock(registryId: string): string {
+  if (registryId !== "home") {
+    return `
+EXAMPLE — update hero headline:
+{
+  "summary": "Updated the hero headline.",
+  "data": {
+    "sections": {
+      "heroTitleLine1": "Marketing analytics with",
+      "heroTitleLine2": "Conalytic"
+    }
+  }
+}`;
+  }
+
+  return `
+EXAMPLES (follow exactly — data is the overlay, NOT wrapped in cmsOverlay):
+
+1) Change hero headline:
+{
+  "summary": "Updated the home hero headline.",
+  "data": {
+    "sections": {
+      "heroTitleLine1": "Marketing analytics with",
+      "heroTitleLine2": "Conalytic"
+    }
+  }
+}
+
+2) Move pricing above FAQ:
+{
+  "summary": "Moved the pricing section above FAQ.",
+  "data": {
+    "layout": {
+      "sectionOrder": ["hero","trustedBy","transformation","howItWorks","products","stats","integrations","testimonials","pricing","faq","cta"]
+    }
+  }
+}
+
+3) Change copy + SEO together:
+{
+  "summary": "Tightened hero subtitle and meta description.",
+  "data": {
+    "sections": { "heroSubtitle": "Ask GA4, Ads, and Search Console questions in plain English." },
+    "seo": { "description": "..." }
+  }
+}`;
+}
+
 export function buildAgentSystemPrompt(
   registryId: string,
   entryLabel: string,
@@ -35,13 +105,10 @@ export function buildAgentSystemPrompt(
 ) {
   const readOnly = options?.readOnly ?? false;
   const registryList = CMS_REGISTRY.map((e) => `- ${e.id}: ${e.label} (${e.path})`).join("\n");
-  const sectionKeys = getSectionOrderKeys(registryId);
   const fieldHints = getFieldHintsForRegistry(registryId);
   const siteRoutesHint = getSiteRoutesHint();
-  const sectionHint =
-    sectionKeys.length > 0
-      ? `\nSection placement keys for "${registryId}" (use layout.sectionOrder only — must be a permutation of these existing sections):\n${sectionKeys.join(", ")}`
-      : "";
+  const sectionHint = buildSectionOrderHint(registryId, {});
+  const examples = buildExamplesBlock(registryId);
 
   if (readOnly) {
     return `You are Conalytic Studio — an SEO and content analyst for ONE marketing page. This turn is READ-ONLY.
@@ -62,7 +129,7 @@ In summary, provide a clear structured report:
 OUTPUT — return JSON only:
 {
   "summary": "your full audit/report here (markdown bullets allowed in text)",
-  "data": { ...exact copy of cmsOverlay from user message — byte-for-byte unchanged... }
+  "data": { ...exact overlay fields only — same shape as cmsOverlay in the user message... }
 }
 
 FORBIDDEN on read-only turns: editing data, adding seo/sections, saying you applied changes.
@@ -70,7 +137,7 @@ ${sectionHint}
 Brand voice: professional B2B SEO consultant.`;
   }
 
-  return `You are Conalytic Studio — a marketing CMS content assistant. You update draft JSON for ONE existing page only.
+  return `You are Conalytic Studio — a precise marketing CMS editor. You apply copy and layout changes by returning valid JSON patches.
 
 PAGE: ${entryLabel} (${entryPath})
 REGISTRY ID: ${registryId}
@@ -78,40 +145,39 @@ REGISTRY ID: ${registryId}
 SITE REGISTRY (fixed — pages cannot be created from admin):
 ${registryList}
 
-FIELD MAP (use these exact JSON paths — preview only reads these keys):
+FIELD MAP (preview ONLY reads these paths):
 ${fieldHints}
 
-IMPORTANT: Page copy is stored in sections as flat string fields (e.g. sections.heroTitleLine1). Never nest hero copy under sections.hero or use keys like heading/title.
+CRITICAL RULES:
+1. Return "data" as the page overlay itself: { "seo"?, "sections"?, "layout"? } — NEVER wrap inside cmsOverlay or effectiveLiveSeo.
+2. Put ALL page copy under "sections" as flat keys (sections.heroTitleLine1, NOT sections.hero.heading).
+3. For headline updates on home: set sections.heroTitleLine1 and sections.heroTitleLine2 (line 2 is the green gradient word, often "Conalytic").
+4. For section moves: set layout.sectionOrder to a complete array of every allowed section key in the new order.
+5. Return ONLY the fields you change plus summary — partial patches are OK; omitted fields stay unchanged.
+6. When changing a button, set both *Label and *Href fields together.
 
 ALLOWED:
-- Answer questions about the current page JSON, SEO, schemas, and section layout in the summary without changing data.
-- Run SEO audits, content reviews, and gap analysis in the summary — return the current JSON unchanged in data unless the user asks you to apply fixes.
-- Update copy in existing fields: headlines, body text, CTAs, SEO (seo.*), nav labels, footer text, blog markdown, testimonials, FAQ items, etc.
-- Update page-level button links and internal linking: heroPrimaryCtaHref, heroSecondaryCtaHref, ctaPrimaryHref, ctaSecondaryHref, heroButtonHref, integrationsCtaHref, faqContactHref, and markdown links in bodyMarkdown. Always set the matching *Label field when changing a button.
-- Add or improve internal links between existing site pages using registry paths (e.g. point a CTA to /products/kpis-tracker or /features).
-- Use attached documents as source material when the user provides files.
-- Reorder existing page sections via layout.sectionOrder (array of section keys). Example: move "products" to position 3.
-- Edit items inside existing arrays (e.g. FAQ questions) — do not invent new module types.
+- Copy edits: headlines, subtitles, CTAs, FAQ items, testimonials, blog markdown, SEO fields (seo.*).
+- Internal links using registry paths (/features, /products/kpis-tracker, /contact, etc.).
+- Section reorder on pages with layout.sectionOrder (see section list below).
+- Questions / audits in summary with unchanged data when user does not ask to apply.
 
-FORBIDDEN (developer scope — never do these):
-- Create new pages, routes, slugs, or registry entries.
-- Add chrome header/footer nav links to URLs outside the site registry.
-- Add new React components, modules, section types, or JSON keys outside the current shape.
-- Change code, APIs, integrations, or site architecture.
-- Remove required legal disclaimers on privacy/terms pages.
+FORBIDDEN:
+- New pages, routes, components, or JSON keys outside the field map.
+- Nested hero objects (sections.hero), keys named heading/title/subtitle at wrong paths.
+- chrome nav links to URLs outside the site registry.
 
 ${siteRoutesHint}
+${sectionHint}
+${examples}
 
-OUTPUT FORMAT — return a single JSON object:
+OUTPUT FORMAT — single JSON object, no markdown fences:
 {
-  "summary": "2-4 plain sentences: what you changed, or your answer if the user only asked a question",
-  "data": { ...full CMS overlay for this page — return UNCHANGED if no edits are needed... }
+  "summary": "2-4 plain sentences describing what changed",
+  "data": { ...only changed overlay fields... }
 }
 
-If the user only asks a question or wants an audit/review (e.g. SEO audit, schema check), put the full answer in summary and return data identical to the current JSON.
-
-The "data" object must match the current CMS shape (seo, sections, layout, etc.). Return ONLY valid JSON — no markdown fences.
-${sectionHint}
+If the user only asks a question, put the answer in summary and return "data": {} (empty object).
 
 Brand voice: professional B2B marketing analytics — GA4, Google Ads, KPIs, conversational analytics, report builder.`;
 }
@@ -120,9 +186,15 @@ export function buildAgentUserPrompt(
   current: Record<string, unknown>,
   prompt: string,
   attachmentBlock: string,
-  options?: { readOnly?: boolean; effectiveSeo?: CmsSeoFields | null },
+  options?: { readOnly?: boolean; effectiveSeo?: CmsSeoFields | null; registryId?: string },
 ) {
   const readOnly = options?.readOnly ?? false;
+  const registryId = options?.registryId ?? "";
+  const sectionState =
+    registryId && getSectionOrderKeys(registryId).length > 0
+      ? buildSectionOrderHint(registryId, current)
+      : "";
+
   const context = {
     cmsOverlay: current,
     ...(options?.effectiveSeo ? { effectiveLiveSeo: options.effectiveSeo } : {}),
@@ -139,14 +211,15 @@ ${attachmentBlock ? `\n\nAttached reference documents:\n${attachmentBlock}` : ""
 Return cmsOverlay unchanged in "data". Put the full audit/report only in "summary".`;
   }
 
-  return `Current CMS JSON for this page:
+  return `Current page overlay (cmsOverlay — merge your edits into this structure):
 ${JSON.stringify(context, null, 2)}
+${sectionState}
 
 User request:
 ${prompt || "Apply relevant updates from the attached documents to this page's content and SEO."}
 ${attachmentBlock ? `\n\nAttached reference documents:\n${attachmentBlock}` : ""}
 
-Decide which fields to update (content, SEO, section order). Return the full updated overlay in "data" plus a clear "summary".`;
+Return JSON with "summary" and "data" containing ONLY the overlay fields you changed (seo, sections, layout). Do NOT echo cmsOverlay wrapper in data.`;
 }
 
 export const HOME_DEFAULT_SECTION_ORDER = [...HOME_SECTION_ORDER_KEYS];

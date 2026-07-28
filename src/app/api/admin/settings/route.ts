@@ -18,7 +18,7 @@ export async function GET() {
     openaiConfigured: Boolean(settings.openaiApiKey || process.env.OPENAI_API_KEY),
     anthropicConfigured: Boolean(settings.anthropicApiKey || process.env.ANTHROPIC_API_KEY),
     githubConfigured: Boolean(settings.githubToken || process.env.GITHUB_TOKEN),
-    openaiModel: settings.openaiModel ?? "gpt-4.1-mini",
+    openaiModel: settings.openaiModel ?? "gpt-4.1",
     anthropicModel: settings.anthropicModel ?? "claude-sonnet-4-20250514",
     githubRepo: settings.githubRepo ?? "Conalytic/Conalytic-website",
     stagingBranch: settings.stagingBranch ?? "staging",

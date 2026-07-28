@@ -342,7 +342,7 @@ function envDefaultSettings(): AdminSettings {
     githubToken: process.env.GITHUB_TOKEN,
     githubRepo: process.env.GITHUB_REPO || "Conalytic/Conalytic-website",
     stagingBranch: process.env.GITHUB_STAGING_BRANCH || "staging",
-    openaiModel: "gpt-4.1-mini",
+    openaiModel: "gpt-4.1",
     anthropicModel: "claude-sonnet-4-20250514",
   };
 }

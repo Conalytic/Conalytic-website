@@ -3,6 +3,9 @@
  * Fixes common mistakes like `sections.hero.heading` → `sections.heroTitleLine1`.
  */
 
+import { getSectionOrderKeys } from "@/lib/cms/agent-prompt";
+import { normalizeSectionOrder } from "@/lib/cms/section-order";
+
 function applyHeroHeading(sections: Record<string, unknown>, heading: string) {
   const text = heading.trim();
   if (!text) return;
@@ -104,6 +107,27 @@ function normalizeHeroSections(sections: Record<string, unknown>) {
 
 export function normalizePageOverlay(registryId: string, data: Record<string, unknown>): Record<string, unknown> {
   const out = { ...data };
+  const allowed = getSectionOrderKeys(registryId);
+
+  // Hoist sectionOrder mistakenly placed at root.
+  if (Array.isArray(out.sectionOrder) && allowed.length > 0) {
+    const layout =
+      out.layout && typeof out.layout === "object" && !Array.isArray(out.layout)
+        ? { ...(out.layout as Record<string, unknown>) }
+        : {};
+    layout.sectionOrder = out.sectionOrder;
+    out.layout = layout;
+    delete out.sectionOrder;
+  }
+
+  const rawLayout = out.layout;
+  if (rawLayout && typeof rawLayout === "object" && !Array.isArray(rawLayout) && allowed.length > 0) {
+    const layout = { ...(rawLayout as Record<string, unknown>) };
+    const normalizedOrder = normalizeSectionOrder(layout.sectionOrder, allowed);
+    if (normalizedOrder) layout.sectionOrder = normalizedOrder;
+    out.layout = layout;
+  }
+
   const rawSections = out.sections;
   if (!rawSections || typeof rawSections !== "object" || Array.isArray(rawSections)) return out;
 

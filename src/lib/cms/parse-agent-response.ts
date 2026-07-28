@@ -55,6 +55,14 @@ export function sanitizeAgentData(data: unknown): Record<string, unknown> {
   if (raw.layout !== undefined && typeof raw.layout === "object" && !Array.isArray(raw.layout)) {
     out.layout = raw.layout;
   }
+  if (Array.isArray(raw.sectionOrder)) {
+    out.layout = {
+      ...(typeof out.layout === "object" && !Array.isArray(out.layout)
+        ? (out.layout as Record<string, unknown>)
+        : {}),
+      sectionOrder: raw.sectionOrder,
+    };
+  }
 
   const sections: Record<string, unknown> =
     raw.sections && typeof raw.sections === "object" && !Array.isArray(raw.sections)
@@ -141,7 +149,13 @@ export function parseAgentResponse(
 
   const merged = deepMerge(fallbackData, sanitized);
   const normalized = registryId ? normalizePageOverlay(registryId, merged) : merged;
-  const validated = contentSchema.safeParse(normalized);
+  let validated = contentSchema.safeParse(normalized);
+
+  if (!validated.success && normalized.seo) {
+    const withoutSeo = { ...normalized };
+    delete withoutSeo.seo;
+    validated = contentSchema.safeParse(withoutSeo);
+  }
 
   if (validated.success) {
     return {

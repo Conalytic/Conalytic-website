@@ -15,6 +15,7 @@ import type { CmsSeoFields } from "@/lib/cms/types";
 import { extractTextFromUploads, formatUploadsForPrompt } from "@/lib/cms/extract-upload-text";
 import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
 import { parseAgentResponse } from "@/lib/cms/parse-agent-response";
+import { buildQuickPatch, mergeQuickPatch } from "@/lib/cms/agent-quick-patches";
 import { stableJson } from "@/lib/cms/stable-json";
 
 export async function POST(request: Request) {
@@ -56,6 +57,7 @@ export async function POST(request: Request) {
   const contentSchema = schemaForRegistryType(entry.type, chromeKind);
 
   const readOnly = isReadOnlyAgentPrompt(prompt);
+  const quickPatch = readOnly ? null : buildQuickPatch(prompt, registryId, current);
   const effectiveSeo = entry.hasSeo
     ? resolveEffectiveSeo(registryId, current.seo as CmsSeoFields | undefined)
     : null;
@@ -64,6 +66,7 @@ export async function POST(request: Request) {
   const userContent = buildAgentUserPrompt(current, prompt, formatUploadsForPrompt(uploads), {
     readOnly,
     effectiveSeo,
+    registryId,
   });
 
   let rawJson = "{}";
@@ -85,7 +88,7 @@ export async function POST(request: Request) {
       if (!key) throw new Error("OpenAI API key not configured");
       const client = new OpenAI({ apiKey: key });
       const completion = await client.chat.completions.create({
-        model: settings.openaiModel || "gpt-4.1-mini",
+        model: settings.openaiModel || "gpt-4.1",
         messages: [
           { role: "system", content: system },
           { role: "user", content: userContent },
@@ -113,18 +116,20 @@ export async function POST(request: Request) {
   }
 
   let agentSummary = parsedResult.value.summary;
-  let agentData = parsedResult.value.data;
+  let agentData = mergeQuickPatch(registryId, parsedResult.value.data, quickPatch);
 
   if (readOnly) {
     agentData = current;
-  } else if (parsedResult.value.validationFailed) {
+  } else if (parsedResult.value.validationFailed && !quickPatch) {
     agentData = current;
     agentSummary =
       "I could not apply those edits — the AI response did not match the page schema. Try being explicit, e.g. set sections.heroTitleLine1 to \"Marketing analytics with\" and sections.heroTitleLine2 to \"Conalytic\".";
-  } else if (parsedResult.value.usedFallbackData) {
+  } else if (parsedResult.value.usedFallbackData && !quickPatch) {
     agentData = current;
     agentSummary =
-      "No editable fields were returned. Ask again with explicit sections.* field names (see field hints), or paste the exact heroTitleLine1 / heroTitleLine2 values you want.";
+      "No editable fields were returned. Ask again with explicit sections.* field names, or try: \"change this to Marketing analytics with Conalytic\" or \"move pricing above FAQ\".";
+  } else if (quickPatch && parsedResult.value.usedFallbackData) {
+    agentSummary = `Applied your request directly. ${agentSummary}`.trim();
   }
 
   const kind: CmsDraftPayload["kind"] =

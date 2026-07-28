@@ -32,6 +32,7 @@ import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/cms/agent-prompt";
+import { normalizeSectionOrder as resolveSectionOrder } from "@/lib/cms/section-order";
 import {
   SAAS_EASE as EASE,
   staggerContainer as stagger,
@@ -613,23 +614,6 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
 /* ══════════════════════════════════════════════════════
    ROOT EXPORT
 ══════════════════════════════════════════════════════ */
-function normalizeSectionOrder(custom: string[] | undefined, defaults: readonly string[]): string[] {
-  if (!custom?.length) return [...defaults];
-  const allowed = new Set(defaults);
-  const seen = new Set<string>();
-  const result: string[] = [];
-  for (const id of custom) {
-    if (allowed.has(id) && !seen.has(id)) {
-      result.push(id);
-      seen.add(id);
-    }
-  }
-  for (const id of defaults) {
-    if (!seen.has(id)) result.push(id);
-  }
-  return result;
-}
-
 export function HomeClient({
   content,
   sectionOrder,
@@ -637,7 +621,7 @@ export function HomeClient({
   content?: HomeContentPreset;
   sectionOrder?: string[];
 }) {
-  const order = normalizeSectionOrder(sectionOrder, HOME_DEFAULT_SECTION_ORDER);
+  const order = resolveSectionOrder(sectionOrder, HOME_DEFAULT_SECTION_ORDER) ?? [...HOME_DEFAULT_SECTION_ORDER];
 
   const blocks: Record<string, React.ReactNode> = {
     hero: <HomeHero content={content} />,
