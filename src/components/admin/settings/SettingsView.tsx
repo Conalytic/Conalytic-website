@@ -160,7 +160,7 @@ export function SettingsView() {
                 label="Staging preview URL (Vercel)"
                 value={settings.stagingPreviewUrl}
                 onChange={(e) => setSettings({ ...settings, stagingPreviewUrl: e.target.value })}
-                hint="Studio iframe loads this deployment (staging branch). Example: https://your-project-git-staging.vercel.app"
+                hint="Use the Vercel Preview URL for the staging branch (Deployments → staging → Visit). Avoid SSO-protected domains unless you set STAGING_PREVIEW_BYPASS_TOKEN on production."
               />
               <StudioInput
                 label="Vercel staging deploy hook"

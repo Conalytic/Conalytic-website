@@ -12,7 +12,8 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
    Uses author **Conalytic Admin <admin@conalytic.com>** for any local git metadata. The publish API also attributes CMS commits to that identity.
 2. **GitHub PAT** — Fine-grained token with **Contents: Read and write** on this repo. Save it in **Admin → Settings** or set `GITHUB_TOKEN`.
 3. **Vercel** — Keep **Production Branch** as `main`. Enable preview deployments for `staging`, or add a separate project pointed at `staging`.
-4. **Staging env** — Set `NEXT_PUBLIC_SITE_URL` to your staging URL and the same admin env vars as production. Staging is **always** `noindex, nofollow` in code (meta tags, `X-Robots-Tag`, and `robots.txt`); `ALLOW_SEARCH_INDEXING` cannot override that on the staging branch or non-production URL.
+4. **Staging env** — Set `NEXT_PUBLIC_SITE_URL` to your staging URL and the same admin env vars as production. Staging is **always** `noindex, nofollow` in code (meta tags, `X-Robots-Tag`); `robots.txt` serves your CMS file when saved.
+5. **Studio preview URL** — Use the Vercel **Preview** deployment URL for the `staging` branch (from Deployments → staging commit → Visit), not a protected alias. If **Deployment Protection** is on, disable it for Preview deployments or set `STAGING_PREVIEW_BYPASS_TOKEN` on production (Vercel → Settings → Deployment Protection → Protection Bypass for Automation).
 
 ## Publish safety
 
@@ -33,8 +34,8 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | `KV_REST_API_TOKEN` | **Required on Vercel** (if using Vercel Storage) | Pair with `KV_REST_API_URL` |
 | `GITHUB_REPO` | Optional | Default `Conalytic/Conalytic-website` |
 | `GITHUB_STAGING_BRANCH` | Optional | Default `staging` |
-| `STAGING_PREVIEW_URL` | Recommended | Vercel URL for the staging branch — Studio iframe preview (e.g. `https://your-app-git-staging.vercel.app`) |
-| `VERCEL_STAGING_DEPLOY_HOOK_URL` | Optional | Only if git auto-deploy for `staging` is **off** — otherwise causes duplicate builds. Set `FORCE_VERCEL_STAGING_DEPLOY_HOOK=1` to enable hook calls from Studio. |
+| `STAGING_PREVIEW_URL` | Recommended | Vercel **Preview** URL for the `staging` branch — Studio iframe (not a SSO-protected alias unless bypass token is set) |
+| `STAGING_PREVIEW_BYPASS_TOKEN` | If protected | Vercel Protection Bypass for Automation secret — required when Preview deployments use Vercel Authentication |
 | `GITHUB_COMMIT_AUTHOR_NAME` | Optional | Default `Conalytic Admin` |
 | `GITHUB_COMMIT_AUTHOR_EMAIL` | Optional | Default `admin@conalytic.com` |
 

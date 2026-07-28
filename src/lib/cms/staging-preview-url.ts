@@ -18,7 +18,12 @@ export function resolveStagingPreviewBase(settings?: AdminSettings): string | nu
   }
 }
 
-export function buildStagingPreviewPageUrl(base: string, pagePath: string, cacheKey?: number): string {
+export function buildStagingPreviewPageUrl(
+  base: string,
+  pagePath: string,
+  cacheKey?: number,
+  bypassToken?: string | null,
+): string {
   const normalizedPath =
     pagePath === "/" || pagePath === ""
       ? ""
@@ -26,9 +31,15 @@ export function buildStagingPreviewPageUrl(base: string, pagePath: string, cache
         ? pagePath
         : `/${pagePath}`;
   const url = `${base.replace(/\/$/, "")}${normalizedPath}`;
-  if (cacheKey == null) return url;
-  const sep = url.includes("?") ? "&" : "?";
-  return `${url}${sep}_studio=${cacheKey}`;
+  const params: string[] = [];
+  if (cacheKey != null) params.push(`_studio=${cacheKey}`);
+  const bypass =
+    bypassToken?.trim() ||
+    process.env.STAGING_PREVIEW_BYPASS_TOKEN?.trim() ||
+    process.env.VERCEL_AUTOMATION_BYPASS_SECRET?.trim();
+  if (bypass) params.push(`x-vercel-protection-bypass=${encodeURIComponent(bypass)}`);
+  if (params.length === 0) return url;
+  return `${url}?${params.join("&")}`;
 }
 
 export function stagingPreviewDisplayUrl(base: string, pagePath: string): string {
