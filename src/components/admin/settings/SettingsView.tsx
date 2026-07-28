@@ -15,6 +15,9 @@ type Settings = {
   anthropicModel: string;
   githubRepo: string;
   stagingBranch: string;
+  storageMode?: string;
+  canSaveSettings?: boolean;
+  storageMessage?: string;
 };
 
 export function SettingsView() {
@@ -49,8 +52,15 @@ export function SettingsView() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
+    const json = (await res.json()) as { error?: string };
     setSaving(false);
-    toast(res.ok ? "Settings saved" : "Save failed", res.ok ? "success" : "error");
+    if (res.ok) {
+      toast("Settings saved", "success");
+      const refreshed = await fetch("/api/admin/settings").then((r) => r.json());
+      setSettings(refreshed as Settings);
+    } else {
+      toast(json.error || "Save failed", "error");
+    }
     setOpenaiKey("");
     setAnthropicKey("");
     setGithubToken("");
@@ -75,6 +85,11 @@ export function SettingsView() {
         <p className="mt-1 text-sm text-[var(--studio-muted)]">
           Keys are encrypted and never shown again after saving.
         </p>
+        {settings.canSaveSettings === false && settings.storageMessage ? (
+          <p className="mt-3 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-[var(--studio-fg)]">
+            {settings.storageMessage}
+          </p>
+        ) : null}
 
         <form onSubmit={onSubmit} className="mt-8 space-y-6 pb-12">
           <StudioCard title="OpenAI">
@@ -138,7 +153,7 @@ export function SettingsView() {
             </div>
           </StudioCard>
 
-          <StudioButton type="submit" variant="primary" disabled={saving}>
+          <StudioButton type="submit" variant="primary" disabled={saving || settings.canSaveSettings === false}>
             {saving ? "Saving…" : "Save settings"}
           </StudioButton>
         </form>

@@ -27,8 +27,8 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | `ADMIN_PASSWORD` | Yes | Shared admin login password |
 | `ADMIN_SESSION_SECRET` | Yes | 32+ character secret for iron-session (required in production; never use the dev default) |
 | `ADMIN_ENCRYPTION_KEY` | Recommended | Encrypts API keys in settings (falls back to session secret) |
-| `UPSTASH_REDIS_REST_URL` | Optional | Draft storage (uses `.cms-drafts/` locally if unset) |
-| `UPSTASH_REDIS_REST_TOKEN` | Optional | Draft storage |
+| `UPSTASH_REDIS_REST_URL` | **Required on Vercel** | Encrypted API keys, drafts, and AI chat history (local dev uses `.cms-drafts/` if unset) |
+| `UPSTASH_REDIS_REST_TOKEN` | **Required on Vercel** | Pair with `UPSTASH_REDIS_REST_URL` — without Redis, Studio cannot save API keys on Vercel |
 | `GITHUB_REPO` | Optional | Default `Conalytic/Conalytic-website` |
 | `GITHUB_STAGING_BRANCH` | Optional | Default `staging` |
 | `GITHUB_COMMIT_AUTHOR_NAME` | Optional | Default `Conalytic Admin` |

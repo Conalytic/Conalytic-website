@@ -1,10 +1,41 @@
 import { Redis } from "@upstash/redis";
 import { mkdir, readFile, writeFile, readdir, unlink } from "fs/promises";
+import os from "os";
 import path from "path";
 import type { CmsDraftPayload } from "@/lib/cms/types";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 
-const LOCAL_DRAFTS_DIR = path.join(process.cwd(), ".cms-drafts");
+function isServerlessDeploy(): boolean {
+  return process.env.VERCEL === "1" || Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME);
+}
+
+function getLocalDraftsDir(): string {
+  if (isServerlessDeploy()) {
+    return path.join(os.tmpdir(), "conalytic-cms-drafts");
+  }
+  return path.join(process.cwd(), ".cms-drafts");
+}
+
+export type CmsStorageStatus = {
+  mode: "redis" | "local" | "serverless-ephemeral";
+  canSaveSettings: boolean;
+  message?: string;
+};
+
+export function getCmsStorageStatus(): CmsStorageStatus {
+  if (getRedis()) {
+    return { mode: "redis", canSaveSettings: true };
+  }
+  if (isServerlessDeploy()) {
+    return {
+      mode: "serverless-ephemeral",
+      canSaveSettings: false,
+      message:
+        "Vercel cannot persist Studio settings to disk. Add Upstash Redis (UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN) in Vercel, or set OPENAI_API_KEY, ANTHROPIC_API_KEY, and GITHUB_TOKEN as environment variables.",
+    };
+  }
+  return { mode: "local", canSaveSettings: true };
+}
 
 let redis: Redis | null = null;
 
@@ -22,11 +53,11 @@ function draftKey(sessionId: string, registryId: string) {
 }
 
 function localDraftPath(sessionId: string, registryId: string) {
-  return path.join(LOCAL_DRAFTS_DIR, sessionId, `${registryId}.json`);
+  return path.join(getLocalDraftsDir(), sessionId, `${registryId}.json`);
 }
 
 async function ensureLocalDir(sessionId: string) {
-  await mkdir(path.join(LOCAL_DRAFTS_DIR, sessionId), { recursive: true });
+  await mkdir(path.join(getLocalDraftsDir(), sessionId), { recursive: true });
 }
 
 export async function saveDraft(
@@ -88,7 +119,7 @@ export async function listDraftRegistryIds(sessionId: string): Promise<string[]>
   }
 
   try {
-    const dir = path.join(LOCAL_DRAFTS_DIR, sessionId);
+    const dir = path.join(getLocalDraftsDir(), sessionId);
     const files = await readdir(dir);
     return files
       .filter((f) => f.endsWith(".json") && !f.startsWith("ai-undo-") && !f.startsWith("ai-chat-"))
@@ -113,7 +144,7 @@ function aiUndoKey(sessionId: string, registryId: string) {
 }
 
 function localAiUndoPath(sessionId: string, registryId: string) {
-  return path.join(LOCAL_DRAFTS_DIR, sessionId, `ai-undo-${registryId}.json`);
+  return path.join(getLocalDraftsDir(), sessionId, `ai-undo-${registryId}.json`);
 }
 
 export async function saveAiUndoSnapshot(
@@ -186,7 +217,7 @@ function aiChatKey(sessionId: string, registryId: string) {
 }
 
 function localAiChatPath(sessionId: string, registryId: string) {
-  return path.join(LOCAL_DRAFTS_DIR, sessionId, `ai-chat-${registryId}.json`);
+  return path.join(getLocalDraftsDir(), sessionId, `ai-chat-${registryId}.json`);
 }
 
 export async function getAiChatHistory(
@@ -259,6 +290,11 @@ export async function getAdminSettings(): Promise<AdminSettings> {
 }
 
 export async function saveAdminSettings(settings: AdminSettings): Promise<void> {
+  const storage = getCmsStorageStatus();
+  if (!storage.canSaveSettings) {
+    throw new Error(storage.message ?? "CMS settings storage is not available on this host.");
+  }
+
   const { encryptJson } = await import("@/lib/admin/crypto");
   const blob = encryptJson(settings);
   const r = getRedis();
@@ -266,13 +302,15 @@ export async function saveAdminSettings(settings: AdminSettings): Promise<void> 
     await r.set(SETTINGS_KEY, blob);
     return;
   }
-  await mkdir(LOCAL_DRAFTS_DIR, { recursive: true });
-  await writeFile(path.join(LOCAL_DRAFTS_DIR, "settings.enc"), blob, "utf8");
+
+  const dir = getLocalDraftsDir();
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, "settings.enc"), blob, "utf8");
 }
 
 async function loadLocalSettings(): Promise<AdminSettings> {
   try {
-    const blob = await readFile(path.join(LOCAL_DRAFTS_DIR, "settings.enc"), "utf8");
+    const blob = await readFile(path.join(getLocalDraftsDir(), "settings.enc"), "utf8");
     const { decryptJson } = await import("@/lib/admin/crypto");
     return decryptJson<AdminSettings>(blob);
   } catch {
