@@ -103,6 +103,22 @@ export async function POST() {
       const existing =
         (await fetchGithubJsonFile(octokit, owner, repo, branch, filePath)) ?? {};
 
+      if (entry.type === "robots") {
+        const draftBody =
+          typeof (draft.data as { body?: string }).body === "string"
+            ? (draft.data as { body?: string }).body!.trim()
+            : "";
+        if (!draftBody) {
+          return NextResponse.json(
+            {
+              error:
+                "Robots.txt draft is empty. Click Save draft with your robots content before pushing to staging.",
+            },
+            { status: 400 },
+          );
+        }
+      }
+
       const merged = deepMerge(existing, draft.data as Record<string, unknown>);
       treeItems.push({
         path: filePath,

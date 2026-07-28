@@ -13,9 +13,8 @@ export function AdminRobotsForm({ body, onChange }: Props) {
     <div className="space-y-4 p-4">
       <StudioCard>
         <p className="text-sm text-[var(--studio-muted)]">
-          Edit the <strong className="text-[var(--studio-fg)]">robots.txt</strong> served on production after you promote staging to main.
-          The Studio preview loads your <strong className="text-[var(--studio-fg)]">staging site</strong> — staging always serves{" "}
-          <code className="text-[11px]">Disallow: /</code> for robots regardless of this file.
+          Edit <strong className="text-[var(--studio-fg)]">robots.txt</strong> for production (promote staging → main when ready).
+          Studio preview loads your <strong className="text-[var(--studio-fg)]">staging</strong> deployment — save draft, then push to staging, then refresh after Vercel deploys.
         </p>
       </StudioCard>
       <StudioTextarea

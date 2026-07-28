@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import type { CmsRegistryEntry, CmsSeoFields } from "@/lib/cms/types";
 import { resolveEffectiveSeo } from "@/lib/cms/seo-defaults";
 import { buildStagingPreviewPageUrl, stagingPreviewDisplayUrl, stagingPreviewPathForEntry } from "@/lib/cms/staging-preview-url";
+import { buildDefaultRobotsTxt, stagingRobotsTxt } from "@/lib/cms/robots-default";
 import { deepMerge } from "@/lib/cms/deep-merge";
 import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
 import { AdminAppShell, StudioShellLayout } from "@/components/admin/layout/AdminAppShell";
@@ -72,17 +73,18 @@ export function StudioPage() {
     }
     const json = (await res.json()) as DraftResponse;
     const isRobots = json.entry.type === "robots";
+    const published = (json.published ?? {}) as Record<string, unknown>;
+    const publishedBase = isRobots
+      ? (() => {
+          const storedBody = typeof published.body === "string" ? published.body.trim() : "";
+          return storedBody ? published : { body: buildDefaultRobotsTxt() };
+        })()
+      : published;
     const merged = isRobots
-      ? deepMerge(
-          (json.published ?? {}) as Record<string, unknown>,
-          (json.draft?.data ?? {}) as Record<string, unknown>,
-        )
+      ? deepMerge(publishedBase, (json.draft?.data ?? {}) as Record<string, unknown>)
       : normalizePageOverlay(
           id,
-          deepMerge(
-            (json.published ?? {}) as Record<string, unknown>,
-            (json.draft?.data ?? {}) as Record<string, unknown>,
-          ),
+          deepMerge(publishedBase, (json.draft?.data ?? {}) as Record<string, unknown>),
         );
     if (isRobots) {
       setData(merged);

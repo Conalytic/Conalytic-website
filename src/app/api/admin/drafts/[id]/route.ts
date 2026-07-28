@@ -4,7 +4,6 @@ import { deleteDraft, getDraft, saveDraft } from "@/lib/cms/draft-store";
 import { getRegistryEntryById } from "@/lib/cms/page-registry";
 import { schemaForRegistryType } from "@/lib/cms/schemas";
 import { getStagingPublishedCmsJson } from "@/lib/cms/staging-published";
-import { resolveRobotsBody } from "@/lib/robots-txt";
 import type { CmsDraftPayload } from "@/lib/cms/types";
 
 function kindForEntry(entry: ReturnType<typeof getRegistryEntryById>): CmsDraftPayload["kind"] {
@@ -26,14 +25,9 @@ export async function GET(_req: Request, ctx: { params: Promise<{ id: string }> 
 
   const sessionId = adminSessionId(auth);
   const draft = await getDraft(sessionId, id);
-  const stored = await getStagingPublishedCmsJson(entry.contentFile);
+  const stored = (await getStagingPublishedCmsJson(entry.contentFile)) ?? {};
 
-  let published = stored;
-  if (entry.type === "robots") {
-    published = { body: resolveRobotsBody(stored, null) };
-  }
-
-  return NextResponse.json({ entry, draft, published });
+  return NextResponse.json({ entry, draft, published: stored });
 }
 
 export async function PATCH(request: Request, ctx: { params: Promise<{ id: string }> }) {
@@ -50,6 +44,14 @@ export async function PATCH(request: Request, ctx: { params: Promise<{ id: strin
   const parsed = schema.safeParse(body.data ?? {});
   if (!parsed.success) {
     return NextResponse.json({ error: "Validation failed", details: parsed.error.flatten() }, { status: 400 });
+  }
+
+  if (entry.type === "robots") {
+    const robotsData = parsed.data as { body?: string };
+    const robotsBody = typeof robotsData.body === "string" ? robotsData.body.trim() : "";
+    if (!robotsBody) {
+      return NextResponse.json({ error: "robots.txt body cannot be empty" }, { status: 400 });
+    }
   }
 
   const payload = { kind: kindForEntry(entry), data: parsed.data } as CmsDraftPayload;
