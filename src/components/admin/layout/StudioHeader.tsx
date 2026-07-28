@@ -43,7 +43,7 @@ export function StudioHeader({
           {pageDirty ? (
             <StudioBadge tone="draft">Draft</StudioBadge>
           ) : (
-            <StudioBadge tone="success">Saved</StudioBadge>
+            <StudioBadge tone="muted">Live staging</StudioBadge>
           )}
         </div>
         <p

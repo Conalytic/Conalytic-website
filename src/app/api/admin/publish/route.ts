@@ -7,6 +7,7 @@ import {
   getDraft,
   listDraftRegistryIds,
 } from "@/lib/cms/draft-store";
+import { triggerVercelStagingDeploy } from "@/lib/cms/vercel-deploy";
 import { CMS_REGISTRY, getRegistryEntryById } from "@/lib/cms/page-registry";
 import {
   cmsPublishCommitIdentity,
@@ -153,10 +154,14 @@ export async function POST() {
       console.error("Publish succeeded but draft cleanup failed:", clearError);
     }
 
+    const deploy = await triggerVercelStagingDeploy(settings);
+
     return NextResponse.json({
       ok: true,
       commitUrl: `https://github.com/${owner}/${repo}/commit/${commit.sha}`,
       branch,
+      deployTriggered: deploy.triggered,
+      deployMessage: deploy.message,
     });
   } catch (error) {
     console.error("CMS publish failed:", error);

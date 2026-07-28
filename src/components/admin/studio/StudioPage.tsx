@@ -17,6 +17,7 @@ import { useStudioToast } from "@/components/admin/ui/StudioToast";
 import { AdminSeoForm } from "@/components/admin/forms/AdminSeoForm";
 import { AdminAiPanel } from "@/components/admin/forms/AdminAiPanel";
 import { AdminRobotsForm } from "@/components/admin/forms/AdminRobotsForm";
+import { stableJson } from "@/lib/cms/stable-json";
 import type { InspectorTab } from "@/components/admin/layout/StudioInspector";
 
 type DraftResponse = {
@@ -45,6 +46,8 @@ export function StudioPage() {
   const [loading, setLoading] = useState(true);
   const [navOpen, setNavOpen] = useState(false);
   const [inspectorOpen, setInspectorOpen] = useState(false);
+  const [savedData, setSavedData] = useState<Record<string, unknown>>({});
+  const stagingRefreshTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
   const selected = useMemo(() => registry.find((e) => e.id === selectedId), [registry, selectedId]);
 
@@ -83,11 +86,18 @@ export function StudioPage() {
         );
     if (isRobots) {
       setData(merged);
+      setSavedData(merged);
     } else {
       const effectiveSeo = resolveEffectiveSeo(id, merged.seo as CmsSeoFields | undefined);
-      setData({ ...merged, seo: effectiveSeo });
+      const next = { ...merged, seo: effectiveSeo };
+      setData(next);
+      setSavedData(next);
     }
-    setStatus(json.draft ? "You have unsaved edits" : "All changes saved");
+    setStatus(
+      json.draft
+        ? "Draft saved — preview shows your draft until you push to staging"
+        : "No draft — preview shows live staging when configured",
+    );
     setPreviewKey((k) => k + 1);
   }, []);
 
@@ -110,6 +120,12 @@ export function StudioPage() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      stagingRefreshTimersRef.current.forEach((timer) => clearTimeout(timer));
+    };
+  }, []);
+
   const saveDraft = useCallback(async () => {
     if (!selectedId) return;
     setSaving(true);
@@ -126,7 +142,8 @@ export function StudioPage() {
       return;
     }
     await loadRegistry();
-    setStatus("All changes saved");
+    setSavedData(data);
+    setStatus("Draft saved — push to staging to deploy on Vercel");
     toast("Draft saved", "success");
     setPreviewKey((k) => k + 1);
   }, [selectedId, data, loadRegistry, toast]);
@@ -160,6 +177,13 @@ export function StudioPage() {
     toast("Draft discarded", "info");
   }
 
+  function scheduleStagingPreviewRefresh() {
+    stagingRefreshTimersRef.current.forEach((timer) => clearTimeout(timer));
+    stagingRefreshTimersRef.current = [45_000, 90_000, 150_000].map((delay) =>
+      setTimeout(() => setPreviewKey((k) => k + 1), delay),
+    );
+  }
+
   async function pushToStaging() {
     setPublishing(true);
     try {
@@ -167,7 +191,12 @@ export function StudioPage() {
         method: "POST",
         signal: AbortSignal.timeout(90_000),
       });
-      const json = (await res.json().catch(() => ({}))) as { error?: string; commitUrl?: string };
+      const json = (await res.json().catch(() => ({}))) as {
+        error?: string;
+        commitUrl?: string;
+        deployTriggered?: boolean;
+        deployMessage?: string;
+      };
       if (!res.ok) {
         setStatus(json.error || "Publish failed");
         toast(json.error || "Publish failed", "error");
@@ -175,9 +204,12 @@ export function StudioPage() {
       }
       await loadRegistry();
       await loadDraft(selectedId);
-      setStatus("Pushed to staging");
-      toast("Pushed to staging successfully", "success");
+      const deployNote = json.deployMessage || "Staging deploy in progress on Vercel.";
+      setStatus(`Pushed to staging — ${deployNote}`);
+      toast(json.deployTriggered ? "Pushed — Vercel staging build started" : "Pushed to staging", "success");
       setPublishOpen(false);
+      setPreviewKey((k) => k + 1);
+      scheduleStagingPreviewRefresh();
       if (json.commitUrl) window.open(json.commitUrl, "_blank");
     } catch (error) {
       const timedOut = error instanceof DOMException && error.name === "TimeoutError";
@@ -202,9 +234,12 @@ export function StudioPage() {
   const seo = (data.seo as CmsSeoFields | undefined) ?? {};
 
   const pagePath = selected?.path ?? "/";
-  const pageDirty = dirtyIds.includes(selectedId);
+  const hasStoredDraft = dirtyIds.includes(selectedId);
+  const inspectorDirty = stableJson(data) !== stableJson(savedData);
+  const useDraftPreview =
+    hasStoredDraft || inspectorDirty || selected?.type === "chrome";
   const useStagingPreview =
-    Boolean(stagingPreviewBase) && selected?.type !== "chrome" && !pageDirty;
+    Boolean(stagingPreviewBase) && selected?.type !== "chrome" && !useDraftPreview;
 
   const localPreviewSrc =
     selected?.type === "chrome"
@@ -283,7 +318,7 @@ export function StudioPage() {
           <StudioHeader
             pageLabel={selected?.label ?? "Studio"}
             status={status}
-            pageDirty={dirtyIds.includes(selectedId)}
+            pageDirty={hasStoredDraft}
             stagingDraftCount={dirtyIds.length}
             publishing={publishing}
             onSave={() => void saveDraft()}

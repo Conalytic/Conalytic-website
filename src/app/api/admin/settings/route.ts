@@ -24,6 +24,11 @@ export async function GET() {
     githubRepo: settings.githubRepo ?? "Conalytic/Conalytic-website",
     stagingBranch: settings.stagingBranch ?? "staging",
     stagingPreviewUrl: resolveStagingPreviewBase(settings) ?? "",
+    vercelDeployHookConfigured: Boolean(
+      settings.vercelStagingDeployHook?.trim() ||
+        process.env.VERCEL_STAGING_DEPLOY_HOOK_URL?.trim() ||
+        process.env.VERCEL_DEPLOY_HOOK_URL?.trim(),
+    ),
     storageMode: storage.mode,
     canSaveSettings: storage.canSaveSettings,
     storageMessage: storage.message,

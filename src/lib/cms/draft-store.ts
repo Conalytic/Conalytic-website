@@ -295,6 +295,7 @@ export type AdminSettings = {
   githubRepo?: string;
   stagingBranch?: string;
   stagingPreviewUrl?: string;
+  vercelStagingDeployHook?: string;
 };
 
 export async function getAdminSettings(): Promise<AdminSettings> {

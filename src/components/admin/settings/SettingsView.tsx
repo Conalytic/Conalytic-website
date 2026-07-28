@@ -16,6 +16,7 @@ type Settings = {
   githubRepo: string;
   stagingBranch: string;
   stagingPreviewUrl: string;
+  vercelDeployHookConfigured?: boolean;
   storageMode?: string;
   canSaveSettings?: boolean;
   storageMessage?: string;
@@ -27,6 +28,7 @@ export function SettingsView() {
   const [openaiKey, setOpenaiKey] = useState("");
   const [anthropicKey, setAnthropicKey] = useState("");
   const [githubToken, setGithubToken] = useState("");
+  const [vercelDeployHook, setVercelDeployHook] = useState("");
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -49,6 +51,7 @@ export function SettingsView() {
     if (openaiKey) body.openaiApiKey = openaiKey;
     if (anthropicKey) body.anthropicApiKey = anthropicKey;
     if (githubToken) body.githubToken = githubToken;
+    if (vercelDeployHook) body.vercelStagingDeployHook = vercelDeployHook;
     const res = await fetch("/api/admin/settings", {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
@@ -66,6 +69,7 @@ export function SettingsView() {
     setOpenaiKey("");
     setAnthropicKey("");
     setGithubToken("");
+    setVercelDeployHook("");
   }
 
   if (!settings) {
@@ -157,6 +161,18 @@ export function SettingsView() {
                 value={settings.stagingPreviewUrl}
                 onChange={(e) => setSettings({ ...settings, stagingPreviewUrl: e.target.value })}
                 hint="Studio iframe loads this deployment (staging branch). Example: https://your-project-git-staging.vercel.app"
+              />
+              <StudioInput
+                label="Vercel staging deploy hook"
+                type="password"
+                autoComplete="off"
+                value={vercelDeployHook}
+                onChange={(e) => setVercelDeployHook(e.target.value)}
+                hint={
+                  settings.vercelDeployHookConfigured
+                    ? "Configured. Paste a new URL to replace. Triggers a staging-only build after Push to staging."
+                    : "Optional. Create in Vercel → Project → Settings → Git → Deploy Hooks (staging branch). Ensures staging rebuilds after each push."
+                }
               />
             </div>
           </StudioCard>
