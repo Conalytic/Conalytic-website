@@ -207,7 +207,7 @@ export function StudioPage() {
       await loadDraft(selectedId);
       const deployNote = json.deployMessage || "Staging deploy in progress on Vercel.";
       setStatus(`Pushed to staging — ${deployNote}`);
-      toast(json.deployTriggered ? "Pushed — Vercel staging build started" : "Pushed to staging", "success");
+      toast("Pushed to staging — Vercel build will start from git", "success");
       setPublishOpen(false);
       setPreviewKey((k) => k + 1);
       scheduleStagingPreviewRefresh();

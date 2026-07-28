@@ -8,17 +8,26 @@ export function resolveVercelStagingDeployHook(settings?: AdminSettings): string
   return url || null;
 }
 
-/** POST to a Vercel deploy hook to build the staging deployment (non-blocking). */
+/** POST to a Vercel deploy hook — only when git auto-deploy is disabled (see FORCE_VERCEL_STAGING_DEPLOY_HOOK). */
 export async function triggerVercelStagingDeploy(settings?: AdminSettings): Promise<{
   triggered: boolean;
   message: string;
 }> {
+  const forceHook = process.env.FORCE_VERCEL_STAGING_DEPLOY_HOOK === "1";
+
+  if (!forceHook) {
+    return {
+      triggered: false,
+      message: "GitHub staging branch updated — Vercel will build from the git push.",
+    };
+  }
+
   const hookUrl = resolveVercelStagingDeployHook(settings);
   if (!hookUrl) {
     return {
       triggered: false,
       message:
-        "GitHub updated. If Vercel is connected to the staging branch, a build should start automatically.",
+        "GitHub updated. Set FORCE_VERCEL_STAGING_DEPLOY_HOOK=1 and a deploy hook URL if git auto-deploy is off.",
     };
   }
 

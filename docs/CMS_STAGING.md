@@ -34,7 +34,7 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | `GITHUB_REPO` | Optional | Default `Conalytic/Conalytic-website` |
 | `GITHUB_STAGING_BRANCH` | Optional | Default `staging` |
 | `STAGING_PREVIEW_URL` | Recommended | Vercel URL for the staging branch — Studio iframe preview (e.g. `https://your-app-git-staging.vercel.app`) |
-| `VERCEL_STAGING_DEPLOY_HOOK_URL` | Optional | Deploy hook URL — triggers a **staging-only** Vercel build after Push to staging |
+| `VERCEL_STAGING_DEPLOY_HOOK_URL` | Optional | Only if git auto-deploy for `staging` is **off** — otherwise causes duplicate builds. Set `FORCE_VERCEL_STAGING_DEPLOY_HOOK=1` to enable hook calls from Studio. |
 | `GITHUB_COMMIT_AUTHOR_NAME` | Optional | Default `Conalytic Admin` |
 | `GITHUB_COMMIT_AUTHOR_EMAIL` | Optional | Default `admin@conalytic.com` |
 

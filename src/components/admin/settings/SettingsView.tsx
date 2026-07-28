@@ -170,8 +170,8 @@ export function SettingsView() {
                 onChange={(e) => setVercelDeployHook(e.target.value)}
                 hint={
                   settings.vercelDeployHookConfigured
-                    ? "Configured. Paste a new URL to replace. Triggers a staging-only build after Push to staging."
-                    : "Optional. Create in Vercel → Project → Settings → Git → Deploy Hooks (staging branch). Ensures staging rebuilds after each push."
+                    ? "Optional — remove from Settings if you see duplicate Vercel builds (git push already deploys staging)."
+                    : "Usually not needed when Vercel is connected to GitHub. Only use if staging branch auto-deploy is disabled."
                 }
               />
             </div>
