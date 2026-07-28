@@ -1,4 +1,24 @@
 {
-  "seo": {},
-  "sections": {}
+  "seo": {
+    "title": "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
+    "description": "Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free to start.",
+    "keywords": [
+      "marketing analytics platform",
+      "conversational analytics",
+      "KPI tracker",
+      "marketing report builder",
+      "GA4 analytics",
+      "Google Ads reporting",
+      "AI marketing insights"
+    ],
+    "canonical": "https://conalytic.com/",
+    "ogTitle": "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
+    "ogDescription": "Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free to start.",
+    "schemaType": "WebPage, FAQPage",
+    "schemaJson": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebPage\",\n  \"name\": \"Conalytic – Marketing Analytics: Chat, KPIs & Reports\",\n  \"description\": \"Conalytic is AI marketing analytics software with Conversational Analytics (GA4 & Google Ads chat), KPIs Tracker (goal monitoring), and Report Builder (HTML client reports). Connect Search Console, GTM, and Meta Ads. Free to start.\",\n  \"url\": \"https://conalytic.com/\",\n  \"additionalType\": [\n    \"WebPage\",\n    \"FAQPage\"\n  ]\n}"
+  },
+  "sections": {
+    "heroTitleLine1": "Marketing analytics with",
+    "heroTitleLine2": "Conalytic"
+  }
 }
