@@ -27,8 +27,10 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | `ADMIN_PASSWORD` | Yes | Shared admin login password |
 | `ADMIN_SESSION_SECRET` | Yes | 32+ character secret for iron-session (required in production; never use the dev default) |
 | `ADMIN_ENCRYPTION_KEY` | Recommended | Encrypts API keys in settings (falls back to session secret) |
-| `UPSTASH_REDIS_REST_URL` | **Required on Vercel** | Encrypted API keys, drafts, and AI chat history (local dev uses `.cms-drafts/` if unset) |
-| `UPSTASH_REDIS_REST_TOKEN` | **Required on Vercel** | Pair with `UPSTASH_REDIS_REST_URL` — without Redis, Studio cannot save API keys on Vercel |
+| `UPSTASH_REDIS_REST_URL` | Optional | Direct Upstash REST URL (Vercel integration uses `KV_REST_API_URL` instead) |
+| `UPSTASH_REDIS_REST_TOKEN` | Optional | Pair with `UPSTASH_REDIS_REST_URL` |
+| `KV_REST_API_URL` | **Required on Vercel** (if using Vercel Storage) | Auto-added when you connect Upstash Redis in Vercel |
+| `KV_REST_API_TOKEN` | **Required on Vercel** (if using Vercel Storage) | Pair with `KV_REST_API_URL` |
 | `GITHUB_REPO` | Optional | Default `Conalytic/Conalytic-website` |
 | `GITHUB_STAGING_BRANCH` | Optional | Default `staging` |
 | `GITHUB_COMMIT_AUTHOR_NAME` | Optional | Default `Conalytic Admin` |

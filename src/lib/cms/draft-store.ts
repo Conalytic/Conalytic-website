@@ -31,7 +31,7 @@ export function getCmsStorageStatus(): CmsStorageStatus {
       mode: "serverless-ephemeral",
       canSaveSettings: false,
       message:
-        "Vercel cannot persist Studio settings to disk. Add Upstash Redis (UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN) in Vercel, or set OPENAI_API_KEY, ANTHROPIC_API_KEY, and GITHUB_TOKEN as environment variables.",
+        "Vercel cannot persist Studio settings to disk. Connect Upstash Redis to this project (KV_REST_API_URL + KV_REST_API_TOKEN) or set OPENAI_API_KEY, ANTHROPIC_API_KEY, and GITHUB_TOKEN as environment variables.",
     };
   }
   return { mode: "local", canSaveSettings: true };
@@ -39,12 +39,29 @@ export function getCmsStorageStatus(): CmsStorageStatus {
 
 let redis: Redis | null = null;
 
+/** Vercel Upstash integration uses KV_*; direct Upstash uses UPSTASH_REDIS_REST_*. */
+function resolveRedisRestCredentials(): { url: string; token: string } | null {
+  const pairs: [string | undefined, string | undefined][] = [
+    [process.env.UPSTASH_REDIS_REST_URL, process.env.UPSTASH_REDIS_REST_TOKEN],
+    [process.env.KV_REST_API_URL, process.env.KV_REST_API_TOKEN],
+  ];
+
+  for (const [url, token] of pairs) {
+    const trimmedUrl = url?.trim();
+    const trimmedToken = token?.trim();
+    if (trimmedUrl && trimmedToken) {
+      return { url: trimmedUrl, token: trimmedToken };
+    }
+  }
+
+  return null;
+}
+
 function getRedis(): Redis | null {
   if (redis) return redis;
-  const url = process.env.UPSTASH_REDIS_REST_URL;
-  const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  if (!url || !token) return null;
-  redis = new Redis({ url, token });
+  const creds = resolveRedisRestCredentials();
+  if (!creds) return null;
+  redis = new Redis({ url: creds.url, token: creds.token });
   return redis;
 }
 
