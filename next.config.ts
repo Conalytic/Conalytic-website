@@ -4,12 +4,28 @@
 import type { NextConfig } from "next";
 import { allowSearchIndexing } from "./src/lib/seo-config";
 
+function frameAncestorsCsp(): string {
+  const extra =
+    process.env.STUDIO_FRAME_ANCESTOR_ORIGINS?.split(",")
+      .map((s) => s.trim())
+      .filter(Boolean) ?? [
+      "https://conalytic.com",
+      "https://www.conalytic.com",
+      "http://localhost:3000",
+      "http://127.0.0.1:3000",
+    ];
+  if (!allowSearchIndexing()) {
+    return `frame-ancestors 'self' ${extra.join(" ")}`;
+  }
+  return "frame-ancestors 'self'";
+}
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
   async headers() {
     const headers: { key: string; value: string }[] = [
-      { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+      { key: "Content-Security-Policy", value: frameAncestorsCsp() },
     ];
     if (!allowSearchIndexing()) {
       headers.unshift({ key: "X-Robots-Tag", value: "noindex, nofollow" });

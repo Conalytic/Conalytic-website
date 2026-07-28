@@ -7,6 +7,7 @@ import {
   type AdminSettings,
 } from "@/lib/cms/draft-store";
 import { assertPublishBranchAllowed } from "@/lib/cms/publish-config";
+import { resolveStagingPreviewBase } from "@/lib/cms/staging-preview-url";
 
 export async function GET() {
   const auth = await requireAdminSessionOrRespond();
@@ -22,6 +23,7 @@ export async function GET() {
     anthropicModel: settings.anthropicModel ?? "claude-sonnet-4-20250514",
     githubRepo: settings.githubRepo ?? "Conalytic/Conalytic-website",
     stagingBranch: settings.stagingBranch ?? "staging",
+    stagingPreviewUrl: resolveStagingPreviewBase(settings) ?? "",
     storageMode: storage.mode,
     canSaveSettings: storage.canSaveSettings,
     storageMessage: storage.message,

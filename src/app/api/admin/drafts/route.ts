@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { adminSessionId, requireAdminSessionOrRespond } from "@/lib/admin/auth";
 import { listDraftRegistryIds } from "@/lib/cms/draft-store";
 import { CMS_REGISTRY } from "@/lib/cms/page-registry";
+import { getAdminSettings } from "@/lib/cms/draft-store";
+import { resolveStagingPreviewBase } from "@/lib/cms/staging-preview-url";
 
 export async function GET() {
   const auth = await requireAdminSessionOrRespond();
@@ -9,9 +11,11 @@ export async function GET() {
 
   const sessionId = adminSessionId(auth);
   const dirtyIds = await listDraftRegistryIds(sessionId);
+  const settings = await getAdminSettings();
 
   return NextResponse.json({
     registry: CMS_REGISTRY,
     dirtyIds,
+    stagingPreviewUrl: resolveStagingPreviewBase(settings),
   });
 }

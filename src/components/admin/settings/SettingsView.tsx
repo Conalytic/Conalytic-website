@@ -15,6 +15,7 @@ type Settings = {
   anthropicModel: string;
   githubRepo: string;
   stagingBranch: string;
+  stagingPreviewUrl: string;
   storageMode?: string;
   canSaveSettings?: boolean;
   storageMessage?: string;
@@ -43,6 +44,7 @@ export function SettingsView() {
       anthropicModel: settings.anthropicModel,
       githubRepo: settings.githubRepo,
       stagingBranch: settings.stagingBranch,
+      stagingPreviewUrl: settings.stagingPreviewUrl,
     };
     if (openaiKey) body.openaiApiKey = openaiKey;
     if (anthropicKey) body.anthropicApiKey = anthropicKey;
@@ -149,6 +151,12 @@ export function SettingsView() {
                 value={settings.stagingBranch}
                 onChange={(e) => setSettings({ ...settings, stagingBranch: e.target.value })}
                 hint="CMS publishes here only. main/master are blocked — production stays on main."
+              />
+              <StudioInput
+                label="Staging preview URL (Vercel)"
+                value={settings.stagingPreviewUrl}
+                onChange={(e) => setSettings({ ...settings, stagingPreviewUrl: e.target.value })}
+                hint="Studio iframe loads this deployment (staging branch). Example: https://your-project-git-staging.vercel.app"
               />
             </div>
           </StudioCard>

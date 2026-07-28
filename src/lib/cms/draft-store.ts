@@ -294,6 +294,7 @@ export type AdminSettings = {
   githubToken?: string;
   githubRepo?: string;
   stagingBranch?: string;
+  stagingPreviewUrl?: string;
 };
 
 export async function getAdminSettings(): Promise<AdminSettings> {
@@ -342,6 +343,9 @@ function envDefaultSettings(): AdminSettings {
     githubToken: process.env.GITHUB_TOKEN,
     githubRepo: process.env.GITHUB_REPO || "Conalytic/Conalytic-website",
     stagingBranch: process.env.GITHUB_STAGING_BRANCH || "staging",
+    stagingPreviewUrl:
+      process.env.STAGING_PREVIEW_URL?.trim() ||
+      process.env.NEXT_PUBLIC_STAGING_PREVIEW_URL?.trim(),
     openaiModel: "gpt-4.1",
     anthropicModel: "claude-sonnet-4-20250514",
   };

@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import type { CmsRegistryEntry, CmsSeoFields } from "@/lib/cms/types";
 import { resolveEffectiveSeo } from "@/lib/cms/seo-defaults";
+import { buildStagingPreviewPageUrl, stagingPreviewDisplayUrl } from "@/lib/cms/staging-preview-url";
 import { deepMerge } from "@/lib/cms/deep-merge";
 import { normalizePageOverlay } from "@/lib/cms/normalize-overlay";
 import { AdminAppShell, StudioShellLayout } from "@/components/admin/layout/AdminAppShell";
@@ -30,6 +31,7 @@ export function StudioPage() {
   const searchRef = useRef<HTMLInputElement>(null);
   const [registry, setRegistry] = useState<CmsRegistryEntry[]>([]);
   const [dirtyIds, setDirtyIds] = useState<string[]>([]);
+  const [stagingPreviewBase, setStagingPreviewBase] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState(() => searchParams.get("page") || "home");
   const [filter, setFilter] = useState("");
   const [tab, setTab] = useState<InspectorTab>("ai");
@@ -48,9 +50,14 @@ export function StudioPage() {
 
   const loadRegistry = useCallback(async () => {
     const res = await fetch("/api/admin/drafts");
-    const json = (await res.json()) as { registry: CmsRegistryEntry[]; dirtyIds: string[] };
+    const json = (await res.json()) as {
+      registry: CmsRegistryEntry[];
+      dirtyIds: string[];
+      stagingPreviewUrl?: string | null;
+    };
     setRegistry(json.registry);
     setDirtyIds(json.dirtyIds);
+    setStagingPreviewBase(json.stagingPreviewUrl ?? null);
     setLoading(false);
   }, []);
 
@@ -194,9 +201,24 @@ export function StudioPage() {
 
   const seo = (data.seo as CmsSeoFields | undefined) ?? {};
 
-  const previewSrc = selected?.type === "chrome"
-    ? `/admin/preview/frame?chrome=${selected.id === "chrome-header" ? "header" : "footer"}&k=${previewKey}`
-    : `/admin/preview/frame?registryId=${encodeURIComponent(selectedId)}&k=${previewKey}`;
+  const pagePath = selected?.path ?? "/";
+  const pageDirty = dirtyIds.includes(selectedId);
+  const useStagingPreview =
+    Boolean(stagingPreviewBase) && selected?.type !== "chrome" && !pageDirty;
+
+  const localPreviewSrc =
+    selected?.type === "chrome"
+      ? `/admin/preview/frame?chrome=${selected.id === "chrome-header" ? "header" : "footer"}&k=${previewKey}`
+      : `/admin/preview/frame?registryId=${encodeURIComponent(selectedId)}&k=${previewKey}`;
+
+  const previewSrc = useStagingPreview
+    ? buildStagingPreviewPageUrl(stagingPreviewBase!, pagePath, previewKey)
+    : localPreviewSrc;
+
+  const previewMode: "staging" | "draft" = useStagingPreview ? "staging" : "draft";
+  const displayUrl = useStagingPreview
+    ? stagingPreviewDisplayUrl(stagingPreviewBase!, pagePath)
+    : `conalytic.com${pagePath === "/" ? "" : pagePath}`;
 
   const tabs: InspectorTab[] =
     selected?.type === "robots" ? ["content"] : selected?.hasSeo ? ["ai", "seo"] : ["ai"];
@@ -274,8 +296,10 @@ export function StudioPage() {
         main={
           <StudioPreview
             pageLabel={selected?.label ?? "Page"}
-            pagePath={selected?.path ?? "/"}
+            pagePath={pagePath}
             previewSrc={previewSrc}
+            displayUrl={displayUrl}
+            previewMode={previewMode}
             narrow={narrowPreview}
             onRefresh={() => setPreviewKey((k) => k + 1)}
             onToggleNarrow={() => setNarrowPreview((n) => !n)}

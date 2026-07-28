@@ -1,0 +1,41 @@
+import type { AdminSettings } from "@/lib/cms/draft-store";
+
+/** Normalize a configured staging base URL (no trailing slash on origin path). */
+export function resolveStagingPreviewBase(settings?: AdminSettings): string | null {
+  const raw =
+    settings?.stagingPreviewUrl?.trim() ||
+    process.env.STAGING_PREVIEW_URL?.trim() ||
+    process.env.NEXT_PUBLIC_STAGING_PREVIEW_URL?.trim();
+  if (!raw) return null;
+
+  try {
+    const url = new URL(raw.includes("://") ? raw : `https://${raw}`);
+    const path = url.pathname.replace(/\/$/, "");
+    return `${url.origin}${path === "/" ? "" : path}`;
+  } catch {
+    return null;
+  }
+}
+
+export function buildStagingPreviewPageUrl(base: string, pagePath: string, cacheKey?: number): string {
+  const normalizedPath =
+    pagePath === "/" || pagePath === ""
+      ? ""
+      : pagePath.startsWith("/")
+        ? pagePath
+        : `/${pagePath}`;
+  const url = `${base.replace(/\/$/, "")}${normalizedPath}`;
+  if (cacheKey == null) return url;
+  const sep = url.includes("?") ? "&" : "?";
+  return `${url}${sep}_studio=${cacheKey}`;
+}
+
+export function stagingPreviewDisplayUrl(base: string, pagePath: string): string {
+  try {
+    const origin = new URL(base).host;
+    const path = pagePath === "/" ? "" : pagePath.startsWith("/") ? pagePath : `/${pagePath}`;
+    return `${origin}${path}`;
+  } catch {
+    return pagePath;
+  }
+}

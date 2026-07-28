@@ -33,6 +33,7 @@ The Admin Studio **Push to staging** button commits changed `content/cms/*.json`
 | `KV_REST_API_TOKEN` | **Required on Vercel** (if using Vercel Storage) | Pair with `KV_REST_API_URL` |
 | `GITHUB_REPO` | Optional | Default `Conalytic/Conalytic-website` |
 | `GITHUB_STAGING_BRANCH` | Optional | Default `staging` |
+| `STAGING_PREVIEW_URL` | Recommended | Vercel URL for the staging branch — Studio iframe preview (e.g. `https://your-app-git-staging.vercel.app`) |
 | `GITHUB_COMMIT_AUTHOR_NAME` | Optional | Default `Conalytic Admin` |
 | `GITHUB_COMMIT_AUTHOR_EMAIL` | Optional | Default `admin@conalytic.com` |
 

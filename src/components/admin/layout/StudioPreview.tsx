@@ -11,6 +11,8 @@ type Props = {
   pageLabel: string;
   pagePath: string;
   previewSrc: string;
+  displayUrl: string;
+  previewMode: "staging" | "draft";
   narrow: boolean;
   onRefresh: () => void;
   onToggleNarrow: () => void;
@@ -20,6 +22,8 @@ export function StudioPreview({
   pageLabel,
   pagePath,
   previewSrc,
+  displayUrl,
+  previewMode,
   narrow,
   onRefresh,
   onToggleNarrow,
@@ -58,8 +62,17 @@ export function StudioPreview({
         <div className="studio-browser-dots" aria-hidden>
           <span /><span /><span />
         </div>
-        <div className="studio-browser-url" title={pagePath}>
-          conalytic.com{pagePath === "/" ? "" : pagePath}
+        <div className="studio-browser-url" title={displayUrl}>
+          <span
+            className={
+              previewMode === "staging"
+                ? "mr-1.5 rounded bg-[var(--studio-badge-draft-bg)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-badge-draft-fg)]"
+                : "mr-1.5 rounded bg-[var(--studio-border)] px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--studio-muted)]"
+            }
+          >
+            {previewMode === "staging" ? "Staging" : "Draft"}
+          </span>
+          {displayUrl}
         </div>
         <div className="studio-browser-actions">
           <StudioIconButton label="Refresh preview" onClick={onRefresh}>
