@@ -18,21 +18,56 @@ Internal linking rules:
 - Do NOT invent new routes — only use existing registry paths or hash anchors on known pages.`;
 
 const HOME_SECTION_FIELDS = `
-Home page — all copy lives under sections as flat keys (NOT nested hero.*):
-- heroTitleLine1, heroTitleLine2 — hero headline (line 1 plain, line 2 brand gradient)
-- heroSubtitle — hero paragraph under the headline
+HOME PAGE — sections.* flat keys AND nested section objects:
+
+Hero (section key: hero):
+- heroTitleLine1, heroTitleLine2 — headline (line 2 = green gradient)
+- heroSubtitle
 ${PAGE_LINK_FIELDS}
-- trustedByTitle, servicesTitleLine1, servicesTitleLine2
-- integrationsTitleLine1, integrationsTitleLine2, integrationsSubtitle, integrationsCtaLabel
-- testimonialsTitleLine1, testimonialsTitleLine2, testimonialsSubtitle, testimonials (array)
-- faqTitle, faqSubtitle, faqContactPrefix, faqContactLabel, faqItems (array of { question, answer })
-- ctaTitle, ctaSubtitle
-Section order: layout.sectionOrder — keys: hero, trustedBy, transformation, howItWorks, products, stats, integrations, testimonials, pricing, faq, cta`;
+
+Trusted by / logo marquee (trustedBy):
+- trustedByTitle
+
+Products grid (products):
+- servicesTitleLine1, servicesTitleLine2
+
+Integrations hub (integrations):
+- integrationsTitleLine1, integrationsTitleLine2, integrationsSubtitle, integrationsCtaLabel, integrationsCtaHref
+
+Transformation block (transformation) — nested object sections.transformation:
+- eyebrow, titleLine1, titleLine2
+
+How it works (howItWorks) — nested object sections.howItWorks:
+- eyebrow, title, subtitle
+
+Testimonials (testimonials):
+- testimonialsTitleLine1, testimonialsTitleLine2, testimonialsSubtitle
+- testimonials — array of { quote, name, title, photo, rating }
+
+Pricing header (pricing) — nested object sections.pricing:
+- eyebrow, title
+
+FAQ (faq):
+- faqTitle, faqSubtitle, faqContactPrefix, faqContactLabel, faqContactHref
+- faqItems — array of { question, answer } (edit one item by returning full array with changes)
+
+Bottom CTA (cta):
+- ctaTitle, ctaSubtitle, ctaPrimaryLabel, ctaPrimaryHref, ctaSecondaryLabel, ctaSecondaryHref
+
+Section order: layout.sectionOrder — keys: hero, trustedBy, transformation, howItWorks, products, stats, integrations, testimonials, pricing, faq, cta
+
+IMPORTANT: Match the user's prompt to the correct section. Do NOT change heroTitleLine1/heroTitleLine2 unless they ask about the hero/headline.`;
 
 const PAGE_HERO_FIELDS = `
 Page hero — flat keys under sections (NOT nested objects):
 - heroTitleLine1, heroTitleLine2, heroSubtitle
 ${PAGE_LINK_FIELDS}`;
+
+const FEATURES_FIELDS = `
+${PAGE_HERO_FIELDS}
+- heroBadge — pill above headline
+- includedTitle, includedSubtitle — "One platform" capability grid section
+- ctaTitle, ctaSubtitle, ctaPrimaryLabel, ctaPrimaryHref, ctaSecondaryLabel, ctaSecondaryHref`;
 
 const BLOG_FIELDS = `
 Blog post overlay:
@@ -42,8 +77,8 @@ Blog post overlay:
 
 const REGISTRY_FIELD_HINTS: Record<string, string> = {
   home: HOME_SECTION_FIELDS,
-  features: PAGE_HERO_FIELDS,
-  integrations: PAGE_HERO_FIELDS,
+  features: FEATURES_FIELDS,
+  integrations: `${PAGE_HERO_FIELDS}\n- grid section titles if present in overlay`,
   about: PAGE_HERO_FIELDS,
   contact: `${PAGE_HERO_FIELDS}\n- formTitle`,
   careers: `${PAGE_HERO_FIELDS}\n- heroButtonLabel, heroButtonHref (scroll to #open-positions or another internal path)`,

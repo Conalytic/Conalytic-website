@@ -249,8 +249,8 @@ export function AdminAiPanel({ registryId, pageLabel, onApplied }: Props) {
               {pageLabel ? `Editing ${pageLabel}` : "AI assistant"}
             </p>
             <p className="mt-1 max-w-xs text-center text-[11px] leading-relaxed text-[var(--studio-muted)]">
-              Describe content or SEO changes, attach files for reference, or ask for an SEO audit (read-only).
-              Say &quot;apply&quot; or &quot;update&quot; when you want changes made.
+              Name the section (hero, FAQ, pricing, CTA, etc.) and what to change. Attach files for reference, or ask for an SEO audit (read-only).
+              Say &quot;apply&quot; when you want edits saved to your draft.
             </p>
           </div>
         ) : (

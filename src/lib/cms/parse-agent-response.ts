@@ -70,8 +70,20 @@ export function sanitizeAgentData(data: unknown): Record<string, unknown> {
       : {};
 
   // AI often puts section copy at the root instead of under sections.*
+  const SECTION_ROOT_KEYS = new Set([
+    "transformation",
+    "howItWorks",
+    "pricing",
+    "faqItems",
+    "testimonials",
+  ]);
+
   for (const [key, value] of Object.entries(raw)) {
     if (key === "seo" || key === "layout" || key === "sections") continue;
+    if (SECTION_ROOT_KEYS.has(key)) {
+      if (sections[key] === undefined) sections[key] = value;
+      continue;
+    }
     if (
       key.startsWith("hero") ||
       key.startsWith("cta") ||

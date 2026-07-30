@@ -9,6 +9,7 @@ import { readCmsJson } from "@/lib/cms/read-cms-file";
 import type { CmsDraftPayload } from "@/lib/cms/types";
 import { deepMerge } from "@/lib/cms/deep-merge";
 import { buildAgentSystemPrompt, buildAgentUserPrompt } from "@/lib/cms/agent-prompt";
+import { buildEffectiveSections } from "@/lib/cms/agent-content-context";
 import { isReadOnlyAgentPrompt } from "@/lib/cms/agent-intent";
 import { resolveEffectiveSeo } from "@/lib/cms/seo-defaults";
 import type { CmsSeoFields } from "@/lib/cms/types";
@@ -67,6 +68,7 @@ export async function POST(request: Request) {
     readOnly,
     effectiveSeo,
     registryId,
+    effectiveSections: buildEffectiveSections(registryId, current),
   });
 
   let rawJson = "{}";
@@ -123,11 +125,11 @@ export async function POST(request: Request) {
   } else if (parsedResult.value.validationFailed && !quickPatch) {
     agentData = current;
     agentSummary =
-      "I could not apply those edits — the AI response did not match the page schema. Try being explicit, e.g. set sections.heroTitleLine1 to \"Marketing analytics with\" and sections.heroTitleLine2 to \"Conalytic\".";
+      "I could not apply those edits — the AI response did not match the page schema. Name the section and field, e.g. sections.faqTitle, sections.transformation.titleLine1, or sections.faqItems for FAQ Q&A.";
   } else if (parsedResult.value.usedFallbackData && !quickPatch) {
     agentData = current;
     agentSummary =
-      "No editable fields were returned. Ask again with explicit sections.* field names, or try: \"change this to Marketing analytics with Conalytic\" or \"move pricing above FAQ\".";
+      "No editable fields were returned. Name the section (FAQ, pricing, CTA, hero, etc.) and what to change, or use field paths like sections.faqTitle or sections.ctaSubtitle.";
   } else if (quickPatch && parsedResult.value.usedFallbackData) {
     agentSummary = `Applied your request directly. ${agentSummary}`.trim();
   }

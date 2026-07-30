@@ -2,6 +2,7 @@ import { CMS_REGISTRY } from "@/lib/cms/page-registry";
 import { getFieldHintsForRegistry } from "@/lib/cms/field-hints";
 import { getSiteRoutesHint } from "@/lib/cms/site-routes-hint";
 import { getEffectiveSectionOrder } from "@/lib/cms/section-order";
+import { detectPromptSections } from "@/lib/cms/agent-section-intent";
 import type { CmsSeoFields } from "@/lib/cms/types";
 
 const HOME_SECTION_ORDER_KEYS = [
@@ -66,7 +67,7 @@ EXAMPLE — update hero headline:
   return `
 EXAMPLES (follow exactly — data is the overlay, NOT wrapped in cmsOverlay):
 
-1) Change hero headline:
+1) Change hero headline only:
 {
   "summary": "Updated the home hero headline.",
   "data": {
@@ -77,7 +78,43 @@ EXAMPLES (follow exactly — data is the overlay, NOT wrapped in cmsOverlay):
   }
 }
 
-2) Move pricing above FAQ:
+2) Change FAQ section title (NOT hero):
+{
+  "summary": "Updated the FAQ section heading.",
+  "data": {
+    "sections": {
+      "faqTitle": "Common questions about Conalytic"
+    }
+  }
+}
+
+3) Edit one FAQ answer (return full faqItems array):
+{
+  "summary": "Updated the first FAQ answer.",
+  "data": {
+    "sections": {
+      "faqItems": [
+        { "question": "What is Conalytic?", "answer": "..." },
+        ...
+      ]
+    }
+  }
+}
+
+4) Change transformation section title:
+{
+  "summary": "Updated the transformation block headline.",
+  "data": {
+    "sections": {
+      "transformation": {
+        "titleLine1": "Same metrics.",
+        "titleLine2": "Better decisions."
+      }
+    }
+  }
+}
+
+5) Move pricing above FAQ:
 {
   "summary": "Moved the pricing section above FAQ.",
   "data": {
@@ -87,12 +124,14 @@ EXAMPLES (follow exactly — data is the overlay, NOT wrapped in cmsOverlay):
   }
 }
 
-3) Change copy + SEO together:
+6) Bottom CTA copy:
 {
-  "summary": "Tightened hero subtitle and meta description.",
+  "summary": "Updated the bottom CTA.",
   "data": {
-    "sections": { "heroSubtitle": "Ask GA4, Ads, and Search Console questions in plain English." },
-    "seo": { "description": "..." }
+    "sections": {
+      "ctaTitle": "Start asking your data questions today",
+      "ctaSubtitle": "Free signup with tokens — no credit card."
+    }
   }
 }`;
 }
@@ -150,11 +189,12 @@ ${fieldHints}
 
 CRITICAL RULES:
 1. Return "data" as the page overlay itself: { "seo"?, "sections"?, "layout"? } — NEVER wrap inside cmsOverlay or effectiveLiveSeo.
-2. Put ALL page copy under "sections" as flat keys (sections.heroTitleLine1, NOT sections.hero.heading).
-3. For headline updates on home: set sections.heroTitleLine1 and sections.heroTitleLine2 (line 2 is the green gradient word, often "Conalytic").
-4. For section moves: set layout.sectionOrder to a complete array of every allowed section key in the new order.
-5. Return ONLY the fields you change plus summary — partial patches are OK; omitted fields stay unchanged.
-6. When changing a button, set both *Label and *Href fields together.
+2. Put ALL page copy under "sections" as flat keys OR nested section objects (sections.transformation.titleLine1).
+3. Use effectiveSections in the user message as the live copy baseline — edit the fields that match the user's target section.
+4. Only change heroTitleLine1 / heroTitleLine2 when the user asks about the hero, headline, or H1 — NOT for FAQ, pricing, CTA, testimonials, etc.
+5. For section moves: set layout.sectionOrder to a complete array of every allowed section key in the new order.
+6. Return ONLY the fields you change plus summary — partial patches are OK; omitted fields stay unchanged.
+7. When changing a button, set both *Label and *Href fields together.
 
 ALLOWED:
 - Copy edits: headlines, subtitles, CTAs, FAQ items, testimonials, blog markdown, SEO fields (seo.*).
@@ -186,7 +226,12 @@ export function buildAgentUserPrompt(
   current: Record<string, unknown>,
   prompt: string,
   attachmentBlock: string,
-  options?: { readOnly?: boolean; effectiveSeo?: CmsSeoFields | null; registryId?: string },
+  options?: {
+    readOnly?: boolean;
+    effectiveSeo?: CmsSeoFields | null;
+    registryId?: string;
+    effectiveSections?: Record<string, unknown>;
+  },
 ) {
   const readOnly = options?.readOnly ?? false;
   const registryId = options?.registryId ?? "";
@@ -195,8 +240,15 @@ export function buildAgentUserPrompt(
       ? buildSectionOrderHint(registryId, current)
       : "";
 
+  const targetedSections = prompt ? detectPromptSections(prompt) : [];
+  const sectionIntent =
+    targetedSections.length > 0
+      ? `\nUser likely refers to section(s): ${targetedSections.join(", ")}. Edit fields for those sections only unless they ask for multiple areas.\n`
+      : "";
+
   const context = {
     cmsOverlay: current,
+    ...(options?.effectiveSections ? { effectiveSections: options.effectiveSections } : {}),
     ...(options?.effectiveSeo ? { effectiveLiveSeo: options.effectiveSeo } : {}),
   };
 
@@ -213,7 +265,7 @@ Return cmsOverlay unchanged in "data". Put the full audit/report only in "summar
 
   return `Current page overlay (cmsOverlay — merge your edits into this structure):
 ${JSON.stringify(context, null, 2)}
-${sectionState}
+${sectionState}${sectionIntent}
 
 User request:
 ${prompt || "Apply relevant updates from the attached documents to this page's content and SEO."}

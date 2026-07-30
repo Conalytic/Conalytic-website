@@ -98,11 +98,6 @@ function normalizeHeroSections(sections: Record<string, unknown>) {
     applyHeroHeading(sections, sections.heading);
     delete sections.heading;
   }
-
-  // AI often sets only heroTitleLine1; split or clear line 2 so preview does not keep code defaults.
-  if (typeof sections.heroTitleLine1 === "string" && sections.heroTitleLine2 === undefined) {
-    applyHeroHeading(sections, sections.heroTitleLine1);
-  }
 }
 
 export function normalizePageOverlay(registryId: string, data: Record<string, unknown>): Record<string, unknown> {
