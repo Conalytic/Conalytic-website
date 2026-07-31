@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { AsyncSiteChrome } from "@/components/layout/AsyncSiteChrome";
 
@@ -7,6 +8,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
     <>
       <HashScrollRestorer />
       <AsyncSiteChrome>{children}</AsyncSiteChrome>
+      <Analytics />
     </>
   );
 }
