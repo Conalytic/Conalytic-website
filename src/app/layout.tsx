@@ -9,6 +9,7 @@ import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
+import { Analytics } from "@vercel/analytics/next";
 
 const seoIndexable = allowSearchIndexing();
 
@@ -128,6 +129,7 @@ export default async function RootLayout({
             {children}
           </MotionConfigProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
