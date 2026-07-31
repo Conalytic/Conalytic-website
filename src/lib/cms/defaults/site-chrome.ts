@@ -14,6 +14,7 @@ export const DEFAULT_NAVBAR_CONFIG: NavbarConfig = {
         { label: "Report Builder", href: SITE_ROUTES.products.reportBuilder, description: "HTML presentation decks from connected marketing data" },
       ],
     },
+    { label: "Pricing", href: SITE_ROUTES.pricing },
     { label: "Features", href: SITE_ROUTES.features },
     { label: "About", href: SITE_ROUTES.about },
     {

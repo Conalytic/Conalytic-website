@@ -1,24 +1,19 @@
 "use client";
 import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
-/**
- * Contact / “Schedule a call”: form submit then redirects to `NEXT_PUBLIC_SCHEDULE_CALL_URL` (e.g. Google Calendar).
- */
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Mail, MapPin, Calendar } from "lucide-react";
+import { Mail, MapPin, Send } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
-import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
-import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
+import { SITE_ROUTES } from "@/lib/site-links";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 
-const SCHEDULE_CALL_URL = (process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL ?? "").trim();
 const CONTACT_INBOX = "admin@conalytic.com";
 
 const contactInfo = [
@@ -48,14 +43,17 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
   const heroTitleLine1 = content?.heroTitleLine1 ?? "We're Here to";
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Help!";
   const heroSubtitle = content?.heroSubtitle ?? "Have questions, feedback, or just want to say hi? Let's connect!";
-  const formTitle = content?.formTitle ?? "Schedule a call";
+  const formTitle = content?.formTitle ?? "Send us a message";
   const bottomCtas = resolveBottomCtas(content, {
-    primary: { label: "Schedule a call", href: SCHEDULE_CALL_URL || "#contact-schedule" },
-    secondary: { label: "Get started", href: "#pricing" },
+    primary: { label: "Get in touch", href: "#contact-form" },
+    secondary: { label: "View pricing", href: SITE_ROUTES.pricing },
   });
 
   const [loading, setLoading] = useState(false);
-  const [scheduleError, setScheduleError] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
   useEffect(() => {
@@ -71,29 +69,30 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
     }
   }, []);
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setScheduleError(false);
-    if (!SCHEDULE_CALL_URL) {
-      setScheduleError(true);
+    setSubmitError("");
+    setLoading(true);
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ firstName, lastName, email, message }),
+    });
+    const json = (await res.json().catch(() => ({}))) as { error?: string };
+    setLoading(false);
+
+    if (!res.ok) {
+      setSubmitError(json.error || "Could not submit your message. Try again.");
       return;
     }
-    setLoading(true);
-    /* Open Google Calendar in a new tab (must be synchronous — delayed window.open is often blocked).
-       Main tab goes to our thank-you page; Google’s “Close” after booking cannot redirect to our site. */
-    const cal = window.open(SCHEDULE_CALL_URL, "_blank", "noopener,noreferrer");
-    if (cal) {
-      router.push("/contact/thank-you");
-    } else {
-      window.location.assign(SCHEDULE_CALL_URL);
-    }
-    setLoading(false);
+
+    router.push("/contact/thank-you");
   }
 
   return (
     <>
-      {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
@@ -112,8 +111,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         </div>
       </section>
 
-      {/* ── CONTACT INFO CARDS ──────────────────────── */}
-      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-10">
             Contact information
@@ -139,51 +137,48 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         </div>
       </section>
 
-      {/* ── CONTACT FORM ────────────────────────────── */}
-      <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section id="contact-form" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-2xl mx-auto">
-          <motion.div id="contact-schedule" initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <div className="rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-lg p-8 sm:p-10">
-              <>
-                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{formTitle}</h2>
-                  <p className="text-gray-500 dark:text-white/55 text-sm mb-8">
-                    Tell us a bit about you, then open our calendar to pick a time. Booking confirmations go to {CONTACT_INBOX}.
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{formTitle}</h2>
+              <p className="text-gray-500 dark:text-white/55 text-sm mb-8">
+                Fill out the form below and we&apos;ll get back to you as soon as possible.
+              </p>
+              <form className="space-y-5" onSubmit={(e) => void handleSubmit(e)}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">First Name</label>
+                    <input type="text" placeholder="John" className={inputBase} required value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                  </div>
+                  <div>
+                    <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Last Name</label>
+                    <input type="text" placeholder="Doe" className={inputBase} required value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Email</label>
+                  <input type="email" placeholder="john@company.com" className={inputBase} required value={email} onChange={(e) => setEmail(e.target.value)}/>
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Message</label>
+                  <textarea id="contact-message" name="message" rows={5} placeholder="How can we help you?" className={`${inputBase} resize-none`} required value={message} onChange={(e)=>setMessage(e.target.value)}/>
+                </div>
+                {submitError ? (
+                  <p className="text-sm text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/25 rounded-xl px-4 py-3" role="alert">
+                    {submitError}
                   </p>
-                  <form className="space-y-5" onSubmit={handleSubmit}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      <div>
-                        <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">First Name</label>
-                        <input type="text" placeholder="John" className={inputBase} required/>
-                      </div>
-                      <div>
-                        <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Last Name</label>
-                        <input type="text" placeholder="Doe" className={inputBase} required/>
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Email</label>
-                      <input type="email" placeholder="john@company.com" className={inputBase} required/>
-                    </div>
-                    <div>
-                      <label htmlFor="contact-message" className="block text-gray-600 dark:text-white/60 text-sm font-medium mb-2">Message</label>
-                      <textarea id="contact-message" name="message" rows={5} placeholder="How can we help you?" className={`${inputBase} resize-none`} required value={message} onChange={(e)=>setMessage(e.target.value)}/>
-                    </div>
-                    {scheduleError ? (
-                      <p className="text-sm text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/25 rounded-xl px-4 py-3" role="alert">
-                        Scheduling link is not configured. Add <code className="text-xs font-mono">NEXT_PUBLIC_SCHEDULE_CALL_URL</code> in <code className="text-xs font-mono">.env.local</code> with your Google Calendar appointment page URL.
-                      </p>
-                    ) : null}
-                    <button type="submit" disabled={loading} aria-label="Schedule a call"
-                      className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
-                      {loading ? (
-                        <><span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"/><span>Opening calendar…</span></>
-                      ) : (
-                        <><Calendar className="w-4 h-4"/><span>Schedule a call</span></>
-                      )}
-                    </button>
-                  </form>
-              </>
+                ) : null}
+                <button type="submit" disabled={loading} aria-label="Submit message"
+                  className="w-full flex items-center justify-center gap-2 py-3.5 px-8 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-60 disabled:cursor-not-allowed">
+                  {loading ? (
+                    <><span className="w-4 h-4 rounded-full border-2 border-white/40 border-t-white animate-spin"/><span>Sending…</span></>
+                  ) : (
+                    <><Send className="w-4 h-4"/><span>Submit</span></>
+                  )}
+                </button>
+              </form>
             </div>
           </motion.div>
         </div>

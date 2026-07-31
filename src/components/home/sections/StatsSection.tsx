@@ -58,7 +58,7 @@ export function StatsSection() {
   }, []);
 
   return (
-    <section className="py-10 md:py-20 px-4 border-y border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#0E0E14]">
+    <section className="py-6 md:py-10 px-4 border-y border-gray-100 dark:border-white/[0.05] bg-white dark:bg-[#0E0E14]">
       <motion.div
         ref={ref}
         className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 divide-x divide-gray-100 dark:divide-white/[0.06]"

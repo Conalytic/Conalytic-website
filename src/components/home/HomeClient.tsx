@@ -4,14 +4,13 @@
  * Full marketing home: hero, integrations marquee, transformation, how-it-works, stats, pricing, FAQ, CTA.
  * Content merges optional `HomeContentPreset` overrides with sensible defaults; FAQ defaults from `default-home-faq.ts`.
  */
+import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, Fragment } from "react";
 import { Accordion } from "@/components/ui/Accordion";
-import { CTA } from "@/components/sections/CTA";
 import { Transformation, type TransformationContent } from "@/components/home/sections/Transformation";
-import { HowItWorks, type HowItWorksContent } from "@/components/home/sections/HowItWorks";
 import { StatsSection } from "@/components/home/sections/StatsSection";
 import { Pricing, type PricingContent } from "@/components/home/sections/Pricing";
 import { HomeHero } from "@/components/home/sections/HomeHero";
@@ -39,6 +38,15 @@ import {
   fadeUpChild as fadeUp,
   viewportOnce,
 } from "@/lib/motion";
+
+const HowItWorks = dynamic(
+  () => import("@/components/home/sections/HowItWorks").then((m) => m.HowItWorks),
+  { ssr: true },
+);
+
+const CTA = dynamic(() => import("@/components/sections/CTA").then((m) => m.CTA), { ssr: true });
+
+export type HowItWorksContent = import("@/components/home/sections/HowItWorks").HowItWorksContent;
 
 /* ─── constants ─────────────────────────────────────── */
 
@@ -80,9 +88,6 @@ export interface HomeContentPreset {
   ctaPrimaryHref?: string;
   ctaSecondaryLabel?: string;
   ctaSecondaryHref?: string;
-  /** Optional hero background image URL, or default `/hero-bg.png`. */
-  heroBackgroundImageUrl?: string;
-  heroBackgroundImageAlt?: string;
   /** Optional brand icon URL for hub / bento mocks, or default `/logo-icon.png`. */
   brandIconUrl?: string;
   brandIconAlt?: string;
@@ -112,7 +117,7 @@ function integrationPartnerRows(content?: HomeContentPreset): {
 function TrustedBySection({ content }: { content?: HomeContentPreset }) {
   const partners = integrationPartnerRows(content);
   return (
-    <section className="overflow-hidden border-y border-gray-200/80 bg-white py-10 dark:border-white/[0.06] dark:bg-[#0f0f0f]">
+    <section className="overflow-hidden border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-[#0f0f0f]">
       <p className="mb-8 text-center text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/30">
         {content?.trustedByTitle || "Works with your stack"}
       </p>
@@ -232,7 +237,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
   const T = 54, R = 14, LOGO = 26;
 
   return (
-    <section className="py-12 md:py-24 px-4 bg-white dark:bg-[#0E0E14]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto">
 
         {/* Heading */}
@@ -241,7 +246,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
-          className="text-center mb-14"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             {(content?.integrationsTitleLine1 || "Seamless integration with")}<br/>
@@ -490,14 +495,14 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
   const next = ()=>setCurrent(c=>(c+1)%testimonials.length);
 
   return (
-    <section className="py-12 md:py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+    <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             {(content?.testimonialsTitleLine1 || "What our customers say")}<br/><span className="font-black">{content?.testimonialsTitleLine2 || "about us"}</span>
@@ -524,7 +529,14 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
               {/* Avatar panel */}
               <div className="sm:w-48 shrink-0 relative overflow-hidden bg-gray-50 dark:bg-[#1A1A22] flex flex-col items-center justify-center p-6 gap-3 border-b sm:border-b-0 sm:border-r border-gray-100 dark:border-white/[0.07]">
                 <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-brand-100 dark:ring-brand-500/20 shadow-md">
-                  <Image src={t.photo} alt={testimonialPhotoAlt(t.name, t.title)} width={80} height={80} className="object-cover w-full h-full"/>
+                  <Image
+                    src={t.photo}
+                    alt={testimonialPhotoAlt(t.name, t.title)}
+                    width={80}
+                    height={80}
+                    sizes="80px"
+                    className="object-cover w-full h-full"
+                  />
                 </div>
                 <div className="text-center">
                   <p className="text-sm font-bold text-gray-900 dark:text-white">{t.name}</p>
@@ -582,14 +594,14 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
   const faqs = content?.faqItems?.length ? content.faqItems : [...DEFAULT_HOME_FAQ];
 
   return (
-    <section id="faq" className="py-12 md:py-24 px-4 bg-white dark:bg-[#0E0E14]">
+    <section id="faq" className="py-8 md:py-12 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">{content?.faqTitle || "Frequently asked questions"}</h2>
           <p className="text-gray-500 dark:text-white/65">{content?.faqSubtitle || "Everything you need to know about Conalytic."}</p>

@@ -300,7 +300,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -340,9 +340,9 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       </section>
 
       {/* ── WHY JOIN ────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Life at Conalytic</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{lifeAtConalyticTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">{lifeAtConalyticSubtitle}</p>
@@ -371,10 +371,10 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       </section>
 
       {/* ── OPEN POSITIONS ──────────────────────────── */}
-      <section id="open-positions" className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section id="open-positions" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-3xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Open Roles</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{openPositionsTitle}</h2>
             <p className="text-gray-500 dark:text-white/65">{openPositionsSubtitle}</p>

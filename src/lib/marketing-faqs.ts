@@ -138,6 +138,39 @@ export const FEATURES_PAGE_FAQ: MarketingFaqItem[] = [
   },
 ];
 
+export const PRICING_PAGE_FAQ: MarketingFaqItem[] = [
+  {
+    question: "Is Conalytic really free to start?",
+    answer:
+      "Yes. Conalytic Pro is free to sign up — no credit card required. You receive 325,203 tokens to explore the product. AI-powered features consume tokens; KPIs Tracker goal monitoring does not use LLM metering.",
+  },
+  {
+    question: "How many tokens do I get on signup?",
+    answer:
+      "New accounts receive 325,203 tokens. That balance is enough to explore Conversational Analytics chat, optional Report Builder AI insights, and connected integrations before you need a top-up.",
+  },
+  {
+    question: "What happens when I run out of tokens?",
+    answer:
+      "Open Settings → Billing in the Conalytic app and purchase a token top-up. New tokens are added to your balance immediately so you can keep chatting and generating insights without changing plans.",
+  },
+  {
+    question: "Which features use tokens vs included usage?",
+    answer:
+      "Conversational Analytics and Report Builder AI insights use tokens based on model and query complexity. KPIs Tracker, core report deck generation (without AI narratives), and OAuth integrations are included on Pro without per-query LLM charges.",
+  },
+  {
+    question: "Do I need a monthly subscription?",
+    answer:
+      "No subscription is required to start on Conalytic Pro. You begin free with signup tokens and only pay for additional token top-ups when you choose. Enterprise plans are custom for larger organizations.",
+  },
+  {
+    question: "How does Enterprise pricing work?",
+    answer:
+      "Conalytic Enterprise is tailored for teams that need dedicated infrastructure, SSO, custom integrations, SLAs, and hands-on onboarding. Contact us for a quote — we’ll scope pricing to your requirements.",
+  },
+];
+
 export const INTEGRATIONS_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "Which marketing platforms does Conalytic integrate with?",

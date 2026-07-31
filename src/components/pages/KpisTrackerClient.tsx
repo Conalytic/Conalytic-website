@@ -203,7 +203,7 @@ export function KpisTrackerClient() {
 
   return (
     <>
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none" />
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-emerald-600/10 dark:bg-emerald-600/15 pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -261,14 +261,14 @@ export function KpisTrackerClient() {
 
       <ProductHowItWorks steps={pageContent.howItWorks} />
 
-      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
               Core features
@@ -329,7 +329,7 @@ export function KpisTrackerClient() {
         reverse
       />
 
-      <section className="py-24 px-4">
+      <section className="py-8 md:py-12 px-4">
         <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {benefits.map((benefit) => (

@@ -8,7 +8,7 @@ export function ProductSuiteLinks({ current }: { current: ProductId }) {
   const others = PRODUCT_LIST.filter((product) => product.id !== current);
 
   return (
-    <section className="py-16 px-4 bg-white dark:bg-[#0C0C12] border-y border-gray-100 dark:border-white/[0.06]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0C0C12] border-y border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-5xl mx-auto">
         <p className="text-center text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300 mb-3">
           Conalytic platform

@@ -1,24 +1,38 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-/** Full-viewport particle mesh — ink + lime network. */
-function ParticleMesh() {
+function useAmbientLite() {
+  const [lite, setLite] = useState(true);
+
+  useEffect(() => {
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const narrow = window.matchMedia("(max-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setLite(coarse || narrow || reduced);
+  }, []);
+
+  return lite;
+}
+
+/** Full-viewport particle mesh — disabled on mobile / reduced motion for performance. */
+function ParticleMesh({ enabled }: { enabled: boolean }) {
   const ref = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
     let w = 0;
     let h = 0;
 
-    const count = reduced ? 18 : 56;
+    const count = 32;
     const nodes = Array.from({ length: count }, () => ({
       x: Math.random(),
       y: Math.random(),
@@ -48,45 +62,43 @@ function ParticleMesh() {
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
 
-      if (!reduced) {
-        for (const n of nodes) {
-          n.x += n.vx;
-          n.y += n.vy;
-          n.pulse += 0.02;
-          if (n.x < 0 || n.x > 1) n.vx *= -1;
-          if (n.y < 0 || n.y > 1) n.vy *= -1;
-        }
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        n.pulse += 0.02;
+        if (n.x < 0 || n.x > 1) n.vx *= -1;
+        if (n.y < 0 || n.y > 1) n.vy *= -1;
+      }
 
-        for (let i = 0; i < nodes.length; i++) {
-          for (let j = i + 1; j < nodes.length; j++) {
-            const a = nodes[i];
-            const b = nodes[j];
-            const dx = (a.x - b.x) * w;
-            const dy = (a.y - b.y) * h;
-            const dist = Math.hypot(dx, dy);
-            if (dist < 160) {
-              const alpha = (1 - dist / 160) * 0.1;
-              ctx.strokeStyle = isDark
-                ? `rgba(201, 255, 51, ${alpha})`
-                : `rgba(95, 143, 0, ${alpha})`;
-              ctx.lineWidth = 1;
-              ctx.beginPath();
-              ctx.moveTo(a.x * w, a.y * h);
-              ctx.lineTo(b.x * w, b.y * h);
-              ctx.stroke();
-            }
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i];
+          const b = nodes[j];
+          const dx = (a.x - b.x) * w;
+          const dy = (a.y - b.y) * h;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 140) {
+            const alpha = (1 - dist / 140) * 0.08;
+            ctx.strokeStyle = isDark
+              ? `rgba(201, 255, 51, ${alpha})`
+              : `rgba(95, 143, 0, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(a.x * w, a.y * h);
+            ctx.lineTo(b.x * w, b.y * h);
+            ctx.stroke();
           }
         }
+      }
 
-        for (const n of nodes) {
-          const glow = 0.35 + Math.sin(n.pulse) * 0.15;
-          ctx.fillStyle = isDark
-            ? `rgba(201, 255, 51, ${glow})`
-            : `rgba(95, 143, 0, ${glow * 0.85})`;
-          ctx.beginPath();
-          ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2);
-          ctx.fill();
-        }
+      for (const n of nodes) {
+        const glow = 0.35 + Math.sin(n.pulse) * 0.15;
+        ctx.fillStyle = isDark
+          ? `rgba(201, 255, 51, ${glow})`
+          : `rgba(95, 143, 0, ${glow * 0.85})`;
+        ctx.beginPath();
+        ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       raf = requestAnimationFrame(draw);
@@ -100,21 +112,22 @@ function ParticleMesh() {
       window.removeEventListener("resize", resize);
       observer.disconnect();
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return <canvas ref={ref} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden />;
 }
 
-/** Cursor-following lime spotlight (desktop only). */
-function CursorSpotlight() {
+/** Cursor-following lime spotlight (desktop pointer only). */
+function CursorSpotlight({ enabled }: { enabled: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (!enabled) return;
+
     const el = ref.current;
     if (!el) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const coarse = window.matchMedia("(pointer: coarse)").matches;
-    if (reduced || coarse) return;
 
     let x = 0;
     let y = 0;
@@ -140,15 +153,16 @@ function CursorSpotlight() {
       window.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <div
       ref={ref}
       className="pointer-events-none fixed left-0 top-0 z-0 h-[560px] w-[560px] rounded-full opacity-60 transition-opacity duration-500 lg:opacity-50"
       style={{
-        background:
-          "radial-gradient(circle, var(--ambient-spotlight) 0%, transparent 70%)",
+        background: "radial-gradient(circle, var(--ambient-spotlight) 0%, transparent 70%)",
       }}
       aria-hidden
     />
@@ -156,36 +170,24 @@ function CursorSpotlight() {
 }
 
 /**
- * Fixed site-wide ambient layer — aurora orbs, grid, grain, particles.
- * Mounted once in SiteChrome so every marketing page inherits motion.
+ * Fixed site-wide ambient layer — CSS orbs + grid. Canvas effects only on desktop.
  */
 export function PageAmbient({ className }: { className?: string }) {
+  const lite = useAmbientLite();
+
   return (
     <div
       className={cn("pointer-events-none fixed inset-0 z-0 overflow-hidden", className)}
       aria-hidden
     >
-      {/* Animated aurora blobs */}
       <div className="ambient-orb ambient-orb-a" />
       <div className="ambient-orb ambient-orb-b" />
-      <div className="ambient-orb ambient-orb-c" />
-
-      {/* Slow gradient mesh shift */}
-      <div className="ambient-mesh" />
-
-      {/* Particle network */}
-      <ParticleMesh />
-
-      {/* Cursor spotlight */}
-      <CursorSpotlight />
-
-      {/* Subtle grid */}
+      {!lite ? <div className="ambient-orb ambient-orb-c" /> : null}
+      {!lite ? <div className="ambient-mesh" /> : null}
+      <ParticleMesh enabled={!lite} />
+      <CursorSpotlight enabled={!lite} />
       <div className="ambient-grid absolute inset-0" />
-
-      {/* Film grain */}
-      <div className="ambient-grain absolute inset-0" />
-
-      {/* Top vignette for depth */}
+      {!lite ? <div className="ambient-grain absolute inset-0" /> : null}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[#0f0f0f]/60" />
     </div>
   );

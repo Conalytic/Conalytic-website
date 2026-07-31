@@ -82,7 +82,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/4 w-[500px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -102,7 +102,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       </section>
 
       {/* ── STATS ───────────────────────────────────── */}
-      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-4xl mx-auto">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {stats.map(s=>(
@@ -122,7 +122,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       </section>
 
       {/* ── OUR STORY ───────────────────────────────── */}
-      <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.08) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

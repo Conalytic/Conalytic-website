@@ -25,6 +25,7 @@ function sitemapUrl(path: string, lastModified: Date): SitemapEntry {
 const STATIC_ENTRIES: SitemapEntry[] = [
   sitemapUrl("/", SITE_LAST_MODIFIED),
   sitemapUrl("/features", SITE_LAST_MODIFIED),
+  sitemapUrl("/pricing", SITE_LAST_MODIFIED),
   sitemapUrl("/products/conversational-analytics", SITE_LAST_MODIFIED),
   sitemapUrl("/products/kpis-tracker", SITE_LAST_MODIFIED),
   sitemapUrl("/products/report-builder", SITE_LAST_MODIFIED),

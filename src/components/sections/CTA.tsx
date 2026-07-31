@@ -241,7 +241,7 @@ export function CTA({
   const active = QUERIES[qIdx];
 
   return (
-    <section className="py-8 md:py-16 px-4">
+    <section className="py-6 md:py-12 px-4">
       <div className="max-w-5xl mx-auto">
         <motion.div
           className="relative rounded-3xl border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50"

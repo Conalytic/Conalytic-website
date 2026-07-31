@@ -165,7 +165,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
@@ -185,7 +185,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       </section>
 
       {/* ── GRID (marketing stack only) ─────────────── */}
-      <section className="py-16 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             OAuth integrations for marketing analytics

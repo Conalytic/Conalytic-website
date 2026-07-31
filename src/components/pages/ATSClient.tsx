@@ -278,7 +278,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 hero-gradient sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 right-1/4 w-[600px] h-[500px] rounded-full blur-3xl bg-emerald-600/8 dark:bg-emerald-600/12 pointer-events-none"/>
         <div className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl bg-brand-600/10 dark:bg-brand-600/15 pointer-events-none"/>
@@ -309,9 +309,9 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       </section>
 
       {/* ── FEATURES ────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">ATS Capabilities</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{featuresTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto">{featuresSubtitle}</p>
@@ -340,10 +340,10 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       </section>
 
       {/* ── PIPELINE ────────────────────────────────── */}
-      <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 70% 60% at 50% 100%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-16">
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Hiring Pipeline</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Your Complete Hiring Pipeline</h2>
             <p className="text-gray-500 dark:text-white/65">Every stage tracked, every candidate accounted for</p>
@@ -367,7 +367,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       </section>
 
       {/* ── STATS ───────────────────────────────────── */}
-      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[

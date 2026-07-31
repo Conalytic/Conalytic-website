@@ -1,60 +1,75 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, Calendar, Home } from "lucide-react";
+import { ArrowRight, CheckCircle2, Home, Sparkles } from "lucide-react";
+import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 import { buildPageMetadata } from "@/lib/page-seo";
 
 export const metadata: Metadata = buildPageMetadata({
   path: "/contact/thank-you",
   title: "Thank you – Conalytic",
-  description: "Thanks for reaching out. Complete your booking in Google Calendar if you have not already.",
+  description: "Thanks for reaching out. We'll get back to you soon.",
   indexable: false,
 });
 
 export default function ContactThankYouPage() {
   return (
-    <div className="min-h-[70vh] bg-[#f0f1f5] dark:bg-[#0E0E14] px-4 py-28">
-      <div className="mx-auto max-w-lg text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-500/25">
-          <CheckCircle2 className="h-9 w-9 text-emerald-600 dark:text-emerald-400" aria-hidden />
+    <div className="relative min-h-[85vh] overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <div className="absolute inset-0 grid-overlay opacity-[0.07] dark:opacity-[0.05] pointer-events-none" />
+      <div
+        className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full blur-3xl bg-brand-600/14 dark:bg-brand-600/20"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl bg-emerald-400/10"
+        aria-hidden
+      />
+
+      <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-3xl flex-col items-center justify-center px-4 py-24 text-center">
+        <div className="relative mb-8">
+          <div
+            className="absolute inset-0 rounded-full bg-emerald-400/20 blur-2xl scale-150"
+            aria-hidden
+          />
+          <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-emerald-200/80 bg-white shadow-lg shadow-emerald-500/10 dark:border-emerald-500/25 dark:bg-[#14141B]">
+            <CheckCircle2 className="h-10 w-10 text-emerald-600 dark:text-emerald-400" aria-hidden />
+          </div>
         </div>
-        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-          Thank you
+
+        <div className="inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/80 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-brand-700 shadow-sm backdrop-blur dark:border-brand-500/20 dark:bg-brand-500/10 dark:text-brand-300">
+          <Sparkles className="h-3 w-3" aria-hidden />
+          Message received
+        </div>
+
+        <h1 className="mt-6 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+          Thank you!
         </h1>
-        <p className="mt-4 text-base leading-relaxed text-gray-600 dark:text-white/65">
-          A <strong className="text-gray-800 dark:text-white/85">Google Calendar</strong> tab should have
-          opened so you can choose a time. Finish booking there; when you close or leave that tab,
-          you&apos;ll still have this thank-you page open here.
+
+        <p className="mt-5 max-w-xl text-lg leading-relaxed text-gray-600 dark:text-white/70">
+          We&apos;ve received your message and will{" "}
+          <span className={BRAND_HERO_GRADIENT_CLASS}>reach out to you soon</span>.
         </p>
-        <p className="mt-3 text-sm text-gray-500 dark:text-white/45">
-          (Google&apos;s booking page can&apos;t redirect back to our website after you click
-          &quot;Close&quot; — that only works with schedulers that support a custom return URL, e.g. some
-          Calendly plans.)
+
+        <p className="mt-3 max-w-md text-sm text-gray-500 dark:text-white/45">
+          Our team typically responds within one business day. Keep an eye on your inbox — we&apos;ll
+          be in touch shortly.
         </p>
+
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-brand-300 hover:bg-brand-50/50 dark:border-white/[0.12] dark:bg-[#14141B] dark:text-white dark:hover:border-brand-500/40"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-brand-300 hover:bg-brand-50/50 dark:border-white/[0.12] dark:bg-[#14141B] dark:text-white dark:hover:border-brand-500/40"
           >
             <Home className="h-4 w-4" aria-hidden />
             Back to home
           </Link>
-          <a
-            href={process.env.NEXT_PUBLIC_SCHEDULE_CALL_URL || "/contact"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-brand-primary px-6 py-3 text-sm shadow-lg"
+          <Link
+            href="/features"
+            className="btn-brand-primary inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm shadow-lg shadow-brand-600/25"
           >
-            <Calendar className="h-4 w-4" aria-hidden />
-            Open calendar again
-          </a>
+            Explore features
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </Link>
         </div>
-        <p className="mt-8 text-xs text-gray-400 dark:text-white/35">
-          Didn&apos;t see the calendar tab? Check whether your browser blocked the pop-up, then use{" "}
-          <Link href="/contact" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">
-            Contact
-          </Link>{" "}
-          to try again.
-        </p>
       </div>
     </div>
   );

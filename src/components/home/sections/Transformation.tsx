@@ -42,7 +42,7 @@ export function Transformation({ content }: { content?: TransformationContent })
   }, []);
 
   return (
-    <section className="relative pt-24 pb-12 md:py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
 
       <div className="relative z-10 max-w-5xl mx-auto">
 
@@ -52,7 +52,7 @@ export function Transformation({ content }: { content?: TransformationContent })
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
-          className="text-center mb-14"
+          className="text-center mb-8"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-white/60 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 backdrop-blur-sm mb-4">
             {content?.eyebrow || "The turning point"}

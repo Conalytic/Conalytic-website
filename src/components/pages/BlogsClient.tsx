@@ -75,14 +75,14 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
         </div>
       </section>
 
-      <section className="bg-[#f0f1f5] px-4 py-16 dark:bg-[#0f0f0f] sm:py-20">
+      <section className="bg-[#f0f1f5] px-4 py-12 dark:bg-[#0f0f0f] sm:py-16">
         <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
-            className="mb-14"
+            className="mb-8"
           >
             <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/40">
               Featured guide

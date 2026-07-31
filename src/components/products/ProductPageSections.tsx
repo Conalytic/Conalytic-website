@@ -65,14 +65,14 @@ export function ProductHowItWorks({
   steps: ProductPageContent["howItWorks"];
 }) {
   return (
-    <section className="py-24 px-4 bg-white dark:bg-[#0C0C12]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0C0C12]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="text-center mb-16"
+          className="text-center mb-8"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
             How it works
@@ -127,7 +127,7 @@ export function ProductCapabilitiesGrid({
   capabilities: ProductPageContent["capabilities"];
 }) {
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -141,7 +141,7 @@ export function ProductCapabilitiesGrid({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="text-center mb-14"
+          className="text-center mb-8"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
             Capabilities
@@ -196,7 +196,7 @@ export function ProductDeepDive({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-24 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
       <div
         className="absolute inset-0 pointer-events-none hidden dark:block"
         style={{
@@ -275,13 +275,13 @@ export function AiModelsSection() {
   ];
 
   return (
-    <section className="py-24 px-4 bg-white dark:bg-[#0C0C12]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0C0C12]">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
             AI models

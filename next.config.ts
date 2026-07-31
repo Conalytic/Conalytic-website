@@ -23,6 +23,9 @@ function frameAncestorsCsp(): string {
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
+  experimental: {
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+  },
   async headers() {
     const headers: { key: string; value: string }[] = [
       { key: "Content-Security-Policy", value: frameAncestorsCsp() },
@@ -58,6 +61,8 @@ const nextConfig: NextConfig = {
       { source: "/resources/blogs", destination: "/blogs", permanent: true },
       { source: "/resources/blogs/page/:page", destination: "/blogs", permanent: false },
       { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/contact/book", destination: "/contact", permanent: true },
+      { source: "/dev/email-preview", destination: "/contact", permanent: false },
       { source: "/resources/integrations", destination: "/integrations", permanent: true },
       { source: "/resources/careers", destination: "/careers", permanent: true },
       // Retired blog slugs → blog index

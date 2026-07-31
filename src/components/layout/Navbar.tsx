@@ -24,6 +24,7 @@ const fallbackNavigation: SiteConfigLink[] = [
       { label: "Report Builder", href: "/products/report-builder", description: "HTML presentation decks from connected marketing data" },
     ],
   },
+  { label: "Pricing", href: "/pricing" },
   { label: "Features", href: "/features" },
   { label: "About", href: "/about-us" },
   {

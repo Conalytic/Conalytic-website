@@ -24,9 +24,11 @@ export const viewport: Viewport = {
 
 const nunitoSans = Nunito_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700"],
   variable: "--font-nunito-sans",
   display: "swap",
+  preload: true,
+  adjustFontFallback: true,
 });
 
 export const metadata: Metadata = {
@@ -115,7 +117,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${nunitoSans.variable} ${nunitoSans.className} h-full font-sans`}
+      className={`dark ${nunitoSans.variable} ${nunitoSans.className} h-full font-sans`}
       suppressHydrationWarning
     >
       <head>

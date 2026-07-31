@@ -9,7 +9,8 @@ export function getSiteRoutesHint(): string {
 
   return `Valid link targets for page-level buttons and internal linking:
 ${pages}
-- /#pricing (home pricing section)
+- /pricing (pricing plans, tokens, top-ups)
+- /#pricing (home pricing section — same plans on homepage)
 - /#faq (home FAQ section)
 - /#open-positions (careers anchor)
 

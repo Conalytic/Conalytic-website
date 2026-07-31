@@ -36,14 +36,14 @@ const PRODUCTS = [
 
 export function HomeProducts({ content }: { content?: { servicesTitleLine1?: string; servicesTitleLine2?: string } }) {
   return (
-    <section className="border-y border-gray-200/80 bg-white py-20 dark:border-white/[0.06] dark:bg-[#0f0f0f] sm:py-24">
+    <section className="border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-[#0f0f0f] sm:py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
-          className="mb-12 max-w-2xl"
+          className="mb-8 max-w-2xl"
         >
           <p className="mb-3 text-[11px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300">
             Platform

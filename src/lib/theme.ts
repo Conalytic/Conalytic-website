@@ -2,6 +2,13 @@ export const THEME_STORAGE_KEY = "conalytic-theme";
 
 export type Theme = "light" | "dark";
 
+export const DEFAULT_THEME: Theme = "dark";
+
+export function resolveTheme(stored: string | null): Theme {
+  if (stored === "light" || stored === "dark") return stored;
+  return DEFAULT_THEME;
+}
+
 export function getStoredTheme(): Theme | null {
   if (typeof window === "undefined") return null;
   try {
@@ -17,4 +24,5 @@ export function applyTheme(theme: Theme) {
   document.documentElement.style.colorScheme = theme;
 }
 
-export const THEME_INIT_SCRIPT = `(function(){try{var k="${THEME_STORAGE_KEY}";var t=localStorage.getItem(k);var d=t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light";}catch(e){}})();`;
+/** Runs in <head> before paint — respects saved preference, otherwise dark. */
+export const THEME_INIT_SCRIPT = `(function(){try{var k="${THEME_STORAGE_KEY}";var t=localStorage.getItem(k);var d=t==="dark"||t!=="light";document.documentElement.classList.toggle("dark",d);document.documentElement.style.colorScheme=d?"dark":"light";}catch(e){}})();`;

@@ -323,7 +323,7 @@ const BENTO_CARDS = [
   { title:"KPIs Tracker",              desc:"Set goals across GA4, GSC, and Google Ads. See on-track, at-risk, and off-track status with six months of history.",                          icon:Target,        glow:"from-emerald-400/10 to-teal-400/5",   border:"border-emerald-400/20 dark:border-emerald-500/20", bg:"bg-white dark:bg-[#14141B]", Visual:AIInsightsVisual, href:"/products/kpis-tracker" },
   { title:"Report Builder",            desc:"Generate HTML presentation decks from connected data—executive summary, platform sections, cross-source insights, and action plans.",          icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:ReportBuilderVisual, href:"/products/report-builder" },
   { title:"OAuth integrations",        desc:"Connect Google Analytics 4, Search Console, Google Ads, Tag Manager, Meta Ads, and LinkedIn with read-only OAuth.",                                      icon:Zap,           glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-[#14141B]",Visual:DataSyncVisual,     href:SITE_ROUTES.integrations },
-  { title:"Token-based Pro usage",     desc:"Free signup with included tokens for chat and AI report insights. KPI Tracker uses live APIs without LLM metering.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-400/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:AutoReportingVisual, href:"#pricing" },
+  { title:"Token-based Pro usage",     desc:"Free signup includes 325,203 tokens for chat and AI report insights. KPI Tracker uses live APIs without LLM metering.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-400/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:AutoReportingVisual, href:"/pricing" },
   { title:"Enterprise Security",        desc:"Encrypted data in transit, OAuth-scoped access, and privacy policies aligned with Google API Limited Use requirements.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-[#14141B]", Visual:SecurityVisual,      href:PRIVACY_POLICY_PATH },
 ];
 
@@ -469,7 +469,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
   return (
     <>
       {/* ── HERO ──────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="relative overflow-hidden px-4 pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
@@ -500,9 +500,9 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       </section>
 
       {/* ── FEATURES BENTO GRID ───────────────────────── */}
-      <section className="py-24 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-12">
+          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{includedSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
@@ -565,7 +565,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
 
       {/* ── DEEP DIVE SECTIONS ────────────────────────── */}
       {deepDives.map((s,idx)=>(
-        <section key={s.title} className={`relative py-24 px-4 overflow-hidden ${s.sectionBg}`}>
+        <section key={s.title} className={`relative py-8 md:py-12 px-4 overflow-hidden ${s.sectionBg}`}>
           <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:s.glow}}/>
           <div className="relative z-10 max-w-5xl mx-auto">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx%2===1?"":"lg:grid-flow-dense"}`}>

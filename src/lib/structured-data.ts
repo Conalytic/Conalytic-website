@@ -152,7 +152,7 @@ export function softwareApplicationSchema() {
       name: "Conalytic Pro — free signup",
       price: "0",
       priceCurrency: "USD",
-      description: "Free account to explore all three products; usage-based pricing for AI features.",
+      description: "Free account with 325,203 signup tokens; usage-based pricing for additional AI features.",
       url: CHAT_APP_SIGNUP_URL,
     },
     provider: { "@id": `${SITE}/#organization` },

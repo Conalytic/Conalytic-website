@@ -6,6 +6,7 @@ const PAGE_ENTRIES: CmsRegistryEntry[] = [
   { id: "chrome-footer", label: "Footer", type: "chrome", path: "__chrome:footer", contentFile: "site/footer.json", creatable: false, hasSeo: false },
   { id: "home", label: "Home", type: "page", path: "/", contentFile: "pages/home.json", creatable: false, hasSeo: true },
   { id: "features", label: "Features", type: "page", path: "/features", contentFile: "pages/features.json", creatable: false, hasSeo: true },
+  { id: "pricing", label: "Pricing", type: "page", path: "/pricing", contentFile: "pages/pricing.json", creatable: false, hasSeo: true },
   { id: "integrations", label: "Integrations", type: "page", path: "/integrations", contentFile: "pages/integrations.json", creatable: false, hasSeo: true },
   { id: "about", label: "About Us", type: "page", path: "/about-us", contentFile: "pages/about-us.json", creatable: false, hasSeo: true },
   { id: "contact", label: "Contact", type: "page", path: "/contact", contentFile: "pages/contact.json", creatable: false, hasSeo: true },

@@ -463,6 +463,17 @@ section { background: transparent !important; }
 .animate-border-glow { animation: border-glow 4s ease-in-out infinite; }
 
 /* ── Global ambient layers (PageAmbient + BrandAmbient) ── */
+@media (max-width: 768px) {
+  .ambient-orb {
+    filter: blur(56px);
+    animation: none;
+  }
+  .ambient-mesh,
+  .ambient-grain {
+    display: none;
+  }
+}
+
 .ambient-orb {
   position: absolute;
   border-radius: 50%;
@@ -567,6 +578,12 @@ section { background: transparent !important; }
   .hero-gradient::before {
     animation: none !important;
   }
+}
+
+main section,
+main article > div > section {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
 }
 
 /* ── Scroll reveal (auto via ScrollRevealInit + manual .reveal) ── */

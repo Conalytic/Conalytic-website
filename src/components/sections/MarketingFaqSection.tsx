@@ -25,7 +25,7 @@ export function MarketingFaqSection({
   if (!items.length) return null;
 
   return (
-    <section id={id} className="py-12 md:py-24 px-4 bg-white dark:bg-[#0E0E14]">
+    <section id={id} className="py-8 md:py-12 px-4 bg-white dark:bg-[#0E0E14]">
       <div className="max-w-3xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 22 }}

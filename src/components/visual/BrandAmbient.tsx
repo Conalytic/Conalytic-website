@@ -1,7 +1,20 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+
+function useAmbientLite() {
+  const [lite, setLite] = useState(true);
+
+  useEffect(() => {
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const narrow = window.matchMedia("(max-width: 768px)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setLite(coarse || narrow || reduced);
+  }, []);
+
+  return lite;
+}
 
 function themeParticleColors() {
   const isDark = document.documentElement.classList.contains("dark");
@@ -109,14 +122,16 @@ export function BrandAmbient({
   variant?: "hero" | "subtle" | "footer";
   className?: string;
 }) {
+  const lite = useAmbientLite();
+
   return (
     <div className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)} aria-hidden>
       {variant === "hero" && (
         <>
           <div className="ambient-orb ambient-orb-a opacity-80" />
           <div className="ambient-orb ambient-orb-b opacity-70" />
-          <div className="ambient-mesh opacity-60" />
-          <AmbientCanvas />
+          {!lite ? <div className="ambient-mesh opacity-60" /> : null}
+          {!lite ? <AmbientCanvas /> : null}
         </>
       )}
       {variant === "subtle" && (

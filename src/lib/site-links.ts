@@ -18,7 +18,7 @@ export const SITE_ROUTES = {
   careers: "/careers",
   cookies: "/cookies",
   brand: "/brand",
-  pricing: "/#pricing",
+  pricing: "/pricing",
   faq: "/#faq",
   products: {
     conversationalAnalytics: "/products/conversational-analytics",
