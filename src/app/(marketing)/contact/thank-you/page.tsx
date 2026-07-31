@@ -8,7 +8,6 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/contact/thank-you",
   title: "Thank you – Conalytic",
   description: "Thanks for reaching out. We'll get back to you soon.",
-  indexable: false,
 });
 
 export default function ContactThankYouPage() {

@@ -1,11 +1,8 @@
 /**
  * Canonical origin + crawl rules for SEO. Override with NEXT_PUBLIC_SITE_URL on staging.
  *
- * **Indexing is locked off in code** until public launch. Set `SITE_LAUNCHED_FOR_PUBLIC_INDEXING`
- * to `true` and add `ALLOW_SEARCH_INDEXING=1` on the deployment environment when you are ready
- * for search engines to crawl and index the site.
- *
- * The staging website (staging branch / non-production URL) is always noindex/nofollow in code.
+ * **Sitewide noindex/nofollow** — all environments stay out of search until you deliberately
+ * change `allowSearchIndexing()` in code.
  *
  * Canonical host is always **non-www** (`https://conalytic.com`).
  */
@@ -28,9 +25,6 @@ export const SITE_ORIGIN = normalizeSiteOrigin(
   process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_ORIGIN
 );
 
-/** Flip to `true` at launch (with `ALLOW_SEARCH_INDEXING=1` on deploy). Until then: sitewide noindex/nofollow. */
-export const SITE_LAUNCHED_FOR_PUBLIC_INDEXING = false;
-
 const DEFAULT_STAGING_BRANCH =
   process.env.GITHUB_STAGING_BRANCH?.trim().toLowerCase() || "staging";
 
@@ -49,11 +43,7 @@ export function isStagingWebsite(): boolean {
   return configuredOrigin !== PRODUCTION_SITE_ORIGIN;
 }
 
+/** Always false — sitewide noindex, nofollow, and robots.txt disallow. */
 export function allowSearchIndexing(): boolean {
-  if (isStagingWebsite()) return false;
-
-  return (
-    SITE_LAUNCHED_FOR_PUBLIC_INDEXING &&
-    process.env.ALLOW_SEARCH_INDEXING === "1"
-  );
+  return false;
 }

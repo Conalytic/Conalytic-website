@@ -4,6 +4,12 @@
 import type { Metadata } from "next";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
+const NO_INDEX_ROBOTS: Metadata["robots"] = {
+  index: false,
+  follow: false,
+  googleBot: { index: false, follow: false },
+};
+
 const DEFAULT_OG_IMAGE = {
   url: "/og-image.png",
   width: 1200,
@@ -26,8 +32,6 @@ export function buildPageMetadata(input: {
   title: string;
   description: string;
   keywords?: string[];
-  /** Set false for thank-you and other non-indexable pages that still need a canonical. */
-  indexable?: boolean;
 }): Metadata {
   const url = canonicalUrl(input.path);
   const titleAbsolute = input.title.includes("| Conalytic")
@@ -54,9 +58,7 @@ export function buildPageMetadata(input: {
       description: input.description,
       images: [DEFAULT_OG_IMAGE.url],
     },
-    ...(input.indexable === false
-      ? { robots: { index: false, follow: false } }
-      : {}),
+    robots: NO_INDEX_ROBOTS,
   };
 }
 
@@ -106,5 +108,6 @@ export function buildBlogPostMetadata(input: {
       description,
       images: [DEFAULT_OG_IMAGE.url],
     },
+    robots: NO_INDEX_ROBOTS,
   };
 }

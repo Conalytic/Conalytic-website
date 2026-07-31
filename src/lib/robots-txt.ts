@@ -25,12 +25,12 @@ export function resolveRobotsBody(
 }
 
 export async function buildRobotsTxt(): Promise<string> {
-  const custom = await getPublishedRobotsBody();
-  if (custom) return custom;
-
   if (!allowSearchIndexing()) {
     return stagingRobotsTxt();
   }
+
+  const custom = await getPublishedRobotsBody();
+  if (custom) return custom;
 
   return buildDefaultRobotsTxt();
 }
