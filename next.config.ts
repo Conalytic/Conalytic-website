@@ -53,7 +53,12 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // www → apex is handled by Vercel domain settings (avoid duplicate redirects with Cloudflare).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.conalytic.com" }],
+        destination: "https://conalytic.com/:path*",
+        permanent: true,
+      },
       { source: "/privacy", destination: "/privacy-and-policy", permanent: true },
       { source: "/terms", destination: "/terms-of-service", permanent: true },
       { source: "/favicon.ico", destination: "/favicon.png", permanent: false },
