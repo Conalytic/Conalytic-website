@@ -9,6 +9,12 @@ const SITE_LAST_MODIFIED = new Date("2026-07-26T00:00:00.000Z");
 
 const LEGAL_PATHS = new Set<string>(["/cookies", PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH]);
 
+/** Routes with noindex — must not appear in sitemap.xml */
+const NON_INDEXABLE_PATHS = new Set<string>([
+  "/contact/thank-you",
+  "/products/applicant-tracking-system",
+]);
+
 export type SitemapEntry = {
   url: string;
   lastModified: Date;
@@ -35,6 +41,7 @@ function lastModifiedForRegistryPath(path: string, type: "page" | "blog"): Date 
 export function getSitemapEntries(): SitemapEntry[] {
   return CMS_REGISTRY
     .filter((item) => item.type === "page" || item.type === "blog")
+    .filter((item) => !NON_INDEXABLE_PATHS.has(item.path))
     .map((item) => {
       const type = item.type === "blog" ? "blog" : "page";
       return entry(item.path, lastModifiedForRegistryPath(item.path, type));
