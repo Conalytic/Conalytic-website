@@ -30,8 +30,19 @@ const DEFAULT_OG_IMAGE = {
 } as const;
 
 export function canonicalUrl(path: string): string {
-  if (!path || path === "/") return `${SITE_ORIGIN}/`;
-  const normalized = path.startsWith("/") ? path : `/${path}`;
+  const trimmed = path.trim();
+  if (!trimmed || trimmed === "/") return `${SITE_ORIGIN}/`;
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    try {
+      const url = new URL(trimmed);
+      return url.pathname === "/" ? `${url.origin}/` : `${url.origin}${url.pathname}`;
+    } catch {
+      // Fall through and treat as a site path.
+    }
+  }
+
+  const normalized = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   return `${SITE_ORIGIN}${normalized}`;
 }
 
