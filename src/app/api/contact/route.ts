@@ -11,6 +11,7 @@ import {
   isValidEmail,
   mapResendSendError,
 } from "@/lib/resend-utils";
+import { brandedEmailHtml } from "@/lib/email-brand";
 
 const MAX_NAME = 120;
 const MAX_MESSAGE = 8000;
@@ -56,13 +57,13 @@ async function upsertContactSegment(lead: ContactLead) {
 }
 
 function contactEmailHtml(lead: ContactLead) {
-  return `
+  return brandedEmailHtml(`
     <p><strong>New contact form submission</strong></p>
     <p>Name: ${escapeHtml(lead.firstName)} ${escapeHtml(lead.lastName)}</p>
     <p>Email: ${escapeHtml(lead.email)}</p>
     <p>Message:</p>
-    <pre style="white-space:pre-wrap;font-family:system-ui,sans-serif">${escapeHtml(lead.message)}</pre>
-  `;
+    <pre style="white-space:pre-wrap;font-family:system-ui,sans-serif;margin:0">${escapeHtml(lead.message)}</pre>
+  `);
 }
 
 async function trySendEmail(

@@ -4,6 +4,7 @@
  */
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { brandedEmailHtml } from "@/lib/email-brand";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 const ALLOWED_TYPES = new Set([
@@ -77,7 +78,10 @@ export async function POST(request: Request) {
     from,
     to: [to],
     subject: `Careers application: ${role}`,
-    html: `<p>New resume submitted for: <strong>${escapeHtml(role)}</strong></p><p>File: ${escapeHtml(resume.name)} (${escapeHtml(mime || "unknown type")})</p>`,
+    html: brandedEmailHtml(`
+      <p>New resume submitted for: <strong>${escapeHtml(role)}</strong></p>
+      <p>File: ${escapeHtml(resume.name)} (${escapeHtml(mime || "unknown type")})</p>
+    `),
     attachments: [{ filename: sanitizeFilename(resume.name), content: buffer }],
   });
 

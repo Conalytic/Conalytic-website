@@ -37,6 +37,13 @@ const nextConfig: NextConfig = {
         headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }, cspHeader],
       },
       {
+        source: "/email/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=86400, immutable" },
+          cspHeader,
+        ],
+      },
+      {
         source: "/((?!sitemap\\.xml|robots\\.txt).*)",
         headers: siteHeaders,
       },

@@ -4,6 +4,7 @@
  */
 import { Resend } from "resend";
 import { NextResponse } from "next/server";
+import { brandedEmailHtml } from "@/lib/email-brand";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -95,7 +96,11 @@ export async function POST(request: Request) {
     from,
     to: [to],
     subject: `Newsletter signup: ${email}`,
-    html: `<p>New newsletter subscription from the website.</p><p><strong>${escapeHtml(email)}</strong></p><p>Add this address to your mailing list or create a Resend segment and set <code>RESEND_NEWSLETTER_SEGMENT_ID</code>.</p>`,
+    html: brandedEmailHtml(`
+      <p>New newsletter subscription from the website.</p>
+      <p><strong>${escapeHtml(email)}</strong></p>
+      <p>Add this address to your mailing list or create a Resend segment and set <code>RESEND_NEWSLETTER_SEGMENT_ID</code>.</p>
+    `),
   });
 
   if (error) {
