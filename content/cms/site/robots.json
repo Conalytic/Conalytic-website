@@ -1,3 +1,3 @@
 {
-  "body": "User-agent: *\nDisallow: /api/\nDisallow: /contact/thank-you\n\nSitemap: https://conalytic.com/sitemap.xml\n"
+  "body": "User-agent: *\nDisallow: /api/\nDisallow: /contact/thank-you\nDisallow: /*?\n\nSitemap: https://conalytic.com/sitemap.xml\n"
 }

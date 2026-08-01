@@ -9,6 +9,7 @@ export function buildDefaultRobotsTxt(): string {
     "User-agent: *",
     "Disallow: /api/",
     "Disallow: /contact/thank-you",
+    "Disallow: /*?",
     "",
     `Sitemap: ${SITE_ORIGIN}/sitemap.xml`,
     "",
