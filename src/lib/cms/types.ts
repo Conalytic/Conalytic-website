@@ -1,6 +1,6 @@
 import type { FooterConfig, NavbarConfig } from "@/lib/site-layout";
 
-/** Registry entry — fixed list; never created from admin UI. */
+/** Registry entry — maps site routes to `content/cms/` JSON files. */
 export type CmsRegistryType = "page" | "chrome" | "blog" | "robots";
 
 export type CmsRegistryEntry = {

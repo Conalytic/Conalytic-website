@@ -35,21 +35,8 @@ const BLOG_ENTRIES: CmsRegistryEntry[] = STATIC_BLOG_POSTS.map((post) => ({
 
 export const CMS_REGISTRY: CmsRegistryEntry[] = [...PAGE_ENTRIES, ...BLOG_ENTRIES];
 
-export function getRegistryEntryById(id: string): CmsRegistryEntry | undefined {
-  return CMS_REGISTRY.find((e) => e.id === id);
-}
-
 export function getRegistryEntryByPath(path: string): CmsRegistryEntry | undefined {
   const normalized = path === "" ? "/" : path.startsWith("/") ? path : `/${path}`;
   return CMS_REGISTRY.find((e) => e.path === normalized);
 }
 
-export function isRegistryPath(path: string): boolean {
-  return Boolean(getRegistryEntryByPath(path));
-}
-
-export function getChromeRegistryEntry(kind: "header" | "footer"): CmsRegistryEntry {
-  return kind === "header"
-    ? getRegistryEntryById("chrome-header")!
-    : getRegistryEntryById("chrome-footer")!;
-}

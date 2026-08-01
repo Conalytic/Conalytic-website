@@ -1,4 +1,4 @@
-/** Google Tag Manager — marketing site only (not loaded in admin studio). */
+/** Google Tag Manager — loaded on marketing pages via `(marketing)/layout`. */
 export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID?.trim() || "GTM-KFS85FFH";
 
 export const GTM_HEAD_SCRIPT = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

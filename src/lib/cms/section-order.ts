@@ -1,6 +1,4 @@
-import { getSectionOrderKeys } from "@/lib/cms/agent-prompt";
-
-/** Friendly names analysts use → layout.sectionOrder keys. */
+/** Friendly names → layout.sectionOrder keys. */
 const SECTION_ALIASES: Record<string, string> = {
   hero: "hero",
   "hero section": "hero",
@@ -30,7 +28,7 @@ const SECTION_ALIASES: Record<string, string> = {
   footer: "cta",
 };
 
-export function resolveSectionKey(name: string, allowed: string[]): string | undefined {
+export function resolveSectionKey(name: string, allowed: readonly string[]): string | undefined {
   const trimmed = name.trim().toLowerCase().replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
   if (!trimmed) return undefined;
 
@@ -47,7 +45,7 @@ export function resolveSectionKey(name: string, allowed: string[]): string | und
 
 export function normalizeSectionOrder(
   custom: unknown,
-  allowed: string[],
+  allowed: readonly string[],
 ): string[] | undefined {
   if (!Array.isArray(custom) || allowed.length === 0) return undefined;
 
@@ -69,40 +67,4 @@ export function normalizeSectionOrder(
   }
 
   return result.length > 0 ? result : undefined;
-}
-
-export function getEffectiveSectionOrder(
-  layout: { sectionOrder?: string[] } | undefined,
-  registryId: string,
-): string[] {
-  const allowed = getSectionOrderKeys(registryId);
-  if (!allowed.length) return [];
-  return normalizeSectionOrder(layout?.sectionOrder, allowed) ?? [...allowed];
-}
-
-export function moveSection(
-  order: string[],
-  sectionId: string,
-  relation: "before" | "after",
-  anchorId: string,
-): string[] | null {
-  if (!order.includes(sectionId) || !order.includes(anchorId) || sectionId === anchorId) {
-    return null;
-  }
-
-  const next = order.filter((id) => id !== sectionId);
-  const anchorIndex = next.indexOf(anchorId);
-  if (anchorIndex < 0) return null;
-
-  const insertAt = relation === "before" ? anchorIndex : anchorIndex + 1;
-  next.splice(insertAt, 0, sectionId);
-  return next;
-}
-
-export function moveSectionToEdge(order: string[], sectionId: string, edge: "start" | "end"): string[] | null {
-  if (!order.includes(sectionId)) return null;
-  const next = order.filter((id) => id !== sectionId);
-  if (edge === "start") next.unshift(sectionId);
-  else next.push(sectionId);
-  return next;
 }

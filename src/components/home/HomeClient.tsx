@@ -30,7 +30,7 @@ import { integrationLogoAlt, testimonialPhotoAlt } from "@/lib/image-alt";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/cms/agent-prompt";
+import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/cms/home-section-order";
 import { normalizeSectionOrder as resolveSectionOrder } from "@/lib/cms/section-order";
 import {
   SAAS_EASE as EASE,

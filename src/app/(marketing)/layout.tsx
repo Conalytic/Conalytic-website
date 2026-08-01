@@ -6,7 +6,7 @@ import {
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { AsyncSiteChrome } from "@/components/layout/AsyncSiteChrome";
 
-/** Marketing pages only — admin routes are siblings and skip this layout. */
+/** Marketing site layout (nav, footer, GTM). */
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
