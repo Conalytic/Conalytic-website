@@ -25,7 +25,21 @@ const nextConfig: NextConfig = {
     return [
       { source: "/api/:path*", headers: [noIndexHeader] },
       { source: "/contact/thank-you", headers: [noIndexHeader] },
-      { source: "/:path*", headers: siteHeaders },
+      {
+        source: "/sitemap.xml",
+        headers: [
+          { key: "Content-Type", value: "application/xml; charset=utf-8" },
+          cspHeader,
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }, cspHeader],
+      },
+      {
+        source: "/((?!sitemap\\.xml|robots\\.txt).*)",
+        headers: siteHeaders,
+      },
     ];
   },
   eslint: {
