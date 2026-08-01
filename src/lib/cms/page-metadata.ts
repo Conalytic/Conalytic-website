@@ -8,6 +8,7 @@ export async function buildRouteMetadata(
     title: string;
     description: string;
     keywords?: string[];
+    indexable?: boolean;
   },
 ): Promise<Metadata> {
   const overlay = await getPublishedPageOverlay(path);

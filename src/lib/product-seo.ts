@@ -5,6 +5,25 @@ import type { Metadata } from "next";
 import type { ProductDefinition, ProductId } from "@/lib/products";
 import { getProduct } from "@/lib/products";
 import { canonicalUrl } from "@/lib/page-seo";
+import { allowSearchIndexing } from "@/lib/seo-config";
+
+const INDEX_ROBOTS: Metadata["robots"] = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
+
+const NO_INDEX_ROBOTS: Metadata["robots"] = {
+  index: false,
+  follow: false,
+  googleBot: { index: false, follow: false },
+};
 
 export function productCanonical(path: string): string {
   return canonicalUrl(path);
@@ -39,6 +58,7 @@ export function buildProductMetadata(product: ProductDefinition): Metadata {
       description: product.metaDescription,
       images: ["/og-image.png"],
     },
+    robots: allowSearchIndexing() ? INDEX_ROBOTS : NO_INDEX_ROBOTS,
   };
 }
 

@@ -2,7 +2,19 @@
  * Shared page metadata helpers — self-referencing canonical URLs for every route.
  */
 import type { Metadata } from "next";
-import { SITE_ORIGIN } from "@/lib/seo-config";
+import { allowSearchIndexing, SITE_ORIGIN } from "@/lib/seo-config";
+
+const INDEX_ROBOTS: Metadata["robots"] = {
+  index: true,
+  follow: true,
+  googleBot: {
+    index: true,
+    follow: true,
+    "max-image-preview": "large",
+    "max-snippet": -1,
+    "max-video-preview": -1,
+  },
+};
 
 const NO_INDEX_ROBOTS: Metadata["robots"] = {
   index: false,
@@ -27,11 +39,18 @@ function socialImages(alt?: string) {
   return [{ ...DEFAULT_OG_IMAGE, ...(alt ? { alt } : {}) }];
 }
 
+function resolveRobots(indexable?: boolean): Metadata["robots"] {
+  const pageIndexable = indexable ?? true;
+  return allowSearchIndexing() && pageIndexable ? INDEX_ROBOTS : NO_INDEX_ROBOTS;
+}
+
 export function buildPageMetadata(input: {
   path: string;
   title: string;
   description: string;
   keywords?: string[];
+  /** Set false for thank-you, 404, and other non-indexable marketing routes. */
+  indexable?: boolean;
 }): Metadata {
   const url = canonicalUrl(input.path);
   const titleAbsolute = input.title.includes("| Conalytic")
@@ -58,7 +77,7 @@ export function buildPageMetadata(input: {
       description: input.description,
       images: [DEFAULT_OG_IMAGE.url],
     },
-    robots: NO_INDEX_ROBOTS,
+    robots: resolveRobots(input.indexable),
   };
 }
 
@@ -108,6 +127,6 @@ export function buildBlogPostMetadata(input: {
       description,
       images: [DEFAULT_OG_IMAGE.url],
     },
-    robots: NO_INDEX_ROBOTS,
+    robots: resolveRobots(),
   };
 }

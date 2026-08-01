@@ -83,7 +83,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
     setLoading(false);
 
     if (!res.ok) {
-      setSubmitError(json.error || "Could not submit your message. Try again.");
+      setSubmitError(json.error || "Could not submit your message. Try again later.");
       return;
     }
 

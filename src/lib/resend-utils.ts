@@ -32,9 +32,30 @@ export function getResendClient(): Resend | null {
 
 /** Resend returns 401 when RESEND_API_KEY is missing, revoked, or wrong. */
 export function isResendAuthError(error: { statusCode?: number | null; message?: string }) {
-  if (error.statusCode === 401 || error.statusCode === 403) return true;
+  if (error.statusCode === 401) return true;
   const m = (error.message ?? "").toLowerCase();
   return m.includes("api key") && m.includes("invalid");
+}
+
+export function isResendDomainError(error: { statusCode?: number | null; message?: string }) {
+  const m = (error.message ?? "").toLowerCase();
+  return (
+    error.statusCode === 403 ||
+    m.includes("domain") ||
+    m.includes("not verified") ||
+    m.includes("verify") ||
+    m.includes("from address")
+  );
+}
+
+export function mapResendSendError(error: { statusCode?: number | null; message?: string }) {
+  if (isResendAuthError(error)) {
+    return "Message delivery is not configured. Please email us directly at admin@conalytic.com.";
+  }
+  if (isResendDomainError(error)) {
+    return "Message delivery is temporarily unavailable. Please email us directly at admin@conalytic.com.";
+  }
+  return "Could not submit your message. Try again later.";
 }
 
 export function getResendFromAddress() {

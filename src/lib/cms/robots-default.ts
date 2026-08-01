@@ -3,16 +3,29 @@ import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const SITE_HOST = new URL(SITE_ORIGIN).host;
 
-const AI_CRAWLER_BOTS = [
-  "Amazonbot",
+/** Major LLM / AI search crawlers — explicit allow with same path rules as marketing. */
+const ALLOWED_AI_CRAWLER_BOTS = [
+  "GPTBot",
+  "ChatGPT-User",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "anthropic-ai",
+  "Google-Extended",
+  "PerplexityBot",
   "Applebot-Extended",
+  "cohere-ai",
+] as const;
+
+/** Aggressive or low-signal AI scrapers — block entirely. */
+const BLOCKED_AI_CRAWLER_BOTS = [
+  "Amazonbot",
   "Bytespider",
   "CCBot",
-  "ClaudeBot",
   "CloudflareBrowserRenderingCrawler",
-  "Google-Extended",
-  "GPTBot",
   "meta-externalagent",
+  "Diffbot",
+  "DataForSeoBot",
+  "PetalBot",
 ] as const;
 
 const UTM_PARAMS = [
@@ -35,13 +48,41 @@ const SEARCH_QUERY_PARAMS = [
   "filter",
 ] as const;
 
-function aiBotDisallowSection(): string {
-  const botBlocks = AI_CRAWLER_BOTS.map((bot) => `User-agent: ${bot}\nDisallow: /`).join("\n\n");
-  return `User-agent: *
-Content-Signal: search=yes,ai-train=no,use=reference
-Allow: /
+function sharedDisallowRules(): string {
+  return [
+    "Disallow: /api/",
+    "Disallow: /admin/",
+    "Disallow: /contact/thank-you",
+    "Disallow: /*#",
+    "Disallow: /*?*",
+    "",
+    utmAllowRules(),
+    "",
+    searchDisallowRules(),
+  ].join("\n");
+}
 
-${botBlocks}`;
+function allowedAiBotSection(): string {
+  const blocks = ALLOWED_AI_CRAWLER_BOTS.map(
+    (bot) => `User-agent: ${bot}\nAllow: /\n${sharedDisallowRules()}`,
+  );
+  return blocks.join("\n\n");
+}
+
+function blockedAiBotSection(): string {
+  return BLOCKED_AI_CRAWLER_BOTS.map((bot) => `User-agent: ${bot}\nDisallow: /`).join("\n\n");
+}
+
+function aiCrawlerSection(): string {
+  return [
+    "User-agent: *",
+    "Content-Signal: search=yes,ai-train=no,use=reference",
+    "Allow: /",
+    "",
+    allowedAiBotSection(),
+    "",
+    blockedAiBotSection(),
+  ].join("\n");
 }
 
 function utmAllowRules(): string {
@@ -59,15 +100,7 @@ function mainCrawlRules(): string {
   return `User-agent: *
 Allow: /
 
-Disallow: /api/
-Disallow: /admin/
-Disallow: /contact/thank-you
-Disallow: /*#
-Disallow: /*?
-
-${utmAllowRules()}
-
-${searchDisallowRules()}`;
+${sharedDisallowRules()}`;
 }
 
 export function stagingRobotsTxt(): string {
@@ -76,7 +109,7 @@ export function stagingRobotsTxt(): string {
 
 export function buildDefaultRobotsTxt(): string {
   return [
-    aiBotDisallowSection(),
+    aiCrawlerSection(),
     "",
     mainCrawlRules(),
     "",

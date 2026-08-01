@@ -4,18 +4,20 @@ import { buildPageMetadata, canonicalUrl } from "@/lib/page-seo";
 
 export function buildPageMetadataFromCms(
   path: string,
-  defaults: { title: string; description: string; keywords?: string[] },
+  defaults: { title: string; description: string; keywords?: string[]; indexable?: boolean },
   seo?: CmsSeoFields,
 ): Metadata {
   const title = seo?.title ?? defaults.title;
   const description = seo?.description ?? defaults.description;
   const keywords = seo?.keywords?.length ? seo.keywords : defaults.keywords;
+  const indexable = seo?.indexable ?? defaults.indexable;
 
   const base = buildPageMetadata({
     path,
     title,
     description,
     keywords,
+    indexable,
   });
 
   const canonical = seo?.canonical ? canonicalUrl(seo.canonical) : undefined;

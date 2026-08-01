@@ -4,11 +4,21 @@ import { ArrowRight, CheckCircle2, Home, Sparkles } from "lucide-react";
 import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 import { buildPageMetadata } from "@/lib/page-seo";
 
-export const metadata: Metadata = buildPageMetadata({
+const pageMeta = buildPageMetadata({
   path: "/contact/thank-you",
   title: "Thank you – Conalytic",
   description: "Thanks for reaching out. We'll get back to you soon.",
+  indexable: false,
 });
+
+export const metadata: Metadata = {
+  ...pageMeta,
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
+};
 
 export default function ContactThankYouPage() {
   return (

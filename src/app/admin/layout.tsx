@@ -4,7 +4,11 @@ import { AdminProviders } from "@/components/admin/AdminProviders";
 
 export const metadata: Metadata = {
   title: "Conalytic Studio",
-  robots: { index: false, follow: false },
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false },
+  },
 };
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

@@ -9,6 +9,7 @@ import {
   isDuplicateContactError,
   isResendAuthError,
   isValidEmail,
+  mapResendSendError,
 } from "@/lib/resend-utils";
 
 const MAX_NAME = 120;
@@ -20,6 +21,8 @@ type ContactLead = {
   email: string;
   message: string;
 };
+
+type ResendSendError = { statusCode?: number | null; message?: string };
 
 function parseLead(body: unknown): ContactLead | null {
   if (!body || typeof body !== "object" || Array.isArray(body)) return null;
@@ -46,7 +49,7 @@ async function upsertContactSegment(lead: ContactLead) {
   });
 
   if (error && !isDuplicateContactError(error.message ?? "")) {
-    return error.message ?? "Could not save contact";
+    console.warn("[contact] segment skipped:", error.message ?? "Could not save contact");
   }
 
   return null;
@@ -62,38 +65,46 @@ function contactEmailHtml(lead: ContactLead) {
   `;
 }
 
+async function trySendEmail(
+  resend: NonNullable<ReturnType<typeof getResendClient>>,
+  from: string,
+  lead: ContactLead,
+  withReplyTo: boolean,
+): Promise<ResendSendError | null> {
+  const { error } = await resend.emails.send({
+    from,
+    to: [getContactNotifyTo()],
+    ...(withReplyTo ? { replyTo: lead.email } : {}),
+    subject: `Contact form: ${lead.firstName} ${lead.lastName}`,
+    html: contactEmailHtml(lead),
+  });
+  return error ?? null;
+}
+
 async function sendContactNotify(
   resend: NonNullable<ReturnType<typeof getResendClient>>,
   lead: ContactLead,
 ) {
-  const payload = {
-    to: [getContactNotifyTo()],
-    replyTo: lead.email,
-    subject: `Contact form: ${lead.firstName} ${lead.lastName}`,
-    html: contactEmailHtml(lead),
-  };
-
   const fromCandidates = [getResendFromAddress(), getResendSandboxFromAddress()];
-  let lastError: { statusCode?: number | null; message?: string } | null = null;
+  let lastError: ResendSendError | null = null;
 
   for (const from of fromCandidates) {
-    const { error } = await resend.emails.send({ ...payload, from });
-    if (!error) return null;
-    lastError = error;
-    if (isResendAuthError(error)) break;
+    for (const withReplyTo of [true, false]) {
+      const error = await trySendEmail(resend, from, lead, withReplyTo);
+      if (!error) return null;
+
+      lastError = error;
+      console.warn(
+        `[contact] send failed (from=${from}, replyTo=${withReplyTo}):`,
+        error.statusCode,
+        error.message,
+      );
+
+      if (isResendAuthError(error)) return error;
+    }
   }
 
   return lastError;
-}
-
-function mapContactSendError(error: { statusCode?: number | null; message?: string }) {
-  if (isResendAuthError(error)) {
-    console.error(
-      "[contact] Invalid RESEND_API_KEY — create a new key at https://resend.com/api-keys and update .env.local / Vercel env.",
-    );
-    return "Message delivery is not configured. Please email us directly at admin@conalytic.com.";
-  }
-  return "Could not submit your message. Try again later.";
 }
 
 export async function POST(request: Request) {
@@ -117,21 +128,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Please fill in all fields with a valid email." }, { status: 400 });
   }
 
-  const segmentError = await upsertContactSegment(lead);
-  if (segmentError) {
-    console.warn("[contact] segment skipped:", segmentError);
-  }
+  await upsertContactSegment(lead);
 
   const sendError = await sendContactNotify(resend, lead);
   if (sendError) {
-    console.error("[contact] notify", sendError);
+    console.error("[contact] notify failed:", sendError);
 
     if (process.env.NODE_ENV === "development") {
       console.warn("[contact] dev fallback — submission logged:", lead);
       return NextResponse.json({ ok: true, dev: true });
     }
 
-    return NextResponse.json({ error: mapContactSendError(sendError) }, { status: 502 });
+    return NextResponse.json({ error: mapResendSendError(sendError) }, { status: 502 });
   }
 
   return NextResponse.json({ ok: true });

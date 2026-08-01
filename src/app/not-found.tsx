@@ -6,6 +6,7 @@ export const metadata = buildPageMetadata({
   path: "/404",
   title: "Page Not Found | Conalytic",
   description: "The page you are looking for could not be found on Conalytic.",
+  indexable: false,
 });
 
 export default function NotFound() {

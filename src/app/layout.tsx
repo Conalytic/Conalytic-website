@@ -34,8 +34,12 @@ const nunitoSans = Nunito_Sans({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
   icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
+      { url: "/logo-icon.png", type: "image/png", sizes: "192x192" },
+    ],
+    shortcut: "/favicon.png",
+    apple: [{ url: "/favicon.png", type: "image/png", sizes: "180x180" }],
   },
   title: {
     default: "Conalytic – Marketing Analytics: Chat, KPIs & Reports",

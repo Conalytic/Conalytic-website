@@ -27,13 +27,20 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
   async headers() {
-    const headers: { key: string; value: string }[] = [
-      { key: "Content-Security-Policy", value: frameAncestorsCsp() },
-    ];
+    const noIndexHeader = { key: "X-Robots-Tag", value: "noindex, nofollow" };
+    const cspHeader = { key: "Content-Security-Policy", value: frameAncestorsCsp() };
+
+    const stagingHeaders: { key: string; value: string }[] = [cspHeader];
     if (!allowSearchIndexing()) {
-      headers.unshift({ key: "X-Robots-Tag", value: "noindex, nofollow" });
+      stagingHeaders.unshift(noIndexHeader);
     }
-    return [{ source: "/:path*", headers }];
+
+    return [
+      { source: "/admin/:path*", headers: [noIndexHeader, cspHeader] },
+      { source: "/api/:path*", headers: [noIndexHeader] },
+      { source: "/contact/thank-you", headers: [noIndexHeader] },
+      { source: "/:path*", headers: stagingHeaders },
+    ];
   },
   eslint: {
     ignoreDuringBuilds: true,
@@ -55,6 +62,7 @@ const nextConfig: NextConfig = {
       },
       { source: "/privacy", destination: "/privacy-and-policy", permanent: true },
       { source: "/terms", destination: "/terms-of-service", permanent: true },
+      { source: "/favicon.ico", destination: "/favicon.png", permanent: false },
       // WordPress URL compatibility redirects
       { source: "/about", destination: "/about-us", permanent: true },
       { source: "/blog", destination: "/blogs", permanent: true },

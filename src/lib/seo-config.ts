@@ -1,9 +1,7 @@
 /**
  * Canonical origin + crawl rules for SEO. Override with NEXT_PUBLIC_SITE_URL on staging.
  *
- * **Sitewide noindex/nofollow** — all environments stay out of search until you deliberately
- * change `allowSearchIndexing()` in code.
- *
+ * Production marketing site is indexable. Staging / preview deployments and `/admin` stay noindex.
  * Canonical host is always **non-www** (`https://conalytic.com`).
  */
 export const PRODUCTION_SITE_ORIGIN = "https://conalytic.com";
@@ -43,7 +41,7 @@ export function isStagingWebsite(): boolean {
   return configuredOrigin !== PRODUCTION_SITE_ORIGIN;
 }
 
-/** Always false — sitewide noindex, nofollow, and robots.txt disallow. */
+/** Production marketing pages are indexable; staging previews stay blocked. */
 export function allowSearchIndexing(): boolean {
-  return false;
+  return !isStagingWebsite();
 }
