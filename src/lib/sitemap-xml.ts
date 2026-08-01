@@ -10,13 +10,19 @@ function escapeXml(value: string): string {
 }
 
 export function buildSitemapXml(): string {
-  const urls = getSitemapEntries()
-    .map((item) => {
-      const loc = escapeXml(item.url);
-      const lastmod = item.lastModified.toISOString();
-      return `<url><loc>${loc}</loc><lastmod>${lastmod}</lastmod></url>`;
-    })
-    .join("");
+  const lines = [
+    "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+    "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">",
+  ];
 
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${urls}</urlset>\n`;
+  for (const item of getSitemapEntries()) {
+    const lastmod = item.lastModified.toISOString().slice(0, 10);
+    lines.push("  <url>");
+    lines.push(`    <loc>${escapeXml(item.url)}</loc>`);
+    lines.push(`    <lastmod>${lastmod}</lastmod>`);
+    lines.push("  </url>");
+  }
+
+  lines.push("</urlset>", "");
+  return lines.join("\n");
 }
