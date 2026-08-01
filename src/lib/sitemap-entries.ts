@@ -5,7 +5,7 @@ import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const LEGAL_LAST_MODIFIED = new Date(LEGAL_DOCUMENTS_LAST_UPDATED);
-const SITE_LAST_MODIFIED = new Date("2026-07-26T00:00:00.000Z");
+const SITE_LAST_MODIFIED = new Date("2026-08-01T00:00:00.000Z");
 
 const LEGAL_PATHS = new Set<string>(["/cookies", PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH]);
 
