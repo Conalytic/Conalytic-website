@@ -39,20 +39,32 @@ function parseBlogFaqItems(block: string): BlogFaqItem[] {
 
   const flush = () => {
     if (!question) return;
-    items.push({ question, answer: answerLines.join("\n").trim() });
+    const answer = answerLines.join("\n").trim();
+    if (answer) {
+      items.push({ question, answer });
+    }
     question = null;
     answerLines = [];
   };
 
   for (const line of block.split("\n")) {
-    const questionMatch = line.match(/^\*\*(.+)\*\*$/);
-    if (questionMatch) {
+    const trimmed = line.trim();
+    if (!trimmed) continue;
+
+    // **Question?** with optional answer on the same line
+    const faqLineMatch = trimmed.match(/^\*\*(.+?)\*\*\s*(.*)$/s);
+    if (faqLineMatch) {
+      const [, q, rest] = faqLineMatch;
       flush();
-      question = questionMatch[1].trim();
+      question = q.trim();
+      if (rest.trim()) {
+        answerLines.push(rest.trim());
+      }
       continue;
     }
-    if (question && line.trim()) {
-      answerLines.push(line);
+
+    if (question) {
+      answerLines.push(trimmed);
     }
   }
 
