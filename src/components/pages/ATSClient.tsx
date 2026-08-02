@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { Users, Search, BarChart3, FileText, CheckCircle2, ArrowRight, Bell, Star } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
+import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -260,15 +261,15 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
   const heroSecondaryCtaLabel = content?.heroSecondaryCtaLabel ?? "Book a Demo";
   const heroPrimaryCta = resolveCtaPair(content, "heroPrimaryCtaLabel", "heroPrimaryCtaHref", {
     label: heroPrimaryCtaLabel,
-    href: "/contact",
+    href: SITE_ROUTES.contact,
   });
   const heroSecondaryCta = resolveCtaPair(content, "heroSecondaryCtaLabel", "heroSecondaryCtaHref", {
     label: heroSecondaryCtaLabel,
-    href: "/contact",
+    href: SITE_ROUTES.contact,
   });
   const bottomCtas = resolveBottomCtas(content, {
-    primary: { label: "Get Early Access", href: "/contact" },
-    secondary: { label: "Learn More", href: "/features" },
+    primary: { label: "Get Early Access", href: SITE_ROUTES.contact },
+    secondary: { label: "Learn More", href: SITE_ROUTES.features },
   });
   const featuresTitle = content?.featuresTitle ?? "Everything You Need to Hire Smarter";
   const featuresSubtitle =

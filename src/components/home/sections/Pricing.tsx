@@ -1,6 +1,7 @@
 "use client";
 
 /** Home pricing section — shares plan data with /pricing page. */
+import { SITE_ROUTES } from "@/lib/site-links";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
@@ -38,7 +39,7 @@ export function Pricing({ content }: { content?: PricingContent }) {
             {content?.title || "Simple, transparent pricing"}
           </h2>
           <p className="mt-3 text-sm text-gray-500 dark:text-white/55">
-            <Link href="/pricing" className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">
+            <Link href={SITE_ROUTES.pricing} className="font-semibold text-brand-600 dark:text-brand-400 hover:underline">
               View full pricing details →
             </Link>
           </p>

@@ -7,23 +7,26 @@ import {
   MARKETING_CONTACT_PATH,
 } from "@/lib/app-urls";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
+import { blogPostPath, SITE_PATHS } from "@/lib/site-paths";
 
 export const SITE_ROUTES = {
-  home: "/",
-  features: "/features",
-  about: "/about-us",
-  contact: MARKETING_CONTACT_PATH,
-  blogs: "/blogs",
-  integrations: "/integrations",
-  careers: "/careers",
-  cookies: "/cookies",
-  brand: "/brand",
-  pricing: "/pricing",
+  home: SITE_PATHS.home,
+  features: SITE_PATHS.platform.features,
+  pricing: SITE_PATHS.platform.pricing,
+  about: SITE_PATHS.company.about,
+  contact: SITE_PATHS.company.contact,
+  contactThankYou: SITE_PATHS.company.contactThankYou,
+  blogs: SITE_PATHS.resources.blogs,
+  blogPost: blogPostPath,
+  integrations: SITE_PATHS.resources.integrations,
+  careers: SITE_PATHS.resources.careers,
+  cookies: SITE_PATHS.legal.cookies,
+  brand: SITE_PATHS.company.brand,
   faq: "/#faq",
   products: {
-    conversationalAnalytics: "/products/conversational-analytics",
-    kpisTracker: "/products/kpis-tracker",
-    reportBuilder: "/products/report-builder",
+    conversationalAnalytics: SITE_PATHS.products.conversationalAnalytics,
+    kpisTracker: SITE_PATHS.products.kpisTracker,
+    reportBuilder: SITE_PATHS.products.reportBuilder,
   },
 } as const;
 

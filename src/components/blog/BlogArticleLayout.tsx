@@ -1,5 +1,6 @@
 "use client";
 
+import { SITE_ROUTES } from "@/lib/site-links";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import { BlogPostMarkdown } from "@/components/blog/BlogPostMarkdown";
@@ -37,16 +38,17 @@ export function BlogArticleLayout({
     CATEGORY_STYLES[post.category] ??
     "bg-gray-100 text-gray-700 border-gray-200 dark:bg-white/[0.06] dark:text-white/60 dark:border-white/[0.08]";
   const visualVariant = categoryToProductVisual(post.category);
+  const demoVariant = post.demoVariant;
 
   return (
-    <article className="bg-[#f0f1f5] dark:bg-transparent">
+    <article className="bg-[#f0f1f5] dark:bg-transparent" lang="en">
       <BlogReadingProgress />
 
       <header className="relative overflow-hidden border-b border-gray-200/80 dark:border-white/[0.06]">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 mx-auto max-w-6xl px-4 pb-10 pt-24 sm:px-6 sm:pb-14 sm:pt-28 md:pb-16 md:pt-32">
           <Link
-            href="/blogs"
+            href={SITE_ROUTES.blogs}
             className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-brand-600 dark:text-white/50 dark:hover:text-brand-300"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -62,7 +64,7 @@ export function BlogArticleLayout({
               </li>
               <li aria-hidden="true">/</li>
               <li>
-                <Link href="/blogs" className="transition-colors hover:text-brand-600 dark:hover:text-brand-300">
+                <Link href={SITE_ROUTES.blogs} className="transition-colors hover:text-brand-600 dark:hover:text-brand-300">
                   Blog
                 </Link>
               </li>
@@ -101,7 +103,7 @@ export function BlogArticleLayout({
             </div>
 
             <div className="min-w-0 lg:order-none">
-              <BlogArticleHeroVisual variant={visualVariant} />
+              <BlogArticleHeroVisual variant={visualVariant} demoVariant={demoVariant} />
             </div>
           </div>
         </div>
@@ -116,7 +118,7 @@ export function BlogArticleLayout({
 
             <div className="prose-safe rounded-2xl border border-gray-200/80 bg-white px-4 py-8 shadow-sm dark:border-white/[0.07] dark:bg-[#14141B] sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-14 lg:py-14">
               <BlogPostMarkdown markdown={post.bodyMarkdown} headingIds={headings.map((h) => h.id)} />
-              <BlogArticleCta category={post.category} />
+              <BlogArticleCta category={post.category} slug={post.slug} />
             </div>
 
             {related.length > 0 ? (
@@ -126,7 +128,7 @@ export function BlogArticleLayout({
                   {related.map((r) => (
                     <Link
                       key={r.slug}
-                      href={`/${r.slug}`}
+                      href={SITE_ROUTES.blogPost(r.slug)}
                       className="group flex flex-col rounded-2xl border border-gray-200/80 bg-white p-5 transition-all hover:border-brand-400 hover:shadow-md dark:border-white/[0.08] dark:bg-[#14141B] dark:hover:border-brand-500/40"
                     >
                       <span className="mb-2 text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300">

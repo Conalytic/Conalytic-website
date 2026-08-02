@@ -51,7 +51,7 @@ const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
 const fallbackLegalLinks: SiteConfigLink[] = [
   { label: "Terms", href: TERMS_OF_SERVICE_PATH },
   { label: "Privacy", href: PRIVACY_POLICY_PATH },
-  { label: "Cookies", href: "/cookies" },
+  { label: "Cookies", href: SITE_ROUTES.cookies },
 ];
 
 const TAGLINE_W = 1913;

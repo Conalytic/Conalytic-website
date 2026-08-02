@@ -38,15 +38,16 @@ conversational analytics, GA4 chat, Google Ads AI, KPI tracker, marketing report
 
 ## Policies
 
-- Privacy: https://conalytic.com/privacy-and-policy
-- Terms: https://conalytic.com/terms-of-service
+- Privacy: https://conalytic.com/legal/privacy-and-policy
+- Terms: https://conalytic.com/legal/terms-of-service
 
 ## Blog guides
 
-- https://conalytic.com/conversational-analytics-marketing-chat-guide
-- https://conalytic.com/kpis-tracker-marketing-goals-guide
-- https://conalytic.com/report-builder-html-marketing-reports-guide
-- Blog index: https://conalytic.com/blogs
+- Blog index: https://conalytic.com/resources/blogs
+- https://conalytic.com/resources/blogs/conversational-analytics-marketing-chat-guide
+- https://conalytic.com/resources/blogs/kpis-tracker-marketing-goals-guide
+- https://conalytic.com/resources/blogs/report-builder-html-marketing-reports-guide
+- https://conalytic.com/resources/blogs/ga4-traffic-drop-search-console
 
 ## Pricing model
 

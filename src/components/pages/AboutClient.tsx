@@ -135,7 +135,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
               <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-8">
                 Today, Conalytic is trusted by teams around the world to do just that. From marketing agencies serving Fortune 500 clients to in-house teams at fast-growing startups, our platform turns complex data into clear conversations.
               </p>
-              <a href="/contact"
+              <a href={SITE_ROUTES.contact}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
                 Get in touch <ArrowRight className="w-4 h-4"/>
               </a>

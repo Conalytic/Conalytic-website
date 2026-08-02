@@ -1,4 +1,22 @@
 {
-  "seo": {},
+  "seo": {
+    "title": "Conalytic Blog – GA4, Reporting & KPI Guides for Marketers",
+    "description": "SEO guides for marketing analytics: GA4 traffic drop diagnosis, Google Ads vs GA4 conversions, AI traffic tracking, client report structure, cross-channel reporting, KPI targets, rules-based status tracking, and natural language analytics.",
+    "keywords": [
+      "ga4 traffic drop",
+      "google ads ga4 discrepancy",
+      "chat with ga4",
+      "ai traffic ga4",
+      "html marketing report",
+      "ai marketing reports",
+      "marketing report structure",
+      "cross channel reporting",
+      "marketing kpi targets",
+      "kpi status tracking",
+      "natural language analytics",
+      "agency reporting"
+    ],
+    "schemaType": "CollectionPage,ItemList"
+  },
   "sections": {}
 }

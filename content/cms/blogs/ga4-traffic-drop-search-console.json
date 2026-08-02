@@ -1,0 +1,14 @@
+{
+  "seo": {
+    "title": "Why GA4 Traffic Dropped but Search Console Didn't",
+    "description": "Diagnose a GA4 traffic drop when Search Console clicks look fine. Compare GSC vs GA4 counting, run a four-gate elimination sequence, and separate measurement issues from real organic declines.",
+    "keywords": [
+      "ga4 traffic drop",
+      "organic traffic drop",
+      "search console vs ga4",
+      "ga4 data discrepancy",
+      "traffic drop analysis"
+    ],
+    "schemaType": "BlogPosting,FAQPage"
+  }
+}

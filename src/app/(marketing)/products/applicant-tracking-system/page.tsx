@@ -13,7 +13,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildRouteMetadata(PATH, {
     title: PAGE_TITLE,
     description: PAGE_DESCRIPTION,
-    indexable: false,
   });
 }
 

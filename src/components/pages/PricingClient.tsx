@@ -15,6 +15,7 @@ import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 import { CTA } from "@/components/sections/CTA";
 import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
 import {
   FREE_SIGNUP_TOKENS_LABEL,
   PRICING_PLANS,
@@ -277,7 +278,7 @@ export function PricingClient() {
         title="Ready to start for free?"
         subtitle={`Join Conalytic with ${FREE_SIGNUP_TOKENS_LABEL} signup tokens. Connect your marketing data and ask your first question in minutes.`}
         primaryCta={{ label: "Get started free", href: CHAT_APP_SIGNUP_URL }}
-        secondaryCta={{ label: "Talk to sales", href: "/contact" }}
+        secondaryCta={{ label: "Talk to sales", href: SITE_ROUTES.contact }}
       />
     </>
   );

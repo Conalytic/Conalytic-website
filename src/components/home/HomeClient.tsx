@@ -459,7 +459,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
             >
-              <Link href={content?.integrationsCtaHref || "/integrations"}
+              <Link href={content?.integrationsCtaHref || SITE_ROUTES.integrations}
                 className="inline-flex items-center gap-1.5 text-sm text-brand-600 dark:text-brand-400 hover:text-brand-300 font-semibold transition-colors mt-1"
                 aria-label="View all integrations"
               >
@@ -616,7 +616,7 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
         </motion.div>
         <p className="text-center text-gray-400 dark:text-white/58 text-sm mt-8">
           {content?.faqContactPrefix || "Still have questions?"}{" "}
-          <Link href={content?.faqContactHref || "/contact"} className="text-brand-600 dark:text-brand-400 hover:underline font-semibold" aria-label="Contact us — talk to our team">{content?.faqContactLabel || "Talk to our team"}</Link>
+          <Link href={content?.faqContactHref || SITE_ROUTES.contact} className="text-brand-600 dark:text-brand-400 hover:underline font-semibold" aria-label="Contact us — talk to our team">{content?.faqContactLabel || "Talk to our team"}</Link>
         </p>
       </div>
     </section>

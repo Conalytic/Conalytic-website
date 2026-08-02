@@ -23,15 +23,15 @@
     },
     {
       "label": "Pricing",
-      "href": "/pricing"
+      "href": "/platform/pricing"
     },
     {
       "label": "Features",
-      "href": "/features"
+      "href": "/platform/features"
     },
     {
       "label": "About",
-      "href": "/about-us"
+      "href": "/company/about-us"
     },
     {
       "label": "Resources",
@@ -39,17 +39,17 @@
       "children": [
         {
           "label": "Integrations",
-          "href": "/integrations",
+          "href": "/resources/integrations",
           "description": "Connect with your favorite tools"
         },
         {
           "label": "Blogs",
-          "href": "/blogs",
+          "href": "/resources/blogs",
           "description": "Tips, trends, and analytics insights"
         },
         {
           "label": "Careers",
-          "href": "/careers",
+          "href": "/resources/careers",
           "description": "Join the Conalytic team"
         }
       ]
@@ -58,5 +58,5 @@
   "loginLabel": "Login",
   "loginHref": "https://chat.conalytic.com/login",
   "primaryCtaLabel": "Book A Demo",
-  "primaryCtaHref": "/contact"
+  "primaryCtaHref": "/company/contact"
 }

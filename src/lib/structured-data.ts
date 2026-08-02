@@ -4,6 +4,7 @@
  */
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_ABSOLUTE } from "@/lib/app-urls";
 import { PRODUCT_LIST, type ProductDefinition } from "@/lib/products";
+import { blogPostPath, SITE_PATHS } from "@/lib/site-paths";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const SITE = SITE_ORIGIN;
@@ -97,17 +98,17 @@ function canonicalPathToUrl(path: string): string {
 }
 
 export function blogListingSchema(
-  posts: ReadonlyArray<{ slug: string; title: string; datePublished: string }>,
+  posts: ReadonlyArray<{ slug: string; title: string; datePublished: string; description?: string }>,
 ) {
-  const url = `${SITE}/blogs`;
+  const url = `${SITE}${SITE_PATHS.resources.blogs}`;
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     "@id": `${url}#webpage`,
     url,
-    name: "Conalytic Blog",
+    name: "Conalytic Blog — GA4, Reporting & KPI Guides",
     description:
-      "Product guides for Conversational Analytics, KPIs Tracker, and Report Builder — how to use Conalytic for GA4, Google Ads, Search Console, and marketing reporting.",
+      "Marketing analytics guides: GA4 traffic diagnostics, Google Ads conversion discrepancies, AI referral tracking, HTML client reports, cross-channel reporting, KPI targets, and rules-based goal monitoring with Conalytic.",
     inLanguage: "en-US",
     isPartOf: { "@id": `${SITE}/#website` },
     publisher: { "@id": `${SITE}/#organization` },
@@ -117,8 +118,9 @@ export function blogListingSchema(
       itemListElement: posts.map((post, index) => ({
         "@type": "ListItem",
         position: index + 1,
-        url: `${SITE}/${post.slug}`,
+        url: `${SITE}${blogPostPath(post.slug)}`,
         name: post.title,
+        ...(post.description ? { description: post.description } : {}),
       })),
     },
   };
@@ -217,7 +219,7 @@ export function blogPostingSchema(input: {
     url: input.url,
     inLanguage: "en-US",
     mainEntityOfPage: { "@type": "WebPage", "@id": input.url },
-    isPartOf: { "@id": `${SITE}/blogs#webpage` },
+    isPartOf: { "@id": `${SITE}${SITE_PATHS.resources.blogs}#webpage` },
     publisher: { "@id": `${SITE}/#organization` },
     author: {
       "@type": "Organization",

@@ -10,15 +10,15 @@
         },
         {
           "label": "Features",
-          "href": "/features"
+          "href": "/platform/features"
         },
         {
           "label": "About Us",
-          "href": "/about-us"
+          "href": "/company/about-us"
         },
         {
           "label": "Pricing",
-          "href": "/#pricing"
+          "href": "/platform/pricing"
         }
       ]
     },
@@ -27,15 +27,15 @@
       "links": [
         {
           "label": "Blog",
-          "href": "/blogs"
+          "href": "/resources/blogs"
         },
         {
           "label": "Integrations",
-          "href": "/integrations"
+          "href": "/resources/integrations"
         },
         {
           "label": "Careers",
-          "href": "/careers"
+          "href": "/resources/careers"
         }
       ]
     },
@@ -44,11 +44,11 @@
       "links": [
         {
           "label": "Support Center",
-          "href": "/contact"
+          "href": "/company/contact"
         },
         {
           "label": "Contact Us",
-          "href": "/contact"
+          "href": "/company/contact"
         },
         {
           "label": "FAQs",
@@ -73,7 +73,7 @@
         },
         {
           "label": "Brand assets",
-          "href": "/brand"
+          "href": "/company/brand"
         }
       ]
     }
@@ -82,15 +82,15 @@
   "legalLinks": [
     {
       "label": "Terms",
-      "href": "/terms-of-service"
+      "href": "/legal/terms-of-service"
     },
     {
       "label": "Privacy",
-      "href": "/privacy-and-policy"
+      "href": "/legal/privacy-and-policy"
     },
     {
       "label": "Cookies",
-      "href": "/cookies"
+      "href": "/legal/cookies"
     }
   ],
   "copyrightText": "© 2026 Conalytic. All rights reserved.",

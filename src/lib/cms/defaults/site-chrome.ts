@@ -75,7 +75,7 @@ export const DEFAULT_FOOTER_CONFIG: FooterConfig = {
   legalLinks: [
     { label: "Terms", href: TERMS_OF_SERVICE_PATH },
     { label: "Privacy", href: PRIVACY_POLICY_PATH },
-    { label: "Cookies", href: "/cookies" },
+    { label: "Cookies", href: SITE_ROUTES.cookies },
   ],
   copyrightText: "© 2026 Conalytic. All rights reserved.",
 };

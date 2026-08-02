@@ -12,6 +12,7 @@ import { cn, isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
+import { SITE_ROUTES } from "@/lib/site-links";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const fallbackNavigation: SiteConfigLink[] = [
@@ -19,21 +20,21 @@ const fallbackNavigation: SiteConfigLink[] = [
     label: "Products",
     href: "#",
     children: [
-      { label: "Conversational Analytics", href: "/products/conversational-analytics", description: "Ask questions in plain English, get instant insights" },
-      { label: "KPIs Tracker", href: "/products/kpis-tracker", description: "Track goals across GA4, Search Console, and Google Ads" },
-      { label: "Report Builder", href: "/products/report-builder", description: "HTML presentation decks from connected marketing data" },
+      { label: "Conversational Analytics", href: SITE_ROUTES.products.conversationalAnalytics, description: "Ask questions in plain English, get instant insights" },
+      { label: "KPIs Tracker", href: SITE_ROUTES.products.kpisTracker, description: "Track goals across GA4, Search Console, and Google Ads" },
+      { label: "Report Builder", href: SITE_ROUTES.products.reportBuilder, description: "HTML presentation decks from connected marketing data" },
     ],
   },
-  { label: "Pricing", href: "/pricing" },
-  { label: "Features", href: "/features" },
-  { label: "About", href: "/about-us" },
+  { label: "Pricing", href: SITE_ROUTES.pricing },
+  { label: "Features", href: SITE_ROUTES.features },
+  { label: "About", href: SITE_ROUTES.about },
   {
     label: "Resources",
     href: "#",
     children: [
-      { label: "Integrations", href: "/integrations", description: "Connect with your favorite tools" },
-      { label: "Blogs", href: "/blogs", description: "Tips, trends, and analytics insights" },
-      { label: "Careers", href: "/careers", description: "Join the Conalytic team" },
+      { label: "Integrations", href: SITE_ROUTES.integrations, description: "Connect with your favorite tools" },
+      { label: "Blogs", href: SITE_ROUTES.blogs, description: "Tips, trends, and analytics insights" },
+      { label: "Careers", href: SITE_ROUTES.careers, description: "Join the Conalytic team" },
     ],
   },
 ];

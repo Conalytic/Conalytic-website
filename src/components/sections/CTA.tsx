@@ -1,6 +1,7 @@
 "use client";
 
 /** Footer-adjacent CTA with line-chart demo + key finding; primary button respects external vs internal hrefs. */
+import { SITE_ROUTES } from "@/lib/site-links";
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
@@ -59,7 +60,7 @@ const QUERIES: CtaQuery[] = [
   {
     q: "Which landing page has the highest exit rate?",
     chartTitle: "Exit rate by page — top segment",
-    legendCurrent: "/pricing",
+    legendCurrent: SITE_ROUTES.pricing,
     legendPrior: "Site avg",
     current: [52, 54, 58, 62, 65, 68, 66, 67, 68, 69, 68, 68],
     prior: [38, 39, 38, 40, 39, 41, 40, 39, 40, 41, 40, 40],

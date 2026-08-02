@@ -1,5 +1,6 @@
 "use client";
 
+import { SITE_ROUTES } from "@/lib/site-links";
 import Link from "next/link";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 
@@ -213,7 +214,7 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
                 Terms of Service
               </Link>
               <span>·</span>
-              <Link href="/contact" className="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
+              <Link href={SITE_ROUTES.contact} className="hover:text-brand-600 dark:hover:text-brand-300 transition-colors">
                 Contact Us
               </Link>
             </div>

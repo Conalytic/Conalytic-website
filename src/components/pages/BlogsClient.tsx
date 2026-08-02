@@ -1,14 +1,16 @@
 "use client";
 
-/** Blog index — magazine layout with featured hero + product filters. */
+/** Blog index — featured newest post + paginated grid (9 per page), newest first. */
+import { SITE_ROUTES } from "@/lib/site-links";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, BookOpen, Clock } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { ArrowRight, BookOpen, ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BlogCardVisual, BlogFeaturedVisual } from "@/components/visual/product-demos/ProductVisual";
 import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 import { categoryToProductVisual } from "@/lib/product-visual";
-import { STATIC_BLOG_POSTS } from "@/content/blog-posts";
+import { getBlogPostsNewestFirst, POSTS_PER_PAGE, type StaticBlogPost } from "@/content/blog-posts";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } } };
@@ -30,16 +32,114 @@ export interface BlogsContentPreset {
   heroSubtitle?: string;
 }
 
+function BlogCard({ post }: { post: StaticBlogPost }) {
+  return (
+    <motion.div variants={fadeUp}>
+      <Link
+        href={SITE_ROUTES.blogPost(post.slug)}
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40"
+      >
+        <BlogCardVisual variant={categoryToProductVisual(post.category)} demoVariant={post.demoVariant} />
+        <div className="flex flex-1 flex-col p-6">
+          <span
+            className={`mb-3 inline-flex w-fit rounded-full border px-2.5 py-1 text-[10px] font-semibold ${CATEGORY_STYLES[post.category] ?? ""}`}
+          >
+            {post.category}
+          </span>
+          <h3 className="mb-3 flex-1 text-lg font-bold leading-snug text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
+            {post.title}
+          </h3>
+          <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-white/55">{post.excerpt}</p>
+          <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-xs text-gray-400 dark:border-white/[0.06] dark:text-white/35">
+            <span className="inline-flex items-center gap-2">
+              <span>{post.dateLabel}</span>
+              <span className="inline-flex items-center gap-1">
+                <Clock className="h-3 w-3" />
+                {post.readTime}
+              </span>
+            </span>
+            <span className="inline-flex items-center gap-1 font-semibold text-brand-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-brand-300">
+              Read <ArrowRight className="h-3 w-3" />
+            </span>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+function Pagination({ currentPage, totalPages }: { currentPage: number; totalPages: number }) {
+  if (totalPages <= 1) return null;
+
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const blogIndex = SITE_ROUTES.blogs;
+
+  return (
+    <nav className="mt-12 flex flex-wrap items-center justify-center gap-2" aria-label="Blog pagination">
+      <Link
+        href={currentPage > 2 ? `${blogIndex}?page=${currentPage - 1}` : blogIndex}
+        aria-label="Previous page"
+        className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold transition-colors ${
+          currentPage <= 1
+            ? "pointer-events-none border-gray-200/50 text-gray-300 dark:border-white/[0.04] dark:text-white/20"
+            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+        }`}
+        aria-disabled={currentPage <= 1}
+      >
+        <ChevronLeft className="h-4 w-4" />
+      </Link>
+
+      {pages.map((page) => (
+        <Link
+          key={page}
+          href={page === 1 ? blogIndex : `${blogIndex}?page=${page}`}
+          aria-label={`Page ${page}`}
+          aria-current={page === currentPage ? "page" : undefined}
+          className={`inline-flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-sm font-semibold transition-colors ${
+            page === currentPage
+              ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500/40 dark:bg-brand-500/10 dark:text-brand-300"
+              : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+          }`}
+        >
+          {page}
+        </Link>
+      ))}
+
+      <Link
+        href={currentPage < totalPages ? `${blogIndex}?page=${currentPage + 1}` : `${blogIndex}?page=${totalPages}`}
+        aria-label="Next page"
+        className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold transition-colors ${
+          currentPage >= totalPages
+            ? "pointer-events-none border-gray-200/50 text-gray-300 dark:border-white/[0.04] dark:text-white/20"
+            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+        }`}
+        aria-disabled={currentPage >= totalPages}
+      >
+        <ChevronRight className="h-4 w-4" />
+      </Link>
+    </nav>
+  );
+}
+
 export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
+  const searchParams = useSearchParams();
+
   const heroBadge = content?.heroBadge ?? "Blog";
-  const heroTitleLine1 = content?.heroTitleLine1 ?? "Guides for";
+  const heroTitleLine1 = content?.heroTitleLine1 ?? "SEO guides for";
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Chat, KPIs & Reports";
   const heroSubtitle =
     content?.heroSubtitle ??
-    "Deep product guides from the Conalytic team — same workflows as Conalytic-Chat, written for marketing leaders and agencies.";
+    "Diagnostic playbooks, reporting frameworks, and KPI methodology—written for agency owners and marketing leaders using GA4, Search Console, and Google Ads.";
 
-  const featured = STATIC_BLOG_POSTS.find((p) => p.featured) ?? STATIC_BLOG_POSTS[0];
-  const rest = STATIC_BLOG_POSTS.filter((p) => p.slug !== featured.slug);
+  const sorted = getBlogPostsNewestFirst();
+  const featured = sorted[0];
+  const rest = sorted.slice(1);
+  const totalPages = Math.max(1, Math.ceil(rest.length / POSTS_PER_PAGE));
+
+  const rawPage = Number(searchParams.get("page") ?? "1");
+  const currentPage = Number.isFinite(rawPage) && rawPage >= 1 ? Math.min(Math.floor(rawPage), totalPages) : 1;
+
+  const pagePosts = rest.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
 
   return (
     <>
@@ -77,91 +177,72 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
 
       <section className="bg-[#f0f1f5] px-4 py-12 dark:bg-[#0f0f0f] sm:py-16">
         <div className="mx-auto max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: EASE }}
-            className="mb-8"
-          >
-            <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/40">
-              Featured guide
-            </p>
-            <Link
-              href={`/${featured.slug}`}
-              className="group grid overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:border-brand-400 hover:shadow-xl dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 lg:grid-cols-2"
+          {featured ? (
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: EASE }}
+              className="mb-12"
             >
-              <BlogFeaturedVisual variant={categoryToProductVisual(featured.category)} />
-              <div className="flex flex-col justify-center p-8 lg:p-12">
-                <div className="mb-4 flex flex-wrap items-center gap-2">
-                  <span
-                    className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${CATEGORY_STYLES[featured.category] ?? ""}`}
-                  >
-                    {featured.category}
-                  </span>
-                  <span className="rounded-full border border-brand-200 bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
-                    Featured
-                  </span>
-                </div>
-                <h2 className="mb-4 text-2xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300 sm:text-3xl">
-                  {featured.title}
-                </h2>
-                <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-600 dark:text-white/60 sm:text-base">
-                  {featured.excerpt}
-                </p>
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-white/40">
-                    <span>{featured.dateLabel}</span>
-                    <span className="inline-flex items-center gap-1">
-                      <Clock className="h-3 w-3" />
-                      {featured.readTime}
+              <p className="mb-4 text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/40">
+                Featured
+              </p>
+              <Link
+                href={SITE_ROUTES.blogPost(featured.slug)}
+                className="group grid overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:border-brand-400 hover:shadow-xl dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 lg:grid-cols-2"
+              >
+                <BlogFeaturedVisual
+                  variant={categoryToProductVisual(featured.category)}
+                  demoVariant={featured.demoVariant}
+                />
+                <div className="flex flex-col justify-center p-8 lg:p-12">
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <span
+                      className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${CATEGORY_STYLES[featured.category] ?? ""}`}
+                    >
+                      {featured.category}
+                    </span>
+                    <span className="rounded-full border border-brand-200 bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300">
+                      Latest
                     </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 dark:text-brand-300">
-                    Read guide <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="grid gap-6 md:grid-cols-2"
-          >
-            {rest.map((post) => (
-              <motion.div key={post.slug} variants={fadeUp}>
-                <Link
-                  href={`/${post.slug}`}
-                  className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40"
-                >
-                  <BlogCardVisual variant={categoryToProductVisual(post.category)} />
-                  <div className="flex flex-1 flex-col p-6">
-                    <span
-                      className={`mb-3 inline-flex w-fit rounded-full border px-2.5 py-1 text-[10px] font-semibold ${CATEGORY_STYLES[post.category] ?? ""}`}
-                    >
-                      {post.category}
-                    </span>
-                    <h3 className="mb-3 flex-1 text-lg font-bold leading-snug text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
-                      {post.title}
-                    </h3>
-                    <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-500 dark:text-white/55">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center justify-between border-t border-gray-100 pt-4 text-xs text-gray-400 dark:border-white/[0.06] dark:text-white/35">
-                      <span>{post.dateLabel}</span>
-                      <span className="inline-flex items-center gap-1 font-semibold text-brand-600 opacity-0 transition-opacity group-hover:opacity-100 dark:text-brand-300">
-                        Read <ArrowRight className="h-3 w-3" />
+                  <h2 className="mb-4 text-2xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300 sm:text-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mb-6 flex-1 text-sm leading-relaxed text-gray-600 dark:text-white/60 sm:text-base">
+                    {featured.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-white/40">
+                      <span>{featured.dateLabel}</span>
+                      <span className="inline-flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {featured.readTime}
                       </span>
                     </div>
+                    <span className="inline-flex items-center gap-1 text-sm font-semibold text-brand-600 dark:text-brand-300">
+                      Read guide <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                    </span>
                   </div>
-                </Link>
-              </motion.div>
+                </div>
+              </Link>
+            </motion.div>
+          ) : null}
+
+          <motion.div
+            key={currentPage}
+            variants={stagger}
+            initial="hidden"
+            animate="show"
+            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          >
+            {pagePosts.map((post) => (
+              <BlogCard key={post.slug} post={post} />
             ))}
           </motion.div>
+
+          <Pagination currentPage={currentPage} totalPages={totalPages} />
         </div>
       </section>
     </>

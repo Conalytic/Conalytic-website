@@ -93,26 +93,31 @@ export function buildPageMetadata(input: {
 }
 
 export function buildBlogPostMetadata(input: {
-  slug: string;
+  path: string;
   title: string;
   description: string;
   excerpt: string;
   category: string;
   datePublished: string;
+  keywords?: string[];
+  primaryKeyword?: string;
+  indexable?: boolean;
 }): Metadata {
-  const url = canonicalUrl(`/${input.slug}`);
-  const titleAbsolute = `${input.title} | Conalytic Blog`;
+  const url = canonicalUrl(input.path);
+  const titleAbsolute = input.title.includes("| Conalytic")
+    ? input.title
+    : `${input.title} | Conalytic Blog`;
   const description = input.description || input.excerpt;
-  const keywords = [
-    input.category,
-    "Conalytic blog",
-    "marketing analytics",
-    "conversational analytics",
-    "KPI tracker",
-    "report builder",
-    "GA4",
-    "Google Ads",
-  ];
+  const keywords = input.keywords?.length
+    ? input.keywords
+    : [
+        input.primaryKeyword,
+        input.category,
+        "Conalytic blog",
+        "marketing analytics",
+        "GA4",
+        "Google Ads",
+      ].filter((k): k is string => Boolean(k));
 
   return {
     title: { absolute: titleAbsolute },
@@ -129,7 +134,7 @@ export function buildBlogPostMetadata(input: {
       publishedTime: input.datePublished,
       modifiedTime: input.datePublished,
       section: input.category,
-      tags: [input.category],
+      tags: keywords.slice(0, 12),
       images: socialImages(input.title),
     },
     twitter: {
@@ -138,6 +143,6 @@ export function buildBlogPostMetadata(input: {
       description,
       images: [DEFAULT_OG_IMAGE.url],
     },
-    robots: resolveRobots(),
+    robots: resolveRobots(input.indexable),
   };
 }
