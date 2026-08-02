@@ -52,7 +52,7 @@ function parseBlogFaqItems(block: string): BlogFaqItem[] {
     if (!trimmed) continue;
 
     // **Question?** with optional answer on the same line
-    const faqLineMatch = trimmed.match(/^\*\*(.+?)\*\*\s*(.*)$/s);
+    const faqLineMatch = trimmed.match(/^\*\*(.+?)\*\*\s*(.*)$/);
     if (faqLineMatch) {
       const [, q, rest] = faqLineMatch;
       flush();
