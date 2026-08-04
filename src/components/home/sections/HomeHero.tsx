@@ -34,7 +34,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-200/80 bg-white/90 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-brand-700 backdrop-blur-sm dark:border-brand-500/25 dark:bg-white/[0.06] dark:text-brand-300"
+            className="brand-eyebrow mb-6 backdrop-blur-sm"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
             Marketing analytics platform

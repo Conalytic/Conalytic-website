@@ -96,7 +96,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
 
   return (
     <div className="px-3 pb-3 pt-2 sm:px-4">
-      <footer className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-white/[0.08] dark:bg-[#14141B] sm:rounded-3xl">
+      <footer className="relative overflow-hidden rounded-2xl border border-gray-200/80 bg-white dark:border-white/[0.08] dark:bg-brand-800 sm:rounded-3xl">
         <BrandAmbient variant="footer" />
 
         <div className="relative z-10 mx-auto max-w-6xl px-5 sm:px-8 md:px-12">

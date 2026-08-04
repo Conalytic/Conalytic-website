@@ -22,7 +22,7 @@ const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 function AIInnovationVisual() {
   const tokens = ["Which","campaigns","had","the","best","ROI?"];
   const labels  = ["Q-word","N","V","D","Adj","N"];
-  const colors  = ["bg-brand-100 dark:bg-brand-500/15 text-brand-700 dark:text-brand-300","bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300","bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300","bg-gray-100 dark:bg-white/[0.07] text-gray-500 dark:text-white/45","bg-amber-100 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300","bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300"];
+  const colors  = ["bg-brand-100 dark:bg-brand-500/15 text-brand-700 dark:text-brand-300","bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300","bg-brand-100 dark:bg-brand-500/15 text-brand-700 dark:text-brand-300","bg-gray-100 dark:bg-white/[0.07] text-gray-500 dark:text-white/45","bg-amber-100 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300","bg-violet-100 dark:bg-violet-500/15 text-violet-700 dark:text-violet-300"];
   return (
     <div className="w-full p-3 space-y-2.5">
       {/* Model header */}
@@ -61,14 +61,14 @@ function AIInnovationVisual() {
 function ImpactVisual() {
   const teams = [
     {name:"Ogilvy",     q:142, color:"bg-brand-600"},
-    {name:"MediaCom",   q:98,  color:"bg-emerald-600"},
+    {name:"MediaCom",   q:98,  color:"bg-brand-500"},
     {name:"WPP",        q:215, color:"bg-violet-600"},
     {name:"Dentsu",     q:87,  color:"bg-blue-600"},
   ];
   return (
     <div className="w-full p-3 space-y-2">
       <div className="grid grid-cols-2 gap-1.5 mb-1">
-        {[{v:"850+",l:"Teams",c:"text-brand-600 dark:text-brand-300"},{v:"10M+",l:"Queries",c:"text-emerald-600 dark:text-emerald-400"}].map(s=>(
+        {[{v:"850+",l:"Teams",c:"text-brand-600 dark:text-brand-300"},{v:"10M+",l:"Queries",c:"text-brand-600 dark:text-brand-400"}].map(s=>(
           <div key={s.l} className="bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05] rounded-xl p-2.5 text-center">
             <p className={`text-lg font-black ${s.c}`}>{s.v}</p>
             <p className="text-[8px] text-gray-400 dark:text-white/35 font-medium">{s.l}</p>
@@ -101,7 +101,7 @@ function GrowthVisual() {
   return (
     <div className="w-full p-3 space-y-2">
       <div className="grid grid-cols-3 gap-1.5 mb-1">
-        {[{v:"2.5M+",l:"Data pts/mo",c:"text-blue-600 dark:text-blue-400"},{v:"3×",l:"YoY growth",c:"text-brand-600 dark:text-brand-300"},{v:"99.9%",l:"Uptime",c:"text-emerald-600 dark:text-emerald-400"}].map(s=>(
+        {[{v:"2.5M+",l:"Data pts/mo",c:"text-blue-600 dark:text-blue-400"},{v:"3×",l:"YoY growth",c:"text-brand-600 dark:text-brand-300"},{v:"99.9%",l:"Uptime",c:"text-brand-600 dark:text-brand-400"}].map(s=>(
           <div key={s.l} className="bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05] rounded-xl p-2 text-center">
             <p className={`text-sm font-black ${s.c}`}>{s.v}</p>
             <p className="text-[7px] text-gray-400 dark:text-white/30 font-medium leading-tight">{s.l}</p>
@@ -131,7 +131,7 @@ function RecognitionVisual() {
   const awards = [
     { icon: Trophy, title:"Product of the Year",    org:"G2 Analytics Awards 2024",  color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20"},
     { icon: Medal, title:"Best AI Startup",         org:"TechCrunch Disrupt 2024",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
-    { icon: Star, title:"4.9 Customer Rating",    org:"2,000+ verified reviews",   color:"bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20"},
+    { icon: Star, title:"4.9 Customer Rating",    org:"2,000+ verified reviews",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
   ];
   return (
     <div className="w-full p-3 space-y-2">
@@ -160,7 +160,7 @@ function RecognitionVisual() {
 
 const whyJoin = [
   { icon:Cpu,       title:"Conversational AI Innovation", desc:"Work on cutting-edge natural language processing that transforms how marketers interact with data.",                    glow:"from-brand-400/10 to-violet-400/5",  border:"border-brand-400/20 dark:border-brand-500/20",  Visual:AIInnovationVisual },
-  { icon:Target,    title:"Impact-Driven Product",        desc:"Your code directly helps 850+ marketing teams make better, faster decisions every day.",                               glow:"from-emerald-400/10 to-teal-400/5",  border:"border-emerald-400/20 dark:border-emerald-500/20",Visual:ImpactVisual       },
+  { icon:Target,    title:"Impact-Driven Product",        desc:"Your code directly helps 850+ marketing teams make better, faster decisions every day.",                               glow:"from-brand-400/10 to-brand-300/5 dark:from-brand-400/10 dark:to-brand-300/5",  border:"border-brand-300/25 dark:border-brand-500/20",Visual:ImpactVisual       },
   { icon:TrendingUp,title:"Rapid Growth Environment",     desc:"Join a fast-scaling platform processing 2.5M+ data points monthly with unlimited learning opportunities.",             glow:"from-blue-400/10 to-cyan-400/5",     border:"border-blue-400/20 dark:border-blue-500/20",    Visual:GrowthVisual       },
   { icon:Trophy,    title:"Industry Recognition",         desc:"Be part of the team revolutionizing analytics — from hackathons to industry conferences, we lead innovation.",          glow:"from-amber-400/10 to-orange-400/5",  border:"border-amber-400/20 dark:border-amber-500/20",  Visual:RecognitionVisual  },
 ];
@@ -185,7 +185,7 @@ const openRoles = [
 
 const DEPT_COLORS: Record<string,string> = {
   "Engineering": "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
-  "Growth":      "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
+  "Growth":      "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
 };
 
 function RoleQuickApply({ roleTitle }: { roleTitle: string }) {
@@ -247,7 +247,7 @@ function RoleQuickApply({ roleTitle }: { roleTitle: string }) {
       {notice ? (
         <p
           role="status"
-          className={`text-xs font-medium ${notice.kind === "ok" ? "text-emerald-600 dark:text-emerald-400" : "text-amber-700 dark:text-amber-300"}`}
+          className={`text-xs font-medium ${notice.kind === "ok" ? "text-brand-600 dark:text-brand-400" : "text-amber-700 dark:text-amber-300"}`}
         >
           {notice.text}
         </p>
@@ -305,7 +305,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Users className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
@@ -325,7 +325,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       </section>
 
       {/* ── PERKS ───────────────────────────────────── */}
-      <section className="py-10 px-4 bg-white dark:bg-[#0C0C12] border-b border-gray-100 dark:border-white/[0.05]">
+      <section className="py-10 px-4 bg-white dark:bg-brand-900 border-b border-gray-100 dark:border-white/[0.05]">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-wrap justify-center gap-3">
             {perks.map(p=>{
@@ -340,17 +340,17 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       </section>
 
       {/* ── WHY JOIN ────────────────────────────────── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Life at Conalytic</span>
+            <span className="brand-eyebrow inline-block mb-4">Life at Conalytic</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{lifeAtConalyticTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">{lifeAtConalyticSubtitle}</p>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {whyJoin.map(r=>(
               <motion.div key={r.title} variants={fadeUp}
-                className="relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300">
+                className="relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300">
                 <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full bg-gradient-to-br ${r.glow} blur-2xl opacity-80 pointer-events-none`}/>
                 {/* Visual */}
                 <div className="relative z-10 border-b border-gray-100 dark:border-white/[0.06] min-h-[200px] flex flex-col">
@@ -371,8 +371,8 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       </section>
 
       {/* ── OPEN POSITIONS ──────────────────────────── */}
-      <section id="open-positions" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
+      <section id="open-positions" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(148,163,184,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-3xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Open Roles</span>
@@ -382,7 +382,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="space-y-5">
             {openRoles.map(role=>(
               <motion.div key={role.title} variants={fadeUp}
-                className="rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm overflow-hidden hover:border-brand-300 dark:hover:border-brand-500/40 hover:shadow-lg dark:hover:shadow-black/40 transition-all duration-300">
+                className="rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm overflow-hidden hover:border-brand-300 dark:hover:border-brand-500/40 hover:shadow-lg dark:hover:shadow-black/40 transition-all duration-300">
                 <div className="p-6 sm:p-8">
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-1.5">

@@ -51,7 +51,7 @@ function SlideCard({
         )}
       >
         <div className="flex items-center gap-1.5 border-b border-white/[0.06] px-2.5 py-1.5">
-          <FileText className="h-3 w-3 text-brand-lime" />
+          <FileText className="h-3 w-3" />
           <span className="truncate text-[8px] font-semibold text-white/70 sm:text-[9px]">{title}</span>
         </div>
         <div className={cn("space-y-1.5 p-2.5", compact ? "h-14" : "h-20 sm:h-24")}>
@@ -160,7 +160,7 @@ export function ReportProductDemo({ compact = false, embedded = false }: { compa
           <div className="flex items-center justify-center gap-4">
             <motion.div
               className="flex h-10 w-10 items-center justify-center rounded-xl border border-brand-200 bg-brand-50 text-xs font-bold text-brand-700 dark:border-brand-500/30 dark:bg-brand-500/10 dark:text-brand-300"
-              animate={{ boxShadow: ["0 0 0 rgba(201,255,51,0)", "0 0 24px rgba(201,255,51,0.25)", "0 0 0 rgba(201,255,51,0)"] }}
+              animate={{ boxShadow: ["0 0 0 rgba(100,116,139,0)", "0 0 24px rgba(100,116,139,0.25)", "0 0 0 rgba(100,116,139,0)"] }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               HTML

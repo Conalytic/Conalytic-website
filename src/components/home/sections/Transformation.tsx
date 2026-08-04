@@ -4,6 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { SAAS_EASE as EASE, viewportOnce } from "@/lib/motion";
+import { DEMO_LIVE_DOT_CLASS, DEMO_POSITIVE_TEXT_CLASS, DEMO_SUCCESS_PILL_CLASS } from "@/components/visual/product-demos/analytics-demo";
 
 const BEFORE = [
   { label: "Hours to get a report",  value: "8h avg",   pct: 85 },
@@ -42,7 +43,7 @@ export function Transformation({ content }: { content?: TransformationContent })
   }, []);
 
   return (
-    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
 
       <div className="relative z-10 max-w-5xl mx-auto">
 
@@ -54,7 +55,7 @@ export function Transformation({ content }: { content?: TransformationContent })
           transition={{ duration: 0.65, ease: EASE }}
           className="text-center mb-8"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-white/60 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 backdrop-blur-sm mb-4">
+          <span className="brand-eyebrow inline-block backdrop-blur-sm mb-4">
             {content?.eyebrow || "The turning point"}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -117,7 +118,7 @@ export function Transformation({ content }: { content?: TransformationContent })
           {/* ── VS divider ── */}
           <div className="hidden md:flex flex-col items-center justify-center gap-3 px-2">
             <div className="w-px flex-1 bg-gradient-to-b from-transparent via-gray-300/60 dark:via-white/10 to-transparent" />
-            <div className="w-10 h-10 rounded-full bg-white dark:bg-[#1C1C24] backdrop-blur-sm border border-gray-200/80 dark:border-white/8 flex items-center justify-center text-[10px] font-black text-gray-400 dark:text-white/30 shadow-md shrink-0">
+            <div className="w-10 h-10 rounded-full bg-white dark:bg-brand-800 backdrop-blur-sm border border-gray-200/80 dark:border-white/8 flex items-center justify-center text-[10px] font-black text-gray-400 dark:text-white/30 shadow-md shrink-0">
               VS
             </div>
             <div className="w-px flex-1 bg-gradient-to-b from-transparent via-gray-300/60 dark:via-white/10 to-transparent" />
@@ -132,18 +133,15 @@ export function Transformation({ content }: { content?: TransformationContent })
             className="relative rounded-3xl overflow-hidden"
           >
             {/* Glass background */}
-            <div className="absolute inset-0 bg-white/70 dark:bg-[#0D1A10] backdrop-blur-xl border border-white/80 dark:border-emerald-500/10 rounded-3xl" />
-            {/* Subtle green/brand inner glow */}
-            <div className="absolute inset-0 rounded-3xl"
-              style={{ background: "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(16,185,129,0.1) 0%, transparent 70%)" }} />
+            <div className="absolute inset-0 bg-white/70 dark:bg-brand-800/90 backdrop-blur-xl border border-white/80 dark:border-brand-500/20 rounded-3xl" />
+            <div className="absolute inset-0 rounded-3xl bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,var(--demo-section-glow)_0%,transparent_70%)]" />
 
             <div className="relative z-10 p-7">
-              {/* Header */}
               <div className="flex items-center gap-2.5 mb-7">
-                <div className="w-7 h-7 rounded-full bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-100 dark:border-emerald-500/20 flex items-center justify-center">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <div className={`w-7 h-7 rounded-full border flex items-center justify-center ${DEMO_SUCCESS_PILL_CLASS}`}>
+                  <span className={`w-2 h-2 rounded-full ${DEMO_LIVE_DOT_CLASS}`} />
                 </div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                <span className={`text-[11px] font-bold uppercase tracking-widest ${DEMO_POSITIVE_TEXT_CLASS}`}>
                   With Conalytic
                 </span>
               </div>
@@ -153,15 +151,13 @@ export function Transformation({ content }: { content?: TransformationContent })
                   <div key={label}>
                     <div className="flex justify-between items-baseline mb-2.5">
                       <span className="text-sm text-gray-600 dark:text-white/60">{label}</span>
-                      <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 tabular-nums">{value}</span>
+                      <span className={`text-sm font-bold tabular-nums ${DEMO_POSITIVE_TEXT_CLASS}`}>{value}</span>
                     </div>
-                    {/* Track */}
-                    <div className="h-2 rounded-full overflow-hidden bg-emerald-500/10 dark:bg-emerald-500/15">
+                    <div className="h-2 rounded-full overflow-hidden bg-brand-500/10 dark:bg-brand-500/15">
                       <div
-                        className="h-full rounded-full transition-all duration-1000 ease-out"
+                        className="h-full rounded-full bg-gradient-to-r from-brand-500 to-brand-600 transition-all duration-1000 ease-out dark:from-brand-400 dark:to-brand-500"
                         style={{
                           width: visible ? `${pct}%` : "0%",
-                          background: "linear-gradient(90deg, #34d399, #10b981)",
                           transitionDelay: `${idx * 100 + 200}ms`,
                         }}
                       />

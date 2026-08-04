@@ -18,7 +18,7 @@ const CONTACT_INBOX = "admin@conalytic.com";
 
 const contactInfo = [
   { icon:Mail,   title:"Email",    subtitle:"Our friendly team is here to help.", value:CONTACT_INBOX,    href:`mailto:${CONTACT_INBOX}`, color:"from-brand-500/15 to-brand-500/10", border:"border-brand-500/20", iconColor:"text-brand-600 dark:text-brand-400" },
-  { icon:MapPin, title:"Location", subtitle:"Let's catch up for a coffee.",        value:"Pune, Maharashtra, India", href:null,                        color:"from-emerald-500/15 to-teal-500/10", border:"border-emerald-500/20",iconColor:"text-emerald-600 dark:text-emerald-400" },
+  { icon:MapPin, title:"Location", subtitle:"Let's catch up for a coffee.",        value:"Pune, Maharashtra, India", href:null,                        color:"from-brand-400/15 to-brand-300/10", border:"border-brand-300/25",iconColor:"text-brand-600 dark:text-brand-400" },
 ];
 
 const inputBase = "w-full bg-gray-50 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] rounded-xl px-4 py-3 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/25 focus:outline-none focus:border-brand-500 focus:bg-white dark:focus:bg-white/[0.07] focus:ring-2 focus:ring-brand-500/20 transition-all text-sm";
@@ -97,7 +97,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Mail className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
@@ -111,7 +111,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         </div>
       </section>
 
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-10">
             Contact information
@@ -119,7 +119,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
             {contactInfo.map(info=>(
               <motion.div key={info.title} variants={fadeUp}
-                className="relative overflow-hidden rounded-2xl p-6 text-center bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-300">
+                className="relative overflow-hidden rounded-2xl p-6 text-center bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-300">
                 <div className={`absolute -top-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-br ${info.color} blur-xl opacity-50 pointer-events-none`}/>
                 <div className={`relative z-10 w-14 h-14 rounded-2xl bg-gradient-to-br ${info.color} border ${info.border} flex items-center justify-center mx-auto mb-4`}>
                   <info.icon className={`w-7 h-7 ${info.iconColor}`}/>
@@ -137,11 +137,11 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         </div>
       </section>
 
-      <section id="contact-form" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,255,51,0.08) 0%, transparent 70%)"}}/>
+      <section id="contact-form" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(148,163,184,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-2xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
-            <div className="rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-lg p-8 sm:p-10">
+            <div className="rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-lg p-8 sm:p-10">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{formTitle}</h2>
               <p className="text-gray-500 dark:text-white/55 text-sm mb-8">
                 Fill out the form below and we&apos;ll get back to you as soon as possible.

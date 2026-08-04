@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/** Thin lime progress bar at top of viewport — scroll depth indicator. */
+/** Thin slate progress bar at top of viewport — scroll depth indicator. */
 export function ScrollProgressBar() {
   const [progress, setProgress] = useState(0);
 

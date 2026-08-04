@@ -22,6 +22,13 @@ const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transi
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
+import {
+  analyticsDemoBarStyle,
+  DEMO_POSITIVE_TEXT_CLASS,
+  DEMO_SUCCESS_PILL_CLASS,
+  DEMO_LIVE_DOT_CLASS,
+  ANALYTICS_DEMO_ANSWERED_BADGE_CLASS,
+} from "@/components/visual/product-demos/analytics-demo";
 
 /** Fixed height so every feature card’s mockup + text block line up across the row */
 const BENTO_VISUAL_H = "h-[268px]";
@@ -37,7 +44,7 @@ function ConversationalVisual() {
       {/* User query */}
       <div className="flex justify-end">
         <div className="flex items-end gap-1.5 max-w-[85%]">
-          <div className="bg-brand-600 text-brand-lime text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
+          <div className="demo-user-bubble text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-br-sm">
             Which campaigns had the best ROI?
           </div>
           <div className="w-5 h-5 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center shrink-0 mb-0.5">
@@ -51,7 +58,7 @@ function ConversationalVisual() {
           <span className="text-[6px] font-black text-white">CA</span>
         </div>
         <div className="bg-gray-100 dark:bg-white/[0.07] text-gray-700 dark:text-white/80 text-[10px] leading-relaxed px-3 py-2 rounded-2xl rounded-bl-sm max-w-[85%]">
-          Brand Search led at <span className="font-bold text-brand-600 dark:text-brand-300">4.8× ROAS</span>, Retargeting at <span className="font-bold text-emerald-600 dark:text-emerald-400">3.9×</span>.
+          Brand Search led at <span className="font-bold text-brand-600 dark:text-brand-300">4.8× ROAS</span>, Retargeting at <span className={`font-bold ${DEMO_POSITIVE_TEXT_CLASS}`}>3.9×</span>.
         </div>
       </div>
       {/* Mini bar chart response */}
@@ -59,7 +66,7 @@ function ConversationalVisual() {
         <div className="flex items-end gap-1.5 h-8">
           {[{h:80,l:"Brand"},{h:55,l:"Retarg."},{h:40,l:"Display"},{h:65,l:"Video"}].map((b,i)=>(
             <div key={b.l} className="flex-1 flex flex-col items-center justify-end gap-0.5">
-              <div className="w-full rounded-t-[2px]" style={{height:`${Math.round(b.h*0.01*28)}px`,background:`rgba(201,255,51,${0.45+i*0.1})`}}/>
+              <div className="w-full rounded-t-[2px]" style={analyticsDemoBarStyle(Math.round(b.h*0.01*28), i, 0.1, 0.45)}/>
               <span className="text-[7px] text-gray-400 dark:text-white/30 truncate w-full text-center">{b.l}</span>
             </div>
           ))}
@@ -91,23 +98,23 @@ function AIInsightsVisual() {
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-3 border border-gray-100 dark:border-white/[0.05]">
         <div className="flex items-center justify-between mb-2">
           <span className="text-[9px] uppercase tracking-wider text-gray-400 dark:text-white/35 font-semibold">Performance Trend</span>
-          <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">↑ 32%</span>
+          <span className={`text-[10px] font-bold ${DEMO_POSITIVE_TEXT_CLASS}`}>↑ 32%</span>
         </div>
         <svg viewBox="0 0 100 60" className="w-full h-10" preserveAspectRatio="none">
           <defs>
             <linearGradient id="sg1" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.18"/>
-              <stop offset="100%" stopColor="#c9ff33" stopOpacity="0"/>
+              <stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.18"/>
+              <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0"/>
             </linearGradient>
           </defs>
           <polygon points={`0,100 ${pts} 100,100`} fill="url(#sg1)"/>
-          <polyline points={pts} fill="none" stroke="#c9ff33" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points={pts} fill="none" stroke="var(--brand-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       {/* Insight chips */}
       {[
         { color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20 text-brand-700 dark:text-brand-300", icon:"↑", text:"ROAS up 18% · increase budget" },
-        { color:"bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300", icon:"✓", text:"CTR outperforming benchmark" },
+        { color:`border ${DEMO_SUCCESS_PILL_CLASS}`, icon:"✓", text:"CTR outperforming benchmark" },
         { color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20 text-amber-700 dark:text-amber-300", icon:"!", text:"CPC spike on Brand Search" },
       ].map((chip,i)=>(
         <div key={i} className={`flex items-center gap-2 px-2.5 py-2 rounded-xl border text-[10px] font-semibold ${chip.color}`}>
@@ -124,7 +131,7 @@ function ReportBuilderVisual() {
   const blocks = [
     { w:"w-full", h:"h-5",   bg:"bg-brand-100 dark:bg-brand-500/15", text:"Executive Summary" },
     { w:"w-2/3",  h:"h-10",  bg:"bg-blue-50 dark:bg-blue-500/10",    text:"Revenue Chart" },
-    { w:"w-1/3",  h:"h-10",  bg:"bg-emerald-50 dark:bg-emerald-500/10", text:"ROAS" },
+    { w:"w-1/3",  h:"h-10",  bg:"bg-brand-50 dark:bg-brand-500/10", text:"ROAS" },
     { w:"w-full", h:"h-4",   bg:"bg-violet-50 dark:bg-violet-500/10", text:"AI Commentary" },
   ];
   return (
@@ -147,8 +154,8 @@ function ReportBuilderVisual() {
               <span className="text-[8px] text-gray-300 dark:text-white/20 opacity-0 group-hover:opacity-100 transition-opacity">⠿</span>
             </div>
             {b.w==="w-2/3" && (
-              <div className="w-1/3 h-10 bg-emerald-50 dark:bg-emerald-500/10 rounded-lg border border-gray-200 dark:border-white/[0.06] flex items-center justify-center">
-                <span className="text-[8px] font-black text-emerald-600 dark:text-emerald-400">4.2×</span>
+              <div className="w-1/3 h-10 bg-brand-50 dark:bg-brand-500/10 rounded-lg border border-gray-200 dark:border-white/[0.06] flex items-center justify-center">
+                <span className={`text-[8px] font-black ${DEMO_POSITIVE_TEXT_CLASS}`}>4.2×</span>
               </div>
             )}
           </div>
@@ -194,14 +201,14 @@ function DataSyncVisual() {
       <div className="w-full flex justify-center gap-2">
         {sources.map((_,i)=>(
           <div key={i} className="flex flex-col items-center gap-0.5">
-            <div className="w-px h-4 bg-gradient-to-b from-gray-300 dark:from-white/20 to-emerald-400 dark:to-emerald-500"/>
-            <span className="w-1 h-1 rounded-full bg-emerald-400 animate-bounce" style={{animationDelay:`${i*100}ms`}}/>
+            <div className="w-px h-4 bg-gradient-to-b from-gray-300 dark:from-white/20 to-brand-400 dark:to-brand-500"/>
+            <span className={`w-1 h-1 rounded-full animate-bounce ${DEMO_LIVE_DOT_CLASS}`} style={{animationDelay:`${i*100}ms`}}/>
           </div>
         ))}
       </div>
       {/* BigQuery hub */}
-      <div className="w-full bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-500/10 dark:to-teal-500/10 rounded-2xl border border-emerald-200 dark:border-emerald-500/20 p-3 flex items-center gap-3">
-        <div className="w-8 h-8 rounded-xl bg-emerald-500 flex items-center justify-center shrink-0">
+      <div className={`w-full rounded-2xl border p-3 flex items-center gap-3 ${DEMO_SUCCESS_PILL_CLASS} bg-gradient-to-br from-brand-50 to-brand-100/80 dark:from-brand-500/10 dark:to-brand-400/10`}>
+        <div className="w-8 h-8 rounded-xl bg-brand-600 dark:bg-brand-400 flex items-center justify-center shrink-0">
           <Zap className="w-4 h-4 text-white"/>
         </div>
         <div>
@@ -209,14 +216,14 @@ function DataSyncVisual() {
           <p className="text-[9px] text-gray-500 dark:text-white/50">Unified warehouse · syncing now</p>
         </div>
         <div className="ml-auto flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
-          <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">Live</span>
+          <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${DEMO_LIVE_DOT_CLASS}`}/>
+          <span className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>Live</span>
         </div>
       </div>
       {/* Last sync */}
       <div className="flex items-center justify-between w-full px-1">
         <span className="text-[9px] text-gray-400 dark:text-white/35">Last sync: 2 min ago</span>
-        <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">2.5M rows ↑</span>
+        <span className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>2.5M rows ↑</span>
       </div>
     </div>
   );
@@ -300,7 +307,7 @@ function SecurityVisual() {
           <div key={i} className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05]">
             <span className="text-base leading-none">{c.icon}</span>
             <span className="text-[10px] font-semibold text-gray-700 dark:text-white/75 flex-1">{c.label}</span>
-            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${c.status==="certified" ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20" : "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-500/20"}`}>
+            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${c.status==="certified" ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20" : `border ${DEMO_SUCCESS_PILL_CLASS}`}`}>
               {c.status}
             </span>
           </div>
@@ -319,12 +326,12 @@ function SecurityVisual() {
    BENTO CARD DATA
 ═══════════════════════════════════════════════ */
 const BENTO_CARDS = [
-  { title:"Conversational Analytics",  desc:"Chat with live GA4, Search Console, Google Ads, GTM, and Meta data. Scoped conversations with inline charts—no SQL.",                              icon:MessageSquare, glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   bg:"bg-white dark:bg-[#14141B]", Visual:ConversationalVisual, href:"/products/conversational-analytics" },
-  { title:"KPIs Tracker",              desc:"Set goals across GA4, GSC, and Google Ads. See on-track, at-risk, and off-track status with six months of history.",                          icon:Target,        glow:"from-emerald-400/10 to-teal-400/5",   border:"border-emerald-400/20 dark:border-emerald-500/20", bg:"bg-white dark:bg-[#14141B]", Visual:AIInsightsVisual, href:"/products/kpis-tracker" },
-  { title:"Report Builder",            desc:"Generate HTML presentation decks from connected data—executive summary, platform sections, cross-source insights, and action plans.",          icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:ReportBuilderVisual, href:"/products/report-builder" },
-  { title:"OAuth integrations",        desc:"Connect Google Analytics 4, Search Console, Google Ads, Tag Manager, Meta Ads, and LinkedIn with read-only OAuth.",                                      icon:Zap,           glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-[#14141B]",Visual:DataSyncVisual,     href:SITE_ROUTES.integrations },
-  { title:"Token-based Pro usage",     desc:"Free signup includes 325,203 tokens for chat and AI report insights. KPI Tracker uses live APIs without LLM metering.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-500/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-[#14141B]", Visual:AutoReportingVisual, href:SITE_ROUTES.pricing },
-  { title:"Enterprise Security",        desc:"Encrypted data in transit, OAuth-scoped access, and privacy policies aligned with Google API Limited Use requirements.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-[#14141B]", Visual:SecurityVisual,      href:PRIVACY_POLICY_PATH },
+  { title:"Conversational Analytics",  desc:"Chat with live GA4, Search Console, Google Ads, GTM, and Meta data. Scoped conversations with inline charts—no SQL.",                              icon:MessageSquare, glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   bg:"bg-white dark:bg-brand-800", Visual:ConversationalVisual, href:"/products/conversational-analytics" },
+  { title:"KPIs Tracker",              desc:"Set goals across GA4, GSC, and Google Ads. See on-track, at-risk, and off-track status with six months of history.",                          icon:Target,        glow:"from-brand-400/10 to-brand-300/5",   border:"border-brand-400/20 dark:border-brand-500/20", bg:"bg-white dark:bg-brand-800", Visual:AIInsightsVisual, href:"/products/kpis-tracker" },
+  { title:"Report Builder",            desc:"Generate HTML presentation decks from connected data—executive summary, platform sections, cross-source insights, and action plans.",          icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-brand-800", Visual:ReportBuilderVisual, href:"/products/report-builder" },
+  { title:"OAuth integrations",        desc:"Connect Google Analytics 4, Search Console, Google Ads, Tag Manager, Meta Ads, and LinkedIn with read-only OAuth.",                                      icon:Zap,           glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-brand-800",Visual:DataSyncVisual,     href:SITE_ROUTES.integrations },
+  { title:"Token-based Pro usage",     desc:"Free signup includes 325,203 tokens for chat and AI report insights. KPI Tracker uses live APIs without LLM metering.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-500/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-brand-800", Visual:AutoReportingVisual, href:SITE_ROUTES.pricing },
+  { title:"Enterprise Security",        desc:"Encrypted data in transit, OAuth-scoped access, and privacy policies aligned with Google API Limited Use requirements.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-brand-800", Visual:SecurityVisual,      href:PRIVACY_POLICY_PATH },
 ];
 
 /* ── Deep-dive section visuals ────────────────────── */
@@ -336,21 +343,21 @@ function ChatMockup() {
     { user:false, text:"Brand Search led at 38%, followed by Retargeting at 27%." },
   ];
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
-      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
-        <span className="w-2.5 h-2.5 rounded-full bg-red-400"/><span className="w-2.5 h-2.5 rounded-full bg-amber-400"/><span className="w-2.5 h-2.5 rounded-full bg-emerald-400"/>
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
+      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-brand-900/80 border-b border-gray-100 dark:border-white/[0.06]">
+        <span className="w-2.5 h-2.5 rounded-full bg-red-400"/><span className="w-2.5 h-2.5 rounded-full bg-amber-400"/><span className={`w-2.5 h-2.5 rounded-full ${DEMO_LIVE_DOT_CLASS}`}/>
         <span className="ml-3 text-[11px] font-mono text-gray-400 dark:text-white/30">Conalytic Chat</span>
-        <span className="ml-auto flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/><span className="text-[10px] text-emerald-500 font-medium">Live</span></span>
+        <span className="ml-auto flex items-center gap-1"><span className={`w-1.5 h-1.5 rounded-full animate-pulse ${DEMO_LIVE_DOT_CLASS}`}/><span className={`text-[10px] font-medium ${DEMO_POSITIVE_TEXT_CLASS}`}>Live</span></span>
       </div>
       <div className="p-4 space-y-3">
         {msgs.map((m,i)=>(
           <div key={i} className={`flex ${m.user?"justify-end":"justify-start"}`}>
-            {!m.user&&<div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold text-brand-lime">CA</span></div>}
-            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"bg-brand-600 text-brand-lime rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
+            {!m.user&&<div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0 mt-0.5"><span className="text-[7px] font-bold">CA</span></div>}
+            <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${m.user?"demo-user-bubble rounded-br-sm":"bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"}`}>{m.text}</div>
             {m.user&&<div className="w-6 h-6 rounded-full bg-gray-200 dark:bg-white/10 flex items-center justify-center ml-2 shrink-0 mt-0.5"><span className="text-[8px] font-bold text-gray-500 dark:text-white/50">U</span></div>}
           </div>
         ))}
-        <div className="flex justify-start"><div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold text-brand-lime">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
+        <div className="flex justify-start"><div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0"><span className="text-[7px] font-bold">CA</span></div><div className="px-4 py-2.5 rounded-xl rounded-bl-sm bg-gray-100 dark:bg-white/[0.06] flex items-center gap-1"><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"0ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"150ms"}}/><span className="w-1.5 h-1.5 rounded-full bg-gray-400 dark:bg-white/40 animate-bounce" style={{animationDelay:"300ms"}}/></div></div>
       </div>
     </div>
   );
@@ -360,14 +367,14 @@ const PERF_MAX = 48;
 const PERF_BARS = [{pct:55,lbl:"GA4"},{pct:80,lbl:"Ads"},{pct:45,lbl:"Meta"},{pct:68,lbl:"GSC"},{pct:92,lbl:"BQ"}];
 function PerfMockup() {
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-white/[0.06]">
         <span className="text-xs font-semibold text-gray-700 dark:text-white/80">Campaign Performance</span>
         <span className="text-[10px] bg-gray-100 dark:bg-white/[0.06] text-gray-400 dark:text-white/40 px-2 py-0.5 rounded-full">This month</span>
       </div>
       <div className="p-4 space-y-4">
         <div className="grid grid-cols-3 gap-2">
-          {[{l:"Total ROAS",v:"4.2×",c:"text-brand-600 dark:text-brand-300"},{l:"CTR",v:"3.8%",c:"text-emerald-600 dark:text-emerald-400"},{l:"Conversions",v:"1,284",c:"text-blue-600 dark:text-blue-400"}].map(m=>(
+          {[{l:"Total ROAS",v:"4.2×",c:"text-brand-600 dark:text-brand-300"},{l:"CTR",v:"3.8%",c:DEMO_POSITIVE_TEXT_CLASS},{l:"Conversions",v:"1,284",c:"text-blue-600 dark:text-blue-400"}].map(m=>(
             <div key={m.l} className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05]">
               <p className="text-[9px] text-gray-400 dark:text-white/40 mb-1">{m.l}</p>
               <p className={`text-sm font-black ${m.c}`}>{m.v}</p>
@@ -380,7 +387,7 @@ function PerfMockup() {
             {PERF_BARS.map((b,i)=>(
               <div key={b.lbl} className="flex-1 flex flex-col items-center justify-end gap-1">
                 <span className="text-[8px] text-gray-500 dark:text-white/40 font-semibold">{(b.pct/20).toFixed(1)}×</span>
-                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*PERF_MAX)}px`,background:`rgba(201,255,51,${0.4+i*0.12})`}}/>
+                <div className="w-full rounded-t-[3px]" style={analyticsDemoBarStyle(Math.round((b.pct/100)*PERF_MAX), i, 0.12, 0.4)}/>
               </div>
             ))}
           </div>
@@ -393,13 +400,13 @@ function PerfMockup() {
 
 function ReportMockup() {
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
+      <div className="flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-brand-900/80 border-b border-gray-100 dark:border-white/[0.06]">
         <div className="flex items-center gap-2">
           <div className="w-5 h-5 rounded-md bg-brand-600 flex items-center justify-center"><BarChart3 className="w-3 h-3 text-brand-500"/></div>
           <span className="text-xs font-semibold text-gray-700 dark:text-white/80">Monthly Marketing Report</span>
         </div>
-        <span className="text-[10px] bg-emerald-100 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20 px-2 py-0.5 rounded-full font-medium">Auto-generated</span>
+        <span className={ANALYTICS_DEMO_ANSWERED_BADGE_CLASS}>Auto-generated</span>
       </div>
       <div className="p-4 space-y-3">
         {[
@@ -424,9 +431,9 @@ function ReportMockup() {
 }
 
 const deepDives = [
-  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, GTM, or Meta. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)" },
-  { badge:"KPIs Tracker", badgeColor:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", title:"Track Goals With On-Track / At-Risk Status",  desc:"Create KPI projects for GA4, GSC, and Google Ads. Set targets, compare month or year-to-date, and review six months of achievement history.",                    bullets:["Status labels: On track, At risk, Off track, No data","Rules-based scoring—no AI guesswork on KPI health","Optional GSC keyword ranking tracking per project"],          cta:{label:"Explore KPI Tracker",href:"/products/kpis-tracker"}, Visual:PerfMockup,  sectionBg:"bg-[#f0f1f5] dark:bg-[#0E0E14]", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(16,185,129,0.08) 0%, transparent 65%)" },
-  { badge:"Report Builder",          badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",          title:"Deliver HTML Decks Clients Actually Read",          desc:"Generate multi-platform presentation decks with executive summary, platform sections, cross-source findings, methodology, and a prioritized action plan.", bullets:["GA4, GSC, Google Ads, and GTM sources with per-platform focus","Optional AI insights for slide narratives","View in-app, download HTML, or regenerate with the same settings"],cta:{label:"Explore Reports",href:"/products/report-builder"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-[#0C0C12]",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)" },
+  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, GTM, or Meta. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-brand-900",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
+  { badge:"KPIs Tracker", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20", title:"Track Goals With On-Track / At-Risk Status",  desc:"Create KPI projects for GA4, GSC, and Google Ads. Set targets, compare month or year-to-date, and review six months of achievement history.",                    bullets:["Status labels: On track, At risk, Off track, No data","Rules-based scoring—no AI guesswork on KPI health","Optional GSC keyword ranking tracking per project"],          cta:{label:"Explore KPI Tracker",href:"/products/kpis-tracker"}, Visual:PerfMockup,  sectionBg:"bg-[#f0f1f5] dark:bg-brand-900", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
+  { badge:"Report Builder",          badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",          title:"Deliver HTML Decks Clients Actually Read",          desc:"Generate multi-platform presentation decks with executive summary, platform sections, cross-source findings, methodology, and a prioritized action plan.", bullets:["GA4, GSC, Google Ads, and GTM sources with per-platform focus","Optional AI insights for slide narratives","View in-app, download HTML, or regenerate with the same settings"],cta:{label:"Explore Reports",href:"/products/report-builder"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-brand-900",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
 ];
 
 export interface FeaturesContentPreset {
@@ -473,7 +480,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
         <BrandAmbient variant="hero" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Sparkles className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
@@ -500,10 +507,10 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       </section>
 
       {/* ── FEATURES BENTO GRID ───────────────────────── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{includedSubtitle}</span>
+            <span className="brand-eyebrow inline-block mb-4">{includedSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">

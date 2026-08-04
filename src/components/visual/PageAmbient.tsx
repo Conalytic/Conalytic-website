@@ -80,8 +80,8 @@ function ParticleMesh({ enabled }: { enabled: boolean }) {
           if (dist < 140) {
             const alpha = (1 - dist / 140) * 0.08;
             ctx.strokeStyle = isDark
-              ? `rgba(201, 255, 51, ${alpha})`
-              : `rgba(95, 143, 0, ${alpha})`;
+              ? `rgba(148, 163, 184, ${alpha})`
+              : `rgba(100, 116, 139, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x * w, a.y * h);
@@ -94,8 +94,8 @@ function ParticleMesh({ enabled }: { enabled: boolean }) {
       for (const n of nodes) {
         const glow = 0.35 + Math.sin(n.pulse) * 0.15;
         ctx.fillStyle = isDark
-          ? `rgba(201, 255, 51, ${glow})`
-          : `rgba(95, 143, 0, ${glow * 0.85})`;
+          ? `rgba(203, 213, 225, ${glow * 0.85})`
+          : `rgba(100, 116, 139, ${glow * 0.85})`;
         ctx.beginPath();
         ctx.arc(n.x * w, n.y * h, n.r, 0, Math.PI * 2);
         ctx.fill();
@@ -119,7 +119,7 @@ function ParticleMesh({ enabled }: { enabled: boolean }) {
   return <canvas ref={ref} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden />;
 }
 
-/** Cursor-following lime spotlight (desktop pointer only). */
+/** Cursor-following slate spotlight (desktop pointer only). */
 function CursorSpotlight({ enabled }: { enabled: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -188,7 +188,7 @@ export function PageAmbient({ className }: { className?: string }) {
       <CursorSpotlight enabled={!lite} />
       <div className="ambient-grid absolute inset-0" />
       {!lite ? <div className="ambient-grain absolute inset-0" /> : null}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[#0f0f0f]/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[var(--bg)]/75" />
     </div>
   );
 }

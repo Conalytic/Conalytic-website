@@ -29,13 +29,13 @@ function Ga4TrafficDropDemo() {
     <DemoShell label="GSC vs GA4">
       <div className="space-y-3">
         {[
-          { name: "GSC Clicks", data: gsc, color: "bg-emerald-500" },
+          { name: "GSC Clicks", data: gsc, color: "bg-brand-400" },
           { name: "GA4 Sessions", data: ga4, color: "bg-red-400" },
         ].map((line) => (
           <div key={line.name}>
             <div className="mb-1 flex justify-between text-[8px] text-white/50">
               <span>{line.name}</span>
-              <span className={line.name.includes("GA4") ? "text-red-400" : "text-emerald-400"}>
+              <span className={line.name.includes("GA4") ? "text-red-400" : "text-brand-300"}>
                 {line.data[Math.min(step, line.data.length - 1)]}%
               </span>
             </div>
@@ -233,7 +233,7 @@ function HtmlPdfDashboardDemo() {
             key={f.label}
             animate={{
               scale: active === i ? 1.05 : 1,
-              borderColor: active === i ? "rgba(201,255,51,0.5)" : "rgba(255,255,255,0.1)",
+              borderColor: active === i ? "rgba(148,163,184,0.5)" : "rgba(255,255,255,0.1)",
             }}
             className="rounded-lg border bg-white/[0.04] p-2 text-center"
           >
@@ -312,13 +312,13 @@ function AiReportsDemo() {
           </>
         ) : (
           <>
-            <div className="mb-1 flex items-center gap-1 text-[8px] text-emerald-300">
+            <div className="mb-1 flex items-center gap-1 text-[8px] text-brand-300">
               <Check className="h-3 w-3" /> Human verified
             </div>
             <div className="space-y-1">
               {["Numbers match source", "Causation checked", "Budget realistic"].map((c) => (
                 <p key={c} className="flex items-center gap-1 text-[7px] text-white/50">
-                  <Check className="h-2 w-2 text-emerald-400" /> {c}
+                  <Check className="h-2 w-2 text-brand-400" /> {c}
                 </p>
               ))}
             </div>
@@ -344,11 +344,11 @@ function KpiTargetsDemo() {
         <p className="mb-2 text-[7px] text-white/35">Target: 24,500 · Baseline: YoY same month</p>
         <div className="mx-auto h-2 w-full overflow-hidden rounded-full bg-white/10">
           <motion.div
-            className="h-full rounded-full bg-emerald-500"
+            className="h-full rounded-full bg-brand-400"
             animate={{ width: `${fill}%` }}
           />
         </div>
-        <p className="mt-1 text-[8px] text-emerald-400">72% to target — On track</p>
+        <p className="mt-1 text-[8px] text-brand-300">72% to target — On track</p>
       </div>
     </DemoShell>
   );
@@ -357,7 +357,7 @@ function KpiTargetsDemo() {
 /** Brief 10 — deterministic status pills */
 function KpiStatusDemo() {
   const statuses = [
-    { label: "On track", tone: "emerald" },
+    { label: "On track", tone: "brand" },
     { label: "At risk", tone: "amber" },
     { label: "Off track", tone: "red" },
     { label: "No data", tone: "gray" },
@@ -372,7 +372,7 @@ function KpiStatusDemo() {
     return () => clearInterval(t);
   }, []);
   const toneClass: Record<string, string> = {
-    emerald: "border-emerald-500/40 bg-emerald-500/15 text-emerald-300",
+    brand: "border-brand-400/40 bg-brand-400/15 text-brand-300",
     amber: "border-amber-500/40 bg-amber-500/15 text-amber-300",
     red: "border-red-500/40 bg-red-500/15 text-red-300",
     gray: "border-white/20 bg-white/5 text-white/50",

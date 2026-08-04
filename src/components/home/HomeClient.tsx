@@ -117,7 +117,7 @@ function integrationPartnerRows(content?: HomeContentPreset): {
 function TrustedBySection({ content }: { content?: HomeContentPreset }) {
   const partners = integrationPartnerRows(content);
   return (
-    <section className="overflow-hidden border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-[#0f0f0f]">
+    <section className="overflow-hidden border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-brand-900">
       <p className="mb-8 text-center text-[11px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/30">
         {content?.trustedByTitle || "Works with your stack"}
       </p>
@@ -237,7 +237,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
   const T = 54, R = 14, LOGO = 26;
 
   return (
-    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0E0E14]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
 
         {/* Heading */}
@@ -296,22 +296,22 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                   <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.10)"/>
                 </pattern>
                 <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%"   stopColor="#c9ff33" stopOpacity="0.12"/>
-                  <stop offset="100%" stopColor="#c9ff33" stopOpacity="0"/>
+                  <stop offset="0%"   stopColor="var(--brand-accent)" stopOpacity="0.12"/>
+                  <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0"/>
                 </radialGradient>
                 <linearGradient id="lgLeft" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.7"/>
-                  <stop offset="100%" stopColor="#c9ff33" stopOpacity="0.08"/>
+                  <stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0.08"/>
                 </linearGradient>
                 <linearGradient id="lgRight" x1="100%" y1="0%" x2="0%" y2="0%">
-                  <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.7"/>
-                  <stop offset="100%" stopColor="#c9ff33" stopOpacity="0.08"/>
+                  <stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.7"/>
+                  <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0.08"/>
                 </linearGradient>
                 <filter id="tileShadow" x="-30%" y="-30%" width="160%" height="160%">
                   <feDropShadow dx="0" dy="2" stdDeviation="4" floodColor="rgba(0,0,0,0.10)"/>
                 </filter>
                 <filter id="hubGlow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="rgba(201,255,51,0.35)"/>
+                  <feDropShadow dx="0" dy="0" stdDeviation="10" floodColor="var(--demo-glow)"/>
                 </filter>
               </defs>
 
@@ -331,7 +331,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                     strokeLinecap="round"
                     stroke={item.connected
                       ? (isRight ? "url(#lgRight)" : "url(#lgLeft)")
-                      : "rgba(201,255,51,0.42)"}
+                      : "var(--demo-line-faint)"}
                     strokeWidth={item.connected ? "1.5" : "1.5"}
                     strokeDasharray={item.connected ? undefined : "6 5"}
                   />
@@ -340,7 +340,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
               {/* ── Travelling dots (connected lines only) ── */}
               {hubRows.filter((n) => n.connected).map((item, idx) => (
-                <circle key={`dot-${item.id}`} r="3.5" fill="#c9ff33" opacity="0.9">
+                <circle key={`dot-${item.id}`} r="3.5" fill="var(--brand-accent)" opacity="0.9">
                   <animateMotion
                     dur={`${1.9 + idx * 0.4}s`}
                     repeatCount="indefinite"
@@ -350,11 +350,11 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
               ))}
 
               {/* ── Pulse rings on center ── */}
-              <circle cx={HUB_CX} cy={HUB_CY} r="35" fill="none" stroke="#c9ff33" strokeWidth="1">
+              <circle cx={HUB_CX} cy={HUB_CY} r="35" fill="none" stroke="var(--brand-accent)" strokeWidth="1">
                 <animate attributeName="r"       values="32;52;32"    dur="2.8s" repeatCount="indefinite"/>
                 <animate attributeName="opacity" values="0.35;0;0.35" dur="2.8s" repeatCount="indefinite"/>
               </circle>
-              <circle cx={HUB_CX} cy={HUB_CY} r="52" fill="none" stroke="#c9ff33" strokeWidth="0.6">
+              <circle cx={HUB_CX} cy={HUB_CY} r="52" fill="none" stroke="var(--brand-accent)" strokeWidth="0.6">
                 <animate attributeName="r"       values="48;68;48"    dur="2.8s" begin="0.8s" repeatCount="indefinite"/>
                 <animate attributeName="opacity" values="0.18;0;0.18" dur="2.8s" begin="0.8s" repeatCount="indefinite"/>
               </circle>
@@ -381,7 +381,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                   <circle
                     cx={item.nx + T/2 - 7} cy={item.ny + T/2 - 7}
                     r={5.5}
-                    fill={item.connected ? "#10B981" : "#9CA3AF"}
+                    fill={item.connected ? "var(--brand-accent)" : "#9CA3AF"}
                     stroke="var(--hub-tile)" strokeWidth="2"
                   />
                 </g>
@@ -415,12 +415,12 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                 whileHover={{ x: -2, transition: { duration: 0.2 } }}
                 className={`flex items-center gap-4 p-4 rounded-2xl border transition-shadow duration-200 cursor-default group hover:shadow-md dark:hover:border-white/[0.12] ${
                   item.connected
-                    ? "bg-white dark:bg-[#16161D] border-gray-100 dark:border-white/[0.07]"
-                    : "bg-gray-50/80 dark:bg-[#131318] border-gray-100/70 dark:border-white/[0.05]"
+                    ? "bg-white dark:bg-brand-800 border-gray-100 dark:border-white/[0.07]"
+                    : "bg-gray-50/80 dark:bg-brand-900 border-gray-100/70 dark:border-white/[0.05]"
                 }`}
               >
                 {/* Icon */}
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white dark:bg-[#1E1E28] shadow-sm border border-gray-100 dark:border-white/[0.07]">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 bg-white dark:bg-brand-200 shadow-sm border border-gray-100 dark:border-white/[0.07]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={item.logo} alt={integrationLogoAlt(item.name)} width={22} height={22}
                     onError={(e)=>{ (e.target as HTMLImageElement).style.display="none"; }}/>
@@ -434,7 +434,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
                       item.comingSoon
                         ? COMING_SOON_INTEGRATION_BADGE_CLASS
                         : item.connected
-                          ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-100 dark:border-emerald-500/20"
+                          ? "bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-400 border-brand-100 dark:border-brand-500/20"
                           : "bg-gray-100 dark:bg-white/5 text-gray-400 dark:text-white/35 border-gray-200 dark:border-white/8"
                     }`}>
                       {item.comingSoon
@@ -495,7 +495,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
   const next = ()=>setCurrent(c=>(c+1)%testimonials.length);
 
   return (
-    <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+    <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 22 }}
@@ -524,10 +524,10 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
             <motion.div key={current}
               initial={{ opacity:0, x:40 }} animate={{ opacity:1, x:0 }} exit={{ opacity:0, x:-40 }}
               transition={{ duration:0.4, ease:EASE }}
-              className="flex-1 rounded-2xl overflow-hidden bg-white dark:bg-[#16161D] border border-gray-100 dark:border-white/[0.07] flex flex-col sm:flex-row shadow-md shadow-black/5 dark:shadow-black/50"
+              className="flex-1 rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] flex flex-col sm:flex-row shadow-md shadow-black/5 dark:shadow-black/50"
             >
               {/* Avatar panel */}
-              <div className="sm:w-48 shrink-0 relative overflow-hidden bg-gray-50 dark:bg-[#1A1A22] flex flex-col items-center justify-center p-6 gap-3 border-b sm:border-b-0 sm:border-r border-gray-100 dark:border-white/[0.07]">
+              <div className="sm:w-48 shrink-0 relative overflow-hidden bg-gray-50 dark:bg-brand-800 flex flex-col items-center justify-center p-6 gap-3 border-b sm:border-b-0 sm:border-r border-gray-100 dark:border-white/[0.07]">
                 <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-brand-100 dark:ring-brand-500/20 shadow-md">
                   <Image
                     src={t.photo}
@@ -594,7 +594,7 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
   const faqs = content?.faqItems?.length ? content.faqItems : [...DEFAULT_HOME_FAQ];
 
   return (
-    <section id="faq" className="py-8 md:py-12 px-4 bg-white dark:bg-[#0E0E14]">
+    <section id="faq" className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-2xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 22 }}

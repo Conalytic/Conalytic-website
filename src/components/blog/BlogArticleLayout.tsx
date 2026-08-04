@@ -16,7 +16,7 @@ const CATEGORY_STYLES: Record<string, string> = {
   "Conversational Analytics":
     "bg-brand-50 text-brand-700 border-brand-100 dark:bg-brand-500/10 dark:text-brand-300 dark:border-brand-500/20",
   "KPIs Tracker":
-    "bg-emerald-50 text-emerald-800 border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20",
+    "bg-brand-50 text-brand-800 border-brand-100 dark:bg-brand-500/10 dark:text-brand-300 dark:border-brand-500/20",
   "Report Builder":
     "bg-amber-50 text-amber-800 border-amber-100 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20",
 };
@@ -116,7 +116,7 @@ export function BlogArticleLayout({
               <BlogTableOfContents headings={headings} collapsible />
             </aside>
 
-            <div className="prose-safe rounded-2xl border border-gray-200/80 bg-white px-4 py-8 shadow-sm dark:border-white/[0.07] dark:bg-[#14141B] sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-14 lg:py-14">
+            <div className="prose-safe rounded-2xl border border-gray-200/80 bg-white px-4 py-8 shadow-sm dark:border-white/[0.07] dark:bg-brand-800 sm:px-8 sm:py-10 md:px-10 md:py-12 lg:px-14 lg:py-14">
               <BlogPostMarkdown markdown={post.bodyMarkdown} headingIds={headings.map((h) => h.id)} />
               <BlogArticleCta category={post.category} slug={post.slug} />
             </div>
@@ -129,7 +129,7 @@ export function BlogArticleLayout({
                     <Link
                       key={r.slug}
                       href={SITE_ROUTES.blogPost(r.slug)}
-                      className="group flex flex-col rounded-2xl border border-gray-200/80 bg-white p-5 transition-all hover:border-brand-400 hover:shadow-md dark:border-white/[0.08] dark:bg-[#14141B] dark:hover:border-brand-500/40"
+                      className="group flex flex-col rounded-2xl border border-gray-200/80 bg-white p-5 transition-all hover:border-brand-400 hover:shadow-md dark:border-white/[0.08] dark:bg-brand-800 dark:hover:border-brand-500/40"
                     >
                       <span className="mb-2 text-[10px] font-bold uppercase tracking-widest text-brand-600 dark:text-brand-300">
                         {r.category}

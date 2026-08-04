@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
       "Marketing analytics with Conversational Analytics, KPIs Tracker, and Report Builder for GA4, Google Ads, and Search Console.",
     start_url: "/",
     display: "standalone",
-    background_color: "#0f0f0f",
-    theme_color: "#c9ff33",
+    background_color: "#f0f1f5",
+    theme_color: "#334155",
     lang: "en-US",
     icons: [
       {

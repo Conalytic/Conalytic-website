@@ -87,7 +87,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
         <div className="absolute top-0 left-1/4 w-[500px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Globe className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
@@ -102,12 +102,12 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       </section>
 
       {/* ── STATS ───────────────────────────────────── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-4xl mx-auto">
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {stats.map(s=>(
               <motion.div key={s.label} variants={fadeUp}
-                className="flex items-center gap-4 p-6 rounded-2xl bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm">
+                className="flex items-center gap-4 p-6 rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm">
                 <div className="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-600/20 border border-brand-100 dark:border-brand-500/20 flex items-center justify-center shrink-0">
                   <s.icon className="w-6 h-6 text-brand-600 dark:text-brand-300"/>
                 </div>
@@ -122,12 +122,12 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       </section>
 
       {/* ── OUR STORY ───────────────────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.08) 0%, transparent 65%)"}}/>
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(148,163,184,0.08) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{storyBadge}</span>
+              <span className="brand-eyebrow inline-block mb-4">{storyBadge}</span>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">{storyTitle}</h2>
               <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4">
                 Conalytic was founded with a simple idea: analytics should feel effortless. Frustrated with clunky tools that slowed down collaboration, our founders set out to create a solution that prioritizes simplicity, innovation, and inclusivity.

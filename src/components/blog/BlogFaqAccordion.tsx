@@ -73,7 +73,7 @@ export function BlogFaqAccordion({ items }: { items: BlogFaqItem[] }) {
                 className={cn(
                   "flex h-7 w-7 shrink-0 items-center justify-center rounded-full border transition-all duration-300",
                   isOpen
-                    ? "rotate-45 border-brand-500 bg-brand-600 text-brand-lime"
+                    ? "rotate-45 border-brand-500 demo-user-bubble"
                     : "border-black/10 bg-black/5 group-hover:border-brand-500/50 dark:border-white/10 dark:bg-white/5",
                 )}
               >

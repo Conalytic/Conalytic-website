@@ -4,27 +4,26 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { DemoFrame, DemoHeader } from "@/components/visual/product-demos/DemoFrame";
-import { analyticsDemoBarFill } from "@/components/visual/product-demos/analytics-demo";
+import { analyticsDemoBarFill, DEMO_SUCCESS_PILL_CLASS, DEMO_POSITIVE_TEXT_CLASS, DEMO_LIVE_DOT_CLASS } from "@/components/visual/product-demos/analytics-demo";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 import { cn } from "@/lib/utils";
 
 const KPIS = [
-  { label: "Sessions", value: "24.5k", delta: "+12%", status: "On track", tone: "emerald" as const, spark: [42, 48, 52, 58, 64, 72] },
-  { label: "Conversions", value: "2,549", delta: "+23%", status: "On track", tone: "emerald" as const, spark: [30, 38, 45, 55, 68, 80] },
+  { label: "Sessions", value: "24.5k", delta: "+12%", status: "On track", tone: "brand" as const, spark: [42, 48, 52, 58, 64, 72] },
+  { label: "Conversions", value: "2,549", delta: "+23%", status: "On track", tone: "brand" as const, spark: [30, 38, 45, 55, 68, 80] },
   { label: "GSC Clicks", value: "18.2k", delta: "-4%", status: "At risk", tone: "amber" as const, spark: [70, 65, 58, 52, 48, 44] },
-  { label: "Ads ROAS", value: "4.32×", delta: "+18%", status: "On track", tone: "emerald" as const, spark: [35, 42, 50, 55, 62, 70] },
+  { label: "Ads ROAS", value: "4.32×", delta: "+18%", status: "On track", tone: "brand" as const, spark: [35, 42, 50, 55, 62, 70] },
 ];
 
 const STATUS_CLASS = {
-  emerald:
-    "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300",
+  brand: DEMO_SUCCESS_PILL_CLASS,
   amber:
     "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-500/30 dark:bg-amber-500/10 dark:text-amber-300",
   red: "border-red-200 bg-red-50 text-red-700 dark:border-red-500/30 dark:bg-red-500/10 dark:text-red-300",
 };
 
 const DELTA_CLASS = {
-  emerald: "text-emerald-600 dark:text-emerald-400",
+  brand: DEMO_POSITIVE_TEXT_CLASS,
   amber: "text-amber-600 dark:text-amber-400",
   red: "text-red-600 dark:text-red-400",
 };
@@ -157,7 +156,7 @@ export function KpisProductDemo({ compact = false, embedded = false }: { compact
           >
             <Image src={p.src} alt="" width={20} height={20} className="h-5 w-5 object-contain" />
             <span className="text-[10px] font-semibold text-gray-700 dark:text-white/50">{p.label}</span>
-            <span className="ml-1 h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span className={`ml-1 h-1.5 w-1.5 rounded-full ${DEMO_LIVE_DOT_CLASS}`} />
           </motion.div>
         ))}
       </div>

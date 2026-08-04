@@ -24,25 +24,25 @@ export const metadata: Metadata = {
 
 export default function ContactThankYouPage() {
   return (
-    <div className="relative min-h-[85vh] overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+    <div className="relative min-h-[85vh] overflow-hidden bg-[#f0f1f5] dark:bg-brand-900">
       <div className="absolute inset-0 grid-overlay opacity-[0.07] dark:opacity-[0.05] pointer-events-none" />
       <div
         className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full blur-3xl bg-brand-600/14 dark:bg-brand-600/20"
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl bg-emerald-400/10"
+        className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full blur-3xl bg-brand-400/10 dark:bg-brand-500/10"
         aria-hidden
       />
 
       <div className="relative z-10 mx-auto flex min-h-[85vh] max-w-3xl flex-col items-center justify-center px-4 py-24 text-center">
         <div className="relative mb-8">
           <div
-            className="absolute inset-0 rounded-full bg-emerald-400/20 blur-2xl scale-150"
+            className="absolute inset-0 rounded-full bg-brand-400/15 blur-2xl scale-150 dark:bg-brand-500/20"
             aria-hidden
           />
-          <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-emerald-200/80 bg-white shadow-lg shadow-emerald-500/10 dark:border-emerald-500/25 dark:bg-[#14141B]">
-            <CheckCircle2 className="h-10 w-10 text-emerald-600 dark:text-emerald-400" aria-hidden />
+          <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl border border-brand-200/80 bg-white shadow-lg shadow-brand-500/10 dark:border-brand-500/25 dark:bg-brand-800 dark:shadow-brand-500/10">
+            <CheckCircle2 className="h-10 w-10 text-brand-600 dark:text-brand-400" aria-hidden />
           </div>
         </div>
 
@@ -68,7 +68,7 @@ export default function ContactThankYouPage() {
         <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-brand-300 hover:bg-brand-50/50 dark:border-white/[0.12] dark:bg-[#14141B] dark:text-white dark:hover:border-brand-500/40"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-6 py-3.5 text-sm font-semibold text-gray-800 shadow-sm transition hover:border-brand-300 hover:bg-brand-50/50 dark:border-white/[0.12] dark:bg-brand-800 dark:text-white dark:hover:border-brand-500/40"
           >
             <Home className="h-4 w-4" aria-hidden />
             Back to home

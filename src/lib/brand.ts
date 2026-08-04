@@ -1,45 +1,54 @@
 import type { CSSProperties } from "react";
 
-/** Brand tokens — aligned with Conalytic-Chat (`src/lib/constants.ts`). */
+/** Brand tokens — aligned with Conalytic Chat / Tools slate palette. */
 export const BRAND = {
   name: "Conalytic",
   tagline: "Casting Spells of Clarity on Your Data",
   colors: {
-    ink: "#0f0f0f",
-    accent: "#c9ff33",
-    accentSoft: "#edf7c8",
-    elevated: "#1a1b1e",
-    grey: "#374151",
+    ink: "#334155",
+    accent: "#64748B",
+    accentHover: "#475569",
+    accentSoft: "#E2E8F0",
+    accentOnInk: "#FFFFFF",
+    elevated: "#1e293b",
+    grey: "#64748B",
     muted: "#6b7280",
     border: "#e8eaef",
+    pageBg: "#e8eaef",
+    shellBg: "#f0f1f5",
+    darkBg: "#0f172a",
+    darkElevated: "#1e293b",
+    darkAccent: "#94a3b8",
+    /** @deprecated Use `grey` */
+    realisticGrey: "#64748B",
+    /** @deprecated Use `ink` */
+    veryBlack: "#334155",
+    /** @deprecated Use `ink` */
+    electricBlue: "#334155",
+    /** @deprecated Use `accentHover` */
+    dancingPurple: "#475569",
     successGreen: "#12B76A",
     blueLight: "#36BFFA",
     roseRed: "#F63D68",
     orangeDark: "#FF692E",
     pinkAttire: "#F670C7",
-    /** @deprecated Use `ink` — kept for legal layout helpers */
-    electricBlue: "#0f0f0f",
-    veryBlack: "#0f0f0f",
-    dancingPurple: "#1a1b1e",
-    realisticGrey: "#374151",
-    accentLime: "#c9ff33",
   },
 } as const;
 
-/** Ink → grey gradient for titles (matches chat app `.text-gradient`). */
+/** Ink → accent gradient for titles (matches chat app `.text-gradient`). */
 export const BRAND_GRADIENT_TEXT: CSSProperties = {
-  background: "linear-gradient(135deg, #0f0f0f 0%, #4b5563 100%)",
+  background: "linear-gradient(135deg, #334155 0%, #64748B 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
 };
 
-/** Lime → ink gradient for marketing hero highlights (theme-aware via CSS). */
+/** Slate gradient for marketing hero highlights (theme-aware via CSS). */
 export const BRAND_HERO_GRADIENT_CLASS = "hero-gradient-text";
 
-/** @deprecated Use BRAND_HERO_GRADIENT_CLASS — kept for gradual migration */
+/** @deprecated Use BRAND_HERO_GRADIENT_CLASS */
 export const BRAND_HERO_GRADIENT_TEXT: CSSProperties = {
-  background: "linear-gradient(135deg, #5f8f00 0%, #0f0f0f 55%, #374151 100%)",
+  background: "linear-gradient(135deg, #64748B 0%, #334155 55%, #475569 100%)",
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   backgroundClip: "text",
@@ -51,18 +60,20 @@ export const BRAND_PRIMARY_BUTTON_LG_CLASS =
   "btn-brand-primary px-8 py-3.5 text-base font-semibold shadow-xl";
 export const BRAND_PRIMARY_BUTTON_SM_CLASS = "btn-brand-primary px-4 py-1.5 text-sm shadow-sm";
 
-/** Lime on ink surfaces (chat bubbles, icons on dark chips) */
+export const BRAND_EYEBROW_CLASS = "brand-eyebrow";
+
+/** Highlight text on ink surfaces — theme-aware via `--brand-lime` token */
 export const BRAND_LIME_TEXT_CLASS = "text-brand-lime";
 
-/** Step numbers, avatars — ink + lime; avoids olive brand-700 in light mode */
+/** Step numbers, avatars — ink badge */
 export const BRAND_INK_BADGE_CLASS = "brand-ink-badge";
 
-/** Secondary CTA — crisp on light, soft on dark */
+/** Secondary CTA — crisp on light, soft slate on dark */
 export const BRAND_SECONDARY_BUTTON_CLASS =
-  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-gray-900/12 bg-white px-6 py-3 text-sm font-semibold text-gray-900 shadow-sm transition-all duration-200 hover:border-[var(--brand-lime)] hover:bg-[#f4fae8] active:scale-[0.98] dark:border-white/15 dark:bg-white/[0.04] dark:text-white/85 dark:hover:border-brand-500/50 dark:hover:bg-brand-500/12 dark:hover:text-brand-300";
+  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#e8eaef] bg-white px-6 py-3 text-sm font-semibold text-[var(--brand-ink)] shadow-sm transition-all duration-200 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent-soft)] active:scale-[0.98] dark:border-brand-500/25 dark:bg-brand-800 dark:text-brand-200 dark:hover:border-brand-400 dark:hover:bg-brand-700 dark:hover:text-white";
 export const BRAND_SECONDARY_BUTTON_LG_CLASS =
-  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-gray-900/12 bg-white px-8 py-3.5 text-base font-semibold text-gray-900 shadow-sm transition-all duration-200 hover:border-[var(--brand-lime)] hover:bg-[#f4fae8] active:scale-[0.98] dark:border-white/15 dark:bg-white/[0.04] dark:text-white/85 dark:hover:border-brand-500/40";
+  "inline-flex items-center justify-center gap-2 rounded-xl border-2 border-[#e8eaef] bg-white px-8 py-3.5 text-base font-semibold text-[var(--brand-ink)] shadow-sm transition-all duration-200 hover:border-[var(--brand-accent)] hover:bg-[var(--brand-accent-soft)] active:scale-[0.98] dark:border-brand-500/25 dark:bg-brand-800 dark:text-brand-200 dark:hover:border-brand-400 dark:hover:bg-brand-700 dark:hover:text-white";
 
-/** Text links — readable green on light, lime on dark. */
+/** Text links — slate accent in both themes */
 export const BRAND_LINK_CLASS =
-  "font-medium text-brand-600 underline decoration-brand-300/50 underline-offset-2 transition-colors hover:text-brand-700 dark:text-brand-300 dark:decoration-brand-500/40 dark:hover:text-brand-500";
+  "font-medium text-brand-600 underline decoration-brand-300/50 underline-offset-2 transition-colors hover:text-brand-700 dark:text-brand-400 dark:decoration-brand-500/35 dark:hover:text-brand-300";

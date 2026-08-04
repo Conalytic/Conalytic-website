@@ -16,6 +16,11 @@ import {
   fadeUpChild,
   viewportOnce,
 } from "@/lib/motion";
+import {
+  DEMO_LIVE_DOT_CLASS,
+  DEMO_POSITIVE_TEXT_CLASS,
+  ANALYTICS_DEMO_ANSWERED_BADGE_CLASS,
+} from "@/components/visual/product-demos/analytics-demo";
 
 const MONTHS = ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"];
 
@@ -149,7 +154,7 @@ function CtaLineChart({
         <path
           d={dCurrent}
           fill="none"
-          stroke="#c9ff33"
+          stroke="var(--brand-accent)"
           strokeWidth="2.25"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -253,26 +258,22 @@ export function CTA({
         >
 
           <div className="absolute inset-0 z-0 rounded-3xl overflow-hidden pointer-events-none">
-            <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9fb] to-[#f3f4f6] dark:from-[#0f0f0f] dark:via-[#0f0f0f] dark:to-[#0f0f0f]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f8f9fb] to-[#f3f4f6] dark:from-brand-900 dark:via-brand-900 dark:to-brand-800" />
             <div
               className="absolute inset-0 pointer-events-none opacity-100 dark:opacity-100"
-              style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, rgba(95,143,0,0.08) 0%, transparent 65%)" }}
-            />
-            <div
-              className="absolute inset-0 pointer-events-none hidden dark:block"
-              style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, rgba(201,255,51,0.12) 0%, transparent 65%)" }}
+              style={{ background: "radial-gradient(ellipse 65% 55% at 50% 100%, var(--demo-section-glow) 0%, transparent 65%)" }}
             />
 
             <div
-              className="absolute inset-0 pointer-events-none opacity-60 dark:opacity-100"
+              className="absolute inset-0 pointer-events-none opacity-60 dark:hidden"
               style={{
                 backgroundImage:
-                  "linear-gradient(rgba(15,15,15,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(15,15,15,0.05) 1px,transparent 1px)",
+                  "linear-gradient(rgba(100,116,139,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(100,116,139,0.07) 1px,transparent 1px)",
                 backgroundSize: "48px 48px",
               }}
             />
             <div
-              className="absolute inset-0 pointer-events-none hidden dark:block"
+              className="absolute inset-0 pointer-events-none hidden dark:block opacity-100"
               style={{
                 backgroundImage:
                   "linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px)",
@@ -283,7 +284,7 @@ export function CTA({
             <div className="absolute inset-0 overflow-hidden">
               {[...Array(6)].map((_, i) => (
                 <div key={i}
-                  className="absolute w-px bg-gradient-to-b from-transparent via-brand-500/25 to-transparent dark:via-brand-400/30"
+                  className="absolute w-px bg-gradient-to-b from-transparent via-slate-400/15 to-transparent dark:via-brand-400/30"
                   style={{
                     left: `${12 + i * 15}%`,
                     height: "40%",
@@ -308,20 +309,20 @@ export function CTA({
                   <p className="text-[9px] text-gray-400 dark:text-white/40 font-medium mt-0.5">AI Analytics</p>
                 </div>
                 <span className="flex items-center gap-1 ml-1 pl-3 border-l border-gray-200 dark:border-white/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
-                  <span className="text-[9px] font-semibold text-emerald-600 dark:text-emerald-400">Live</span>
+                  <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${DEMO_LIVE_DOT_CLASS}`}/>
+                  <span className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>Live</span>
                 </span>
               </div>
             </div>
 
             <div className="max-w-2xl w-full mx-auto mb-10">
               <div
-                className="bg-white/85 dark:bg-[#13131E]/95 backdrop-blur-md border border-gray-200/80 dark:border-white/8 rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/40 text-left w-full max-w-2xl"
+                className="bg-white/85 dark:bg-brand-800/95 backdrop-blur-md border border-gray-200/80 dark:border-white/8 rounded-2xl overflow-hidden shadow-lg shadow-black/5 dark:shadow-black/40 text-left w-full max-w-2xl"
               >
-                <div className="flex flex-nowrap items-center gap-2 h-10 px-3 sm:px-4 bg-gray-50/80 dark:bg-[#0C0C12]/80 border-b border-gray-200/60 dark:border-white/6 overflow-x-auto">
+                <div className="flex flex-nowrap items-center gap-2 h-10 px-3 sm:px-4 bg-gray-50/80 dark:bg-brand-900/80 border-b border-gray-200/60 dark:border-white/6 overflow-x-auto">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 shrink-0"/>
                   <span className="w-2.5 h-2.5 rounded-full bg-yellow-400/80 shrink-0"/>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80 shrink-0"/>
+                  <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${DEMO_LIVE_DOT_CLASS} opacity-80`}/>
                   <span className="ml-1 sm:ml-2 text-[10px] font-mono text-gray-400 dark:text-white/30 whitespace-nowrap shrink-0">
                     conalytic — ask anything
                   </span>
@@ -338,11 +339,11 @@ export function CTA({
                     className={`flex items-start gap-2.5 flex-1 ${phase === "typing" ? "invisible" : "visible"}`}
                     aria-hidden={phase === "typing"}
                   >
-                    <span className="text-emerald-500 font-mono text-[13px] sm:text-sm mt-1 shrink-0 leading-5">✓</span>
+                    <span className={`font-mono text-[13px] sm:text-sm mt-1 shrink-0 leading-5 ${DEMO_POSITIVE_TEXT_CLASS}`}>✓</span>
                     <div className="flex-1 min-w-0 space-y-2.5">
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs font-semibold text-gray-800 dark:text-white/80">Conalytic</span>
-                        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 px-2 py-0.5 rounded-full">
+                        <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${ANALYTICS_DEMO_ANSWERED_BADGE_CLASS}`}>
                           Answered in 3.2s
                         </span>
                       </div>
@@ -388,7 +389,7 @@ export function CTA({
                 onClick={(e) => {
                   if (!primaryExternal) handleSamePageHashClick(e, primaryCta.href);
                 }}
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold btn-brand-primary shadow-xl shadow-brand-600/30 hover:shadow-brand-600/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-base font-bold btn-brand-primary shadow-xl shadow-slate-500/20 hover:shadow-slate-500/35 transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] dark:shadow-brand-500/25 dark:hover:shadow-brand-500/40"
                 aria-label={primaryExternal ? `${primaryCta.label} (opens in new tab)` : primaryCta.label}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">

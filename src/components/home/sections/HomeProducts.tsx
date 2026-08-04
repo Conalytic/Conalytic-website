@@ -36,7 +36,7 @@ const PRODUCTS = [
 
 export function HomeProducts({ content }: { content?: { servicesTitleLine1?: string; servicesTitleLine2?: string } }) {
   return (
-    <section className="border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-[#0f0f0f] sm:py-12">
+    <section className="border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-brand-900 sm:py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -69,9 +69,9 @@ export function HomeProducts({ content }: { content?: { servicesTitleLine1?: str
               >
                 <Link
                   href={p.href}
-                  className="group flex h-full flex-col rounded-2xl border border-gray-200/80 bg-[#f0f1f5] p-6 transition-all hover:border-brand-400 hover:shadow-lg dark:border-white/[0.08] dark:bg-[#14141B] dark:hover:border-brand-500/40 hover-lift"
+                  className="group flex h-full flex-col rounded-2xl border border-gray-200/80 bg-[#f0f1f5] p-6 transition-all hover:border-brand-400 hover:shadow-lg dark:border-white/[0.08] dark:bg-brand-800 dark:hover:border-brand-500/40 hover-lift"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-brand-lime">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl demo-user-bubble">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mb-2 text-lg font-bold text-gray-900 dark:text-white">{p.title}</h3>

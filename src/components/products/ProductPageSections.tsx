@@ -7,6 +7,7 @@ import { ProductVisual } from "@/components/visual/product-demos/ProductVisual";
 import type { ProductVisualVariant } from "@/lib/product-visual";
 import type { ProductPageContent } from "@/lib/product-page-content";
 import { BRAND_HERO_GRADIENT_CLASS, BRAND_INK_BADGE_CLASS } from "@/lib/brand";
+import { DEMO_SUCCESS_PILL_CLASS } from "@/components/visual/product-demos/analytics-demo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
@@ -31,7 +32,7 @@ export function ProductHeroVisual({ variant }: { variant: ProductVisualVariant }
 
 export function ProductStatsStrip({ stats }: { stats: ProductPageContent["stats"] }) {
   return (
-    <section className="py-12 px-4 border-y border-gray-100 dark:border-white/[0.06] bg-white dark:bg-[#0C0C12]">
+    <section className="py-12 px-4 border-y border-gray-100 dark:border-white/[0.06] bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
           variants={stagger}
@@ -65,7 +66,7 @@ export function ProductHowItWorks({
   steps: ProductPageContent["howItWorks"];
 }) {
   return (
-    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0C0C12]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -74,7 +75,7 @@ export function ProductHowItWorks({
           transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-8"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+          <span className="brand-eyebrow inline-block mb-4">
             How it works
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -98,7 +99,7 @@ export function ProductHowItWorks({
                     whileHover={{ scale: 1.05 }}
                     className={`relative mb-5 flex h-16 w-16 items-center justify-center rounded-2xl ${BRAND_INK_BADGE_CLASS}`}
                   >
-                    <span className="text-lg font-black text-brand-lime">{step.step}</span>
+                    <span className="text-lg font-black">{step.step}</span>
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
@@ -127,12 +128,12 @@ export function ProductCapabilitiesGrid({
   capabilities: ProductPageContent["capabilities"];
 }) {
   return (
-    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-brand-900">
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(201,255,51,0.08) 0%, transparent 60%)",
+            "radial-gradient(ellipse 70% 50% at 50% 0%, var(--demo-section-glow) 0%, transparent 60%)",
         }}
       />
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -143,7 +144,7 @@ export function ProductCapabilitiesGrid({
           transition={{ duration: 0.7, ease: EASE }}
           className="text-center mb-8"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+          <span className="brand-eyebrow inline-block mb-4">
             Capabilities
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
@@ -164,7 +165,7 @@ export function ProductCapabilitiesGrid({
               key={cap.title}
               variants={fadeUp}
               whileHover={{ y: -4 }}
-              className="group relative rounded-2xl p-6 bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/40 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all duration-300 overflow-hidden"
+              className="group relative rounded-2xl p-6 bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/40 hover:border-brand-300 dark:hover:border-brand-500/30 transition-all duration-300 overflow-hidden"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-500/10 to-transparent rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {cap.tag ? (
@@ -196,13 +197,13 @@ export function ProductDeepDive({
   reverse?: boolean;
 }) {
   return (
-    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+    <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
       <div
         className="absolute inset-0 pointer-events-none hidden dark:block"
         style={{
           background: reverse
-            ? "radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"
-            : "radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)",
+            ? "radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)"
+            : "radial-gradient(ellipse 55% 50% at 105% 50%, var(--demo-section-glow) 0%, transparent 65%)",
         }}
       />
       <div className="relative z-10 max-w-5xl mx-auto">
@@ -216,7 +217,7 @@ export function ProductDeepDive({
             transition={{ duration: 0.7, ease: EASE }}
             className="lg:[direction:ltr]"
           >
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">
+            <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>
               Deep dive
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
@@ -255,8 +256,8 @@ export function AiModelsSection() {
       name: "GPT-5.4",
       provider: "OpenAI",
       desc: "Strong reasoning for complex multi-metric marketing questions and campaign analysis.",
-      color: "from-emerald-500/20 to-teal-500/10",
-      border: "border-emerald-400/20",
+      color: "from-brand-400/15 to-brand-300/10 dark:from-brand-500/20 dark:to-brand-400/10",
+      border: "border-brand-300/25 dark:border-brand-500/20",
     },
     {
       name: "Claude Opus 4.8",
@@ -275,7 +276,7 @@ export function AiModelsSection() {
   ];
 
   return (
-    <section className="py-8 md:py-12 px-4 bg-white dark:bg-[#0C0C12]">
+    <section className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -283,7 +284,7 @@ export function AiModelsSection() {
           viewport={{ once: true }}
           className="text-center mb-8"
         >
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+          <span className="brand-eyebrow inline-block mb-4">
             AI models
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -305,7 +306,7 @@ export function AiModelsSection() {
               key={model.name}
               variants={fadeUp}
               whileHover={{ y: -6, scale: 1.02 }}
-              className={`relative rounded-2xl p-6 bg-gradient-to-br ${model.color} border ${model.border} dark:bg-[#14141B] overflow-hidden`}
+              className={`relative rounded-2xl p-6 bg-gradient-to-br ${model.color} border ${model.border} dark:bg-brand-800 overflow-hidden`}
             >
               <motion.div
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -327,14 +328,14 @@ export function AiModelsSection() {
 
 export function KpiStatusLegend() {
   const statuses = [
-    { label: "On track", desc: "Meets or beats target direction", color: "bg-emerald-500", ring: "ring-emerald-500/30" },
+    { label: "On track", desc: "Meets or beats target direction", color: "bg-brand-500", ring: "ring-brand-500/30" },
     { label: "At risk", desc: "Trending toward a miss", color: "bg-amber-500", ring: "ring-amber-500/30" },
     { label: "Off track", desc: "Materially missing the goal", color: "bg-red-500", ring: "ring-red-500/30" },
     { label: "No data", desc: "Insufficient platform data", color: "bg-gray-400", ring: "ring-gray-400/30" },
   ];
 
   return (
-    <div className="w-full rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-[#13131E] shadow-xl overflow-hidden p-6">
+    <div className="w-full rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-brand-900 shadow-xl overflow-hidden p-6">
       <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-5">
         Rules-based status labels
       </p>
@@ -381,7 +382,7 @@ export function ReportDeckTimeline() {
   ];
 
   return (
-    <div className="w-full rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-[#13131E] shadow-xl overflow-hidden p-5">
+    <div className="w-full rounded-2xl border border-gray-100 dark:border-white/[0.08] bg-white dark:bg-brand-900 shadow-xl overflow-hidden p-5">
       <p className="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-white/40 mb-4">
         HTML deck structure
       </p>
@@ -396,7 +397,7 @@ export function ReportDeckTimeline() {
             whileHover={{ scale: 1.05 }}
             className={`text-[10px] font-semibold px-2.5 py-1.5 rounded-lg border ${
               i === 0
-                ? "bg-brand-600 text-brand-lime border-brand-500"
+                ? "bg-brand-700 text-white border-brand-500 dark:bg-brand-700 dark:text-white"
                 : "bg-gray-50 dark:bg-white/[0.04] text-gray-600 dark:text-white/60 border-gray-200 dark:border-white/[0.08]"
             }`}
           >

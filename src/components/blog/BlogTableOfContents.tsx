@@ -38,7 +38,7 @@ export function BlogTableOfContents({
   return (
     <nav
       aria-label="Table of contents"
-      className="rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-white/[0.08] dark:bg-[#14141B] sm:p-5"
+      className="rounded-2xl border border-gray-200/80 bg-white p-4 dark:border-white/[0.08] dark:bg-brand-800 sm:p-5"
     >
       {collapsible ? (
         <button

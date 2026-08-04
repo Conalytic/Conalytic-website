@@ -13,7 +13,7 @@ function emailShell(innerHtml: string): string {
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Conalytic</title>
 </head>
-<body style="margin:0;padding:0;background:#f0f1f5;font-family:Nunito Sans,system-ui,-apple-system,sans-serif;color:#0f0f0f">
+<body style="margin:0;padding:0;background:#f0f1f5;font-family:Nunito Sans,system-ui,-apple-system,sans-serif;color:#334155">
   <div style="max-width:600px;margin:0 auto;padding:32px 20px">
     <a href="${SITE_ORIGIN}" style="text-decoration:none;display:block;margin-bottom:24px">
       <img src="${EMAIL_LOGO_URL}" width="64" height="64" alt="Conalytic" style="display:block;border:0;border-radius:12px"/>
@@ -22,7 +22,7 @@ function emailShell(innerHtml: string): string {
       ${innerHtml}
     </div>
     <p style="margin:20px 0 0;font-size:12px;color:#6b7280;text-align:center">
-      <a href="${SITE_ORIGIN}" style="color:#5f8f00;text-decoration:none">conalytic.com</a>
+      <a href="${SITE_ORIGIN}" style="color:#64748B;text-decoration:none">conalytic.com</a>
     </p>
   </div>
 </body>

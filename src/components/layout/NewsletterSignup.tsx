@@ -131,7 +131,7 @@ export function NewsletterSignup({ className }: { className?: string }) {
             <p
               className={cn(
                 "mt-2 text-left text-xs font-medium",
-                status === "success" ? "text-emerald-700 dark:text-emerald-400" : "text-red-600 dark:text-red-400"
+                status === "success" ? "text-brand-700 dark:text-brand-400" : "text-red-600 dark:text-red-400"
               )}
               role="status"
             >

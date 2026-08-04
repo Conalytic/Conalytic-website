@@ -87,7 +87,7 @@ const integrations = [
 const CATEGORY_COLORS: Record<string, string> = {
   Analytics: "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
   Advertising: "bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",
-  SEO: "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20",
+  SEO: "bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",
 };
 
 function IntegrationLogo({
@@ -170,7 +170,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6">
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Zap className="w-3 h-3"/> {heroBadge}
           </motion.div>
           <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
@@ -185,7 +185,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
       </section>
 
       {/* ── GRID (marketing stack only) ─────────────── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             OAuth integrations for marketing analytics
@@ -197,7 +197,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {integrations.map(itg=>(
               <motion.div key={itg.name} variants={fadeUp}
-                className="relative rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 group hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 dark:hover:shadow-black/40">
+                className="relative rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 group hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/[0.07] dark:bg-brand-800 dark:hover:border-brand-500/40 dark:hover:shadow-black/40">
                 {itg.comingSoon ? (
                   <span
                     className={`absolute right-4 top-4 rounded-full border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide ${COMING_SOON_INTEGRATION_BADGE_CLASS}`}

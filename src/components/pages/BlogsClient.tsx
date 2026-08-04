@@ -20,7 +20,7 @@ const CATEGORY_STYLES: Record<string, string> = {
   "Conversational Analytics":
     "bg-brand-50 text-brand-700 border-brand-100 dark:bg-brand-500/10 dark:text-brand-300 dark:border-brand-500/20",
   "KPIs Tracker":
-    "bg-emerald-50 text-emerald-800 border-emerald-100 dark:bg-emerald-500/10 dark:text-emerald-300 dark:border-emerald-500/20",
+    "bg-brand-50 text-brand-800 border-brand-100 dark:bg-brand-500/10 dark:text-brand-300 dark:border-brand-500/20",
   "Report Builder":
     "bg-amber-50 text-amber-800 border-amber-100 dark:bg-amber-500/10 dark:text-amber-300 dark:border-amber-500/20",
 };
@@ -37,7 +37,7 @@ function BlogCard({ post }: { post: StaticBlogPost }) {
     <motion.div variants={fadeUp}>
       <Link
         href={SITE_ROUTES.blogPost(post.slug)}
-        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-lg dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40"
+        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-lg dark:border-white/[0.07] dark:bg-brand-800 dark:hover:border-brand-500/40"
       >
         <BlogCardVisual variant={categoryToProductVisual(post.category)} demoVariant={post.demoVariant} />
         <div className="flex flex-1 flex-col p-6">
@@ -82,7 +82,7 @@ function Pagination({ currentPage, totalPages }: { currentPage: number; totalPag
         className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold transition-colors ${
           currentPage <= 1
             ? "pointer-events-none border-gray-200/50 text-gray-300 dark:border-white/[0.04] dark:text-white/20"
-            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-brand-800 dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
         }`}
         aria-disabled={currentPage <= 1}
       >
@@ -98,7 +98,7 @@ function Pagination({ currentPage, totalPages }: { currentPage: number; totalPag
           className={`inline-flex h-10 min-w-10 items-center justify-center rounded-xl border px-3 text-sm font-semibold transition-colors ${
             page === currentPage
               ? "border-brand-400 bg-brand-50 text-brand-700 dark:border-brand-500/40 dark:bg-brand-500/10 dark:text-brand-300"
-              : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+              : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-brand-800 dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
           }`}
         >
           {page}
@@ -111,7 +111,7 @@ function Pagination({ currentPage, totalPages }: { currentPage: number; totalPag
         className={`inline-flex h-10 w-10 items-center justify-center rounded-xl border text-sm font-semibold transition-colors ${
           currentPage >= totalPages
             ? "pointer-events-none border-gray-200/50 text-gray-300 dark:border-white/[0.04] dark:text-white/20"
-            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-[#14141B] dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
+            : "border-gray-200 bg-white text-gray-700 hover:border-brand-400 hover:text-brand-600 dark:border-white/[0.08] dark:bg-brand-800 dark:text-white/70 dark:hover:border-brand-500/40 dark:hover:text-brand-300"
         }`}
         aria-disabled={currentPage >= totalPages}
       >
@@ -175,7 +175,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
         </div>
       </section>
 
-      <section className="bg-[#f0f1f5] px-4 py-12 dark:bg-[#0f0f0f] sm:py-16">
+      <section className="bg-[#f0f1f5] px-4 py-12 dark:bg-brand-900 sm:py-16">
         <div className="mx-auto max-w-6xl">
           {featured ? (
             <motion.div
@@ -190,7 +190,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
               </p>
               <Link
                 href={SITE_ROUTES.blogPost(featured.slug)}
-                className="group grid overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:border-brand-400 hover:shadow-xl dark:border-white/[0.07] dark:bg-[#14141B] dark:hover:border-brand-500/40 lg:grid-cols-2"
+                className="group grid overflow-hidden rounded-3xl border border-gray-200/80 bg-white shadow-sm transition-all duration-300 hover:border-brand-400 hover:shadow-xl dark:border-white/[0.07] dark:bg-brand-800 dark:hover:border-brand-500/40 lg:grid-cols-2"
               >
                 <BlogFeaturedVisual
                   variant={categoryToProductVisual(featured.category)}

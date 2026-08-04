@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
           enterprise agreement).
         </p>
         <div
-          className="rounded-2xl border border-[#e8eaef] bg-[#edf7c8] px-5 py-4"
+          className="rounded-2xl border border-[#e8eaef] bg-[var(--brand-accent-soft)] px-5 py-4"
         >
           <p className="font-semibold text-[#17191C]">{entity}</p>
           <p className="mt-2 whitespace-pre-line text-[0.9rem] text-[#1D2939]/85">

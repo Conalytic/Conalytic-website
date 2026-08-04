@@ -13,6 +13,11 @@ import { REPORT_BUILDER_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 import { getProduct } from "@/lib/products";
+import {
+  analyticsDemoBarStyle,
+  DEMO_POSITIVE_TEXT_CLASS,
+  DEMO_SUCCESS_PILL_CLASS,
+} from "@/components/visual/product-demos/analytics-demo";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
 import {
   ProductCapabilitiesGrid,
@@ -32,7 +37,7 @@ function DragDropVisual() {
   const blocks = [
     {label:"Executive Summary", w:"col-span-2", h:"h-7", bg:"bg-brand-100 dark:bg-brand-500/15"},
     {label:"Revenue Chart",     w:"col-span-1", h:"h-12", bg:"bg-blue-50 dark:bg-blue-500/10"},
-    {label:"ROAS KPI",          w:"col-span-1", h:"h-12", bg:"bg-emerald-50 dark:bg-emerald-500/10"},
+    {label:"ROAS KPI",          w:"col-span-1", h:"h-12", bg:"bg-brand-50 dark:bg-brand-500/10"},
     {label:"AI Insights",       w:"col-span-2", h:"h-6",  bg:"bg-violet-50 dark:bg-violet-500/10"},
   ];
   return (
@@ -70,18 +75,18 @@ function AIInsightVisual() {
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05]">
         <div className="flex items-center justify-between mb-1.5">
           <span className="text-[9px] font-bold text-gray-500 dark:text-white/45 uppercase tracking-wider">Trend</span>
-          <span className="text-[10px] font-black text-emerald-600 dark:text-emerald-400">↑ 38%</span>
+          <span className={`text-[10px] font-black ${DEMO_POSITIVE_TEXT_CLASS}`}>↑ 38%</span>
         </div>
         <svg viewBox="0 0 100 50" className="w-full h-8" preserveAspectRatio="none">
-          <defs><linearGradient id="rbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#c9ff33" stopOpacity="0.2"/><stop offset="100%" stopColor="#c9ff33" stopOpacity="0"/></linearGradient></defs>
+          <defs><linearGradient id="rbg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.2"/><stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0"/></linearGradient></defs>
           <polygon points={`0,100 ${pts} 100,100`} fill="url(#rbg)"/>
-          <polyline points={pts} fill="none" stroke="#c9ff33" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <polyline points={pts} fill="none" stroke="var(--brand-accent)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       </div>
       {[
         {c:"bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20", i:"✦", t:"GA4 sessions up 34% this month"},
         {c:"bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-100 dark:border-amber-500/20",  i:"!", t:"Meta CPC spiked — review bids"},
-        {c:"bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-100 dark:border-emerald-500/20", i:"↑", t:"ROAS 4.2× · increase budget"},
+        {c:`border ${DEMO_SUCCESS_PILL_CLASS}`, i:"↑", t:"ROAS 4.2× · increase budget"},
       ].map((chip,i)=>(
         <div key={i} className={`flex items-start gap-2 px-2.5 py-2 rounded-xl border text-[9px] font-semibold ${chip.c}`}>
           <span className="shrink-0 mt-px">{chip.i}</span><span>{chip.t}</span>
@@ -93,8 +98,8 @@ function AIInsightVisual() {
 
 function ScheduleVisual() {
   const upcoming = [
-    {label:"Monthly Report",    date:"Jul 1",  status:"sent",    color:"text-emerald-600 dark:text-emerald-400"},
-    {label:"Weekly Summary",    date:"Jul 7",  status:"sent",    color:"text-emerald-600 dark:text-emerald-400"},
+    {label:"Monthly Report",    date:"Jul 1",  status:"sent",    color:DEMO_POSITIVE_TEXT_CLASS},
+    {label:"Weekly Summary",    date:"Jul 7",  status:"sent",    color:DEMO_POSITIVE_TEXT_CLASS},
     {label:"Campaign Analysis", date:"Jul 14", status:"pending", color:"text-amber-600 dark:text-amber-400"},
     {label:"Quarterly Review",  date:"Jul 28", status:"pending", color:"text-gray-400 dark:text-white/35"},
   ];
@@ -102,12 +107,12 @@ function ScheduleVisual() {
     <div className="w-full p-3 space-y-2">
       <div className="flex items-center justify-between mb-1">
         <span className="text-[9px] font-bold text-gray-500 dark:text-white/40 uppercase tracking-wider">Scheduled Reports</span>
-        <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">Auto-send on</span>
+        <span className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>Auto-send on</span>
       </div>
       {upcoming.map((r,i)=>(
         <div key={i} className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05]">
-          <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${r.status==="sent" ? "bg-emerald-100 dark:bg-emerald-500/15" : "bg-gray-100 dark:bg-white/[0.06]"}`}>
-            {r.status==="sent" ? <CheckCircle2 className="w-3 h-3 text-emerald-500"/> : <Calendar className="w-3 h-3 text-gray-400 dark:text-white/30"/>}
+          <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${r.status==="sent" ? "bg-brand-100 dark:bg-brand-500/15" : "bg-gray-100 dark:bg-white/[0.06]"}`}>
+            {r.status==="sent" ? <CheckCircle2 className={`w-3 h-3 ${DEMO_POSITIVE_TEXT_CLASS}`}/> : <Calendar className="w-3 h-3 text-gray-400 dark:text-white/30"/>}
           </div>
           <span className="flex-1 text-[10px] font-semibold text-gray-700 dark:text-white/70">{r.label}</span>
           <span className={`text-[9px] font-bold ${r.color}`}>{r.date}</span>
@@ -141,8 +146,8 @@ const keyFeatures = [
     title: "Date ranges & comparisons",
     description:
       "Last 7/28/30/90 days, last month, or custom up to 366 days. Compare previous period, same year, or previous year.",
-    glow: "from-emerald-400/10 to-teal-400/5",
-    border: "border-emerald-400/20 dark:border-emerald-500/20",
+    glow: "from-brand-400/10 to-brand-300/5",
+    border: "border-brand-400/20 dark:border-brand-500/20",
     Visual: ScheduleVisual,
   },
 ];
@@ -153,7 +158,7 @@ const RB_BARS = [{pct:60,lbl:"Jan"},{pct:75,lbl:"Feb"},{pct:50,lbl:"Mar"},{pct:8
 
 function ReportPreview() {
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl overflow-hidden">
       {/* Report header */}
       <div className="px-5 py-4 brand-ink-bar">
         <div className="flex items-center justify-between mb-1">
@@ -172,7 +177,7 @@ function ReportPreview() {
             <div key={k.l} className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05] text-center">
               <p className="text-[9px] text-gray-400 dark:text-white/40 mb-0.5">{k.l}</p>
               <p className="text-sm font-black text-gray-900 dark:text-white">{k.v}</p>
-              <p className="text-[9px] text-emerald-600 dark:text-emerald-400 font-semibold">{k.t}</p>
+              <p className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>{k.t}</p>
             </div>
           ))}
         </div>
@@ -182,7 +187,7 @@ function ReportPreview() {
           <div className="flex items-end gap-1.5" style={{height:RB_MAX+4}}>
             {RB_BARS.map((b,i)=>(
               <div key={b.lbl} className="flex-1 flex flex-col items-center justify-end">
-                <div className="w-full rounded-t-[3px]" style={{height:`${Math.round((b.pct/100)*RB_MAX)}px`,background:`rgba(201,255,51,${0.35+i*0.11})`}}/>
+                <div className="w-full rounded-t-[3px]" style={analyticsDemoBarStyle(Math.round((b.pct/100)*RB_MAX), i, 0.11, 0.35)}/>
               </div>
             ))}
           </div>
@@ -283,16 +288,16 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <ProductHowItWorks steps={pageContent.howItWorks} />
 
       {/* ── KEY FEATURES ────────────────────────────── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">{coreFeaturesSubtitle}</span>
+            <span className="brand-eyebrow inline-block mb-4">{coreFeaturesSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{coreFeaturesTitle}</h2>
           </motion.div>
           <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {keyFeatures.map(f=>(
               <motion.div key={f.title} variants={fadeUp}
-                className={`relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-[#14141B] border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group`}>
+                className={`relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group`}>
                 <div className={`absolute -top-10 -right-10 w-36 h-36 rounded-full bg-gradient-to-br ${f.glow} blur-2xl opacity-80 pointer-events-none`}/>
                 {/* Visual */}
                 <div className="relative z-10 border-b border-gray-100 dark:border-white/[0.06] min-h-[190px] flex flex-col">
@@ -326,8 +331,8 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       />
 
       {/* ── VALUE PROPOSITION ───────────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.09) 0%, transparent 70%)"}}/>
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(148,163,184,0.09) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">Why Conalytic Reports</span>
@@ -356,12 +361,12 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <Pricing/>
 
       {/* ── BUILD REPORTS SECTION ───────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"}}/>
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(148,163,184,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+              <span className="brand-eyebrow inline-flex items-center gap-2 mb-4">
                 Report Builder
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Build Reports That Impress Clients</h2>
@@ -389,11 +394,11 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       </section>
 
       {/* ── CLIENT DELIVERY ─────────────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
-        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.09) 0%, transparent 65%)"}}/>
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
+        <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(148,163,184,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">Client delivery</span>
+            <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>Client delivery</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Professional HTML decks for agency clients</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">Set client name and report title on the cover slide. Download HTML for email delivery or walk through the in-app viewer on client calls.</p>
           </motion.div>

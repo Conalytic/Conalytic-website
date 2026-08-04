@@ -40,7 +40,7 @@ export function Accordion({ items, className }: AccordionProps) {
               <span
                 className={cn(
                   "text-base font-medium transition-colors duration-200",
-                  isOpen ? "text-brand-600 dark:text-brand-300" : "text-navy-900/90 dark:text-white/90 group-hover:text-navy-900 dark:group-hover:text-white"
+                  isOpen ? "text-brand-600 dark:text-brand-300" : "text-gray-900/90 dark:text-white/90 group-hover:text-gray-900 dark:group-hover:text-white"
                 )}
               >
                 {item.question}
@@ -49,8 +49,8 @@ export function Accordion({ items, className }: AccordionProps) {
                 className={cn(
                   "flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 border",
                   isOpen
-                    ? "bg-brand-600 border-brand-500 rotate-45 text-brand-500"
-                    : "bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 group-hover:border-brand-500/50"
+                    ? "bg-brand-700 border-brand-500 rotate-45 text-white"
+                    : "bg-black/5 dark:bg-white/5 border-black/10 dark:border-white/10 text-gray-600 dark:text-white/70 group-hover:border-brand-500/50"
                 )}
               >
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">

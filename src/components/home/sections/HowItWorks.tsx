@@ -10,6 +10,7 @@ import {
   type MarketingStackLogoKey,
 } from "@/lib/marketing-stack-logos";
 import { integrationLogoAlt } from "@/lib/image-alt";
+import { analyticsDemoBarStyle, DEMO_LIVE_DOT_CLASS } from "@/components/visual/product-demos/analytics-demo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -48,10 +49,10 @@ type IntegrationSourceRow = {
 function buildIntegrationSources(overrides?: Partial<Record<MarketingStackLogoKey, string>>): IntegrationSourceRow[] {
   const L = { ...MARKETING_STACK_LOGOS, ...overrides };
   return [
-    { name: "Google Analytics 4", pulse: "bg-emerald-400", bg: "bg-orange-50 dark:bg-orange-500/10", logo: L.googleAnalytics4 },
-    { name: "Google Ads", pulse: "bg-emerald-400", bg: "bg-blue-50 dark:bg-blue-500/10", logo: L.googleAds },
+    { name: "Google Analytics 4", pulse: DEMO_LIVE_DOT_CLASS, bg: "bg-orange-50 dark:bg-orange-500/10", logo: L.googleAnalytics4 },
+    { name: "Google Ads", pulse: DEMO_LIVE_DOT_CLASS, bg: "bg-blue-50 dark:bg-blue-500/10", logo: L.googleAds },
     { name: "Meta Ads", pulse: "bg-amber-400", bg: "bg-blue-50 dark:bg-blue-500/10", logo: L.metaAds },
-    { name: "BigQuery", pulse: "bg-emerald-400", bg: "bg-purple-50 dark:bg-purple-500/10" },
+    { name: "BigQuery", pulse: DEMO_LIVE_DOT_CLASS, bg: "bg-purple-50 dark:bg-purple-500/10" },
   ];
 }
 
@@ -124,10 +125,10 @@ function Panel2() {
         Campaign ROI by channel — Q3 2024
       </p>
       <div className="flex items-end gap-2 mb-2" style={{ height: 90 }}>
-        {CHART_BARS.map(({ lbl, h, val }) => (
+        {CHART_BARS.map(({ lbl, h, val }, i) => (
           <div key={lbl} className="flex-1 flex flex-col items-center gap-1">
             <span className="text-[9px] font-bold text-gray-500 dark:text-white/50">{val}</span>
-            <div className="w-full rounded-t-md" style={{ height: `${(h / 100) * 72}px`, background: "rgba(201,255,51,0.8)" }} />
+            <div className="w-full rounded-t-md" style={analyticsDemoBarStyle(Math.round((h / 100) * 72), i, 0.08, 0.55)} />
           </div>
         ))}
       </div>
@@ -152,7 +153,7 @@ function Panel3() {
         <div key={i} className={`flex ${user ? "justify-end" : "justify-start"}`}>
           <div className={`max-w-[85%] px-3 py-2.5 rounded-2xl text-xs leading-relaxed ${
             user
-              ? "bg-brand-600 text-brand-lime rounded-br-sm"
+              ? "demo-user-bubble rounded-br-sm"
               : "bg-gray-100 dark:bg-white/8 text-gray-700 dark:text-white/70 rounded-bl-sm"
           }`}>
             {text}
@@ -209,12 +210,12 @@ export function HowItWorks({
      * — exactly 1 viewport of scroll per step.
      */
     <div ref={sectionRef} style={{ height: `${(STEPS.length - 1) * 100}vh` }}>
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white dark:bg-brand-900">
         <div className="w-full max-w-5xl mx-auto px-4 py-4 md:py-8">
 
           {/* Section header */}
           <div className="text-center mb-6 sm:mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-3">
+            <span className="brand-eyebrow inline-block mb-3">
               {content?.eyebrow || "How it works"}
             </span>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -268,12 +269,12 @@ export function HowItWorks({
 
             {/* Synced panel — hidden on mobile to prevent overflow */}
             <div className="hidden lg:block">
-              <div className="bg-white dark:bg-[#16161D] rounded-2xl border border-gray-100 dark:border-white/[0.07] shadow-lg shadow-black/5 dark:shadow-black/40 overflow-hidden">
+              <div className="bg-white dark:bg-brand-800 rounded-2xl border border-gray-100 dark:border-white/[0.07] shadow-lg shadow-black/5 dark:shadow-black/40 overflow-hidden">
                 {/* Window chrome */}
-                  <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
+                  <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-brand-900/80 border-b border-gray-100 dark:border-white/[0.06]">
                   <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                  <span className={`w-2.5 h-2.5 rounded-full ${DEMO_LIVE_DOT_CLASS}`} />
                   <span className="ml-3 text-[11px] font-mono text-gray-400 dark:text-white/25">
                     {PANEL_TITLES[active]}
                   </span>

@@ -18,6 +18,18 @@ import { integrationLogoAlt, conalyticLogoAlt } from "@/lib/image-alt";
 import { getProduct } from "@/lib/products";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
 import {
+  ANALYTICS_DEMO_ANSWERED_BADGE_CLASS,
+  ANALYTICS_DEMO_BODY_CLASS,
+  ANALYTICS_DEMO_INPUT_ROW_CLASS,
+  ANALYTICS_DEMO_KEY_FINDING_CLASS,
+  ANALYTICS_DEMO_KEY_FINDING_LABEL_CLASS,
+  ANALYTICS_DEMO_SHELL_CLASS,
+  analyticsDemoBarStyle,
+  DEMO_POSITIVE_TEXT_CLASS,
+  DEMO_SUCCESS_PILL_CLASS,
+  DEMO_LIVE_DOT_CLASS,
+} from "@/components/visual/product-demos/analytics-demo";
+import {
   AiModelsSection,
   ProductCapabilitiesGrid,
   ProductDeepDive,
@@ -26,15 +38,6 @@ import {
   ProductStatsStrip,
 } from "@/components/products/ProductPageSections";
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
-import {
-  ANALYTICS_DEMO_ANSWERED_BADGE_CLASS,
-  ANALYTICS_DEMO_BODY_CLASS,
-  ANALYTICS_DEMO_INPUT_ROW_CLASS,
-  ANALYTICS_DEMO_KEY_FINDING_CLASS,
-  ANALYTICS_DEMO_KEY_FINDING_LABEL_CLASS,
-  ANALYTICS_DEMO_SHELL_CLASS,
-  analyticsDemoBarStyle,
-} from "@/components/visual/product-demos/analytics-demo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
@@ -69,9 +72,9 @@ const keyFeatures = [
     title: "Agentic analysis & viz",
     description:
       "Model-assisted tool calls retrieve metrics, run audits (e.g. GTM), and render conalytic-viz charts. Refine prompts before sending.",
-    color: "from-emerald-500/20 to-teal-500/10",
-    iconColor: "text-emerald-400",
-    border: "border-emerald-500/20",
+    color: "from-brand-500/20 to-brand-400/10",
+    iconColor: "text-brand-500 dark:text-brand-400",
+    border: "border-brand-400/20 dark:border-brand-500/20",
   },
 ];
 
@@ -164,8 +167,8 @@ function MultiChannelVisual() {
       </div>
       {/* Arrow lines */}
       <svg width="80" height="28" viewBox="0 0 80 28" className="opacity-50">
-        <line x1="20" y1="0" x2="40" y2="28" stroke="#c9ff33" strokeWidth="1.5" strokeDasharray="3 2"/>
-        <line x1="60" y1="0" x2="40" y2="28" stroke="#c9ff33" strokeWidth="1.5" strokeDasharray="3 2"/>
+        <line x1="20" y1="0" x2="40" y2="28" stroke="var(--brand-accent)" strokeWidth="1.5" strokeDasharray="3 2"/>
+        <line x1="60" y1="0" x2="40" y2="28" stroke="var(--brand-accent)" strokeWidth="1.5" strokeDasharray="3 2"/>
       </svg>
       {/* Center hub */}
       <div className="w-14 h-14 rounded-2xl brand-ink-badge flex items-center justify-center shadow-lg shadow-brand-500/30">
@@ -173,8 +176,8 @@ function MultiChannelVisual() {
         <img src="/logo-icon.png" alt={conalyticLogoAlt("app icon")} width={32} height={32}/>
       </div>
       <svg width="80" height="28" viewBox="0 0 80 28" className="opacity-50 rotate-180">
-        <line x1="20" y1="0" x2="40" y2="28" stroke="#c9ff33" strokeWidth="1.5" strokeDasharray="3 2"/>
-        <line x1="60" y1="0" x2="40" y2="28" stroke="#c9ff33" strokeWidth="1.5" strokeDasharray="3 2"/>
+        <line x1="20" y1="0" x2="40" y2="28" stroke="var(--brand-accent)" strokeWidth="1.5" strokeDasharray="3 2"/>
+        <line x1="60" y1="0" x2="40" y2="28" stroke="var(--brand-accent)" strokeWidth="1.5" strokeDasharray="3 2"/>
       </svg>
       {/* Bottom row */}
       <div className="flex items-center gap-3">
@@ -187,8 +190,8 @@ function MultiChannelVisual() {
       </div>
       {/* Status */}
       <div className="flex items-center gap-1.5 mt-1">
-        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
-        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">All sources connected</span>
+        <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${DEMO_LIVE_DOT_CLASS}`}/>
+        <span className={`text-[10px] font-medium ${DEMO_POSITIVE_TEXT_CLASS}`}>All sources connected</span>
       </div>
     </div>
   );
@@ -201,23 +204,23 @@ function AutoInsightsVisual() {
       {/* Sparkline header */}
       <div className="flex items-center justify-between mb-1">
         <span className="text-[10px] font-semibold text-gray-600 dark:text-white/60">AI Insight Score</span>
-        <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">+24% this week</span>
+        <span className={`text-[10px] font-bold ${DEMO_POSITIVE_TEXT_CLASS}`}>+24% this week</span>
       </div>
       <svg width="100%" height="36" viewBox="0 0 160 36" preserveAspectRatio="none">
         <defs>
           <linearGradient id="insightGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#c9ff33" stopOpacity="0.3"/>
-            <stop offset="100%" stopColor="#c9ff33" stopOpacity="0.02"/>
+            <stop offset="0%" stopColor="var(--brand-accent)" stopOpacity="0.3"/>
+            <stop offset="100%" stopColor="var(--brand-accent)" stopOpacity="0.02"/>
           </linearGradient>
         </defs>
         <path d="M0 30 C20 28,35 25,55 18 S90 10,110 12 S140 5,160 2 L160 36 L0 36 Z" fill="url(#insightGrad)"/>
-        <path d="M0 30 C20 28,35 25,55 18 S90 10,110 12 S140 5,160 2" stroke="#c9ff33" strokeWidth="2" fill="none" strokeLinecap="round"/>
+        <path d="M0 30 C20 28,35 25,55 18 S90 10,110 12 S140 5,160 2" stroke="var(--brand-accent)" strokeWidth="2" fill="none" strokeLinecap="round"/>
       </svg>
       {/* Insight chips */}
       {[
         { icon:"📈", text:"ROAS up 18% vs last month", color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20 text-brand-600 dark:text-brand-300" },
         { icon:"⚠️", text:"CTR drop detected in Paid Search", color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20 text-amber-700 dark:text-amber-300" },
-        { icon:"🎯", text:"Increase budget on Organic by 15%", color:"bg-emerald-50 dark:bg-emerald-500/10 border-emerald-100 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300" },
+        { icon:"🎯", text:"Increase budget on Organic by 15%", color:`border ${DEMO_SUCCESS_PILL_CLASS}` },
       ].map((chip,i) => (
         <div key={i} className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-[11px] font-medium ${chip.color}`}>
           <span>{chip.icon}</span>
@@ -237,16 +240,16 @@ function ChatVisual() {
     { user: false, text: "North America led with 6.2× ROI, followed by Europe at 4.9×." },
   ];
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl shadow-black/5 dark:shadow-black/40 overflow-hidden">
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl shadow-black/5 dark:shadow-black/40 overflow-hidden">
       {/* Window bar */}
-      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-[#0C0C12]/80 border-b border-gray-100 dark:border-white/[0.06]">
+      <div className="flex items-center gap-2 px-4 py-3 bg-gray-50 dark:bg-brand-900/80 border-b border-gray-100 dark:border-white/[0.06]">
         <span className="w-2.5 h-2.5 rounded-full bg-red-400"/>
         <span className="w-2.5 h-2.5 rounded-full bg-amber-400"/>
-        <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"/>
+        <span className={`w-2.5 h-2.5 rounded-full ${DEMO_LIVE_DOT_CLASS}`}/>
         <span className="ml-3 text-[11px] font-mono text-gray-400 dark:text-white/30">Conalytic — Conversational Analytics</span>
         <span className="ml-auto flex items-center gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"/>
-          <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-medium">Live</span>
+          <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${DEMO_LIVE_DOT_CLASS}`}/>
+          <span className={`text-[10px] font-medium ${DEMO_POSITIVE_TEXT_CLASS}`}>Live</span>
         </span>
       </div>
       <div className="p-4 space-y-3">
@@ -254,12 +257,12 @@ function ChatVisual() {
           <div key={i} className={`flex ${m.user ? "justify-end" : "justify-start"}`}>
             {!m.user && (
               <div className="w-6 h-6 rounded-full brand-ink-badge flex items-center justify-center mr-2 shrink-0 mt-0.5">
-                <span className="text-[7px] font-bold text-brand-500">CA</span>
+                <span className="text-[7px] font-bold">CA</span>
               </div>
             )}
             <div className={`max-w-[80%] px-3 py-2 rounded-xl text-xs leading-relaxed ${
               m.user
-                ? "bg-brand-600 text-brand-lime rounded-br-sm"
+                ? "demo-user-bubble rounded-br-sm"
                 : "bg-gray-100 dark:bg-white/[0.06] text-gray-700 dark:text-white/80 rounded-bl-sm"
             }`}>
               {m.text}
@@ -307,7 +310,7 @@ function AnalyticsVisual() {
   ];
 
   return (
-    <div className="w-full bg-white dark:bg-[#13131E] rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl shadow-black/5 dark:shadow-black/40 overflow-hidden">
+    <div className="w-full bg-white dark:bg-brand-900 rounded-2xl border border-gray-100 dark:border-white/[0.08] shadow-xl shadow-black/5 dark:shadow-black/40 overflow-hidden">
       {/* Top bar */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 dark:border-white/[0.06]">
         <span className="text-xs font-semibold text-gray-700 dark:text-white/80">Performance Overview</span>
@@ -320,7 +323,7 @@ function AnalyticsVisual() {
             <div key={m.label} className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05]">
               <p className="text-[10px] text-gray-400 dark:text-white/50 mb-1 truncate">{m.label}</p>
               <p className="text-sm font-black text-gray-900 dark:text-white">{m.value}</p>
-              <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">{m.change}</p>
+              <p className={`text-[10px] font-semibold mt-0.5 ${DEMO_POSITIVE_TEXT_CLASS}`}>{m.change}</p>
             </div>
           ))}
         </div>
@@ -338,10 +341,7 @@ function AnalyticsVisual() {
                 <div key={bar.label} className="flex-1 flex flex-col items-center justify-end">
                   <div
                     className="w-full rounded-t-[3px]"
-                    style={{
-                      height: `${barPx}px`,
-                      background: `rgba(201,255,51,${0.38 + i * 0.09})`,
-                    }}
+                    style={analyticsDemoBarStyle(barPx, i, 0.09, 0.38)}
                   />
                 </div>
               );
@@ -420,7 +420,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           <motion.div
             initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.6, ease:EASE }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-6"
+            className="brand-eyebrow inline-flex items-center gap-2 mb-6"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"/>
             {heroBadge}
@@ -489,14 +489,14 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       <ProductHowItWorks steps={pageContent.howItWorks} />
 
       {/* ── 2. KEY FEATURES — bento cards with live mockups ── */}
-      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
             className="text-center mb-8"
           >
-            <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+            <span className="brand-eyebrow inline-block mb-4">
               {coreCapabilitiesSubtitle}
             </span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -514,7 +514,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             {/* Card 1 — Natural Language Queries — spans 2 cols */}
             <motion.div variants={fadeUp}
               className="md:col-span-2 relative rounded-2xl p-7 overflow-hidden group
-                bg-white dark:bg-[#14141B]
+                bg-white dark:bg-brand-800
                 border border-gray-100 dark:border-white/[0.07]
                 shadow-sm hover:shadow-xl dark:hover:shadow-black/50
                 hover:-translate-y-0.5 transition-all duration-300"
@@ -523,7 +523,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full bg-brand-400/10 dark:bg-brand-500/15 blur-3xl pointer-events-none"/>
               {/* Grid texture */}
               <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.06] pointer-events-none"
-                style={{ backgroundImage:"linear-gradient(#c9ff33 1px,transparent 1px),linear-gradient(90deg,#c9ff33 1px,transparent 1px)", backgroundSize:"32px 32px" }}/>
+                style={{ backgroundImage:"linear-gradient(var(--brand-accent) 1px,transparent 1px),linear-gradient(90deg,var(--brand-accent) 1px,transparent 1px)", backgroundSize:"32px 32px" }}/>
 
               <div className="relative z-10">
                 {/* Eyebrow */}
@@ -566,19 +566,19 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             {/* Card 3 — Automated Insights — full width */}
             <motion.div variants={fadeUp}
               className="md:col-span-3 relative rounded-2xl p-7 overflow-hidden group
-                bg-gradient-to-br from-white to-emerald-50/40 dark:from-[#14141B] dark:to-[#111A14]
+                bg-gradient-to-br from-white to-brand-50/80 dark:from-[#14141B] dark:to-[#111A14]
                 border border-gray-100 dark:border-white/[0.07]
                 shadow-sm hover:shadow-xl dark:hover:shadow-black/50
                 hover:-translate-y-0.5 transition-all duration-300"
             >
-              <div className="absolute -bottom-10 -right-10 w-56 h-56 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none"/>
+              <div className="absolute -bottom-10 -right-10 w-56 h-56 rounded-full bg-brand-400/10 blur-3xl pointer-events-none"/>
               <div className="absolute inset-0 opacity-[0.025] dark:opacity-[0.05] pointer-events-none"
                 style={{ backgroundImage:"linear-gradient(#10b981 1px,transparent 1px),linear-gradient(90deg,#10b981 1px,transparent 1px)", backgroundSize:"32px 32px" }}/>
 
               <div className="relative z-10 grid md:grid-cols-2 gap-8 items-center">
                 {/* Left: text */}
                 <div>
-                  <div className="inline-flex items-center gap-1.5 bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-100 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-4">
+                  <div className={`inline-flex items-center gap-1.5 border text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>
                     <Sparkles className="w-3 h-3"/>
                     Automated Insights
                   </div>
@@ -618,10 +618,10 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
         bullets={pageContent.deepDiveBullets}
         visual={<ChatVisual />}
       />
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         {/* Accent glow */}
         <div className="absolute inset-0 pointer-events-none hidden dark:block"
-          style={{ background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,255,51,0.09) 0%, transparent 70%)" }}/>
+          style={{ background:"radial-gradient(ellipse 60% 50% at 50% 100%, var(--demo-section-glow) 0%, transparent 70%)" }}/>
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
@@ -673,9 +673,9 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       <Pricing />
 
       {/* ── 5. COLLABORATION ─────────────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-[#0C0C12]">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block"
-          style={{ background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(201,255,51,0.10) 0%, transparent 65%)" }}/>
+          style={{ background:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" }}/>
 
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -684,7 +684,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
             >
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+              <span className="brand-eyebrow inline-block mb-4">
                 Collaboration
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
@@ -732,9 +732,9 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       </section>
 
       {/* ── 6. PERFORMANCE MONITORING ────────────────── */}
-      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-[#0E0E14]">
+      <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-[#f0f1f5] dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block"
-          style={{ background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(201,255,51,0.10) 0%, transparent 65%)" }}/>
+          style={{ background:"radial-gradient(ellipse 55% 50% at 105% 50%, var(--demo-section-glow) 0%, transparent 65%)" }}/>
 
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -751,7 +751,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               initial={{ opacity:0, x:30 }} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, delay:0.1, ease:EASE }}
             >
-              <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-100 dark:border-emerald-500/20 mb-4">
+              <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>
                 Performance
               </span>
               <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
@@ -764,8 +764,8 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
               <ul className="space-y-4 mb-8">
                 {performanceBullets.map((bullet, i) => (
                   <li key={i} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-500/15 border border-emerald-200 dark:border-emerald-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-3 h-3 text-emerald-600 dark:text-emerald-400"/>
+                    <div className="w-5 h-5 rounded-full bg-brand-100 dark:bg-brand-500/15 border border-brand-200 dark:border-brand-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                      <CheckCircle2 className={`w-3 h-3 ${DEMO_POSITIVE_TEXT_CLASS}`}/>
                     </div>
                     <span className="text-gray-600 dark:text-white/70 text-sm leading-relaxed">{bullet}</span>
                   </li>

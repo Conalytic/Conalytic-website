@@ -12,10 +12,10 @@ const PAGE_DESCRIPTION =
   "Download Conalytic logos, brand colors, and typography guidelines for media, partners, and marketing materials. Official brand kit for the marketing analytics platform.";
 
 const colors = [
-  { name: "Brand Ink", hex: "#0f0f0f", rgb: "15, 15, 15", usage: "Primary text, buttons, navigation" },
-  { name: "Accent Lime", hex: "#c9ff33", rgb: "201, 255, 51", usage: "CTA labels, highlights, accents" },
-  { name: "Accent Soft", hex: "#edf7c8", rgb: "237, 247, 200", usage: "Soft badges, callout backgrounds" },
-  { name: "Elevated Dark", hex: "#1a1b1e", rgb: "26, 27, 30", usage: "Dark surfaces, hover states" },
+  { name: "Brand Ink", hex: "#334155", rgb: "51, 65, 85", usage: "Primary text, buttons, navigation" },
+  { name: "Brand Accent", hex: "#64748B", rgb: "100, 116, 139", usage: "Links, borders, progress rings, highlights" },
+  { name: "Accent Soft", hex: "#E2E8F0", rgb: "226, 232, 240", usage: "Soft badges, callout backgrounds" },
+  { name: "Accent Hover", hex: "#475569", rgb: "71, 85, 105", usage: "Hover states on accent elements" },
   { name: "Shell Gray", hex: "#f0f1f5", rgb: "240, 241, 245", usage: "Page backgrounds" },
   { name: "Border", hex: "#e8eaef", rgb: "232, 234, 239", usage: "Cards, inputs, dividers" },
 ];
@@ -35,14 +35,14 @@ const typography = [
 
 function BrandFallback() {
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
+    <div className="min-h-screen bg-white dark:bg-brand-900 pt-28 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="mb-16">
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">Brand Assets</span>
+          <span className="brand-eyebrow inline-block mb-4">Brand Assets</span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">
-            Conalytic <span style={{background:"linear-gradient(135deg,#c9ff33 0%,#b8eb2e 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Brand</span>
+            Conalytic <span style={{background:"linear-gradient(135deg,#334155 0%,#64748B 100%)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>Brand</span>
           </h1>
           <p className="text-gray-500 dark:text-white/65 text-lg max-w-2xl leading-relaxed">Official brand assets, guidelines, and resources for media, partners, and press. Please follow these guidelines when representing Conalytic.</p>
         </div>
@@ -52,8 +52,8 @@ function BrandFallback() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Logo</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
             {logoVariants.map(v=>(
-              <div key={v.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-[#14141B] overflow-hidden shadow-sm">
-                <div className="h-36 flex items-center justify-center bg-[#f0f1f5] dark:bg-[#0C0C12]">
+              <div key={v.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-brand-800 overflow-hidden shadow-sm">
+                <div className="h-36 flex items-center justify-center bg-[#f0f1f5] dark:bg-brand-900">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl brand-ink-badge flex items-center justify-center shadow-lg shadow-brand-500/30">
                       <span className="text-white font-black text-base">C</span>
@@ -83,7 +83,7 @@ function BrandFallback() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Color Palette</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {colors.map(color=>(
-              <div key={color.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-[#14141B] overflow-hidden shadow-sm">
+              <div key={color.name} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-brand-800 overflow-hidden shadow-sm">
                 <div className="h-20 w-full" style={{background:color.hex}}/>
                 <div className="p-4">
                   <p className="text-gray-900 dark:text-white font-semibold text-sm">{color.name}</p>
@@ -101,7 +101,7 @@ function BrandFallback() {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Typography</h2>
           <div className="space-y-4">
             {typography.map((type,i)=>(
-              <div key={i} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-[#14141B] p-6 flex flex-col sm:flex-row sm:items-center gap-4 shadow-sm">
+              <div key={i} className="rounded-2xl border border-gray-100 dark:border-white/[0.07] bg-white dark:bg-brand-800 p-6 flex flex-col sm:flex-row sm:items-center gap-4 shadow-sm">
                 <div className="flex-1">
                   <p className="text-gray-900 dark:text-white mb-2" style={{fontWeight:type.fw, fontSize:type.size}}>{type.sample}</p>
                   <p className="text-gray-400 dark:text-white/40 text-xs">{type.name} · {type.weight}</p>
@@ -118,8 +118,8 @@ function BrandFallback() {
         <section className="mb-20">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">Usage Guidelines</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="rounded-2xl border border-emerald-200 dark:border-emerald-500/20 bg-emerald-50 dark:bg-emerald-500/5 p-6">
-              <h3 className="text-emerald-700 dark:text-emerald-300 font-bold mb-4">✓ Do</h3>
+            <div className="rounded-2xl border border-brand-200 dark:border-brand-500/20 bg-brand-50 dark:bg-brand-500/5 p-6">
+              <h3 className="text-brand-700 dark:text-brand-300 font-bold mb-4">✓ Do</h3>
               <ul className="space-y-2 text-gray-600 dark:text-white/65 text-sm">
                 <li>Use the logo with adequate clear space around it</li>
                 <li>Use approved color variations on appropriate backgrounds</li>

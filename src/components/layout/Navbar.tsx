@@ -97,8 +97,8 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
         className={cn(
           "mx-auto max-w-6xl rounded-2xl transition-all duration-300",
           preview || scrolled
-            ? "border border-gray-200/90 bg-white/92 shadow-lg shadow-black/6 backdrop-blur-xl dark:border-white/[0.08] dark:bg-[#0f0f0f]/92 dark:shadow-black/40"
-            : "border border-transparent bg-white/60 backdrop-blur-md dark:bg-[#0f0f0f]/55"
+            ? "border border-gray-200/90 bg-white/92 shadow-lg shadow-black/6 backdrop-blur-xl dark:border-white/[0.08] dark:bg-brand-900/92 dark:shadow-black/40"
+            : "border border-transparent bg-white/60 backdrop-blur-md dark:bg-brand-900/55"
         )}
       >
         <nav className="px-4 sm:px-6">

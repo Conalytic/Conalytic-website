@@ -19,8 +19,8 @@ function useAmbientLite() {
 function themeParticleColors() {
   const isDark = document.documentElement.classList.contains("dark");
   return isDark
-    ? { line: (a: number) => `rgba(201, 255, 51, ${a})`, node: "rgba(201, 255, 51, 0.55)" }
-    : { line: (a: number) => `rgba(95, 143, 0, ${a})`, node: "rgba(95, 143, 0, 0.45)" };
+    ? { line: (a: number) => `rgba(148, 163, 184, ${a})`, node: "rgba(203, 213, 225, 0.48)" }
+    : { line: (a: number) => `rgba(100, 116, 139, ${a})`, node: "rgba(100, 116, 139, 0.45)" };
 }
 
 /** Local particle mesh for hero sections. */

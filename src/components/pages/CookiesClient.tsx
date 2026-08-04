@@ -99,10 +99,10 @@ export function CookiesClient({ content }: { content?: Partial<CookiesContentPre
   const c: CookiesContentPreset = { ...COOKIES_DEFAULT_PRESET, ...content };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#0C0C12] pt-28 pb-20">
+    <div className="min-h-screen bg-white dark:bg-brand-900 pt-28 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border border-brand-100 dark:border-brand-500/20 mb-4">
+          <span className="brand-eyebrow inline-block mb-4">
             {c.kicker}
           </span>
           <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{c.pageTitle}</h1>
