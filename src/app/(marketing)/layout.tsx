@@ -5,6 +5,7 @@ import {
 } from "@/components/analytics/GoogleTagManager";
 import { HashScrollRestorer } from "@/components/layout/HashScrollRestorer";
 import { AsyncSiteChrome } from "@/components/layout/AsyncSiteChrome";
+import { CrawlableSiteLinks } from "@/components/seo/CrawlableSiteLinks";
 
 /** Marketing site layout (nav, footer, GTM). */
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
@@ -13,6 +14,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <GoogleTagManagerHead />
       <GoogleTagManagerBody />
       <HashScrollRestorer />
+      <CrawlableSiteLinks />
       <AsyncSiteChrome>{children}</AsyncSiteChrome>
       <Analytics />
     </>

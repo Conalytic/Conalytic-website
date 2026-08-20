@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "generate:sitemap": "node scripts/generate-sitemap.cjs",
+    "submit:indexnow": "npx --yes tsx scripts/submit-indexnow.ts",
     "prebuild": "node scripts/generate-sitemap.cjs",
+    "postbuild": "npx --yes tsx scripts/submit-indexnow.ts",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

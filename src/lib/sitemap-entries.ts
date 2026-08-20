@@ -6,7 +6,7 @@ import { blogPostSlugFromPath, SITE_PATHS } from "@/lib/site-paths";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const LEGAL_LAST_MODIFIED = new Date(LEGAL_DOCUMENTS_LAST_UPDATED);
-const SITE_LAST_MODIFIED = new Date("2026-08-02T00:00:00.000Z");
+const SITE_LAST_MODIFIED = new Date("2026-08-20T00:00:00.000Z");
 
 /** Preferred sitemap order — home → platform → products → resources → company → legal */
 const PATH_ORDER: string[] = [
@@ -37,7 +37,10 @@ function pathSortIndex(path: string): number {
 const LEGAL_PATHS = new Set<string>([SITE_PATHS.legal.cookies, PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH]);
 
 /** Routes with noindex — must not appear in sitemap.xml */
-const NON_INDEXABLE_PATHS = new Set<string>([SITE_PATHS.company.contactThankYou]);
+const NON_INDEXABLE_PATHS = new Set<string>([
+  SITE_PATHS.company.contactThankYou,
+  SITE_PATHS.products.applicantTrackingSystem,
+]);
 
 export type SitemapEntry = {
   url: string;

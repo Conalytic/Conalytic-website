@@ -634,50 +634,25 @@ section { background: transparent !important; }
   }
 }
 
-main section,
-main article > div > section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-}
-
-/* ── Scroll reveal (auto via ScrollRevealInit + manual .reveal) ── */
-.reveal,
-main section {
+/* ── Scroll reveal (JS adds .reveal via ScrollRevealInit — content stays visible without JS) ── */
+.reveal:not(.revealed) {
   opacity: 0;
   transform: translateY(28px);
   transition:
     opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.reveal.revealed,
-main section.revealed {
+.reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Hero sections animate immediately — no wait for scroll */
-main section.hero-gradient,
-main section:first-of-type {
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
-
-/* Scroll-driven fallback for modern browsers */
-@supports (animation-timeline: view()) {
-  main section:not(.hero-gradient):not(:first-of-type) {
+@media (prefers-reduced-motion: reduce) {
+  .reveal:not(.revealed) {
     opacity: 1;
     transform: none;
     transition: none;
-    animation: section-reveal linear both;
-    animation-timeline: view();
-    animation-range: entry 0% cover 25%;
   }
-}
-
-@keyframes section-reveal {
-  from { opacity: 0; transform: translateY(32px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 
 .reveal-delay-1 { transition-delay: 0.1s; }
