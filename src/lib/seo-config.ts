@@ -40,5 +40,9 @@ export function isStagingWebsite(): boolean {
 
 /** Production marketing pages are indexable; staging previews stay blocked. */
 export function allowSearchIndexing(): boolean {
+  // Vercel production must never ship noindex — even if NEXT_PUBLIC_SITE_URL is misconfigured.
+  if (process.env.VERCEL_ENV === "production") {
+    return true;
+  }
   return !isStagingWebsite();
 }

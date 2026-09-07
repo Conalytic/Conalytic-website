@@ -24,9 +24,9 @@ export const staggerContainer = {
   },
 };
 
-/** Child of staggerContainer */
+/** Child of staggerContainer — opacity stays 1 so SSR/crawlers always see content */
 export const fadeUpChild = {
-  hidden: { opacity: 0, y: 26 },
+  hidden: { opacity: 1, y: 26 },
   show: {
     opacity: 1,
     y: 0,
@@ -35,7 +35,7 @@ export const fadeUpChild = {
 };
 
 export const scaleInChild = {
-  hidden: { opacity: 0, scale: 0.96 },
+  hidden: { opacity: 1, scale: 0.96 },
   show: {
     opacity: 1,
     scale: 1,
