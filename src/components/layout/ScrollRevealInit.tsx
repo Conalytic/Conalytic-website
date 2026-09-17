@@ -34,10 +34,20 @@ export function ScrollRevealInit() {
       { threshold: 0.08, rootMargin: "0px 0px -6% 0px" }
     );
 
+    const isInViewport = (el: Element) => {
+      const rect = el.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
+    };
+
     const observeAll = () => {
       document.querySelectorAll(REVEAL_SELECTOR).forEach((el) => {
         if (seen.has(el) || el.classList.contains("reveal-skip")) return;
         el.classList.add("reveal");
+        if (isInViewport(el)) {
+          el.classList.add("revealed");
+          seen.add(el);
+          return;
+        }
         observer.observe(el);
       });
     };

@@ -634,13 +634,11 @@ section { background: transparent !important; }
   }
 }
 
-/* ── Scroll reveal (JS adds .reveal via ScrollRevealInit — content stays visible without JS) ── */
+/* ── Scroll reveal — text stays visible (opacity 1) for crawlers & no-JS; only transform animates ── */
 .reveal:not(.revealed) {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(28px);
-  transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.revealed {
   opacity: 1;

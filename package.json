@@ -5,6 +5,7 @@
   "scripts": {
     "generate:sitemap": "node scripts/generate-sitemap.cjs",
     "submit:indexnow": "npx --yes tsx scripts/submit-indexnow.ts",
+    "verify:seo": "node scripts/verify-production-seo.mjs",
     "prebuild": "node scripts/generate-sitemap.cjs",
     "postbuild": "npx --yes tsx scripts/submit-indexnow.ts",
     "dev": "next dev",

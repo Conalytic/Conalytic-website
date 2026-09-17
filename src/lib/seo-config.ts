@@ -17,9 +17,20 @@ function normalizeSiteOrigin(raw: string): string {
   }
 }
 
-export const SITE_ORIGIN = normalizeSiteOrigin(
-  process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_ORIGIN
-);
+/**
+ * Canonical origin for sitemap, JSON-LD, and metadata.
+ * Production deploys always use conalytic.com — never a preview env URL or localhost.
+ */
+function resolveSiteOrigin(): string {
+  if (process.env.VERCEL_ENV === "production") {
+    return PRODUCTION_SITE_ORIGIN;
+  }
+  return normalizeSiteOrigin(
+    process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_ORIGIN
+  );
+}
+
+export const SITE_ORIGIN = resolveSiteOrigin();
 
 /** Marketing pages are always indexable (no staging / preview noindex gate). */
 export function allowSearchIndexing(): boolean {
