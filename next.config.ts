@@ -4,6 +4,17 @@
 import type { NextConfig } from "next";
 import { getLegacyMarketingRedirects } from "./src/lib/legacy-redirects";
 
+const SITE_ORIGIN = "https://conalytic.com";
+
+/** Helps AI crawlers discover llms.txt and sitemap (Cloudflare Link header audit). */
+const aiDiscoveryLinkHeader = {
+  key: "Link",
+  value: [
+    `<${SITE_ORIGIN}/llms.txt>; rel="describedby"; type="text/plain"`,
+    `<${SITE_ORIGIN}/sitemap.xml>; rel="sitemap"; type="application/xml"`,
+  ].join(", "),
+};
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
@@ -17,7 +28,7 @@ const nextConfig: NextConfig = {
       value: "frame-ancestors 'self'",
     };
 
-    const siteHeaders: { key: string; value: string }[] = [cspHeader];
+    const siteHeaders: { key: string; value: string }[] = [cspHeader, aiDiscoveryLinkHeader];
 
     return [
       { source: "/api/:path*", headers: [noIndexHeader] },
@@ -67,6 +78,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       { source: "/favicon.ico", destination: "/favicon.png", permanent: false },
+      { source: "/.well-known/llms.txt", destination: "/llms.txt", permanent: true },
       ...getLegacyMarketingRedirects(),
     ];
   },

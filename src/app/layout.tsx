@@ -37,6 +37,7 @@ export const metadata: Metadata = {
     canonical: SITE_ORIGIN,
     types: {
       "application/xml": `${SITE_ORIGIN}/sitemap.xml`,
+      "text/plain": `${SITE_ORIGIN}/llms.txt`,
     },
   },
   icons: {
