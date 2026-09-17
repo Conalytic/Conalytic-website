@@ -58,3 +58,4 @@ __pycache__/
 
 # local CMS drafts (when Redis is not configured)
 .cms-drafts/
+localhost_2026-08-01_02-11-39.report.html
