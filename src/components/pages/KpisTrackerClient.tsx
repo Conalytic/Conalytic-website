@@ -37,7 +37,7 @@ import {
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 1, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
@@ -214,7 +214,7 @@ export function KpisTrackerClient() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-brand-600/10 dark:bg-brand-500/15 pointer-events-none" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
             className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold border mb-6 ${DEMO_SUCCESS_PILL_CLASS}`}
@@ -223,7 +223,7 @@ export function KpisTrackerClient() {
             KPIs Tracker · {kpiProduct.appNavLabel}
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6"
@@ -232,7 +232,7 @@ export function KpisTrackerClient() {
             <span className={BRAND_HERO_GRADIENT_CLASS}>{kpiProduct.heroTitleLine2}</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.2, ease: EASE }}
             className="text-lg text-gray-500 dark:text-white/70 mb-4 max-w-3xl mx-auto leading-relaxed"
@@ -240,7 +240,7 @@ export function KpisTrackerClient() {
             {kpiProduct.description}
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.3, ease: EASE }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -270,7 +270,7 @@ export function KpisTrackerClient() {
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}

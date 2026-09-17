@@ -11,7 +11,7 @@ import { DEMO_SUCCESS_PILL_CLASS } from "@/components/visual/product-demos/analy
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 1, y: 28 },
   show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } },
 };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
@@ -20,7 +20,7 @@ const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 export function ProductHeroVisual({ variant }: { variant: ProductVisualVariant }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.35, ease: EASE }}
       className="relative z-10 mx-auto mt-16 max-w-5xl px-4"
@@ -69,7 +69,7 @@ export function ProductHowItWorks({
     <section className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
@@ -138,7 +138,7 @@ export function ProductCapabilitiesGrid({
       />
       <div className="relative z-10 max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
@@ -211,7 +211,7 @@ export function ProductDeepDive({
           className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? "lg:[direction:rtl]" : ""}`}
         >
           <motion.div
-            initial={{ opacity: 0, x: reverse ? 30 : -30 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}
@@ -236,7 +236,7 @@ export function ProductDeepDive({
             </ul>
           </motion.div>
           <motion.div
-            initial={{ opacity: 0, x: reverse ? -30 : 30 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
@@ -279,7 +279,7 @@ export function AiModelsSection() {
     <section className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-8"
@@ -343,7 +343,7 @@ export function KpiStatusLegend() {
         {statuses.map((s, i) => (
           <motion.div
             key={s.label}
-            initial={{ opacity: 0, x: -20 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.5 }}
@@ -390,7 +390,7 @@ export function ReportDeckTimeline() {
         {slides.map((slide, i) => (
           <motion.span
             key={slide}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.05, duration: 0.4 }}

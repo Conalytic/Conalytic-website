@@ -40,7 +40,7 @@ import {
 import { MARKETING_STACK_LOGOS } from "@/lib/marketing-stack-logos";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+const fadeUp = { hidden: { opacity: 1, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 
 
@@ -418,7 +418,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           {/* Eyebrow badge */}
           <motion.div
-            initial={{ opacity:0, y:20 }} animate={{ opacity:1, y:0 }}
+            initial={false} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.6, ease:EASE }}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6"
           >
@@ -427,7 +427,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           </motion.div>
 
           <motion.h1
-            initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }}
+            initial={false} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.75, delay:0.1, ease:EASE }}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6"
           >
@@ -435,7 +435,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           </motion.h1>
 
           <motion.p
-            initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }}
+            initial={false} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.75, delay:0.2, ease:EASE }}
             className="text-lg text-gray-500 dark:text-white/70 mb-4 max-w-3xl mx-auto leading-relaxed"
           >
@@ -443,7 +443,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           </motion.p>
 
           <motion.p
-            initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }}
+            initial={false} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.75, delay:0.25, ease:EASE }}
             className="text-gray-400 dark:text-white/55 text-base mb-10 max-w-2xl mx-auto leading-relaxed"
           >
@@ -451,7 +451,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           </motion.p>
 
           <motion.div
-            initial={{ opacity:0, y:30 }} animate={{ opacity:1, y:0 }}
+            initial={false} animate={{ opacity:1, y:0 }}
             transition={{ duration:0.75, delay:0.3, ease:EASE }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
@@ -492,7 +492,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
           <motion.div
-            initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+            initial={false} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
             className="text-center mb-8"
           >
@@ -625,7 +625,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
 
         <div className="relative z-10 max-w-4xl mx-auto text-center">
           <motion.div
-            initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+            initial={false} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
           >
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">
@@ -650,7 +650,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
 
           {/* Quick stats row */}
           <motion.div
-            initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+            initial={false} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.7, delay:0.15, ease:EASE }}
             className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4"
           >
@@ -681,7 +681,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: text + features */}
             <motion.div
-              initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }}
+              initial={false} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
             >
               <span className="brand-eyebrow inline-block mb-4">
@@ -722,7 +722,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
 
             {/* Right: chat visual */}
             <motion.div
-              initial={{ opacity:0, x:30 }} whileInView={{ opacity:1, x:0 }}
+              initial={false} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, delay:0.1, ease:EASE }}
             >
               <ChatVisual/>
@@ -740,7 +740,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: analytics visual */}
             <motion.div
-              initial={{ opacity:0, x:-30 }} whileInView={{ opacity:1, x:0 }}
+              initial={false} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, ease:EASE }}
             >
               <AnalyticsVisual/>
@@ -748,7 +748,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
 
             {/* Right: text + bullets */}
             <motion.div
-              initial={{ opacity:0, x:30 }} whileInView={{ opacity:1, x:0 }}
+              initial={false} whileInView={{ opacity:1, x:0 }}
               viewport={{ once:true }} transition={{ duration:0.7, delay:0.1, ease:EASE }}
             >
               <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>

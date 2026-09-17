@@ -39,7 +39,7 @@ export function HomeProducts({ content }: { content?: { servicesTitleLine1?: str
     <section className="border-y border-gray-200/80 bg-white py-8 dark:border-white/[0.06] dark:bg-brand-900 sm:py-12">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, ease: EASE }}
@@ -62,7 +62,7 @@ export function HomeProducts({ content }: { content?: { servicesTitleLine1?: str
             return (
               <motion.div
                 key={p.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: i * 0.08, ease: EASE }}

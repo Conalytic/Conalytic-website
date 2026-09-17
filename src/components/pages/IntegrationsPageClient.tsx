@@ -21,7 +21,7 @@ import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden:{ opacity:0, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
+const fadeUp = { hidden:{ opacity:1, y:24 }, show:{ opacity:1, y:0, transition:{ duration:0.55, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.05 } } };
 
 /** OAuth marketing integrations available in Conalytic-Chat. */
@@ -169,15 +169,15 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Zap className="w-3 h-3"/> {heroBadge}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>

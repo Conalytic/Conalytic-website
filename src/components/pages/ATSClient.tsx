@@ -10,7 +10,7 @@ import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+const fadeUp = { hidden: { opacity: 1, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 
 /* ── Mini visuals for ATS feature cards ─────────── */
@@ -284,19 +284,19 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
         <div className="absolute top-0 right-1/4 w-[600px] h-[500px] rounded-full blur-3xl bg-brand-500/8 dark:bg-brand-500/12 pointer-events-none"/>
         <div className="absolute top-0 left-1/4 w-[400px] h-[400px] rounded-full blur-3xl bg-brand-600/10 dark:bg-brand-600/15 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-amber-50 dark:bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-200 dark:border-amber-500/25 mb-8">
             <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" aria-hidden/> {HERO_COMING_SOON_LABEL}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-lg text-gray-500 dark:text-white/70 mb-6 max-w-3xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>
-          <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={heroPrimaryCta.href}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               {heroPrimaryCta.label} <ArrowRight className="w-4 h-4"/>
@@ -312,7 +312,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       {/* ── FEATURES ────────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="brand-eyebrow inline-block mb-4">ATS Capabilities</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{featuresTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto">{featuresSubtitle}</p>
@@ -344,7 +344,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 70% 60% at 50% 100%, rgba(148,163,184,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Hiring Pipeline</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Your Complete Hiring Pipeline</h2>
             <p className="text-gray-500 dark:text-white/65">Every stage tracked, every candidate accounted for</p>

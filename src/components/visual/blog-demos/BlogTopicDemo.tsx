@@ -54,7 +54,7 @@ function Ga4TrafficDropDemo() {
         ))}
         {step >= 6 ? (
           <motion.p
-            initial={{ opacity: 0 }}
+            initial={false}
             animate={{ opacity: 1 }}
             className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-2 py-1.5 text-[8px] leading-relaxed text-amber-200"
           >
@@ -101,7 +101,7 @@ function AskGa4Demo() {
         </div>
         <motion.div
           key={qIdx}
-          initial={{ opacity: 0, y: 6 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
           className="mt-2 rounded-lg bg-brand-500/10 px-2 py-1.5 text-[8px] text-brand-200"
         >
@@ -297,7 +297,7 @@ function AiReportsDemo() {
     <DemoShell label="AI report governance">
       <motion.div
         key={phase}
-        initial={{ opacity: 0, x: 8 }}
+        initial={false}
         animate={{ opacity: 1, x: 0 }}
         className="rounded-xl border border-white/10 bg-white/[0.04] p-2.5"
       >

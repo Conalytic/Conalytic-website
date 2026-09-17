@@ -73,7 +73,7 @@ function KpisCore({ compact }: { compact?: boolean }) {
         {KPIS.slice(0, compact ? 2 : 4).map((kpi, i) => (
           <motion.div
             key={kpi.label}
-            initial={{ opacity: 0, y: 12 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 + i * 0.08 }}
             className={cn(

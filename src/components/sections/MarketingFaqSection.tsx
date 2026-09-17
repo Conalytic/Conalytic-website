@@ -28,7 +28,7 @@ export function MarketingFaqSection({
     <section id={id} className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: EASE }}
@@ -38,7 +38,7 @@ export function MarketingFaqSection({
           <p className="text-gray-500 dark:text-white/65">{subtitle}</p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.08, ease: EASE }}

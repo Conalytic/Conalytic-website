@@ -50,7 +50,7 @@ export function DemoFrame({
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 32, scale: 0.98 }}
+      initial={false}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.75, ease: EASE }}
       className={cn("relative", className)}

@@ -78,7 +78,7 @@ export function PricingClient() {
         />
         <div className="relative z-10 max-w-3xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 18 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6"
@@ -87,7 +87,7 @@ export function PricingClient() {
             Pricing
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 28 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.08, ease: EASE }}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6"
@@ -96,7 +96,7 @@ export function PricingClient() {
             <span className={BRAND_HERO_GRADIENT_CLASS}>Scale with tokens.</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 28 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.16, ease: EASE }}
             className="text-lg sm:text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed"
@@ -109,7 +109,7 @@ export function PricingClient() {
             subscription required.
           </motion.p>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.24, ease: EASE }}
             className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
@@ -140,7 +140,7 @@ export function PricingClient() {
             {PRICING_PLANS.map((plan, i) => (
               <motion.div
                 key={plan.id}
-                initial={{ opacity: 0, y: 24 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: i * 0.08, ease: EASE }}
@@ -211,7 +211,7 @@ export function PricingClient() {
             {TOKEN_HOW_IT_WORKS.map((item, i) => (
               <motion.div
                 key={item.step}
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: EASE }}
@@ -230,7 +230,7 @@ export function PricingClient() {
 
           {/* Token balance card */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: EASE }}

@@ -251,7 +251,7 @@ export function CTA({
       <div className="max-w-5xl mx-auto">
         <motion.div
           className="relative rounded-3xl border border-black/6 dark:border-white/8 shadow-2xl shadow-black/8 dark:shadow-black/50"
-          initial={{ opacity: 0, y: 32, scale: 0.985 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={viewportOnce}
           transition={{ duration: 0.7, ease: SAAS_EASE }}
@@ -362,7 +362,7 @@ export function CTA({
 
             <motion.h2
               className="text-3xl sm:text-5xl font-black text-gray-900 dark:text-white mb-4 leading-tight tracking-tight"
-              initial={{ opacity: 0, y: 16 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.55, delay: 0.05, ease: SAAS_EASE }}
@@ -374,7 +374,7 @@ export function CTA({
             </motion.h2>
             <motion.p
               className="text-gray-500 dark:text-white/68 text-base mb-10 max-w-lg mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 12 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.12, ease: SAAS_EASE }}

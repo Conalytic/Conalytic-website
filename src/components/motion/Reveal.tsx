@@ -9,27 +9,27 @@ type RevealVariant = "fade-up" | "fade-in" | "scale" | "slide-left" | "slide-rig
 
 const variants: Record<RevealVariant, Variants> = {
   "fade-up": {
-    hidden: { opacity: 0, y: 32 },
+    hidden: { opacity: 1, y: 32 },
     show: { opacity: 1, y: 0, transition: { duration: 0.62, ease: SAAS_EASE } },
   },
   "fade-in": {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     show: { opacity: 1, transition: { duration: 0.5, ease: SAAS_EASE } },
   },
   scale: {
-    hidden: { opacity: 0, scale: 0.94 },
+    hidden: { opacity: 1, scale: 0.94 },
     show: { opacity: 1, scale: 1, transition: { duration: 0.55, ease: SAAS_EASE } },
   },
   "slide-left": {
-    hidden: { opacity: 0, x: -36 },
+    hidden: { opacity: 1, x: -36 },
     show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: SAAS_EASE } },
   },
   "slide-right": {
-    hidden: { opacity: 0, x: 36 },
+    hidden: { opacity: 1, x: 36 },
     show: { opacity: 1, x: 0, transition: { duration: 0.6, ease: SAAS_EASE } },
   },
   "blur-up": {
-    hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+    hidden: { opacity: 1, y: 24, filter: "blur(8px)" },
     show: {
       opacity: 1,
       y: 0,

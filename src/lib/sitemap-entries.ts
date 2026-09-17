@@ -6,7 +6,7 @@ import { blogPostSlugFromPath, SITE_PATHS } from "@/lib/site-paths";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const LEGAL_LAST_MODIFIED = new Date(LEGAL_DOCUMENTS_LAST_UPDATED);
-const SITE_LAST_MODIFIED = new Date("2026-08-20T00:00:00.000Z");
+const SITE_LAST_MODIFIED = new Date("2026-09-17T00:00:00.000Z");
 
 /** Preferred sitemap order — home → platform → products → resources → company → legal */
 const PATH_ORDER: string[] = [

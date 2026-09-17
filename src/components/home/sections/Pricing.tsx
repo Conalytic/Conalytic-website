@@ -26,7 +26,7 @@ export function Pricing({ content }: { content?: PricingContent }) {
     >
       <div className="max-w-4xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.6, ease: EASE }}

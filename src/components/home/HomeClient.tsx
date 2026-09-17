@@ -242,7 +242,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
@@ -261,7 +261,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 
           {/* ── Pure-SVG hub diagram — zero HTML/SVG hybrid ── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.97 }}
+            initial={false}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={viewportOnce}
             transition={{ duration: 0.75, ease: EASE }}
@@ -408,7 +408,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
           <div className="flex-1 w-full space-y-3">
             {hubRows.map((item, i) => (
               <motion.div key={item.id}
-                initial={{ opacity: 0, x: 20 }}
+                initial={false}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={viewportOnce}
                 transition={{ duration: 0.45, delay: i * 0.07, ease: EASE }}
@@ -454,7 +454,7 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
             ))}
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
               transition={{ duration: 0.5, delay: 0.25, ease: EASE }}
@@ -498,7 +498,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
     <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
       <div className="max-w-5xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
@@ -522,7 +522,7 @@ function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
           {/* Card */}
           <AnimatePresence mode="wait">
             <motion.div key={current}
-              initial={{ opacity:0, x:40 }} animate={{ opacity:1, x:0 }} exit={{ opacity:0, x:-40 }}
+              initial={false} animate={{ opacity:1, x:0 }} exit={{ opacity:0, x:-40 }}
               transition={{ duration:0.4, ease:EASE }}
               className="flex-1 rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] flex flex-col sm:flex-row shadow-md shadow-black/5 dark:shadow-black/50"
             >
@@ -597,7 +597,7 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
     <section id="faq" className="py-8 md:py-12 px-4 bg-white dark:bg-brand-900">
       <div className="max-w-2xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
@@ -607,7 +607,7 @@ function FAQSection({ content }: { content?: HomeContentPreset }) {
           <p className="text-gray-500 dark:text-white/65">{content?.faqSubtitle || "Everything you need to know about Conalytic."}</p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.6, delay: 0.1, ease: EASE }}

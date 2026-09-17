@@ -13,7 +13,7 @@ import { categoryToProductVisual } from "@/lib/product-visual";
 import { getBlogPostsNewestFirst, POSTS_PER_PAGE, type StaticBlogPost } from "@/content/blog-posts";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } } };
+const fadeUp = { hidden: { opacity: 1, y: 24 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 
 const CATEGORY_STYLES: Record<string, string> = {
@@ -147,7 +147,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
         <BrandAmbient variant="hero" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE }}
             className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-100 bg-white/80 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-brand-700 backdrop-blur-sm dark:border-brand-500/20 dark:bg-white/[0.06] dark:text-brand-300"
@@ -156,7 +156,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
             {heroBadge}
           </motion.div>
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: EASE }}
             className="marketing-hero-title mb-6 text-gray-900 dark:text-white sm:mb-6"
@@ -165,7 +165,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
             <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.2, ease: EASE }}
             className="mx-auto max-w-2xl text-lg leading-relaxed text-gray-600 dark:text-white/65 sm:text-xl"
@@ -179,7 +179,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
         <div className="mx-auto max-w-6xl">
           {featured ? (
             <motion.div
-              initial={{ opacity: 0, y: 28 }}
+              initial={false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: EASE }}

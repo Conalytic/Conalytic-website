@@ -49,7 +49,7 @@ export function Transformation({ content }: { content?: TransformationContent })
 
         {/* Eyebrow + Title */}
         <motion.div
-          initial={{ opacity: 0, y: 22 }}
+          initial={false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={viewportOnce}
           transition={{ duration: 0.65, ease: EASE }}
@@ -69,7 +69,7 @@ export function Transformation({ content }: { content?: TransformationContent })
 
           {/* ── BEFORE card ── */}
           <motion.div
-            initial={{ opacity: 0, x: reduceMotion ? 0 : -32 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.65, ease: EASE }}
@@ -126,7 +126,7 @@ export function Transformation({ content }: { content?: TransformationContent })
 
           {/* ── AFTER card ── */}
           <motion.div
-            initial={{ opacity: 0, x: reduceMotion ? 0 : 32 }}
+            initial={false}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={viewportOnce}
             transition={{ duration: 0.65, delay: 0.12, ease: EASE }}

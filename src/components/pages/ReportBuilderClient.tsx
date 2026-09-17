@@ -29,7 +29,7 @@ import {
 } from "@/components/products/ProductPageSections";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+const fadeUp = { hidden: { opacity: 1, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.1 } } };
 
 /* ── Mini visuals for key feature cards ─────────── */
@@ -252,23 +252,23 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-blue-600/10 dark:bg-blue-600/15 pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold bg-brand-50 dark:bg-brand-500/15 text-brand-700 dark:text-brand-300 border border-brand-200 dark:border-brand-500/25 mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" aria-hidden/> {HERO_LIVE_LABEL}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-lg text-gray-500 dark:text-white/70 mb-4 max-w-3xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.25,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.25,ease:EASE}}
             className="text-gray-400 dark:text-white/55 text-base mb-10 max-w-2xl mx-auto leading-relaxed">
             {heroSecondarySubtitle}
           </motion.p>
-          <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}} className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href={CHAT_APP_SIGNUP_URL}
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03] active:scale-[0.98]">
               Generate your first report <ArrowRight className="w-4 h-4"/>
@@ -290,7 +290,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       {/* ── KEY FEATURES ────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="brand-eyebrow inline-block mb-4">{coreFeaturesSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{coreFeaturesTitle}</h2>
           </motion.div>
@@ -334,7 +334,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(148,163,184,0.09) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-300 border border-orange-100 dark:border-orange-500/20 mb-4">Why Conalytic Reports</span>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-5 leading-tight">{valueTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4 max-w-2xl mx-auto">{valueSubtitle}</p>
@@ -345,7 +345,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
               View in-app or download HTML. Regenerate with frozen settings when your connected data refreshes.
             </p>
           </motion.div>
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.15,ease:EASE}}
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.15,ease:EASE}}
             className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {[{val:"12+",label:"Slide types per deck"},{val:"366",label:"Max day range"},{val:"4",label:"Active platforms"},{val:"HTML",label:"Output format"}].map(s=>(
               <div key={s.label} className="bg-[#f0f1f5] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
@@ -365,7 +365,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(148,163,184,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
+            <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
               <span className="brand-eyebrow inline-flex items-center gap-2 mb-4">
                 Report Builder
               </span>
@@ -386,7 +386,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
                 Start building reports <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
-            <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
+            <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
               <ReportPreview/>
             </motion.div>
           </div>
@@ -397,7 +397,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
       <section className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at -5% 50%, rgba(148,163,184,0.09) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${DEMO_SUCCESS_PILL_CLASS}`}>Client delivery</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Professional HTML decks for agency clients</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">Set client name and report title on the cover slide. Download HTML for email delivery or walk through the in-app viewer on client calls.</p>
@@ -428,7 +428,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
                 </a>
               </div>
             </motion.div>
-            <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
+            <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}>
               <ReportPreview/>
             </motion.div>
           </div>

@@ -12,7 +12,7 @@ import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
+const fadeUp = { hidden:{ opacity:1, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 
 const stats = [
@@ -86,15 +86,15 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/4 w-[500px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Globe className="w-3 h-3"/> {heroBadge}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>
@@ -126,7 +126,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 55% 50% at 105% 50%, rgba(148,163,184,0.08) 0%, transparent 65%)"}}/>
         <div className="relative z-10 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{opacity:0,x:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
+            <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
               <span className="brand-eyebrow inline-block mb-4">{storyBadge}</span>
               <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">{storyTitle}</h2>
               <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-4">
@@ -141,7 +141,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
               </a>
             </motion.div>
             {/* Timeline — rail centered on icon column (w-10), one row per milestone */}
-            <motion.div initial={{opacity:0,x:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}} className="relative">
+            <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}} className="relative">
               <div
                 className="pointer-events-none absolute left-5 top-5 bottom-5 w-0.5 -translate-x-1/2 rounded-full bg-gradient-to-b from-brand-400/40 via-violet-400/30 to-transparent"
                 aria-hidden

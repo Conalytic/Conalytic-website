@@ -13,7 +13,7 @@ import { SITE_ROUTES } from "@/lib/site-links";
 import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
+const fadeUp = { hidden:{ opacity:1, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 
 /* ── Why-join bento visuals ──────────────────────── */
@@ -304,19 +304,19 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Users className="w-3 h-3"/> {heroBadge}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-2xl mx-auto leading-relaxed mb-10">
             {heroSubtitle}
           </motion.p>
-          <motion.a initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
+          <motion.a initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,delay:0.3,ease:EASE}}
             href={heroButton.href}
             className="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-base font-semibold btn-brand-primary shadow-xl shadow-brand-600/25 transition-all duration-200 hover:scale-[1.03]">
             {heroButton.label} <ArrowRight className="w-4 h-4"/>
@@ -342,7 +342,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       {/* ── WHY JOIN ────────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="brand-eyebrow inline-block mb-4">Life at Conalytic</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{lifeAtConalyticTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">{lifeAtConalyticSubtitle}</p>
@@ -374,7 +374,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
       <section id="open-positions" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 100%, rgba(148,163,184,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-3xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-violet-50 dark:bg-violet-500/10 text-violet-700 dark:text-violet-300 border border-violet-100 dark:border-violet-500/20 mb-4">Open Roles</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{openPositionsTitle}</h2>
             <p className="text-gray-500 dark:text-white/65">{openPositionsSubtitle}</p>

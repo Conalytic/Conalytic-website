@@ -11,7 +11,7 @@ import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
 import { SITE_ROUTES } from "@/lib/site-links";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden:{ opacity:0, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
+const fadeUp = { hidden:{ opacity:1, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 
 const CONTACT_INBOX = "admin@conalytic.com";
@@ -96,15 +96,15 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-3xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Mail className="w-3 h-3"/> {heroBadge}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 max-w-xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>
@@ -140,7 +140,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
       <section id="contact-form" className="relative py-8 md:py-12 px-4 overflow-hidden bg-white dark:bg-brand-900">
         <div className="absolute inset-0 pointer-events-none hidden dark:block" style={{background:"radial-gradient(ellipse 60% 50% at 50% 0%, rgba(148,163,184,0.08) 0%, transparent 70%)"}}/>
         <div className="relative z-10 max-w-2xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}>
             <div className="rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-lg p-8 sm:p-10">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{formTitle}</h2>
               <p className="text-gray-500 dark:text-white/55 text-sm mb-8">

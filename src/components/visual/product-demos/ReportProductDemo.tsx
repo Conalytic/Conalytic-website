@@ -168,7 +168,7 @@ export function ReportProductDemo({ compact = false, embedded = false }: { compa
             {SOURCES.map((s, i) => (
               <motion.div
                 key={s.label}
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={false}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.4 + i * 0.1 }}
                 className="flex flex-col items-center gap-1"

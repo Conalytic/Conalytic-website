@@ -33,6 +33,12 @@ const nunitoSans = Nunito_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_ORIGIN),
+  alternates: {
+    canonical: SITE_ORIGIN,
+    types: {
+      "application/xml": `${SITE_ORIGIN}/sitemap.xml`,
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.png", type: "image/png", sizes: "512x512" },

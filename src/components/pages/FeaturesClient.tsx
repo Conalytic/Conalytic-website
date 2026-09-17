@@ -18,7 +18,7 @@ import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
 import { isExternalNavigationHref } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const fadeUp = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
+const fadeUp = { hidden: { opacity: 1, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: EASE } } };
 const stagger = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } };
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
@@ -479,19 +479,19 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       <section className="relative overflow-hidden px-4 pt-16 pb-8 sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div initial={{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.6,ease:EASE}}
             className="brand-eyebrow inline-flex items-center gap-2 mb-6">
             <Sparkles className="w-3 h-3"/> {heroBadge}
           </motion.div>
-          <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
+          <motion.h1 initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.1,ease:EASE}}
             className="marketing-hero-title text-gray-900 dark:text-white mb-6">
             {heroTitleLine1} <span className={BRAND_HERO_GRADIENT_CLASS}>{heroTitleLine2}</span>
           </motion.h1>
-          <motion.p initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
+          <motion.p initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.2,ease:EASE}}
             className="text-xl text-gray-500 dark:text-white/70 mb-10 max-w-2xl mx-auto leading-relaxed">
             {heroSubtitle}
           </motion.p>
-          <motion.div initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
+          <motion.div initial={false} animate={{opacity:1,y:0}} transition={{duration:0.75,delay:0.3,ease:EASE}}>
             <a
               href={heroPrimaryCta.href}
               {...(heroPrimaryExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
@@ -509,7 +509,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
       {/* ── FEATURES BENTO GRID ───────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
-          <motion.div initial={{opacity:0,y:24}} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
+          <motion.div initial={false} whileInView={{opacity:1,y:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}} className="text-center mb-8">
             <span className="brand-eyebrow inline-block mb-4">{includedSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
@@ -577,7 +577,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
           <div className="relative z-10 max-w-5xl mx-auto">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${idx%2===1?"":"lg:grid-flow-dense"}`}>
               {/* Text side */}
-              <motion.div initial={{opacity:0,x:idx%2===1?30:-30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}
+              <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,ease:EASE}}
                 className={idx%2===1?"lg:col-start-2":""}>
                 <span className={`inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest border mb-4 ${s.badgeColor}`}>{s.badge}</span>
                 <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">{s.title}</h2>
@@ -622,7 +622,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
                 )}
               </motion.div>
               {/* Visual side */}
-              <motion.div initial={{opacity:0,x:idx%2===1?-30:30}} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}
+              <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}}
                 className={idx%2===1?"lg:col-start-1 lg:row-start-1":""}>
                 <s.Visual/>
               </motion.div>

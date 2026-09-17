@@ -31,7 +31,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">
         <div>
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: EASE }}
             className="brand-eyebrow mb-6 backdrop-blur-sm"
@@ -41,7 +41,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
           </motion.div>
 
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.05, ease: EASE }}
             className="marketing-hero-title mb-5 text-gray-900 dark:text-white"
@@ -62,7 +62,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.12, ease: EASE }}
             className="mb-8 max-w-lg text-base leading-relaxed text-gray-600 dark:text-white/65 sm:text-lg"
@@ -72,7 +72,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.18, ease: EASE }}
             className="mb-10 flex flex-col gap-3 sm:flex-row"
@@ -97,7 +97,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.24, ease: EASE }}
             className="mb-10 grid grid-cols-1 gap-2.5 min-[420px]:grid-cols-3 sm:gap-3"
