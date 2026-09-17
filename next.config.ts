@@ -3,7 +3,6 @@
  */
 import type { NextConfig } from "next";
 import { getLegacyMarketingRedirects } from "./src/lib/legacy-redirects";
-import { allowSearchIndexing } from "./src/lib/seo-config";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -19,9 +18,6 @@ const nextConfig: NextConfig = {
     };
 
     const siteHeaders: { key: string; value: string }[] = [cspHeader];
-    if (!allowSearchIndexing()) {
-      siteHeaders.unshift(noIndexHeader);
-    }
 
     return [
       { source: "/api/:path*", headers: [noIndexHeader] },

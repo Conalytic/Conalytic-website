@@ -1,7 +1,5 @@
 /**
- * Canonical origin + crawl rules for SEO. Override with NEXT_PUBLIC_SITE_URL on staging.
- *
- * Production marketing site is indexable. Staging / preview deployments stay noindex.
+ * Canonical origin for SEO and absolute URLs.
  * Canonical host is always **non-www** (`https://conalytic.com`).
  */
 export const PRODUCTION_SITE_ORIGIN = "https://conalytic.com";
@@ -23,26 +21,7 @@ export const SITE_ORIGIN = normalizeSiteOrigin(
   process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_ORIGIN
 );
 
-/**
- * Staging / preview deployments must never be indexed — enforced in code, not only via env.
- */
-export function isStagingWebsite(): boolean {
-  if (process.env.STAGING_WEBSITE === "1") return true;
-
-  const gitRef = process.env.VERCEL_GIT_COMMIT_REF?.trim().toLowerCase();
-  if (gitRef === "staging") return true;
-
-  const configuredOrigin = normalizeSiteOrigin(
-    process.env.NEXT_PUBLIC_SITE_URL || PRODUCTION_SITE_ORIGIN
-  );
-  return configuredOrigin !== PRODUCTION_SITE_ORIGIN;
-}
-
-/** Production marketing pages are indexable; staging previews stay blocked. */
+/** Marketing pages are always indexable (no staging / preview noindex gate). */
 export function allowSearchIndexing(): boolean {
-  // Vercel production must never ship noindex — even if NEXT_PUBLIC_SITE_URL is misconfigured.
-  if (process.env.VERCEL_ENV === "production") {
-    return true;
-  }
-  return !isStagingWebsite();
+  return true;
 }

@@ -1,9 +1,5 @@
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
-export function stagingRobotsTxt(): string {
-  return "User-agent: *\nDisallow: /\n";
-}
-
 export function buildDefaultRobotsTxt(): string {
   return [
     "User-agent: *",

@@ -1,8 +1,7 @@
 import { readCmsJson } from "@/lib/cms/read-cms-file";
-import { buildDefaultRobotsTxt, stagingRobotsTxt } from "@/lib/cms/robots-default";
-import { allowSearchIndexing } from "@/lib/seo-config";
+import { buildDefaultRobotsTxt } from "@/lib/cms/robots-default";
 
-export { buildDefaultRobotsTxt, stagingRobotsTxt };
+export { buildDefaultRobotsTxt };
 
 export async function getPublishedRobotsBody(): Promise<string | null> {
   const cms = await readCmsJson<{ body?: string }>("site/robots.json");
@@ -11,10 +10,6 @@ export async function getPublishedRobotsBody(): Promise<string | null> {
 }
 
 export async function buildRobotsTxt(): Promise<string> {
-  if (!allowSearchIndexing()) {
-    return stagingRobotsTxt();
-  }
-
   const custom = await getPublishedRobotsBody();
   if (custom) return custom;
 
