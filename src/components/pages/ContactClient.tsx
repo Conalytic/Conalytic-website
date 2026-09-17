@@ -116,7 +116,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
           <h2 className="text-center text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-10">
             Contact information
           </h2>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto">
             {contactInfo.map(info=>(
               <motion.div key={info.title} variants={fadeUp}
                 className="relative overflow-hidden rounded-2xl p-6 text-center bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-lg dark:hover:shadow-black/40 hover:-translate-y-0.5 transition-all duration-300">

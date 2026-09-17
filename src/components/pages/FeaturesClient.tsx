@@ -513,7 +513,7 @@ export function FeaturesClient({ content }: { content?: FeaturesContentPreset })
             <span className="brand-eyebrow inline-block mb-4">{includedSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{includedTitle}</h2>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 auto-rows-fr">
             {BENTO_CARDS.map(card=>{
               const cardBody = (
                 <>

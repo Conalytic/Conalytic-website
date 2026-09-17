@@ -194,7 +194,7 @@ export function IntegrationsPageClient({ content }: { content?: IntegrationsCont
             {integrations.length} platforms connect to Conalytic Chats, KPIs Tracker, and Report Builder via secure read-only OAuth.
           </p>
 
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {integrations.map(itg=>(
               <motion.div key={itg.name} variants={fadeUp}
                 className="relative rounded-2xl border border-gray-100 bg-white p-5 transition-all duration-200 group hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg dark:border-white/[0.07] dark:bg-brand-800 dark:hover:border-brand-500/40 dark:hover:shadow-black/40">

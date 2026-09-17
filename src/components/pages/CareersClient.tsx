@@ -347,7 +347,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{lifeAtConalyticTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">{lifeAtConalyticSubtitle}</p>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {whyJoin.map(r=>(
               <motion.div key={r.title} variants={fadeUp}
                 className="relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300">
@@ -379,7 +379,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{openPositionsTitle}</h2>
             <p className="text-gray-500 dark:text-white/65">{openPositionsSubtitle}</p>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="space-y-5">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="space-y-5">
             {openRoles.map(role=>(
               <motion.div key={role.title} variants={fadeUp}
                 className="rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm overflow-hidden hover:border-brand-300 dark:hover:border-brand-500/40 hover:shadow-lg dark:hover:shadow-black/40 transition-all duration-300">

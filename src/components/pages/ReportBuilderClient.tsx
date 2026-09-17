@@ -294,7 +294,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
             <span className="brand-eyebrow inline-block mb-4">{coreFeaturesSubtitle}</span>
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">{coreFeaturesTitle}</h2>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {keyFeatures.map(f=>(
               <motion.div key={f.title} variants={fadeUp}
                 className={`relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group`}>
@@ -403,7 +403,7 @@ export function ReportBuilderClient({ content }: { content?: ReportBuilderConten
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto leading-relaxed">Set client name and report title on the cover slide. Download HTML for email delivery or walk through the in-app viewer on client calls.</p>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="space-y-5">
+            <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="space-y-5">
               {[
                 { icon: Palette, title: "Branded cover slides", description: "Client name and report title surface on every deck cover and card." },
                 { icon: Link2, title: "Downloadable HTML", description: "Open in any browser — no PowerPoint license required for stakeholders." },

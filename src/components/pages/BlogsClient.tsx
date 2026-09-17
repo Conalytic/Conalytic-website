@@ -4,7 +4,6 @@
 import { SITE_ROUTES } from "@/lib/site-links";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { ArrowRight, BookOpen, ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BlogCardVisual, BlogFeaturedVisual } from "@/components/visual/product-demos/ProductVisual";
@@ -121,9 +120,13 @@ function Pagination({ currentPage, totalPages }: { currentPage: number; totalPag
   );
 }
 
-export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
-  const searchParams = useSearchParams();
-
+export function BlogsClient({
+  content,
+  currentPage,
+}: {
+  content?: BlogsContentPreset;
+  currentPage: number;
+}) {
   const heroBadge = content?.heroBadge ?? "Blog";
   const heroTitleLine1 = content?.heroTitleLine1 ?? "SEO guides for";
   const heroTitleLine2 = content?.heroTitleLine2 ?? "Chat, KPIs & Reports";
@@ -136,10 +139,8 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
   const rest = sorted.slice(1);
   const totalPages = Math.max(1, Math.ceil(rest.length / POSTS_PER_PAGE));
 
-  const rawPage = Number(searchParams.get("page") ?? "1");
-  const currentPage = Number.isFinite(rawPage) && rawPage >= 1 ? Math.min(Math.floor(rawPage), totalPages) : 1;
-
-  const pagePosts = rest.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE);
+  const safePage = Math.min(Math.max(1, currentPage), totalPages);
+  const pagePosts = rest.slice((safePage - 1) * POSTS_PER_PAGE, safePage * POSTS_PER_PAGE);
 
   return (
     <>
@@ -231,9 +232,9 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
           ) : null}
 
           <motion.div
-            key={currentPage}
+            key={safePage}
             variants={stagger}
-            initial="hidden"
+            initial="show"
             animate="show"
             className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
@@ -242,7 +243,7 @@ export function BlogsClient({ content }: { content?: BlogsContentPreset }) {
             ))}
           </motion.div>
 
-          <Pagination currentPage={currentPage} totalPages={totalPages} />
+          <Pagination currentPage={safePage} totalPages={totalPages} />
         </div>
       </section>
     </>

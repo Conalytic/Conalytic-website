@@ -104,7 +104,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
       {/* ── STATS ───────────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-4xl mx-auto">
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {stats.map(s=>(
               <motion.div key={s.label} variants={fadeUp}
                 className="flex items-center gap-4 p-6 rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm">

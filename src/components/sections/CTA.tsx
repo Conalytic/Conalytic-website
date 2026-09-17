@@ -416,7 +416,7 @@ export function CTA({
             <motion.div
               className="flex flex-wrap items-center justify-center gap-8"
               variants={staggerContainer}
-              initial="hidden"
+              initial="show"
               whileInView="show"
               viewport={viewportOnce}
             >

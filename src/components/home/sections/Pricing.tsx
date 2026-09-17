@@ -48,7 +48,7 @@ export function Pricing({ content }: { content?: PricingContent }) {
         <motion.div
           className="grid md:grid-cols-2 gap-5 items-stretch"
           variants={staggerContainer}
-          initial="hidden"
+          initial="show"
           whileInView="show"
           viewport={viewportOnce}
         >

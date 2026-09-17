@@ -36,7 +36,7 @@ export function ProductStatsStrip({ stats }: { stats: ProductPageContent["stats"
       <div className="max-w-5xl mx-auto">
         <motion.div
           variants={stagger}
-          initial="hidden"
+          initial="show"
           whileInView="show"
           viewport={{ once: true }}
           className="grid grid-cols-2 sm:grid-cols-4 gap-4"
@@ -87,7 +87,7 @@ export function ProductHowItWorks({
           <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-gray-200 via-gray-100 to-transparent dark:from-brand-500/30 dark:via-brand-500/15" />
           <motion.div
             variants={stagger}
-            initial="hidden"
+            initial="show"
             whileInView="show"
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -155,7 +155,7 @@ export function ProductCapabilitiesGrid({
 
         <motion.div
           variants={stagger}
-          initial="hidden"
+          initial="show"
           whileInView="show"
           viewport={{ once: true }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
@@ -296,7 +296,7 @@ export function AiModelsSection() {
         </motion.div>
         <motion.div
           variants={stagger}
-          initial="hidden"
+          initial="show"
           whileInView="show"
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-3 gap-5"

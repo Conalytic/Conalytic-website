@@ -317,7 +317,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">{featuresTitle}</h2>
             <p className="text-gray-500 dark:text-white/65 max-w-2xl mx-auto">{featuresSubtitle}</p>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {features.map(f=>(
               <motion.div key={f.title} variants={fadeUp}
                 className="relative flex flex-col rounded-2xl overflow-hidden bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm hover:shadow-xl dark:hover:shadow-black/50 hover:-translate-y-1 transition-all duration-300 group">
@@ -349,7 +349,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 leading-tight">Your Complete Hiring Pipeline</h2>
             <p className="text-gray-500 dark:text-white/65">Every stage tracked, every candidate accounted for</p>
           </motion.div>
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="relative">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="relative">
             {/* Connecting line */}
             <div className="hidden lg:block absolute top-6 left-[calc(8.33%+24px)] right-[calc(8.33%+24px)] h-0.5 bg-gradient-to-r from-brand-400/30 via-brand-500/30 to-brand-400/30 dark:via-brand-400/30 dark:to-brand-400/30"/>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -370,7 +370,7 @@ export function ATSClient({ content }: { content?: ATSContentPreset }) {
       {/* ── STATS ───────────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-5xl mx-auto">
-          <motion.div variants={stagger} initial="hidden" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               { value:"60%",  label:"Reduction in time-to-hire",   desc:"Teams using Conalytic ATS fill roles 60% faster on average",           color:"text-brand-600 dark:text-brand-300" },
               { value:"3×",   label:"More quality candidates",      desc:"AI-powered screening surfaces the best talent from any pipeline",       color:"text-brand-600 dark:text-brand-400" },

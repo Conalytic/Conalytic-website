@@ -285,7 +285,7 @@ export function KpisTrackerClient() {
           </motion.div>
           <motion.div
             variants={stagger}
-            initial="hidden"
+            initial="show"
             whileInView="show"
             viewport={{ once: true }}
             className="grid grid-cols-1 lg:grid-cols-3 gap-6"

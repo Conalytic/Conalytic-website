@@ -63,7 +63,7 @@ export function StatsSection() {
         ref={ref}
         className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 divide-x divide-gray-100 dark:divide-white/[0.06]"
         variants={staggerContainer}
-        initial="hidden"
+        initial="show"
         whileInView="show"
         viewport={viewportOnce}
       >

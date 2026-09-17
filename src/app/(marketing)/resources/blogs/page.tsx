@@ -1,7 +1,7 @@
 /** Blog listing `/resources/blogs`. */
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { BlogsClient, type BlogsContentPreset } from "@/components/pages/BlogsClient";
+import { getBlogListTotalPages, parseBlogListPage } from "@/lib/blog-list-page";
 import { BlogListingStructuredData } from "@/components/seo/BlogListingStructuredData";
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
@@ -35,9 +35,16 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function BlogsPage() {
+type BlogsPageProps = {
+  searchParams: Promise<{ page?: string }>;
+};
+
+export default async function BlogsPage({ searchParams }: BlogsPageProps) {
   const overlay = await getPublishedPageOverlay(SITE_PATHS.resources.blogs);
   const content = overlay?.sections as BlogsContentPreset | undefined;
+  const params = await searchParams;
+  const totalPages = getBlogListTotalPages();
+  const currentPage = parseBlogListPage(params.page, totalPages);
 
   return (
     <>
@@ -54,9 +61,7 @@ export default async function BlogsPage() {
         pageDescription={overlay?.seo?.description ?? PAGE_DESCRIPTION}
       />
       <BlogListingStructuredData />
-      <Suspense fallback={null}>
-        <BlogsClient content={content} />
-      </Suspense>
+      <BlogsClient content={content} currentPage={currentPage} />
     </>
   );
 }

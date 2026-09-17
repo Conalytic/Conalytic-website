@@ -506,7 +506,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
 
           {/* Bento grid: Card 1 wide (2/3), Card 2 narrow (1/3) on top; Card 3 full-width below */}
           <motion.div
-            variants={stagger} initial="hidden" whileInView="show"
+            variants={stagger} initial="show" whileInView="show"
             viewport={{ once:true }}
             className="grid grid-cols-1 md:grid-cols-3 gap-5"
           >

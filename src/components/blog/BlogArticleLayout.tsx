@@ -1,5 +1,3 @@
-"use client";
-
 import { SITE_ROUTES } from "@/lib/site-links";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";

@@ -62,7 +62,7 @@ export function Reveal({
 
   return (
     <motion.div
-      initial="hidden"
+      initial="show"
       whileInView="show"
       viewport={viewportOnce}
       variants={{
@@ -100,7 +100,7 @@ export function RevealStagger({
 
   return (
     <motion.div
-      initial="hidden"
+      initial="show"
       whileInView="show"
       viewport={viewportOnce}
       variants={{
