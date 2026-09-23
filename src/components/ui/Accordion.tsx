@@ -17,7 +17,7 @@ export function Accordion({ items, className }: AccordionProps) {
       {items.map((item, i) => (
         <details
           key={i}
-          open
+          open={i === 0}
           className={cn(
             "glass-card overflow-hidden rounded-2xl transition-all duration-300",
             "open:border-brand-500/40 open:glow-purple",
