@@ -496,11 +496,48 @@ section { background: transparent !important; }
   color: var(--service-on-dark-heading);
 }
 
-/* Large multi-line band headlines (benefits scroll reveal) */
-.service-benefits-display-headline {
-  font-size: clamp(1.75rem, 3.2vw + 1rem, 3.25rem);
+/* Service landing typography scale (explicit sizes — wins over stray text-* utilities) */
+.service-landing-section :is(.service-type-display, h2.service-type-display, h3.service-type-display),
+.service-usp-panel-card :is(.service-type-display, h2.service-type-display) {
+  font-size: clamp(2rem, 4.5vw + 0.75rem, 3.375rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.service-landing-section :is(.service-type-section, h2.service-type-section),
+.service-final-cta-panel :is(.service-type-section, h2.service-type-section) {
+  font-size: clamp(1.875rem, 2.8vw + 1rem, 2.75rem);
   line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.service-landing-section :is(.service-type-lead, h2.service-type-lead, h3.service-type-lead) {
+  font-size: clamp(1.625rem, 2.2vw + 1rem, 2.25rem);
+  line-height: 1.16;
   letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.service-landing-section :is(.service-type-card-title, h3.service-type-card-title, .service-faq-question.service-type-card-title) {
+  font-size: clamp(1.25rem, 1.15vw + 1rem, 1.5rem);
+  line-height: 1.32;
+  font-weight: 700;
+}
+
+.service-landing-section .service-type-body-lg,
+.service-usp-panel-card .service-type-body-lg {
+  font-size: clamp(1.0625rem, 0.35vw + 1rem, 1.1875rem);
+  line-height: 1.65;
+}
+
+.service-benefits-display-headline {
+  /* alias: benefits scroll-reveal headline */
+  font-size: clamp(2rem, 4.5vw + 0.75rem, 3.375rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 700;
 }
 
 .service-landing-section-body {

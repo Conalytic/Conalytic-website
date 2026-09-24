@@ -8,7 +8,7 @@ import type { ServiceLandingContent } from "@/lib/service-landing-types";
 import { cn } from "@/lib/utils";
 
 const BENEFITS_HEADLINE_CLASS =
-  "service-benefits-display-headline font-bold tracking-tight text-brand-900 dark:text-brand-50";
+  "service-benefits-display-headline tracking-tight text-brand-900 dark:text-brand-50";
 
 function BenefitsScrollHeadline({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
@@ -61,10 +61,8 @@ export function ServiceBenefitsShowcase({ section }: { section: Showcase }) {
         </header>
 
         <div className="mt-10 max-w-xl md:mt-12 lg:mt-14 lg:max-w-[46%]">
-          <h3 className="service-benefits-intro-title text-2xl font-bold leading-tight sm:text-3xl md:text-[2.15rem]">
-            {section.introTitle}
-          </h3>
-          <p className="service-benefits-intro-body mt-4 text-base leading-[1.65] sm:text-lg">{section.introBody}</p>
+          <h3 className="service-benefits-intro-title service-type-lead">{section.introTitle}</h3>
+          <p className="service-benefits-intro-body service-type-body-lg mt-4">{section.introBody}</p>
         </div>
 
         <div className="mt-12 grid items-start gap-10 lg:mt-16 lg:grid-cols-2 lg:gap-x-14 xl:gap-x-20">
@@ -90,7 +88,7 @@ export function ServiceBenefitsShowcase({ section }: { section: Showcase }) {
                     aria-expanded={isOpen}
                     onClick={() => setOpenIndex(index)}
                   >
-                    <span className="service-benefits-accordion-title min-w-0 flex-1 text-lg font-bold leading-snug sm:text-xl">
+                    <span className="service-benefits-accordion-title service-type-card-title min-w-0 flex-1">
                       {item.title}
                     </span>
                     <span

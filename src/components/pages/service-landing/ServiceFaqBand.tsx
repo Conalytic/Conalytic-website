@@ -20,17 +20,17 @@ export function ServiceFaqBand({
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6">
         <header className="text-center">
           <p className="service-landing-kicker mb-3">FAQ</p>
-          <h2 className="service-landing-section-title text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+          <h2 className="service-landing-section-title service-type-section tracking-tight">
             {title}
           </h2>
-          <p className="service-landing-section-body mx-auto mt-4 max-w-xl text-base leading-relaxed">{subtitle}</p>
+          <p className="service-landing-section-body service-type-body-lg mx-auto mt-4 max-w-xl">{subtitle}</p>
         </header>
 
         <div className="mt-10 space-y-0">
           {items.map((item, index) => (
             <details key={item.question} open={index === 0} className="service-faq-item group">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-left [&::-webkit-details-marker]:hidden">
-                <span className="service-faq-question text-base font-semibold leading-snug sm:text-lg">
+                <span className="service-faq-question service-type-card-title font-semibold">
                   {item.question}
                 </span>
                 <span className="service-faq-icon mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full" aria-hidden>

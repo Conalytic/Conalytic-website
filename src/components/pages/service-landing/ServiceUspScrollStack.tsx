@@ -113,10 +113,10 @@ function UspCopy({ panel, className }: { panel: Panel; className?: string }) {
   return (
     <div className={cn(className)}>
       <p className="service-usp-eyebrow mb-4 text-sm font-semibold">{panel.eyebrow}</p>
-      <h2 className="service-usp-title service-landing-section-title text-3xl font-bold leading-tight sm:text-4xl md:text-[2.65rem] lg:text-[2.2rem] xl:text-[2.5rem]">
+      <h2 className="service-usp-title service-landing-section-title service-type-display">
         {panel.title}
       </h2>
-      <p className="service-usp-body mt-5 max-w-xl text-base leading-relaxed sm:text-lg lg:text-base xl:text-lg">
+      <p className="service-usp-body service-type-body-lg mt-5 max-w-xl">
         {panel.description}
       </p>
       <Link

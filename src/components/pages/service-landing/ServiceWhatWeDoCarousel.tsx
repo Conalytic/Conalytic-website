@@ -79,7 +79,7 @@ export function ServiceWhatWeDoCarousel({
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="service-what-we-do-eyebrow mb-3 text-sm font-medium">{section.eyebrow}</p>
-            <h2 className="service-what-we-do-title service-landing-section-title max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-[2.5rem]">
+            <h2 className="service-what-we-do-title service-landing-section-title service-type-section max-w-3xl">
               {section.title}
             </h2>
           </div>
@@ -119,7 +119,7 @@ export function ServiceWhatWeDoCarousel({
                 <CardVisual visual={item.visual} image={cardImages?.[item.visual]} />
               </div>
               <div className="flex flex-1 flex-col px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-5">
-                <h3 className="service-what-we-do-card-title text-lg font-bold leading-snug sm:text-xl">{item.title}</h3>
+                <h3 className="service-what-we-do-card-title service-type-card-title">{item.title}</h3>
                 <p className="service-what-we-do-card-body mt-2.5 text-sm leading-relaxed sm:text-[15px]">
                   {item.description}
                 </p>

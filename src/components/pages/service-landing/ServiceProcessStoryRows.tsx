@@ -49,10 +49,10 @@ export function ServiceProcessStoryRows({ steps }: { steps: Step[] }) {
 
                 <div className={cn("order-2 max-w-xl lg:max-w-none", !imageLeft && "lg:order-1")}>
                   <p className="service-process-story-eyebrow text-sm font-semibold">{step.eyebrow}</p>
-                  <h2 className="service-process-story-title service-landing-section-title mt-3 text-[1.75rem] font-bold leading-[1.14] tracking-tight sm:text-4xl lg:text-[2.35rem]">
+                  <h2 className="service-process-story-title service-landing-section-title service-type-lead mt-3">
                     {step.title}
                   </h2>
-                  <p className="service-process-story-body mt-5 text-base leading-relaxed sm:text-lg">{step.description}</p>
+                  <p className="service-process-story-body service-type-body-lg mt-5">{step.description}</p>
                   {step.linkHref && step.linkLabel ? (
                     <Link
                       href={step.linkHref}

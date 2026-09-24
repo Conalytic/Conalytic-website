@@ -106,7 +106,7 @@ export function ServiceNumbersBand({
             <p className="service-numbers-eyebrow mb-2 text-[11px] font-semibold uppercase tracking-[0.22em]">
               Proof in the data
             </p>
-            <h2 className="service-numbers-band-title text-xl font-bold tracking-tight sm:text-2xl md:text-[1.65rem]">
+            <h2 className="service-numbers-band-title service-landing-section-title service-type-section tracking-tight">
               {title}
             </h2>
           </div>
