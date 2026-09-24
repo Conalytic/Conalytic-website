@@ -101,7 +101,7 @@ export function ServiceHowItWorks({
           <div className="grid items-start gap-10 p-6 sm:p-8 md:gap-12 md:p-10 lg:grid-cols-[minmax(0,42%)_minmax(0,58%)] lg:gap-x-12 lg:p-12 xl:gap-x-16">
             <header className="service-how-intro lg:sticky lg:top-24 lg:z-[2] lg:self-start xl:top-28">
               <p className="service-landing-kicker mb-3">How it works</p>
-              <h2 className="service-landing-section-title font-bold tracking-tight">
+              <h2 className="service-landing-section-title text-[1.75rem] font-bold leading-[1.14] tracking-tight sm:text-4xl lg:text-[2.35rem]">
                 {title}
               </h2>
               <p className="service-landing-section-body mt-4 text-base leading-relaxed sm:mt-5 sm:text-lg">

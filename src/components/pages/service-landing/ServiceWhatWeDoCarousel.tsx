@@ -79,7 +79,7 @@ export function ServiceWhatWeDoCarousel({
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="service-what-we-do-eyebrow mb-3 text-sm font-medium">{section.eyebrow}</p>
-            <h2 className="service-what-we-do-title service-landing-section-title max-w-3xl font-bold">
+            <h2 className="service-what-we-do-title service-landing-section-title max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-[2.5rem]">
               {section.title}
             </h2>
           </div>

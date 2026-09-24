@@ -491,11 +491,16 @@ section { background: transparent !important; }
 .service-landing-section-title {
   color: var(--service-on-light-heading);
   text-wrap: balance;
-  font-size: clamp(1.625rem, 4.2vw + 0.65rem, 2.35rem);
-  line-height: 1.14;
 }
 .dark .service-landing-section-title {
   color: var(--service-on-dark-heading);
+}
+
+/* Large multi-line band headlines (benefits scroll reveal) */
+.service-benefits-display-headline {
+  font-size: clamp(1.75rem, 3.2vw + 1rem, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
 }
 
 .service-landing-section-body {

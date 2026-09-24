@@ -169,7 +169,7 @@ export function ServiceFinalCtaCard({
                 </span>
               </div>
 
-              <h2 className="service-final-cta-title service-landing-section-title mt-5 font-bold leading-[1.08] tracking-tight">
+              <h2 className="service-final-cta-title mt-5 text-[1.85rem] font-bold leading-[1.08] tracking-tight sm:text-[2.15rem] md:text-[2.55rem] lg:text-[2.65rem]">
                 <span className="service-final-cta-title-shine block">{title}</span>
               </h2>
 
