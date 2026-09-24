@@ -15,6 +15,28 @@ const aiDiscoveryLinkHeader = {
   ].join(", "),
 };
 
+/** Baseline security headers on HTML and static marketing responses (checklist + hardening). */
+const securityHeaders: { key: string; value: string }[] = [
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
+  {
+    key: "Content-Security-Policy",
+    value: "frame-ancestors 'self'; base-uri 'self'; object-src 'none'; form-action 'self'",
+  },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Permissions-Policy",
+    value:
+      "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()",
+  },
+  { key: "X-XSS-Protection", value: "1; mode=block" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin-allow-popups" },
+];
+
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   compress: true,
@@ -23,35 +45,33 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     const noIndexHeader = { key: "X-Robots-Tag", value: "noindex, nofollow" };
-    const cspHeader = {
-      key: "Content-Security-Policy",
-      value: "frame-ancestors 'self'",
-    };
-
-    const siteHeaders: { key: string; value: string }[] = [cspHeader, aiDiscoveryLinkHeader];
+    const siteHeaders: { key: string; value: string }[] = [...securityHeaders, aiDiscoveryLinkHeader];
 
     return [
-      { source: "/api/:path*", headers: [noIndexHeader] },
+      { source: "/api/:path*", headers: [...securityHeaders, noIndexHeader] },
       {
         source: "/company/contact/thank-you",
-        headers: [{ key: "X-Robots-Tag", value: "noindex, follow" }],
+        headers: [...securityHeaders, { key: "X-Robots-Tag", value: "noindex, follow" }],
       },
       {
         source: "/sitemap.xml",
         headers: [
           { key: "Content-Type", value: "application/xml; charset=utf-8" },
-          cspHeader,
+          ...securityHeaders,
         ],
       },
       {
         source: "/robots.txt",
-        headers: [{ key: "Content-Type", value: "text/plain; charset=utf-8" }, cspHeader],
+        headers: [
+          { key: "Content-Type", value: "text/plain; charset=utf-8" },
+          ...securityHeaders,
+        ],
       },
       {
         source: "/email/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=86400, immutable" },
-          cspHeader,
+          ...securityHeaders,
         ],
       },
       {
