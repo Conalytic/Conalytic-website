@@ -2,6 +2,7 @@
  * Site footer: newsletter signup, link columns, legal; optional `FooterConfig` overrides fallbacks.
  */
 import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
@@ -135,7 +136,13 @@ export function Footer({ config, brandLogos }: FooterProps) {
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-10 pb-8 pt-8 min-[480px]:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
             {columns.map((column) => (
-              <div key={column.title} className="min-w-0">
+              <div
+                key={column.title}
+                className={cn(
+                  "min-w-0",
+                  column.title === "Services" && "col-span-2 min-[480px]:col-span-1",
+                )}
+              >
                 <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">
                   {column.title}
                 </h4>

@@ -180,18 +180,38 @@ export function HowItWorks({
   const integrationSources = buildIntegrationSources(stackLogoSrcByKey);
   const sectionRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [scrollStory, setScrollStory] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)");
+    const sync = () => setScrollStory(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!scrollStory) {
+      setActive(0);
+      return;
+    }
+
     const handleScroll = () => {
       const section = sectionRef.current;
       if (!section) return;
 
       const rect = section.getBoundingClientRect();
-      const scrolled = -rect.top; // px scrolled past the top of this section
-      const scrollable = section.offsetHeight - window.innerHeight; // total scrollable range
+      const scrolled = -rect.top;
+      const scrollable = section.offsetHeight - window.innerHeight;
 
-      if (scrolled <= 0) { setActive(0); return; }
-      if (scrolled >= scrollable) { setActive(STEPS.length - 1); return; }
+      if (scrolled <= 0) {
+        setActive(0);
+        return;
+      }
+      if (scrolled >= scrollable) {
+        setActive(STEPS.length - 1);
+        return;
+      }
 
       const progress = scrolled / scrollable;
       const step = Math.min(Math.floor(progress * STEPS.length), STEPS.length - 1);
@@ -199,18 +219,23 @@ export function HowItWorks({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // run once on mount
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [scrollStory]);
 
   return (
-    /*
-     * Outer div is (STEPS.length + 1) × 100vh tall.
-     * The sticky inner takes 100vh, leaving STEPS.length × 100vh of scroll range
-     * — exactly 1 viewport of scroll per step.
-     */
-    <div ref={sectionRef} style={{ height: `${(STEPS.length - 1) * 100}vh` }}>
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden bg-white dark:bg-brand-900">
+    <div
+      ref={sectionRef}
+      style={scrollStory ? { height: `${(STEPS.length - 1) * 100}vh` } : undefined}
+      className={scrollStory ? undefined : "bg-white py-12 dark:bg-brand-900 sm:py-16"}
+    >
+      <div
+        className={
+          scrollStory
+            ? "sticky top-0 flex h-screen items-center overflow-hidden bg-white dark:bg-brand-900"
+            : "flex items-center bg-white dark:bg-brand-900"
+        }
+      >
         <div className="w-full max-w-5xl mx-auto px-4 py-4 md:py-8">
 
           {/* Section header */}
@@ -231,40 +256,52 @@ export function HowItWorks({
 
             {/* Steps list */}
             <div className="flex flex-col gap-1">
-              {STEPS.map((step, i) => (
-                <div
-                  key={i}
-                  className={`flex items-start gap-4 px-4 py-3 sm:p-4 rounded-2xl transition-all duration-500 ${
-                    active === i
-                      ? "bg-brand-50 dark:bg-brand-500/10 border border-brand-100 dark:border-brand-500/20"
-                      : "border border-transparent opacity-40"
-                  }`}
-                >
-                  <span className={`text-xs font-mono font-bold shrink-0 mt-0.5 transition-colors duration-500 ${
-                    active === i ? "text-brand-600 dark:text-brand-300" : "text-gray-300 dark:text-white/20"
-                  }`}>
-                    {step.num}
-                  </span>
-                  <div className="flex-1">
-                    <p className={`text-sm font-semibold mb-1 transition-colors duration-500 ${
-                      active === i ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-white/40"
-                    }`}>
-                      {step.title}
-                    </p>
-                    <div className={`overflow-hidden transition-all duration-500 ${active === i ? "max-h-32 opacity-100" : "max-h-0 opacity-0"}`}>
-                      <p className="text-sm text-gray-500 dark:text-white/65 leading-relaxed">{step.desc}</p>
+              {STEPS.map((step, i) => {
+                const isActive = scrollStory ? active === i : true;
+                return (
+                  <div
+                    key={i}
+                    className={`flex items-start gap-4 rounded-2xl px-4 py-3 transition-all duration-500 sm:p-4 ${
+                      isActive
+                        ? "border border-brand-100 bg-brand-50 dark:border-brand-500/20 dark:bg-brand-500/10"
+                        : "border border-transparent opacity-40"
+                    }`}
+                  >
+                    <span
+                      className={`mt-0.5 shrink-0 text-xs font-mono font-bold transition-colors duration-500 ${
+                        isActive ? "text-brand-600 dark:text-brand-300" : "text-gray-300 dark:text-white/20"
+                      }`}
+                    >
+                      {step.num}
+                    </span>
+                    <div className="min-w-0 flex-1">
+                      <p
+                        className={`mb-1 text-sm font-semibold transition-colors duration-500 ${
+                          isActive ? "text-gray-900 dark:text-white" : "text-gray-500 dark:text-white/40"
+                        }`}
+                      >
+                        {step.title}
+                      </p>
+                      <div
+                        className={`overflow-hidden transition-all duration-500 ${
+                          isActive ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
+                        }`}
+                      >
+                        <p className="text-sm leading-relaxed text-gray-500 dark:text-white/65">{step.desc}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
 
-              {/* Scroll progress hint */}
-              <p className="text-[11px] text-gray-400 dark:text-white/25 text-center mt-3 flex items-center justify-center gap-1.5">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 5v14M5 12l7 7 7-7"/>
-                </svg>
-                Scroll to explore
-              </p>
+              {scrollStory ? (
+                <p className="mt-3 flex items-center justify-center gap-1.5 text-center text-[11px] text-gray-400 dark:text-white/25">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                  </svg>
+                  Scroll to explore
+                </p>
+              ) : null}
             </div>
 
             {/* Synced panel — hidden on mobile to prevent overflow */}

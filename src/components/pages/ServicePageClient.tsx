@@ -17,7 +17,7 @@ type ServicePageClientProps = {
 export function ServicePageClient({ service }: ServicePageClientProps) {
   return (
     <>
-      <section className="relative overflow-hidden px-4 pt-16 pb-10 hero-gradient sm:pt-20 md:pt-24 md:pb-14">
+      <section className="marketing-hero-section-pt relative overflow-hidden px-4 hero-gradient md:pb-14">
         <div className="absolute inset-0 grid-overlay pointer-events-none opacity-[0.08] dark:opacity-[0.05]" />
         <div className="relative z-10 mx-auto max-w-3xl text-center">
           <motion.p

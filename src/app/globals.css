@@ -236,6 +236,36 @@ section { background: transparent !important; }
   font-weight: 700;
 }
 
+/* Fixed nav clearance + safe area (marketing heroes below Navbar) */
+.marketing-hero-section-pt {
+  padding-top: calc(var(--marketing-header-offset) + 1.25rem + env(safe-area-inset-top, 0px));
+  padding-bottom: 2rem;
+}
+@media (min-width: 640px) {
+  .marketing-hero-section-pt {
+    padding-top: calc(var(--marketing-header-offset) + 1.75rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 2.5rem;
+  }
+}
+@media (min-width: 768px) {
+  .marketing-hero-section-pt {
+    padding-top: calc(var(--marketing-header-offset) + 2rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 3rem;
+  }
+}
+
+/* Align carousel / slider content with max-w-7xl without 100vw on small screens */
+.service-marketing-edge-x {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 640px) {
+  .service-marketing-edge-x {
+    padding-left: max(1.5rem, calc((100dvw - min(100dvw, 80rem)) / 2 + 1.5rem));
+    padding-right: max(1.5rem, calc((100dvw - min(100dvw, 80rem)) / 2 + 1.5rem));
+  }
+}
+
 /* Comfortable tap targets on touch devices */
 @media (pointer: coarse) {
   .touch-target {
@@ -461,6 +491,8 @@ section { background: transparent !important; }
 .service-landing-section-title {
   color: var(--service-on-light-heading);
   text-wrap: balance;
+  font-size: clamp(1.625rem, 4.2vw + 0.65rem, 2.35rem);
+  line-height: 1.14;
 }
 .dark .service-landing-section-title {
   color: var(--service-on-dark-heading);
@@ -805,15 +837,21 @@ section { background: transparent !important; }
   color: var(--brand-50);
 }
 
-/* Break out of main to true viewport width (parent may clip x-overflow) */
+/* Full-width bands: avoid 100vw on phones (scrollbar + overflow jitter) */
 .service-section-full-bleed {
-  width: 100vw;
-  max-width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+@media (min-width: 640px) {
+  .service-section-full-bleed {
+    width: 100dvw;
+    max-width: 100dvw;
+    position: relative;
+    left: 50%;
+    margin-left: -50dvw;
+    margin-right: -50dvw;
+  }
 }
 
 /* USP stack — first card pins; second is in flow and scrolls over it. Height = cards only. */
@@ -851,7 +889,17 @@ section { background: transparent !important; }
 }
 
 .service-usp-panel-card {
-  min-height: min(64dvh, 600px);
+  min-height: auto;
+}
+@media (min-width: 768px) {
+  .service-usp-panel-card {
+    min-height: min(52dvh, 560px);
+  }
+}
+@media (min-width: 1024px) {
+  .service-usp-panel-card {
+    min-height: min(64dvh, 600px);
+  }
 }
 
 .service-how-it-works-step {
@@ -1742,6 +1790,40 @@ section { background: transparent !important; }
   .ambient-mesh,
   .ambient-grain {
     display: none;
+  }
+
+  .service-how-it-works-timeline .service-how-shell {
+    border-radius: 1.25rem;
+  }
+  .service-how-it-works-timeline .service-how-shell > .grid {
+    padding: 1.25rem !important;
+    gap: 1.75rem !important;
+  }
+  .service-how-timeline-track,
+  .service-how-timeline-fill {
+    display: none;
+  }
+  .service-how-timeline {
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .service-how-timeline-node-anchor {
+    left: 1.25rem !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  .service-how-step-card {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 3.25rem !important;
+    padding-top: 2.25rem !important;
+  }
+  .service-final-cta-panel > .relative.z-10 {
+    padding: 1.25rem !important;
+  }
+  .service-hero-slide-card {
+    width: min(88vw, 360px) !important;
+    height: min(52vw, 280px) !important;
   }
 }
 

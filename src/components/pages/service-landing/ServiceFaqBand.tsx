@@ -20,7 +20,7 @@ export function ServiceFaqBand({
       <div className="relative z-10 mx-auto max-w-3xl px-4 sm:px-6">
         <header className="text-center">
           <p className="service-landing-kicker mb-3">FAQ</p>
-          <h2 className="service-landing-section-title text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
+          <h2 className="service-landing-section-title font-bold tracking-tight">
             {title}
           </h2>
           <p className="service-landing-section-body mx-auto mt-4 max-w-xl text-base leading-relaxed">{subtitle}</p>

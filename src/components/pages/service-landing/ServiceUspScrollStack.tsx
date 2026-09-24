@@ -89,7 +89,7 @@ function UspPanelCard({ panel }: { panel: Panel }) {
   return (
     <article
       className={cn(
-        "service-usp-panel-card grid w-full grid-cols-1 items-center gap-10 overflow-hidden rounded-[1.75rem] p-8 sm:rounded-[2rem] sm:p-10 md:gap-12 lg:grid-cols-2 lg:gap-14 lg:p-12",
+        "service-usp-panel-card grid w-full grid-cols-1 items-center gap-8 overflow-hidden rounded-[1.5rem] p-6 sm:gap-10 sm:rounded-[2rem] sm:p-10 md:gap-12 lg:grid-cols-2 lg:gap-14 lg:p-12",
         isDark ? "service-usp-panel-dark" : "service-usp-panel-light",
       )}
     >
@@ -113,7 +113,7 @@ function UspCopy({ panel, className }: { panel: Panel; className?: string }) {
   return (
     <div className={cn(className)}>
       <p className="service-usp-eyebrow mb-4 text-sm font-semibold">{panel.eyebrow}</p>
-      <h2 className="service-usp-title text-3xl font-bold leading-tight sm:text-4xl md:text-[2.65rem] lg:text-[2.2rem] xl:text-[2.5rem]">
+      <h2 className="service-usp-title service-landing-section-title font-bold">
         {panel.title}
       </h2>
       <p className="service-usp-body mt-5 max-w-xl text-base leading-relaxed sm:text-lg lg:text-base xl:text-lg">

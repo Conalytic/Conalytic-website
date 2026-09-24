@@ -20,7 +20,7 @@ export type ServiceSeoEnhancement = {
   benefits: { headline: string; introBody: string };
   howItWorks: { title: string; subtitle: string };
   process: { title: string; subtitle: string };
-  stats: { title: string };
+  stats: { title: string; values: string[] };
   faq: { title: string; subtitle: string };
   finalCta: { title: string; description: string };
 };
@@ -70,7 +70,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       subtitle:
         "Technical SEO, topical authority, and reporting connected so every sprint moves indexation, rankings, or conversions.",
     },
-    stats: { title: "SEO outcomes we measure and report" },
+    stats: {
+      title: "SEO outcomes we measure and report",
+      values: ["850+", "48%", "120+"],
+    },
     faq: {
       title: "B2B SEO services FAQ",
       subtitle: "Timelines, technical SEO scope, Next.js sites, and how we partner with your team.",
@@ -124,7 +127,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver paid media results that show up in revenue",
       subtitle: "Search, paid social, creative testing, and measurement on one accountable plan.",
     },
-    stats: { title: "Paid media outcomes we report on" },
+    stats: {
+      title: "Paid media outcomes we report on",
+      values: ["4.2M+", "34%", "4.1x"],
+    },
     faq: {
       title: "PPC management & performance marketing FAQ",
       subtitle: "Budgets, Performance Max, AI Max, tracking, and account ownership.",
@@ -178,7 +184,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver email marketing results you can tie to revenue",
       subtitle: "Strategy, copy, automation build, and deliverability—connected end to end.",
     },
-    stats: { title: "Email & lifecycle outcomes we track" },
+    stats: {
+      title: "Email & lifecycle outcomes we track",
+      values: ["180+", "22%", "98%"],
+    },
     faq: {
       title: "Email marketing & lifecycle automation FAQ",
       subtitle: "Deliverability, ESPs, AI inbox changes, and how we work with your team.",
@@ -232,7 +241,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver GEO results across AI search platforms",
       subtitle: "Research, content patterns, technical signals, and ongoing AI SERP monitoring.",
     },
-    stats: { title: "GEO & AI visibility outcomes we report" },
+    stats: {
+      title: "GEO & AI visibility outcomes we report",
+      values: ["250+", "38%", "55%"],
+    },
     faq: {
       title: "Generative engine optimization (GEO) FAQ",
       subtitle: "GEO vs SEO, AI Overviews, tracking AI referrals, and implementation scope.",
@@ -285,7 +297,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we ship AI copilots that work in real workflows",
       subtitle: "UX, engineering, safety review, and ops handoff in one delivery model.",
     },
-    stats: { title: "Agentic web delivery outcomes we commit to" },
+    stats: {
+      title: "Agentic web delivery outcomes we commit to",
+      values: ["45+", "40%", "6 weeks"],
+    },
     faq: {
       title: "Agentic web & AI copilot FAQ",
       subtitle: "Security, integrations, models, and timeline for production copilots.",
@@ -338,7 +353,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver workflow automation that sticks",
       subtitle: "Discovery, integration mapping, LLM validation, and ops-ready runbooks.",
     },
-    stats: { title: "Automation outcomes we target" },
+    stats: {
+      title: "Automation outcomes we target",
+      values: ["320+", "1,200+", "99%"],
+    },
     faq: {
       title: "AI workflow automation FAQ",
       subtitle: "Tools, security, LLM costs, and who maintains flows after launch.",
@@ -391,7 +409,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we ship MCP servers ready for real agent workloads",
       subtitle: "Discovery, API mapping, secure implementation, and client configuration docs.",
     },
-    stats: { title: "MCP delivery standards we follow" },
+    stats: {
+      title: "MCP delivery standards we follow",
+      values: ["28+", "140+"],
+    },
     faq: {
       title: "MCP server development FAQ",
       subtitle: "Auth models, hosting, supported clients, and maintenance.",
@@ -443,7 +464,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver web applications ready for real users and SEO",
       subtitle: "Product discovery, engineering sprints, QA, and launch checklists.",
     },
-    stats: { title: "Web app delivery outcomes we plan for" },
+    stats: {
+      title: "Web app delivery outcomes we plan for",
+      values: ["65+", "10 weeks", "99.9%"],
+    },
     faq: {
       title: "Custom web application development FAQ",
       subtitle: "Stack, timeline, ownership, hosting, and post-launch support.",
@@ -496,7 +520,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we launch websites that perform in search and sales",
       subtitle: "Wireframes, responsive build, technical SEO, and measurable conversion paths.",
     },
-    stats: { title: "Website launch outcomes we checklist" },
+    stats: {
+      title: "Website launch outcomes we checklist",
+      values: ["95+", "94", "96%"],
+    },
     faq: {
       title: "Next.js website development FAQ",
       subtitle: "CMS choice, migrations, SEO, timelines, and post-launch edits.",
@@ -549,7 +576,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver product and marketing design that performs",
       subtitle: "Audits or greenfield IA, visual design, systems, and export-ready assets.",
     },
-    stats: { title: "Design delivery outcomes we plan with you" },
+    stats: {
+      title: "Design delivery outcomes we plan with you",
+      values: ["110+", "28%", "240+"],
+    },
     faq: {
       title: "UI/UX & product design FAQ",
       subtitle: "Scope, Figma deliverables, dev collaboration, and brand alignment.",
@@ -603,7 +633,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver analytics setups that survive audits and board reviews",
       subtitle: "Taxonomy, implementation, validation, and ongoing governance recommendations.",
     },
-    stats: { title: "Measurement outcomes we document" },
+    stats: {
+      title: "Measurement outcomes we document",
+      values: ["200+", "35%", "400+"],
+    },
     faq: {
       title: "Marketing analytics & GA4 consulting FAQ",
       subtitle: "Scope, tools, timelines, and how we work with in-house analysts.",
@@ -657,7 +690,10 @@ export const SERVICE_SEO_ENHANCEMENTS: Record<string, ServiceSeoEnhancement> = {
       title: "How we deliver CRO wins you can see in GA4 and CRM",
       subtitle: "Research, variant design, implementation support, and results readouts.",
     },
-    stats: { title: "CRO experiment outcomes we report" },
+    stats: {
+      title: "CRO experiment outcomes we report",
+      values: ["350+", "18%", "62%"],
+    },
     faq: {
       title: "Conversion rate optimization (CRO) FAQ",
       subtitle: "Test tools, traffic requirements, B2B funnels, and engagement models.",

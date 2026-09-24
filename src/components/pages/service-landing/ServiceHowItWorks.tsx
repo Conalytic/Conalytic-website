@@ -94,14 +94,14 @@ export function ServiceHowItWorks({
     <section
       ref={sectionRef}
       id="how-it-works"
-      className="service-how-it-works service-how-it-works-timeline service-landing-section relative py-16 pb-28 md:py-20 md:pb-32 lg:py-28 lg:pb-36"
+      className="service-how-it-works service-how-it-works-timeline service-landing-section relative py-12 pb-16 md:py-20 md:pb-32 lg:py-28 lg:pb-36"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 xl:max-w-[1180px]">
         <div className="service-how-shell rounded-[1.75rem] sm:rounded-[2rem]">
           <div className="grid items-start gap-10 p-6 sm:p-8 md:gap-12 md:p-10 lg:grid-cols-[minmax(0,42%)_minmax(0,58%)] lg:gap-x-12 lg:p-12 xl:gap-x-16">
             <header className="service-how-intro lg:sticky lg:top-24 lg:z-[2] lg:self-start xl:top-28">
               <p className="service-landing-kicker mb-3">How it works</p>
-              <h2 className="service-landing-section-title text-[1.75rem] font-bold leading-[1.14] tracking-tight sm:text-4xl lg:text-[2.35rem]">
+              <h2 className="service-landing-section-title font-bold tracking-tight">
                 {title}
               </h2>
               <p className="service-landing-section-body mt-4 text-base leading-relaxed sm:mt-5 sm:text-lg">

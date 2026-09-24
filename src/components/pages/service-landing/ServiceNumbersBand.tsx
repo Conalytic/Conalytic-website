@@ -6,7 +6,10 @@ import type { ServiceLandingContent } from "@/lib/service-landing-types";
 import { fadeUpChild, staggerContainer, viewportOnce } from "@/lib/motion";
 
 function parseStatValue(raw: string): { end: number; suffix: string; decimal: boolean } | null {
-  const m = raw.trim().match(/^([\d,.]+)(.*)$/);
+  const trimmed = raw.trim();
+  if (!trimmed || /\[#\]/i.test(trimmed)) return null;
+
+  const m = trimmed.match(/^([\d,.]+)(.*)$/);
   if (!m) return null;
   const num = parseFloat(m[1].replace(/,/g, ""));
   if (Number.isNaN(num)) return null;

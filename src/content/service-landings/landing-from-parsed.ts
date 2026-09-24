@@ -40,7 +40,14 @@ function withSeoEnhancements(parsed: ParsedService): ParsedService {
       title: seo.process.title,
       subtitle: seo.process.subtitle,
     },
-    stats: { ...parsed.stats, title: seo.stats.title },
+    stats: {
+      ...parsed.stats,
+      title: seo.stats.title,
+      stats: parsed.stats.stats.map((item, index) => ({
+        ...item,
+        value: seo.stats.values[index] ?? item.value,
+      })),
+    },
     faq: {
       ...parsed.faq,
       title: seo.faq.title,

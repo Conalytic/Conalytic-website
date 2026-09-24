@@ -75,17 +75,11 @@ export function ServiceWhatWeDoCarousel({
       id="what-we-do"
       className="service-what-we-do service-landing-section service-section-full-bleed reveal-skip relative overflow-hidden py-16 md:py-20 lg:py-24"
     >
-      <div
-        className="mx-auto mb-10 max-w-7xl sm:mb-12 xl:max-w-[1380px]"
-        style={{
-          paddingLeft: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-          paddingRight: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-        }}
-      >
+      <div className="service-marketing-edge-x mx-auto mb-10 max-w-7xl sm:mb-12 xl:max-w-[1380px]">
         <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="service-what-we-do-eyebrow mb-3 text-sm font-medium">{section.eyebrow}</p>
-            <h2 className="service-what-we-do-title max-w-3xl text-3xl font-bold leading-tight sm:text-4xl md:text-[2.5rem]">
+            <h2 className="service-what-we-do-title service-landing-section-title max-w-3xl font-bold">
               {section.title}
             </h2>
           </div>
@@ -112,11 +106,7 @@ export function ServiceWhatWeDoCarousel({
 
       <div
         ref={trackRef}
-        className="flex gap-5 overflow-x-auto pb-2 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        style={{
-          paddingLeft: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-          paddingRight: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-        }}
+        className="service-marketing-edge-x flex gap-4 overflow-x-auto pb-2 scroll-smooth sm:gap-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {section.items.map((item) => (
           <article

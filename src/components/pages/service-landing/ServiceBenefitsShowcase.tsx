@@ -7,8 +7,7 @@ import { motion, useMotionTemplate, useReducedMotion, useScroll, useTransform } 
 import type { ServiceLandingContent } from "@/lib/service-landing-types";
 import { cn } from "@/lib/utils";
 
-const BENEFITS_HEADLINE_CLASS =
-  "text-[1.65rem] font-bold leading-[1.22] tracking-tight sm:text-[1.85rem] md:text-[2.15rem] lg:text-[2.35rem] lg:leading-[1.2]";
+const BENEFITS_HEADLINE_CLASS = "service-landing-section-title font-bold tracking-tight";
 
 function BenefitsScrollHeadline({ text }: { text: string }) {
   const ref = useRef<HTMLHeadingElement>(null);

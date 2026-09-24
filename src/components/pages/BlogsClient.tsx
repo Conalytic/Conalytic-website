@@ -144,7 +144,7 @@ export function BlogsClient({
 
   return (
     <>
-      <section className="relative overflow-hidden border-b border-gray-200/80 px-4 pt-24 pb-16 dark:border-white/[0.06] sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+      <section className="marketing-hero-section-pt relative overflow-hidden border-b border-gray-200/80 px-4 dark:border-white/[0.06] md:pb-24">
         <BrandAmbient variant="hero" />
         <div className="relative z-10 mx-auto max-w-4xl text-center">
           <motion.div

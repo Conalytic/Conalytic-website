@@ -25,7 +25,7 @@ export function HomeHero({ content }: { content?: HomeContentPreset }) {
   const secondaryHref = content?.heroSecondaryCtaHref || SITE_ROUTES.contact;
 
   return (
-    <section className="relative overflow-hidden pt-20 pb-10 sm:pt-24 sm:pb-12 md:pt-28 md:pb-14">
+    <section className="marketing-hero-section-pt relative overflow-hidden md:pb-14">
       <BrandAmbient variant="hero" />
 
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16">

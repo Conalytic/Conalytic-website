@@ -82,7 +82,7 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
   return (
     <>
       {/* ── HERO ────────────────────────────────────── */}
-      <section className="relative overflow-hidden px-4 pt-16 pb-8 hero-gradient sm:pt-20 sm:pb-10 md:pt-24 md:pb-12">
+      <section className="marketing-hero-section-pt relative overflow-hidden px-4 hero-gradient md:pb-12">
         <div className="absolute inset-0 grid-overlay opacity-[0.08] dark:opacity-[0.05] pointer-events-none"/>
         <div className="absolute top-0 left-1/4 w-[500px] h-[400px] rounded-full blur-3xl bg-brand-600/12 dark:bg-brand-600/18 pointer-events-none"/>
         <div className="relative z-10 max-w-4xl mx-auto text-center">

@@ -68,7 +68,7 @@ export function ServiceLandingHero(props: HeroProps) {
       className="service-landing-hero relative overflow-hidden pb-0 pt-[calc(var(--marketing-header-offset)+2rem+env(safe-area-inset-top,0px))] sm:pt-[calc(var(--marketing-header-offset)+2.25rem+env(safe-area-inset-top,0px))] md:pt-[calc(var(--marketing-header-offset)+2.5rem+env(safe-area-inset-top,0px))]"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:items-start lg:gap-x-10 xl:gap-x-16">
+        <div className="grid gap-8 sm:gap-10 lg:grid-cols-[minmax(0,46%)_minmax(0,54%)] lg:items-start lg:gap-x-10 xl:gap-x-16">
           <motion.div
             initial={false}
             animate={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export function ServiceLandingHero(props: HeroProps) {
             {eyebrow ? (
               <p className="service-landing-kicker mb-4">{eyebrow}</p>
             ) : null}
-            <h1 className="marketing-hero-title text-[2.35rem] font-semibold leading-[1.06] tracking-tight text-brand-900 dark:text-brand-50 sm:text-[2.65rem] lg:text-[3rem] xl:text-[3.35rem]">
+            <h1 className="marketing-hero-title font-semibold text-brand-900 dark:text-brand-50">
               <span className="block">{heroTitle}</span>
               <span className="service-landing-hero-highlight mt-1 block">{heroTitleHighlight}</span>
             </h1>
@@ -235,11 +235,7 @@ function ServiceHeroSlider({
       />
       <div
         ref={trackRef}
-        className="service-hero-slider flex gap-5 overflow-x-auto pb-8 pt-1 sm:gap-6 md:pb-10"
-        style={{
-          paddingLeft: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-          paddingRight: "max(1rem, calc((100vw - min(100vw, 80rem)) / 2 + 1rem))",
-        }}
+        className="service-hero-slider service-marketing-edge-x flex gap-4 overflow-x-auto pb-8 pt-1 sm:gap-6 md:pb-10"
         onPointerDown={(e) => {
           const el = trackRef.current;
           if (!el) return;
@@ -263,7 +259,7 @@ function ServiceHeroSlider({
         {loopSlides.map((slide, i) => (
           <div
             key={`${slide.id}-${i}`}
-            className="service-hero-slide-card relative h-[min(58vw,340px)] w-[min(82vw,400px)] shrink-0 overflow-hidden rounded-[1.85rem] sm:h-[320px] sm:w-[380px] md:h-[340px] md:w-[400px]"
+            className="service-hero-slide-card relative h-[min(52vw,280px)] w-[min(88vw,360px)] shrink-0 overflow-hidden rounded-[1.5rem] sm:h-[320px] sm:w-[380px] sm:rounded-[1.85rem] md:h-[340px] md:w-[400px]"
           >
             {slide.node}
           </div>
