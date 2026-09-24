@@ -30,7 +30,7 @@ export function ServiceFaqBand({
           {items.map((item, index) => (
             <details key={item.question} open={index === 0} className="service-faq-item group">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-4 py-5 text-left [&::-webkit-details-marker]:hidden">
-                <span className="service-faq-question service-type-card-title font-semibold">
+                <span className="service-faq-question">
                   {item.question}
                 </span>
                 <span className="service-faq-icon mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full" aria-hidden>

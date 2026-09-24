@@ -520,7 +520,7 @@ section { background: transparent !important; }
   font-weight: 700;
 }
 
-.service-landing-section :is(.service-type-card-title, h3.service-type-card-title, .service-faq-question.service-type-card-title) {
+.service-landing-section :is(.service-type-card-title, h3.service-type-card-title) {
   font-size: clamp(1.25rem, 1.15vw + 1rem, 1.5rem);
   line-height: 1.32;
   font-weight: 700;
@@ -1235,6 +1235,14 @@ section { background: transparent !important; }
 }
 .service-faq-question {
   color: var(--service-on-light-heading);
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  font-weight: 600;
+}
+@media (min-width: 640px) {
+  .service-faq-question {
+    font-size: 1.125rem;
+  }
 }
 .service-faq-answer {
   color: var(--service-on-light-body);
