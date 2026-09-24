@@ -3,23 +3,17 @@ import type { Metadata } from "next";
 import { ProductStructuredData } from "@/components/seo/ProductStructuredData";
 import { KpisTrackerClient } from "@/components/pages/KpisTrackerClient";
 import { KPIS_TRACKER_FAQ } from "@/lib/marketing-faqs";
-import { getPublishedPageOverlay } from "@/lib/cms/get-page-content";
-import { buildPageMetadataFromCms } from "@/lib/cms/seo";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 import { getProduct } from "@/lib/products";
 
 const product = getProduct("kpis-tracker");
 
-export async function generateMetadata(): Promise<Metadata> {
-  const overlay = await getPublishedPageOverlay(product.path);
-  return buildPageMetadataFromCms(
-    product.path,
-    {
-      title: product.metaTitle,
-      description: product.metaDescription,
-      keywords: product.keywords,
-    },
-    overlay?.seo,
-  );
+export function generateMetadata(): Metadata {
+  return buildRouteMetadata(product.path, {
+    title: product.metaTitle,
+    description: product.metaDescription,
+    keywords: product.keywords,
+  });
 }
 
 export default function KpisTrackerPage() {

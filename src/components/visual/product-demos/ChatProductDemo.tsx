@@ -11,6 +11,7 @@ import {
   analyticsDemoBarStyle,
 } from "@/components/visual/product-demos/analytics-demo";
 import { conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { cn } from "@/lib/utils";
 
 const QUESTION = "Which campaigns drove conversions this week?";
@@ -117,7 +118,7 @@ export function ChatProductDemo({ compact = false, embedded = false }: { compact
     <div className="relative mx-auto w-full max-w-lg">
       <DemoFrame>
         <div className="flex items-center gap-2 border-b border-gray-200/80 dark:border-white/[0.08] px-4 py-3">
-          <Image src="/logo-icon.png" alt={conalyticLogoAlt("icon")} width={22} height={22} className="rounded-md" />
+          <Image src={BRAND_ASSETS.logoIcon} alt={conalyticLogoAlt("icon")} width={22} height={22} className="rounded-md" />
           <span className="text-xs font-bold text-brand-600 dark:text-brand-300">AI Analyst</span>
         </div>
         <ChatCore />

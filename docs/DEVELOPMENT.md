@@ -1,7 +1,7 @@
 # Conalytic Website – Development Documentation
 
 **Tech stack:** Next.js 15 · React 19 · TypeScript · Tailwind CSS v4  
-**Content:** In-repo React pages + static blog posts in `src/content/`  
+**Content:** In-repo React pages, metadata in route files, and static copy in `src/content/`  
 **Last updated:** July 2026
 
 ---
@@ -23,7 +23,7 @@
 
 ## 1. Project Overview
 
-The Conalytic marketing site is a **Next.js App Router** application. All copy, product pages, and blog posts live in the repository — there is no external CMS.
+The Conalytic marketing site is a **Next.js App Router** application. All copy, product pages, and blog posts live in the repository as TypeScript/React — there is no external or JSON CMS layer.
 
 ### Site map
 
@@ -64,27 +64,21 @@ The Conalytic marketing site is a **Next.js App Router** application. All copy, 
 ```
 conalytic/
 ├── docs/
-│   ├── DEVELOPMENT.md
-│   └── WEBSITE.md
-├── public/                 # Static assets (logos, OG image, blog covers)
+├── public/                 # Static assets (images, logos, integrations)
+├── scripts/                # Sitemap generation, IndexNow, SEO verify
 ├── src/
-│   ├── app/                # Routes, layout, sitemap, robots, API routes
-│   ├── components/
-│   │   ├── blog/           # BlogPostMarkdown, BlogArticleCta
-│   │   ├── home/           # HomeClient + sections
-│   │   ├── layout/         # Navbar, Footer, CookieConsent, ThemeProvider
-│   │   ├── pages/          # Large marketing page clients
-│   │   ├── products/       # Product landing sections
-│   │   ├── sections/       # Shared CTA, etc.
-│   │   ├── seo/            # JSON-LD components
-│   │   └── ui/             # Accordion, buttons, theme toggle
-│   ├── content/
-│   │   ├── blog-posts.ts   # Blog metadata + slug registry
-│   │   └── blog-bodies/    # Markdown bodies per post
-│   └── lib/                # SEO, products, FAQs, utilities
-├── next.config.ts          # Redirects, image domains
+│   ├── app/
+│   │   ├── (marketing)/    # All marketing URLs — see src/app/(marketing)/README.md
+│   │   ├── api/            # contact, careers, newsletter
+│   │   ├── layout.tsx, globals.css, sitemap.ts
+│   ├── components/         # UI by area (home, pages, service-landing, layout, …)
+│   ├── content/            # Blog bodies, service-landing TypeScript copy
+│   └── lib/                # CMS, SEO, services-catalog, site-paths
+├── next.config.ts
 └── package.json
 ```
+
+See also [`src/README.md`](../src/README.md) for the full source tree.
 
 ---
 
@@ -131,6 +125,10 @@ CAREERS_APPLICATION_TO=
 ### Home (`/`)
 
 `src/app/page.tsx` renders `HomeClient` with optional `HomeContentPreset` overrides. Defaults are baked into the component.
+
+### Service landing pages (`/services/[slug]`)
+
+Full Rillion-style landings for all 12 services. Base copy is in `parsed-services.json`; SEO-tuned H1s, titles, descriptions, and section headings are in `service-seo-enhancements.ts` (merged at build time in `landing-from-parsed.ts`). Nav/catalog fields sync from merged JSON via `applyParsedCatalogOverrides()`.
 
 ### Product pages
 
@@ -204,7 +202,7 @@ Deploy to Vercel on push to `main`. Set environment variables in the Vercel proj
 
 1. Write markdown body in `src/content/blog-bodies/`
 2. Add entry to `src/content/blog-posts.ts`
-3. Add cover image to `public/blog/` if needed
+3. Add cover art under `public/images/blog/` if needed (see `public/README.md`)
 
 ---
 

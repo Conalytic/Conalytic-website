@@ -9,6 +9,7 @@ import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
 import { isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { BRAND_HERO_GRADIENT_CLASS, BRAND_SECONDARY_BUTTON_LG_CLASS } from "@/lib/brand";
 import {
   SAAS_EASE,
@@ -197,12 +198,21 @@ interface CTAProps {
   secondaryCta?: { label: string; href: string };
 }
 
+const DEFAULT_CTA_TITLE = "Turn data into decisions.";
+const DEFAULT_CTA_TITLE_GRADIENT = "In seconds, not days.";
+const DEFAULT_CTA_SUBTITLE =
+  "Join thousands of teams who replaced their entire dashboard stack with a single conversation.";
+
 export function CTA({
-  title:    _title,
-  subtitle: _subtitle,
+  title,
+  subtitle,
   primaryCta   = { label: "Get started", href: CHAT_APP_SIGNUP_URL },
   secondaryCta = { label: "Book a demo", href: MARKETING_CONTACT_PATH },
 }: CTAProps) {
+  const useCustomHeading = Boolean(title?.trim());
+  const headingLine1 = useCustomHeading ? title!.trim() : DEFAULT_CTA_TITLE;
+  const headingLine2 = useCustomHeading ? null : DEFAULT_CTA_TITLE_GRADIENT;
+  const bodyCopy = subtitle?.trim() || DEFAULT_CTA_SUBTITLE;
   const primaryExternal = isExternalNavigationHref(primaryCta.href);
   const secondaryExternal = isExternalNavigationHref(secondaryCta.href);
   const [qIdx, setQIdx]     = useState(0);
@@ -303,7 +313,7 @@ export function CTA({
               <div className="relative inline-flex items-center gap-3 bg-white/80 dark:bg-white/[0.06] border border-black/6 dark:border-white/10 backdrop-blur-md rounded-2xl px-5 py-3 shadow-lg shadow-black/5 dark:shadow-black/30">
                 <div className="absolute inset-0 rounded-2xl border border-brand-400/30 dark:border-brand-500/25 animate-ping opacity-0"
                   style={{ animationDuration:"2.5s" }}/>
-                <Image src="/logo-icon.png" alt={conalyticLogoAlt("icon")} width={28} height={28} className="shrink-0"/>
+                <Image src={BRAND_ASSETS.logoIcon} alt={conalyticLogoAlt("icon")} width={28} height={28} className="shrink-0"/>
                 <div className="text-left">
                   <p className="text-xs font-black text-gray-900 dark:text-white tracking-tight leading-none">Conalytic</p>
                   <p className="text-[9px] text-gray-400 dark:text-white/40 font-medium mt-0.5">AI Analytics</p>

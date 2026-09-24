@@ -10,9 +10,11 @@ import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { cn, isExternalNavigationHref } from "@/lib/utils";
 import { conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import type { NavbarConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-layout";
 import { CHAT_APP_LOGIN_URL, MARKETING_CONTACT_PATH } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { buildServicesNavGroup } from "@/lib/services-nav";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 const fallbackNavigation: SiteConfigLink[] = [
@@ -25,6 +27,7 @@ const fallbackNavigation: SiteConfigLink[] = [
       { label: "Report Builder", href: SITE_ROUTES.products.reportBuilder, description: "HTML presentation decks from connected marketing data" },
     ],
   },
+  buildServicesNavGroup(),
   { label: "Pricing", href: SITE_ROUTES.pricing },
   { label: "Features", href: SITE_ROUTES.features },
   { label: "About", href: SITE_ROUTES.about },
@@ -59,8 +62,8 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
   const primaryCtaLabel = config?.primaryCtaLabel || "Book A Demo";
   const primaryCtaHref = config?.primaryCtaHref || MARKETING_CONTACT_PATH;
   const primaryCtaIsExternal = isExternalNavigationHref(primaryCtaHref);
-  const navLogoLight = brandLogos?.navbarLogoLight ?? "/logo.png";
-  const navLogoDark = brandLogos?.navbarLogoDark ?? "/Conalytic3 White.png";
+  const navLogoLight = brandLogos?.navbarLogoLight ?? BRAND_ASSETS.logo;
+  const navLogoDark = brandLogos?.navbarLogoDark ?? BRAND_ASSETS.logoNavbarDark;
   const navLogoAlt = brandLogos?.navbarLogoAlt ?? conalyticLogoAlt("wordmark");
 
   useEffect(() => {
@@ -104,13 +107,31 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
         <nav className="px-4 sm:px-6">
           <div className="flex h-[3.25rem] items-center justify-between">
             <Link href="/" className="flex shrink-0 items-center transition-transform duration-300 hover:scale-[1.02]" aria-label="Conalytic — Home">
-              <Image src={navLogoLight} alt={navLogoAlt} width={140} height={40} className="h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:hidden" priority />
-              <Image src={navLogoDark} alt={navLogoAlt} width={140} height={40} className="hidden h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:block" priority />
+              <Image
+                src={navLogoLight}
+                alt={navLogoAlt}
+                width={140}
+                height={40}
+                className="h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:hidden"
+                style={{ width: "auto" }}
+                priority
+              />
+              <Image
+                src={navLogoDark}
+                alt={navLogoAlt}
+                width={140}
+                height={40}
+                className="hidden h-7 w-auto max-w-[120px] sm:h-8 sm:max-w-none dark:block"
+                style={{ width: "auto" }}
+                priority
+              />
             </Link>
 
             <div className="hidden items-center gap-0.5 lg:flex">
-              {navigation.map((item) =>
-                item.children && item.children.length > 0 ? (
+              {navigation.map((item) => {
+                const hasChildren = item.children && item.children.length > 0;
+                const wideMenu = hasChildren && item.children!.length > 4;
+                return hasChildren ? (
                   <div
                     key={`${item.label}-${item.href}`}
                     className="relative"
@@ -132,21 +153,41 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
                     </button>
                     <div
                       className={cn(
-                        "absolute left-1/2 top-full w-72 -translate-x-1/2 pt-2 transition-all duration-200",
+                        "absolute top-full pt-2 transition-all duration-200",
+                        wideMenu ? "left-0 -translate-x-4 xl:left-1/2 xl:-translate-x-1/2" : "left-1/2 w-72 -translate-x-1/2",
                         activeDropdown === item.label ? "pointer-events-auto translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
                       )}
                     >
-                      <div className="overflow-hidden rounded-2xl border border-black/8 bg-white p-2 shadow-xl shadow-black/10 dark:border-white/[0.07] dark:bg-[#18181F] dark:shadow-black/60">
-                        {item.children.map((child) => (
+                      <div
+                        className={cn(
+                          "overflow-hidden rounded-2xl border border-black/8 bg-white shadow-xl shadow-black/10 dark:border-white/[0.07] dark:bg-[#18181F] dark:shadow-black/60",
+                          wideMenu
+                            ? "grid w-[min(42rem,calc(100vw-2rem))] grid-cols-1 gap-0.5 p-2 sm:grid-cols-2"
+                            : "w-72 p-2"
+                        )}
+                      >
+                        {item.children!.map((child) => (
                           <Link
                             key={`${child.label}-${child.href}`}
                             href={child.href}
-                            className="group flex flex-col gap-0.5 rounded-xl px-4 py-3 transition-colors hover:bg-black/5 dark:hover:bg-white/5"
+                            className={cn(
+                              "group flex flex-col gap-0.5 rounded-xl transition-colors hover:bg-black/5 dark:hover:bg-white/5",
+                              wideMenu ? "px-3 py-2" : "px-4 py-3",
+                            )}
                           >
-                            <span className="flex flex-wrap items-center gap-2 text-sm font-medium text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
+                            <span className="flex flex-wrap items-center gap-2 text-sm font-medium leading-snug text-gray-900 transition-colors group-hover:text-brand-600 dark:text-white dark:group-hover:text-brand-300">
                               {child.label}
                             </span>
-                            {child.description && <span className="text-xs text-gray-400 dark:text-white/58">{child.description}</span>}
+                            {child.description && (
+                              <span
+                                className={cn(
+                                  "text-gray-400 dark:text-white/58",
+                                  wideMenu ? "text-[11px] leading-snug" : "text-xs",
+                                )}
+                              >
+                                {child.description}
+                              </span>
+                            )}
                           </Link>
                         ))}
                       </div>
@@ -165,8 +206,8 @@ export function Navbar({ config, brandLogos, preview }: NavbarProps) {
                   >
                     {item.label}
                   </Link>
-                )
-              )}
+                );
+              })}
             </div>
 
             <div className="hidden shrink-0 items-center gap-2 lg:flex">

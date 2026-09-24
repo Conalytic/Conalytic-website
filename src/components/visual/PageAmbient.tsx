@@ -3,15 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
-function useAmbientLite() {
+function useAmbientLite(options?: { particlesAlways?: boolean }) {
   const [lite, setLite] = useState(true);
 
   useEffect(() => {
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     const narrow = window.matchMedia("(max-width: 768px)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setLite(coarse || narrow || reduced);
-  }, []);
+    if (reduced) {
+      setLite(true);
+      return;
+    }
+    if (options?.particlesAlways) {
+      setLite(false);
+      return;
+    }
+    setLite(coarse || narrow);
+  }, [options?.particlesAlways]);
 
   return lite;
 }
@@ -172,12 +180,22 @@ function CursorSpotlight({ enabled }: { enabled: boolean }) {
 /**
  * Fixed site-wide ambient layer — CSS orbs + grid. Canvas effects only on desktop.
  */
-export function PageAmbient({ className }: { className?: string }) {
-  const lite = useAmbientLite();
+export function PageAmbient({
+  className,
+  fullCoverage = false,
+}: {
+  className?: string;
+  fullCoverage?: boolean;
+}) {
+  const lite = useAmbientLite({ particlesAlways: fullCoverage });
 
   return (
     <div
-      className={cn("pointer-events-none fixed inset-0 z-0 overflow-hidden", className)}
+      className={cn(
+        "pointer-events-none fixed inset-0 z-0 overflow-hidden",
+        fullCoverage && "page-ambient-full",
+        className,
+      )}
       aria-hidden
     >
       <div className="ambient-orb ambient-orb-a" />
@@ -186,9 +204,15 @@ export function PageAmbient({ className }: { className?: string }) {
       {!lite ? <div className="ambient-mesh" /> : null}
       <ParticleMesh enabled={!lite} />
       <CursorSpotlight enabled={!lite} />
-      <div className="ambient-grid absolute inset-0" />
+      <div className={cn("ambient-grid absolute inset-0", fullCoverage && "ambient-grid-full")} />
+      {fullCoverage ? <div className="ambient-dots absolute inset-0" /> : null}
       {!lite ? <div className="ambient-grain absolute inset-0" /> : null}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[var(--bg)]/75" />
+      <div
+        className={cn(
+          "absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#f5f6f9]/70 dark:to-[var(--bg)]/75",
+          fullCoverage && "to-[#f5f6f9]/45 dark:to-[var(--bg)]/55",
+        )}
+      />
     </div>
   );
 }

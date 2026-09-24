@@ -4,10 +4,8 @@ import { IntegrationsPageClient } from "@/components/pages/IntegrationsPageClien
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
 import { INTEGRATIONS_PAGE_FAQ } from "@/lib/marketing-faqs";
-import { buildRouteMetadata } from "@/lib/cms/page-metadata";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 import { SITE_PATHS } from "@/lib/site-paths";
-import { getPublishedPageOverlay } from "@/lib/cms/get-page-content";
-import type { IntegrationsContentPreset } from "@/components/pages/IntegrationsPageClient";
 
 const PAGE_TITLE = "Integrations – GA4, Google Ads, GSC, GTM & Meta";
 const PAGE_DESCRIPTION =
@@ -28,10 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function IntegrationsPage() {
-  const overlay = await getPublishedPageOverlay(SITE_PATHS.resources.integrations);
-  const content = overlay?.sections as IntegrationsContentPreset | undefined;
-
+export default function IntegrationsPage() {
   return (
     <>
       <BreadcrumbStructuredData
@@ -43,11 +38,11 @@ export default async function IntegrationsPage() {
       />
       <MarketingPageStructuredData
         path={SITE_PATHS.resources.integrations}
-        pageTitle={overlay?.seo?.title ?? PAGE_TITLE}
-        pageDescription={overlay?.seo?.description ?? PAGE_DESCRIPTION}
+        pageTitle={PAGE_TITLE}
+        pageDescription={PAGE_DESCRIPTION}
         faqItems={INTEGRATIONS_PAGE_FAQ}
       />
-      <IntegrationsPageClient content={content} />
+      <IntegrationsPageClient />
     </>
   );
 }

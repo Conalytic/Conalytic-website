@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import type { ProductDefinition, ProductId } from "@/lib/products";
 import { getProduct } from "@/lib/products";
 import { canonicalUrl } from "@/lib/page-seo";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { allowSearchIndexing } from "@/lib/seo-config";
 
 const INDEX_ROBOTS: Metadata["robots"] = {
@@ -45,7 +46,7 @@ export function buildProductMetadata(product: ProductDefinition): Metadata {
       locale: "en_US",
       images: [
         {
-          url: "/og-image.png",
+          url: BRAND_ASSETS.ogImage,
           width: 1200,
           height: 630,
           alt: `${product.name} — Conalytic`,
@@ -56,7 +57,7 @@ export function buildProductMetadata(product: ProductDefinition): Metadata {
       card: "summary_large_image",
       title: `${product.metaTitle} | Conalytic`,
       description: product.metaDescription,
-      images: ["/og-image.png"],
+      images: [BRAND_ASSETS.ogImage],
     },
     robots: allowSearchIndexing() ? INDEX_ROBOTS : NO_INDEX_ROBOTS,
   };

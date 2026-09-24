@@ -12,9 +12,10 @@ import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { CONVERSATIONAL_ANALYTICS_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/page-ctas";
 import { isExternalNavigationHref } from "@/lib/utils";
 import { integrationLogoAlt, conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { getProduct } from "@/lib/products";
 import { PRODUCT_PAGE_CONTENT } from "@/lib/product-page-content";
 import {
@@ -173,7 +174,7 @@ function MultiChannelVisual() {
       {/* Center hub */}
       <div className="w-14 h-14 rounded-2xl brand-ink-badge flex items-center justify-center shadow-lg shadow-brand-500/30">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo-icon.png" alt={conalyticLogoAlt("app icon")} width={32} height={32}/>
+        <img src={BRAND_ASSETS.logoIcon} alt={conalyticLogoAlt("app icon")} width={32} height={32}/>
       </div>
       <svg width="80" height="28" viewBox="0 0 80 28" className="opacity-50 rotate-180">
         <line x1="20" y1="0" x2="40" y2="28" stroke="var(--brand-accent)" strokeWidth="1.5" strokeDasharray="3 2"/>

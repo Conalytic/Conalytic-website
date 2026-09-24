@@ -1,5 +1,5 @@
 import { STATIC_BLOG_POSTS } from "@/content/blog-posts";
-import { CMS_REGISTRY } from "@/lib/cms/page-registry";
+import { getIndexableRoutes } from "@/lib/indexable-routes";
 import { LEGAL_DOCUMENTS_LAST_UPDATED } from "@/lib/legal-site";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { blogPostSlugFromPath, SITE_PATHS } from "@/lib/site-paths";
@@ -7,6 +7,8 @@ import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const LEGAL_LAST_MODIFIED = new Date(LEGAL_DOCUMENTS_LAST_UPDATED);
 const SITE_LAST_MODIFIED = new Date("2026-09-17T00:00:00.000Z");
+/** Service landings and index refreshed for GSC (SEO copy + layout). */
+const SERVICES_LAST_MODIFIED = new Date("2026-09-25T00:00:00.000Z");
 
 /** Preferred sitemap order — home → platform → products → resources → company → legal */
 const PATH_ORDER: string[] = [
@@ -16,6 +18,7 @@ const PATH_ORDER: string[] = [
   SITE_PATHS.products.conversationalAnalytics,
   SITE_PATHS.products.kpisTracker,
   SITE_PATHS.products.reportBuilder,
+  SITE_PATHS.services.index,
   SITE_PATHS.resources.blogs,
   SITE_PATHS.resources.integrations,
   SITE_PATHS.resources.careers,
@@ -31,6 +34,8 @@ function pathSortIndex(path: string): number {
   const exact = PATH_ORDER.indexOf(path);
   if (exact >= 0) return exact;
   if (path.startsWith(`${SITE_PATHS.resources.blogs}/`)) return 100;
+  if (path.startsWith(`${SITE_PATHS.services.index}/`)) return 48;
+  if (path === SITE_PATHS.services.index) return 47;
   return 50;
 }
 
@@ -54,8 +59,11 @@ function entry(path: string, lastModified: Date): SitemapEntry {
   };
 }
 
-function lastModifiedForRegistryPath(path: string, type: "page" | "blog"): Date {
+function lastModifiedForPath(path: string, type: "page" | "blog"): Date {
   if (LEGAL_PATHS.has(path)) return LEGAL_LAST_MODIFIED;
+  if (path === SITE_PATHS.services.index || path.startsWith(`${SITE_PATHS.services.index}/`)) {
+    return SERVICES_LAST_MODIFIED;
+  }
   if (type === "blog") {
     const slug = blogPostSlugFromPath(path);
     const post = slug ? STATIC_BLOG_POSTS.find((item) => item.slug === slug) : undefined;
@@ -64,21 +72,16 @@ function lastModifiedForRegistryPath(path: string, type: "page" | "blog"): Date 
   return SITE_LAST_MODIFIED;
 }
 
-/** Indexable marketing routes from the CMS page registry + blog slugs. */
+/** Indexable marketing routes + blog posts. */
 export function getSitemapEntries(): SitemapEntry[] {
-  return CMS_REGISTRY
-    .filter((item) => item.type === "page" || item.type === "blog")
+  return getIndexableRoutes()
     .filter((item) => !NON_INDEXABLE_PATHS.has(item.path))
-    .map((item) => {
-      const type = item.type === "blog" ? "blog" : "page";
-      return entry(item.path, lastModifiedForRegistryPath(item.path, type));
-    })
+    .map((item) => entry(item.path, lastModifiedForPath(item.path, item.type)))
     .sort((a, b) => {
       const pathA = a.url.replace(SITE_ORIGIN, "");
       const pathB = b.url.replace(SITE_ORIGIN, "");
       const orderDiff = pathSortIndex(pathA) - pathSortIndex(pathB);
       if (orderDiff !== 0) return orderDiff;
-      // Blog posts: newest first within the blog group
       if (pathA.startsWith(`${SITE_PATHS.resources.blogs}/`)) {
         return b.lastModified.getTime() - a.lastModified.getTime();
       }

@@ -28,6 +28,7 @@ export const SITE_ROUTES = {
     kpisTracker: SITE_PATHS.products.kpisTracker,
     reportBuilder: SITE_PATHS.products.reportBuilder,
   },
+  services: SITE_PATHS.services.index,
 } as const;
 
 export const MARKETING_CTAS = {

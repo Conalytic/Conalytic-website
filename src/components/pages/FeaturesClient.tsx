@@ -14,7 +14,7 @@ import { FEATURES_PAGE_FAQ } from "@/lib/marketing-faqs";
 import { PRIVACY_POLICY_PATH } from "@/lib/legal-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
 import { handleSamePageHashClick } from "@/lib/hash-nav";
-import { resolveBottomCtas, resolveCtaPair } from "@/lib/cms/resolve-page-ctas";
+import { resolveBottomCtas, resolveCtaPair } from "@/lib/page-ctas";
 import { isExternalNavigationHref } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;

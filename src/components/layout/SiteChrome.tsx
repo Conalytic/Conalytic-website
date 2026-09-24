@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { usePathname } from "next/navigation";
+import { isServiceLandingSlug } from "@/content/service-landings";
 import { isLegalDocumentPath } from "@/lib/legal-routes";
 import { PageAmbient } from "@/components/visual/PageAmbient";
 import { ScrollRevealInit } from "@/components/layout/ScrollRevealInit";
@@ -22,6 +23,8 @@ export function SiteChrome({
 }) {
   const pathname = usePathname();
   const legal = isLegalDocumentPath(pathname);
+  const serviceSlug = pathname?.match(/^\/services\/([^/]+)$/)?.[1];
+  const serviceLandingFullAmbient = serviceSlug != null && isServiceLandingSlug(serviceSlug);
 
   if (legal) {
     return <>{children}</>;
@@ -29,7 +32,7 @@ export function SiteChrome({
 
   return (
     <>
-      <PageAmbient />
+      <PageAmbient fullCoverage={serviceLandingFullAmbient} />
       <ScrollRevealInit />
       <ScrollProgressBar />
       <div className="relative z-[1] flex min-h-dvh min-w-0 flex-1 flex-col overflow-x-clip">

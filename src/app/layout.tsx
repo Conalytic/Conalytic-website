@@ -7,6 +7,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
 import { SiteStructuredData } from "@/components/seo/SiteStructuredData";
 import { MotionConfigProvider } from "@/components/layout/MotionConfigProvider";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { SITE_ORIGIN, allowSearchIndexing } from "@/lib/seo-config";
 import { THEME_INIT_SCRIPT } from "@/lib/theme";
 
@@ -41,11 +42,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png", sizes: "512x512" },
-      { url: "/logo-icon.png", type: "image/png", sizes: "192x192" },
+      { url: BRAND_ASSETS.favicon, type: "image/png", sizes: "512x512" },
+      { url: BRAND_ASSETS.logoIcon, type: "image/png", sizes: "192x192" },
     ],
-    shortcut: "/favicon.png",
-    apple: [{ url: "/favicon.png", type: "image/png", sizes: "180x180" }],
+    shortcut: BRAND_ASSETS.favicon,
+    apple: [{ url: BRAND_ASSETS.favicon, type: "image/png", sizes: "180x180" }],
   },
   title: {
     default: "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
@@ -85,7 +86,7 @@ export const metadata: Metadata = {
       "Three tools in one platform: chat with GA4, Ads, GTM & Meta data; track KPI goals; build HTML report decks. Free to start.",
     images: [
       {
-        url: "/og-image.png",
+        url: BRAND_ASSETS.ogImage,
         width: 1200,
         height: 630,
         alt: "Conalytic – conversational analytics platform",
@@ -98,7 +99,7 @@ export const metadata: Metadata = {
     description:
       "Chat with marketing data, track KPI goals, and generate HTML report decks. GA4, Search Console, Google Ads, GTM, and Meta integrations.",
     creator: "@conalytic",
-    images: ["/og-image.png"],
+    images: [BRAND_ASSETS.ogImage],
   },
   robots: seoIndexable
     ? {

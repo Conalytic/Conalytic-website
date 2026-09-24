@@ -8,7 +8,9 @@ import type { FooterConfig, SiteBrandLogos, SiteConfigLink } from "@/lib/site-la
 import { NewsletterSignup } from "@/components/layout/NewsletterSignup";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { conalyticLogoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
+import { buildServicesNavGroup } from "@/lib/services-nav";
 import { SITE_ROUTES } from "@/lib/site-links";
 
 const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
@@ -46,6 +48,15 @@ const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
       { label: "Brand assets", href: SITE_ROUTES.brand },
     ],
   },
+  {
+    title: "Services",
+    links: [
+      { label: "All services", href: SITE_ROUTES.services },
+      ...buildServicesNavGroup()
+        .children!.slice(0, 5)
+        .map((link) => ({ label: link.label, href: link.href })),
+    ],
+  },
 ];
 
 const fallbackLegalLinks: SiteConfigLink[] = [
@@ -53,9 +64,6 @@ const fallbackLegalLinks: SiteConfigLink[] = [
   { label: "Privacy", href: PRIVACY_POLICY_PATH },
   { label: "Cookies", href: SITE_ROUTES.cookies },
 ];
-
-const TAGLINE_W = 1913;
-const TAGLINE_H = 486;
 
 interface FooterProps {
   config?: FooterConfig | null;
@@ -86,10 +94,10 @@ function FooterColumnLink({ href, className, children }: { href: string; classNa
 }
 
 export function Footer({ config, brandLogos }: FooterProps) {
-  const taglineLight = brandLogos?.footerTaglineLight ?? "/logo-tagline-light.png";
-  const taglineDark = brandLogos?.footerTaglineDark ?? "/logo-tagline-white.png";
+  const taglineLight = brandLogos?.footerTaglineLight ?? BRAND_ASSETS.logoTaglineLight;
+  const taglineDark = brandLogos?.footerTaglineDark ?? BRAND_ASSETS.logoTaglineWhite;
   const taglineAlt = brandLogos?.footerTaglineAlt ?? conalyticLogoAlt("wordmark with tagline");
-  const footerMark = brandLogos?.footerMarkIcon ?? "/logo-icon.png";
+  const footerMark = brandLogos?.footerMarkIcon ?? BRAND_ASSETS.logoIcon;
   const columns = config?.columns?.length ? config.columns : fallbackColumns;
   const legalLinks = config?.legalLinks?.length ? config.legalLinks : fallbackLegalLinks;
   const copyrightText = config?.copyrightText || "© 2026 Conalytic. All rights reserved.";
@@ -108,24 +116,26 @@ export function Footer({ config, brandLogos }: FooterProps) {
                 <Image
                   src={taglineLight}
                   alt={taglineAlt}
-                  width={TAGLINE_W}
-                  height={TAGLINE_H}
+                  width={420}
+                  height={107}
                   className="block h-11 w-auto max-w-[min(300px,88vw)] dark:hidden sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
+                  style={{ width: "auto" }}
                 />
                 <Image
                   src={taglineDark}
                   alt={taglineAlt}
-                  width={TAGLINE_W}
-                  height={TAGLINE_H}
+                  width={420}
+                  height={107}
                   className="hidden h-11 w-auto max-w-[min(300px,88vw)] dark:block sm:h-14 sm:max-w-[min(380px,85vw)] lg:h-16 lg:max-w-[420px]"
+                  style={{ width: "auto" }}
                 />
               </Link>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 pb-8 pt-8 min-[480px]:grid-cols-2 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 pb-8 pt-8 min-[480px]:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
             {columns.map((column) => (
-              <div key={column.title}>
+              <div key={column.title} className="min-w-0">
                 <h4 className="mb-4 text-xs font-bold uppercase tracking-wider text-gray-900 dark:text-white">
                   {column.title}
                 </h4>

@@ -9,7 +9,7 @@ import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
+import { resolveBottomCtas } from "@/lib/page-ctas";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:1, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };

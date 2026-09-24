@@ -32,23 +32,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it.
 | Route | Description |
 |---|---|
 | `/` | Home |
-| `/features` | Platform features |
-| `/products/conversational-analytics` | Conversational Analytics product |
-| `/products/report-builder` | Report Builder product |
-| `/products/applicant-tracking-system` | ATS product |
-| `/about-us` | About Conalytic |
-| `/contact` | Contact us |
-| `/integrations` | Integrations listing |
-| `/blogs` | Blog listing |
-| `/{slug}` | Individual blog posts (canonical URLs) |
-| `/blogs/[slug]` | Redirects to `/{slug}` |
-| `/careers` | Open positions |
-| `/privacy-and-policy` | Privacy Policy (same content as chat app) |
-| `/terms-of-service` | Terms of Service (same content as chat app) |
-| `/privacy` | 308 → `/privacy-and-policy` |
-| `/terms` | 308 → `/terms-of-service` |
-| `/cookies` | Cookies Policy |
-| `/brand` | Brand assets & guidelines |
+| `/platform/features` | Platform features |
+| `/platform/pricing` | Pricing |
+| `/products/conversational-analytics` | Conversational Analytics |
+| `/products/kpis-tracker` | KPIs Tracker |
+| `/products/report-builder` | Report Builder |
+| `/services` | Services index |
+| `/services/[slug]` | Service landing (e.g. SEO, paid media, GEO) |
+| `/company/about-us` | About |
+| `/company/contact` | Contact |
+| `/company/brand` | Brand guidelines |
+| `/resources/blogs` | Blog index |
+| `/resources/blogs/[slug]` | Blog post |
+| `/resources/integrations` | Integrations |
+| `/resources/careers` | Careers |
+| `/legal/privacy-and-policy` | Privacy |
+| `/legal/terms-of-service` | Terms |
+| `/legal/cookies` | Cookies |
+
+Folder layout: see [`src/README.md`](src/README.md) and [`src/app/(marketing)/README.md`](src/app/(marketing)/README.md).
 
 ## Development Docs
 

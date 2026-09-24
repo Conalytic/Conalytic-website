@@ -2,6 +2,7 @@
  * Shared page metadata helpers — self-referencing canonical URLs for every route.
  */
 import type { Metadata } from "next";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { allowSearchIndexing, SITE_ORIGIN } from "@/lib/seo-config";
 
 const INDEX_ROBOTS: Metadata["robots"] = {
@@ -23,7 +24,7 @@ const NO_INDEX_ROBOTS: Metadata["robots"] = {
 };
 
 const DEFAULT_OG_IMAGE = {
-  url: "/og-image.png",
+  url: BRAND_ASSETS.ogImage,
   width: 1200,
   height: 630,
   alt: "Conalytic — marketing analytics platform",

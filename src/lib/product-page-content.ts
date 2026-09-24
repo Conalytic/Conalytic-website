@@ -2,6 +2,9 @@
  * Rich product-page section copy — aligned with Conalytic-Chat (Chats, KPIs, Reports).
  */
 import type { ProductId } from "@/lib/products";
+import { IMAGE_ASSETS } from "@/lib/public-assets";
+
+const productHero = (filename: string) => `${IMAGE_ASSETS.productsBase}/${filename}`;
 
 export type ProductStep = {
   step: string;
@@ -32,7 +35,7 @@ export type ProductPageContent = {
 
 export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
   "conversational-analytics": {
-    heroImage: "/products/conversational-analytics-hero.png",
+    heroImage: productHero("conversational-analytics-hero.png"),
     heroImageAlt:
       "Conversational Analytics interface showing natural language questions over GA4, Google Ads, and Meta data with inline charts",
     howItWorks: [
@@ -119,7 +122,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
     ],
   },
   "kpis-tracker": {
-    heroImage: "/products/kpis-tracker-hero.png",
+    heroImage: productHero("kpis-tracker-hero.png"),
     heroImageAlt:
       "KPIs Tracker dashboard showing On track, At risk, and Off track status pills for GA4, GSC, and Google Ads goals",
     howItWorks: [
@@ -200,7 +203,7 @@ export const PRODUCT_PAGE_CONTENT: Record<ProductId, ProductPageContent> = {
     ],
   },
   "report-builder": {
-    heroImage: "/products/report-builder-hero.png",
+    heroImage: productHero("report-builder-hero.png"),
     heroImageAlt:
       "Report Builder HTML presentation deck with executive summary, GA4 charts, and Google Ads campaign slides",
     howItWorks: [

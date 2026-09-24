@@ -20,7 +20,7 @@ import {
   getLegalRegisteredAddress,
 } from "@/lib/legal-site";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
-import { buildRouteMetadata } from "@/lib/cms/page-metadata";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildRouteMetadata(TERMS_OF_SERVICE_PATH, {

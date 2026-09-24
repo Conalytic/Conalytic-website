@@ -29,6 +29,9 @@ export const SITE_PATHS = {
     reportBuilder: "/products/report-builder",
     applicantTrackingSystem: "/products/applicant-tracking-system",
   },
+  services: {
+    index: "/services",
+  },
 } as const;
 
 export function blogPostPath(slug: string): string {

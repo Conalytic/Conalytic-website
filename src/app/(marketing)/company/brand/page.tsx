@@ -2,10 +2,10 @@
 import type { Metadata } from "next";
 import { Download } from "lucide-react";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
-import { buildRouteMetadata } from "@/lib/cms/page-metadata";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 import { SITE_PATHS } from "@/lib/site-paths";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { getPublishedPageOverlay } from "@/lib/cms/get-page-content";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 
 const PAGE_TITLE = "Conalytic Brand Assets & Logo Guidelines";
 const PAGE_DESCRIPTION =
@@ -21,10 +21,30 @@ const colors = [
 ];
 
 const logoVariants = [
-  { name:"Full Logo – Dark bg",   description:"Primary usage on dark backgrounds", file:"/logo-white.png", filename:"conalytic-logo-white.png" },
-  { name:"Full Logo – Light bg",  description:"Use on white or light backgrounds", file:"/logo.png", filename:"conalytic-logo.png" },
-  { name:"Icon only – Color",     description:"App icon, favicon, small spaces", file:"/logo-icon.png", filename:"conalytic-icon.png" },
-  { name:"Wordmark – Light",      description:"Tagline logo for light backgrounds", file:"/logo-tagline-light.png", filename:"conalytic-wordmark-light.png" },
+  {
+    name: "Full Logo – Dark bg",
+    description: "Primary usage on dark backgrounds",
+    file: BRAND_ASSETS.logoWhite,
+    filename: "conalytic-logo-white.png",
+  },
+  {
+    name: "Full Logo – Light bg",
+    description: "Use on white or light backgrounds",
+    file: BRAND_ASSETS.logo,
+    filename: "conalytic-logo.png",
+  },
+  {
+    name: "Icon only – Color",
+    description: "App icon, favicon, small spaces",
+    file: BRAND_ASSETS.logoIcon,
+    filename: "conalytic-icon.png",
+  },
+  {
+    name: "Wordmark – Light",
+    description: "Tagline logo for light backgrounds",
+    file: BRAND_ASSETS.logoTaglineLight,
+    filename: "conalytic-wordmark-light.png",
+  },
 ];
 
 const typography = [
@@ -160,15 +180,13 @@ export async function generateMetadata(): Promise<Metadata> {
   });
 }
 
-export default async function BrandPage() {
-  const overlay = await getPublishedPageOverlay(SITE_PATHS.company.brand);
-
+export default function BrandPage() {
   return (
     <>
       <MarketingPageStructuredData
         path={SITE_PATHS.company.brand}
-        pageTitle={overlay?.seo?.title ?? PAGE_TITLE}
-        pageDescription={overlay?.seo?.description ?? PAGE_DESCRIPTION}
+        pageTitle={PAGE_TITLE}
+        pageDescription={PAGE_DESCRIPTION}
       />
       <BrandFallback />
     </>

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PricingClient } from "@/components/pages/PricingClient";
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
-import { buildRouteMetadata } from "@/lib/cms/page-metadata";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 import { SITE_PATHS } from "@/lib/site-paths";
 import { PRICING_PAGE_FAQ } from "@/lib/marketing-faqs";
 

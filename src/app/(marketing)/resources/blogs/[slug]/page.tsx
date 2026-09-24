@@ -6,11 +6,11 @@ import { notFound } from "next/navigation";
 import { BlogArticleLayout } from "@/components/blog/BlogArticleLayout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
-import { getAllBlogSlugs, getRelatedBlogPosts } from "@/content/blog-posts";
+import { getAllBlogSlugs, getBlogPostBySlug, getRelatedBlogPosts } from "@/content/blog-posts";
+import { buildBlogArticleMetadata } from "@/lib/blog-metadata";
 import { extractBlogFaqsForSchema } from "@/lib/blog-schema";
 import { extractMarkdownH2Headings } from "@/lib/blog-headings";
-import { buildBlogArticleMetadataFromCms } from "@/lib/cms/seo";
-import { getPublishedBlogPost, getPublishedPageOverlay } from "@/lib/cms/get-page-content";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 import { blogPostPath, SITE_PATHS } from "@/lib/site-paths";
 import { blogPostingSchema, faqPageSchema } from "@/lib/structured-data";
@@ -25,30 +25,25 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = await getPublishedBlogPost(slug);
+  const post = getBlogPostBySlug(slug);
   if (!post) {
     return {};
   }
   const path = blogPostPath(slug);
-  const overlay = await getPublishedPageOverlay(path);
-  return buildBlogArticleMetadataFromCms(
-    path,
-    {
-      title: post.title,
-      description: post.description,
-      excerpt: post.excerpt,
-      category: post.category,
-      datePublished: post.datePublished,
-      keywords: post.keywords,
-      primaryKeyword: post.primaryKeyword,
-    },
-    overlay?.seo,
-  );
+  return buildBlogArticleMetadata(path, {
+    title: post.title,
+    description: post.description,
+    excerpt: post.excerpt,
+    category: post.category,
+    datePublished: post.datePublished,
+    keywords: post.keywords,
+    primaryKeyword: post.primaryKeyword,
+  });
 }
 
 export default async function PublicBlogPage({ params }: Props) {
   const { slug } = await params;
-  const post = await getPublishedBlogPost(slug);
+  const post = getBlogPostBySlug(slug);
   if (!post) {
     notFound();
   }
@@ -80,12 +75,10 @@ export default async function PublicBlogPage({ params }: Props) {
           keywords: post.keywords?.length
             ? post.keywords
             : [post.primaryKeyword, post.category, "marketing analytics", "Conalytic"],
-          imageUrl: `${SITE_ORIGIN}/og-image.png`,
+          imageUrl: `${SITE_ORIGIN}${BRAND_ASSETS.ogImage}`,
         })}
       />
-      {faqs.length > 0 ? (
-        <JsonLd id={`ld-blog-faq-${post.slug}`} data={faqPageSchema(faqs)} />
-      ) : null}
+      {faqs.length > 0 ? <JsonLd id={`ld-blog-faq-${post.slug}`} data={faqPageSchema(faqs)} /> : null}
       <BlogArticleLayout post={post} headings={headings} related={related} />
     </>
   );

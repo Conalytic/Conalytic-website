@@ -17,11 +17,14 @@ function sitemapPriority(path: string): string {
   if (
     path === SITE_PATHS.platform.features ||
     path === SITE_PATHS.platform.pricing ||
-    path.startsWith("/products/")
+    path.startsWith("/products/") ||
+    path === SITE_PATHS.services.index ||
+    path.startsWith(`${SITE_PATHS.services.index}/`)
   ) {
     return "0.9";
   }
   if (path === SITE_PATHS.resources.blogs) return "0.8";
+  if (path === SITE_PATHS.resources.integrations) return "0.75";
   return "0.6";
 }
 

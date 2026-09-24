@@ -1,3 +1,0 @@
-{
-  "body": "User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=no\nDisallow: /api/\nDisallow: /company/contact/thank-you\nDisallow: /*?\n\nSitemap: https://conalytic.com/sitemap.xml\n"
-}

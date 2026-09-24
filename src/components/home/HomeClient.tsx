@@ -2,7 +2,7 @@
 
 /**
  * Full marketing home: hero, integrations marquee, transformation, how-it-works, stats, pricing, FAQ, CTA.
- * Content merges optional `HomeContentPreset` overrides with sensible defaults; FAQ defaults from `default-home-faq.ts`.
+ * Content merges optional `HomeContentPreset` with sensible defaults; FAQ defaults from `default-home-faq.ts`.
  */
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,11 +27,12 @@ import {
   type MarketingStackLogoKey,
 } from "@/lib/marketing-stack-logos";
 import { integrationLogoAlt, testimonialPhotoAlt } from "@/lib/image-alt";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { DEFAULT_HOME_FAQ } from "@/lib/default-home-faq";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/cms/home-section-order";
-import { normalizeSectionOrder as resolveSectionOrder } from "@/lib/cms/section-order";
+import { HOME_DEFAULT_SECTION_ORDER } from "@/lib/home-section-order";
+import { normalizeSectionOrder as resolveSectionOrder } from "@/lib/section-order";
 import {
   SAAS_EASE as EASE,
   staggerContainer as stagger,
@@ -88,7 +89,7 @@ export interface HomeContentPreset {
   ctaPrimaryHref?: string;
   ctaSecondaryLabel?: string;
   ctaSecondaryHref?: string;
-  /** Optional brand icon URL for hub / bento mocks, or default `/logo-icon.png`. */
+  /** Optional brand icon URL for hub / bento mocks, or default brand icon asset. */
   brandIconUrl?: string;
   brandIconAlt?: string;
   /** Optional override for integration marquee logo order on the home page. */
@@ -232,7 +233,7 @@ function hubIntegrationRows(content?: HomeContentPreset) {
 
 function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
   const hubRows = hubIntegrationRows(content);
-  const hubBrandIcon = content?.brandIconUrl ?? "/logo-icon.png";
+  const hubBrandIcon = content?.brandIconUrl ?? BRAND_ASSETS.logoIcon;
   /* Tile size */
   const T = 54, R = 14, LOGO = 26;
 

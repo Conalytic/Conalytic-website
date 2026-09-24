@@ -1,16 +1,13 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { SiteChrome } from "@/components/layout/SiteChrome";
-import { getFooterConfig, getHeaderConfig } from "@/lib/cms/get-site-chrome";
+import { DEFAULT_FOOTER_CONFIG, DEFAULT_NAVBAR_CONFIG } from "@/lib/site-chrome-config";
 
-export async function AsyncSiteChrome({ children }: { children: React.ReactNode }) {
-  const headerConfig = await getHeaderConfig();
-  const footerConfig = await getFooterConfig();
-
+export function AsyncSiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <SiteChrome
-      navbar={<Navbar config={headerConfig} brandLogos={null} />}
-      footer={<Footer config={footerConfig} brandLogos={null} />}
+      navbar={<Navbar config={DEFAULT_NAVBAR_CONFIG} brandLogos={null} />}
+      footer={<Footer config={DEFAULT_FOOTER_CONFIG} brandLogos={null} />}
     >
       {children}
     </SiteChrome>

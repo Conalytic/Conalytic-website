@@ -11,7 +11,7 @@ import { MarketingFaqSection } from "@/components/sections/MarketingFaqSection";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
 import { REPORT_BUILDER_FAQ } from "@/lib/marketing-faqs";
 import { SITE_ROUTES } from "@/lib/site-links";
-import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
+import { resolveBottomCtas } from "@/lib/page-ctas";
 import { getProduct } from "@/lib/products";
 import {
   analyticsDemoBarStyle,

@@ -1,17 +1,13 @@
-import { readCmsJson } from "@/lib/cms/read-cms-file";
-import { buildDefaultRobotsTxt } from "@/lib/cms/robots-default";
+import { buildRobotsTxtBody } from "@/lib/robots-body";
 
-export { buildDefaultRobotsTxt };
+/** Published robots.txt body (site root). */
+const ROBOTS_TXT_BODY =
+  "User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=no\nDisallow: /api/\nDisallow: /company/contact/thank-you\nDisallow: /*?\n\nSitemap: https://conalytic.com/sitemap.xml\n";
 
-export async function getPublishedRobotsBody(): Promise<string | null> {
-  const cms = await readCmsJson<{ body?: string }>("site/robots.json");
-  const body = cms?.body?.trim();
-  return body || null;
+export function buildDefaultRobotsTxt(): string {
+  return buildRobotsTxtBody();
 }
 
 export async function buildRobotsTxt(): Promise<string> {
-  const custom = await getPublishedRobotsBody();
-  if (custom) return custom;
-
-  return buildDefaultRobotsTxt();
+  return ROBOTS_TXT_BODY.trim() ? ROBOTS_TXT_BODY : buildDefaultRobotsTxt();
 }

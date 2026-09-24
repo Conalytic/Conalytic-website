@@ -1,12 +1,11 @@
 /** Blog listing `/resources/blogs`. */
 import type { Metadata } from "next";
-import { BlogsClient, type BlogsContentPreset } from "@/components/pages/BlogsClient";
+import { BlogsClient } from "@/components/pages/BlogsClient";
 import { getBlogListTotalPages, parseBlogListPage } from "@/lib/blog-list-page";
 import { BlogListingStructuredData } from "@/components/seo/BlogListingStructuredData";
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 import { MarketingPageStructuredData } from "@/components/seo/MarketingPageStructuredData";
-import { buildRouteMetadata } from "@/lib/cms/page-metadata";
-import { getPublishedPageOverlay } from "@/lib/cms/get-page-content";
+import { buildRouteMetadata } from "@/lib/site-metadata";
 import { SITE_PATHS } from "@/lib/site-paths";
 
 const PAGE_TITLE = "Conalytic Blog – GA4, Reporting & KPI Guides for Marketers";
@@ -40,8 +39,6 @@ type BlogsPageProps = {
 };
 
 export default async function BlogsPage({ searchParams }: BlogsPageProps) {
-  const overlay = await getPublishedPageOverlay(SITE_PATHS.resources.blogs);
-  const content = overlay?.sections as BlogsContentPreset | undefined;
   const params = await searchParams;
   const totalPages = getBlogListTotalPages();
   const currentPage = parseBlogListPage(params.page, totalPages);
@@ -57,11 +54,11 @@ export default async function BlogsPage({ searchParams }: BlogsPageProps) {
       />
       <MarketingPageStructuredData
         path={SITE_PATHS.resources.blogs}
-        pageTitle={overlay?.seo?.title ?? PAGE_TITLE}
-        pageDescription={overlay?.seo?.description ?? PAGE_DESCRIPTION}
+        pageTitle={PAGE_TITLE}
+        pageDescription={PAGE_DESCRIPTION}
       />
       <BlogListingStructuredData />
-      <BlogsClient content={content} currentPage={currentPage} />
+      <BlogsClient currentPage={currentPage} />
     </>
   );
 }

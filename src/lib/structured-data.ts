@@ -5,6 +5,7 @@
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_ABSOLUTE } from "@/lib/app-urls";
 import { PRODUCT_LIST, type ProductDefinition } from "@/lib/products";
 import { blogPostPath, SITE_PATHS } from "@/lib/site-paths";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 import { SITE_ORIGIN } from "@/lib/seo-config";
 
 const SITE = SITE_ORIGIN;
@@ -17,8 +18,8 @@ export function organizationSchema() {
     name: "Conalytic",
     legalName: "Conalytic",
     url: SITE,
-    logo: { "@type": "ImageObject", url: `${SITE}/logo.png` },
-    image: `${SITE}/og-image.png`,
+    logo: { "@type": "ImageObject", url: `${SITE}${BRAND_ASSETS.logo}` },
+    image: `${SITE}${BRAND_ASSETS.ogImage}`,
     slogan: "Casting Spells of Clarity on Your Data.",
     description:
       "Conalytic is a marketing analytics platform with three tools: Conversational Analytics (chat over live data), KPIs Tracker (goal monitoring), and Report Builder (HTML presentation decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads via OAuth.",
@@ -138,7 +139,7 @@ export function softwareApplicationSchema() {
     operatingSystem: "Web browser",
     browserRequirements: "Requires JavaScript. Modern evergreen browser.",
     url: CHAT_APP_SIGNUP_URL,
-    screenshot: `${SITE}/og-image.png`,
+    screenshot: `${SITE}${BRAND_ASSETS.ogImage}`,
     description:
       "Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Free to start on Conalytic Pro.",
     featureList: [

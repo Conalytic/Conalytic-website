@@ -52,10 +52,11 @@ next
 Conalytic\ Assets/
 samples/
 
+# scraped reference dumps (not part of the app)
+complete_files/
+
 # python cache
 __pycache__/
 *.pyc
 
-# local CMS drafts (when Redis is not configured)
-.cms-drafts/
 localhost_2026-08-01_02-11-39.report.html

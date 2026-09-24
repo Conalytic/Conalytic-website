@@ -3,8 +3,8 @@
  * Use these for GA4, Search Console, Google Ads, Meta Ads, and LinkedIn Ads everywhere in the app.
  */
 export const MARKETING_STACK_LOGOS = {
-  googleAnalytics4: "/ga4.svg",
-  googleSearchConsole: "/google-search-console-icon.webp",
+  googleAnalytics4: "/integrations/ga4.svg",
+  googleSearchConsole: "/integrations/gsc-icon.webp",
   googleAds: "/integrations/google-ads.svg",
   metaAds: "/integrations/meta.svg",
   linkedinAds: "/integrations/linkedin.svg",

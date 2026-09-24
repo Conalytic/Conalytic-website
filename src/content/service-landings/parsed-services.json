@@ -1,0 +1,3291 @@
+[
+  {
+    "slug": "seo-organic-growth",
+    "meta": {
+      "pageTitle": "B2B SaaS SEO Services & Technical SEO Agency | Conalytic",
+      "title": "SEO & Organic Growth",
+      "description": "Technical SEO, content clusters, and GA4-tracked organic growth for B2B and SaaS. Fix indexation, win AI Overviews, and prove SEO pipeline impact.",
+      "navDescription": "Technical SEO, content strategy, and sustainable search visibility"
+    },
+    "catalog": {
+      "heroSubtitle": "Technical SEO, content strategy, and Search Console–aligned measurement built to grow qualified organic pipeline for B2B and SaaS brands.",
+      "highlights": [
+        "Technical SEO audits covering site architecture, crawlability, and indexation",
+        "Keyword research and pillar-cluster content for high-intent B2B topics",
+        "On-page SEO, internal linking, and schema markup where it moves revenue"
+      ],
+      "deliverables": [
+        "SEO roadmap with quarterly priorities",
+        "Technical SEO audit and prioritized fix backlog",
+        "Content cluster plan and optimization sprints",
+        "Monthly SEO reporting in Conalytic, GA4, and Search Console"
+      ]
+    },
+    "hero": {
+      "eyebrow": "SEO & organic growth services",
+      "line1": "Technical SEO and content",
+      "line2": "built for B2B pipeline",
+      "paragraph1": "Conalytic is a B2B SEO agency running end-to-end organic growth programs: technical SEO audits, Google Search Console indexation fixes, topical content clusters, and GA4 conversion tracking — in one SEO roadmap your developers and marketers can ship.",
+      "paragraph2": "With AI Overviews answering more searches on the results page, we focus on the queries that still drive clicks and pipeline — and on making your pages the sources AI answers cite.",
+      "trustBadges": [
+        {
+          "title": "Search Console + GA4",
+          "subtitle": "Native",
+          "accent": "emerald"
+        },
+        {
+          "title": "Next.js & headless",
+          "subtitle": "SSR-ready",
+          "accent": "slate"
+        },
+        {
+          "title": "AI Overviews",
+          "subtitle": "GEO-ready",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "SEO programs that connect to HubSpot, Salesforce, Webflow, WordPress, Next.js, and the analytics stack you already trust."
+    },
+    "whatWeDo": {
+      "title": "Full-funnel SEO services for SaaS, B2B, and professional services brands",
+      "items": [
+        {
+          "title": "Keyword research & SERP analysis",
+          "description": "Search intent mapping, keyword difficulty scoring, competitor gap analysis, and SERP feature targets — including AI Overviews — so you invest in keywords that drive pipeline.",
+          "visual": "keyword",
+          "alt": "Keyword research and SERP analysis for B2B SEO",
+          "linkLabel": "Explore keyword research",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Content strategy & pillar-cluster planning",
+          "description": "Pillar pages, topic cluster maps, editorial calendars, and content refresh priorities aligned to funnel stage and coordinated with your CMS and CRM.",
+          "visual": "content",
+          "alt": "SEO content strategy and pillar-cluster planning",
+          "linkLabel": "Explore content planning",
+          "linkHref": "/resources/blogs"
+        },
+        {
+          "title": "On-page SEO optimization",
+          "description": "Title tags, meta descriptions, headings, entity coverage, and internal links on money pages — plus SEO content briefs so every publish is search-ready.",
+          "visual": "onpage",
+          "alt": "On-page SEO optimization of titles, headings, and internal links",
+          "linkLabel": "Explore on-page SEO",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Technical SEO audits",
+          "description": "Crawl budget, site architecture, canonicals, redirects, JavaScript rendering, and log-file analysis — every issue prioritized by revenue impact.",
+          "visual": "technical",
+          "alt": "Technical SEO audit of site architecture and crawlability",
+          "linkLabel": "Explore technical SEO",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Indexation & crawl optimization",
+          "description": "Fix \"Crawled – currently not indexed,\" XML sitemap hygiene, robots.txt rules, and SSR-friendly rendering so Google indexes the same HTML users see.",
+          "visual": "indexation",
+          "alt": "Google Search Console indexation and crawl optimization",
+          "linkLabel": "Fix indexation",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Schema markup & structured data",
+          "description": "Organization, Product, Article, FAQ, and Breadcrumb schema that earns rich results and gives search engines and AI models clear entity signals.",
+          "visual": "schema",
+          "alt": "Schema markup and structured data implementation",
+          "linkLabel": "Explore schema",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Core Web Vitals & page experience",
+          "description": "LCP, INP, and CLS fixes applied to templates, not one-off pages — validated with field data from Chrome UX Report and Search Console.",
+          "visual": "vitals",
+          "alt": "Core Web Vitals performance optimization",
+          "linkLabel": "Improve page speed",
+          "linkHref": "/services/marketing-website-development"
+        },
+        {
+          "title": "GEO & AI search optimization",
+          "description": "Answer-first content, entity clarity, and citability patterns so your brand appears in Google AI Overviews, ChatGPT, and Perplexity alongside classic rankings.",
+          "visual": "geo",
+          "alt": "Generative engine optimization for AI search visibility",
+          "linkLabel": "Explore GEO",
+          "linkHref": "/services/generative-engine-optimization"
+        },
+        {
+          "title": "International SEO & hreflang",
+          "description": "Locale strategy, hreflang, and canonical rules for multi-market growth across the US, UK, EU, Nordics, Canada, and Australia.",
+          "visual": "international",
+          "alt": "International SEO and hreflang configuration",
+          "linkLabel": "Plan international SEO",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "SEO reporting in Search Console & GA4",
+          "description": "Non-brand clicks, index coverage, rankings, and organic conversions in one SEO dashboard — with AI-generated insights in Conalytic.",
+          "visual": "reporting",
+          "alt": "SEO reporting dashboard with Search Console and GA4 data",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for SEO",
+      "headline": "Organic search that compounds — fix crawl and indexation, publish content clusters that rank, and prove SEO revenue impact in GA4.",
+      "introTitle": "Strategy, execution, and measurement in one SEO team",
+      "introBody": "We are a B2B-focused SEO agency and marketing analytics partner. From log-file audits to content briefs, every SEO deliverable ties to Search Console coverage, ranking movement, or organic conversions — so leadership sees pipeline, not vanity traffic.",
+      "items": [
+        {
+          "title": "Get more done, faster",
+          "description": "Indexation fixes and revenue keywords live in one SEO roadmap, so dev, content, and marketing aren't waiting on scattered spreadsheets or agency slide decks."
+        },
+        {
+          "title": "All the control and visibility you need",
+          "description": "Search Console, GA4, and Conalytic KPIs in one narrative: what's indexed, what's ranking, which pages influence pipeline — with an owner and date on every ticket."
+        },
+        {
+          "title": "Cut waste, support growth",
+          "description": "Stop paying for vanity traffic. We double down on keywords that convert, consolidate or retire thin content, and scale SEO playbooks across sites and locales."
+        }
+      ],
+      "imageAlt": "Organic search growth analytics visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic runs your SEO and organic growth program",
+      "subtitle": "Four phases — discover, plan, ship, and prove — so engineering, content, and leadership share one source of truth.",
+      "steps": [
+        {
+          "title": "Discover",
+          "description": "Technical crawl, Search Console, and analytics review. We quantify indexation gaps, keyword opportunity, and competitor share of voice."
+        },
+        {
+          "title": "Plan",
+          "description": "A prioritized SEO roadmap: quick wins, structural fixes, and content clusters with owners and timelines."
+        },
+        {
+          "title": "Ship",
+          "description": "We implement or pair with your dev and content teams. Every ticket ties to a metric: rankings, clicks, or conversions."
+        },
+        {
+          "title": "Prove",
+          "description": "Monthly SEO reporting in GA4, Search Console, and Conalytic. We iterate on what Google and your pipeline actually show."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Privacy & AI crawler policy",
+        "title": "SEO programs that stay compliant under GDPR and AI crawler rules",
+        "description": "Consent Mode v2, cookie banners, robots.txt rules for AI crawlers, and llms.txt sit alongside your technical SEO backlog — so organic growth never trades off trust in EU, UK, and US markets.",
+        "ctaLabel": "Discover compliance support",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Analytics & attribution",
+        "title": "GA4, Search Console, and CRM events that tell one organic story",
+        "description": "We audit tags, key events, and Search Console property linking so organic sessions map to qualified leads in your CRM. Leadership gets one narrative — rankings, clicks, and pipeline.",
+        "ctaLabel": "Explore tracking audits",
+        "ctaHref": "/services/marketing-analytics-measurement",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver SEO results that show up in pipeline",
+      "subtitle": "Technical SEO, content authority, and analytics — connected so every sprint moves rankings, indexation, or conversions.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "technical-seo-audit",
+          "title": "Technical SEO audits developers actually implement",
+          "description": "We prioritize crawl budget, canonicals, redirects, and indexation blockers by revenue impact. Every ticket ships with Search Console validation — not a PDF that sits in Slack.",
+          "linkLabel": "Talk technical SEO",
+          "linkHref": "/company/contact",
+          "alt": "Technical SEO crawl audit visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "content-cluster",
+          "title": "Keyword clusters engineered to rank and convert",
+          "description": "Pillar pages, supporting articles, and internal links built from search intent mapping and SERP analysis — including AI Overview opportunities — so authority flows to your highest-value URLs.",
+          "linkLabel": "See content approach",
+          "linkHref": "/resources/blogs",
+          "alt": "Topic cluster and pillar page map"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "indexation-performance",
+          "title": "Fast, renderable pages Google can index with confidence",
+          "description": "Core Web Vitals, structured data, and server-side rendering for Next.js and headless CMS stacks. We confirm fixes in URL Inspection and field data, not lab scores alone.",
+          "linkLabel": "Fix indexation gaps",
+          "linkHref": "/company/contact",
+          "alt": "Core Web Vitals and indexation performance visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "analytics-reporting",
+          "title": "SEO reporting tied to GA4 conversions and CRM pipeline",
+          "description": "Monthly readouts connect query growth, landing page performance, and qualified leads — so executives see what organic search contributed and what to fund next quarter.",
+          "linkLabel": "View reporting capabilities",
+          "linkHref": "/platform/features",
+          "alt": "SEO and GA4 reporting dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "SEO outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Indexation and crawl issues resolved for clients"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average growth in non-brand organic clicks"
+        },
+        {
+          "value": "[#]+",
+          "label": "Content clusters planned and published"
+        }
+      ]
+    },
+    "faq": {
+      "title": "SEO services FAQ",
+      "subtitle": "Timelines, deliverables, and how we partner with in-house marketing and engineering teams.",
+      "items": [
+        {
+          "question": "What is included in your SEO services?",
+          "answer": "Technical SEO audits, prioritization, implementation support, content strategy, on-page optimization, internal linking, schema markup, and monthly SEO reporting in Search Console and GA4 — optionally synced to Conalytic dashboards."
+        },
+        {
+          "question": "How long does SEO take to show results?",
+          "answer": "Technical and indexation fixes often show impact in 4–8 weeks. Competitive content keywords typically need 3–6 months, depending on domain authority and publishing consistency."
+        },
+        {
+          "question": "Do you do SEO for JavaScript and Next.js websites?",
+          "answer": "Yes. We specialize in server-side rendering, XML sitemap hygiene, and fixing JavaScript rendering patterns that block Google from indexing modern sites."
+        },
+        {
+          "question": "Is SEO still worth it with AI Overviews and zero-click search?",
+          "answer": "Yes, but the strategy changes. Commercial and comparison queries still drive clicks, and pages cited in AI Overviews gain brand visibility. We target both classic rankings and AI citations."
+        },
+        {
+          "question": "Do you write SEO content or only advise?",
+          "answer": "Both. We deliver SEO content briefs for your writers, edit in-house drafts, or produce full articles to your brand voice guidelines."
+        },
+        {
+          "question": "How do you measure SEO success?",
+          "answer": "We agree on KPIs up front: index coverage, non-brand clicks, organic conversions, and revenue-influenced pipeline where tracking allows."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Launch an SEO program you can measure in GA4",
+      "description": "Get a unified SEO roadmap — technical fixes, content clusters, and Search Console reporting — with owners, dates, and pipeline impact your leadership can trust.",
+      "ctaLabel": "Book a consultation"
+    }
+  },
+  {
+    "slug": "paid-media-performance",
+    "meta": {
+      "pageTitle": "Performance Marketing & PPC Agency for B2B | Conalytic",
+      "title": "Paid Media & Performance Marketing",
+      "description": "Google Ads, Meta Ads, and LinkedIn Ads management for B2B and SaaS. Performance Max and AI Max guardrails, creative testing, and ROAS verified in GA4.",
+      "navDescription": "Google Ads, Meta, LinkedIn — strategy, creative, and ROAS-focused ops"
+    },
+    "catalog": {
+      "heroSubtitle": "PPC management, paid social, and ad creative for B2B and SaaS brands — with conversion tracking and incrementality testing that prove real ROAS.",
+      "highlights": [
+        "Google Ads management across Search, Performance Max, and AI Max",
+        "Meta Ads and LinkedIn Ads for pipeline, not just clicks",
+        "Conversion tracking, offline conversions, and incrementality testing"
+      ],
+      "deliverables": [
+        "Paid media strategy and channel budget plan",
+        "Account build or restructure with guardrails",
+        "Ad creative testing roadmap and monthly creative sprints",
+        "Monthly ROAS and pipeline reporting in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Paid media & performance marketing",
+      "line1": "Paid media that scales,",
+      "line2": "with ROAS you can verify",
+      "paragraph1": "Conalytic is a performance marketing agency managing Google Ads, Meta Ads, and LinkedIn Ads for B2B, SaaS, and ecommerce brands — PPC strategy, ad creative, conversion tracking, and budget allocation run by one team.",
+      "paragraph2": "As Performance Max, AI Max for Search, and Meta Advantage+ automate more of the auction, we feed the algorithms better data and better creative, add guardrails, and prove incremental return in GA4 and your CRM.",
+      "trustBadges": [
+        {
+          "title": "Google Ads",
+          "subtitle": "Search",
+          "accent": "slate"
+        },
+        {
+          "title": "Meta & LinkedIn",
+          "subtitle": "Paid social",
+          "accent": "slate"
+        },
+        {
+          "title": "Incrementality",
+          "subtitle": "Tested",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Paid media programs connected to Google Ads, Meta Ads Manager, LinkedIn Campaign Manager, GA4, HubSpot, and Salesforce."
+    },
+    "whatWeDo": {
+      "title": "PPC and paid social management for B2B, SaaS, and ecommerce brands",
+      "items": [
+        {
+          "title": "Google Ads management",
+          "description": "Search campaign structure, keyword strategy, negative keyword lists, responsive search ads, and bid strategies built around qualified leads and revenue.",
+          "visual": "google-ads",
+          "alt": "Google Ads search campaign management",
+          "linkLabel": "Explore Google Ads",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Performance Max & AI Max management",
+          "description": "Asset groups, audience signals, brand exclusions, and search term review — so Google's automated campaigns grow demand instead of claiming branded traffic.",
+          "visual": "pmax",
+          "alt": "Performance Max and AI Max campaign management",
+          "linkLabel": "Audit my PMax",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Meta Ads (Facebook & Instagram)",
+          "description": "Advantage+ campaigns, creative testing, and audience signals for Facebook and Instagram ads that drive efficient CPA and ROAS.",
+          "visual": "meta-ads",
+          "alt": "Meta Ads management for Facebook and Instagram",
+          "linkLabel": "Explore Meta Ads",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "LinkedIn Ads for B2B",
+          "description": "Account-based targeting, thought leader ads, conversation ads, and lead gen forms synced to your CRM for B2B pipeline.",
+          "visual": "linkedin-ads",
+          "alt": "LinkedIn Ads for B2B lead generation",
+          "linkLabel": "Explore LinkedIn Ads",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Ad creative & testing",
+          "description": "Static, video, and carousel ad creative with a structured testing roadmap — AI speeds up variations, human strategy keeps the brand voice.",
+          "visual": "creative",
+          "alt": "Paid social ad creative testing",
+          "linkLabel": "See creative approach",
+          "linkHref": "/services/product-ui-ux-design"
+        },
+        {
+          "title": "Conversion tracking & offline conversions",
+          "description": "Enhanced conversions, Meta Conversions API, Consent Mode v2, and CRM offline conversion imports so bidding optimizes for real revenue.",
+          "visual": "tracking",
+          "alt": "Conversion tracking and offline conversion imports",
+          "linkLabel": "Fix my tracking",
+          "linkHref": "/services/marketing-analytics-measurement"
+        },
+        {
+          "title": "Budget allocation & bid strategy",
+          "description": "Channel mix planning, target CPA and ROAS bidding, and pacing rules that shift spend toward the campaigns that actually produce pipeline.",
+          "visual": "budget",
+          "alt": "Paid media budget allocation and bid strategy",
+          "linkLabel": "Plan my budget",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Incrementality & lift testing",
+          "description": "Geo holdouts and conversion lift studies that show whether Performance Max and Advantage+ create new demand or just take credit for it.",
+          "visual": "incrementality",
+          "alt": "Incrementality and lift testing for paid media",
+          "linkLabel": "Test incrementality",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for paid media",
+      "headline": "Performance marketing that stays profitable — better data in, better creative out, and ROAS proven beyond platform dashboards.",
+      "introTitle": "Media buying, creative, and measurement in one team",
+      "introBody": "We are a B2B performance marketing agency with analytics built in. Every Google Ads and Meta Ads decision ties to conversion data you can audit — so you scale spend with confidence, not platform-reported guesswork.",
+      "items": [
+        {
+          "title": "Automation with guardrails",
+          "description": "We use Performance Max, AI Max, and Advantage+ where they win — with brand exclusions, negative keywords, and search term reviews that keep spend on target."
+        },
+        {
+          "title": "One view of every channel",
+          "description": "Google Ads, Meta, and LinkedIn performance side by side with GA4 and CRM data in Conalytic — no more conflicting platform numbers."
+        },
+        {
+          "title": "Spend on what works",
+          "description": "Weekly optimization and monthly creative sprints move budget to the campaigns, audiences, and ads that produce qualified pipeline."
+        }
+      ],
+      "imageAlt": "Paid media performance analytics visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic runs your paid media program",
+      "subtitle": "Four phases — audit, build, optimize, and prove — so every ad dollar is accountable.",
+      "steps": [
+        {
+          "title": "Audit",
+          "description": "Account structure, conversion tracking, search terms, and creative review across Google Ads, Meta, and LinkedIn."
+        },
+        {
+          "title": "Build",
+          "description": "Campaign structure, audiences, creative, and tracking fixes aligned to your CPA or ROAS targets."
+        },
+        {
+          "title": "Optimize",
+          "description": "Weekly bid, budget, and search term optimization with monthly creative testing sprints."
+        },
+        {
+          "title": "Prove",
+          "description": "ROAS, pipeline, and incrementality reporting in Conalytic, tied to GA4 and CRM revenue."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Brand safety & control",
+        "title": "Google and Meta AI campaigns, with you still in control",
+        "description": "Brand exclusions, placement lists, negative keywords, and search term monitoring keep Performance Max, AI Max for Search, and Advantage+ spending where you want it — including after Google's automatic AI Max upgrades.",
+        "ctaLabel": "Audit my campaigns",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Conversion data quality",
+        "title": "Feed the algorithms revenue data, not form fills",
+        "description": "Enhanced conversions, Meta Conversions API, Consent Mode v2, and offline conversion imports from HubSpot or Salesforce let bidding optimize for qualified leads and closed revenue.",
+        "ctaLabel": "Explore tracking setup",
+        "ctaHref": "/services/marketing-analytics-measurement",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver paid media results that show up in revenue",
+      "subtitle": "Search, paid social, creative, and measurement — connected so every campaign earns its budget.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "paid-search",
+          "title": "Google Ads campaigns built around buyer intent",
+          "description": "High-intent keywords, tight ad groups, and landing page alignment — with AI Max and broad match used only where search term data proves they work.",
+          "linkLabel": "Talk Google Ads",
+          "linkHref": "/company/contact",
+          "alt": "Google Ads paid search campaign visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "paid-social",
+          "title": "Meta and LinkedIn Ads that reach the right buyers",
+          "description": "Advantage+ for scale, LinkedIn account targeting for B2B precision, and CRM audiences for retargeting — coordinated across the funnel.",
+          "linkLabel": "Talk paid social",
+          "linkHref": "/company/contact",
+          "alt": "Meta and LinkedIn paid social campaign visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "creative-testing",
+          "title": "Ad creative that stands out when targeting is automated",
+          "description": "When every advertiser uses the same AI targeting, creative is the advantage. We test concepts, hooks, and formats in structured sprints.",
+          "linkLabel": "See creative services",
+          "linkHref": "/services/product-ui-ux-design",
+          "alt": "Ad creative testing grid visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "roas-reporting",
+          "title": "Paid media reporting your CFO will believe",
+          "description": "Blended CAC, ROAS, and pipeline by channel in Conalytic — validated with incrementality tests, not just platform-reported conversions.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "ROAS and paid media reporting dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Paid media outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]",
+          "label": "Ad spend managed across Google, Meta, and LinkedIn"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average CPA reduction after account restructure"
+        },
+        {
+          "value": "[#]x",
+          "label": "Average ROAS on ecommerce accounts"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Paid media & PPC management FAQ",
+      "subtitle": "Budgets, platforms, tracking, and how we work with your team.",
+      "items": [
+        {
+          "question": "What is included in your PPC management services?",
+          "answer": "Strategy, account build or restructure, keyword and audience research, ad creative, conversion tracking, weekly optimization, and monthly reporting across Google Ads, Meta Ads, and LinkedIn Ads."
+        },
+        {
+          "question": "Is Performance Max worth it for B2B?",
+          "answer": "Sometimes. Performance Max often works well for ecommerce, while B2B accounts need strong offline conversion data and brand exclusions. We test it against Search campaigns before scaling."
+        },
+        {
+          "question": "What does the AI Max for Search upgrade mean for my account?",
+          "answer": "Google is automatically upgrading Dynamic Search Ads and campaign-level broad match to AI Max. We review search terms, add negatives, and set URL rules so the expanded matching stays relevant."
+        },
+        {
+          "question": "What is the minimum ad budget you work with?",
+          "answer": "It depends on the market and cost per click. We will recommend a test budget that is large enough to reach statistically useful conversion volume."
+        },
+        {
+          "question": "Do you create the ad creative?",
+          "answer": "Yes. We produce static, video, and carousel ads and run a structured creative testing program, or we can work with your in-house design team."
+        },
+        {
+          "question": "Who owns the ad accounts?",
+          "answer": "You do. We work inside your Google Ads, Meta, and LinkedIn accounts, so all data and history stay with your business."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Scale paid media with ROAS you can prove",
+      "description": "Get a paid media audit covering Google Ads, Meta Ads, and LinkedIn Ads — tracking gaps, wasted spend, and the fastest path to profitable growth.",
+      "ctaLabel": "Book a PPC audit"
+    }
+  },
+  {
+    "slug": "email-lifecycle-marketing",
+    "meta": {
+      "pageTitle": "Email Marketing & Lifecycle Automation Agency | Conalytic",
+      "title": "Email & Lifecycle Marketing",
+      "description": "Lifecycle email, CRM automation, and deliverability for B2B, SaaS, and ecommerce. Onboarding, nurture, and retention flows built for Gmail's AI inbox.",
+      "navDescription": "Lifecycle flows, newsletters, and CRM automation that converts"
+    },
+    "catalog": {
+      "heroSubtitle": "Lifecycle marketing, email automation, and deliverability that turn subscribers into customers — built for AI-sorted inboxes.",
+      "highlights": [
+        "Onboarding, nurture, and retention email flows mapped to the customer lifecycle",
+        "Marketing automation in HubSpot, Salesforce, Klaviyo, and Customer.io",
+        "Email deliverability and authentication (SPF, DKIM, DMARC)"
+      ],
+      "deliverables": [
+        "Lifecycle map and email automation roadmap",
+        "Built and tested email flows and templates",
+        "Deliverability audit and authentication setup",
+        "Monthly email performance reporting in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Email & lifecycle marketing",
+      "line1": "Lifecycle email that converts",
+      "line2": "in the AI-sorted inbox",
+      "paragraph1": "Conalytic is an email marketing and lifecycle agency building onboarding flows, nurture sequences, newsletters, and CRM automation that move subscribers to revenue — for B2B, SaaS, and ecommerce brands.",
+      "paragraph2": "Gmail now uses Gemini to summarize and prioritize email before people read it. We design lifecycle programs with clear, actionable openings, strong sender reputation, and behavior-based triggers so your emails stay visible.",
+      "trustBadges": [
+        {
+          "title": "Gmail AI inbox",
+          "subtitle": "Ready",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Lifecycle programs built in HubSpot, Salesforce Marketing Cloud, Klaviyo, Customer.io, Mailchimp, and Brevo."
+    },
+    "whatWeDo": {
+      "title": "Email marketing and lifecycle automation for every stage of the customer journey",
+      "items": [
+        {
+          "title": "Lifecycle strategy & journey mapping",
+          "description": "Customer lifecycle stages, trigger events, and message maps that connect acquisition, activation, retention, and expansion.",
+          "visual": "journey",
+          "alt": "Customer lifecycle journey map",
+          "linkLabel": "Map my lifecycle",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Onboarding & activation email flows",
+          "description": "Welcome series and product onboarding emails triggered by in-app behavior to drive trial-to-paid conversion and faster time to value.",
+          "visual": "onboarding",
+          "alt": "SaaS onboarding email flow",
+          "linkLabel": "Build onboarding",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "B2B lead nurture sequences",
+          "description": "Nurture email sequences aligned to buyer stage and lead score, handing sales-ready leads to your team in the CRM.",
+          "visual": "nurture",
+          "alt": "B2B lead nurture email sequence",
+          "linkLabel": "Explore nurture",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Newsletter strategy & production",
+          "description": "Newsletters with a clear editorial angle, content repurposed from your blog and SEO program, and engagement-based sending.",
+          "visual": "newsletter",
+          "alt": "Email newsletter strategy and design",
+          "linkLabel": "Plan a newsletter",
+          "linkHref": "/resources/blogs"
+        },
+        {
+          "title": "CRM & marketing automation",
+          "description": "HubSpot workflows, Salesforce journeys, Klaviyo flows, lead scoring, and lifecycle stage automation — documented and maintainable.",
+          "visual": "crm",
+          "alt": "CRM and marketing automation workflows",
+          "linkLabel": "Automate my CRM",
+          "linkHref": "/services/ai-workflow-automation"
+        },
+        {
+          "title": "Email deliverability & authentication",
+          "description": "SPF, DKIM, DMARC, BIMI, list hygiene, and sender reputation monitoring to meet Google and Yahoo bulk sender requirements.",
+          "visual": "deliverability",
+          "alt": "Email deliverability and authentication setup",
+          "linkLabel": "Audit deliverability",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Segmentation & personalization",
+          "description": "Behavioral segments, dynamic content, and send-time rules so every email is relevant — the strongest signal for AI inbox ranking.",
+          "visual": "segmentation",
+          "alt": "Email segmentation and personalization",
+          "linkLabel": "Explore segmentation",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Retention & win-back campaigns",
+          "description": "Churn-risk alerts, re-engagement flows, renewal reminders, and win-back offers that protect recurring revenue.",
+          "visual": "retention",
+          "alt": "Customer retention and win-back emails",
+          "linkLabel": "Reduce churn",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for email",
+      "headline": "Email marketing that earns its place in the inbox — fewer, better emails triggered by what customers actually do.",
+      "introTitle": "Strategy, automation, and analytics in one lifecycle team",
+      "introBody": "We are a lifecycle marketing partner with analytics built in. Every email flow is tied to activation, retention, or revenue metrics — so you know which automations are paying for themselves.",
+      "items": [
+        {
+          "title": "Built for AI inboxes",
+          "description": "Clear first lines, structured content, and user-specific CTAs so Gmail's Gemini summaries and AI Inbox represent your message accurately."
+        },
+        {
+          "title": "Reliable deliverability",
+          "description": "Authentication, list hygiene, and engagement-based sending protect sender reputation with Google, Yahoo, and Microsoft."
+        },
+        {
+          "title": "Metrics that matter",
+          "description": "AI and privacy features inflate open rates, so we report on clicks, conversions, and revenue per recipient in Conalytic."
+        }
+      ],
+      "imageAlt": "Lifecycle marketing analytics visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your lifecycle marketing program",
+      "subtitle": "Four phases — map, build, test, and grow — so every email has a job and a metric.",
+      "steps": [
+        {
+          "title": "Map",
+          "description": "Audit your ESP, CRM data, current flows, and deliverability. Map the lifecycle stages and trigger events."
+        },
+        {
+          "title": "Build",
+          "description": "Design and build email templates, automations, and segments in your email platform."
+        },
+        {
+          "title": "Test",
+          "description": "QA across clients and devices, A/B test subject lines, content, and timing."
+        },
+        {
+          "title": "Grow",
+          "description": "Monthly reporting on conversions and revenue, with new flows added by impact."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Deliverability & compliance",
+        "title": "Email programs that meet bulk sender rules and GDPR",
+        "description": "SPF, DKIM, DMARC, one-click unsubscribe, consent records, and spam-complaint monitoring keep you compliant with Google and Yahoo sender requirements, GDPR, and CAN-SPAM.",
+        "ctaLabel": "Audit my deliverability",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Email analytics",
+        "title": "Measure email by revenue, not open rates",
+        "description": "UTM standards, GA4 events, and CRM attribution connect every email flow to conversions and pipeline — in a single Conalytic report.",
+        "ctaLabel": "Explore email reporting",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver lifecycle marketing results",
+      "subtitle": "Strategy, automation, deliverability, and reporting — connected so every email moves a customer forward.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "onboarding-flow",
+          "title": "Onboarding emails triggered by product behavior",
+          "description": "Welcome and activation sequences that react to what users do in your product — so trials convert and new customers reach value faster.",
+          "linkLabel": "Build onboarding flows",
+          "linkHref": "/company/contact",
+          "alt": "Behavior-triggered onboarding email flow"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "automation",
+          "title": "CRM automation your team can maintain",
+          "description": "Clean HubSpot, Salesforce, or Klaviyo workflows with naming conventions, documentation, and lead scoring your sales team trusts.",
+          "linkLabel": "See automation services",
+          "linkHref": "/services/ai-workflow-automation",
+          "alt": "CRM marketing automation workflow visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "deliverability",
+          "title": "Inbox placement you can monitor",
+          "description": "Authentication, domain warm-up, and reputation monitoring with Google Postmaster Tools — so campaigns reach the inbox, not spam.",
+          "linkLabel": "Fix deliverability",
+          "linkHref": "/company/contact",
+          "alt": "Email deliverability monitoring visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "email-reporting",
+          "title": "Lifecycle reporting tied to revenue",
+          "description": "Flow-level conversions, revenue per recipient, and churn impact reported in Conalytic — so you fund the emails that work.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "Email marketing revenue reporting dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Lifecycle outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Automated email flows built and launched"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average lift in trial-to-paid conversion"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average inbox placement rate"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Email & lifecycle marketing FAQ",
+      "subtitle": "Platforms, deliverability, and how we measure email performance.",
+      "items": [
+        {
+          "question": "Which email marketing platforms do you work with?",
+          "answer": "HubSpot, Salesforce Marketing Cloud, Klaviyo, Customer.io, Mailchimp, Brevo, and most major email service providers."
+        },
+        {
+          "question": "How do you improve email deliverability?",
+          "answer": "We set up SPF, DKIM, and DMARC, clean your lists, warm up sending domains, and move to engagement-based sending while monitoring reputation."
+        },
+        {
+          "question": "How does Gmail's AI inbox affect email marketing?",
+          "answer": "Gmail uses Gemini to summarize and prioritize emails. Clear opening lines, relevant content, and strong engagement help your emails stay visible and be summarized accurately."
+        },
+        {
+          "question": "Are email open rates still reliable?",
+          "answer": "Less than before, because privacy features and AI summaries can trigger opens automatically. We measure clicks, conversions, and revenue instead."
+        },
+        {
+          "question": "What lifecycle emails should a SaaS company have?",
+          "answer": "At minimum: welcome, onboarding and activation, trial conversion, feature adoption, renewal, and win-back flows."
+        },
+        {
+          "question": "How quickly will we see results?",
+          "answer": "Deliverability fixes and new automated flows usually show impact within the first 4–6 weeks."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Build lifecycle email that drives revenue",
+      "description": "Get a lifecycle and deliverability audit with a prioritized email automation roadmap — flows, segments, and the revenue impact of each.",
+      "ctaLabel": "Book a consultation"
+    }
+  },
+  {
+    "slug": "generative-engine-optimization",
+    "meta": {
+      "pageTitle": "Generative Engine Optimization (GEO) Agency | Conalytic",
+      "title": "Generative Engine Optimization (GEO)",
+      "description": "GEO services that get your brand cited in Google AI Overviews, ChatGPT, Perplexity, and Gemini — with AI visibility tracking and AI referral traffic in GA4.",
+      "navDescription": "Visibility in AI Overviews, ChatGPT, Perplexity, and answer engines"
+    },
+    "catalog": {
+      "heroSubtitle": "Generative engine optimization that makes your brand the source AI answers cite — measured with prompt tracking and AI referral analytics.",
+      "highlights": [
+        "AI visibility audits across ChatGPT, Perplexity, Gemini, and AI Overviews",
+        "Citable content, entity clarity, and structured data for LLMs",
+        "AI referral traffic tracking and conversion reporting in GA4"
+      ],
+      "deliverables": [
+        "GEO audit with AI visibility baseline and competitor share of voice",
+        "Prioritized GEO roadmap and content rewrite plan",
+        "Schema, AI crawler access, and llms.txt implementation",
+        "Monthly AI visibility and AI referral reporting in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Generative engine optimization (GEO)",
+      "line1": "Get cited by ChatGPT,",
+      "line2": "Perplexity, and AI Overviews",
+      "paragraph1": "Conalytic is a generative engine optimization (GEO) agency that helps B2B and SaaS brands show up in AI search — Google AI Overviews, AI Mode, ChatGPT, Perplexity, Gemini, and Claude — with citable content, clear entities, and technical access for AI crawlers.",
+      "paragraph2": "Most searches now end without a click, but AI-referred visitors arrive further along in the buying journey. GEO puts your brand in the answer and tracks the pipeline it produces.",
+      "trustBadges": [
+        {
+          "title": "AI referral traffic",
+          "subtitle": "GA4-ready",
+          "accent": "slate"
+        },
+        {
+          "title": "SEO + GEO",
+          "subtitle": "One roadmap",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "GEO programs measured across Google AI Overviews, AI Mode, ChatGPT, Perplexity, Gemini, Copilot, and Claude."
+    },
+    "whatWeDo": {
+      "title": "GEO and AI search optimization services for B2B and SaaS brands",
+      "items": [
+        {
+          "title": "GEO audit & AI visibility baseline",
+          "description": "We test your buyer-intent prompts across AI engines and measure where your brand is mentioned, cited, or missing compared with competitors.",
+          "visual": "audit",
+          "alt": "GEO audit and AI visibility baseline",
+          "linkLabel": "Get a GEO audit",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI share-of-voice & prompt tracking",
+          "description": "Ongoing prompt tracking that shows citation rate, brand mentions, and sentiment across ChatGPT, Perplexity, Gemini, and AI Overviews.",
+          "visual": "prompt-tracking",
+          "alt": "AI share of voice and prompt tracking",
+          "linkLabel": "Track AI visibility",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Citable, answer-first content",
+          "description": "Rewrites that lead with direct answers, definitions, statistics, and comparisons — the passages LLMs quote most often.",
+          "visual": "citable-content",
+          "alt": "Answer-first content optimized for AI citations",
+          "linkLabel": "Explore content",
+          "linkHref": "/services/seo-organic-growth"
+        },
+        {
+          "title": "Entity & brand clarity",
+          "description": "Consistent brand, product, and people entities across your site, schema, and third-party profiles so AI models describe you accurately.",
+          "visual": "entity",
+          "alt": "Entity optimization and brand knowledge graph",
+          "linkLabel": "Clarify my brand",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Structured data for AI search",
+          "description": "Organization, Product, FAQ, HowTo, and Article schema plus clean HTML that AI systems and search engines can parse reliably.",
+          "visual": "schema",
+          "alt": "Structured data for AI search engines",
+          "linkLabel": "Explore schema",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI crawler access & llms.txt",
+          "description": "robots.txt rules for GPTBot, OAI-SearchBot, PerplexityBot, and Google-Extended, CDN bot settings, and an llms.txt file — balanced against your content policy.",
+          "visual": "crawler",
+          "alt": "AI crawler access and llms.txt configuration",
+          "linkLabel": "Check AI crawler access",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Off-site citation building",
+          "description": "Reviews, comparison lists, industry publications, and community mentions that AI engines rely on when recommending vendors.",
+          "visual": "citations",
+          "alt": "Off-site citation and digital PR for AI visibility",
+          "linkLabel": "Build citations",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI referral traffic analytics",
+          "description": "GA4 channel groups for ChatGPT, Perplexity, Gemini, Copilot, and Claude referrals, with conversion tracking — reported in Conalytic.",
+          "visual": "ai-referrals",
+          "alt": "AI referral traffic tracking in GA4",
+          "linkLabel": "Track AI traffic",
+          "linkHref": "/services/marketing-analytics-measurement"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for GEO",
+      "headline": "Be the answer, not just a link — GEO that earns AI citations and proves the pipeline behind them.",
+      "introTitle": "SEO, GEO, and analytics in one team",
+      "introBody": "GEO builds on strong SEO. We combine technical SEO, content engineering, and analytics so your brand is crawlable, quotable, and measurable across every AI search engine.",
+      "items": [
+        {
+          "title": "Visibility where buyers research",
+          "description": "B2B buyers use AI assistants to shortlist vendors. We make sure your brand appears in those answers — accurately and with a link."
+        },
+        {
+          "title": "Measured, not guessed",
+          "description": "Prompt tracking and AI referral traffic in GA4 show exactly which engines cite you and which visits convert."
+        },
+        {
+          "title": "One roadmap for SEO and GEO",
+          "description": "The same fixes that help AI citations — clear structure, schema, and authority — also strengthen classic Google rankings."
+        }
+      ],
+      "imageAlt": "AI search visibility analytics visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic runs your GEO program",
+      "subtitle": "Four phases — baseline, optimize, amplify, and measure — to grow AI search visibility.",
+      "steps": [
+        {
+          "title": "Baseline",
+          "description": "Test buyer-intent prompts across AI engines and benchmark your AI share of voice against competitors."
+        },
+        {
+          "title": "Optimize",
+          "description": "Rewrite key pages for citability, fix entities and schema, and open access for AI crawlers."
+        },
+        {
+          "title": "Amplify",
+          "description": "Earn mentions on the third-party sources AI engines trust for your category."
+        },
+        {
+          "title": "Measure",
+          "description": "Monthly prompt tracking plus AI referral traffic and conversions in GA4 and Conalytic."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "AI crawler policy",
+        "title": "Decide which AI systems can read and cite your content",
+        "description": "We configure robots.txt, CDN bot management, and llms.txt so search and answer engines can access your public pages, while training crawlers follow your content policy.",
+        "ctaLabel": "Review my AI crawler policy",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "AI search analytics",
+        "title": "See the traffic AI search sends — and what it converts",
+        "description": "Most analytics setups bucket ChatGPT and Perplexity visits under referral or direct. We separate AI referral traffic in GA4 so you can report on its conversions.",
+        "ctaLabel": "Explore AI traffic tracking",
+        "ctaHref": "/services/marketing-analytics-measurement",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver GEO results you can see",
+      "subtitle": "Audits, content engineering, entities, and measurement — connected so AI engines cite your brand.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "geo-audit",
+          "title": "Know exactly how AI engines describe your brand",
+          "description": "We map mentions, citations, and gaps across your most valuable prompts — and show which competitors AI recommends instead.",
+          "linkLabel": "Get a GEO audit",
+          "linkHref": "/company/contact",
+          "alt": "AI visibility audit visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "citable-content",
+          "title": "Pages written to be quoted by AI",
+          "description": "Answer-first introductions, clear definitions, original data, and comparison tables — structured so LLMs can extract and cite them.",
+          "linkLabel": "See content approach",
+          "linkHref": "/services/seo-organic-growth",
+          "alt": "Citable content structure visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "entity-graph",
+          "title": "A consistent brand story across the web",
+          "description": "Schema, profiles, reviews, and publication mentions that align so AI models trust and recommend your brand.",
+          "linkLabel": "Build brand authority",
+          "linkHref": "/company/contact",
+          "alt": "Brand entity graph visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "geo-reporting",
+          "title": "GEO reporting tied to pipeline",
+          "description": "Citation rate, AI share of voice, and AI referral conversions in one Conalytic report — so you can see GEO's return.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "GEO and AI visibility reporting dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "GEO outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Buyer-intent prompts tracked per client"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average increase in AI citation rate"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average growth in AI referral traffic"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Generative engine optimization FAQ",
+      "subtitle": "How GEO works, how it differs from SEO, and how we measure it.",
+      "items": [
+        {
+          "question": "What is generative engine optimization (GEO)?",
+          "answer": "GEO is the practice of making your brand visible and cited in AI-generated answers from Google AI Overviews, ChatGPT, Perplexity, Gemini, and similar engines."
+        },
+        {
+          "question": "What is the difference between GEO and SEO?",
+          "answer": "SEO targets rankings in search results; GEO targets mentions and citations inside AI answers. They share foundations — crawlability, authority, and structured content — so we run them as one program."
+        },
+        {
+          "question": "How do you measure GEO results?",
+          "answer": "We track citation rate and share of voice across a fixed set of buyer-intent prompts, plus AI referral traffic and conversions in GA4."
+        },
+        {
+          "question": "How long does GEO take to work?",
+          "answer": "Engines that search the web live, like Perplexity and ChatGPT search, can reflect changes within weeks. Broader model knowledge changes more slowly."
+        },
+        {
+          "question": "Can you guarantee ChatGPT will recommend my brand?",
+          "answer": "No one can guarantee AI outputs. We improve the signals AI engines use and measure the change over time."
+        },
+        {
+          "question": "Do I need an llms.txt file?",
+          "answer": "It is low-effort and can help some AI tools, but major search engines have not confirmed using it. We treat it as a small add-on, not the core of GEO."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Find out what AI search says about your brand",
+      "description": "Get a GEO audit with your AI visibility baseline, competitor share of voice, and a prioritized plan to earn more AI citations.",
+      "ctaLabel": "Book a GEO audit"
+    }
+  },
+  {
+    "slug": "agentic-web",
+    "meta": {
+      "pageTitle": "AI Agent & Copilot Development Services | Conalytic",
+      "title": "Agentic Web Experiences",
+      "description": "AI agents, copilots, and task UIs embedded in your website or SaaS product. RAG assistants, guardrails, and agent-ready sites built for the agentic web.",
+      "navDescription": "AI agents, copilots, and task UIs embedded in your product or site"
+    },
+    "catalog": {
+      "heroSubtitle": "AI agents and copilots that answer, guide, and take action inside your website or product — grounded in your data and safe by design.",
+      "highlights": [
+        "AI assistants and copilots grounded in your content with RAG",
+        "Task UIs and generative UI that complete workflows, not just chat",
+        "Agent-ready websites using MCP, WebMCP, and structured data"
+      ],
+      "deliverables": [
+        "AI experience strategy and use-case prioritization",
+        "Production AI agent or copilot with guardrails and evaluations",
+        "Knowledge base and retrieval pipeline",
+        "Usage and outcome analytics in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Agentic web experiences",
+      "line1": "AI agents and copilots",
+      "line2": "built into your product",
+      "paragraph1": "Conalytic designs and builds AI agents, copilots, and task-based interfaces for websites and SaaS products — AI assistants that answer questions from your data, guide users, and complete real tasks.",
+      "paragraph2": "The web is becoming agentic: AI assistants now browse, compare, and act for users. We build the experiences your customers use directly and prepare your site for the agents acting on their behalf.",
+      "trustBadges": [
+        {
+          "title": "RAG + guardrails",
+          "subtitle": "Grounded answers",
+          "accent": "emerald"
+        }
+      ],
+      "marqueeTitle": "AI experiences built with Claude, OpenAI, Gemini, Vercel AI SDK, LangGraph, and your existing product stack."
+    },
+    "whatWeDo": {
+      "title": "AI agent and copilot development for websites and SaaS products",
+      "items": [
+        {
+          "title": "Website AI assistants",
+          "description": "AI chatbots grounded in your docs, pricing, and case studies that answer buyer questions accurately and route qualified leads to sales.",
+          "visual": "website-assistant",
+          "alt": "AI assistant embedded on a B2B website",
+          "linkLabel": "Explore website assistants",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "In-product AI copilots",
+          "description": "Copilots inside your SaaS that explain data, draft content, and guide users through complex workflows.",
+          "visual": "copilot",
+          "alt": "In-product AI copilot for SaaS",
+          "linkLabel": "Build a copilot",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Task UIs & generative UI",
+          "description": "Interfaces where AI completes multi-step tasks — forms, reports, configurations — and renders results as usable UI, not just text.",
+          "visual": "task-ui",
+          "alt": "Generative UI and AI task interface",
+          "linkLabel": "See task UIs",
+          "linkHref": "/services/product-ui-ux-design"
+        },
+        {
+          "title": "RAG & knowledge pipelines",
+          "description": "Retrieval-augmented generation with clean content ingestion, embeddings, and access controls so answers stay accurate and current.",
+          "visual": "rag",
+          "alt": "Retrieval-augmented generation knowledge pipeline",
+          "linkLabel": "Explore RAG",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Agent-ready websites",
+          "description": "Structured data, MCP endpoints, and early WebMCP tools that let AI agents understand and use your site reliably.",
+          "visual": "agent-ready",
+          "alt": "Agent-ready website with structured tools",
+          "linkLabel": "Make my site agent-ready",
+          "linkHref": "/services/mcp-server-development"
+        },
+        {
+          "title": "Agentic commerce readiness",
+          "description": "Machine-readable product data and checkout readiness for emerging standards like Google's Universal Commerce Protocol and the Agentic Commerce Protocol.",
+          "visual": "commerce",
+          "alt": "Agentic commerce readiness for ecommerce",
+          "linkLabel": "Explore agentic commerce",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Guardrails & evaluations",
+          "description": "Prompt-injection defenses, topic boundaries, human handoff, and automated evals that catch wrong answers before users do.",
+          "visual": "guardrails",
+          "alt": "AI guardrails and evaluation testing",
+          "linkLabel": "Review AI safety",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI feature analytics",
+          "description": "Track conversations, task completion, deflection, and conversions from your AI features in Conalytic.",
+          "visual": "ai-analytics",
+          "alt": "Analytics dashboard for AI features",
+          "linkLabel": "Measure AI features",
+          "linkHref": "/platform/features"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for AI experiences",
+      "headline": "AI features customers actually use — grounded, safe, and measured against business outcomes.",
+      "introTitle": "Product design, engineering, and analytics in one team",
+      "introBody": "We build AI agents and copilots as production software, not demos. Every AI experience ships with evaluations, guardrails, and analytics so you know it is accurate and valuable.",
+      "items": [
+        {
+          "title": "Grounded in your data",
+          "description": "Retrieval from your approved content keeps answers accurate and on-brand, with citations back to the source."
+        },
+        {
+          "title": "Safe by design",
+          "description": "Guardrails, permissions, and human handoff protect users and your brand from wrong or unsafe responses."
+        },
+        {
+          "title": "Measured by outcomes",
+          "description": "We track resolved questions, completed tasks, and conversions — not just conversation counts."
+        }
+      ],
+      "imageAlt": "AI agent experience visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your AI agent or copilot",
+      "subtitle": "Four phases — define, prototype, harden, and launch — from use case to production AI.",
+      "steps": [
+        {
+          "title": "Define",
+          "description": "Prioritize AI use cases by user value and feasibility, and define success metrics."
+        },
+        {
+          "title": "Prototype",
+          "description": "A working prototype on your real data within weeks, tested with real users."
+        },
+        {
+          "title": "Harden",
+          "description": "Guardrails, evaluations, security review, and performance tuning for production."
+        },
+        {
+          "title": "Launch",
+          "description": "Deploy, monitor quality and cost, and improve with usage analytics."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Security & privacy",
+        "title": "AI agents that respect data boundaries",
+        "description": "Role-based access, data residency options, PII handling, and prompt-injection defenses keep your AI features compliant with GDPR and your security policies.",
+        "ctaLabel": "Discuss AI security",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "AI analytics",
+        "title": "Know if your AI features are working",
+        "description": "Conversation quality scores, task completion, cost per conversation, and conversion impact — reported in Conalytic next to your other marketing and product data.",
+        "ctaLabel": "Explore AI analytics",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver AI experiences that ship",
+      "subtitle": "Assistants, copilots, agent-readiness, and analytics — built for production from day one.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "website-assistant",
+          "title": "AI assistants that answer buyers and qualify leads",
+          "description": "Grounded answers about your product, pricing, and integrations — with lead capture and handoff to sales in your CRM.",
+          "linkLabel": "Build a website assistant",
+          "linkHref": "/company/contact",
+          "alt": "Website AI assistant visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "copilot",
+          "title": "Copilots that help users get value faster",
+          "description": "Context-aware AI inside your product that explains, drafts, and acts — reducing support tickets and speeding up activation.",
+          "linkLabel": "Explore copilots",
+          "linkHref": "/company/contact",
+          "alt": "In-product AI copilot visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "agent-ready",
+          "title": "Websites AI agents can understand and use",
+          "description": "Structured data, MCP servers, and emerging browser standards like WebMCP — adopted at the right pace for your business.",
+          "linkLabel": "See MCP development",
+          "linkHref": "/services/mcp-server-development",
+          "alt": "Agent-ready website visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "ai-analytics",
+          "title": "AI feature reporting tied to business results",
+          "description": "Usage, accuracy, and conversion metrics for every AI feature — so you invest in the ones that pay back.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "AI feature analytics dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "AI experience outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "AI agents and copilots shipped to production"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average support deflection from AI assistants"
+        },
+        {
+          "value": "[#] weeks",
+          "label": "Average time from kickoff to working prototype"
+        }
+      ]
+    },
+    "faq": {
+      "title": "AI agent & copilot development FAQ",
+      "subtitle": "Models, data privacy, accuracy, and timelines.",
+      "items": [
+        {
+          "question": "Which AI models do you build with?",
+          "answer": "We are model-agnostic and work with Anthropic Claude, OpenAI, Google Gemini, and open-source models, choosing based on quality, cost, and data requirements."
+        },
+        {
+          "question": "How do you stop AI chatbots from making things up?",
+          "answer": "We ground answers in your approved content with retrieval, set topic boundaries, show sources, and run automated evaluations before and after launch."
+        },
+        {
+          "question": "Is our data used to train AI models?",
+          "answer": "We use enterprise API terms that do not train on your data by default and can add data residency and PII controls."
+        },
+        {
+          "question": "How long does it take to build an AI copilot?",
+          "answer": "A working prototype typically takes 3–6 weeks; a production launch with guardrails usually takes 2–3 months."
+        },
+        {
+          "question": "Do we need WebMCP now?",
+          "answer": "Not yet for most sites — it is still an early browser standard. We start with structured data and MCP, and prepare WebMCP tools when it matures."
+        },
+        {
+          "question": "Can the AI assistant connect to our CRM?",
+          "answer": "Yes. Assistants can create leads, look up accounts, and book meetings in HubSpot, Salesforce, and other systems with proper permissions."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Build an AI agent your customers will use",
+      "description": "Get an AI use-case workshop with a prioritized roadmap, architecture recommendation, and prototype plan for your website or product.",
+      "ctaLabel": "Book an AI workshop"
+    }
+  },
+  {
+    "slug": "ai-workflow-automation",
+    "meta": {
+      "pageTitle": "AI Workflow Automation Agency | n8n & Zapier | Conalytic",
+      "title": "AI Workflow Automation",
+      "description": "AI workflow automation for marketing, sales, and ops. Automate reporting, lead enrichment, and CRM tasks with n8n, Zapier, and LLM agents you can audit.",
+      "navDescription": "Automate reporting, enrichment, and ops with LLMs and integrations"
+    },
+    "catalog": {
+      "heroSubtitle": "AI automation that removes repetitive work from marketing, sales, and operations — with human checkpoints and measurable time saved.",
+      "highlights": [
+        "Automated marketing reporting and data pipelines",
+        "Lead enrichment, routing, and CRM hygiene with AI",
+        "AI agents with human-in-the-loop approval and audit logs"
+      ],
+      "deliverables": [
+        "Automation opportunity map with ROI estimates",
+        "Built, tested, and documented workflows",
+        "Monitoring, alerting, and error handling",
+        "Time-saved and ROI reporting in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "AI workflow automation",
+      "line1": "Automate reporting and ops",
+      "line2": "with AI you can audit",
+      "paragraph1": "Conalytic is an AI automation agency that builds workflow automation for marketing, sales, and operations teams — connecting your tools with n8n, Zapier, Make, and LLM agents to automate reporting, lead enrichment, and repetitive tasks.",
+      "paragraph2": "Many agentic AI projects stall on unclear value and weak controls. We start with measurable processes, add human checkpoints, and report the hours and costs saved.",
+      "trustBadges": [
+        {
+          "title": "Human-in-the-loop",
+          "subtitle": "Built in",
+          "accent": "slate"
+        },
+        {
+          "title": "ROI",
+          "subtitle": "Measured",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Automations connecting HubSpot, Salesforce, Slack, Google Workspace, Microsoft 365, Notion, GA4, and your ad platforms."
+    },
+    "whatWeDo": {
+      "title": "AI automation services for marketing, sales, and operations teams",
+      "items": [
+        {
+          "title": "Process discovery & automation mapping",
+          "description": "We map your workflows, find the repetitive steps, and rank automation opportunities by hours saved and risk.",
+          "visual": "discovery",
+          "alt": "Process discovery and automation opportunity map",
+          "linkLabel": "Map my processes",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Automated marketing reporting",
+          "description": "Scheduled reports that pull GA4, Search Console, and ad platform data, write AI summaries, and deliver them to Slack or email.",
+          "visual": "reporting",
+          "alt": "Automated marketing reporting workflow",
+          "linkLabel": "Automate my reports",
+          "linkHref": "/platform/features"
+        },
+        {
+          "title": "Lead enrichment & routing",
+          "description": "Enrich new leads with firmographic data, score them with AI, and route them to the right rep in your CRM instantly.",
+          "visual": "enrichment",
+          "alt": "AI lead enrichment and routing automation",
+          "linkLabel": "Automate lead routing",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI agents with human approval",
+          "description": "LLM agents that draft, classify, and decide — with approval steps for anything customer-facing or high-risk.",
+          "visual": "agents",
+          "alt": "AI agent workflow with human approval step",
+          "linkLabel": "Build an AI agent",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "CRM & RevOps automation",
+          "description": "Deduplication, data hygiene, lifecycle updates, and task creation across HubSpot and Salesforce.",
+          "visual": "crm",
+          "alt": "CRM and RevOps workflow automation",
+          "linkLabel": "Clean up my CRM",
+          "linkHref": "/services/email-lifecycle-marketing"
+        },
+        {
+          "title": "Content operations automation",
+          "description": "Briefs, repurposing, translation, and publishing workflows that speed up content production without skipping editorial review.",
+          "visual": "content-ops",
+          "alt": "Content operations automation workflow",
+          "linkLabel": "Automate content ops",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Document & invoice processing",
+          "description": "AI extraction from invoices, contracts, and forms into your finance or operations systems with validation rules.",
+          "visual": "documents",
+          "alt": "AI document and invoice processing automation",
+          "linkLabel": "Automate documents",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Monitoring & governance",
+          "description": "Error alerts, retries, audit logs, and cost tracking so automations stay reliable after launch.",
+          "visual": "monitoring",
+          "alt": "Automation monitoring and governance dashboard",
+          "linkLabel": "Explore governance",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for automation",
+      "headline": "AI automation that saves real hours — built on clear processes, with controls your team can trust.",
+      "introTitle": "Process design, engineering, and ROI reporting in one team",
+      "introBody": "We automate processes we can measure. Every workflow ships with documentation, monitoring, and a time-saved metric, so automation stays an asset, not a maintenance burden.",
+      "items": [
+        {
+          "title": "Start with value",
+          "description": "We automate the highest-volume, lowest-risk tasks first and prove ROI before expanding."
+        },
+        {
+          "title": "Humans stay in control",
+          "description": "Approval steps, confidence thresholds, and audit logs keep AI decisions reviewable."
+        },
+        {
+          "title": "Built to last",
+          "description": "Documented workflows, error handling, and alerts mean automations keep running when APIs change."
+        }
+      ],
+      "imageAlt": "AI workflow automation visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic delivers AI workflow automation",
+      "subtitle": "Four phases — map, build, validate, and scale — from manual process to reliable automation.",
+      "steps": [
+        {
+          "title": "Map",
+          "description": "Document current workflows, volumes, and pain points; estimate time saved for each automation."
+        },
+        {
+          "title": "Build",
+          "description": "Build workflows in n8n, Zapier, Make, or custom code with LLM steps where they add value."
+        },
+        {
+          "title": "Validate",
+          "description": "Run in parallel with the manual process, compare results, and tune accuracy."
+        },
+        {
+          "title": "Scale",
+          "description": "Launch with monitoring, then expand to the next processes on the roadmap."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Security & governance",
+        "title": "Automation that meets your security and data rules",
+        "description": "Self-hosted n8n options, least-privilege credentials, EU data residency, and audit logs keep sensitive data under your control.",
+        "ctaLabel": "Discuss automation security",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Automation ROI",
+        "title": "See the hours and costs every workflow saves",
+        "description": "Runs, success rates, time saved, and AI costs per workflow — reported in Conalytic so leadership sees automation ROI.",
+        "ctaLabel": "Explore ROI reporting",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver automation that pays back",
+      "subtitle": "Reporting, revenue operations, AI agents, and governance — connected so every workflow saves time safely.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "reporting-automation",
+          "title": "Marketing reports that write themselves",
+          "description": "Data pulled from GA4, Search Console, Google Ads, and Meta, summarized by AI, and delivered on schedule — no more copy-paste reporting.",
+          "linkLabel": "Automate reporting",
+          "linkHref": "/platform/features",
+          "alt": "Automated marketing report visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "revops",
+          "title": "Leads enriched, scored, and routed in seconds",
+          "description": "AI enrichment and routing rules so sales gets complete, prioritized leads the moment they convert.",
+          "linkLabel": "Automate RevOps",
+          "linkHref": "/company/contact",
+          "alt": "Lead enrichment and routing visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "ai-agents",
+          "title": "AI agents with clear boundaries",
+          "description": "Agents that classify, draft, and act inside defined permissions, with human approval for high-impact steps.",
+          "linkLabel": "Build an AI agent",
+          "linkHref": "/company/contact",
+          "alt": "AI agent workflow visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "governance",
+          "title": "Automations you can monitor and trust",
+          "description": "Alerts, logs, retries, and cost controls on every workflow — so issues are caught before they reach customers.",
+          "linkLabel": "Explore governance",
+          "linkHref": "/company/contact",
+          "alt": "Automation governance dashboard visual"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Automation outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Workflows automated for clients"
+        },
+        {
+          "value": "[#]+",
+          "label": "Hours saved per month across clients"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average workflow success rate"
+        }
+      ]
+    },
+    "faq": {
+      "title": "AI workflow automation FAQ",
+      "subtitle": "Platforms, accuracy, security, and ROI.",
+      "items": [
+        {
+          "question": "Should we use n8n, Zapier, or Make?",
+          "answer": "Zapier is fastest for simple app-to-app workflows, Make suits visual multi-step logic, and n8n is best for complex AI agents and self-hosting. We recommend based on your volume, data rules, and team."
+        },
+        {
+          "question": "Which processes should we automate first?",
+          "answer": "High-volume, rule-based tasks with a clear output — reporting, lead routing, data entry, and CRM updates — usually deliver the fastest ROI."
+        },
+        {
+          "question": "What happens when the AI gets something wrong?",
+          "answer": "We add confidence thresholds, validation rules, and human approval steps so uncertain cases go to a person instead of being processed automatically."
+        },
+        {
+          "question": "Is our data secure?",
+          "answer": "Yes. We use least-privilege access, can self-host automation platforms, and choose AI providers with enterprise data terms."
+        },
+        {
+          "question": "How do you measure automation ROI?",
+          "answer": "We measure time saved, error rates, and cost per run against the manual baseline and report them monthly."
+        },
+        {
+          "question": "Who maintains the automations?",
+          "answer": "We document every workflow and can train your team or provide ongoing monitoring and maintenance."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Find the workflows worth automating",
+      "description": "Get an automation opportunity map with estimated hours saved, recommended tools, and a phased plan for AI workflow automation.",
+      "ctaLabel": "Book an automation audit"
+    }
+  },
+  {
+    "slug": "mcp-server-development",
+    "meta": {
+      "pageTitle": "MCP Server Development Services | Conalytic",
+      "title": "MCP Server Development",
+      "description": "Custom Model Context Protocol (MCP) server development. Connect your SaaS, data, and internal tools to Claude, ChatGPT, and AI agents securely with OAuth.",
+      "navDescription": "Model Context Protocol servers for tools, data, and internal systems"
+    },
+    "catalog": {
+      "heroSubtitle": "Secure, production-grade MCP servers that let AI assistants and agents use your product, data, and internal systems.",
+      "highlights": [
+        "Custom remote MCP servers with OAuth 2.1 authentication",
+        "Public connectors for your SaaS product in AI clients",
+        "Internal MCP servers for company data and tools"
+      ],
+      "deliverables": [
+        "MCP architecture and tool design",
+        "Production MCP server with authentication and logging",
+        "Security review, tests, and documentation",
+        "Usage analytics and spec-update maintenance"
+      ]
+    },
+    "hero": {
+      "eyebrow": "MCP server development",
+      "line1": "Model Context Protocol servers",
+      "line2": "for your tools and data",
+      "paragraph1": "Conalytic builds custom MCP servers that connect your SaaS product, databases, and internal tools to AI clients like Claude, ChatGPT, Cursor, and VS Code — securely, with OAuth and audit logging.",
+      "paragraph2": "The Model Context Protocol is now the common standard for connecting AI to software. We design focused tools, secure them properly, and keep your server current as the spec evolves.",
+      "trustBadges": [
+        {
+          "title": "Remote MCP",
+          "subtitle": "Streamable HTTP",
+          "accent": "emerald"
+        },
+        {
+          "title": "OAuth 2.1",
+          "subtitle": "Secured",
+          "accent": "slate"
+        }
+      ],
+      "marqueeTitle": "MCP servers that work with Claude, ChatGPT, Cursor, VS Code, and custom AI agents — built in TypeScript and Python."
+    },
+    "whatWeDo": {
+      "title": "Custom MCP server development and integration services",
+      "items": [
+        {
+          "title": "Custom MCP servers",
+          "description": "Well-designed tools, resources, and prompts that give AI assistants precise access to your product or data — not a raw API dump.",
+          "visual": "custom-server",
+          "alt": "Custom MCP server tool design",
+          "linkLabel": "Build an MCP server",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Remote MCP hosting",
+          "description": "Streamable HTTP servers deployed on Vercel, Cloudflare, AWS, or GCP with scaling, rate limits, and uptime monitoring.",
+          "visual": "remote",
+          "alt": "Remote MCP server hosting architecture",
+          "linkLabel": "Explore hosting",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "OAuth 2.1 & access control",
+          "description": "OAuth authentication, scoped permissions, and role-based access so AI clients only see what each user is allowed to see.",
+          "visual": "auth",
+          "alt": "OAuth authentication for MCP servers",
+          "linkLabel": "Secure my server",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "SaaS product connectors",
+          "description": "Public MCP connectors that let your customers use your product inside Claude, ChatGPT, and other AI clients.",
+          "visual": "saas-connector",
+          "alt": "SaaS MCP connector for AI assistants",
+          "linkLabel": "Launch a connector",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Internal data & tools servers",
+          "description": "MCP servers for your warehouse, CRM, docs, and internal APIs so teams can query company data from their AI assistant.",
+          "visual": "internal",
+          "alt": "Internal MCP server for company data",
+          "linkLabel": "Connect internal tools",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Marketing & analytics MCP servers",
+          "description": "MCP access to GA4, Search Console, ad platforms, and BigQuery — the same data layer that powers Conalytic.",
+          "visual": "analytics",
+          "alt": "Marketing analytics MCP server",
+          "linkLabel": "Explore analytics MCP",
+          "linkHref": "/services/marketing-analytics-measurement"
+        },
+        {
+          "title": "MCP Apps & interactive UI",
+          "description": "Tools that return interactive interfaces inside AI clients, not just text, using the MCP Apps extension.",
+          "visual": "mcp-apps",
+          "alt": "MCP Apps interactive UI in an AI client",
+          "linkLabel": "Explore MCP Apps",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Security audits & spec upgrades",
+          "description": "Reviews for authentication gaps, prompt injection, and over-broad permissions — plus migrations to the latest MCP specification.",
+          "visual": "security",
+          "alt": "MCP server security audit",
+          "linkLabel": "Audit my MCP server",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for MCP",
+      "headline": "MCP servers built like production software — focused tools, real security, and analytics from day one.",
+      "introTitle": "Protocol expertise, engineering, and analytics in one team",
+      "introBody": "We have built MCP servers for content, marketing, and analytics products. We design tools around user tasks, secure them with OAuth, and measure how AI clients actually use them.",
+      "items": [
+        {
+          "title": "Tools AI can use well",
+          "description": "Clear names, descriptions, and schemas help models pick the right tool and call it correctly."
+        },
+        {
+          "title": "Secure by default",
+          "description": "OAuth, scoped permissions, input validation, and logging close the gaps common in public MCP servers."
+        },
+        {
+          "title": "Kept current",
+          "description": "The MCP specification changes quickly. We maintain your server through spec updates and new client features."
+        }
+      ],
+      "imageAlt": "Model Context Protocol server visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your MCP server",
+      "subtitle": "Four phases — design, build, secure, and launch — from use case to production MCP server.",
+      "steps": [
+        {
+          "title": "Design",
+          "description": "Define user tasks, tools, resources, and permissions; choose local or remote deployment."
+        },
+        {
+          "title": "Build",
+          "description": "Implement the server in TypeScript or Python with tests against real AI clients."
+        },
+        {
+          "title": "Secure",
+          "description": "Add OAuth 2.1, rate limits, input validation, and audit logging; run a security review."
+        },
+        {
+          "title": "Launch",
+          "description": "Deploy, document, list your connector where relevant, and monitor usage."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Security",
+        "title": "MCP servers that pass a security review",
+        "description": "Many internet-facing MCP servers still ship without authentication. Ours include OAuth 2.1, least-privilege scopes, prompt-injection defenses, and audit logs from the first release.",
+        "ctaLabel": "Request a security review",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Distribution & usage",
+        "title": "Put your product inside the AI tools customers already use",
+        "description": "A well-built connector makes your product available inside Claude, ChatGPT, and coding assistants — and usage analytics show which tools drive value.",
+        "ctaLabel": "Plan a connector",
+        "ctaHref": "/company/contact",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver MCP servers that work in production",
+      "subtitle": "Tool design, security, distribution, and analytics — connected so AI clients use your server reliably.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "tool-design",
+          "title": "Tools designed around real user tasks",
+          "description": "Fewer, better tools with clear schemas outperform one tool per API endpoint. We design for how AI models choose and call tools.",
+          "linkLabel": "Discuss tool design",
+          "linkHref": "/company/contact",
+          "alt": "MCP tool design visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "auth",
+          "title": "OAuth, permissions, and audit logs built in",
+          "description": "Users sign in once, AI clients get scoped access, and every tool call is logged for compliance.",
+          "linkLabel": "Secure my MCP server",
+          "linkHref": "/company/contact",
+          "alt": "MCP authentication flow visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "saas-connector",
+          "title": "Your SaaS, available inside AI assistants",
+          "description": "Public MCP connectors that bring your product's actions and data into Claude, ChatGPT, and agent workflows.",
+          "linkLabel": "Launch a connector",
+          "linkHref": "/company/contact",
+          "alt": "SaaS connector in AI assistant visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "usage",
+          "title": "See how AI clients use your MCP server",
+          "description": "Tool calls, errors, latency, and active users reported in Conalytic — so you know which tools to improve next.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "MCP server usage analytics dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "MCP outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "MCP servers built and deployed"
+        },
+        {
+          "value": "[#]+",
+          "label": "Tools shipped across client servers"
+        }
+      ]
+    },
+    "faq": {
+      "title": "MCP server development FAQ",
+      "subtitle": "What MCP is, how it compares to APIs, and how we keep servers secure.",
+      "items": [
+        {
+          "question": "What is an MCP server?",
+          "answer": "An MCP server exposes tools, data, and prompts through the Model Context Protocol so AI assistants and agents can use your software in a standard way."
+        },
+        {
+          "question": "What is the difference between MCP and an API?",
+          "answer": "An API is built for developers; MCP is built for AI models. An MCP server usually wraps your API with task-focused tools and descriptions that models understand."
+        },
+        {
+          "question": "Which AI clients support MCP?",
+          "answer": "Claude, ChatGPT, Cursor, VS Code, Gemini tooling, Microsoft Copilot, and many agent frameworks support MCP."
+        },
+        {
+          "question": "How do you secure an MCP server?",
+          "answer": "With OAuth 2.1 authentication, scoped permissions, input validation, rate limiting, prompt-injection defenses, and audit logging."
+        },
+        {
+          "question": "How long does it take to build an MCP server?",
+          "answer": "A focused MCP server typically takes 2–6 weeks, depending on the number of tools, authentication needs, and integrations."
+        },
+        {
+          "question": "Do you maintain the server as the MCP spec changes?",
+          "answer": "Yes. We offer maintenance plans that cover spec updates, client compatibility, and new features."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Connect your product to AI with MCP",
+      "description": "Get an MCP architecture session with tool design, security approach, and a build plan for your custom Model Context Protocol server.",
+      "ctaLabel": "Book an MCP consultation"
+    }
+  },
+  {
+    "slug": "web-application-development",
+    "meta": {
+      "pageTitle": "Custom Web App & SaaS Development Company | Conalytic",
+      "title": "Custom Web Application Development",
+      "description": "Custom web application and SaaS development with Next.js, TypeScript, and scalable APIs. MVPs, internal tools, dashboards, and AI features built to scale.",
+      "navDescription": "Full-stack SaaS and internal apps — Next.js, APIs, and scalable hosting"
+    },
+    "catalog": {
+      "heroSubtitle": "Full-stack web applications, SaaS products, and internal tools — built with Next.js and TypeScript, secured, and ready to scale.",
+      "highlights": [
+        "SaaS MVPs and full product builds in Next.js and TypeScript",
+        "Internal tools, admin portals, and data dashboards",
+        "APIs, integrations, and AI features built in"
+      ],
+      "deliverables": [
+        "Product scope, architecture, and delivery plan",
+        "Production web application with CI/CD",
+        "Security review, tests, and documentation",
+        "Product analytics and ongoing support"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Custom web application development",
+      "line1": "Full-stack SaaS and internal apps,",
+      "line2": "built to scale",
+      "paragraph1": "Conalytic is a custom web application development company building SaaS products, internal tools, and data dashboards with Next.js, React, TypeScript, and scalable cloud infrastructure.",
+      "paragraph2": "AI makes it faster to write code, but not to ship secure, maintainable software. We use AI-assisted development with senior engineering review, automated tests, and clean architecture.",
+      "trustBadges": [
+        {
+          "title": "You own the code",
+          "subtitle": "Always",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Web applications built with Next.js, React, Node.js, PostgreSQL, Supabase, Stripe, and deployed on Vercel, AWS, and Google Cloud."
+    },
+    "whatWeDo": {
+      "title": "Custom web application and SaaS development services",
+      "items": [
+        {
+          "title": "SaaS MVP development",
+          "description": "Validate your product with a production-quality MVP — authentication, billing, core workflows, and analytics — built to grow, not rebuild.",
+          "visual": "mvp",
+          "alt": "SaaS MVP development",
+          "linkLabel": "Scope my MVP",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Internal tools & admin portals",
+          "description": "Custom internal tools, admin panels, and operations portals that replace spreadsheets and disconnected systems.",
+          "visual": "internal-tools",
+          "alt": "Internal tools and admin portal development",
+          "linkLabel": "Build internal tools",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Dashboards & data applications",
+          "description": "Real-time dashboards and data apps on BigQuery, PostgreSQL, or your warehouse, with role-based access and exports.",
+          "visual": "dashboards",
+          "alt": "Custom dashboard and data application",
+          "linkLabel": "Build a dashboard",
+          "linkHref": "/services/marketing-analytics-measurement"
+        },
+        {
+          "title": "API & integration development",
+          "description": "REST and GraphQL APIs, webhooks, and integrations with CRMs, payment providers, and third-party platforms.",
+          "visual": "api",
+          "alt": "API and integration development",
+          "linkLabel": "Explore API development",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Auth, billing & multi-tenancy",
+          "description": "Secure sign-in, SSO, team accounts, subscription billing with Stripe, and multi-tenant data isolation.",
+          "visual": "auth-billing",
+          "alt": "SaaS authentication, billing, and multi-tenancy",
+          "linkLabel": "Discuss architecture",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI feature integration",
+          "description": "LLM-powered search, copilots, summaries, and automation built into your application with cost and quality controls.",
+          "visual": "ai-features",
+          "alt": "AI feature integration in a web application",
+          "linkLabel": "Add AI features",
+          "linkHref": "/services/agentic-web"
+        },
+        {
+          "title": "Cloud hosting & DevOps",
+          "description": "CI/CD pipelines, preview environments, monitoring, and scalable hosting on Vercel, AWS, or Google Cloud.",
+          "visual": "devops",
+          "alt": "Cloud hosting and DevOps pipeline",
+          "linkLabel": "Explore DevOps",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Code audits & modernization",
+          "description": "Security, performance, and maintainability reviews — plus refactors and upgrades for legacy or AI-generated codebases.",
+          "visual": "modernization",
+          "alt": "Code audit and application modernization",
+          "linkLabel": "Audit my codebase",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for web apps",
+      "headline": "Software that ships fast and stays maintainable — senior engineering, AI-assisted speed, and analytics built in.",
+      "introTitle": "Product thinking, engineering, and analytics in one team",
+      "introBody": "We build web applications the way we build Conalytic itself: Next.js, TypeScript, and a clean data layer. You get fast delivery, readable code, and product analytics from launch.",
+      "items": [
+        {
+          "title": "Faster time to launch",
+          "description": "AI-assisted development and proven building blocks shorten delivery without cutting quality."
+        },
+        {
+          "title": "Code you own and understand",
+          "description": "Typed, tested, documented code in your repositories — no lock-in."
+        },
+        {
+          "title": "Built to scale",
+          "description": "Server-first architecture, caching, and cloud infrastructure that grow with your users."
+        }
+      ],
+      "imageAlt": "Custom web application development visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your web application",
+      "subtitle": "Four phases — scope, design, build, and launch — from idea to production.",
+      "steps": [
+        {
+          "title": "Scope",
+          "description": "Define users, core workflows, integrations, and success metrics; agree the MVP boundary."
+        },
+        {
+          "title": "Design",
+          "description": "UX flows, UI design, data model, and architecture decisions."
+        },
+        {
+          "title": "Build",
+          "description": "Two-week sprints with preview deployments, automated tests, and regular demos."
+        },
+        {
+          "title": "Launch",
+          "description": "Security review, production deployment, monitoring, and a post-launch roadmap."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Security by default",
+        "title": "Web applications that are secure from the first release",
+        "description": "Dependency scanning, secure authentication, role-based access, and senior review of all AI-generated code — plus fast patching for framework vulnerabilities in Next.js and React.",
+        "ctaLabel": "Discuss security",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Product analytics",
+        "title": "Know how customers use your product from day one",
+        "description": "Event tracking, activation funnels, and retention cohorts built into your application and reported in Conalytic.",
+        "ctaLabel": "Explore product analytics",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver web applications that last",
+      "subtitle": "MVPs, internal tools, integrations, and operations — built for production.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "saas-product",
+          "title": "SaaS MVPs built on a foundation that scales",
+          "description": "Authentication, billing, multi-tenancy, and analytics are in place from the start, so your MVP becomes your product.",
+          "linkLabel": "Scope my SaaS",
+          "linkHref": "/company/contact",
+          "alt": "SaaS product development visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "internal-tools",
+          "title": "Internal tools your team will actually adopt",
+          "description": "Simple, fast interfaces that replace spreadsheets and manual steps — connected to the systems you already use.",
+          "linkLabel": "Build internal tools",
+          "linkHref": "/company/contact",
+          "alt": "Internal tool interface visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "integrations",
+          "title": "APIs and AI features that connect everything",
+          "description": "Reliable integrations and AI capabilities with retries, monitoring, and cost controls.",
+          "linkLabel": "See AI integration",
+          "linkHref": "/services/agentic-web",
+          "alt": "API integration and AI features visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "scaling",
+          "title": "Monitoring, support, and continuous improvement",
+          "description": "Uptime monitoring, error tracking, and a product roadmap informed by real usage data.",
+          "linkLabel": "View support options",
+          "linkHref": "/company/contact",
+          "alt": "Application monitoring dashboard visual"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Development outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Web applications and SaaS products shipped"
+        },
+        {
+          "value": "[#] weeks",
+          "label": "Average time to MVP launch"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average uptime across hosted applications"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Custom web application development FAQ",
+      "subtitle": "Technology, cost, timelines, and ownership.",
+      "items": [
+        {
+          "question": "What technology stack do you use?",
+          "answer": "Primarily Next.js, React, TypeScript, and Node.js, with PostgreSQL or BigQuery, deployed on Vercel, AWS, or Google Cloud. We adapt to your existing stack when needed."
+        },
+        {
+          "question": "How much does it cost to build a SaaS MVP?",
+          "answer": "Cost depends on scope, integrations, and complexity. After a short scoping phase we provide a fixed-scope estimate for the MVP."
+        },
+        {
+          "question": "How long does it take to build a web application?",
+          "answer": "A focused MVP usually takes 8–14 weeks. Larger platforms are delivered in phases."
+        },
+        {
+          "question": "Who owns the code?",
+          "answer": "You do. All code lives in your repositories and cloud accounts."
+        },
+        {
+          "question": "Do you use AI to write code?",
+          "answer": "Yes, to speed up development — with senior engineers reviewing every change, plus automated tests and security scanning."
+        },
+        {
+          "question": "Do you provide support after launch?",
+          "answer": "Yes. We offer maintenance, monitoring, and ongoing feature development plans."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Build your web application with a team that ships",
+      "description": "Get a scoping session with architecture recommendations, a phased roadmap, and an estimate for your SaaS or custom web application.",
+      "ctaLabel": "Book a scoping call"
+    }
+  },
+  {
+    "slug": "marketing-website-development",
+    "meta": {
+      "pageTitle": "Next.js Website Development Agency for B2B | Conalytic",
+      "title": "Website Development",
+      "description": "Next.js website development for B2B and SaaS. Fast, SEO-friendly marketing sites on a headless CMS, with Core Web Vitals, analytics, and safe migrations.",
+      "navDescription": "Next.js marketing sites — fast, indexable, conversion-ready"
+    },
+    "catalog": {
+      "heroSubtitle": "Fast, indexable, conversion-ready marketing websites built with Next.js and a headless CMS your team can edit.",
+      "highlights": [
+        "Next.js marketing websites with server-side rendering",
+        "Headless CMS setup your marketing team can manage",
+        "SEO-safe website migrations and redirect mapping"
+      ],
+      "deliverables": [
+        "Sitemap, content model, and technical architecture",
+        "Designed and built website with CMS",
+        "SEO, analytics, and Core Web Vitals checks before launch",
+        "Launch support and post-launch monitoring"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Website development",
+      "line1": "Next.js marketing websites",
+      "line2": "that are fast and built to convert",
+      "paragraph1": "Conalytic is a website development agency building Next.js marketing websites for B2B and SaaS companies — server-rendered, SEO-friendly, and powered by a headless CMS your marketing team can edit.",
+      "paragraph2": "Your website now has two audiences: people and AI systems. We build pages that load fast, index cleanly, and are structured so search engines and AI answers understand them.",
+      "trustBadges": [
+        {
+          "title": "Next.js",
+          "subtitle": "SSR & SSG",
+          "accent": "emerald"
+        },
+        {
+          "title": "Core Web Vitals",
+          "subtitle": "Passing",
+          "accent": "slate"
+        },
+        {
+          "title": "SEO & GEO",
+          "subtitle": "Built in",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Websites built with Next.js on Sanity, Contentful, Storyblok, headless WordPress, and Webflow — deployed on Vercel."
+    },
+    "whatWeDo": {
+      "title": "Website development services for B2B, SaaS, and professional services brands",
+      "items": [
+        {
+          "title": "Next.js marketing websites",
+          "description": "Server-rendered Next.js websites with fast page loads, clean URLs, and reusable components your team can build pages with.",
+          "visual": "nextjs",
+          "alt": "Next.js marketing website development",
+          "linkLabel": "Explore Next.js sites",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Headless CMS development",
+          "description": "Sanity, Contentful, Storyblok, or headless WordPress set up with a content model that makes publishing simple.",
+          "visual": "cms",
+          "alt": "Headless CMS development and content modeling",
+          "linkLabel": "Choose a CMS",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "SEO-ready architecture",
+          "description": "Metadata, schema, XML sitemaps, internal linking, and crawlable rendering built in — not added after launch.",
+          "visual": "seo-architecture",
+          "alt": "SEO-friendly website architecture",
+          "linkLabel": "See SEO services",
+          "linkHref": "/services/seo-organic-growth"
+        },
+        {
+          "title": "Core Web Vitals performance",
+          "description": "Image optimization, font loading, caching, and minimal JavaScript for passing LCP, INP, and CLS scores.",
+          "visual": "performance",
+          "alt": "Core Web Vitals website performance",
+          "linkLabel": "Improve speed",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Website migrations & replatforming",
+          "description": "WordPress, Webflow, or legacy CMS to Next.js migrations with full redirect mapping and SEO checks to protect rankings.",
+          "visual": "migration",
+          "alt": "SEO-safe website migration",
+          "linkLabel": "Plan a migration",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Landing page development",
+          "description": "Fast, testable landing pages for paid campaigns and product launches, built from your component library.",
+          "visual": "landing-pages",
+          "alt": "Landing page development for campaigns",
+          "linkLabel": "Build landing pages",
+          "linkHref": "/services/conversion-rate-optimization"
+        },
+        {
+          "title": "Accessible website development",
+          "description": "WCAG 2.2 AA-focused development with semantic HTML, keyboard navigation, and color contrast checks.",
+          "visual": "accessibility",
+          "alt": "Accessible website development WCAG",
+          "linkLabel": "Explore accessibility",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Analytics & tag implementation",
+          "description": "GA4, Google Tag Manager, Consent Mode v2, and conversion events configured before launch day.",
+          "visual": "analytics",
+          "alt": "Website analytics and tag implementation",
+          "linkLabel": "Set up analytics",
+          "linkHref": "/services/marketing-analytics-measurement"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for websites",
+      "headline": "Websites that rank, load fast, and convert — with SEO, performance, and analytics built in from the first commit.",
+      "introTitle": "Design, development, SEO, and analytics in one team",
+      "introBody": "Most website rebuilds lose traffic because SEO and analytics are an afterthought. We build them in from the start, so your new website launches stronger than the old one.",
+      "items": [
+        {
+          "title": "Launch without losing rankings",
+          "description": "Redirect maps, metadata parity, and post-launch Search Console monitoring protect your organic traffic."
+        },
+        {
+          "title": "Marketing team independence",
+          "description": "A headless CMS and component library let your team publish pages without waiting on developers."
+        },
+        {
+          "title": "Performance that lasts",
+          "description": "Performance budgets and automated checks keep Core Web Vitals green as the site grows."
+        }
+      ],
+      "imageAlt": "Next.js website development visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your website",
+      "subtitle": "Four phases — plan, design, build, and launch — for a website that performs from day one.",
+      "steps": [
+        {
+          "title": "Plan",
+          "description": "Sitemap, content model, SEO audit of the current site, and technical architecture."
+        },
+        {
+          "title": "Design",
+          "description": "Wireframes and UI design for key templates, reviewed for conversion and accessibility."
+        },
+        {
+          "title": "Build",
+          "description": "Next.js development, CMS setup, content migration, and analytics implementation."
+        },
+        {
+          "title": "Launch",
+          "description": "Redirect testing, QA, go-live, and Search Console monitoring after launch."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Migration safety",
+        "title": "Website migrations that protect your SEO",
+        "description": "URL inventories, one-to-one redirect mapping, metadata and schema parity, and crawl comparisons before and after launch keep your rankings and backlinks intact.",
+        "ctaLabel": "Plan a safe migration",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Analytics from launch",
+        "title": "Measure every page from the first day",
+        "description": "GA4, Tag Manager, Consent Mode v2, and conversion tracking go live with the site — and flow into Conalytic reporting.",
+        "ctaLabel": "Explore website analytics",
+        "ctaHref": "/services/marketing-analytics-measurement",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver websites that perform",
+      "subtitle": "Speed, SEO, content editing, and conversion — built into one launch.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "performance",
+          "title": "Fast pages that pass Core Web Vitals",
+          "description": "Server rendering, optimized images, and lean JavaScript deliver fast load times on real mobile devices.",
+          "linkLabel": "Improve site speed",
+          "linkHref": "/company/contact",
+          "alt": "Website performance optimization visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "seo-ready",
+          "title": "Pages search engines and AI can understand",
+          "description": "Semantic HTML, schema, clean internal linking, and crawlable content help you rank on Google and get cited by AI search.",
+          "linkLabel": "See GEO services",
+          "linkHref": "/services/generative-engine-optimization",
+          "alt": "SEO and GEO-ready website structure visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "cms",
+          "title": "A CMS your marketing team enjoys using",
+          "description": "Flexible page builders and clear content fields so marketers launch new pages without developer tickets.",
+          "linkLabel": "Explore CMS options",
+          "linkHref": "/company/contact",
+          "alt": "Headless CMS editor visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "conversion",
+          "title": "Websites designed to generate pipeline",
+          "description": "Clear messaging, strong calls to action, and testable templates turn visitors into demo requests and signups.",
+          "linkLabel": "See CRO services",
+          "linkHref": "/services/conversion-rate-optimization",
+          "alt": "Conversion-focused website design visual"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Website outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Websites designed and developed"
+        },
+        {
+          "value": "[#]",
+          "label": "Average mobile Lighthouse performance score"
+        },
+        {
+          "value": "[#]%",
+          "label": "Organic traffic retained after migrations"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Website development FAQ",
+      "subtitle": "Platforms, migrations, timelines, and editing.",
+      "items": [
+        {
+          "question": "Why build a marketing website with Next.js?",
+          "answer": "Next.js delivers fast, server-rendered pages that are easy for search engines to crawl, with modern tooling and flexible content management through a headless CMS."
+        },
+        {
+          "question": "Next.js or WordPress — which is better?",
+          "answer": "WordPress is simple and familiar; Next.js with a headless CMS is faster, more secure, and more flexible. We can also use WordPress as a headless CMS behind a Next.js front end."
+        },
+        {
+          "question": "Will we lose SEO rankings when we migrate?",
+          "answer": "Not if the migration is planned properly. We map every URL, set redirects, keep metadata and schema, and monitor Search Console after launch."
+        },
+        {
+          "question": "Can our team edit the website without developers?",
+          "answer": "Yes. We set up a headless CMS with reusable page sections so your marketing team can create and update pages."
+        },
+        {
+          "question": "How long does a website build take?",
+          "answer": "Most B2B marketing websites take 8–12 weeks from planning to launch, depending on page count and content migration."
+        },
+        {
+          "question": "Do you design the website too?",
+          "answer": "Yes. Our UI/UX team designs the site, or we can build from your existing designs in Figma."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Launch a website that ranks and converts",
+      "description": "Get a website plan with sitemap, CMS recommendation, migration approach, and timeline for your new Next.js marketing site.",
+      "ctaLabel": "Book a website consultation"
+    }
+  },
+  {
+    "slug": "product-ui-ux-design",
+    "meta": {
+      "pageTitle": "UI/UX Design Agency for SaaS & Dashboards | Conalytic",
+      "title": "UI/UX & Product Design",
+      "description": "UI/UX and product design for SaaS, websites, and dashboards. UX audits, design systems, AI interface design, and marketing creative built for conversion.",
+      "navDescription": "Websites, SaaS, dashboards, design systems, and marketing creative"
+    },
+    "catalog": {
+      "heroSubtitle": "Product, web, and dashboard design that makes complex software easy to use — backed by research and ready for development.",
+      "highlights": [
+        "SaaS product and dashboard UI/UX design",
+        "Design systems in Figma with developer-ready handoff",
+        "Website, landing page, and marketing creative design"
+      ],
+      "deliverables": [
+        "UX audit or research findings",
+        "Wireframes, prototypes, and high-fidelity UI",
+        "Design system and component library",
+        "Developer handoff specs and design QA"
+      ]
+    },
+    "hero": {
+      "eyebrow": "UI/UX & product design",
+      "line1": "Product and web design",
+      "line2": "that users understand",
+      "paragraph1": "Conalytic is a UI/UX design agency for SaaS products, dashboards, and B2B websites — user research, UX design, UI design, and design systems that make complex software simple.",
+      "paragraph2": "As AI features and agents enter every product, interfaces need new patterns for trust, control, and feedback. We design experiences people and AI can both work with.",
+      "trustBadges": [
+        {
+          "title": "Figma",
+          "subtitle": "Design systems",
+          "accent": "emerald"
+        },
+        {
+          "title": "WCAG 2.2",
+          "subtitle": "Accessible",
+          "accent": "slate"
+        },
+        {
+          "title": "Dev-ready",
+          "subtitle": "Handoff",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Design delivered in Figma with component libraries, prototypes, and handoff specs for React, Next.js, and Tailwind teams."
+    },
+    "whatWeDo": {
+      "title": "UI/UX design services for SaaS, dashboards, and websites",
+      "items": [
+        {
+          "title": "UX research & audits",
+          "description": "User interviews, usability testing, analytics review, and heuristic UX audits that show where users struggle and why.",
+          "visual": "research",
+          "alt": "UX research and usability audit",
+          "linkLabel": "Get a UX audit",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "SaaS product design",
+          "description": "Onboarding, core workflows, settings, and empty states designed to shorten time to value and reduce support tickets.",
+          "visual": "saas",
+          "alt": "SaaS product UI/UX design",
+          "linkLabel": "Design my product",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Dashboard & data visualization design",
+          "description": "Dashboards that highlight what matters — clear KPIs, readable charts, and filters designed for real decisions.",
+          "visual": "dashboard",
+          "alt": "Dashboard and data visualization UI design",
+          "linkLabel": "Design a dashboard",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Design systems",
+          "description": "Tokens, components, and documentation in Figma that keep product and marketing consistent as you scale.",
+          "visual": "design-system",
+          "alt": "Design system and component library in Figma",
+          "linkLabel": "Build a design system",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Website & landing page design",
+          "description": "B2B website and landing page design focused on clear messaging, credibility, and conversion.",
+          "visual": "website",
+          "alt": "B2B website and landing page design",
+          "linkLabel": "See website services",
+          "linkHref": "/services/marketing-website-development"
+        },
+        {
+          "title": "Prototyping & usability testing",
+          "description": "Interactive prototypes tested with real users before development, so you build the right thing first time.",
+          "visual": "prototype",
+          "alt": "Interactive prototype and usability testing",
+          "linkLabel": "Test a prototype",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI interface design",
+          "description": "Patterns for chat, copilots, generative UI, and agent actions — including confidence, sources, undo, and human approval.",
+          "visual": "ai-ui",
+          "alt": "AI interface and copilot UX design",
+          "linkLabel": "Design AI features",
+          "linkHref": "/services/agentic-web"
+        },
+        {
+          "title": "Marketing creative & ad design",
+          "description": "Ad creative, social graphics, and campaign visuals that match your brand and are built for testing.",
+          "visual": "creative",
+          "alt": "Marketing creative and ad design",
+          "linkLabel": "See paid media",
+          "linkHref": "/services/paid-media-performance"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for design",
+      "headline": "Design grounded in data — research, analytics, and usability testing behind every screen.",
+      "introTitle": "Research, design, and development in one team",
+      "introBody": "We design with the people who build and measure. Every design decision connects to user research or product analytics, and handoff is ready for engineering.",
+      "items": [
+        {
+          "title": "Easier for users",
+          "description": "Clear flows and familiar patterns reduce friction, errors, and support requests."
+        },
+        {
+          "title": "Faster for developers",
+          "description": "Design systems and detailed handoff specs cut back-and-forth and speed up builds."
+        },
+        {
+          "title": "Consistent at scale",
+          "description": "One component library keeps product, website, and marketing creative on-brand."
+        }
+      ],
+      "imageAlt": "UI/UX product design visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic runs your design project",
+      "subtitle": "Four phases — research, define, design, and deliver — from user insight to developer-ready UI.",
+      "steps": [
+        {
+          "title": "Research",
+          "description": "Interviews, analytics review, and a UX audit of your current experience."
+        },
+        {
+          "title": "Define",
+          "description": "User flows, information architecture, and wireframes for key journeys."
+        },
+        {
+          "title": "Design",
+          "description": "High-fidelity UI, prototypes, and usability testing with real users."
+        },
+        {
+          "title": "Deliver",
+          "description": "Design system, handoff specs, and design QA during development."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Accessibility",
+        "title": "Inclusive design that meets WCAG standards",
+        "description": "Color contrast, keyboard navigation, focus states, and screen-reader-friendly patterns designed in from the start — supporting WCAG 2.2 AA and the European Accessibility Act.",
+        "ctaLabel": "Request an accessibility review",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Design to code",
+        "title": "Handoff that engineering actually uses",
+        "description": "Tokens, component specs, and annotated flows in Figma — ready for React and Next.js teams and for AI coding tools that read your design source.",
+        "ctaLabel": "Explore handoff",
+        "ctaHref": "/services/web-application-development",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver design that works",
+      "subtitle": "Research, product UX, design systems, and creative — connected so every screen serves a goal.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "ux-research",
+          "title": "Research that shows where users get stuck",
+          "description": "Interviews, usability tests, and session analytics reveal the problems worth solving first.",
+          "linkLabel": "Get a UX audit",
+          "linkHref": "/company/contact",
+          "alt": "UX research findings visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "product-design",
+          "title": "SaaS interfaces that feel simple",
+          "description": "Onboarding, dashboards, and workflows designed so users reach value quickly and come back.",
+          "linkLabel": "Design my product",
+          "linkHref": "/company/contact",
+          "alt": "SaaS product interface visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "design-system",
+          "title": "One design system for product and marketing",
+          "description": "Reusable components and tokens that keep every surface consistent and speed up delivery.",
+          "linkLabel": "Build a design system",
+          "linkHref": "/company/contact",
+          "alt": "Design system components visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "creative",
+          "title": "Creative built for campaigns and testing",
+          "description": "Ad, social, and landing page visuals produced in variations so paid media can test what works.",
+          "linkLabel": "See paid media",
+          "linkHref": "/services/paid-media-performance",
+          "alt": "Marketing creative variations visual"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Design outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "Products, dashboards, and websites designed"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average improvement in task completion after redesign"
+        },
+        {
+          "value": "[#]+",
+          "label": "Components delivered in client design systems"
+        }
+      ]
+    },
+    "faq": {
+      "title": "UI/UX design FAQ",
+      "subtitle": "Process, deliverables, and working with your developers.",
+      "items": [
+        {
+          "question": "What is a UX audit?",
+          "answer": "A UX audit reviews your product or website against usability principles, analytics, and user behavior to find the issues that hurt conversion and satisfaction."
+        },
+        {
+          "question": "What is a design system?",
+          "answer": "A design system is a shared library of components, styles, and guidelines that keeps design and code consistent across products and teams."
+        },
+        {
+          "question": "Do you design SaaS dashboards?",
+          "answer": "Yes. Dashboard and data visualization design is a core specialty, informed by building our own analytics platform."
+        },
+        {
+          "question": "Which design tools do you use?",
+          "answer": "Figma for design, prototyping, and design systems, with handoff specs for developers."
+        },
+        {
+          "question": "Can you work with our development team?",
+          "answer": "Yes. We provide detailed handoff and design QA, or our own engineers can build the design."
+        },
+        {
+          "question": "How do you design AI features?",
+          "answer": "We design for trust and control: showing sources, confidence, editable outputs, undo, and human approval for important actions."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Design a product your users love to use",
+      "description": "Get a UX audit or design consultation with prioritized improvements and a plan for your product, dashboard, or website.",
+      "ctaLabel": "Book a design consultation"
+    }
+  },
+  {
+    "slug": "marketing-analytics-measurement",
+    "meta": {
+      "pageTitle": "Marketing Analytics & GA4 Consulting | Conalytic",
+      "title": "Marketing Analytics & Measurement",
+      "description": "GA4, Google Tag Manager, BigQuery, and attribution you can defend in board meetings. Server-side tracking, Consent Mode v2, MMM, and incrementality testing.",
+      "navDescription": "GA4, GTM, BigQuery, and attribution you can defend in board meetings"
+    },
+    "catalog": {
+      "heroSubtitle": "Marketing measurement built on clean GA4 data, server-side tracking, and triangulated attribution — reported in Conalytic.",
+      "highlights": [
+        "GA4 audits, implementation, and Google Tag Manager setup",
+        "Server-side tracking, Consent Mode v2, and BigQuery pipelines",
+        "Attribution, marketing mix modeling, and incrementality testing"
+      ],
+      "deliverables": [
+        "Measurement plan and tracking audit",
+        "GA4, GTM, and server-side tagging implementation",
+        "BigQuery data model and Conalytic dashboards",
+        "Attribution and budget allocation recommendations"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Marketing analytics & measurement",
+      "line1": "Marketing measurement",
+      "line2": "you can defend in the boardroom",
+      "paragraph1": "Conalytic provides marketing analytics services and GA4 consulting — tracking audits, Google Tag Manager, server-side tagging, BigQuery pipelines, and attribution models that show what marketing really drives.",
+      "paragraph2": "No single model tells the whole truth in 2026. We combine GA4 attribution, marketing mix modeling, and incrementality testing, then deliver the answers in Conalytic's conversational analytics and AI reports.",
+      "trustBadges": [
+        {
+          "title": "Consent Mode v2",
+          "subtitle": "Compliant",
+          "accent": "slate"
+        },
+        {
+          "title": "MMM + incrementality",
+          "subtitle": "Triangulated",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "Measurement stacks connecting GA4, Google Tag Manager, BigQuery, Search Console, Google Ads, Meta, HubSpot, and Salesforce."
+    },
+    "whatWeDo": {
+      "title": "Marketing analytics and measurement services for data-driven teams",
+      "items": [
+        {
+          "title": "GA4 audit & implementation",
+          "description": "GA4 property structure, key events, ecommerce and lead tracking, custom dimensions, and data retention settings done right.",
+          "visual": "ga4",
+          "alt": "GA4 audit and implementation",
+          "linkLabel": "Audit my GA4",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Google Tag Manager & server-side tagging",
+          "description": "Clean GTM containers and server-side tracking that improve data accuracy, page speed, and control over what you send to vendors.",
+          "visual": "gtm",
+          "alt": "Google Tag Manager and server-side tagging",
+          "linkLabel": "Explore server-side tracking",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Consent Mode v2 & privacy",
+          "description": "Consent banners, Consent Mode v2, and data governance that keep measurement compliant with GDPR and ePrivacy rules.",
+          "visual": "consent",
+          "alt": "Consent Mode v2 and privacy compliant analytics",
+          "linkLabel": "Check my consent setup",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "BigQuery marketing data warehouse",
+          "description": "GA4 export, ad platform, Search Console, and CRM data modeled in BigQuery for reliable, cross-channel reporting.",
+          "visual": "bigquery",
+          "alt": "BigQuery marketing data warehouse",
+          "linkLabel": "Build my warehouse",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Marketing attribution",
+          "description": "Data-driven and custom attribution models that connect campaigns to leads, pipeline, and revenue in your CRM.",
+          "visual": "attribution",
+          "alt": "Marketing attribution modeling",
+          "linkLabel": "Explore attribution",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Marketing mix modeling (MMM)",
+          "description": "Privacy-safe MMM with open-source tools like Google Meridian and Meta Robyn to guide budget allocation across channels.",
+          "visual": "mmm",
+          "alt": "Marketing mix modeling for budget allocation",
+          "linkLabel": "Explore MMM",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Incrementality testing",
+          "description": "Geo and holdout experiments that measure the true lift of each channel and keep attribution and MMM honest.",
+          "visual": "incrementality",
+          "alt": "Incrementality testing for marketing channels",
+          "linkLabel": "Run a lift test",
+          "linkHref": "/services/paid-media-performance"
+        },
+        {
+          "title": "AI search traffic tracking",
+          "description": "Custom GA4 channel groups for ChatGPT, Perplexity, Gemini, Copilot, and Claude referrals — with conversions tracked.",
+          "visual": "ai-traffic",
+          "alt": "AI search referral traffic tracking in GA4",
+          "linkLabel": "Track AI traffic",
+          "linkHref": "/services/generative-engine-optimization"
+        },
+        {
+          "title": "Dashboards & AI-powered reporting",
+          "description": "Automated, branded reports and conversational analytics in Conalytic — ask questions in plain language and get answers with charts.",
+          "visual": "reporting",
+          "alt": "AI-powered marketing reporting dashboard",
+          "linkLabel": "See the platform",
+          "linkHref": "/platform/features"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for analytics",
+      "headline": "Measurement you can trust — clean data, triangulated attribution, and answers leadership can act on.",
+      "introTitle": "Tracking, data engineering, and insight in one team",
+      "introBody": "We built Conalytic on BigQuery and GA4, so we know where marketing data breaks. Our analytics services fix the foundation and turn the data into clear decisions.",
+      "items": [
+        {
+          "title": "Numbers that match",
+          "description": "Consistent definitions across GA4, ad platforms, and CRM end the arguments over whose numbers are right."
+        },
+        {
+          "title": "Privacy-first accuracy",
+          "description": "Server-side tagging and Consent Mode v2 recover signal while respecting user consent."
+        },
+        {
+          "title": "Budget decisions with confidence",
+          "description": "MMM and incrementality tests show where the next dollar should go — not just who got the last click."
+        }
+      ],
+      "imageAlt": "Marketing analytics and measurement visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic builds your measurement stack",
+      "subtitle": "Four phases — audit, implement, model, and report — from broken tracking to trusted insight.",
+      "steps": [
+        {
+          "title": "Audit",
+          "description": "Review GA4, GTM, consent, ad platform conversions, and CRM data against your business goals."
+        },
+        {
+          "title": "Implement",
+          "description": "Measurement plan, GA4 and GTM fixes, server-side tagging, and BigQuery pipelines."
+        },
+        {
+          "title": "Model",
+          "description": "Attribution, MMM, and incrementality tests matched to your spend and data volume."
+        },
+        {
+          "title": "Report",
+          "description": "Dashboards, scheduled reports, and conversational analytics in Conalytic."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Privacy & compliance",
+        "title": "Analytics that stay compliant in the EU, UK, and US",
+        "description": "Consent Mode v2, server-side data controls, IP and PII handling, and data processing agreements keep your measurement defensible under GDPR.",
+        "ctaLabel": "Discover compliance support",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Conversational analytics",
+        "title": "Ask your marketing data questions in plain language",
+        "description": "Conalytic turns GA4, Search Console, Google Ads, and Meta data into instant answers, charts, and AI recommendations — no SQL or dashboard digging required.",
+        "ctaLabel": "Explore the platform",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver marketing measurement that holds up",
+      "subtitle": "Tracking, data engineering, modeling, and reporting — connected in one measurement system.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "tracking",
+          "title": "GA4 and GTM tracking you can trust",
+          "description": "A documented measurement plan, clean tag setup, and QA on every key event so the data is right before anyone reports on it.",
+          "linkLabel": "Audit my tracking",
+          "linkHref": "/company/contact",
+          "alt": "GA4 and GTM tracking setup visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "warehouse",
+          "title": "One marketing data warehouse in BigQuery",
+          "description": "GA4, ads, Search Console, and CRM data joined and modeled so every report uses the same numbers.",
+          "linkLabel": "Build my warehouse",
+          "linkHref": "/company/contact",
+          "alt": "BigQuery marketing data model visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "attribution",
+          "title": "Attribution, MMM, and lift tests working together",
+          "description": "Attribution for daily optimization, MMM for budget planning, and incrementality tests as ground truth.",
+          "linkLabel": "Explore attribution",
+          "linkHref": "/company/contact",
+          "alt": "Attribution and marketing mix modeling visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "reporting",
+          "title": "Reports and answers leadership can act on",
+          "description": "Scheduled, branded reports with AI insights, plus conversational analytics for ad-hoc questions — all in Conalytic.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "Marketing analytics report with AI insights visual"
+        }
+      ]
+    },
+    "stats": {
+      "title": "Measurement outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "GA4 and GTM implementations audited or rebuilt"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average conversion data recovered with server-side tracking"
+        },
+        {
+          "value": "[#]+",
+          "label": "Hours of manual reporting automated per month"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Marketing analytics & GA4 FAQ",
+      "subtitle": "Tracking, attribution, privacy, and reporting.",
+      "items": [
+        {
+          "question": "Why don't GA4 and Google Ads conversions match?",
+          "answer": "They use different attribution models, conversion windows, and counting rules, and consent choices affect each differently. We align definitions and explain the remaining gaps."
+        },
+        {
+          "question": "Is server-side tracking worth it?",
+          "answer": "For most businesses with meaningful ad spend, yes. It improves data accuracy, page speed, and control over what data leaves your site."
+        },
+        {
+          "question": "What is marketing mix modeling?",
+          "answer": "MMM uses aggregated historical data to estimate how each channel contributes to sales or leads. It does not need cookies or user-level tracking."
+        },
+        {
+          "question": "Do we need MMM or is attribution enough?",
+          "answer": "Smaller budgets can rely on GA4 attribution plus incrementality tests. MMM adds the most value when you spend across several channels."
+        },
+        {
+          "question": "How do we track traffic from ChatGPT and other AI tools?",
+          "answer": "We create a custom channel group in GA4 for AI referral sources and track their conversions separately."
+        },
+        {
+          "question": "What is Conalytic's role in reporting?",
+          "answer": "Conalytic syncs your marketing data into BigQuery, then provides conversational analytics and automated, branded reports with AI insights."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Build marketing measurement you can defend",
+      "description": "Get a tracking and measurement audit covering GA4, GTM, consent, and attribution — with a prioritized plan and Conalytic reporting setup.",
+      "ctaLabel": "Book a measurement audit"
+    }
+  },
+  {
+    "slug": "conversion-rate-optimization",
+    "meta": {
+      "pageTitle": "CRO Agency | Conversion Rate Optimization | Conalytic",
+      "title": "Conversion Rate Optimization (CRO)",
+      "description": "CRO services for B2B and SaaS: landing page optimization, A/B testing, UX fixes, and experimentation programs that turn more visitors into pipeline.",
+      "navDescription": "Landing page tests, UX fixes, and experiment programs that lift pipeline"
+    },
+    "catalog": {
+      "heroSubtitle": "Conversion rate optimization that turns existing traffic into more demos, signups, and revenue — through research-led testing.",
+      "highlights": [
+        "CRO audits using analytics, heatmaps, and session recordings",
+        "Landing page optimization and A/B testing",
+        "Experimentation programs with a prioritized test roadmap"
+      ],
+      "deliverables": [
+        "CRO audit with prioritized opportunities",
+        "Test designs, builds, and QA",
+        "Experiment results and learnings library",
+        "Monthly conversion reporting in Conalytic"
+      ]
+    },
+    "hero": {
+      "eyebrow": "Conversion rate optimization (CRO)",
+      "line1": "Turn more visitors",
+      "line2": "into pipeline with CRO",
+      "paragraph1": "Conalytic is a conversion rate optimization agency helping B2B and SaaS companies increase demo requests, signups, and revenue through CRO audits, landing page optimization, and A/B testing.",
+      "paragraph2": "Visitors now arrive from AI answers, paid social, and search with very different intent. We optimize the pages each audience lands on — so the traffic you already pay for converts.",
+      "trustBadges": [
+        {
+          "title": "A/B testing",
+          "subtitle": "Statistically sound",
+          "accent": "emerald"
+        },
+        {
+          "title": "Pipeline",
+          "subtitle": "Measured",
+          "accent": "rose"
+        }
+      ],
+      "marqueeTitle": "CRO programs using GA4, Microsoft Clarity, Hotjar, VWO, Optimizely, and your CRM to measure what really converts."
+    },
+    "whatWeDo": {
+      "title": "Conversion rate optimization services for B2B and SaaS websites",
+      "items": [
+        {
+          "title": "CRO audit",
+          "description": "Funnel analysis, heuristic review, heatmaps, and session recordings that pinpoint where and why visitors drop off.",
+          "visual": "audit",
+          "alt": "Conversion rate optimization audit",
+          "linkLabel": "Get a CRO audit",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Landing page optimization",
+          "description": "Messaging, layout, proof, and calls to action improved for paid, organic, and AI-referred landing pages.",
+          "visual": "landing-page",
+          "alt": "Landing page optimization",
+          "linkLabel": "Optimize my landing pages",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "A/B & multivariate testing",
+          "description": "Hypothesis-driven experiments with proper sample sizes and QA, run in VWO, Optimizely, or your testing tool.",
+          "visual": "ab-testing",
+          "alt": "A/B testing and experimentation",
+          "linkLabel": "Start testing",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "User behavior research",
+          "description": "Heatmaps, scroll maps, recordings, and on-site surveys with Microsoft Clarity and Hotjar to understand real behavior.",
+          "visual": "behavior",
+          "alt": "Heatmap and user behavior research",
+          "linkLabel": "Explore research",
+          "linkHref": "/services/product-ui-ux-design"
+        },
+        {
+          "title": "Form & signup optimization",
+          "description": "Shorter forms, smarter fields, and clear next steps that lift demo request and trial signup rates.",
+          "visual": "forms",
+          "alt": "Form and signup flow optimization",
+          "linkLabel": "Fix my forms",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "Pricing & demo page optimization",
+          "description": "Clearer plans, comparison tables, objection handling, and trust signals on your highest-intent pages.",
+          "visual": "pricing",
+          "alt": "Pricing page conversion optimization",
+          "linkLabel": "Optimize pricing pages",
+          "linkHref": "/company/contact"
+        },
+        {
+          "title": "AI-referred visitor experiences",
+          "description": "Pages for visitors arriving from ChatGPT and Perplexity who have already researched — fast answers, proof, and a direct path to convert.",
+          "visual": "ai-visitors",
+          "alt": "Landing pages optimized for AI-referred visitors",
+          "linkLabel": "See GEO services",
+          "linkHref": "/services/generative-engine-optimization"
+        },
+        {
+          "title": "Experimentation program & roadmap",
+          "description": "A prioritized test backlog, testing cadence, and learnings library that make CRO a repeatable process.",
+          "visual": "roadmap",
+          "alt": "CRO experimentation roadmap",
+          "linkLabel": "Build a CRO program",
+          "linkHref": "/company/contact"
+        }
+      ]
+    },
+    "benefits": {
+      "eyebrow": "Why Conalytic for CRO",
+      "headline": "CRO that grows revenue from the traffic you already have — research-led tests measured in pipeline, not just clicks.",
+      "introTitle": "Research, design, development, and analytics in one team",
+      "introBody": "We run CRO with analytics at the core. Every test starts from data, is built and QA'd by our team, and is measured against leads and revenue in your CRM.",
+      "items": [
+        {
+          "title": "Research before opinions",
+          "description": "Analytics, heatmaps, and user feedback decide what to test — not the loudest voice in the room."
+        },
+        {
+          "title": "Tests that reach significance",
+          "description": "Sample size planning and clean test setup mean results you can trust and act on."
+        },
+        {
+          "title": "Wins that compound",
+          "description": "A learnings library turns each experiment into knowledge you can apply across pages and campaigns."
+        }
+      ],
+      "imageAlt": "Conversion rate optimization visual"
+    },
+    "howItWorks": {
+      "title": "How Conalytic runs your CRO program",
+      "subtitle": "Four phases — research, prioritize, test, and scale — for steady conversion growth.",
+      "steps": [
+        {
+          "title": "Research",
+          "description": "Funnel analytics, heatmaps, recordings, and user feedback to find conversion blockers."
+        },
+        {
+          "title": "Prioritize",
+          "description": "A test roadmap ranked by expected impact, confidence, and effort."
+        },
+        {
+          "title": "Test",
+          "description": "Design, build, QA, and run A/B tests with proper sample sizes."
+        },
+        {
+          "title": "Scale",
+          "description": "Roll out winners, document learnings, and report pipeline impact in Conalytic."
+        }
+      ]
+    },
+    "uspStack": {
+      "dark": {
+        "eyebrow": "Privacy-safe testing",
+        "title": "Experiments that respect consent and page speed",
+        "description": "Consent-aware testing tools, masked session recordings, and performance-safe test code keep CRO compliant with GDPR and fast for users.",
+        "ctaLabel": "Discuss CRO compliance",
+        "ctaHref": "/company/contact",
+        "theme": "dark"
+      },
+      "light": {
+        "eyebrow": "Pipeline measurement",
+        "title": "Measure tests by qualified pipeline, not just clicks",
+        "description": "Experiment results connected to GA4 key events and CRM outcomes, so you know which variant brought better leads and revenue.",
+        "ctaLabel": "Explore CRO reporting",
+        "ctaHref": "/platform/features",
+        "theme": "light"
+      }
+    },
+    "process": {
+      "title": "How we deliver CRO results that show up in pipeline",
+      "subtitle": "Research, landing pages, testing, and measurement — connected so every experiment teaches you something.",
+      "rows": [
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "research",
+          "title": "Find out exactly where visitors drop off",
+          "description": "Funnel data, heatmaps, and recordings show the friction points costing you demos and signups.",
+          "linkLabel": "Get a CRO audit",
+          "linkHref": "/company/contact",
+          "alt": "Conversion funnel research visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "landing-pages",
+          "title": "Landing pages matched to visitor intent",
+          "description": "Different pages for paid search, paid social, organic, and AI-referred visitors — each with the right message and proof.",
+          "linkLabel": "Optimize landing pages",
+          "linkHref": "/company/contact",
+          "alt": "Intent-matched landing pages visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "left",
+          "visual": "experimentation",
+          "title": "A/B tests built and run properly",
+          "description": "Clear hypotheses, correct sample sizes, and full QA across devices, so results are reliable.",
+          "linkLabel": "Start testing",
+          "linkHref": "/company/contact",
+          "alt": "A/B test experiment visual"
+        },
+        {
+          "eyebrow": "",
+          "imageSide": "right",
+          "visual": "cro-reporting",
+          "title": "CRO reporting tied to revenue",
+          "description": "Conversion rate, lead quality, and pipeline impact of each test in Conalytic — so you fund the program with confidence.",
+          "linkLabel": "View reporting",
+          "linkHref": "/platform/features",
+          "alt": "CRO results reporting dashboard"
+        }
+      ]
+    },
+    "stats": {
+      "title": "CRO outcomes we hold ourselves to",
+      "stats": [
+        {
+          "value": "[#]+",
+          "label": "A/B tests designed and launched"
+        },
+        {
+          "value": "[#]%",
+          "label": "Average lift in conversion rate on tested pages"
+        },
+        {
+          "value": "[#]%",
+          "label": "Test win rate across programs"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Conversion rate optimization FAQ",
+      "subtitle": "Testing, traffic requirements, and measuring results.",
+      "items": [
+        {
+          "question": "What are conversion rate optimization services?",
+          "answer": "CRO services use research and experimentation to increase the share of visitors who take a desired action, such as requesting a demo or starting a trial."
+        },
+        {
+          "question": "How much traffic do we need for A/B testing?",
+          "answer": "It depends on your current conversion rate and the change you want to detect. With lower traffic, we focus on research-led improvements and test on high-traffic pages."
+        },
+        {
+          "question": "How long should an A/B test run?",
+          "answer": "Until it reaches the planned sample size, and for at least one to two full business weeks to account for weekday patterns."
+        },
+        {
+          "question": "What is a good conversion rate for B2B websites?",
+          "answer": "It varies widely by industry, offer, and traffic source. We benchmark against your own baseline and improve from there."
+        },
+        {
+          "question": "Which testing tools do you use?",
+          "answer": "VWO, Optimizely, Convert, and custom server-side tests, plus Microsoft Clarity and Hotjar for research."
+        },
+        {
+          "question": "Do AI-referred visitors need different pages?",
+          "answer": "Often yes. They usually arrive after researching in ChatGPT or Perplexity, so they need quick confirmation, proof, and a direct way to convert."
+        }
+      ]
+    },
+    "finalCta": {
+      "eyebrow": "Ready for the next step?",
+      "title": "Get more pipeline from the traffic you already have",
+      "description": "Get a CRO audit with your biggest conversion blockers, a prioritized test roadmap, and the expected impact of each fix.",
+      "ctaLabel": "Book a CRO audit"
+    }
+  }
+]

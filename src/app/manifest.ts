@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { BRAND_ASSETS } from "@/lib/public-assets";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
@@ -13,13 +14,13 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en-US",
     icons: [
       {
-        src: "/favicon.png",
+        src: BRAND_ASSETS.favicon,
         sizes: "512x512",
         type: "image/png",
         purpose: "any",
       },
       {
-        src: "/logo-icon.png",
+        src: BRAND_ASSETS.logoIcon,
         sizes: "192x192",
         type: "image/png",
         purpose: "any",

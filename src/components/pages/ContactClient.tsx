@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { Mail, MapPin, Send } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
-import { resolveBottomCtas } from "@/lib/cms/resolve-page-ctas";
+import { resolveBottomCtas } from "@/lib/page-ctas";
 import { SITE_ROUTES } from "@/lib/site-links";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
