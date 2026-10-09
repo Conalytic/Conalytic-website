@@ -3,6 +3,7 @@
 /** Blog index — featured newest post + paginated grid (9 per page), newest first. */
 import { SITE_ROUTES } from "@/lib/site-links";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
@@ -38,7 +39,19 @@ function BlogCard({ post }: { post: StaticBlogPost }) {
         href={SITE_ROUTES.blogPost(post.slug)}
         className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all hover:-translate-y-0.5 hover:border-brand-400 hover:shadow-lg dark:border-white/[0.07] dark:bg-brand-800 dark:hover:border-brand-500/40"
       >
-        <BlogCardVisual variant={categoryToProductVisual(post.category)} demoVariant={post.demoVariant} />
+        {post.heroImage ? (
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 dark:bg-brand-900/60">
+            <Image
+              src={post.heroImage}
+              alt={post.heroImageAlt ?? post.title}
+              fill
+              className="object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          </div>
+        ) : (
+          <BlogCardVisual variant={categoryToProductVisual(post.category)} demoVariant={post.demoVariant} />
+        )}
         <div className="flex flex-1 flex-col p-6">
           <span
             className={`mb-3 inline-flex w-fit rounded-full border px-2.5 py-1 text-[10px] font-semibold ${CATEGORY_STYLES[post.category] ?? ""}`}

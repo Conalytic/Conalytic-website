@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Components } from "react-markdown";
 
@@ -150,5 +151,22 @@ export function createBlogMarkdownComponents(
       </tr>
     ),
     hr: () => <hr className="my-12 border-gray-200 dark:border-white/[0.08]" />,
+    img: ({ src, alt }) => {
+      if (!src || typeof src !== "string") return null;
+      const isLocal = src.startsWith("/");
+      if (!isLocal) {
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={src} alt={alt ?? ""} className="my-8 w-full rounded-2xl border border-gray-200/80 dark:border-white/[0.08]" loading="lazy" />
+        );
+      }
+      return (
+        <figure className="my-8">
+          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-100 dark:border-white/[0.08] dark:bg-brand-900/50">
+            <Image src={src} alt={alt ?? ""} fill className="object-cover object-center" sizes="(max-width: 768px) 100vw, 720px" />
+          </div>
+        </figure>
+      );
+    },
   };
 }

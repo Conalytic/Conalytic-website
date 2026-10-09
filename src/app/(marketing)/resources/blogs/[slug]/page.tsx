@@ -75,7 +75,8 @@ export default async function PublicBlogPage({ params }: Props) {
           keywords: post.keywords?.length
             ? post.keywords
             : [post.primaryKeyword, post.category, "marketing analytics", "Conalytic"],
-          imageUrl: `${SITE_ORIGIN}${BRAND_ASSETS.ogImage}`,
+          imageUrl: post.heroImage ? `${SITE_ORIGIN}${post.heroImage}` : `${SITE_ORIGIN}${BRAND_ASSETS.ogImage}`,
+          dateModified: post.datePublished,
         })}
       />
       {faqs.length > 0 ? <JsonLd id={`ld-blog-faq-${post.slug}`} data={faqPageSchema(faqs)} /> : null}

@@ -1,5 +1,15 @@
 /** Blog post slugs only — safe to import from next.config (no markdown body imports). */
 export const BLOG_POST_SLUGS = [
+  "ga4-analytics-advisor",
+  "best-ai-tools-google-analytics-4",
+  "best-ai-client-reporting-tools",
+  "agencyanalytics-alternatives",
+  "impressions-up-clicks-down-ai-overviews",
+  "google-search-console-mcp",
+  "marketing-kpi-dashboard-examples",
+  "seo-report-template",
+  "looker-studio-alternatives",
+  "chatgpt-claude-google-analytics-4",
   "ga4-traffic-drop-search-console",
   "google-ads-ga4-conversion-discrepancy",
   "what-to-ask-ga4-data",

@@ -1,4 +1,5 @@
 import { SITE_ROUTES } from "@/lib/site-links";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, Calendar, Clock } from "lucide-react";
 import { BlogPostMarkdown } from "@/components/blog/BlogPostMarkdown";
@@ -8,7 +9,7 @@ import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { BrandAmbient } from "@/components/visual/BrandAmbient";
 import { BlogArticleHeroVisual } from "@/components/visual/product-demos/ProductVisual";
 import { categoryToProductVisual } from "@/lib/product-visual";
-import type { StaticBlogPost } from "@/content/blog-posts";
+import type { StaticBlogPost } from "@/lib/blog-types";
 
 const CATEGORY_STYLES: Record<string, string> = {
   "Conversational Analytics":
@@ -81,6 +82,7 @@ export function BlogArticleLayout({
               <h1 className="marketing-hero-title mb-5 max-w-3xl text-gray-900 dark:text-white sm:mb-6">
                 {post.title}
               </h1>
+              <p className="mb-3 text-sm font-medium text-gray-600 dark:text-white/55">By Conalytic Marketing</p>
               <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-gray-500 dark:text-white/45">
                 <span className="inline-flex items-center gap-1.5">
                   <Calendar className="h-4 w-4 shrink-0" />
@@ -101,7 +103,20 @@ export function BlogArticleLayout({
             </div>
 
             <div className="min-w-0 lg:order-none">
-              <BlogArticleHeroVisual variant={visualVariant} demoVariant={demoVariant} />
+              {post.heroImage ? (
+                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-gray-200/80 shadow-lg shadow-black/5 dark:border-white/[0.08] dark:shadow-black/40">
+                  <Image
+                    src={post.heroImage}
+                    alt={post.heroImageAlt ?? post.title}
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    priority
+                  />
+                </div>
+              ) : (
+                <BlogArticleHeroVisual variant={visualVariant} demoVariant={demoVariant} />
+              )}
             </div>
           </div>
         </div>

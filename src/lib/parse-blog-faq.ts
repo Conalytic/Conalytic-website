@@ -3,7 +3,7 @@ export interface BlogFaqItem {
   answer: string;
 }
 
-const FAQ_SECTION_HEADING = /^## Frequently asked questions\s*$/m;
+const FAQ_SECTION_HEADING = /^## (?:Frequently asked questions|FAQs?)\s*$/im;
 
 /** Split blog markdown into body, FAQ items, and trailing sections. */
 export function splitBlogMarkdownWithFaq(markdown: string): {
@@ -50,6 +50,13 @@ function parseBlogFaqItems(block: string): BlogFaqItem[] {
   for (const line of block.split("\n")) {
     const trimmed = line.trim();
     if (!trimmed) continue;
+
+    const h3FaqMatch = trimmed.match(/^###\s+(.+)$/);
+    if (h3FaqMatch) {
+      flush();
+      question = h3FaqMatch[1].trim();
+      continue;
+    }
 
     // **Question?** with optional answer on the same line
     const faqLineMatch = trimmed.match(/^\*\*(.+?)\*\*\s*(.*)$/);

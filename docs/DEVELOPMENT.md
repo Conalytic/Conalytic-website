@@ -200,9 +200,10 @@ Deploy to Vercel on push to `main`. Set environment variables in the Vercel proj
 
 ### New blog post
 
-1. Write markdown body in `src/content/blog-bodies/`
-2. Add entry to `src/content/blog-posts.ts`
-3. Add cover art under `public/images/blog/` if needed (see `public/README.md`)
+1. Write markdown body in `src/content/blog-bodies/{slug}.ts` (or batch-import from `scripts/data/conalytic-10-blog-posts.md` via `node scripts/import-conalytic-blog-posts.mjs`)
+2. Register in `src/content/blog-posts.ts` or `src/content/blog-posts-oct2026.ts` (generated manifest)
+3. Add slug to `src/content/blog-slugs.ts`
+4. Cover art: `public/images/blog/{slug}.png` (used in listing cards, article hero, and Article schema)
 
 ---
 
