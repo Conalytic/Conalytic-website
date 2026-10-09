@@ -44,6 +44,10 @@ conversational analytics, GA4 chat, Google Ads AI, KPI tracker, marketing report
 ## Blog guides
 
 - Blog index: https://conalytic.com/resources/blogs
+- https://conalytic.com/resources/blogs/chats-kpis-report-builder-workflow
+- https://conalytic.com/resources/blogs/ga4-search-console-google-ads-which-tool
+- https://conalytic.com/resources/blogs/weekly-marketing-standup-analytics-questions
+- https://conalytic.com/resources/blogs/investigate-traffic-conversion-drop-30-minutes
 - https://conalytic.com/resources/blogs/conversational-analytics-marketing-chat-guide
 - https://conalytic.com/resources/blogs/kpis-tracker-marketing-goals-guide
 - https://conalytic.com/resources/blogs/report-builder-html-marketing-reports-guide

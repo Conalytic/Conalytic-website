@@ -15,6 +15,7 @@ import { marketingKpiTargetsBody } from "@/content/blog-bodies/marketing-kpi-tar
 import { marketingReportStructureBody } from "@/content/blog-bodies/marketing-report-structure";
 import { reportBuilderBody } from "@/content/blog-bodies/report-builder";
 import { whatToAskGa4Body } from "@/content/blog-bodies/what-to-ask-ga4";
+import { CHATS_SERIES_BLOG_POSTS } from "@/content/blog-posts-chats-series";
 import type { StaticBlogPost } from "@/lib/blog-types";
 
 export type { StaticBlogPost } from "@/lib/blog-types";
@@ -319,6 +320,7 @@ export const STATIC_BLOG_POSTS: StaticBlogPost[] = [
     ],
     bodyMarkdown: kpisTrackerBody,
   },
+  ...CHATS_SERIES_BLOG_POSTS,
 ];
 
 export function getBlogPostsNewestFirst(): StaticBlogPost[] {
