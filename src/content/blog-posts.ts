@@ -15,14 +15,13 @@ import { marketingKpiTargetsBody } from "@/content/blog-bodies/marketing-kpi-tar
 import { marketingReportStructureBody } from "@/content/blog-bodies/marketing-report-structure";
 import { reportBuilderBody } from "@/content/blog-bodies/report-builder";
 import { whatToAskGa4Body } from "@/content/blog-bodies/what-to-ask-ga4";
-import { BLOG_POSTS_OCT_2026 } from "@/content/blog-posts-oct2026";
 import type { StaticBlogPost } from "@/lib/blog-types";
 
 export type { StaticBlogPost } from "@/lib/blog-types";
 
 export const POSTS_PER_PAGE = 9;
 
-const LEGACY_BLOG_POSTS: StaticBlogPost[] = [
+export const STATIC_BLOG_POSTS: StaticBlogPost[] = [
   {
     slug: "ga4-traffic-drop-search-console",
     title: "Why GA4 Traffic Dropped but Search Console Didn't",
@@ -321,8 +320,6 @@ const LEGACY_BLOG_POSTS: StaticBlogPost[] = [
     bodyMarkdown: kpisTrackerBody,
   },
 ];
-
-export const STATIC_BLOG_POSTS: StaticBlogPost[] = [...BLOG_POSTS_OCT_2026, ...LEGACY_BLOG_POSTS];
 
 export function getBlogPostsNewestFirst(): StaticBlogPost[] {
   return [...STATIC_BLOG_POSTS].sort(
