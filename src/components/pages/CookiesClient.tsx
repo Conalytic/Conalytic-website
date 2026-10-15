@@ -34,9 +34,9 @@ export type CookiesContentPreset = {
 export const COOKIES_DEFAULT_PRESET: CookiesContentPreset = {
   kicker: "Legal",
   pageTitle: "Cookies Policy",
-  lastUpdated: "Last Updated: October 01, 2024",
+  lastUpdated: "Last Updated: March 15, 2026",
   intro:
-    "This marketing site uses a small set of cookies and similar technologies. When you first visit, you can choose Essential only or Accept all in the banner; your choice is stored in your browser (local storage). For full details, read the sections below.",
+    "This marketing site uses cookies and similar technologies. On your first visit, a banner at the bottom of the page lets you reject non-essential cookies, accept all, or customize analytics and marketing categories. Your choice is stored in your browser (local storage). You can change it anytime via Cookie settings in the footer. For full details, read the sections below.",
   toc: [
     { id: "what-are-cookies", title: "What Are Cookies?" },
     { id: "types", title: "Types of Cookies We Use" },
@@ -53,22 +53,17 @@ export const COOKIES_DEFAULT_PRESET: CookiesContentPreset = {
     {
       name: "Essential Cookies",
       description:
-        "These cookies are necessary for the platform to function properly. They enable core features such as account login and security.",
+        "Required for basic site operation, including theme preference and remembering your cookie consent choice. These are not used for advertising.",
     },
     {
-      name: "Performance Cookies",
+      name: "Analytics Cookies",
       description:
-        "These cookies collect information about how users interact with our platform. We use this data to improve functionality and optimize user experience.",
-    },
-    {
-      name: "Functional Cookies",
-      description:
-        "These cookies remember your preferences, such as language or region settings, to make your experience more personalized.",
+        "Optional. Help us measure traffic and how visitors use this marketing site (for example privacy-oriented analytics and tags loaded via Google Tag Manager). Only set if you opt in.",
     },
     {
       name: "Marketing Cookies",
       description:
-        "These cookies help us deliver relevant advertisements and measure the effectiveness of our marketing campaigns.",
+        "Optional. Used for advertising measurement and remarketing where configured in our tag manager. Enabling marketing also allows the analytics scopes required for conversion and tag measurement in Google Tag Manager.",
     },
   ],
   whyHeading: "Why We Use Cookies",
@@ -81,7 +76,7 @@ export const COOKIES_DEFAULT_PRESET: CookiesContentPreset = {
   ],
   managingHeading: "Managing Your Cookie Preferences",
   managingIntro:
-    "You have control over how cookies are used. Most web browsers allow you to manage or disable cookies through their settings. Please note that disabling essential cookies may affect the functionality of Conalytic. To manage cookies in your browser:",
+    "Use Cookie settings in the site footer to withdraw or change consent at any time. You can also manage or block cookies in your browser. Blocking essential storage may affect theme or consent memory on this site. Browser controls:",
   browserInstructions: [
     { browser: "Chrome", steps: "Settings → Privacy and Security → Cookies and other site data" },
     { browser: "Firefox", steps: "Preferences → Privacy & Security → Cookies and Site Data" },

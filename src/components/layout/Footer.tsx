@@ -13,6 +13,7 @@ import { BRAND_ASSETS } from "@/lib/public-assets";
 import { PRIVACY_POLICY_PATH, TERMS_OF_SERVICE_PATH } from "@/lib/legal-urls";
 import { buildServicesNavGroup } from "@/lib/services-nav";
 import { SITE_ROUTES } from "@/lib/site-links";
+import { CookieSettingsButton } from "@/components/layout/cookie-consent/CookieSettingsButton";
 
 const fallbackColumns: Array<{ title: string; links: SiteConfigLink[] }> = [
   {
@@ -183,6 +184,7 @@ export function Footer({ config, brandLogos }: FooterProps) {
                   {link.label}
                 </FooterColumnLink>
               ))}
+              <CookieSettingsButton />
             </nav>
           </div>
         </div>
