@@ -6,7 +6,10 @@ import { ServiceFaqBand } from "@/components/pages/service-landing/ServiceFaqBan
 import { ServiceFinalCtaCard } from "@/components/pages/service-landing/ServiceFinalCtaCard";
 import { ServiceHowItWorks } from "@/components/pages/service-landing/ServiceHowItWorks";
 import { ServiceLandingHero } from "@/components/pages/service-landing/ServiceLandingHero";
-import { ServiceNumbersBand } from "@/components/pages/service-landing/ServiceNumbersBand";
+import {
+  hasRenderableServiceStats,
+  ServiceNumbersBand,
+} from "@/components/pages/service-landing/ServiceNumbersBand";
 import { ServiceProcessStoryRows } from "@/components/pages/service-landing/ServiceProcessStoryRows";
 import { ServiceUspScrollStack } from "@/components/pages/service-landing/ServiceUspScrollStack";
 import { ServiceWhatWeDoCarousel } from "@/components/pages/service-landing/ServiceWhatWeDoCarousel";
@@ -46,7 +49,9 @@ export function ServiceLandingPage({ content }: { content: ServiceLandingContent
 
         <ServiceProcessStoryRows steps={content.processSteps} />
 
-        <ServiceNumbersBand title={content.statsSectionTitle ?? "Numbers to lean on"} stats={content.stats} />
+        {hasRenderableServiceStats(content.stats) ? (
+          <ServiceNumbersBand title={content.statsSectionTitle ?? "Numbers to lean on"} stats={content.stats} />
+        ) : null}
 
         <ServiceFaqBand title={content.faqTitle} subtitle={content.faqSubtitle} items={content.faqItems} />
 

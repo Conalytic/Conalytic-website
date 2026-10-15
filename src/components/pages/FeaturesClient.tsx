@@ -161,13 +161,12 @@ function ReportBuilderVisual() {
           </div>
         ))}
       </div>
-      {/* Export bar */}
-      <div className="flex items-center gap-1.5 mt-1">
-        <div className="flex-1 h-6 bg-brand-600 rounded-lg flex items-center justify-center">
-          <span className="text-[9px] font-bold text-white">Export PDF</span>
+      <div className="mt-1 flex gap-1.5">
+        <div className="flex h-6 flex-1 items-center justify-center rounded-lg bg-brand-600">
+          <span className="text-[9px] font-bold text-white">Download HTML</span>
         </div>
-        <div className="h-6 px-2 bg-gray-100 dark:bg-white/[0.06] rounded-lg flex items-center">
-          <span className="text-[9px] font-semibold text-gray-500 dark:text-white/45">Share</span>
+        <div className="flex h-6 items-center rounded-lg bg-gray-100 px-2 dark:bg-white/[0.06]">
+          <span className="text-[9px] font-semibold text-gray-500 dark:text-white/45">Regenerate</span>
         </div>
       </div>
     </div>
@@ -229,49 +228,24 @@ function DataSyncVisual() {
   );
 }
 
-/** 5 · Automated Reporting — mini calendar + schedule */
+/** 5 · Pro usage — signup token balance (no scheduled email claims) */
 function AutoReportingVisual() {
-  const days = ["M","T","W","T","F","S","S"];
-  const sent = [1, 4, 8, 11, 15, 18, 22, 25, 29];
-  const today = 16;
-  const nums = Array.from({length:30},(_,i)=>i+1);
   return (
-    <div className="flex h-full min-h-0 w-full flex-col gap-1 overflow-hidden p-0.5">
-      {/* Month header */}
-      <div className="flex shrink-0 items-center justify-between">
-        <span className="text-[9px] font-black text-gray-700 dark:text-white/80">July 2025</span>
-        <span className="text-[8px] text-pink-600 dark:text-pink-400 font-semibold bg-pink-50 dark:bg-pink-500/10 border border-pink-100 dark:border-pink-500/20 px-1.5 py-0.5 rounded-full">Auto-schedule</span>
+    <div className="flex h-full min-h-0 w-full flex-col gap-1.5 overflow-hidden p-0.5">
+      <div className="rounded-xl border border-pink-100 bg-pink-50 px-3 py-2.5 dark:border-pink-500/20 dark:bg-pink-500/10">
+        <p className="text-[8px] font-bold uppercase tracking-wider text-pink-600 dark:text-pink-400">Conalytic Pro</p>
+        <p className="mt-1 text-lg font-black text-gray-900 dark:text-white">325,203</p>
+        <p className="text-[8px] text-gray-500 dark:text-white/45">Signup tokens for AI chat & report insights</p>
       </div>
-      {/* Day headers */}
-      <div className="grid shrink-0 grid-cols-7 gap-px">
-        {days.map((d, i) => (
-          <span key={`cal-h-${i}`} className="text-[6px] text-center text-gray-400 dark:text-white/30 font-semibold">{d}</span>
+      <div className="flex flex-col gap-1 rounded-xl border border-gray-100 bg-gray-50 p-2 dark:border-white/[0.05] dark:bg-white/[0.04]">
+        {["Conversational Analytics", "Report Builder AI", "KPIs Tracker"].map((row) => (
+          <div key={row} className="flex items-center justify-between text-[8px]">
+            <span className="text-gray-600 dark:text-white/60">{row}</span>
+            <span className="font-semibold text-gray-400 dark:text-white/35">
+              {row === "KPIs Tracker" ? "Included" : "Uses tokens"}
+            </span>
+          </div>
         ))}
-      </div>
-      {/* Calendar grid — compact cells so row height matches other cards */}
-      <div className="grid min-h-0 flex-1 grid-cols-7 gap-px overflow-hidden">
-        {nums.map(n=>{
-          const isSent = sent.includes(n);
-          const isToday = n===today;
-          return (
-            <div key={n} className={`flex min-h-[14px] items-center justify-center rounded text-[6px] font-semibold relative
-              ${isToday ? "bg-pink-600 text-white" :
-                isSent ? "bg-pink-50 dark:bg-pink-500/10 text-pink-600 dark:text-pink-400" :
-                "text-gray-400 dark:text-white/25"}`}>
-              {n}
-              {isSent && !isToday && <span className="absolute -right-px -top-px h-0.5 w-0.5 rounded-full bg-pink-500"/>}
-            </div>
-          );
-        })}
-      </div>
-      {/* Next scheduled */}
-      <div className="mt-auto flex shrink-0 items-center gap-1.5 rounded-lg border border-pink-100 bg-pink-50 px-2 py-1.5 dark:border-pink-500/20 dark:bg-pink-500/10">
-        <Calendar className="h-3 w-3 shrink-0 text-pink-500"/>
-        <div className="min-w-0 text-left">
-          <p className="text-[8px] font-bold text-gray-700 dark:text-white/75">Next: Jul 18</p>
-          <p className="text-[7px] text-gray-400 dark:text-white/40">Auto-send</p>
-        </div>
-        <CheckCircle2 className="ml-auto h-3 w-3 shrink-0 text-pink-500"/>
       </div>
     </div>
   );
@@ -280,10 +254,10 @@ function AutoReportingVisual() {
 /** 6 · Enterprise Security — SOC2 + encryption indicators */
 function SecurityVisual() {
   const checks = [
-    { label:"SOC 2 Type II",     status:"certified",  icon:"🛡️" },
-    { label:"AES-256 Encryption", status:"active",     icon:"🔒" },
-    { label:"GDPR Compliant",    status:"certified",  icon:"✓" },
-    { label:"SSO / MFA",         status:"active",     icon:"👤" },
+    { label:"TLS in transit", status:"active", icon:"🔒" },
+    { label:"Read-only OAuth", status:"active", icon:"🛡️" },
+    { label:"Privacy policy & DPA", status:"active", icon:"✓" },
+    { label:"Google API Limited Use", status:"active", icon:"📋" },
   ];
   return (
     <div className="flex h-full min-h-0 w-full flex-col gap-1.5 overflow-hidden p-0.5">
@@ -293,8 +267,8 @@ function SecurityVisual() {
           <Shield className="w-4 h-4 text-white"/>
         </div>
         <div>
-          <p className="text-[10px] font-black text-gray-900 dark:text-white">Enterprise-grade</p>
-          <p className="text-[9px] text-gray-500 dark:text-white/50">All systems protected</p>
+          <p className="text-[10px] font-black text-gray-900 dark:text-white">Security basics</p>
+          <p className="text-[9px] text-gray-500 dark:text-white/50">Documented in our privacy policy</p>
         </div>
         <div className="ml-auto flex items-center gap-1">
           <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"/>
@@ -307,7 +281,7 @@ function SecurityVisual() {
           <div key={i} className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05]">
             <span className="text-base leading-none">{c.icon}</span>
             <span className="text-[10px] font-semibold text-gray-700 dark:text-white/75 flex-1">{c.label}</span>
-            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full ${c.status==="certified" ? "bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-100 dark:border-indigo-500/20" : `border ${DEMO_SUCCESS_PILL_CLASS}`}`}>
+            <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-full border ${DEMO_SUCCESS_PILL_CLASS}`}>
               {c.status}
             </span>
           </div>
@@ -316,7 +290,7 @@ function SecurityVisual() {
       {/* Role access */}
       <div className="flex items-center gap-1.5 px-2 py-1.5 bg-gray-50 dark:bg-white/[0.04] rounded-xl border border-gray-100 dark:border-white/[0.05]">
         <Lock className="w-3 h-3 text-gray-400 dark:text-white/30 shrink-0"/>
-        <span className="text-[9px] text-gray-400 dark:text-white/40 font-medium">Role-based access · Audit logs · 99.9% uptime</span>
+        <span className="text-[9px] text-gray-400 dark:text-white/40 font-medium">Scoped connections per property or account</span>
       </div>
     </div>
   );
@@ -326,12 +300,12 @@ function SecurityVisual() {
    BENTO CARD DATA
 ═══════════════════════════════════════════════ */
 const BENTO_CARDS = [
-  { title:"Conversational Analytics",  desc:"Chat with live GA4, Search Console, Google Ads, GTM, and Meta data. Scoped conversations with inline charts—no SQL.",                              icon:MessageSquare, glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   bg:"bg-white dark:bg-brand-800", Visual:ConversationalVisual, href:"/products/conversational-analytics" },
+  { title:"Conversational Analytics",  desc:"Chat with live GA4, Search Console, Google Ads, and GTM. Meta Ads and LinkedIn Ads are coming soon. Scoped conversations with inline charts—no SQL.",                              icon:MessageSquare, glow:"from-brand-400/10 to-violet-400/5",   border:"border-brand-400/20 dark:border-brand-500/20",   bg:"bg-white dark:bg-brand-800", Visual:ConversationalVisual, href:"/products/conversational-analytics" },
   { title:"KPIs Tracker",              desc:"Set goals across GA4, GSC, and Google Ads. See on-track, at-risk, and off-track status with six months of history.",                          icon:Target,        glow:"from-brand-400/10 to-brand-300/5",   border:"border-brand-400/20 dark:border-brand-500/20", bg:"bg-white dark:bg-brand-800", Visual:AIInsightsVisual, href:"/products/kpis-tracker" },
   { title:"Report Builder",            desc:"Generate HTML presentation decks from connected data—executive summary, platform sections, cross-source insights, and action plans.",          icon:BarChart3,     glow:"from-blue-400/10 to-cyan-400/5",      border:"border-blue-400/20 dark:border-blue-500/20",     bg:"bg-white dark:bg-brand-800", Visual:ReportBuilderVisual, href:"/products/report-builder" },
-  { title:"OAuth integrations",        desc:"Connect Google Analytics 4, Search Console, Google Ads, Tag Manager, Meta Ads, and LinkedIn with read-only OAuth.",                                      icon:Zap,           glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-brand-800",Visual:DataSyncVisual,     href:SITE_ROUTES.integrations },
+  { title:"OAuth integrations",        desc:"Connect GA4, Search Console, Google Ads, and GTM with read-only OAuth today. Meta Ads and LinkedIn Ads are coming soon.",                                      icon:Zap,           glow:"from-amber-400/10 to-orange-400/5",   border:"border-amber-400/20 dark:border-amber-500/20",   bg:"bg-white dark:bg-brand-800",Visual:DataSyncVisual,     href:SITE_ROUTES.integrations },
   { title:"Token-based Pro usage",     desc:"Free signup includes 325,203 tokens for chat and AI report insights. KPI Tracker uses live APIs without LLM metering.",                                   icon:Calendar,      glow:"from-pink-400/10 to-rose-500/5",      border:"border-pink-400/20 dark:border-pink-500/20",     bg:"bg-white dark:bg-brand-800", Visual:AutoReportingVisual, href:SITE_ROUTES.pricing },
-  { title:"Enterprise Security",        desc:"Encrypted data in transit, OAuth-scoped access, and privacy policies aligned with Google API Limited Use requirements.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-brand-800", Visual:SecurityVisual,      href:PRIVACY_POLICY_PATH },
+  { title:"Security & privacy",        desc:"Encrypted data in transit, OAuth-scoped access, and privacy policies aligned with Google API Limited Use requirements.",                                           icon:ShieldCheck,   glow:"from-indigo-400/10 to-purple-400/5",  border:"border-indigo-400/20 dark:border-indigo-500/20", bg:"bg-white dark:bg-brand-800", Visual:SecurityVisual,      href:PRIVACY_POLICY_PATH },
 ];
 
 /* ── Deep-dive section visuals ────────────────────── */
@@ -431,7 +405,7 @@ function ReportMockup() {
 }
 
 const deepDives = [
-  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, GTM, or Meta. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-brand-900",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
+  { badge:"Conversational Analytics", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-600 dark:text-brand-300 border-brand-100 dark:border-brand-500/20",   title:"Chat With Your Connected Marketing Data",         desc:"Start a chat scoped to GA4, Search Console, Google Ads, or GTM. Meta Ads and LinkedIn Ads are coming soon. Ask in plain English and get live answers with inline visualizations.", bullets:['Ask "How did Google Ads perform last month?" and get ROAS, CPC, and conversion context',"Each chat uses the OAuth connection and property you select","Optional context files and prompt refinement before sending"], cta:{label:"Explore Chats",href:"/products/conversational-analytics"}, Visual:ChatMockup,  sectionBg:"bg-white dark:bg-brand-900",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
   { badge:"KPIs Tracker", badgeColor:"bg-brand-50 dark:bg-brand-500/10 text-brand-700 dark:text-brand-300 border-brand-100 dark:border-brand-500/20", title:"Track Goals With On-Track / At-Risk Status",  desc:"Create KPI projects for GA4, GSC, and Google Ads. Set targets, compare month or year-to-date, and review six months of achievement history.",                    bullets:["Status labels: On track, At risk, Off track, No data","Rules-based scoring—no AI guesswork on KPI health","Optional GSC keyword ranking tracking per project"],          cta:{label:"Explore KPI Tracker",href:"/products/kpis-tracker"}, Visual:PerfMockup,  sectionBg:"bg-[#f0f1f5] dark:bg-brand-900", glow:"radial-gradient(ellipse 55% 50% at 105% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
   { badge:"Report Builder",          badgeColor:"bg-blue-50 dark:bg-blue-500/10 text-blue-700 dark:text-blue-300 border-blue-100 dark:border-blue-500/20",          title:"Deliver HTML Decks Clients Actually Read",          desc:"Generate multi-platform presentation decks with executive summary, platform sections, cross-source findings, methodology, and a prioritized action plan.", bullets:["GA4, GSC, Google Ads, and GTM sources with per-platform focus","Optional AI insights for slide narratives","View in-app, download HTML, or regenerate with the same settings"],cta:{label:"Explore Reports",href:"/products/report-builder"}, Visual:ReportMockup,sectionBg:"bg-white dark:bg-brand-900",         glow:"radial-gradient(ellipse 55% 50% at -5% 50%, var(--demo-section-glow) 0%, transparent 65%)" },
 ];

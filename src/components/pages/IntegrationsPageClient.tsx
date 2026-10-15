@@ -65,7 +65,7 @@ const integrations = [
   {
     name: "Meta Ads",
     category: "Advertising",
-    desc: "Facebook and Instagram ad account insights in Conversational Analytics—campaign, ad set, and ad-level performance chat.",
+    desc: "Facebook and Instagram ad account insights in Conversational Analytics—coming soon; campaign, ad set, and ad-level performance chat.",
     siSlug: "meta",
     color: "#0082FB",
     logoSrc: MARKETING_STACK_LOGO_BY_INTEGRATION_NAME["Meta Ads"],

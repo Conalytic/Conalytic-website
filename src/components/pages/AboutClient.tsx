@@ -3,8 +3,7 @@ import { BRAND_HERO_GRADIENT_CLASS } from "@/lib/brand";
 
 /** About page: mission, values, timeline-style story, CTA. */
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
-import { Database, Users, Zap, Target, Globe, Award, ArrowRight } from "lucide-react";
+import { Database, Users, Target, Globe, Award, ArrowRight } from "lucide-react";
 import { CTA } from "@/components/sections/CTA";
 import { Pricing } from "@/components/home/sections/Pricing";
 import { CHAT_APP_SIGNUP_URL } from "@/lib/app-urls";
@@ -15,17 +14,17 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 const fadeUp = { hidden:{ opacity:1, y:28 }, show:{ opacity:1, y:0, transition:{ duration:0.65, ease:EASE } } };
 const stagger = { hidden:{}, show:{ transition:{ staggerChildren:0.1 } } };
 
-const stats = [
-  { value:"2.5M+",  label:"Data Points Analyzed", icon:Database, end:2.5,  suffix:"M+", isFloat:true  },
-  { value:"2,000+", label:"Active Teams",          icon:Users,    end:2000, suffix:"+",  isFloat:false },
-  { value:"99.9%",  label:"Platform Uptime",       icon:Zap,      end:99.9, suffix:"%",  isFloat:true  },
+const facts = [
+  { value: "3", label: "Products — Chats, KPIs, Reports", icon: Target },
+  { value: "4", label: "Live Google OAuth integrations", icon: Database },
+  { value: "Pune", label: "Built in India, serving teams worldwide", icon: Globe },
 ];
 
 const milestones = [
-  { year:"2022", title:"Founded",          desc:"Started with a simple idea — analytics should feel effortless.",              icon:Target },
-  { year:"2023", title:"First 500 Teams",  desc:"Reached 500 active teams using Conalytic to make data-driven decisions.",     icon:Users  },
-  { year:"2024", title:"10M+ Queries",     desc:"Crossed 10 million AI analytics queries answered across all customers.",      icon:Globe  },
-  { year:"2025", title:"Industry Leader",  desc:"Recognized as a leading conversational analytics platform for marketers.",    icon:Award  },
+  { year:"2022", title:"Founded",          desc:"Started with a simple idea — analytics should feel effortless, not like another dashboard to maintain.",              icon:Target },
+  { year:"2023", title:"Conversational Analytics",  desc:"Shipped scoped marketing chats over live GA4, Search Console, Google Ads, and GTM data.",     icon:Users  },
+  { year:"2024", title:"KPIs & Reports",     desc:"Added rules-based KPI goal tracking and HTML presentation decks generated from connected APIs.",      icon:Globe  },
+  { year:"2025", title:"Product suite",  desc:"Three tools in one workspace with read-only OAuth, transparent methodology in reports, and usage-based AI pricing.",    icon:Award  },
 ];
 
 export interface AboutContentPreset {
@@ -41,29 +40,6 @@ export interface AboutContentPreset {
   ctaPrimaryHref?: string;
   ctaSecondaryLabel?: string;
   ctaSecondaryHref?: string;
-}
-
-function CountUp({ end, suffix, isFloat }: { end: number; suffix: string; isFloat: boolean }) {
-  const [value, setValue] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  useEffect(() => {
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      obs.disconnect();
-      const start = performance.now();
-      const dur = 1600;
-      const frame = (now: number) => {
-        const t = Math.min((now - start) / dur, 1);
-        const eased = 1 - Math.pow(1 - t, 3);
-        setValue(isFloat ? Math.round(eased * end * 10) / 10 : Math.round(eased * end));
-        if (t < 1) requestAnimationFrame(frame);
-      };
-      requestAnimationFrame(frame);
-    }, { threshold: 0.5 });
-    if (ref.current) obs.observe(ref.current);
-    return () => obs.disconnect();
-  }, [end, isFloat]);
-  return <span ref={ref}>{isFloat ? (value % 1 === 0 ? value + ".0" : value) : value.toLocaleString()}{suffix}</span>;
 }
 
 export function AboutClient({ content }: { content?: AboutContentPreset }) {
@@ -101,18 +77,18 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
         </div>
       </section>
 
-      {/* ── STATS ───────────────────────────────────── */}
+      {/* ── FACTS ───────────────────────────────────── */}
       <section className="py-8 md:py-12 px-4 bg-[#f0f1f5] dark:bg-brand-900">
         <div className="max-w-4xl mx-auto">
           <motion.div variants={stagger} initial="show" whileInView="show" viewport={{once:true}} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {stats.map(s=>(
+            {facts.map(s=>(
               <motion.div key={s.label} variants={fadeUp}
                 className="flex items-center gap-4 p-6 rounded-2xl bg-white dark:bg-brand-800 border border-gray-100 dark:border-white/[0.07] shadow-sm">
                 <div className="w-12 h-12 rounded-xl bg-brand-50 dark:bg-brand-600/20 border border-brand-100 dark:border-brand-500/20 flex items-center justify-center shrink-0">
                   <s.icon className="w-6 h-6 text-brand-600 dark:text-brand-300"/>
                 </div>
                 <div>
-                  <div className={`text-3xl font-black ${BRAND_HERO_GRADIENT_CLASS}`}><CountUp end={s.end} suffix={s.suffix} isFloat={s.isFloat}/></div>
+                  <div className={`text-2xl font-black ${BRAND_HERO_GRADIENT_CLASS}`}>{s.value}</div>
                   <div className="text-gray-500 dark:text-white/55 text-sm">{s.label}</div>
                 </div>
               </motion.div>
@@ -133,14 +109,13 @@ export function AboutClient({ content }: { content?: AboutContentPreset }) {
                 Conalytic was founded with a simple idea: analytics should feel effortless. Frustrated with clunky tools that slowed down collaboration, our founders set out to create a solution that prioritizes simplicity, innovation, and inclusivity.
               </p>
               <p className="text-gray-500 dark:text-white/65 leading-relaxed mb-8">
-                Today, Conalytic is trusted by teams around the world to do just that. From marketing agencies serving Fortune 500 clients to in-house teams at fast-growing startups, our platform turns complex data into clear conversations.
+                Today we focus on marketing teams who need answers from GA4, Google Ads, and Search Console without building another dashboard — agencies, in-house growth teams, and measurement specialists.
               </p>
               <a href={SITE_ROUTES.contact}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold btn-brand-primary shadow-lg shadow-brand-600/20 transition-all duration-200 hover:scale-[1.02]">
                 Get in touch <ArrowRight className="w-4 h-4"/>
               </a>
             </motion.div>
-            {/* Timeline — rail centered on icon column (w-10), one row per milestone */}
             <motion.div initial={false} whileInView={{opacity:1,x:0}} viewport={{once:true}} transition={{duration:0.7,delay:0.1,ease:EASE}} className="relative">
               <div
                 className="pointer-events-none absolute left-5 top-5 bottom-5 w-0.5 -translate-x-1/2 rounded-full bg-gradient-to-b from-brand-400/40 via-violet-400/30 to-transparent"

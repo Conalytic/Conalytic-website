@@ -188,7 +188,7 @@ export function ContactClient({ content }: { content?: ContactContentPreset }) {
 
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
-        subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
+        subtitle={content?.ctaSubtitle ?? "Start free — connect GA4, Search Console, Google Ads, and GTM, then explore Chats, KPIs, and Reports."}
         primaryCta={bottomCtas.primaryCta}
         secondaryCta={bottomCtas.secondaryCta}
       />

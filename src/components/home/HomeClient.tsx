@@ -481,15 +481,9 @@ function IntegrationsHub({ content }: { content?: HomeContentPreset }) {
 /* ══════════════════════════════════════════════════════
    6. TESTIMONIALS CAROUSEL
 ══════════════════════════════════════════════════════ */
-const TESTIMONIALS = [
-  { quote:"Conalytic replaced our entire dashboard stack. One conversation gives insights that used to take hours across 4 different platforms. Absolutely game-changing for our team.", name:"Maria Rodriguez", title:"Marketing Manager", photo:"https://i.pravatar.cc/300?img=47", rating:5 },
-  { quote:"Client retention improved 40% after implementing Conalytic's automated reporting. The AI insights add incredible value to every single client deliverable we produce.", name:"Jennifer Walsh", title:"Marketing Operations Lead", photo:"https://i.pravatar.cc/300?img=44", rating:5 },
-  { quote:"We onboarded our entire marketing team in 30 minutes. No training needed — they just ask questions and get instant, accurate answers about our campaign performance.", name:"Alex Kumar", title:"Growth Marketing Director", photo:"https://i.pravatar.cc/300?img=12", rating:5 },
-  { quote:"Client calls are so much smoother now. Instead of 'let me get back to you,' I can answer any performance question in real-time with confidence.", name:"Rachel Park", title:"Agency Account Manager", photo:"https://i.pravatar.cc/300?img=32", rating:5 },
-];
-
 function TestimonialsSection({ content }: { content?: HomeContentPreset }) {
-  const testimonials = content?.testimonials?.length ? content.testimonials : TESTIMONIALS;
+  const testimonials = content?.testimonials?.length ? content.testimonials : [];
+  if (!testimonials.length) return null;
   const [current, setCurrent] = useState(0);
   const t = testimonials[current];
   const prev = ()=>setCurrent(c=>(c-1+testimonials.length)%testimonials.length);

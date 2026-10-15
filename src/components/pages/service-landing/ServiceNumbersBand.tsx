@@ -5,7 +5,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import type { ServiceLandingContent } from "@/lib/service-landing-types";
 import { fadeUpChild, staggerContainer, viewportOnce } from "@/lib/motion";
 
-function parseStatValue(raw: string): { end: number; suffix: string; decimal: boolean } | null {
+export function parseServiceStatValue(raw: string): { end: number; suffix: string; decimal: boolean } | null {
   const trimmed = raw.trim();
   if (!trimmed || /\[#\]/i.test(trimmed)) return null;
 
@@ -23,11 +23,11 @@ function formatStatAmount(parsed: { end: number; suffix: string; decimal: boolea
 
 function CountUpValue({ value, run }: { value: string; run: boolean }) {
   const reduceMotion = useReducedMotion();
-  const parsed = parseStatValue(value);
+  const parsed = parseServiceStatValue(value);
   const [text, setText] = useState(() => (parsed ? formatStatAmount(parsed, 0) : value));
 
   useEffect(() => {
-    const p = parseStatValue(value);
+    const p = parseServiceStatValue(value);
     if (!p) {
       setText(value);
       return;
@@ -54,6 +54,15 @@ function CountUpValue({ value, run }: { value: string; run: boolean }) {
   }, [run, value, reduceMotion]);
 
   return <span>{text}</span>;
+}
+
+/** Hide service stat bands when CMS placeholders are empty or zero. */
+export function hasRenderableServiceStats(stats: ServiceLandingContent["stats"]): boolean {
+  if (!stats?.length) return false;
+  return stats.some((item) => {
+    const parsed = parseServiceStatValue(item.value);
+    return parsed !== null && parsed.end > 0;
+  });
 }
 
 export function ServiceNumbersBand({

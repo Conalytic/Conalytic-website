@@ -59,33 +59,26 @@ function AIInnovationVisual() {
 
 /** 2 · Impact-Driven Product — live team counter */
 function ImpactVisual() {
-  const teams = [
-    {name:"Ogilvy",     q:142, color:"bg-brand-600"},
-    {name:"MediaCom",   q:98,  color:"bg-brand-500"},
-    {name:"WPP",        q:215, color:"bg-violet-600"},
-    {name:"Dentsu",     q:87,  color:"bg-blue-600"},
+  const workflows = [
+    { name: "Agency reporting", detail: "HTML decks from live GA4 & Ads APIs", color: "bg-brand-600" },
+    { name: "In-house growth", detail: "Scoped chats + KPI goal tracking", color: "bg-brand-500" },
+    { name: "Measurement", detail: "GTM audits and cross-source findings", color: "bg-violet-600" },
+    { name: "SEO & content", detail: "Search Console questions in plain English", color: "bg-blue-600" },
   ];
   return (
     <div className="w-full p-3 space-y-2">
-      <div className="grid grid-cols-2 gap-1.5 mb-1">
-        {[{v:"850+",l:"Teams",c:"text-brand-600 dark:text-brand-300"},{v:"10M+",l:"Queries",c:"text-brand-600 dark:text-brand-400"}].map(s=>(
-          <div key={s.l} className="bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05] rounded-xl p-2.5 text-center">
-            <p className={`text-lg font-black ${s.c}`}>{s.v}</p>
-            <p className="text-[8px] text-gray-400 dark:text-white/35 font-medium">{s.l}</p>
-          </div>
-        ))}
-      </div>
-      <p className="text-[8px] uppercase tracking-wider text-gray-400 dark:text-white/30 font-semibold px-1">Active teams this week</p>
-      {teams.map((t,i)=>(
-        <div key={i} className="flex items-center gap-2">
-          <div className={`w-5 h-5 rounded-lg ${t.color} flex items-center justify-center shrink-0`}>
+      <p className="text-[8px] uppercase tracking-wider text-gray-400 dark:text-white/30 font-semibold px-1">
+        Who we build for
+      </p>
+      {workflows.map((t, i) => (
+        <div key={i} className="flex items-center gap-2 rounded-xl border border-gray-100 bg-gray-50 px-2.5 py-2 dark:border-white/[0.05] dark:bg-white/[0.04]">
+          <div className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-lg ${t.color}`}>
             <span className="text-[6px] font-black text-white">{t.name[0]}</span>
           </div>
-          <span className="text-[9px] font-semibold text-gray-600 dark:text-white/60 w-16">{t.name}</span>
-          <div className="flex-1 h-1.5 bg-gray-100 dark:bg-white/[0.06] rounded-full overflow-hidden">
-            <div className={`h-full rounded-full ${t.color}`} style={{width:`${(t.q/215)*100}%`}}/>
+          <div className="min-w-0">
+            <p className="text-[9px] font-semibold text-gray-700 dark:text-white/75">{t.name}</p>
+            <p className="text-[8px] text-gray-400 dark:text-white/40">{t.detail}</p>
           </div>
-          <span className="text-[9px] font-bold text-gray-500 dark:text-white/50 w-7 text-right">{t.q}</span>
         </div>
       ))}
     </div>
@@ -101,7 +94,7 @@ function GrowthVisual() {
   return (
     <div className="w-full p-3 space-y-2">
       <div className="grid grid-cols-3 gap-1.5 mb-1">
-        {[{v:"2.5M+",l:"Data pts/mo",c:"text-blue-600 dark:text-blue-400"},{v:"3×",l:"YoY growth",c:"text-brand-600 dark:text-brand-300"},{v:"99.9%",l:"Uptime",c:"text-brand-600 dark:text-brand-400"}].map(s=>(
+        {[{v:"3",l:"Products",c:"text-blue-600 dark:text-blue-400"},{v:"4",l:"Google APIs",c:"text-brand-600 dark:text-brand-300"},{v:"HTML",l:"Report output",c:"text-brand-600 dark:text-brand-400"}].map(s=>(
           <div key={s.l} className="bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05] rounded-xl p-2 text-center">
             <p className={`text-sm font-black ${s.c}`}>{s.v}</p>
             <p className="text-[7px] text-gray-400 dark:text-white/30 font-medium leading-tight">{s.l}</p>
@@ -110,8 +103,8 @@ function GrowthVisual() {
       </div>
       <div className="bg-gray-50 dark:bg-white/[0.04] rounded-xl p-2.5 border border-gray-100 dark:border-white/[0.05]">
         <div className="flex items-center justify-between mb-1.5">
-          <span className="text-[8px] font-bold uppercase tracking-wider text-gray-400 dark:text-white/30">Platform growth 2025</span>
-          <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">↑ 3×</span>
+          <span className="text-[8px] font-bold uppercase tracking-wider text-gray-400 dark:text-white/30">Roadmap snapshot</span>
+          <span className="text-[10px] font-black text-blue-600 dark:text-blue-400">Meta · LinkedIn</span>
         </div>
         <svg viewBox="0 0 100 55" className="w-full h-10" preserveAspectRatio="none">
           <defs><linearGradient id="gg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2"/><stop offset="100%" stopColor="#3b82f6" stopOpacity="0"/></linearGradient></defs>
@@ -126,43 +119,36 @@ function GrowthVisual() {
   );
 }
 
-/** 4 · Industry Recognition — awards + hackathon wall */
+/** 4 · How we work — no unverified awards */
 function RecognitionVisual() {
-  const awards = [
-    { icon: Trophy, title:"Product of the Year",    org:"G2 Analytics Awards 2024",  color:"bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20"},
-    { icon: Medal, title:"Best AI Startup",         org:"TechCrunch Disrupt 2024",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
-    { icon: Star, title:"4.9 Customer Rating",    org:"2,000+ verified reviews",   color:"bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20"},
+  const values = [
+    { icon: Trophy, title: "Ship real integrations", org: "OAuth to live Google marketing APIs", color: "bg-amber-50 dark:bg-amber-500/10 border-amber-100 dark:border-amber-500/20" },
+    { icon: Medal, title: "Explain the math", org: "Reports show derivations clients can audit", color: "bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20" },
+    { icon: Star, title: "Remote-first India", org: "Pune-based team, global customers", color: "bg-brand-50 dark:bg-brand-500/10 border-brand-100 dark:border-brand-500/20" },
   ];
   return (
-    <div className="w-full p-3 space-y-2">
-      <div className="flex items-center gap-2 px-2.5 py-2 bg-amber-50 dark:bg-amber-500/10 border border-amber-100 dark:border-amber-500/20 rounded-xl mb-1">
-        <Trophy className="w-4 h-4 text-amber-500 shrink-0"/>
-        <div>
-          <p className="text-[10px] font-black text-gray-800 dark:text-white/80">Industry Leader</p>
-          <p className="text-[8px] text-gray-400 dark:text-white/35">Conversational Analytics 2024</p>
-        </div>
-        <span className="ml-auto text-[9px] font-bold text-amber-600 dark:text-amber-400">#1</span>
-      </div>
-      {awards.map((a,i)=>{
+    <div className="w-full space-y-2 p-3">
+      {values.map((a, i) => {
         const Icon = a.icon;
         return (
-        <div key={i} className={`flex items-center gap-2.5 px-2.5 py-2 rounded-xl border ${a.color}`}>
-          <Icon className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-300" />
-          <div className="min-w-0">
-            <p className="text-[10px] font-bold text-gray-800 dark:text-white/80 truncate">{a.title}</p>
-            <p className="text-[8px] text-gray-400 dark:text-white/35 truncate">{a.org}</p>
+          <div key={i} className={`flex items-center gap-2.5 rounded-xl border px-2.5 py-2 ${a.color}`}>
+            <Icon className="h-4 w-4 shrink-0 text-brand-600 dark:text-brand-300" />
+            <div className="min-w-0">
+              <p className="truncate text-[10px] font-bold text-gray-800 dark:text-white/80">{a.title}</p>
+              <p className="truncate text-[8px] text-gray-400 dark:text-white/35">{a.org}</p>
+            </div>
           </div>
-        </div>
-      );})}
+        );
+      })}
     </div>
   );
 }
 
 const whyJoin = [
   { icon:Cpu,       title:"Conversational AI Innovation", desc:"Work on cutting-edge natural language processing that transforms how marketers interact with data.",                    glow:"from-brand-400/10 to-violet-400/5",  border:"border-brand-400/20 dark:border-brand-500/20",  Visual:AIInnovationVisual },
-  { icon:Target,    title:"Impact-Driven Product",        desc:"Your code directly helps 850+ marketing teams make better, faster decisions every day.",                               glow:"from-brand-400/10 to-brand-300/5 dark:from-brand-400/10 dark:to-brand-300/5",  border:"border-brand-300/25 dark:border-brand-500/20",Visual:ImpactVisual       },
-  { icon:TrendingUp,title:"Rapid Growth Environment",     desc:"Join a fast-scaling platform processing 2.5M+ data points monthly with unlimited learning opportunities.",             glow:"from-blue-400/10 to-cyan-400/5",     border:"border-blue-400/20 dark:border-blue-500/20",    Visual:GrowthVisual       },
-  { icon:Trophy,    title:"Industry Recognition",         desc:"Be part of the team revolutionizing analytics — from hackathons to industry conferences, we lead innovation.",          glow:"from-amber-400/10 to-orange-400/5",  border:"border-amber-400/20 dark:border-amber-500/20",  Visual:RecognitionVisual  },
+  { icon:Target,    title:"Impact-Driven Product",        desc:"Your work ships in Chats, KPIs, and Reports that marketers use on live GA4, Ads, and Search Console data.",          glow:"from-brand-400/10 to-brand-300/5 dark:from-brand-400/10 dark:to-brand-300/5",  border:"border-brand-300/25 dark:border-brand-500/20",Visual:ImpactVisual       },
+  { icon:TrendingUp,title:"Small Team, Big Surface",      desc:"Own features end-to-end across conversational analytics, goal tracking, and HTML report generation.",                 glow:"from-blue-400/10 to-cyan-400/5",     border:"border-blue-400/20 dark:border-blue-500/20",    Visual:GrowthVisual       },
+  { icon:Trophy,    title:"Honest GTM",                   desc:"We avoid vanity metrics and unverified badges — clarity and trust are part of the product.",                          glow:"from-amber-400/10 to-orange-400/5",  border:"border-amber-400/20 dark:border-amber-500/20",  Visual:RecognitionVisual  },
 ];
 
 const perks = [
@@ -417,7 +403,7 @@ export function CareersClient({ content }: { content?: CareersContentPreset }) {
 
       <CTA
         title={content?.ctaTitle ?? "Ready to Transform Your Analytics?"}
-        subtitle={content?.ctaSubtitle ?? "Join 2,000+ teams already using Conalytic to turn data into decisions"}
+        subtitle={content?.ctaSubtitle ?? "Help us build honest, fast marketing analytics for teams who live in GA4, Ads, and Search Console."}
         primaryCta={bottomCtas.primaryCta}
         secondaryCta={bottomCtas.secondaryCta}
       />

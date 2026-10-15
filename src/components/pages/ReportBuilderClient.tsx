@@ -54,12 +54,12 @@ function DragDropVisual() {
           </div>
         ))}
       </div>
-      <div className="flex gap-1.5 mt-1.5">
-        <div className="flex-1 h-7 bg-brand-600 rounded-lg flex items-center justify-center">
-          <span className="text-[9px] font-bold text-white">Export PDF</span>
+      <div className="mt-1.5 flex gap-1.5">
+        <div className="flex h-7 flex-1 items-center justify-center rounded-lg bg-brand-600">
+          <span className="text-[9px] font-bold text-white">Download HTML</span>
         </div>
-        <div className="px-3 h-7 bg-gray-100 dark:bg-white/[0.06] rounded-lg flex items-center">
-          <span className="text-[9px] font-semibold text-gray-500 dark:text-white/40">Share link</span>
+        <div className="flex h-7 items-center rounded-lg bg-gray-100 px-3 dark:bg-white/[0.06]">
+          <span className="text-[9px] font-semibold text-gray-500 dark:text-white/40">Regenerate</span>
         </div>
       </div>
     </div>
@@ -97,25 +97,24 @@ function AIInsightVisual() {
 }
 
 function ScheduleVisual() {
-  const upcoming = [
-    {label:"Monthly Report",    date:"Jul 1",  status:"sent",    color:DEMO_POSITIVE_TEXT_CLASS},
-    {label:"Weekly Summary",    date:"Jul 7",  status:"sent",    color:DEMO_POSITIVE_TEXT_CLASS},
-    {label:"Campaign Analysis", date:"Jul 14", status:"pending", color:"text-amber-600 dark:text-amber-400"},
-    {label:"Quarterly Review",  date:"Jul 28", status:"pending", color:"text-gray-400 dark:text-white/35"},
+  const runs = [
+    { label: "Q3 Organic deck", action: "Download HTML", color: DEMO_POSITIVE_TEXT_CLASS },
+    { label: "Paid media summary", action: "Regenerate", color: "text-amber-600 dark:text-amber-400" },
+    { label: "GTM health check", action: "View in app", color: "text-gray-500 dark:text-white/45" },
   ];
   return (
-    <div className="w-full p-3 space-y-2">
-      <div className="flex items-center justify-between mb-1">
-        <span className="text-[9px] font-bold text-gray-500 dark:text-white/40 uppercase tracking-wider">Scheduled Reports</span>
-        <span className={`text-[9px] font-semibold ${DEMO_POSITIVE_TEXT_CLASS}`}>Auto-send on</span>
+    <div className="w-full space-y-2 p-3">
+      <div className="mb-1 flex items-center justify-between">
+        <span className="text-[9px] font-bold uppercase tracking-wider text-gray-500 dark:text-white/40">Recent reports</span>
+        <span className="text-[9px] font-semibold text-gray-400 dark:text-white/35">HTML output</span>
       </div>
-      {upcoming.map((r,i)=>(
-        <div key={i} className="flex items-center gap-2.5 px-2.5 py-2 rounded-xl bg-gray-50 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.05]">
-          <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${r.status==="sent" ? "bg-brand-100 dark:bg-brand-500/15" : "bg-gray-100 dark:bg-white/[0.06]"}`}>
-            {r.status==="sent" ? <CheckCircle2 className={`w-3 h-3 ${DEMO_POSITIVE_TEXT_CLASS}`}/> : <Calendar className="w-3 h-3 text-gray-400 dark:text-white/30"/>}
+      {runs.map((r, i) => (
+        <div key={i} className="flex items-center gap-2.5 rounded-xl border border-gray-100 bg-gray-50 px-2.5 py-2 dark:border-white/[0.05] dark:bg-white/[0.04]">
+          <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-100 dark:bg-brand-500/15">
+            <LayoutTemplate className={`h-3 w-3 ${DEMO_POSITIVE_TEXT_CLASS}`} />
           </div>
           <span className="flex-1 text-[10px] font-semibold text-gray-700 dark:text-white/70">{r.label}</span>
-          <span className={`text-[9px] font-bold ${r.color}`}>{r.date}</span>
+          <span className={`text-[9px] font-bold ${r.color}`}>{r.action}</span>
         </div>
       ))}
     </div>

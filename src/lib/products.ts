@@ -35,9 +35,9 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
     shortName: "Chats",
     appNavLabel: "Chats",
     path: "/products/conversational-analytics",
-    tagline: "Marketing data chatbot — ask GA4, Google Ads, GSC, GTM & Meta in plain English.",
+    tagline: "Marketing data chatbot — ask GA4, Google Ads, GSC & GTM in plain English.",
     description:
-      "Conalytic Conversational Analytics turns natural language into live marketing insights. Connect Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, or Meta Ads via OAuth, scope each chat to a property or account, and get AI answers with inline charts, tables, and KPI rows—no SQL, no dashboard drilling, no Looker required.",
+      "Conalytic Conversational Analytics turns natural language into live marketing insights. Connect Google Analytics 4, Google Search Console, Google Ads, or Google Tag Manager via OAuth (Meta Ads and LinkedIn Ads coming soon), scope each chat to a property or account, and get AI answers with inline charts, tables, and KPI rows—no SQL, no dashboard drilling, no Looker required.",
     metaTitle: "Conversational Analytics — GA4 & Google Ads AI Chat",
     metaDescription:
       "Conalytic Conversational Analytics delivers natural-language marketing insights, inline visualizations, and GPT-5.4 / Claude / Gemini models. Free to start on Conalytic Pro.",
@@ -64,7 +64,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "LinkedIn Ads (coming soon)",
     ],
     features: [
-      "Plain-English marketing questions over live GA4, GSC, Google Ads, GTM, and Meta data",
+      "Plain-English marketing questions over live GA4, GSC, Google Ads, and GTM data",
       "Scoped chats: one OAuth connection and property, site, account, or container per thread",
       "GPT-5.4, Claude Opus 4.8, or Gemini 3.1 Pro model selection",
       "Inline charts, tables, and KPI rows via conalytic-viz in every answer",
@@ -73,7 +73,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
       "GTM container audits: tags, triggers, variables, consent, and security checks",
     ],
     workflow: [
-      "Connect GA4, Search Console, Google Ads, GTM, or Meta on the Connections page",
+      "Connect GA4, Search Console, Google Ads, or GTM on the Connections page",
       "Start a new chat — choose platform, sign-in, and property or account",
       "Ask marketing analytics questions; Conalytic streams live API answers with viz",
       "Attach context files, refine prompts, and follow up in the same conversation",
@@ -81,7 +81,7 @@ export const CONALYTIC_PRODUCTS: Record<ProductId, ProductDefinition> = {
     billingNote: "Free to start. Usage-based pricing for AI-powered chat on Pro plans.",
     signupUrl: CHAT_APP_SIGNUP_URL,
     heroTitleLine1: "Conversational Analytics for",
-    heroTitleLine2: "GA4, Google Ads & Meta",
+    heroTitleLine2: "GA4, Google Ads & GSC",
   },
   "kpis-tracker": {
     id: "kpis-tracker",

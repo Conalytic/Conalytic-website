@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     template: "%s",
   },
   description:
-    "Conalytic is a marketing analytics platform with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Ask questions in plain English, track KPI goals, and generate HTML report decks.",
+    "Conalytic is a marketing analytics platform with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Search Console, Google Ads, and GTM via OAuth; Meta Ads and LinkedIn Ads are coming soon. Ask questions in plain English, track KPI goals, and generate HTML report decks.",
   keywords: [
     "conversational analytics",
     "KPI tracker marketing",
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     siteName: "Conalytic",
     title: "Conalytic – Chat, KPIs & Reports for Marketing Teams",
     description:
-      "Three tools in one platform: chat with GA4, Ads, GTM & Meta data; track KPI goals; build HTML report decks. Free to start.",
+      "Three tools in one platform: chat with GA4, Ads & GTM data; track KPI goals; build HTML report decks. Meta & LinkedIn coming soon. Free to start.",
     images: [
       {
         url: BRAND_ASSETS.ogImage,
@@ -97,7 +97,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Conalytic – Marketing Analytics: Chat, KPIs & Reports",
     description:
-      "Chat with marketing data, track KPI goals, and generate HTML report decks. GA4, Search Console, Google Ads, GTM, and Meta integrations.",
+      "Chat with marketing data, track KPI goals, and generate HTML report decks. GA4, Search Console, Google Ads, and GTM live; Meta & LinkedIn coming soon.",
     creator: "@conalytic",
     images: [BRAND_ASSETS.ogImage],
   },

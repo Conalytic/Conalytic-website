@@ -63,7 +63,7 @@ const keyFeatures = [
     icon: Globe,
     title: "Scoped OAuth connections",
     description:
-      "Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Each chat uses the connection and property or account you choose.",
+      "Connect GA4, Search Console, Google Ads, and GTM (Meta Ads and LinkedIn Ads coming soon). Each chat uses the connection and property or account you choose.",
     color: "from-blue-500/20 to-cyan-500/10",
     iconColor: "text-blue-400",
     border: "border-blue-500/20",
@@ -150,10 +150,9 @@ function NLQVisual() {
 function MultiChannelVisual() {
   const L = MARKETING_STACK_LOGOS;
   const channels = [
-    { name: "GA4",  bg: "bg-orange-50 dark:bg-orange-500/10", src: L.googleAnalytics4 },
-    { name: "Ads",  bg: "bg-blue-50 dark:bg-blue-500/10",     src: L.googleAds },
-    { name: "Meta", bg: "bg-indigo-50 dark:bg-indigo-500/10", src: L.metaAds },
-    { name: "GSC",  bg: "bg-sky-50 dark:bg-sky-500/10",       src: L.googleSearchConsole },
+    { name: "GA4", bg: "bg-orange-50 dark:bg-orange-500/10", src: L.googleAnalytics4 },
+    { name: "Ads", bg: "bg-blue-50 dark:bg-blue-500/10", src: L.googleAds },
+    { name: "GSC", bg: "bg-sky-50 dark:bg-sky-500/10", src: L.googleSearchConsole },
   ];
   return (
     <div className="flex flex-col items-center gap-3 py-2">
@@ -392,7 +391,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
   const heroSubtitle = content?.heroSubtitle ?? chatProduct.description;
   const heroSecondarySubtitle =
     content?.heroSecondarySubtitle ??
-    "Start a new chat, pick GA4, Search Console, Google Ads, GTM, or Meta, and ask anything—from traffic trends to campaign ROAS. General marketing chat is available without a data source.";
+    "Start a new chat, pick GA4, Search Console, Google Ads, or GTM, and ask anything—from traffic trends to campaign ROAS. Meta Ads and LinkedIn Ads are coming soon. General marketing chat is available without a data source.";
   const coreCapabilitiesSubtitle = content?.coreCapabilitiesSubtitle ?? "Core Capabilities";
   const coreCapabilitiesTitle = content?.coreCapabilitiesTitle ?? "Everything you need to understand your marketing data";
   const heroPrimaryCta = resolveCtaPair(content, "heroPrimaryCtaLabel", "heroPrimaryCtaHref", {
@@ -558,7 +557,7 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1.5">Multi-Channel Integration</h3>
                 <p className="text-sm text-gray-500 dark:text-white/60 mb-6 leading-relaxed">
-                  Connect GA4, Google Ads, Meta Ads, and Search Console into one unified warehouse.
+                  Connect GA4, Google Ads, Search Console, and GTM in one workspace. Meta Ads and LinkedIn Ads are coming soon.
                 </p>
                 <MultiChannelVisual/>
               </div>
@@ -645,21 +644,20 @@ export function ConversationalAnalyticsClient({ content }: { content?: Conversat
             </p>
             <p className="text-brand-600 dark:text-brand-400 font-semibold text-sm">
               More than 100 integrated data points from major advertising platforms including Google
-              Ads, Meta Ads, GA4, Search Console, and more.
+              Google Ads, GA4, Search Console, GTM, and more (Meta & LinkedIn coming soon).
             </p>
           </motion.div>
 
-          {/* Quick stats row */}
           <motion.div
             initial={false} whileInView={{ opacity:1, y:0 }}
             viewport={{ once:true }} transition={{ duration:0.7, delay:0.15, ease:EASE }}
             className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-4"
           >
             {[
-              { val:"100+", label:"Data integrations" },
-              { val:"<3s",  label:"Response time" },
-              { val:"94%",  label:"Faster than BI tools" },
-              { val:"4.9★", label:"Customer rating" },
+              { val:"4", label:"Google integrations live" },
+              { val:"Soon", label:"Meta & LinkedIn Ads" },
+              { val:"3", label:"AI models to choose" },
+              { val:"HTML", label:"Reports in Report Builder" },
             ].map(s => (
               <div key={s.label} className="bg-[#f0f1f5] dark:bg-white/[0.04] rounded-2xl p-5 border border-gray-100 dark:border-white/[0.06]">
                 <p className={`text-3xl font-black mb-1 ${BRAND_HERO_GRADIENT_CLASS}`}>{s.val}</p>

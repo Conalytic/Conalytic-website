@@ -3,6 +3,7 @@
  * Tuned for traditional SEO + GEO (clear entities, citable facts, product definition).
  */
 import { CHAT_APP_SIGNUP_URL, MARKETING_CONTACT_ABSOLUTE } from "@/lib/app-urls";
+import { marketingIntegrationsSummary } from "@/lib/marketing-integrations";
 import { PRODUCT_LIST, type ProductDefinition } from "@/lib/products";
 import { blogPostPath, SITE_PATHS } from "@/lib/site-paths";
 import { BRAND_ASSETS } from "@/lib/public-assets";
@@ -22,7 +23,7 @@ export function organizationSchema() {
     image: `${SITE}${BRAND_ASSETS.ogImage}`,
     slogan: "Casting Spells of Clarity on Your Data.",
     description:
-      "Conalytic is a marketing analytics platform with three tools: Conversational Analytics (chat over live data), KPIs Tracker (goal monitoring), and Report Builder (HTML presentation decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads via OAuth.",
+      `Conalytic is a marketing analytics platform with three tools: Conversational Analytics (chat over live data), KPIs Tracker (goal monitoring), and Report Builder (HTML presentation decks). ${marketingIntegrationsSummary()}`,
     email: "admin@conalytic.com",
     knowsAbout: [
       "Conversational analytics",
@@ -72,7 +73,7 @@ export function websiteSchema() {
     url: SITE,
     inLanguage: "en-US",
     description:
-      "Conalytic: marketing analytics with Conversational Analytics, KPIs Tracker, and Report Builder. Connect GA4, Google Ads, Search Console, GTM, and Meta; ask questions in plain English, track KPI goals, and generate HTML report decks.",
+      `Conalytic: marketing analytics with Conversational Analytics, KPIs Tracker, and Report Builder. ${marketingIntegrationsSummary()} Ask questions in plain English, track KPI goals, and generate HTML report decks.`,
     publisher: { "@id": `${SITE}/#organization` },
     about: { "@id": `${SITE}/#softwareapplication` },
   };
@@ -141,12 +142,12 @@ export function softwareApplicationSchema() {
     url: CHAT_APP_SIGNUP_URL,
     screenshot: `${SITE}${BRAND_ASSETS.ogImage}`,
     description:
-      "Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). Connect GA4, Search Console, Google Ads, GTM, and Meta Ads. Free to start on Conalytic Pro.",
+      `Conalytic includes Conversational Analytics (chat), KPIs Tracker (goal monitoring), and Report Builder (HTML decks). ${marketingIntegrationsSummary()} Free to start on Conalytic Pro.`,
     featureList: [
       "Conversational Analytics — plain-English chat over connected marketing data",
       "KPIs Tracker — GA4, Search Console, and Google Ads goal status dashboards",
       "Report Builder — multi-platform HTML presentation decks with optional AI insights",
-      "OAuth integrations: GA4, Search Console, Google Ads, GTM, Meta Ads",
+      "OAuth integrations: GA4, Search Console, Google Ads, GTM (Meta Ads and LinkedIn Ads coming soon)",
       "Free to start with usage-based pricing for AI features",
     ],
     hasPart: PRODUCT_LIST.map((p) => ({ "@id": `${SITE}${p.path}#softwareapplication` })),

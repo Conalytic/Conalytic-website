@@ -184,11 +184,10 @@ function CtaLineChart({
   );
 }
 
-const STATS = [
-  { value: "2,000+", label: "Teams" },
-  { value: "10M+",   label: "Queries" },
-  { value: "94%",    label: "Faster" },
-  { value: "4.9★",   label: "Rating" },
+const TRUST_POINTS = [
+  { value: "3", label: "Products" },
+  { value: "4", label: "Google integrations live" },
+  { value: "HTML", label: "Report decks" },
 ];
 
 interface CTAProps {
@@ -201,7 +200,7 @@ interface CTAProps {
 const DEFAULT_CTA_TITLE = "Turn data into decisions.";
 const DEFAULT_CTA_TITLE_GRADIENT = "In seconds, not days.";
 const DEFAULT_CTA_SUBTITLE =
-  "Join thousands of teams who replaced their entire dashboard stack with a single conversation.";
+  "Start free on Conalytic Pro — connect Google marketing accounts and explore Chats, KPIs, and HTML Reports.";
 
 export function CTA({
   title,
@@ -430,7 +429,7 @@ export function CTA({
               whileInView="show"
               viewport={viewportOnce}
             >
-              {STATS.map((s) => (
+              {TRUST_POINTS.map((s) => (
                 <motion.div key={s.label} variants={fadeUpChild} className="text-center">
                   <p className="text-xl font-black text-gray-900 dark:text-white tabular-nums">{s.value}</p>
                   <p className="text-[11px] text-gray-400 dark:text-white/55 font-medium uppercase tracking-wider mt-0.5">{s.label}</p>

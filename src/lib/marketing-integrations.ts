@@ -16,3 +16,15 @@ export function isMarketingIntegrationComingSoon(
 ): boolean {
   return COMING_SOON_MARKETING_INTEGRATIONS.has(key);
 }
+
+/** Live read-only OAuth connectors in the Conalytic app today. */
+export const LIVE_OAUTH_INTEGRATIONS =
+  "Google Analytics 4, Google Search Console, Google Ads, and Google Tag Manager";
+
+/** Not yet available in product — show “Coming soon” in marketing copy and schema. */
+export const COMING_SOON_OAUTH_INTEGRATIONS = "Meta Ads and LinkedIn Ads";
+
+/** One-line summary for FAQs, JSON-LD, and meta descriptions. */
+export function marketingIntegrationsSummary(): string {
+  return `${LIVE_OAUTH_INTEGRATIONS} connect via read-only OAuth today. ${COMING_SOON_OAUTH_INTEGRATIONS} are coming soon for Conversational Analytics. KPIs Tracker uses GA4, GSC, and Google Ads; Report Builder uses GA4, GSC, Google Ads, and GTM.`;
+}

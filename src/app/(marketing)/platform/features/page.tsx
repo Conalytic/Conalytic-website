@@ -9,7 +9,7 @@ import { SITE_PATHS } from "@/lib/site-paths";
 
 const PAGE_TITLE = "Features – Conversational Analytics, KPI Tracker & Report Builder";
 const PAGE_DESCRIPTION =
-  "Explore Conalytic features: AI marketing chat for GA4, Google Ads, Search Console, GTM, and Meta; KPI goal tracking dashboard; automated HTML client report decks. Natural-language analytics and OAuth integrations.";
+  "Explore Conalytic features: AI marketing chat for GA4, Google Ads, Search Console, and GTM; KPI goal tracking dashboard; automated HTML client report decks. Meta Ads and LinkedIn Ads coming soon. Natural-language analytics and OAuth integrations.";
 
 export function generateMetadata(): Metadata {
   return buildRouteMetadata(SITE_PATHS.platform.features, {

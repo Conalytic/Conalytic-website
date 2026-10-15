@@ -6,7 +6,7 @@ export const DEFAULT_HOME_FAQ = [
   {
     question: "What is Conalytic marketing analytics software?",
     answer:
-      "Conalytic is an AI-powered marketing analytics platform with three tools: Conversational Analytics (natural-language chat over GA4, Google Ads, Search Console, GTM, and Meta), KPIs Tracker (goal monitoring for GA4, GSC, and Google Ads), and Report Builder (automated HTML client presentation decks). Sign up free at chat.conalytic.com.",
+      "Conalytic is an AI-powered marketing analytics platform with three tools: Conversational Analytics (natural-language chat over GA4, Google Ads, Search Console, and GTM), KPIs Tracker (goal monitoring for GA4, GSC, and Google Ads), and Report Builder (automated HTML client presentation decks). Meta Ads and LinkedIn Ads are coming soon for Chats. Sign up free at chat.conalytic.com.",
   },
   {
     question: "What products does Conalytic include?",
@@ -21,7 +21,7 @@ export const DEFAULT_HOME_FAQ = [
   {
     question: "How is Conversational Analytics different from a BI dashboard?",
     answer:
-      "Conversational Analytics replaces SQL and dashboard building with natural-language chat. Ask follow-up questions about GA4 traffic, Google Ads ROAS, Search Console queries, GTM container health, or Meta campaign performance—Conalytic retrieves live metrics and renders inline charts and tables in the conversation.",
+      "Conversational Analytics replaces SQL and dashboard building with natural-language chat. Ask follow-up questions about GA4 traffic, Google Ads ROAS, Search Console queries, and GTM container health—Conalytic retrieves live metrics and renders inline charts and tables in the conversation.",
   },
   {
     question: "How does the Conalytic KPI Tracker work?",

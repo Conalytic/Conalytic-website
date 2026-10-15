@@ -10,7 +10,7 @@ export const CONVERSATIONAL_ANALYTICS_FAQ: MarketingFaqItem[] = [
   {
     question: "What is Conversational Analytics in Conalytic?",
     answer:
-      "Conversational Analytics (Chats) lets marketing teams ask questions in plain English and get answers from live GA4, Google Search Console, Google Ads, Google Tag Manager, and Meta Ads data. Each chat is scoped to the OAuth connection and property or account you choose, with inline charts, tables, and KPI rows—no SQL or dashboard building required.",
+      "Conversational Analytics (Chats) lets marketing teams ask questions in plain English and get answers from live GA4, Google Search Console, Google Ads, and Google Tag Manager data. Meta Ads and LinkedIn Ads are coming soon. Each chat is scoped to the OAuth connection and property or account you choose, with inline charts, tables, and KPI rows—no SQL or dashboard building required.",
   },
   {
     question: "Which integrations work with Conalytic Chats?",
@@ -30,7 +30,7 @@ export const CONVERSATIONAL_ANALYTICS_FAQ: MarketingFaqItem[] = [
   {
     question: "Can I upload context files to a Conalytic chat?",
     answer:
-      "Yes. Each chat supports an optional context file—for example brand definitions, conversion rules, or internal KPI notes—that applies only to that conversation while you ask GA4, Google Ads, Search Console, GTM, or Meta questions.",
+      "Yes. Each chat supports an optional context file—for example brand definitions, conversion rules, or internal KPI notes—that applies only to that conversation while you ask GA4, Google Ads, Search Console, or GTM questions.",
   },
   {
     question: "How is Conversational Analytics different from Looker or GA4 dashboards?",
@@ -109,7 +109,7 @@ export const FEATURES_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "What features are included in the Conalytic marketing analytics platform?",
     answer:
-      "Conalytic bundles Conversational Analytics (natural-language chat over live data), KPIs Tracker (GA4, GSC, and Google Ads goal monitoring), and Report Builder (multi-platform HTML presentation decks). All three share OAuth connections for Google Analytics 4, Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads.",
+      "Conalytic bundles Conversational Analytics (natural-language chat over live data), KPIs Tracker (GA4, GSC, and Google Ads goal monitoring), and Report Builder (multi-platform HTML presentation decks). Live OAuth today: Google Analytics 4, Search Console, Google Ads, and Google Tag Manager. Meta Ads and LinkedIn Ads are coming soon for Conversational Analytics.",
   },
   {
     question: "Do I need SQL to use Conalytic features?",
@@ -124,12 +124,12 @@ export const FEATURES_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "Can agencies use Conalytic for client reporting?",
     answer:
-      "Yes. Report Builder produces downloadable HTML marketing presentations with executive summaries and action plans. Conversational Analytics helps account teams investigate GA4, Google Ads, and Meta performance in chat. KPIs Tracker gives clients transparent on-track vs at-risk goal status.",
+      "Yes. Report Builder produces downloadable HTML marketing presentations with executive summaries and action plans. Conversational Analytics helps account teams investigate GA4, Google Ads, and Search Console performance in chat. KPIs Tracker gives clients transparent on-track vs at-risk goal status.",
   },
   {
     question: "How do Conalytic OAuth integrations work?",
     answer:
-      "Connect read-only OAuth on the Connections page for GA4, Search Console, Google Ads, GTM, Meta, and LinkedIn. Each product scopes data to the properties, sites, accounts, or containers you authorize—your team stays in control of marketing data access.",
+      "Connect read-only OAuth on the Connections page for GA4, Search Console, Google Ads, and GTM. Meta Ads and LinkedIn Ads are coming soon. Each product scopes data to the properties, sites, accounts, or containers you authorize—your team stays in control of marketing data access.",
   },
   {
     question: "Is there a free way to try Conalytic features?",
@@ -175,7 +175,7 @@ export const INTEGRATIONS_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "Which marketing platforms does Conalytic integrate with?",
     answer:
-      "Conalytic connects via OAuth to Google Analytics 4, Google Search Console, Google Ads, Google Tag Manager, Meta Ads, and LinkedIn Ads. Conversational Analytics queries live data on GA4, GSC, Google Ads, GTM, and Meta; KPIs Tracker uses GA4, GSC, and Google Ads; Report Builder uses GA4, GSC, Google Ads, and GTM.",
+      "Conalytic connects via OAuth to Google Analytics 4, Google Search Console, Google Ads, and Google Tag Manager today. Meta Ads and LinkedIn Ads are coming soon for Conversational Analytics. KPIs Tracker uses GA4, GSC, and Google Ads; Report Builder uses GA4, GSC, Google Ads, and GTM.",
   },
   {
     question: "Are Conalytic integrations read-only?",
@@ -185,7 +185,7 @@ export const INTEGRATIONS_PAGE_FAQ: MarketingFaqItem[] = [
   {
     question: "Does Conalytic support Meta Ads conversational analytics?",
     answer:
-      "Yes. Meta Ads is supported in Conversational Analytics for account, campaign, ad set, and ad insights. Report Builder lists Meta as a future source; KPI Tracker focuses on GA4, Search Console, and Google Ads goal metrics.",
+      "Meta Ads (Facebook and Instagram) is coming soon for Conversational Analytics. Today, live chat supports GA4, Google Search Console, Google Ads, and Google Tag Manager. Report Builder and KPIs Tracker remain Google-focused (GA4, GSC, Google Ads, and GTM for reports).",
   },
   {
     question: "Can I connect Google Tag Manager to Conalytic?",
